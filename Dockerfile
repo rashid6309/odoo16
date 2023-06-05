@@ -11,6 +11,7 @@ RUN mkdir /opt/odoo16ce
 RUN mkdir /opt/odoo16ce/core
 RUN mkdir /opt/odoo16ce/custom
 RUN mkdir /opt/odoo16ce/custom_odoo_module
+RUN mkdir /etc/odoo
 
 COPY ./core /opt/odoo16ce/core
 COPY ./custom /opt/odoo16ce/custom
@@ -53,7 +54,9 @@ RUN apt install -y nano
 RUN apt-get install -y postgresql-client
 
 # Set permissions and Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
-RUN chown odoo /etc/odoo/odoo.conf \
+RUN chown -R odoo /etc/odoo \
+    && chmod +x /entrypoint.sh \
+    && chown odoo /etc/odoo/odoo.conf \
     && mkdir -p /mnt/extra-addons \
     && mkdir -p /var/lib/odoo \
     && chown -R odoo /mnt/extra-addons
