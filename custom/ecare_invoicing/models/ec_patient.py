@@ -1,0 +1,45 @@
+from odoo import models, _
+
+
+class Patient(models.Model):
+    _inherit = "ec.medical.patient"
+
+    def open_invoice_line_history(self):
+        query = '''
+        select
+            aml.create_date datetime,
+            emp.id patient_id,	
+            aml.product_id product_id,
+            aml.move_id move_id,
+            case am.move_type 
+            when 'out_invoice' then 'Invoice'
+            when 'out_refund' then 'Refund' 
+            else '' end as invoice_type,
+			-1 * aml.balance amount,
+            INITCAP(am.payment_state) payment_state
+        from
+            account_move_line aml
+        inner join account_move am on am.id = aml.move_id
+        inner join ec_medical_patient emp on emp.partner_id = aml.partner_id
+        where
+            aml.partner_id = %(partner_id)s
+            and aml.product_id is not null
+        order by
+            aml.create_date desc;
+        '''
+
+        self._cr.execute(query, {'partner_id': self.partner_id.id})
+        values = self._cr.dictfetchall()
+
+        patient_move_line_history = self.env['patient.account.move.line.history'].create(values)
+
+        return {
+            "name": _("Services"),
+            "type": 'ir.actions.act_window',
+            "res_model": 'patient.account.move.line.history',
+            "view_id": self.env.ref("ecare_invoicing.patient_move_line_history_tree_view").id,
+            'view_mode': 'tree',
+            "target": 'current',
+            'domain': [('id', 'in', patient_move_line_history.ids),
+                       ('patient_id', '=', self.id)],
+        }

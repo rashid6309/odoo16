@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <menuitem id="ecare_appointment.ec_main_configuration"
+                  name="Configuration"
+                  parent="ecare_appointment.ec_main_menu"
+                  groups="ecare_user_management.group_configuration_menu"
+                  sequence="500"
+        />
+
+    </data>
+</odoo>

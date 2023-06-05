@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="ecare_appointment_reporting" model="ir.actions.client">
+            <field name="name">Dashboard</field>
+            <field name="tag">ecare_appointment_reporting</field>
+        </record>
+
+        <record id="ecare_services_reporting" model="ir.actions.client">
+            <field name="name">Dashboard</field>
+            <field name="tag">ecare_services_reporting</field>
+        </record>
+
+        <record id="ecare_amount_due_reporting" model="ir.actions.client">
+            <field name="name">Dashboard</field>
+            <field name="tag">ecare_amount_due_reporting</field>
+        </record>
+    </data>
+</odoo>

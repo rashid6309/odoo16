@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem
+                id="ec_main_menu"
+                name="eCare"
+                sequence="100"
+        />
+
+        <menuitem id="ec_main_configuration"
+                  name="Configuration"
+                  parent="ec_main_menu"
+                  sequence="500"
+        />
+
+
+        <menuitem id="dashboard_sub_menu_configuration"
+                  name="My Dashboard"
+                  parent="ec_main_menu"
+                  action="board.open_board_my_dash_action"
+                  sequence="600"
+        />
+
+        <!-- Configuration will have invoices as submenu -->
+        <menuitem id="ec_configuration_submenu_invoices"
+                  name="Products"
+                  parent="ecare_appointment.ec_main_configuration"
+                  sequence="5000"
+        />
+
+        <menuitem id="configuration_ec_patient_menu"
+                  name="Patient"
+                  parent="ec_main_menu"
+                  sequence="50"
+                  action="ecare_core.ec_patient_action"/>
+
+        <menuitem id="ec_main_menu_categories"
+                  name="Categories"
+                  parent="ec_main_configuration"
+                  sequence="1500"
+        />
+
+    </data>
+</odoo>

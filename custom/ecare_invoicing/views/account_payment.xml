@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_tree_inherited" model="ir.ui.view">
+            <field name="name">account.payment.inherited.tree</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">True</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_payment_form_inherited_custom" model="ir.ui.view">
+            <field name="name">account.payment.form.inherited</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/header/button[@name='action_draft']" position="replace"/>
+                <xpath expr="//form/header/button[@name='mark_as_sent']" position="replace"/>
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '=', 'posted')]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

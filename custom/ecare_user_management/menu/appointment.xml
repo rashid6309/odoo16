@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <menuitem
+                id="ecare_appointment.slots_record_menu"
+                name="Appointments"
+                action="ecare_appointment.slots_record_action"
+                parent="ecare_appointment.ec_main_menu"
+                groups="ecare_user_management.group_appointment_menu"
+                sequence="100"
+        />
+
+    </data>
+</odoo>

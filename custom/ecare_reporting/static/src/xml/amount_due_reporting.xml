@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="EcareAmountDueReportingTemplate">
+        <div class="o_ecare_amount_due_reporting">
+        </div>
+    </t>
+
+
+    <t t-name="EcareAmountDueReporting">
+          <div class="p-3">
+              <div class="container-fluid">
+              <div class="row text-center">
+                  <div class="col">
+                           <h1>Cash Due</h1>
+                  </div>
+              </div>
+          </div>
+
+              <!--              <div class="container-fluid">-->
+              <!--            <div class="row p-3" style="padding:auto" >-->
+              <!--                <div style="margin:auto" class="col-6">-->
+              <!--                      <div class="d-flex">-->
+              <!--                          <select  style="margin-left:10px;margin-right:10px;width:30%" id="payment_mode"-->
+              <!--                                  class="p-3 duration_filter no-border-top mr-2" t-att-value="widget.payment_mode">-->
+              <!--                              <option value="All Modes">All Invoices</option>-->
+              <!--&lt;!&ndash;                              <t t-foreach="widget.payment_methods" t-as="method">&ndash;&gt;-->
+              <!--&lt;!&ndash;                                <option t-att-value="method"><t t-out="method"/></option>&ndash;&gt;-->
+              <!--&lt;!&ndash;                              </t>&ndash;&gt;-->
+              <!--                            </select>-->
+
+              <!--                          <select style="margin-left:10px;margin-right:10px;width:30%" id="invoice_type"-->
+              <!--                                   t-att-value="widget.invoice_type" class="p-3 duration_filter no-border-top mr-2">-->
+              <!--&lt;!&ndash;                              <t t-foreach="widget.payment_methods" t-as="method">&ndash;&gt;-->
+              <!--                              &lt;!&ndash;                                <option value="<t t-out='method'/>"><t t-out="method"/></option>&ndash;&gt;-->
+              <!--                              &lt;!&ndash;                              </t>&ndash;&gt;-->
+              <!--                              <option value="All Types">Invoice Type</option>-->
+              <!--                              <option value="out_invoice">All Invoices</option>-->
+              <!--                              <option value="out_refund">Refunded</option>-->
+              <!--                              <option value="Canceled">Canceled</option>-->
+              <!--                            </select>-->
+              <!--                          <button class="btn btn-primary" id="search_button">Search</button>-->
+              <!--                      </div>-->
+              <!--                </div>-->
+              <!--            <script>-->
+              <!--                var payment_mode = document.getElementById("payment_mode").getAttribute("value");-->
+              <!--                 document.getElementById("payment_mode").value = payment_mode;-->
+              <!--                var invoice_type = document.getElementById("invoice_type").getAttribute("value");-->
+              <!--                 document.getElementById("invoice_type").value = invoice_type;-->
+              <!--            </script>-->
+
+              <!--                <div class="col-6">-->
+              <!--                        <table class="table table-striped">-->
+              <!--                          <thead >-->
+              <!--                            <tr>-->
+              <!--                              <th style="text-transform: uppercase;font-weight: bold;" scope="col">Discount</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">Refund</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">Payment</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">Total Amt</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">Canceled Amt</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">Net Amt</th>-->
+              <!--                            </tr>-->
+              <!--                          </thead>-->
+              <!--                            <tbody>-->
+              <!--                            <tr>-->
+              <!--                              <td><t t-out="widget.total_discount"></t></td>-->
+              <!--                                <td><t t-out="widget.total_refunded"></t></td>-->
+              <!--                                <td><t t-out="widget.draft_amount"></t></td>-->
+              <!--                                <td><t t-out="widget.online_amount"></t></td>-->
+              <!--                                <td><t t-out="widget.cash_amount"></t></td>-->
+              <!--                                <td><t t-out="widget.total_amount"></t></td>-->
+              <!--                            </tr>-->
+              <!--                          </tbody>-->
+              <!--                            <thead >-->
+              <!--                            <tr>-->
+              <!--                              <th style="text-transform: uppercase;font-weight: bold;" scope="col">Cash</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">By Cheque</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">By D. Draft</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">By C. Draft</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">Online</th>-->
+              <!--                                <th style="text-transform: uppercase;font-weight: bold;" scope="col">Net Amt</th>-->
+
+              <!--                            </tr>-->
+              <!--                          </thead>-->
+              <!--                            <tbody>-->
+              <!--                            <tr>-->
+              <!--                              <td><t t-out="widget.cash_amount"></t></td>-->
+              <!--                                <td><t t-out="widget.cheque_amount"></t></td>-->
+              <!--                                <td><t t-out="widget.draft_amount"></t></td>-->
+              <!--                                <td><t t-out="widget.draft_amount"></t></td>-->
+              <!--                                <td><t t-out="widget.online_amount"></t></td>-->
+              <!--                                <td>3821827</td>-->
+              <!--                            </tr>-->
+              <!--                          </tbody>-->
+              <!--                        </table>-->
+              <!--                </div>-->
+              <!--            </div>-->
+              <!--        </div>-->
+              <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6 text-start">
+                </div>
+                        <div class="col-6 text-end">
+                            <button id="print" class="btn btn-dark">Print Report</button>
+                            <button id="print_excel" class="btn btn-dark">Print Report Excel</button>
+                        </div>
+                    </div>
+                  <t t-if="widget.notification">
+                      <div style="text-align:center">
+                         <p style="color:#ff6666">Record does not exist.
+                             <!-- <b t-out="widget.day_name"></b> -->
+                         </p>
+                     </div>
+                  </t>
+                  <t t-else="">
+                      <div class="row p-3">
+                      <div class="col-12">
+                    <table class="table table-striped">
+                      <thead>
+                          <tr>
+                               <t t-foreach="widget.header" t-as="header">
+                                  <th style="text-transform: uppercase;font-weight: bold;" scope="col"><t t-out="header ? header : 'N.A' "/></th>
+                                </t>
+                          </tr>
+
+                      </thead>
+                        <!--                        <t t-if="widget.notification">-->
+                        <tbody>
+                                <t t-foreach="widget.data" t-as="data">
+                                    <tr>
+                                      <t t-foreach="data" t-as="record">
+                                         <td style="white-space: pre-line;">
+                                              <t t-out="record"></t>
+                                          </td>
+                                      </t>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        <!--                        </t>-->
+                    </table>
+                          <t t-set="i" t-value="1"/>
+                          <nav aria-label="Page navigation example">
+                          <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                              <a class="page-link" tabindex="-1">Previous</a>
+                            </li>
+                              <t t-set="i" t-value="0"/>
+                              <t t-foreach="widget.total_pages" t-as="">
+                                    <li class="page-item">
+                                     <a id="page" style="cursor: pointer;" t-att-pageNo="i"
+                                        t-attf-class="page-link {{ (i == widget.active_page) ? 'activeButton' : ' ' }}"
+                                        t-esc="i+1"></a>
+                                    </li>
+                                  <t t-set="i" t-value="i+1"/>
+                                </t>
+                              <li class="page-item">
+                              <a class="page-link" href="#">Next</a>
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                  </div>
+                  </t>
+              </div>
+          </div>
+     </t>
+
+
+</templates>
+
+
+

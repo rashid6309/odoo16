@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!-- Explicit Search View -->
+
+        <record id="ec_medical_appointment_search_view" model="ir.ui.view">
+            <field name="name">ec.booked.slot.record.search</field>
+            <field name="model">ec.booked.slot.record</field>
+            <field name="arch" type="xml">
+                <search string="Search Appointments">
+                    <field name="partner_id"/>
+                    <field name="category" string="Secondary Category"/>
+                    <field name="sub_category" string="Tertiary Category"/>
+                    <field name="consultant_id"/>
+                    <separator/>
+                    <filter string="Today" name="today" domain="[('date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Last 7 days" name="last_7days" domain="[('date','&gt;', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Last 30 days" name="last_month" domain="[('date','&gt;', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Upcoming" name="upcoming" domain="[('date', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Staff" name="staff" context="{'group_by': 'consultant_id'}"/>
+                        <filter string="Secondary Category" name="secondary_category" context="{'group_by': 'category'}"/>
+                        <filter string="Tertiary Category" name="tertiary_category" context="{'group_by': 'sub_category'}"/>
+                        <filter string="Date" name="month" context="{'group_by':'date:month'}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- Tree View -->
+
+        <record id="slots_record_tree_view" model="ir.ui.view">
+            <field name="name">ec.booked.slot.record.tree.view</field>
+            <field name="model">ec.booked.slot.record</field>
+            <field name="arch" type="xml">
+                <tree default_order="write_date desc" create="0">
+                    <field name="partner_id"/>
+                    <field name="category"/>
+                    <field name="sub_category"/>
+                    <field name="date"/>
+                    <field name="start"/>
+                    <field name="stop"/>
+                    <!--                    <field name="state"/>-->
+                    <field name="state" widget="badge"
+                           decoration-info="state == 'Cancelled'"
+                           decoration-danger="state == 'Rescheduled Required'"
+                           decoration-muted="state == 'Blocked'"
+                           decoration-success="state == 'Booked'"/>
+                    <field name="product_id"/>
+                    <field name="consultant_id"/>
+                    <field name="comment"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <!--                    <field name="type"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+
+        <record id="slots_record_form_view" model="ir.ui.view">
+            <field name="name">ec.booked.slot.record.form.view</field>
+            <field name="model">ec.booked.slot.record</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <script>
+                            function onClick(){
+                            localStorage['isReschedule']=1;
+                            }
+                        </script>
+                        <button name="action_rescheduled_slot"
+                                attrs="{'invisible': [('state', '!=', 'Rescheduled Required')]}"
+                                type="object" class="oe_highlight" onclick="onClick()" string="Reschedule"/>
+                        <!--                        <button name="execute_query"-->
+                        <!--                                type="object" class="oe_highlight" string="Query"/>-->
+                        <div style="display:none">
+                            <button name="action_rescheduled_slot"
+                                    context="{'slot_id':id}"
+                                    id="rescheduled_slot"
+                                    type="object" class="oe_highlight"><field name="id" readonly="1"/></button>
+                            <button name="action_rescheduled_slot"
+                                    context="{'slot_category':category}"
+                                    id="rescheduled_slot_category"
+                                    type="object" class="oe_highlight"><field  name="category_id" readonly="1"/></button>
+                        </div>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <!--                            <field name="type" widget="radio"/>-->
+                            <field name="date" readonly="1"/>
+                            <field name="start" readonly="1"/>
+                            <field name="stop" readonly="1"/>
+                            <!-- Making it pointer-events None made it non-clickable even in when it should so be careful -->
+                            <field name="category" readonly="1"
+                                   style="pointer-events:none;"/>
+
+                            <field name="sub_category" readonly="1"
+                                   style="pointer-events:none;"/>
+                            <!-- Pointer-EVents NOne -->
+
+                            <field name="partner_id" required="1" options=""/>
+
+                            <field name="mobile_no"
+                                   required="0"/>
+
+                            <field name="product_id"
+                                   readonly="False"
+                                   options="{'no_quick_create': True, 'no_create': True, 'no_open': True}"
+                            />
+
+                            <field name="consultant_id"
+                                   options="{'no_quick_create': True, 'no_create': True, 'no_open': True}"/>
+
+                            <field name="comment"/>
+                            <field name="configurator" readonly="1" force_save="1" invisible="1"/>
+                            <field name="state" readonly="1" invisible="1"/>
+                        </group>
+                        <div class="oe_chatter">
+                            <!--                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>-->
+                            <!--                        <field name="activity_ids" widget="mail_activity"/>-->
+                            <!--                        <xpath expr="//div[contains(@class, 'o_ChatterTopbar_tools')]" position="replace"/>-->
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Explicit Action -->
+        <record id="slots_record_action" model="ir.actions.act_window">
+            <field name="name">All Appointments</field>
+            <field name="res_model">ec.booked.slot.record</field>
+            <!--            <field name="view_mode">activity,calendar,kanban,tree,form</field>-->
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+
+        <record id="booked_slots_record_action" model="ir.actions.act_window">
+            <field name="name">Booked Appointments</field>
+            <field name="res_model">ec.booked.slot.record</field>
+            <field name="domain">[('state','=','Booked')]</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="target">current</field>
+        </record>
+
+        <record id="cancelled_slots_record_action" model="ir.actions.act_window">
+            <field name="name">Cancelled Appointments</field>
+            <field name="res_model">ec.booked.slot.record</field>
+            <field name="domain">[('state','=','Cancelled')]</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="target">current</field>
+        </record>
+
+        <record id="schedule_slots_record_action" model="ir.actions.act_window">
+            <field name="name">Rescheduled Required Appointments</field>
+            <field name="res_model">ec.booked.slot.record</field>
+            <field name="domain">[('state','=','Rescheduled Required')]</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="target">current</field>
+        </record>
+
+        <record id="blocked_slots_record_action" model="ir.actions.act_window">
+            <field name="name">Blocked Appointments</field>
+            <field name="res_model">ec.booked.slot.record</field>
+            <field name="domain">[('state','=','Blocked')]</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="target">current</field>
+        </record>
+
+
+        <!-- Menu -->
+        <data>
+            <record id="ec_appointment_action_dashboard" model="ir.actions.client">
+                <field name="name">Dashboard</field>
+                <field name="tag">ecare_appointment_dashboard</field>
+            </record>
+
+            <menuitem id="menu_project_dashboard"
+                      name="Schedule Appointments"
+                      action="ec_appointment_action_dashboard"
+                      parent="ecare_appointment.slots_record_menu"
+                      sequence="100"/>
+        </data>
+        <data>
+            <menuitem
+                    id="slots_record_menu"
+                    name="Appointments"
+                    action="slots_record_action"
+                    parent="ec_main_menu"
+                    sequence="100"
+            />
+            <menuitem
+                    id="all_slots_record_menu"
+                    name="All"
+                    action="slots_record_action"
+                    parent="slots_record_menu"
+                    sequence="100"
+            />
+            <menuitem
+                    id="booked_slots_record_menu"
+                    name="Booked"
+                    action="booked_slots_record_action"
+                    parent="slots_record_menu"
+                    sequence="200"
+            />
+            <menuitem
+                    id="cancelled_slots_record_menu"
+                    name="Cancelled"
+                    action="cancelled_slots_record_action"
+                    parent="slots_record_menu"
+                    sequence="300"
+            />
+            <menuitem
+                    id="schedule_slots_record_menu"
+                    name="Reschedules Required"
+                    action="schedule_slots_record_action"
+                    parent="slots_record_menu"
+                    sequence="400"
+            />
+
+            <menuitem
+                    id="blocked_slots_record_menu"
+                    name="Blocked"
+                    action="blocked_slots_record_action"
+                    parent="slots_record_menu"
+                    sequence="400"
+            />
+
+        </data>
+
+    </data>
+</odoo>

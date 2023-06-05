@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="module_ecare_parent_category" model="ir.module.category">
+            <field name="name">Healthcare</field>
+            <field name="sequence">100</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <record id="module_ec_medical_category" model="ir.module.category">
+            <field name="name">eCare</field>
+            <field name="parent_id" ref="ecare_appointment.module_ecare_parent_category"/>
+            <field name="sequence">101</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <!-- Ecare Users -->
+
+        <!-- Can't change its name as it has been used at alot of places but it is a basic user only with "READ" rights -->
+        <record id="group_appointment_administrator" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="ecare_appointment.module_ec_medical_category"/>
+        </record>
+
+        <record id="group_appointment_super_administrator" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="implied_ids" eval="[(4,ref('ecare_appointment.group_appointment_administrator'))]"/>
+            <field name="category_id" ref="ecare_appointment.module_ec_medical_category"/>
+        </record>
+
+        <!-- Role Category -->
+
+        <record id="module_ecare_user_receptionist_category" model="ir.module.category">
+            <field name="name">Role</field>
+            <field name="parent_id" ref="ecare_appointment.module_ecare_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+    </data>
+</odoo>

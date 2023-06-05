@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="EcareAppointmentDashboard">
+               <div class="o_ecare_appointment_dashboard" >
+
+               </div>
+    </t>
+
+    <t t-name="DashboardAppointmentCustom">
+
+
+    <div style="width:100%">
+
+
+          <div class="appointment_list" >
+
+                <div class="menu-wrapper">
+              <ul class="menu" id="container_slider" >
+                  <span  t-foreach="widget.primary_categories" t-as="primary_category">
+                       <li  id="primary_category" t-att-value="primary_category.category_id"  t-att-style="'border: 1px solid '+ '#D5D7FF' + '; color:#71639e;border-radius:4px'"  t-out="primary_category.category_name" t-attf-class="item {{ (primary_category.category_id == widget.primaryActiveId) ? 'active_button' : ' ' }}">
+                      </li>
+                  </span>
+
+              </ul>
+            </div>
+
+
+              <div class="menu-wrapper">
+              <ul class="menu pt-3 " style="min-height:60px" id="container_slider" >
+                  <span  t-foreach="widget.appointment_categories" t-as="category">
+                       <li  id="category" t-att-value="category.category_id"  t-att-style=" 'border: 1px solid '+ '#D5D7FF' + '; color:#71639e;border-radius:4px'"  t-out="category.category_name" t-attf-class="item_ {{ (category.category_id == widget.activeId) ? 'sub_cat_active_button' : ' ' }}">
+                      </li>
+                  </span>
+              </ul>
+            </div>
+          </div>
+
+
+
+
+        <div class="row" >
+              <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                   <div class="datepicker_wrapper">
+                      <input  class="my_datepicker"  type="date" id="date_picker" t-att-value="widget.date_picker_field" name="date" value="" />
+                       <input type="hidden" id="configurator_id" t-att-value="widget.configurator_id" name="configurator_id" value="" />
+                       <button id="dateLeft" class="btn btn-primary o_calendar_button_prev" title="Previous" aria-label="Previous"><i class="fa fa-arrow-left"></i></button>
+                       <button t-attf-class="btn btn-primary mx-1 {{ (new Date().toISOString().split('T')[0] == widget.date_picker_field) ? 'btn-primary' : 'not_today_btn' }}" id="today_date">Today</button>
+                       <button id="dateRight"  class="btn btn-primary o_calendar_button_next" title="Next" aria-label="Next"><i class="fa fa-arrow-right"></i></button>
+                       <h4 class="d-inline-block my_day" style="margin-right:2px;margin-left:7px;" t-out="widget.day_name" ></h4>
+                       <button  class="btn btn-primary mx-1 o_calendar_button_today" id="print_slot_report"><i class="text-white fa fa-download" style="padding-right:10px"></i>Report</button>
+
+                   </div>
+              </div>
+
+<!--            <div class="col-5 col-sm-6 col-md-6 col-lg-2" style="text-align: start !important;">-->
+<!--            </div>-->
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4" style="text-align: end !important;">
+                    <div class="guide_wrapper">
+                        <div class="d-inline" style="margin-right:10px">
+                    <span style="display:inline-block" ><div class="available-slot-transparent"></div></span>
+                            <span> Available </span>
+                </div>
+
+                        <div class="d-inline" style="margin-right:10px">
+                    <div style="display:inline-block" class="booked-slot"></div>
+                            <span> Booked</span>
+                </div>
+
+
+                        <div class="d-inline" style="margin-right:10px">
+                    <div style="display:inline-block" class="inactive-slot"></div>
+                            <span> Blocked</span>
+                </div>
+
+                    </div>
+
+                </div>
+    </div>
+
+
+    </div>
+            <div style="overflow:auto;">
+
+                <table id="table" class="table table-bordered table-responsive " >
+         <thead>
+
+               <tr>
+                   <th id="th">Time Slots</th>
+                   <t t-foreach="widget.appointment_sub_categories" t-as="sub_category">
+                        <th id="th">
+                            <t t-esc="sub_category['sub_category_name']"/>
+                        </th>
+                    </t>
+               </tr>
+
+         </thead>
+                    <tbody>
+
+
+        <t t-if="widget.slot_record_list.length != 0">
+            <tr t-foreach="widget.slot_record_list" t-as="slot">
+
+             <t><th id="th" class="time_slot"><t t-out="slot.start_time +' - '+slot.end_time"/></th></t>
+                <t t-foreach="slot.slots" t-as="slotDetail">
+                <td id="slotDetails"  t-att-category_id="slot.category_id" t-att-start_time="slot.start_time"
+                    t-att-end_time="slot.end_time" t-att-date="slot.date" t-att="slotDetail"
+
+
+                    t-attf-class="{{
+                    (slotDetail.activity_state == 'inactive' and slotDetail.status == 'Booked') ? 'booked' :
+                    (slotDetail.activity_state == 'inactive' and slotDetail.status == 'Blocked') ? 'blocked' :
+                    (slotDetail.activity_state == 'inactive') ? 'inactive':
+                    (slotDetail.status == 'Available') ? 'available' :
+                    (slotDetail.status == 'Booked') ? 'booked' :
+                    (slotDetail.status == 'Blocked') ? 'semi-blocked' : '' }}"
+
+                >
+    <!--            <t t-esc="slot.slots"/>-->
+                    <t  t-if="slotDetail.status == 'Available'" >
+                              <div class="overlay-available" style="display:flex;justify-content: center;align-items: center;">
+                                <div class="text-center"  style="width:50%">
+                                   <i class="text-white fa fa-plus"></i>
+                                </div>
+                                  <div  class="text-center blockSlot" style="width:50%;height:100%;vertical-align: middle;" t-att-category_id="slot.category_id"  t-att-start_time="slot.start_time"
+                                        t-att-end_time="slot.end_time" t-att-date="slot.date" t-att="slotDetail" id="block_slot" >
+                                        <i  class="text-white fa fa-ban" style="position: absolute; top: 50%; transform: translateY(-50%);"></i>
+                                </div>
+
+                              </div>
+
+                    </t>
+
+                    <t t-if="slotDetail.status == 'Booked'">
+
+                         <div class="" >
+                             <div style="word-break: break-word">
+
+
+                            <p title="Consultant Name" style="color:white"><i class="text-white fa fa-stethoscope"></i> &nbsp;&nbsp;<t t-out="slotDetail.consultantName ? slotDetail.consultantName : 'n/a' "/></p>
+                                 <p title="MR no." style="color:white;font-weight: bolder;"><i class="text-white fa fa-hashtag"></i> &nbsp;&nbsp;<t t-out="slotDetail.mr_no ? slotDetail.mr_no : 'n/a' "/></p>
+                                 <p title="Patient Name" style="color:white"><i class="text-white fa fa-user-o"></i> &nbsp;&nbsp;<t t-esc="slotDetail.patient_name ? slotDetail.patient_name : 'n/a' "/></p>
+
+                                 <p title="Product" style="color:white;font-weight: bolder;">
+                                    <i  class="text-white fa fa-tag"></i> &nbsp;&nbsp;
+                                     <t  t-esc="slotDetail.product?slotDetail.product:'n/a'"/>
+                                </p>
+
+                                 <p title="Comment" style="color:white">
+                                   <i class="text-white fa fa-comment-o mb-2"></i> &nbsp;&nbsp;
+                                     <t  t-esc="slotDetail.comment?slotDetail.comment:'n/a'"/>
+                               </p>
+
+
+                            </div>
+
+                            <br></br>
+                             <div style="display:flex;justify-content:flex-end;background-color: #0000000d;right:0px;flex-wrap: wrap !important;position:absolute;bottom:0!important;width:100%" >
+
+                                  <div t-if="(slotDetail.activity_state == 'active')" style="width:fit-content;display:inline; margin-right:0px" >
+
+                                     <div>
+                                         <h6 title="Switch Appointment" id="switch" class="icon_bottom mr-5" t-att-booked_slot_id="slotDetail.booked_slot_id"><i class="i_bottom fa fa-exchange"></i></h6>
+                                    </div>
+
+                                  </div>
+
+                                 <div t-if="(slotDetail.activity_state == 'active' &amp; slotDetail.mr_no != '')" style="width:fit-content;display:inline; margin-right:0px" >
+
+                                     <div>
+                                         <h6 title="Create Invoice" id="invoice" class="icon_bottom mr-5" t-att-booked_slot_id="slotDetail.booked_slot_id" t-att-partner_id="slotDetail.partner_id"><i  class="i_bottom fa fa-money"></i></h6>
+                                    </div>
+
+                                 </div>
+
+                                 <div t-if="(slotDetail.activity_state == 'active')" style="width:fit-content;display:inline; margin-right:0px" >
+                                    <div>
+                                         <h6 title="Edit Appointment" class="edit_appointment icon_bottom mr-5" t-att-value="slotDetail.booked_slot_id"><i class="i_bottom fa fa-edit"></i></h6>
+                                    </div>
+                                 </div>
+
+
+                                 <div style="width:fit-content;display:inline; margin-right:0px" >
+                                    <div>
+                                         <h6 title="History" class="icon_bottom mr-5" id="history" t-att-value="slotDetail.booked_slot_id" style=""  ><i class="i_bottom fa fa-history"></i></h6>
+                                    </div>
+
+                                 </div>
+
+                                 <div t-if="slotDetail.patient_id" style="width:fit-content; display:inline; margin-right:0px" >
+                                    <div>
+                                         <h6 title="Patient" class="icon_bottom mr-5" id="show_patient_profile" t-att-patient_id="slotDetail.patient_id" style=""><i class="i_bottom fa fa-user"></i></h6>
+                                    </div>
+                                 </div>
+
+                                 <t t-if="(slotDetail.activity_state == 'active')">
+                                 <t t-if="slotDetail.email_wife || slotDetail.email_husband">
+                                      <div style="width:fit-content;display:inline; margin-right:0px" class="dropdown" >
+                                    <div data-bs-toggle="dropdown" >
+                                         <h6 title="Send Mail" class="icon_bottom mr-5" data-target="#mail_menu" style=""  ><i class="i_bottom fa fa-envelope"></i></h6>
+
+                                    </div>
+
+                                          <ul id="mail_menu"   t-attf-class="dropdown-menu dropdown-menu-end {{ (slotDetail.mobile_wife || slotDetail.mobile_husband) ? 'my_dropdown-mail' : 'my_dropdown-mail_single' }}" style="z-index:1">
+
+
+                                           <t t-if="email_wife">
+                                         <li><a class="dropdown-item" t-attf-href="{{'mailto:'+slotDetail.email_wife}}"><i style="color:rgb(220, 53, 69);" class="fa fa-paper-plane pr-2" ></i>     <span t-out="slotDetail.email_wife?slotDetail.email_wife:'n/a'"></span> <small style="color:rgb(220, 53, 69);">( PATIENT )</small></a></li>
+
+                                        </t>
+                                              <t t-if="email_husband">
+                                        <li><a class="dropdown-item" t-attf-href="{{'mailto:'+slotDetail.email_husband}}"><i style="color:rgb(220, 53, 69);" class="fa fa-paper-plane pr-2" ></i>   <span t-out="slotDetail.email_husband?slotDetail.email_husband:'n/a'"></span> <small style="color:rgb(220, 53, 69);">( HUSBAND )</small></a></li>
+                                        </t>
+
+                                    </ul>
+
+                                  </div>
+                               </t>
+
+                                     <t t-if="slotDetail.mobile_wife || slotDetail.mobile_husband || slotDetail.preferred_mobile" >
+                                     <div style="width:fit-content;display:inline" class="dropdown" >
+                                         <div data-bs-toggle="dropdown" >
+                                        <h6 title="Call"  class="icon_bottom" data-target="#call"><a><i class="i_bottom fa fa-phone"></i></a></h6>
+                                    </div>
+                                         <ul id="call"  class="my_dropdown-call dropdown-menu dropdown-menu-end" style="z-index:0">
+
+
+
+                                       <t t-if="slotDetail.mobile_wife">
+                                        <li><a class="dropdown-item" t-attf-href="{{'tel:'+slotDetail.mobile_wife}}"><i style="color:rgb(220, 53, 69);" class="fa fa-phone pr-2" ></i>  <span t-out="slotDetail.mobile_wife?slotDetail.mobile_wife:'n/a'"></span> <small style="color:rgb(220, 53, 69);">( PATIENT )</small></a></li>
+
+                                      </t>
+                                             <t t-if="slotDetail.mobile_husband">
+                                        <li><a class="dropdown-item" t-attf-href="{{'tel:'+slotDetail.mobile_husband}}"><i style="color:rgb(220, 53, 69);" class="fa fa-phone pr-2" ></i>  <span t-out="slotDetail.mobile_husband?slotDetail.mobile_husband:'n/a'"></span> <small style="color:rgb(220, 53, 69);">( HUSBAND )</small></a></li>
+
+                                      </t>
+
+                                              <t t-if="slotDetail.preferred_mobile">
+                                        <li><a class="dropdown-item" t-attf-href="{{'tel:'+slotDetail.preferred_mobile}}"><i style="color:rgb(220, 53, 69);" class="fa fa-phone pr-2" ></i>  <span t-out="slotDetail.preferred_mobile?slotDetail.preferred_mobile:'n/a'"></span> <small style="color:rgb(220, 53, 69);">( PREFERRED )</small></a></li>
+
+                                      </t>
+
+
+                                    </ul>
+                                 </div>
+                                </t>
+                               </t>
+
+
+
+                                 <div t-if="(slotDetail.activity_state == 'active')" style="width:fit-content;display:inline" class="dropdown" >
+                                         <div data-bs-toggle="dropdown" >
+                                        <h6 title="Cancel Appointment"  class="icon_bottom" data-target="#cancel"><a><i class="i_bottom_cancel fa fa-times"></i></a></h6>
+
+                                    </div>
+                                     <div id="cancel"  class="my_dropdown-cancel dropdown-menu dropdown-menu-end" style="z-index:0">
+                                      <small>
+                                          Are you sure, You want to cancel this appointment?
+                                      </small>
+                                         <div style="margin-top:2px">
+                                          <button t-att-booked_slot_id="slotDetail.booked_slot_id" id="cancel_appointment" class="btn btn-primary btn-sm">Yes</button>
+                                             <button class="btn btn-dark btn-sm">No</button>
+                                      </div>
+
+
+                                    </div>
+                                 </div>
+
+
+
+
+                             </div>
+
+
+                        </div>
+
+
+                     </t>
+
+                    <t  t-if="slotDetail.status == 'Blocked'">
+                        <div class="" >
+                             <div style="word-break: break-word">
+                             <p style="color:white;"><i class="text-white fa fa-comment-o mb-2"></i> &nbsp;&nbsp;<t t-esc="slotDetail.comment ? slotDetail.comment : 'n/a' "/></p>
+                             </div>
+
+                            <div style="display:flex;justify-content:flex-end;background-color: #0000000d;right:0px;flex-wrap: wrap !important;position:absolute;bottom:0!important;width:100%">
+
+                                 <div  style="width:fit-content;display:inline; margin-right:0px" >
+                                    <div>
+                                         <h6 title="History" class="icon_bottom mr-5" id="history" t-att-value="slotDetail.booked_slot_id" style=""  ><i class="i_bottom fa fa-history"></i></h6>
+                                    </div>
+                                 </div>
+
+                                <div t-if="(slotDetail.activity_state == 'active')" style="width:fit-content;display:inline" class="dropdown" >
+                                       <div data-bs-toggle="dropdown" >
+                                       <h6 title="Cancel Appointment"  class="icon_bottom" data-target="#cancel"><a><i class="i_bottom_cancel fa fa-times"></i></a></h6>
+
+                                </div>
+
+                                    <div id="cancel"  class="my_dropdown-cancel dropdown-menu dropdown-menu-end" style="z-index:0">
+                                      <small>
+                                          Are you sure , you want to cancel this Appointment ?
+                                      </small>
+                                        <div style="margin-top:2px">
+                                          <button t-att-booked_slot_id="slotDetail.booked_slot_id" id="cancel_appointment" class="btn btn-primary btn-sm">Yes</button>
+                                            <button class="btn btn-dark btn-sm">No</button>
+                                      </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </t>
+
+                </td>
+             </t>
+        </tr>
+        </t>
+
+      </tbody>
+
+
+            </table>
+                <t t-if="widget.slot_record_list.length == 0 || widget.notification">
+                             <div style="text-align:center">
+                                 <p style="color:#ff6666">Slot Configurator Not Added for <b t-out="widget.day_name"></b></p>
+                             </div>
+                </t>
+    </div>
+
+    </t>
+    <t t-name="DashboardSwitchAppointment">
+        <div style="width:100%">
+
+
+            <div class="appointment_list">
+                <div class="menu-wrapper">
+
+                      <ul class="menu" style="text-align:end" id="container_slider" >
+                          <button id="cancel"  type="button" class="btn btn-primary mx-1 o_calendar_button_today" >Cancel</button>
+
+                      </ul>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col-6">
+                    <div class="datepicker_wrapper">
+                      <input  class="my_datepicker"  type="date" id="date_picker" t-att-value="widget.date_picker_field" name="date" value="" />
+                        <input type="hidden" id="configurator_id" t-att-value="widget.configurator_id" name="configurator_id" value="" />
+                        <button id="dateLeft" class="btn btn-primary o_calendar_button_prev" title="Previous" aria-label="Previous"><i class="fa fa-arrow-left"></i></button>
+                        <button   class="btn btn-primary mx-1 o_calendar_button_today" id="today_date">Today</button>
+                        <button id="dateRight"  class="btn btn-primary o_calendar_button_next" title="Next" aria-label="Next"><i class="fa fa-arrow-right"></i></button>
+                        <h4 class="d-inline-block my_day" style="margin-right:7px;margin-left:7px;color:black" t-out="widget.day_name" ></h4>
+                   </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="guide_wrapper">
+                        <div class="d-inline" style="margin-right:10px">
+                    <span  style="display:inline-block" ><div class="available-slot-transparent"></div></span>
+                            <span> Available </span>
+                </div>
+
+                        <div class="d-inline" style="margin-right:10px">
+                    <div style="display:inline-block" class="booked-slot"></div>
+                            <span> Booked</span>
+                </div>
+
+
+                        <div class="d-inline" style="margin-right:10px">
+                    <div style="display:inline-block" class="inactive-slot"></div>
+                            <span> Blocked</span>
+                </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div style="overflow:auto;">
+            <table id="table" class="table table-bordered table-responsive " >
+                <thead>
+                    <tr>
+                       <th id="th" style="background-color:##c5c5c552 !important">Time Slots</th>
+                       <t t-foreach="widget.appointment_sub_categories" t-as="sub_category">
+                            <th style="background-color:##c5c5c552 !important" id="th"><t t-esc="sub_category['sub_category_name']"/></th>
+                        </t>
+                   </tr>
+
+                </thead>
+                <tbody>
+                    <tr t-foreach="widget.slot_record_list" t-as="slot">
+
+                         <t><th style="background-color:##c5c5c552 !important" id="th" class="time_slot"><t t-out="slot.start_time +' - '+slot.end_time"/></th></t>
+                        <t t-foreach="slot.slots" t-as="slotDetail">
+                            <td  id="switchSlotDetails"  t-att-category_id="slot.category_id" t-att-start_time="slot.start_time"
+                                 t-att-end_time="slot.end_time" t-att-date="slot.date" t-att="slotDetail"
+                                 t-attf-class="{{
+                                (slotDetail.activity_state == 'inactive' and slotDetail.status == 'Booked') ? 'switch-booked':
+                                (slotDetail.activity_state == 'inactive' and slotDetail.status == 'Blocked') ? 'switch-blocked':
+                                (slotDetail.activity_state == 'inactive' ) ? 'inactive':
+                                (slotDetail.status == 'Available') ? 'switch-available' :
+                                (slotDetail.status == 'Booked') ? 'switch-booked':
+                                (slotDetail.status == 'Blocked') ? 'switch-blocked' : ''
+                                }}"
+                            >
+                                <t  t-if="slotDetail.status == 'Available' and slotDetail.activity_state == 'active'" >
+                                          <div class="">
+                                            <i class="switch-exchange-icon positionCenter fa fa-exchange"></i>
+                                          </div>
+                                </t>
+
+                                <t t-if="slotDetail.status == 'Booked'">
+                                       <div style="word-break: break-word">
+                                        <p style="color:white"><i class="text-white fa fa-stethoscope"></i> &nbsp;&nbsp;<t t-out="slotDetail.consultantName ? slotDetail.consultantName : 'n/a' "/></p>
+                                           <p title="MR no." style="color:white;font-weight: bolder;"><i class="text-white fa fa-hashtag"></i> &nbsp;&nbsp;<t t-out="slotDetail.mr_no ? slotDetail.mr_no : 'n/a' "/></p>
+                                           <p style="color:white"><i class="text-white fa fa-user-o mb-2"></i> &nbsp;&nbsp;<t t-esc="slotDetail.patient_name ? slotDetail.patient_name : 'n/a' "/></p>
+
+                                        </div>
+
+
+                                 </t>
+
+                                <t  t-if="slotDetail.status == 'Blocked'">
+
+
+                                </t>
+
+
+
+
+                            </td>
+                         </t>
+                    </tr>
+                </tbody>
+            </table>
+            <t t-if="widget.slot_record_list.length == 0 || widget.notification">
+                         <div style="text-align:center">
+                             <p style="color:#ff6666">Slot Configurator Not Added for <b t-out="widget.day_name"></b></p>
+                         </div>
+            </t>
+        </div>
+    </t>
+
+</templates>
+

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!-- Tree view for account.move -->
+        <record id="move_tree_view_inherited" model="ir.ui.view">
+            <field name="name">account.move.tree.view.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_out_invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="activity_ids" position="replace"/>
+                <field name="amount_untaxed_signed" position="replace"/>
+                <field name="date" position="replace"/>
+                <field name="amount_total_signed" position="before">
+                    <field name="total_receivable"/>
+                    <field name="discount_amount"/>
+                </field>
+                <field name="amount_total_signed" position="after">
+                    <field name="refund_amount"/>
+                    <field name="payment_amount"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_move_inherited_form" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="attributes">
+                    <attribute name="duplicate">False</attribute>
+                </xpath>
+                <field name="partner_id" position="attributes">
+                    <attribute name="options">{'no_quick_create': True,
+                        'no_create': True}</attribute>
+                </field>
+                <xpath expr="//control/create[@name='add_note_control']" position="replace"/>
+                <xpath expr="//control/create[@name='add_section_control']" position="replace"/>
+
+                <!-- Header -->
+
+                <xpath expr="//form/header/button[@name='action_invoice_sent']" position="replace"/>
+                <xpath expr="//form/header/button[@name='preview_invoice']" position="replace"/>
+
+                <!-- Credit Note only when payment state is paid -->
+                <xpath expr="//button[@name='action_reverse']" position="attributes">
+                    <attribute name="string">Create Refund Note</attribute>
+                    <attribute name="class">btn btn-primary</attribute>
+                    <attribute name="attrs">{'invisible' : [('payment_state', '!=', 'paid')]}</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='button_draft']" position="attributes">
+                    <attribute name="attrs">{'invisible' : ['|', ('show_reset_to_draft_button', '=', False),
+                        ('payment_state', '=', 'paid')]}</attribute>
+                </xpath>
+
+                <!-- Header ends -->
+
+                <xpath expr="//page[@name='other_info']" position="replace"/>
+
+                <xpath expr="//field[@name='payment_reference']" position="replace"/>
+                <xpath expr="//span[contains(@class, 'o_form_label mx-3 oe_edit_only')]" position="replace"/>
+                <xpath expr="//field[@name='invoice_payment_term_id']" position="replace">
+                    <field name="invoice_payment_term_id" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='price_unit']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                    <attribute name="force_save">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+
+                <field name="narration" position="attributes">
+                    <attribute name="placeholder">Remarks</attribute>
+                </field>
+
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                    <attribute name="force_save">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                    <attribute name="force_save">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="after">
+                    <field name="fixed_amount_discount" attrs="{'readonly': [('parent.move_type', '!=', 'out_invoice')],
+                    'invisible': [('parent.move_type', '!=', 'out_invoice')]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="before">
+                    <field name="fixed_amount_discount"
+                           invisible="1"
+                           force_save="True"/>
+                </xpath>
+
+
+                <field name="invoice_outstanding_credits_debits_widget" position="before" class="oe_right">
+                    <group string="Refund Detail" class="oe_subtotal_footer oe_right"
+                           attrs="{'invisible': ['|', ('move_type', '!=', 'out_invoice'),
+                                  ('payment_state' ,'!=', 'paid')]}">
+
+                        <group>
+                            <field name="refund_amount" class="oe_subtotal_footer_separator"
+                                   attrs="{'invisible': [('state', '=', 'draft'), ('payment_state', '!=', 'paid')]}"/>
+                        </group>
+                    </group>
+                    <group class="oe_right" attrs="{'invisible': ['|', ('move_type', '!=', 'out_invoice'),
+                        ('payment_state' ,'!=', 'paid')]}">
+
+                        <button name="action_open_refund_notes"
+                                type="object"
+                                class="btn btn-primary"
+                                string="Refund Details"/>
+                    </group>
+                </field>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

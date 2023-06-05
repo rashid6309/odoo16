@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="menu_invisible_for_all" model="res.groups">
+            <field name="name">Show Invisible Menu's</field>
+        </record>
+
+        <record id="mail.menu_root_discuss" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('ecare_appointment.menu_invisible_for_all')])]"/>
+            <field name="sequence">200</field>
+        </record>
+
+        <record id="base.menu_board_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('ecare_appointment.menu_invisible_for_all')])]"/>
+            <field name="sequence">250</field>
+        </record>
+
+        <record id="account.menu_finance" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('ecare_appointment.menu_invisible_for_all')])]"/>
+            <field name="sequence">300</field>
+        </record>
+        <record id="base.menu_management" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('ecare_appointment.menu_invisible_for_all')])]"/>
+            <field name="sequence">350</field>
+        </record>
+        <record id="contacts.menu_contacts" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('ecare_appointment.menu_invisible_for_all')])]"/>
+            <field name="sequence">400</field>
+        </record>
+
+        <record id="spreadsheet_dashboard.spreadsheet_dashboard_menu_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('ecare_appointment.menu_invisible_for_all')])]"/>
+            <field name="sequence">500</field>
+        </record>
+<!--        <record id="base.menu_administration" model="ir.ui.menu">-->
+<!--            <field name="groups_id" eval="[(6, 0, [ref('ecare_appointment.menu_invisible_for_all')])]"/>-->
+<!--            <field name="sequence">450</field>-->
+<!--        </record>-->
+<!--        <record id="spreadsheet_dashboard.spreadsheet_dashboard_menu_root" model="ir.ui.menu">-->
+<!--            <field name="groups_id" eval="[(6, 0, [ref('ecare_appointment.menu_invisible_for_all')])]"/>-->
+<!--            <field name="sequence">500</field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

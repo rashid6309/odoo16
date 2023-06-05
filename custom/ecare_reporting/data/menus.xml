@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--        <menuitem id="menu_slot_report"-->
+        <!--                  name="Report"-->
+        <!--                  action="ecare_reporting.ec_slot_reporting_report_action"-->
+        <!--                  parent="ecare_core.ec_main_menu"-->
+        <!--                  sequence="6"/>-->
+        <menuitem id="ec_reporting"
+                  name="Reports"
+                  parent="ecare_appointment.ec_main_menu"
+                  action="ecare_reporting.ecare_appointment_reporting"
+                  sequence="400"
+        />
+
+        <menuitem id="ec_cash_detail"
+                  name="Cash Detail"
+                  parent="ec_reporting"
+                  action="ecare_reporting.ecare_appointment_reporting"
+                  sequence="1000"
+        />
+
+        <menuitem id="ec_services_detail"
+                  name="Services"
+                  parent="ec_reporting"
+                  action="ecare_reporting.ecare_services_reporting"
+                  sequence="2000"
+        />
+        <menuitem id="ec_amount_due"
+                  name="Due Cases"
+                  parent="ec_reporting"
+                  action="action_move_draft_type"
+                  sequence="3000"
+        />
+
+        <menuitem id="management_report_menu"
+                  name="Management Reports"
+                  parent="ec_reporting"
+                  action=""
+                  sequence="4000"
+        />
+
+        <menuitem id="management_report_services"
+                  name="Service Report"
+                  parent="management_report_menu"
+                  action="ecare_reporting.account_move_line_report_action"
+                  sequence="5000"
+        />
+
+    </data>
+</odoo>

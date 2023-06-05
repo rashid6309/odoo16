@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="product_template_only_inherited_form_view" model="ir.ui.view">
+            <field name="name">product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+
+                <field name="detailed_type" position="after">
+                    <field name="service_type"
+                           attrs="{'invisible': [('detailed_type', '!=', 'service')]}"
+                    />
+                </field>
+
+                <xpath expr="//page[@name='general_information']" position="replace">
+                    <page string="General Information" name="general_information">
+                        <group>
+                            <group name="group_general">
+                                <field name="active" invisible="1"/>
+                                <field name="detailed_type"/>
+                                <field name="product_tooltip" string="" class="fst-italic text-muted"/>
+                                <field name="uom_id" groups="uom.group_uom" options="{'no_create': True}"/>
+                                <field name="uom_po_id" groups="uom.group_uom" options="{'no_create': True}"/>
+                            </group>
+                            <group name="group_standard_price">
+                                <label for="list_price" class="mt-1"/>
+                                <div name="pricing">
+                                    <field name="list_price" class="oe_inline" widget='monetary'
+                                           options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                </div>
+                                <field name="taxes_id" widget="many2many_tags" context="{'default_type_tax_use':'sale', 'search_default_sale': 1, 'search_default_service': type == 'service', 'search_default_goods': type == 'consu'}"/>
+                                <label for="standard_price" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                                <div name="standard_price_uom" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
+                                    <field name="standard_price" class="oe_inline" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                    <span groups="uom.group_uom" >per
+                                        <field name="uom_name" class="oe_inline"/>
+                                    </span>
+                                </div>
+                                <field name="categ_id" string="Product Category"/>
+                                <field name="default_code"/>
+                                <field name="company_id" groups="base.group_multi_company"
+                                       options="{'no_create': True}"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="cost_currency_id" invisible="1"/>
+                                <field name="product_variant_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <group string="Internal Notes">
+                            <field colspan="2" name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[@name='variants']" position="replace"/>
+                <xpath expr="//page[@name='sales']" position="replace"/>
+                <xpath expr="//page[@name='purchase']" position="replace"/>
+                <xpath expr="//page[@name='inventory']" position="replace"/>
+                <xpath expr="//page[@name='invoicing']" position="replace"/>
+            </field>
+        </record>
+
+
+        <record id="account.product_template_view_tree" model="ir.ui.view">
+            <field name="name">product.template.tree</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <tree string="Products" sample="1" editable="bottom">
+                    <field name="default_code"/>
+                    <field name="name"/>
+                    <field name="service_type"/>
+                    <field name="list_price"/>
+<!--                    <field name="type"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Inherited Search View -->
+        <record id="product_template_only_search_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.only.search.view.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <filter name="categ_id" position="after">
+                    <filter string="Service Type" name="service_type" context="{'group_by': 'service_type'}"/>
+                </filter>
+            </field>
+        </record>
+
+        <record id="product_product_action_sellable_hospital_services" model="ir.actions.act_window">
+            <field name="name">Hospital Services Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="context">{'search_default_filter_to_sell': 1,
+                'default_service_type': "Hospital Services",
+                'default_detailed_type': 'service',
+                'default_type': 'service',
+                }
+            </field>
+            <field name="view_id" ref="account.product_template_view_tree"/>
+            <field name="domain">[("service_type", '=', "Hospital Services")]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new sellable product
+                </p>
+            </field>
+        </record>
+
+        <record id="product_product_action_sellable_pharmacy" model="ir.actions.act_window">
+            <field name="name">Pharmacy Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="context">{'search_default_filter_to_sell': 1,
+                'default_service_type': "Pharmacy",
+                'default_detailed_type': 'service',
+                'default_type': 'service',
+                }
+            </field>
+            <field name="view_id" ref="account.product_template_view_tree"/>
+            <field name="domain">[("service_type", '=', "Pharmacy")]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new sellable product
+                </p>
+            </field>
+        </record>
+
+        <record id="product_product_action_sellable_laboratory" model="ir.actions.act_window">
+            <field name="name">Laboratory Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="context">{'search_default_filter_to_sell': 1,
+                'default_service_type': "Laboratory",
+                'default_detailed_type': 'service',
+                'default_type': 'service',
+                }
+            </field>
+            <field name="view_id" ref="account.product_template_view_tree"/>
+            <field name="domain">[("service_type", '=', "Laboratory")]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new sellable product
+                </p>
+            </field>
+        </record>
+
+        <record id="product_product_action_sellable_radiology" model="ir.actions.act_window">
+            <field name="name">Radiology Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="context">{'search_default_filter_to_sell': 1,
+                'default_service_type': "Radiology",
+                'default_detailed_type': 'service',
+                'default_type': 'service',
+                }
+            </field>
+            <field name="view_id" ref="account.product_template_view_tree"/>
+            <field name="domain">[("service_type", '=', "Radiology")]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new sellable product
+                </p>
+            </field>
+        </record>
+
+        <record id="product_product_action_all" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="context">{'search_default_filter_to_sell': 1,
+                'default_detailed_type': 'service',
+                'default_type': 'service',
+                }
+            </field>
+            <field name="view_id" ref="account.product_template_view_tree"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new sellable product
+                </p>
+            </field>
+        </record>
+
+        <!-- Changing default filter -->
+
+        <record id="account.product_product_action_sellable" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="context">{
+                'search_default_filter_to_sell': 1,
+                'default_detailed_type': 'service',
+                'default_type': 'service',
+                }
+            </field>
+            <field name="view_id" ref="account.product_template_view_tree"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new sellable product
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

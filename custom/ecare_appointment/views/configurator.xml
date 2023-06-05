@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!-- It is opened when "Edit sub categories is clicked from the schedule configurator -->
+        <record id="ec_slot_sub_category_configurator_form" model="ir.ui.view">
+            <field name="name">ec.slot.sub.category.configurator.form</field>
+            <field name="model">ec.slot.sub.category.configurator</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+
+                        <field name="configurator"
+                               readonly="1"
+                               invisible="1"
+                               force_save="1"/>
+
+                        <field name="sub_category" widget="many2many_tags"/>
+
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Explicit search view -->
+        <record id="ec_configurator_search_view" model="ir.ui.view">
+            <field name="name">slot.category.view.search</field>
+            <field name="model">ec.slot.configurator</field>
+            <field name="arch" type="xml">
+                <search string="Search Categories">
+                    <field name="parent_category_id"/>
+                    <field name="category"/>
+                    <field name="sub_category"/>
+                    <field name="state"/>
+                    <separator/>
+                    <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Archived" name="inactive" domain="[('state', '=', 'inactive')]"/>
+                </search>
+            </field>
+        </record>
+
+
+                <!-- Explicit Tree View -->
+        <record id="configurator_tree_view" model="ir.ui.view">
+            <field name="name">ec.slot.configurator.tree.view</field>
+            <field name="model">ec.slot.configurator</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="parent_category_id"/>
+                    <field name="category"/>
+                    <field name="sub_category" widget="many2many_tags" />
+                    <field name="timespan"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="slot_configurator_form_view" model="ir.ui.view">
+            <field name="name">configurator.form.view</field>
+            <field name="model">ec.slot.configurator</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_active_configuration"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}"
+                                id="action_active_configuration"
+                                type="object" class="oe_highlight" string="Active"/>
+                        <button name="action_in_active_configuration"
+                                attrs="{'invisible': [('state', '!=', 'active')]}"
+                                id="action_in_active_configuration" confirm="You might need to reschedule all the slots from end date onwards, confirm?"
+                                type="object" class="oe_highlight" string="In-active"/>
+                        <button name="action_edit_sub_categories_configuration"
+                                attrs="{'invisible': [('state', '!=', 'active')]}"
+                                id="action_in_active_configuration" confirm="You might need to reschedule all the slots in case you remove any sub-category, confirm?"
+                                type="object" class="oe_highlight" string="Edit Sub-Categories"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box"  attrs="{'invisible': [('schedule', '=',False)]}"  name="button_box">
+                        <button style="float: right;"
+                                name="action_open_configurator_slots"
+                                type="object" class="oe_highlight">Reschedule</button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="parent_category_id"/>
+                                <field name="category"
+                                       options="{'no_create': True,
+                                                 'no_quick_create': True}"
+                                       force_save="1"
+                                       required="1"
+                                       context="{'tree_view_ref': 'ecare_appointment.ec_category_tree_view',
+                                       'form_view_ref': 'ecare_appointment.ec_category_form_view'}"
+                                       attrs="{'readonly': ['|', ('state', '=', 'active'),('state', '=', 'inactive')]}"/>
+
+                                <field name="sub_category"
+                                       options="{'no_create_edit': True, 'no_create': True}"
+                                       attrs="{'readonly': ['|', ('state', '=', 'active'),('state', '=', 'inactive')]}"
+                                       widget="many2many_tags"
+                                />
+
+                                <field name="timespan"
+                                       attrs="{'readonly': [('state', '=', 'active')],
+                                           'required': [('state', '=', 'draft')]}"/>
+
+                                <field name="schedule" invisible="1"/>
+                                <field name="start_date"
+                                       attrs="{'readonly': [('state', '!=', 'draft')],
+                                               'required': [('state', '!=', 'draft')]}"/>
+
+                                <field name="end_date"
+                                       attrs="{'readonly': [('state', '=', 'inactive')],
+                                       'required': [('state', '=', 'inactive')]}"/>
+
+
+                            </group>
+                        </group>
+                            <group>
+                                <field name="slot_schedule" required="1" attrs="{'readonly': ['|',
+                                ('state', '=', 'active'),('state', '=', 'inactive')]}"/>
+                            </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+                <!-- Explicit Action -->
+        <record id="slot_configurator_action" model="ir.actions.act_window">
+            <field name="name">Schedule Configurator</field>
+            <field name="res_model">ec.slot.configurator</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', 'in', ['active', 'draft'])]</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="configuration_slot_configurator_menu"
+                  name="Schedule Configurator"
+                  parent="ec_main_configuration"
+                  sequence="1000"
+                  action="slot_configurator_action"/>
+
+    </data>
+</odoo>

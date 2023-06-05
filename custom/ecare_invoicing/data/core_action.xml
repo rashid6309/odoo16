@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="account.action_validate_account_move" model="ir.actions.act_window">
+        <field name="binding_model_id" ref=""/>
+    </record>
+
+    <record id="account.action_account_resequence" model="ir.actions.act_window">
+        <field name="binding_model_id" ref=""/>
+    </record>
+
+    <record id="account.action_account_invoice_from_list" model="ir.actions.server">
+        <field name="binding_model_id" ref=""/>
+    </record>
+
+    <record id="account.invoice_send" model="ir.actions.server">
+        <field name="binding_model_id" ref=""/>
+    </record>
+
+    <record id="account.action_view_account_move_reversal" model="ir.actions.act_window">
+        <field name="binding_model_id" ref=""/>
+    </record>
+
+    <record model="ir.actions.server" id="account.action_move_switch_invoice_to_credit_note">
+        <field name="binding_model_id" ref="" />
+    </record>
+
+
+    <record id="account.action_account_original_vendor_bill" model="ir.actions.report">
+        <field name="binding_model_id" ref=""/>
+    </record>
+
+</odoo>

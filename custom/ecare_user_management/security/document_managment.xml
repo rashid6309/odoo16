@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!-- Documents Management -->
+
+        <record id="module_document_management_category" model="ir.module.category">
+            <field name="name">Documents</field>
+            <field name="parent_id" ref="ecare_appointment.module_ecare_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <!-- Document Management Group -->
+        <record id="group_document_management_view" model="res.groups">
+            <field name="name">View</field>
+            <field name="category_id" ref="ecare_user_management.module_document_management_category"/>
+            <field name="comment">Document Management View Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_appointment.group_appointment_administrator'))]"/>
+        </record>
+
+        <record id="group_document_management_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="ecare_user_management.module_document_management_category"/>
+            <field name="comment">Document Management Edit Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_user_management.group_document_management_view'))]"/>
+        </record>
+
+        <record id="group_document_management_create" model="res.groups">
+            <field name="name">Create</field>
+            <field name="category_id" ref="ecare_user_management.module_document_management_category"/>
+            <field name="comment">Document Management Create Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_user_management.group_document_management_edit'))]"/>
+        </record>
+
+        <record id="group_document_management_all" model="res.groups">
+            <field name="name">All</field>
+            <field name="category_id" ref="ecare_user_management.module_document_management_category"/>
+            <field name="comment">Document Management All Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_user_management.group_document_management_create'))]"/>
+        </record>
+
+    </data>
+</odoo>

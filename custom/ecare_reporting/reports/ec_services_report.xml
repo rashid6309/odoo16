@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <report
+                id="ec_services_excel_report"
+                model="ec.slot.reporting"
+                string="Services Report"
+                report_type="xlsx"
+                name="ec_reporting.services_detail_reporting"
+                file="Cash Report"
+                attachment_use="False"
+        />
+
+        <record id="custom_slot" model="report.paperformat">
+            <field name="name">Custom Slot Paperformat</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="disable_shrinking" eval="True"/>
+            <field name="dpi">100</field>
+        </record>
+
+        <report
+                id="ec_services_report"
+                model="ec.slot.reporting"
+                string="Report"
+                report_type="qweb-pdf"
+                name="ecare_reporting.ec_services_report_doc"
+                file="Slot Report"
+                paperformat="custom_slot"
+        />
+
+
+        <template id="ec_services_report_doc">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <div style="text-align: center;">
+                        <h1 style="color: #3e3e3e;">Services Report</h1>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <small><b>Date:</b> <span style="margin-left: 5px;"><t t-out="services_payment_date"/></span></small>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <t t-set="product_index" t-value="8"/>
+                        <table style="width: 100%; border: 1px solid #333; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <t t-foreach="header[0]" t-as="header">
+                                        <th style="border: 1px solid #333; padding: 10px;">
+                                            <t t-out="header"/>
+                                        </th>
+                                    </t>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="data" t-as="data">
+                                    <tr>
+                                        <t t-set="i" t-value="0"/>
+                                        <t t-foreach="data" t-as="record">
+                                            <t t-if="i != product_index">
+                                                <td style="border: 1px solid #333; padding: 10px;">
+                                                    <t t-out="record"/>
+                                                </td>
+                                            </t>
+                                            <t t-set="i" t-value="i + 1"/>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

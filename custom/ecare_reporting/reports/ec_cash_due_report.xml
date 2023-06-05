@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <report
+            id="ec_amount_due_excel_report"
+            model="ec.slot.reporting"
+            string="Amount Due"
+            report_type="xlsx"
+            name="ec_reporting.amount_due_reporting"
+            file="Amount Due Report"
+            attachment_use="False"
+        />
+
+
+        <report
+                id="ec_amount_due_report"
+                model="ec.slot.reporting"
+                string="Amount Due"
+                report_type="qweb-pdf"
+                name="ecare_reporting.ec_due_cash_report_doc"
+                file="Slot Report"
+                paperformat="custom_slot"
+        />
+
+
+        <template id="ec_due_cash_report_doc">
+            <t t-call="web.html_container">
+                <div class="page">
+                  <div style="text-align: center;">
+                    <h1 style="color: #3e3e3e;">Cash Report</h1>
+                  </div>
+                  <div style="margin-top: 20px;">
+                    <small><b>Date:</b> <span style="margin-left: 5px;"><t t-out="due_payment_date"/></span></small>
+                  </div>
+                  <div style="margin-top: 20px;">
+                    <table style="width: 100%; border: 1px solid #333; border-collapse: collapse;">
+                      <thead>
+                        <tr style="background-color: #f2f2f2;">
+                          <t t-foreach="header[0]" t-as="header">
+                            <th style="border: 1px solid #333; padding: 10px;">
+                              <t t-out="header"/>
+                            </th>
+                          </t>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <t t-foreach="data" t-as="data">
+                          <tr>
+                            <t t-foreach="data" t-as="record">
+                              <td style="border: 1px solid #333; padding: 10px;">
+                                <t t-out="record"/>
+                              </td>
+                            </t>
+                          </tr>
+                        </t>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>
