@@ -61,8 +61,8 @@ RUN chown odoo /etc/odoo/odoo.conf \
 #VOLUME ["./",""]
 
 RUN mkdir -p /var/lib/odoo \
-    && chown -R odoo /var/lib/odoo
-
+    && chown -R odoo /var/lib/odoo \
+    && chown odoo /entrypoint.sh
 # Expose Odoo services
 EXPOSE 8069
 
