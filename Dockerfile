@@ -18,7 +18,7 @@ COPY ./custom_odoo_module /opt/odoo16ce/custom_odoo_module
 
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
-COPY odoo.conf /etc/odoo/
+COPY ./odoo.conf /etc/odoo/
 
 
 # create user that will be used to run system by name odoo
