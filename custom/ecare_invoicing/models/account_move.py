@@ -223,6 +223,7 @@ class AccountMove(models.Model):
     def create(self, vals):
         obj = super(AccountMove, self).create(vals)
         obj.handle_section()
+        obj.handle_pharmacy_lines()
         obj.product_price_unit_refund()
         return obj
 
@@ -242,6 +243,23 @@ class AccountMove(models.Model):
             self.onchange_line_refund()
 
         return obj
+
+    def handle_pharmacy_lines(self):
+        """
+        If not administrator exclude the services_types which are listed below.
+        :return:
+        """
+        if self.move_type != 'out_refund':
+            return
+
+        if self.env.user.has_group('account.group_account_manager'):
+            return
+
+        product_service_types = ['Pharmacy', 'Laboratory', 'Radiology']
+        invoice_line_product = self.invoice_line_ids.filtered(lambda x: x.product_id.service_type
+                                                                        in product_service_types or
+                                                                        x.name in product_service_types)
+        invoice_line_product.unlink()
 
     def button_draft(self):
         """

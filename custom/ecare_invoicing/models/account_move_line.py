@@ -24,6 +24,8 @@ class AccountMoveLine(models.Model):
                 return
 
             if line.fixed_amount_discount <= 0.0:
+                line.fixed_amount_discount = 0.0
+                line.discount = 0
                 return
 
             price_subtotal = line.quantity * line.price_unit
@@ -41,6 +43,11 @@ class AccountMoveLine(models.Model):
     def onchange_refund_amount(self):
         for line in self:
             if line.move_id.move_type != 'out_refund':
+                return
+
+            if line.refund_amount <= 0.0:
+                line.refund_amount = 0.0
+                line.discount = 100
                 return
 
             price_subtotal = line.price_unit * line.quantity
