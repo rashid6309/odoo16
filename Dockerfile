@@ -67,7 +67,7 @@ RUN mkdir -p /var/lib/odoo \
 EXPOSE 8069
 
 # Set the default config file
-ENV ODOO_RC /etc/odoo/odoo16ce_icsi_prod.conf
+ENV ODOO_RC /etc/odoo/odoo.conf
 
 #COPY ./wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
