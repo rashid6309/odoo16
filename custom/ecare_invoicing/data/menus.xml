@@ -78,12 +78,12 @@
                   action="account.action_move_out_refund_type"
         />
 
-<!--        <menuitem id="ec_products_all"-->
-<!--                  name="Rate List"-->
-<!--                  parent="ecare_invoicing.ec_main_customers"-->
-<!--                  sequence="330"-->
-<!--                  action="account.product_product_rate_list_action"-->
-<!--        />-->
+        <menuitem id="ec_products_all"
+                  name="Rate List"
+                  parent="ecare_invoicing.ec_main_customers"
+                  sequence="330"
+                  action="product_product_rate_list_action"
+        />
 
 <!--                  action="account.view_out_credit_note_tree"-->
         <!--        <menuitem id="menu_slot_report"-->
