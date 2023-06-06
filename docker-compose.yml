@@ -15,8 +15,8 @@ services:
          dockerfile: Dockerfile
        user: odoo
        ports:
-       - "8075:8069"
+       - "8069:8069"
        depends_on:
          - db
-       volumes:
-         - ../ecare16ce-odoo-data-dir:/var/lib/odoo
+#       volumes:
+#         - ../ecare16ce-odoo-data-dir:/var/lib/odoo
