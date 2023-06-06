@@ -55,17 +55,14 @@ RUN apt-get install -y postgresql-client
 
 # Set permissions and Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN chown -R odoo /etc/odoo \
+    && chown odoo /entrypoint.sh \
     && chmod +x /entrypoint.sh \
     && chown odoo /etc/odoo/odoo.conf \
     && mkdir -p /mnt/extra-addons \
+    && chown -R odoo /mnt/extra-addons \
     && mkdir -p /var/lib/odoo \
-    && chown -R odoo /mnt/extra-addons
-
-#VOLUME ["./",""]
-
-RUN mkdir -p /var/lib/odoo \
     && chown -R odoo /var/lib/odoo \
-    && chown odoo /entrypoint.sh
+
 # Expose Odoo services
 EXPOSE 8069
 
