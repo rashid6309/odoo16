@@ -61,7 +61,7 @@ RUN chown -R odoo /etc/odoo \
     && mkdir -p /mnt/extra-addons \
     && chown -R odoo /mnt/extra-addons \
     && mkdir -p /var/lib/odoo \
-    && chown -R odoo /var/lib/odoo \
+    && chown -R odoo /var/lib/odoo
 
 # Expose Odoo services
 EXPOSE 8069
