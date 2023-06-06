@@ -102,8 +102,22 @@
                             <field name="sub_category" readonly="1"
                                    style="pointer-events:none;"/>
                             <!-- Pointer-EVents NOne -->
+                            <field name="partner_selection_choices"
+                                   widget="radio"
+                                   options="{'horizontal': true}"/>
 
-                            <field name="partner_id" required="1" options=""/>
+                            <field name="existing_partner_id"
+                                   attrs="{'invisible': [('partner_selection_choices', '=', 'new')]}"
+                                   options="{'no_create': True, 'no_quick_create': True}"/>
+
+                            <field name="new_partner_id"
+                                   attrs="{'invisible': [('partner_selection_choices', '=', 'existing')]}"/>
+
+                            <field name="partner_id"
+                                   required="1"
+                                   readonly="1"
+                                   invisible="1"
+                                   force_save="1" options=""/>
 
                             <field name="mobile_no"
                                    required="0"/>

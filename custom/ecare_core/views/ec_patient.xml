@@ -8,8 +8,9 @@
             <field name="model">ec.medical.patient</field>
             <field name="arch" type="xml">
                 <search string="Search Patients">
-                    <field name="name"/>
                     <field name="mr_num"/>
+                    <field name="name"/>
+                    <field name="preferred_mobile"/>
 
                     <field name="wife_name"
                            string="Wife Name"/>

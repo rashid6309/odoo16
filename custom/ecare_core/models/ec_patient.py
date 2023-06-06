@@ -20,6 +20,7 @@ class EcarePatient(models.Model):
 
     _order = "write_date desc, id desc"
     _rec_name = "name"
+    _rec_names_search = ['name', 'mr_num', 'mobile_wife', 'mobile_husband', 'preferred_mobile', 'wife_nic', 'husband_nic']
 
     # Legacy system fields
     legacy_wife_id = fields.Integer()
@@ -328,7 +329,7 @@ class EcarePatient(models.Model):
     def name_get(self):
         result = []
         for rec in self:
-            mr_num =  "(" + rec.mr_num + ") - " if rec.mr_num else ""
+            mr_num = rec.mr_num + " - " if rec.mr_num else ""
             result.append((rec.id, '%s %s' % (mr_num, rec.name)))
         return result
     

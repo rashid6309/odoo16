@@ -1,9 +1,10 @@
-from odoo import models
+from odoo import models, fields
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    mr_num = fields.Char(compute="get_mr_number")
 
     def name_get(self):
         result = []
@@ -14,6 +15,6 @@ class ResPartner(models.Model):
             if not patient_id.mr_num:
                 continue
 
-            mr_num = "(" + patient_id.mr_num + ") - " if patient_id.mr_num else ""
+            mr_num = patient_id.mr_num + " - " if patient_id.mr_num else ""
             result.append((rec.id, '%s %s' % (mr_num, rec.name)))
         return result
