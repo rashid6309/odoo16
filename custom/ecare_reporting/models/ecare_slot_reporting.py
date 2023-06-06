@@ -298,8 +298,10 @@ class EcareSlotsReporting(models.TransientModel):
                                  payment_mode_query_param,
                                  invoice_type_query_param)
 
-        self._cr.execute(query)
-        records = self._cr.fetchall()
+        records = []
+        if user_query_param:
+            self._cr.execute(query)
+            records = self._cr.fetchall()
 
         return records, total_pages, payment_methods, user_list
 
