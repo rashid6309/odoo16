@@ -386,7 +386,7 @@ class EcarePatient(models.Model):
                 "Mobile_country": ""
             },
             "Couple": {
-                "Couple_id": self.mr_num.replace("ICSI", "TEST"), # TODO: FIXME: Only for testing
+                "Couple_id": self.mr_num,
                 "Marriage_period": self.yom or 0,
                 "Couple_Detail": "",
                 "Couple_Address": "",
