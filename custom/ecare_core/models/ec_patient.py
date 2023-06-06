@@ -337,6 +337,7 @@ class EcarePatient(models.Model):
     def action_register(self):
         self.ensure_one()
         self.mr_num = self.env['ir.sequence'].next_by_code('ecare_core.patient.sequence.mr.no') or _('New')
+        self.partner_id.display_name = self.name # have to do it manually otherwise it was throwing error now due to rec_name update.
         # POST API to update the data at that side ICSI existing history software
         self.post_data_history_software()
     

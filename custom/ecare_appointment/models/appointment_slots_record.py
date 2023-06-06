@@ -38,11 +38,6 @@ class EcareAppointmentSlot(models.Model):
                                           string="Existing Patient",
                                          )
 
-    new_partner_id = fields.Many2one(comodel_name="ec.medical.patient",
-                                     tracking=False,
-                                     string="New Patient",
-                                     store=False)
-
     category = fields.Many2one(comodel_name="ec.slot.category",
                                tracking=True,
                                ondelete='restrict',
@@ -119,17 +114,11 @@ class EcareAppointmentSlot(models.Model):
     def onchange_partner_selection_choices(self):
         self.partner_id = None
         self.existing_partner_id = None
-        self.new_partner_id = None
         self.onchange_partner()
 
     @api.onchange('existing_partner_id')
     def onchange_existing_partner(self):
         self.partner_id = self.existing_partner_id.id
-        self.onchange_partner()
-
-    @api.onchange('new_partner_id')
-    def onchange_new_partner(self):
-        self.partner_id = self.new_partner_id
         self.onchange_partner()
 
     @api.onchange("mobile_no")
