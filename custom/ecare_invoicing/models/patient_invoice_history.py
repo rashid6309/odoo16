@@ -4,6 +4,7 @@ from odoo import models, fields
 class PatientInvoiceHistory(models.TransientModel):
     _name = "patient.account.move.line.history"
     _description = "Patient History"
+    _order = "datetime desc"
 
     datetime = fields.Datetime(string="Date")
 

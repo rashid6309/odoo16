@@ -178,15 +178,15 @@
                                 <field name="wife_name"
                                        attrs="{'required': [('husband_marital_status', '=', 'Married')]}"/>
 
-                                <field name="wife_nic"
-                                       attrs="{'required': [
-                                       ('husband_marital_status', '=', 'Married'),
-                                       ('wife_passport', '=', False)]}"/>
+                                <field name="wife_nic"/>
+<!--                                       attrs="{'required': [-->
+<!--                                       ('husband_marital_status', '=', 'Married'),-->
+<!--                                       ('wife_passport', '=', False)]}"/>-->
 
-                                <field name="wife_passport"
-                                       attrs="{'required': [
-                                       ('husband_marital_status', '=', 'Married'),
-                                       ('wife_nic', '=', False)]}"/>
+                                <field name="wife_passport"/>
+<!--                                       attrs="{'required': [-->
+<!--                                       ('husband_marital_status', '=', 'Married'),-->
+<!--                                       ('wife_nic', '=', False)]}"/>-->
 
                                 <field name="wife_driving_license"/>
                                 <field name="wife_dob"/>
@@ -197,8 +197,8 @@
 
                                 <field name="phone_res_wife"/>
                                 <field name="phone_ofc_wife"/>
-                                <field name="mobile_wife"
-                                       attrs="{'required': [('husband_marital_status', '=', 'Married')]}"/>
+                                <field name="mobile_wife"/>
+<!--                                       attrs="{'required': [('husband_marital_status', '=', 'Married')]}"/>-->
 
                                 <field name="email_wife"/>
                                 <field name="marital_status"
@@ -216,20 +216,20 @@
                                        options="{'size':[256, 256], 'zoom': true, 'zoom_delay': 1000}"/>
 
 
-                                <field name="husband_name"
-                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>
+                                <field name="husband_name"/>
+<!--                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>-->
                                 />
 
-                                <field name="husband_nic"
-                                       attrs="{'required': [
-                                       ('marital_status', '=', 'Married'),
-                                       ('husband_passport', '=', False)]}"/>
+                                <field name="husband_nic"/>
+<!--                                       attrs="{'required': [-->
+<!--                                       ('marital_status', '=', 'Married'),-->
+<!--                                       ('husband_passport', '=', False)]}"/>-->
                                 />
 
-                                <field name="husband_passport"
-                                       attrs="{'required': [
-                                               ('marital_status', '=', 'Married'),
-                                               ('husband_nic', '=', False)]}"/>
+                                <field name="husband_passport"/>
+<!--                                       attrs="{'required': [-->
+<!--                                               ('marital_status', '=', 'Married'),-->
+<!--                                               ('husband_nic', '=', False)]}"/>-->
                                 />
 
                                 <field name="husband_driving_license"/>
@@ -237,13 +237,13 @@
                                 <field name="husband_age" readonly="1" force_save="1"/>
                                 <field name="phone_res_husband"/>
                                 <field name="phone_ofc_husband"/>
-                                <field name="mobile_husband"
-                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>
+                                <field name="mobile_husband"/>
+<!--                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>-->
                                 />
                                 <field name="email_husband"/>
 
-                                <field name="husband_marital_status"
-                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>
+                                <field name="husband_marital_status"/>
+<!--                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>-->
                                 />
                             </group>
                         </group>
@@ -266,23 +266,23 @@
                         </group>
                         <group>
                             <group>
+<!--                                required="True"-->
                                 <field name="street"
                                        string="STREET"
-                                       required="True"
                                        placeholder="Street..."
                                        class="o_address_street"
                                        attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
 
+                                <!--                                       required="True"-->
                                 <field name="street2"
                                        string="STREET2"
-                                       required="True"
                                        placeholder="Street 2..."
                                        class="o_address_street"
                                        attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
 
+<!--                                required="True"-->
                                 <field name="city"
                                        string="CITY"
-                                       required="True"
                                        placeholder="City"
                                        class="o_address_city"
                                        attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>

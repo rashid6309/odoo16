@@ -6,6 +6,7 @@ from odoo.addons.ecare_invoicing.models.product_template import ProductTemplate
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
+    _order = "id desc"
 
     invoice_date = fields.Date(
         string='Invoice/Bill Date',
@@ -155,8 +156,8 @@ class AccountMove(models.Model):
         for line in move_product_lines:
             price_unit = line.price_subtotal / line.quantity
             line.price_unit = price_unit
-            line.refund_amount = price_unit * line.quantity
-            line.discount =  None
+            line.refund_amount = 0
+            line.discount =  100
 
         self.onchange_line_refund()
 

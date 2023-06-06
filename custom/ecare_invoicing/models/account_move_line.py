@@ -17,6 +17,8 @@ class AccountMoveLine(models.Model):
                                     copy=False,
                                     tracking=True)
 
+    service_type = fields.Selection(related='product_id.service_type')
+
     @api.onchange("price_subtotal", "price_unit", "fixed_amount_discount")
     def onchange_discount_amount(self):
         for line in self:
