@@ -6,7 +6,7 @@
             <field name="name">Services</field>
             <field name="model">patient.account.move.line.history</field>
             <field name="arch" type="xml">
-                <tree create="0">
+                <tree create="0" export="0" delete="0">
                     <field name="datetime"/>
                     <field name="patient_id"/>
                     <field name="move_id"/>
