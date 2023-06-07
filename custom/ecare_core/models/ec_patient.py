@@ -360,7 +360,6 @@ class EcarePatient(models.Model):
                 "Day_of_birth": self.wife_dob.day if self.wife_dob else "",
                 "Month_of_birth": self.wife_dob.month if self.wife_dob else "",
                 "Year_of_birth": self.wife_dob.year if self.wife_dob else "",
-                "Res_country": self.country_id.name if self.country_id else "",
                 "Office_country": "",
                 "Mobile_country": ""
             },
@@ -381,7 +380,6 @@ class EcarePatient(models.Model):
                 "Day_of_birth": self.husband_dob.day if self.husband_dob else "",
                 "Month_of_birth": self.husband_dob.month if self.husband_dob else "",
                 "Year_of_birth": self.husband_dob.year if self.husband_dob else "",
-                "Res_country": self.country_id.name if self.country_id else "",
                 "Office_country": "",
                 "Mobile_country": ""
             },
