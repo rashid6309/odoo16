@@ -34,6 +34,7 @@
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='fixed_amount_discount']" position="replace">
                     <field name="paid_subtotal"/>
                     <field name="refund_amount"/>
+                    <field name="price_subtotal" invisible="1"/>
                 </xpath>
             </field>
         </record>
