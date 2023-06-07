@@ -60,11 +60,12 @@ class AccountMove(models.Model):
                                       store=False)
     def _calculate_invoice_stats(self):
 
-        net_amount = 0.0
-        total_discount = 0.0
-        refund_amount = 0.0
-
         for line in self:
+
+            net_amount = 0.0
+            total_discount = 0.0
+            refund_amount = 0.0
+
             total_invoice = line.amount_total_signed
             if  line.move_type == 'out_refund' or line.payment_state != 'paid':
                 line.write({
