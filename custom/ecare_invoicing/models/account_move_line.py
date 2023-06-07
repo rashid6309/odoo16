@@ -20,7 +20,7 @@ class AccountMoveLine(models.Model):
     service_type = fields.Selection(related='product_id.service_type')
 
     # Only to be used in credit notes/refund
-    refund_subtotal = fields.Monetary(string="Paid Subtotal",
+    paid_subtotal = fields.Monetary(string="Paid Subtotal",
                                       readonly=1,
                                       force_save=1)
 

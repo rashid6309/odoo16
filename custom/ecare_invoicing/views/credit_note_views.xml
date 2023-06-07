@@ -32,7 +32,7 @@
 
                 <xpath expr="//button[@name='action_reverse']" position="replace"/>
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='fixed_amount_discount']" position="replace">
-                    <field name="refund_subtotal"/>
+                    <field name="paid_subtotal"/>
                     <field name="refund_amount"/>
                 </xpath>
             </field>

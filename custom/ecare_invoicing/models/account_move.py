@@ -157,7 +157,7 @@ class AccountMove(models.Model):
         for line in move_product_lines:
             price_unit = line.price_subtotal / line.quantity
             line.price_unit = price_unit
-            line.refund_subtotal = line.quantity * price_unit
+            line.paid_subtotal = line.quantity * price_unit
             line.refund_amount = 0
             line.discount =  100
 
