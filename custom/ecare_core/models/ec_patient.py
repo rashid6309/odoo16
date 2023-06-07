@@ -340,6 +340,7 @@ class EcarePatient(models.Model):
         self.partner_id.name = patient_name
 
         # POST API to update the data at that side ICSI existing history software
+
         self.post_data_history_software()
     
     def get_payload(self):
@@ -426,4 +427,3 @@ class EcarePatient(models.Model):
             self.env['third.party.api.log'].sudo().create(api_log_values)
         except Exception as e:
             _logger.warning(e)
-
