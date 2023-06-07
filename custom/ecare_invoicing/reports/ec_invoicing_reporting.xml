@@ -239,6 +239,9 @@
                                         <span>Discount</span>
                                     </th>
 
+                                    <th name="th_paid_subtotal" t-if="display_refund and o.move_type == 'out_refund'" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                        <span>Paid Subtotal</span>
+                                    </th>
                                     <th name="th_price_unit" t-if="display_refund and o.move_type == 'out_refund'" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <span>Refund Amount</span>
                                     </th>
@@ -266,6 +269,9 @@
                                             </td>
                                             <td t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                                 <span class="text-nowrap" t-field="line.price_unit"/>
+                                            </td>
+                                            <td t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                <span class="text-nowrap" t-field="line.paid_subtotal"/>
                                             </td>
                                             <td t-if="display_discount and o.move_type == 'out_invoice'" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                                 <span class="text-nowrap" t-field="line.fixed_amount_discount"/>
