@@ -31,10 +31,6 @@ class EcarePatient(models.Model):
                                  required=True,
                                  ondelete="cascade")
 
-    # patient_name = fields.Char(string='Patient Name',
-    #                            compute='_get_patient_name',
-    #                            default='')
-
     mr_num = fields.Char('MR No.', index="btree_not_null")
     wife_name = fields.Char('WIFE',
                             tracking=True)
@@ -271,8 +267,7 @@ class EcarePatient(models.Model):
             else:
                 patient.yom = ''
 
-    @api.depends('husband_name', 'wife_name')
-    @api.onchange('husband_name', 'wife_name')
+    @api.onchange('husband_name', 'wife_name', 'mr_num')
     def _get_patient_name(self):
         for patient in self:
             if patient.wife_name and not patient.husband_name:
@@ -284,8 +279,11 @@ class EcarePatient(models.Model):
             else:
                 patient_name = ''
 
+            patient_name = self.get_patient_name_with_mr(patient_name)
+
             if patient.name != patient_name: # Then call write
                 patient.name = patient_name
+                patient.display_name = patient_name
 
     def action_open_patient_slots(self):
         appointments = self.env['ec.booked.slot.record'].search([
@@ -326,18 +324,21 @@ class EcarePatient(models.Model):
                      ]
         }
 
-    def name_get(self):
-        result = []
-        for rec in self:
-            mr_num = rec.mr_num + " - " if rec.mr_num else ""
-            result.append((rec.id, '%s %s' % (mr_num, rec.name)))
-        return result
-    
+    def get_patient_name_with_mr(self, patient_name=False):
+        patient_name = patient_name or self.name
+        if self.mr_num:
+            patient_name = self.mr_num + " - " + patient_name
+
+        return patient_name
 
     def action_register(self):
         self.ensure_one()
         self.mr_num = self.env['ir.sequence'].next_by_code('ecare_core.patient.sequence.mr.no') or _('New')
-        self.partner_id.display_name = self.name # have to do it manually otherwise it was throwing error now due to rec_name update.
+        patient_name = self.get_patient_name_with_mr()
+        # have to do it manually otherwise it was throwing error now due to rec_name update.
+        self.partner_id.display_name = patient_name
+        self.partner_id.name = patient_name
+
         # POST API to update the data at that side ICSI existing history software
         self.post_data_history_software()
     
