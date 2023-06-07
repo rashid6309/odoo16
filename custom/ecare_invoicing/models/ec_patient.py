@@ -24,6 +24,7 @@ class Patient(models.Model):
         where
             aml.partner_id = %(partner_id)s
             and aml.product_id is not null
+            and am.state = 'posted'
         order by
             aml.create_date desc;
         '''

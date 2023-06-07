@@ -1,4 +1,6 @@
-from odoo import models, fields, _
+import datetime
+
+from odoo import models, fields, _, api
 # 11:20AM -- 11-05-2023
 
 
@@ -27,6 +29,16 @@ class DocumentAttachment(models.Model):
     # FK where this will be used we can inherit as well.
     patient_id = fields.Many2one(comodel_name="ec.medical.patient", copy=False, ondelete='restrict')
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        record = super(DocumentAttachment, self).create(vals_list)
+        record.patient_id.write_date = datetime.datetime.now()
+        return  record
+
+    def write(self, vals_list):
+        record = super(DocumentAttachment, self).write(vals_list)
+        self.patient_id.write_date = datetime.datetime.now()
+        return  record
 
 
 class Patient(models.Model):
