@@ -21,6 +21,8 @@
             <field name="model">account.move.line</field>
             <field name="arch" type="xml">
                     <pivot string="Services">
+                        <field name="sequence" invisible="1"/>
+                        <field name="balance" invisible="1"/>
                         <field name="date" type="row"/>
                         <field name="product_id" type="row"/>
                         <field name="inverse_balance" type="measure"/>
