@@ -13,3 +13,7 @@ class ProductTemplate(models.Model):
     service_type = fields.Selection(selection=TYPE_SELECTION,
                                     string="Type",
                                     tracking=True)
+
+    unit_price_editable = fields.Boolean(string="Allow Price Editable",
+                                          required=True,
+                                          default=0)

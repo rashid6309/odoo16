@@ -12,6 +12,10 @@
                     <field name="service_type"
                            attrs="{'invisible': [('detailed_type', '!=', 'service')]}"
                     />
+
+                    <field name="unit_price_editable"
+                           groups="account.group_account_manager"/>
+
                 </field>
 
                 <xpath expr="//page[@name='general_information']" position="replace">
@@ -70,6 +74,7 @@
                     <field name="name"/>
                     <field name="service_type"/>
                     <field name="list_price"/>
+                    <field name="unit_price_editable" groups="account.group_account_manager"/>
 <!--                    <field name="type"/>-->
                 </tree>
             </field>
