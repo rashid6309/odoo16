@@ -2,16 +2,16 @@
 <odoo>
     <data>
 
-        <record id="view_account_payment_tree_inherited" model="ir.ui.view">
-            <field name="name">account.payment.inherited.tree</field>
-            <field name="model">account.payment</field>
-            <field name="inherit_id" ref="account.view_account_payment_tree"/>
-            <field name="arch" type="xml">
-                <xpath expr="//tree" position="attributes">
-                    <attribute name="create">True</attribute>
-                </xpath>
-            </field>
-        </record>
+<!--        <record id="view_account_payment_tree_inherited" model="ir.ui.view">-->
+<!--            <field name="name">account.payment.inherited.tree</field>-->
+<!--            <field name="model">account.payment</field>-->
+<!--            <field name="inherit_id" ref="account.view_account_payment_tree"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//tree" position="attributes">-->
+<!--                    <attribute name="create">True</attribute>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
 
         <record id="view_account_payment_form_inherited_custom" model="ir.ui.view">
             <field name="name">account.payment.form.inherited</field>

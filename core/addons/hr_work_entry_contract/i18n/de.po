@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Friederike Fasterling-Nesselbosch, 2022
-# Martin Trigaux, 2022
+# Martin Trigaux, 2023
 # Larissa Manderfeld, 2023
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 10:33+0000\n"
+"POT-Creation-Date: 2023-04-14 05:51+0000\n"
 "PO-Revision-Date: 2022-09-22 05:52+0000\n"
 "Last-Translator: Larissa Manderfeld, 2023\n"
 "Language-Team: German (https://app.transifex.com/odoo/teams/41243/de/)\n"
@@ -65,6 +65,8 @@ msgid ""
 "<i class=\"fa fa-exclamation-triangle me-1\" title=\"Warning\"/>You are not "
 "allowed to regenerate validated work entries"
 msgstr ""
+"<i class=\"fa fa-exclamation-triangle me-1\" title=\"Warning\"/>Sie dürfen "
+"validierte Arbeitseinträge nicht neu generieren"
 
 #. module: hr_work_entry_contract
 #: model_terms:ir.ui.view,arch_db:hr_work_entry_contract.hr_work_entry_regeneration_wizard
@@ -77,18 +79,18 @@ msgid ""
 "<span class=\"text-muted\">Warning: The work entry regeneration will delete "
 "all manual changes on the selected period.</span>"
 msgstr ""
-
-#. module: hr_work_entry_contract
-#: model_terms:ir.ui.view,arch_db:hr_work_entry_contract.hr_work_entry_regeneration_wizard
-msgid ""
-"<span class=\"text-muted\">Attention: Regenerating these work entries will result in all the manual\n"
-"                        configurations (work entry type, homeworking location, ...) to be lost.</span>"
-msgstr ""
+"<span class=\"text-muted\">Warnung: Die Regeneration des Arbeitseintrags "
+"löscht alle manuellen Änderungen für den ausgewählten Zeitraum..</span>"
 
 #. module: hr_work_entry_contract
 #: model:ir.model.fields,help:hr_work_entry_contract.field_hr_work_entry_type__is_leave
 msgid "Allow the work entry type to be linked with time off types."
 msgstr "Erlauben Sie die Verknüpfung der Arbeitseintragsart mit Urlaubsarten."
+
+#. module: hr_work_entry_contract
+#: model_terms:ir.ui.view,arch_db:hr_work_entry_contract.hr_work_entry_regeneration_wizard
+msgid "Cancel"
+msgstr "Abbrechen"
 
 #. module: hr_work_entry_contract
 #: model:hr.work.entry.type,name:hr_work_entry_contract.work_entry_type_compensatory
@@ -172,7 +174,7 @@ msgstr "Generiert aus"
 #. module: hr_work_entry_contract
 #: model:ir.model.fields,field_description:hr_work_entry_contract.field_hr_contract__date_generated_to
 msgid "Generated To"
-msgstr ""
+msgstr "Generiert nach"
 
 #. module: hr_work_entry_contract
 #: model:hr.work.entry.type,name:hr_work_entry_contract.work_entry_type_leave
@@ -217,7 +219,7 @@ msgstr ""
 #. module: hr_work_entry_contract
 #: model:ir.model.fields,field_description:hr_work_entry_contract.field_hr_contract__last_generation_date
 msgid "Last Generation Date"
-msgstr ""
+msgstr "Letztes Generierungsdatum"
 
 #. module: hr_work_entry_contract
 #: model:ir.model.fields,field_description:hr_work_entry_contract.field_hr_work_entry_regeneration_wizard____last_update
@@ -245,14 +247,14 @@ msgid "Latest date"
 msgstr "Spätestes Datum"
 
 #. module: hr_work_entry_contract
-#: model:hr.work.entry.type,name:hr_work_entry_contract.work_entry_type_legal_leave
-msgid "Legal Leaves 2023"
-msgstr ""
-
-#. module: hr_work_entry_contract
 #: model:hr.work.entry.type,name:hr_work_entry_contract.work_entry_type_long_leave
 msgid "Long Term Time Off"
 msgstr "Langzeitabwesenheit"
+
+#. module: hr_work_entry_contract
+#: model:hr.work.entry.type,name:hr_work_entry_contract.work_entry_type_legal_leave
+msgid "Paid Time Off"
+msgstr "Bezahlter Urlaub"
 
 #. module: hr_work_entry_contract
 #: model:ir.model,name:hr_work_entry_contract.model_hr_work_entry_regeneration_wizard
@@ -286,6 +288,8 @@ msgstr "Krankheit"
 msgid ""
 "Sorry, generating work entries from cancelled contracts is not allowed."
 msgstr ""
+"Entschuldigung, es ist nicht erlaubt, Arbeitseinträge aus abgebrochenen "
+"Verträgen zu generieren."
 
 #. module: hr_work_entry_contract
 #. odoo-python
@@ -340,7 +344,7 @@ msgstr "Arbeitseinträge innerhalb des Intervalls"
 #. module: hr_work_entry_contract
 #: model:ir.actions.act_window,name:hr_work_entry_contract.hr_work_entry_regeneration_wizard_action
 msgid "Work Entry Regeneration"
-msgstr ""
+msgstr "Regenerierung von Arbeitseinträgen"
 
 #. module: hr_work_entry_contract
 #: model:ir.model.fields,field_description:hr_work_entry_contract.field_hr_contract__work_entry_source

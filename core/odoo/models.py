@@ -3045,10 +3045,20 @@ class BaseModel(metaclass=MetaModel):
                 lang: translation if isinstance(translation, str) else None
                 for lang, translation in translations.items()
             }
+            if not translations:
+                return False
+
+            translation_fallback = translations['en_US'] if translations.get('en_US') is not None \
+                else translations[self.env.lang] if translations.get(self.env.lang) is not None \
+                else next((v for v in translations.values() if v is not None), None)
             self.invalidate_recordset([field_name])
             self._cr.execute(f'''
-                UPDATE {self._table} SET {field_name} = jsonb_strip_nulls({field_name} || %s) WHERE id = %s
-            ''', (Json(translations), self.id))
+                UPDATE {self._table}
+                SET {field_name} = NULLIF(
+                    jsonb_strip_nulls(%s || COALESCE("{field_name}", '{{}}'::jsonb) || %s),
+                    '{{}}'::jsonb)
+                WHERE id = %s
+            ''', (Json({'en_US': translation_fallback}), Json(translations), self.id))
             self.modified([field_name])
         else:
             # Note:
@@ -3538,6 +3548,11 @@ class BaseModel(metaclass=MetaModel):
         ir_model_data_unlink = Data
         ir_attachment_unlink = Attachment
 
+        # mark fields that depend on 'self' to recompute them after 'self' has
+        # been deleted (like updating a sum of lines after deleting one line)
+        with self.env.protecting(self._fields.values(), self):
+            self.modified(self._fields, before=True)
+
         for sub_ids in cr.split_for_in_conditions(self.ids):
             records = self.browse(sub_ids)
 
@@ -3548,11 +3563,6 @@ class BaseModel(metaclass=MetaModel):
 
             # Delete the records' properties.
             ir_property_unlink |= Property.search([('res_id', 'in', refs)])
-
-            # mark fields that depend on 'self' to recompute them after 'self' has
-            # been deleted (like updating a sum of lines after deleting one line)
-            with self.env.protecting(self._fields.values(), records):
-                self.modified(self._fields, before=True)
 
             query = f'DELETE FROM "{self._table}" WHERE id IN %s'
             cr.execute(query, (sub_ids,))
@@ -6128,7 +6138,7 @@ class BaseModel(metaclass=MetaModel):
             fields = [self._fields[fname] for fname in fnames]
 
         for field in fields:
-            if field.compute:
+            if field.compute and field.store:
                 self._recompute_field(field)
 
     def _recompute_recordset(self, fnames=None):
@@ -6142,7 +6152,7 @@ class BaseModel(metaclass=MetaModel):
             fields = [self._fields[fname] for fname in fnames]
 
         for field in fields:
-            if field.compute:
+            if field.compute and field.store:
                 self._recompute_field(field, self._ids)
 
     def _recompute_field(self, field, ids=None):
@@ -6154,24 +6164,10 @@ class BaseModel(metaclass=MetaModel):
         if not ids:
             return
 
-        records = self.browse(ids)
-        if field.store:
-            # do not force recomputation on new records; those will be
-            # recomputed by accessing the field on the records
-            records = records.filtered('id')
-            try:
-                field.recompute(records)
-            except MissingError:
-                existing = records.exists()
-                field.recompute(existing)
-                # mark the field as computed on missing records, otherwise
-                # they remain forever in the todo list, and lead to an
-                # infinite loop...
-                for f in records.pool.field_computed[field]:
-                    self.env.remove_to_compute(f, records - existing)
-        else:
-            self.env.cache.invalidate([(field, records._ids)])
-            self.env.remove_to_compute(field, records)
+        # do not force recomputation on new records; those will be
+        # recomputed by accessing the field on the records
+        records = self.browse(tuple(id_ for id_ in ids if id_))
+        field.recompute(records)
 
     #
     # Generic onchange method
