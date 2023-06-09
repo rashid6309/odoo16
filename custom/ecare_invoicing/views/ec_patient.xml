@@ -8,8 +8,15 @@
             <field name="inherit_id" ref="ecare_core.ec_patient_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//form/sheet/div[hasclass('oe_button_box')]" position="inside">
+
                     <button
-                            name="open_invoice_line_history"
+                            name="action_advance_payment"
+                            type="object"
+                            class="oe_highlight"
+                            string="Advance Payments"/>
+
+                    <button
+                            name="action_open_invoice_line_history"
                             type="object"
                             class="oe_highlight"
                             string="Services"/>
