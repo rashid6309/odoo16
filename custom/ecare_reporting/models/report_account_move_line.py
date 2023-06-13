@@ -17,7 +17,7 @@ class MoveLineReport(models.Model):
 
     service_type = fields.Char(string="Service Type")
 
-    price_subtotal = fields.Float(string="Sub Total")
+    balance = fields.Float(string="Balance")
 
     discount = fields.Float(string="Discount")
 
@@ -40,7 +40,7 @@ class MoveLineReport(models.Model):
                 am.move_type ,
                 case when am.move_type = 'out_refund'
                 then aml.price_subtotal * -1 
-                else aml.price_subtotal end price_subtotal
+                else aml.price_subtotal end balance
             from
                 account_move_line aml
             inner join account_move am 
