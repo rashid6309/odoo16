@@ -5,35 +5,6 @@ from odoo.exceptions import UserError
 class Patient(models.Model):
     _inherit = "ec.medical.patient"
 
-    def action_advance_payment(self):
-        open_payments = self.env['account.payment'].search(domain=[('is_reconciled', '=', False),
-                                                                 ('partner_id', '=', self.partner_id.id)])
-
-        if not self.mr_num:
-            raise UserError("Please generate MR No.")
-
-        if not open_payments:
-            raise UserError("No advance payments")
-
-        partner_id = self.partner_id
-        context = self._context.copy()
-        context.update({
-            'default_partner_id': partner_id.id,
-        })
-
-        return{
-            "name": _("Advance Payments"),
-            'type': 'ir.actions.act_window',
-            'res_model': 'account.payment',
-            'view_mode': 'tree,form',
-            'target': 'current',
-            'context': context,
-            'views': [(self.env.ref('account.view_account_payment_tree').id, 'tree'),
-                      (self.env.ref('account.view_account_payment_form').id, 'form')
-                      ],
-            'domain': [('id', 'in', open_payments.ids)]
-        }
-
     def action_open_invoice_line_history(self):
         query = '''
         select
