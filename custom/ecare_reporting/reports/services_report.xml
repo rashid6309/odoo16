@@ -9,10 +9,10 @@
                 <tree string="Services" create="False">
                     <field name="product_template_id"/>
                     <field name="service_type"/>
-                    <field name="net_amount"/>
+                    <field name="balance"/>
                     <field name="discount"/>
                     <field name="refund"/>
-                    <field name="balance"/>
+<!--                    <field name="balance"/>-->
                 </tree>
             </field>
         </record>
@@ -27,10 +27,10 @@
                         <field name="create_date" type="row"/>
                         <field name="service_type" type="row"/>
                         <field name="product_template_id" type="row"/>
-                        <field name="net_amount" type="measure"/>
+                        <field name="balance" type="measure"/>
                         <field name="discount" type="measure"/>
                         <field name="refund" type="measure"/>
-                        <field name="balance" type="measure"/>
+<!--                        <field name="balance" type="measure"/>-->
                     </pivot>
             </field>
         </record>

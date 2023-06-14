@@ -17,13 +17,13 @@ class MoveLineReport(models.Model):
 
     service_type = fields.Char(string="Service Type")
 
-    net_amount = fields.Float(string="Net Amount")
+    balance = fields.Float(string="Balance")
 
     discount = fields.Float(string="Discount")
 
     refund = fields.Float(string="Refund")
 
-    balance = fields.Float(string="Balance")
+    # sub_total = fields.Float(string="Balance")
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
@@ -35,10 +35,12 @@ class MoveLineReport(models.Model):
                 pt.id product_template_id, 
                 aml.create_date ,
                 pt.service_type,
-                abs(aml.fixed_amount_discount) + abs(aml.refund_amount) + abs(aml.balance) as  net_amount,
-                -1 * aml.fixed_amount_discount as discount,
-                -1 * aml.refund_amount as refund,
-                -1 * aml.balance as balance
+                aml.fixed_amount_discount as discount,
+                aml.refund_amount as refund,
+                am.move_type ,
+                case when am.move_type = 'out_refund'
+                then aml.price_subtotal * -1 
+                else aml.price_subtotal end balance
             from
                 account_move_line aml
             inner join account_move am 
