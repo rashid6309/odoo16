@@ -1,5 +1,3 @@
-import datetime
-
 from odoo import models, fields, _, api
 # 11:20AM -- 11-05-2023
 
@@ -32,12 +30,14 @@ class DocumentAttachment(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         record = super(DocumentAttachment, self).create(vals_list)
-        record.patient_id.write_date = datetime.datetime.now()
+        if record.patient_id:
+            record.patient_id.update_write_date()
         return  record
 
     def write(self, vals_list):
         record = super(DocumentAttachment, self).write(vals_list)
-        self.patient_id.write_date = datetime.datetime.now()
+        if record.patient_id:
+            record.patient_id.update_write_date()
         return  record
 
 

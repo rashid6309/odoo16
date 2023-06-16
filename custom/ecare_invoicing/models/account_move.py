@@ -36,6 +36,8 @@ class AccountMove(models.Model):
         default="entry",
     )
 
+
+
     ''' For showing purpose only '''
     # this compute will compute below
     total_receivable = fields.Monetary(string="Invoiced",
@@ -58,6 +60,50 @@ class AccountMove(models.Model):
                                       compute="_calculate_invoice_stats",
                                       readonly=True,
                                       store=False)
+
+
+    ''' Override Methods '''
+
+    @api.model_create_multi
+    def create(self, vals):
+        obj = super(AccountMove, self).create(vals)
+        obj.handle_section()
+        obj.handle_pharmacy_lines()
+        obj.product_price_unit_refund()
+        if obj.partner_id:
+            patient_id = obj.get_patient_against_partner()
+            patient_id.update_write_date()
+
+        return obj
+
+    def write(self, vals):
+        """
+        DON'T Repeat check is critical else it'll be in recursive.
+        """
+        dont_repeat = False
+        if vals.get('dont_repeat'):
+            dont_repeat = vals.pop('dont_repeat')
+
+        obj =  super(AccountMove, self).write(vals)
+        if not dont_repeat and vals.get("invoice_line_ids"):
+            self.handle_section()
+
+        if vals.get("invoice_line_ids"):
+            self.onchange_line_refund()
+
+
+        if self.partner_id:
+            patient_id = self.get_patient_against_partner()
+            patient_id.update_write_date()
+
+        return obj
+
+    ''' End here '''
+
+    def get_patient_against_partner(self):
+        patient_id = self.env['ec.medical.patient'].search(domain=[('partner_id', '=', self.partner_id.id)])
+        return patient_id
+
     def _calculate_invoice_stats(self):
 
         for line in self:
@@ -219,33 +265,6 @@ class AccountMove(models.Model):
             journal_name += journal_name_to_add
 
         return journal_name
-
-    ''' Override Methods '''
-
-    @api.model_create_multi
-    def create(self, vals):
-        obj = super(AccountMove, self).create(vals)
-        obj.handle_section()
-        obj.handle_pharmacy_lines()
-        obj.product_price_unit_refund()
-        return obj
-
-    def write(self, vals):
-        """
-        DON'T Repeat check is critical else it'll be in recursive.
-        """
-        dont_repeat = False
-        if vals.get('dont_repeat'):
-            dont_repeat = vals.pop('dont_repeat')
-
-        obj =  super(AccountMove, self).write(vals)
-        if not dont_repeat and vals.get("invoice_line_ids"):
-            self.handle_section()
-
-        if vals.get("invoice_line_ids"):
-            self.onchange_line_refund()
-
-        return obj
 
     def handle_pharmacy_lines(self):
         """

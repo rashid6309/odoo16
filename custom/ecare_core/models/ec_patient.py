@@ -149,6 +149,10 @@ class EcarePatient(models.Model):
         ('husband_cnic_uniq', 'unique(husband_nic)', 'The husband must be unique !'),
     ]
 
+    def update_write_date(self):
+        """ This method is called to update the write_date so that patients gets in the view at first """
+        self.write_date = datetime.datetime.now()
+
     def write(self, vals):
         """
         First time creation is allowed afterwards chnage is not.
