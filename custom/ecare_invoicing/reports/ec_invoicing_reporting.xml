@@ -148,7 +148,7 @@
                                 </div>
                             </t>
                             <div class="col-7">
-                                <span class="text-field-value" t-esc="o.invoice_date"/>
+                                <span class="text-field-value" t-esc="o.create_date" t-options='{"widget": "datetime",  "format": "d-MM-yyyy HH:mm:ss"}'/>
                             </div>
                         </div>
 
