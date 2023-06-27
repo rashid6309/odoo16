@@ -1,6 +1,7 @@
-/.idea/.gitignore
+/odoo-pycharm.conf
 /.idea/icsi-erp.iml
 /.idea/misc.xml
 /.idea/modules.xml
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/vcs.xml
+/.idea/.gitignore
