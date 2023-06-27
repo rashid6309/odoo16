@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         'reports/core_reports.xml',
         'reports/ec_invoicing_reporting.xml',
+        'reports/payment_report.xml',
 
         'views/account_payment_register.xml',
         'views/account_payment.xml',

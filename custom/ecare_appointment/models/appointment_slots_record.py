@@ -99,6 +99,26 @@ class EcareAppointmentSlot(models.Model):
     mobile_no = fields.Char(string='Preferred Mobile No.',
                             tracking=True)
 
+
+    ''' Override methods '''
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        obj = super(EcareAppointmentSlot, self).create(vals_list)
+        if obj.partner_id:
+            obj.partner_id.update_write_date()
+
+        return obj
+
+    def write(self, vals_list):
+        obj = super(EcareAppointmentSlot, self).write(vals_list)
+        if self.partner_id:
+            self.partner_id.update_write_date()
+
+        return obj
+
+    ''' XXX ENDS HERE '''
+
     ''' XXX - Linked to mobile no and patient preferred no  - XXX'''
     # If the number added here it'll be updated at the patient
     # If the patient number is updated it'll also reflect back at here

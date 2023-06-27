@@ -82,10 +82,10 @@
                     <field name="invoice_payment_term_id" invisible="1"/>
                 </xpath>
 
-                <xpath expr="//field[@name='price_unit']" position="attributes">
-                    <attribute name="readonly">True</attribute>
-                    <attribute name="force_save">True</attribute>
-                </xpath>
+<!--                <xpath expr="//field[@name='price_unit']" position="attributes">-->
+<!--                    <attribute name="readonly">True</attribute>-->
+<!--                    <attribute name="force_save">True</attribute>-->
+<!--                </xpath>-->
 
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']" position="attributes">
                     <attribute name="optional">hide</attribute>
@@ -107,8 +107,16 @@
 
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="after">
                     <field name="service_type" invisible="1"/>
+                    <field name="price_editable" invisible="1"/>
+                    <field name="move_type" invisible="1"/>
                     <field name="fixed_amount_discount"
                            attrs="{'readonly': [('service_type', '!=', 'Hospital Services')]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">
+                           {'readonly': ['|', ('price_editable', '=', False), ('move_type', '!=', 'out_invoice')]}
+                    </attribute>
                 </xpath>
 
                 <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="before">

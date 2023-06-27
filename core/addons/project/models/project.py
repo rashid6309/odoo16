@@ -18,7 +18,6 @@ from odoo.tools.misc import get_lang
 from .project_task_recurrence import DAYS, WEEKS
 from .project_update import STATUS_COLOR
 
-
 PROJECT_TASK_READABLE_FIELDS = {
     'id',
     'active',
@@ -244,23 +243,23 @@ class Project(models.Model):
     def _compute_task_count(self):
         domain = [('project_id', 'in', self.ids), ('is_closed', '=', False)]
         fields = ['project_id', 'display_project_id:count']
-        groupby = ['project_id']
-        task_data = self.env['project.task']._read_group(domain, fields, groupby)
+        groupby = ['project_id', 'active']
         result_wo_subtask = defaultdict(int)
         result_with_subtasks = defaultdict(int)
-        for data in task_data:
-            result_wo_subtask[data['project_id'][0]] += data['display_project_id']
-            result_with_subtasks[data['project_id'][0]] += data['project_id_count']
-        task_all_data = self.env['project.task'].with_context(active_test=False)._read_group(domain, fields, groupby)
-        all_tasks_wo_subtasks = defaultdict(int)
+        task_all_data = self.env['project.task'].with_context(active_test=False)._read_group(domain, fields, groupby, lazy=False)
+        active_project_ids = self.filtered('active').ids
         for data in task_all_data:
-            all_tasks_wo_subtasks[data['project_id'][0]] += data['display_project_id']
+            project_id = data['project_id'][0]
+            if data['active'] or project_id not in active_project_ids:
+                # count active tasks only of all if the project is archived
+                result_wo_subtask[project_id] += data['display_project_id']
+            if data['active'] or not self.env.context.get('active_test', True):
+                # count subtasks only for active tasks
+                result_with_subtasks[project_id] += data['__count']
 
         for project in self:
             project.task_count = result_wo_subtask[project.id]
             project.task_count_with_subtasks = result_with_subtasks[project.id]
-            if not project.active:
-                project.task_count = all_tasks_wo_subtasks[project.id]
 
     def _default_stage_id(self):
         # Since project stages are order by sequence first, this should fetch the one with the lowest sequence number.
@@ -405,7 +404,7 @@ class Project(models.Model):
         ('to_define', 'Set Status'),
     ], default='to_define', compute='_compute_last_update_status', store=True, readonly=False, required=True)
     last_update_color = fields.Integer(compute='_compute_last_update_color')
-    milestone_ids = fields.One2many('project.milestone', 'project_id', copy=True)
+    milestone_ids = fields.One2many('project.milestone', 'project_id')
     milestone_count = fields.Integer(compute='_compute_milestone_count', groups='project.group_project_milestone')
     milestone_count_reached = fields.Integer(compute='_compute_milestone_reached_count', groups='project.group_project_milestone')
     is_milestone_exceeded = fields.Boolean(compute="_compute_is_milestone_exceeded", search='_search_is_milestone_exceeded')
@@ -606,6 +605,10 @@ class Project(models.Model):
         project = super(Project, self).copy(default)
         for follower in self.message_follower_ids:
             project.message_subscribe(partner_ids=follower.partner_id.ids, subtype_ids=follower.subtype_ids.ids)
+        if self.allow_milestones:
+            if 'milestone_mapping' not in self.env.context:
+                self = self.with_context(milestone_mapping=dict())
+            project.milestone_ids = [milestone.copy().id for milestone in self.milestone_ids]
         if 'tasks' not in default:
             self.map_tasks(project.id)
 
@@ -904,11 +907,8 @@ class Project(models.Model):
             'icon': 'tasks',
             'text': _lt('Tasks'),
             'number': self.task_count,
-            'action_type': 'action',
-            'action': 'project.act_project_project_2_project_task_all',
-            'additional_context': json.dumps({
-                'active_id': self.id,
-            }),
+            'action_type': 'object',
+            'action': 'action_view_tasks',
             'show': True,
             'sequence': 3,
         }]
@@ -1512,7 +1512,7 @@ class Task(models.Model):
                 task.repeat_week,
                 task.repeat_month,
                 count=number_occurrences)
-            date_format = self.env['res.lang']._lang_get(self.env.user.lang).date_format
+            date_format = self.env['res.lang']._lang_get(self.env.user.lang).date_format or get_lang(self.env).date_format
             if recurrence_left == 0:
                 recurrence_title = _('There are no more occurrences.')
             else:
@@ -1745,6 +1745,9 @@ class Task(models.Model):
             self.write({'dependent_ids': [Command.unlink(t.id) for t in self.dependent_ids if t.id in new_tasks]})
             task_copy.write({'depend_on_ids': [Command.link(task_mapping.get(t.id, t.id)) for t in self.depend_on_ids]})
             task_copy.write({'dependent_ids': [Command.link(task_mapping.get(t.id, t.id)) for t in self.dependent_ids]})
+        if self.allow_milestones:
+            milestone_mapping = self.env.context.get('milestone_mapping', {})
+            task_copy.milestone_id = milestone_mapping.get(task_copy.milestone_id.id, task_copy.milestone_id.id)
         return task_copy
 
     @api.model
@@ -2128,7 +2131,7 @@ class Task(models.Model):
         # rating on stage
         if 'stage_id' in vals and vals.get('stage_id'):
             tasks.filtered(lambda x: x.project_id.rating_active and x.project_id.rating_status == 'stage')._send_task_rating_mail(force_send=True)
-        for task in self:
+        for task in tasks:
             if task.display_project_id != task.project_id and not task.parent_id:
                 # We must make the display_project_id follow the project_id if no parent_id set
                 task.display_project_id = task.project_id
@@ -2367,10 +2370,6 @@ class Task(models.Model):
 
         project_user_group_id = self.env.ref('project.group_project_user').id
         new_group = ('group_project_user', lambda pdata: pdata['type'] == 'user' and project_user_group_id in pdata['groups'], {})
-        if not self.user_ids and not self.is_closed:
-            take_action = self._notify_get_action_link('assign', **local_msg_vals)
-            project_actions = [{'url': take_action, 'title': _('I take it')}]
-            new_group[2]['actions'] = project_actions
         groups = [new_group] + groups
 
         if self.project_privacy_visibility == 'portal':
@@ -2528,7 +2527,7 @@ class Task(models.Model):
         children = self.child_ids
         if not children:
             return self.env['project.task']
-        return children + children._get_all_subtasks()
+        return children + children._get_subtasks_recursively()
 
     def action_open_parent_task(self):
         return {

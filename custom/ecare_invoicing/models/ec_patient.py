@@ -1,10 +1,11 @@
 from odoo import models, _
+from odoo.exceptions import UserError
 
 
 class Patient(models.Model):
     _inherit = "ec.medical.patient"
 
-    def open_invoice_line_history(self):
+    def action_open_invoice_line_history(self):
         query = '''
         select
             aml.create_date datetime,
@@ -24,6 +25,7 @@ class Patient(models.Model):
         where
             aml.partner_id = %(partner_id)s
             and aml.product_id is not null
+            and am.state = 'posted'
         order by
             aml.create_date desc;
         '''

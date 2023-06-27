@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="account.view_account_payment_tree"/>
             <field name="arch" type="xml">
                 <xpath expr="//tree" position="attributes">
-                    <attribute name="create">True</attribute>
+                    <attribute name="create">0</attribute>
                 </xpath>
             </field>
         </record>
@@ -23,6 +23,17 @@
                 <xpath expr="//field[@name='ref']" position="attributes">
                     <attribute name="attrs">{'readonly': [('state', '=', 'posted')]}</attribute>
                 </xpath>
+
+                <field name="is_internal_transfer" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                    <attribute name="invisible">True</attribute>
+                    <attribute name="force_save">True</attribute>
+                </field>
+
+                <field name="payment_type" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                    <attribute name="force_save">True</attribute>
+                </field>
             </field>
         </record>
 

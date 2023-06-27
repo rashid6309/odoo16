@@ -19,6 +19,13 @@ class AccountMoveLine(models.Model):
 
     service_type = fields.Selection(related='product_id.service_type')
 
+    price_editable = fields.Boolean(related="product_id.unit_price_editable")
+
+    # Only to be used in credit notes/refund
+    paid_subtotal = fields.Monetary(string="Paid Subtotal",
+                                      readonly=1,
+                                      force_save=1)
+
     @api.onchange("price_subtotal", "price_unit", "fixed_amount_discount")
     def onchange_discount_amount(self):
         for line in self:

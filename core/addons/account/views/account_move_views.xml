@@ -311,7 +311,6 @@
                     <field name="ref"/>
                     <field name="date"/>
                     <field name="account_id"/>
-                    <field name="account_root_id"/>
                     <field name="account_type"/>
                     <field name="partner_id"/>
                     <field name="journal_id"/>
@@ -810,7 +809,8 @@
                                 <field name="partner_bank_id"
                                        context="{'default_partner_id': bank_partner_id}"
                                        domain="[('partner_id', '=', bank_partner_id)]"
-                                       attrs="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}"/>
+                                       attrs="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))],
+                                            'readonly': [('state', '!=', 'draft')]}"/>
 
                                 <!-- Invoice payment terms (only invoices) + due date (only invoices / receipts) -->
                                 <div class="o_td_label" attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}">
@@ -881,6 +881,7 @@
                                         <field name="sequence" widget="handle"/>
                                         <field name="product_id"
                                                optional="show"
+                                               widget="many2one_barcode"
                                                domain="
                                                     context.get('default_move_type') in ('out_invoice', 'out_refund', 'out_receipt')
                                                     and [('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]

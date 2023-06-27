@@ -24,8 +24,19 @@
         <field name="binding_model_id" ref="" />
     </record>
 
-
     <record id="account.action_account_original_vendor_bill" model="ir.actions.report">
+        <field name="binding_model_id" ref=""/>
+    </record>
+
+    <record id="account.account_send_payment_receipt_by_email_action" model="ir.actions.act_window">
+        <field name="binding_model_id" ref=""/>
+    </record>
+
+    <record id="account.account_send_payment_receipt_by_email_action_multi" model="ir.actions.act_window">
+        <field name="binding_model_id" ref=""/>
+    </record>
+
+    <record id="account.action_account_confirm_payments" model="ir.actions.server">
         <field name="binding_model_id" ref=""/>
     </record>
 

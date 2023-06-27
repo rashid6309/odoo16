@@ -43,7 +43,7 @@
         <menuitem id="management_report_services"
                   name="Service Report"
                   parent="management_report_menu"
-                  action="ecare_reporting.account_move_line_report_action"
+                  action="ecare_reporting.report_account_move_line_report_action"
                   sequence="5000"
         />
 

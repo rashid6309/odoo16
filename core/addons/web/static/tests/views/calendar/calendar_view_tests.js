@@ -1328,7 +1328,7 @@ QUnit.module("Views", ({ beforeEach }) => {
         assert.containsOnce(groups[0], ".o_field_char", "should apply char widget");
         assert.strictEqual(
             groups[0].querySelector("strong").textContent,
-            "Custom Name : ",
+            "Custom Name: ",
             "label should be a 'Custom Name'"
         );
         assert.strictEqual(
@@ -1339,7 +1339,7 @@ QUnit.module("Views", ({ beforeEach }) => {
         assert.containsOnce(groups[1], ".o_form_uri", "should apply m20 widget");
         assert.strictEqual(
             groups[1].querySelector("strong").textContent,
-            "user : ",
+            "user: ",
             "label should be a 'user'"
         );
         assert.strictEqual(
@@ -2103,6 +2103,28 @@ QUnit.module("Views", ({ beforeEach }) => {
 
         await selectAllDayRange(target, "2016-12-14", "2016-12-15");
         assert.verifySteps(["doAction"]);
+    });
+
+    QUnit.test(`create event with default title in context (with quickCreate)`, async (assert) => {
+        assert.expect(1);
+
+        serverData.models.event.records = [];
+
+        await makeView({
+            type: "calendar",
+            resModel: "event",
+            serverData,
+            arch: `
+                <calendar date_start="start" date_stop="stop" mode="week" all_day="allday" />
+            `,
+            context: {
+                default_name: "Example Title",
+            },
+        });
+
+        await selectAllDayRange(target, "2016-12-14", "2016-12-15");
+        const input = target.querySelector(".o-calendar-quick-create--input");
+        assert.strictEqual(input.value, "Example Title");
     });
 
     QUnit.test(`create all day event in week mode (no quickCreate)`, async (assert) => {
@@ -4656,7 +4678,7 @@ QUnit.module("Views", ({ beforeEach }) => {
 
         assert.strictEqual(
             target.querySelector(".o_cw_popover .o_cw_popover_fields_secondary").textContent,
-            "user : name : event 4"
+            "user: name: event 4"
         );
     });
 
