@@ -3,11 +3,12 @@
 # 	* product
 # 
 # Translators:
-# Lucia Pacheco <lpo@odoo.com>, 2022
+# Lucia Pacheco, 2022
 # Braulio D. López Vázquez <bdl@odoo.com>, 2022
 # Martin Trigaux, 2022
 # Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2023
 # Iron Graterol, 2023
+# Aimée Mendoza Sánchez, 2023
 # Fernanda Alvarez, 2023
 # 
 msgid ""
@@ -2415,7 +2416,7 @@ msgstr "Consejo de regla"
 #: model:ir.model.fields,field_description:product.field_product_product__message_has_sms_error
 #: model:ir.model.fields,field_description:product.field_product_template__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "Error de entrega de SMS"
+msgstr "Error en el envío del SMS"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
@@ -2742,6 +2743,13 @@ msgstr ""
 "La cantidad a comprar de este proveedor para beneficiarse del precio, "
 "expresado en la unidad de medida del producto del proveedor, si no existe, "
 "en la unidad de medida por defecto del producto."
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_pricelist_item.py:0
+#, python-format
+msgid "The rounding method must be strictly positive."
+msgstr "La precisión de redondeo debe ser estrictamente positiva."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_product__lst_price

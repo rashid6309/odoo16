@@ -1055,7 +1055,7 @@ msgstr "Om markerad har det uppstått leveransfel för vissa meddelanden."
 #. module: hr_expense
 #: model_terms:ir.ui.view,arch_db:hr_expense.view_hr_expense_sheet_form
 msgid "In Payment"
-msgstr ""
+msgstr "I betalning"
 
 #. module: hr_expense
 #: model:ir.model.fields,field_description:hr_expense.field_hr_expense__tax_ids
@@ -2077,7 +2077,7 @@ msgstr "Summa ex. moms"
 #. module: hr_expense
 #: model:ir.model.fields,field_description:hr_expense.field_hr_expense__product_uom_category_id
 msgid "UoM Category"
-msgstr ""
+msgstr "UoM Kategori"
 
 #. module: hr_expense
 #. odoo-javascript
@@ -2125,6 +2125,7 @@ msgstr "Visa rapport"
 #, python-format
 msgid "Wasting time recording your receipts? Let’s try a better way."
 msgstr ""
+"Slösar du tid på att registrera dina kvitton? Låt oss prova ett bättre sätt."
 
 #. module: hr_expense
 #: model:ir.model.fields,field_description:hr_expense.field_hr_expense__website_message_ids
