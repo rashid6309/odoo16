@@ -1489,6 +1489,8 @@ msgid ""
 "Create and confirm Manufacturing Orders this many days in advance, to have enough time to replenish components or manufacture semi-finished products.\n"
 "Note that security lead times will also be considered when appropriate."
 msgstr ""
+"قم بإنشاء وتأكيد أوامر التصنيع قبل هذه العدد من الأيام، حتى يكون لديك الوقت الكافي لتجديد مخزون المكونات أو تصنيع المنتجات شبه المكتملة.\n"
+"يرجى العلم بأن مهلة التسليم للأمان سيتم اعتبارها عندما يكون ذلك مناسباً. "
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_backorder_form
@@ -2836,7 +2838,7 @@ msgstr "الاستهلاك اليدوي "
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_bom_line__manual_consumption_readonly
 msgid "Manual Consumption Readonly"
-msgstr ""
+msgstr "ملف الاستهلاك اليدوي للقراءة فقط "
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_routing_workcenter__time_cycle_manual
@@ -4460,7 +4462,7 @@ msgstr "الإنتاج الجماعي التسلسلي "
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_consumption_warning_form
 msgid "Set Quantities & Validate"
-msgstr ""
+msgstr "تحديد الكميات والتصديق "
 
 #. module: mrp
 #: model:ir.model.fields.selection,name:mrp.selection__mrp_routing_workcenter__time_mode__manual
@@ -4599,8 +4601,8 @@ msgid ""
 "Some product moves have already been confirmed, this manufacturing order "
 "can't be completely cancelled. Are you still sure you want to process ?"
 msgstr ""
-"لقد تم تأكيد بعض حركات المنتجات بالفعل، ولذلك لا ينمكن إلغاء أمر التصنيع هذا"
-" تماماً. هل أنت متأكد من رغبتك في المتابعة؟ "
+"لقد تم تأكيد بعض حركات المنتجات بالفعل، ولذلك لا يمكن إلغاء أمر التصنيع هذا "
+"تماماً. هل أنت متأكد من رغبتك في المتابعة؟ "
 
 #. module: mrp
 #. odoo-python
@@ -6303,7 +6305,7 @@ msgstr "عليك تعيين رقم دفعة للمنتج النهائي. "
 #: code:addons/mrp/wizard/mrp_consumption_warning.py:0
 #, python-format
 msgid "You need to supply Lot/Serial Number"
-msgstr ""
+msgstr "عليك التزويد بالأرقام التسلسلية/أرقام المجموعات "
 
 #. module: mrp
 #. odoo-python
