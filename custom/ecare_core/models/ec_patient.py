@@ -315,12 +315,14 @@ class EcarePatient(models.Model):
             'default_partner_id': partner_id.id,
             'default_move_type': 'out_invoice'
         })
-
+        tree_view_id = self.env.ref('account.view_out_invoice_tree')
+        form_view_id = self.env.ref('account.view_move_form')
         return {
             "name": _("Invoices"),
             "type": 'ir.actions.act_window',
             "res_model": 'account.move',
             'view_mode': 'tree,form',
+            'views': [(tree_view_id.id, 'tree'), (form_view_id.id, 'form')],
             "target": 'current',
             "context": context,
             'domain': [('partner_id', '=', partner_id.id),
@@ -336,7 +338,9 @@ class EcarePatient(models.Model):
         return patient_name
 
     def action_register(self):
+
         self.ensure_one()
+        self.constraints_validation()
         self.mr_num = self.env['ir.sequence'].next_by_code('ecare_core.patient.sequence.mr.no') or _('New')
         patient_name = self.get_patient_name_with_mr()
         # have to do it manually otherwise it was throwing error now due to rec_name update.
@@ -345,8 +349,18 @@ class EcarePatient(models.Model):
 
         # POST API to update the data at that side ICSI existing history software
 
-        self.post_data_history_software()
-    
+        # self.post_data_history_software()
+
+    def constraints_validation(self):
+
+        if not (self.wife_nic and self.wife_passport and self.wife_dob and self.mobile_wife and self.married_since):
+            raise models.ValidationError(" Wife cnic, passport, dob , mobile, martial status and married since are mandatory")
+
+        if not (self.husband_nic and self.husband_dob and self.mobile_husband):
+            raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
+
+
+
     def get_payload(self):
         payload = {
             "Female": {
@@ -402,7 +416,8 @@ class EcarePatient(models.Model):
     
 
     def post_data_history_software(self):
-        url = "http://124.109.34.141:8080/Registration/PostCouple"
+        # url = "http://124.109.34.141:8080/Registration/PostCouple"
+        url = ''
 
         header = {
             'Authorization': 'jq2hCPjOSo/U2vql6WKJ/lVXsmJ4s90K',
