@@ -9,7 +9,7 @@ import math
 class EcareAppointmentSlot(models.Model):
     _name = "ec.booked.slot.record"
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = "Appointment for the partner"
+    _description = "Appointment for the patient"
     _rec_name = "partner_id"
 
     state = fields.Selection(selection=[('Booked', "Booked"),
