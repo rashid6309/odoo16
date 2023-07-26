@@ -81,7 +81,7 @@ class CashDetailXlsx(models.AbstractModel):
         # Header
 
         row, col = 0, 0
-        worksheet.set_column(col, col + columns_count, 30)
+        worksheet.set_column(col+1, col + columns_count, 30)
 
         company_name = self.env.user.company_id.name
 
