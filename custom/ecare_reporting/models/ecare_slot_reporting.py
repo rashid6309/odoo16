@@ -588,6 +588,7 @@ class EcareSlotsReporting(models.TransientModel):
         query = """
                 SELECT json_build_object(
                     'header', (SELECT json_build_array(
+                        'SR.',
                         'Date',
                         'Patient',
                         'Payment Ref',
@@ -599,6 +600,7 @@ class EcareSlotsReporting(models.TransientModel):
                         'Last Update By'
                     ) FROM account_move LIMIT 1),
                     'data', json_build_array(
+                        row_number() over(PARTITION BY pp.id),
                         to_CHAR(payment.create_date + interval '5h', 'dd-mm-yyyy HH24:MI:SS'),
                         rp.display_name,
                         move.name,
@@ -702,7 +704,7 @@ class EcareSlotsReporting(models.TransientModel):
 
         data = [record[0]['data'] for record in without_pagination_records]
 
-        for _, _,  _, _, _, \
+        for _, _, _,  _, _, _, \
                 journal5, receivable_amt6,  discount8,  _,  _ in data:
 
             summary_block['net_amount'] += receivable_amt6  # It'll (-) the refund amount which is added later on.
