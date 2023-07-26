@@ -1,5 +1,5 @@
 from odoo import api, models, fields, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.ecare_invoicing.models.product_template import ProductTemplate
 
@@ -16,7 +16,9 @@ class AccountMove(models.Model):
         index=True,
         copy=False,
     )
-
+    sub_category_id = fields.Many2one(comodel_name='ec.slot.category',
+                                    string="Location",domain=[('parent_category_id', '!=', False)]
+                                    )
     move_type = fields.Selection(
         selection=[
             ('entry', 'Journal Entry'),
@@ -233,7 +235,7 @@ class AccountMove(models.Model):
                 'domain': [('id', 'in', refund_invoices.ids),
                            ('move_type', '=', 'out_refund')],
             }
-        return
+        raise ValidationError("There are no refunds.")
 
     @api.model
     def find_patient(self):

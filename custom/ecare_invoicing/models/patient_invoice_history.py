@@ -15,7 +15,7 @@ class PatientInvoiceHistory(models.TransientModel):
                               string="Invoice #")
 
     product_id = fields.Many2one(comodel_name="product.product",
-                                 string="Service")
+                                 string="Product")
 
     invoice_type = fields.Char(string="Type")
 
