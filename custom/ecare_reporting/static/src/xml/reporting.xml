@@ -182,8 +182,10 @@
                       </thead>
                         <!--                        <t t-if="widget.notification">-->
                         <tbody>
+
+                                <t t-set="line_amount_index" t-value="7"/>
                                 <t t-foreach="widget.data" t-as="data">
-                                    <t t-if="data[6] > 0">
+                                    <t t-if="data[line_amount_index] > 0">
                                         <tr>
                                           <t t-foreach="data" t-as="record">
                                              <td style="white-space: pre-line;">
