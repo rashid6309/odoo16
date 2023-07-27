@@ -268,7 +268,7 @@ var EcareAppointmentDashboard = AbstractAction.extend({
                  createInvoice: function (e){
                     var self = this;
                     let partner_id = e.currentTarget.attributes.partner_id.nodeValue;
-                    let sub_category_id = e.currentTarget.attributes.partner_id.nodeValue;
+                    let sub_category_id = e.currentTarget.attributes.sub_category_id.nodeValue;
                     var options = {
                         on_reverse_breadcrumb: this.on_reverse_breadcrumb,
                     };

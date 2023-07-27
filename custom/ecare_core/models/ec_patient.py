@@ -338,7 +338,6 @@ class EcarePatient(models.Model):
         return patient_name
 
     def action_register(self):
-
         self.ensure_one()
         self.constraints_validation()
         self.mr_num = self.env['ir.sequence'].next_by_code('ecare_core.patient.sequence.mr.no') or _('New')
@@ -352,11 +351,11 @@ class EcarePatient(models.Model):
         # self.post_data_history_software()
 
     def constraints_validation(self):
+        # Please validate according to the married status.
+        if not ((self.wife_nic or self.wife_passport) and self.wife_dob and self.mobile_wife and self.married_since):
+            raise models.ValidationError(" Wife cnic or passport, dob, mobile, martial status and married since are mandatory")
 
-        if not (self.wife_nic and self.wife_passport and self.wife_dob and self.mobile_wife and self.married_since):
-            raise models.ValidationError(" Wife cnic, passport, dob , mobile, martial status and married since are mandatory")
-
-        if not (self.husband_nic and self.husband_dob and self.mobile_husband):
+        if not ((self.husband_nic or self.husband_passport) and self.husband_dob and self.mobile_husband):
             raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
 
 

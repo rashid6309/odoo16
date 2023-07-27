@@ -16,9 +16,7 @@ class AccountMove(models.Model):
         index=True,
         copy=False,
     )
-    sub_category_id = fields.Many2one(comodel_name='ec.slot.category',
-                                    string="Location",domain=[('parent_category_id', '!=', False)]
-                                    )
+
     move_type = fields.Selection(
         selection=[
             ('entry', 'Journal Entry'),
@@ -38,7 +36,10 @@ class AccountMove(models.Model):
         default="entry",
     )
 
-
+    sub_category_id = fields.Many2one(comodel_name='ec.slot.category',
+                                      string="Location",
+                                      domain=[('parent_category_id', '!=', False)]
+                                      )
 
     ''' For showing purpose only '''
     # this compute will compute below
@@ -235,7 +236,7 @@ class AccountMove(models.Model):
                 'domain': [('id', 'in', refund_invoices.ids),
                            ('move_type', '=', 'out_refund')],
             }
-        raise ValidationError("There are no refunds.")
+        raise ValidationError("No refund has been made yet.")
 
     @api.model
     def find_patient(self):
