@@ -351,12 +351,13 @@ class EcarePatient(models.Model):
         # self.post_data_history_software()
 
     def constraints_validation(self):
-        # Please validate according to the married status.
-        if not ((self.wife_nic or self.wife_passport) and self.wife_dob and self.mobile_wife and self.married_since):
-            raise models.ValidationError(" Wife cnic or passport, dob, mobile, martial status and married since are mandatory")
+        if self.husband_marital_status != 'Unmarried':
+            if not ((self.wife_nic or self.wife_passport) and self.wife_dob and self.mobile_wife and self.married_since):
+                raise models.ValidationError(" Wife cnic or passport, dob, mobile, martial status and married since are mandatory")
 
-        if not ((self.husband_nic or self.husband_passport) and self.husband_dob and self.mobile_husband):
-            raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
+        if self.marital_status != 'Unmarried':
+            if not ((self.husband_nic or self.husband_passport) and self.husband_dob and self.mobile_husband):
+                raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
 
 
 
