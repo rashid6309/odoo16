@@ -359,8 +359,6 @@ class EcarePatient(models.Model):
             if not ((self.husband_nic or self.husband_passport) and self.husband_dob and self.mobile_husband):
                 raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
 
-
-
     def get_payload(self):
         yom = None
         if self.yom:
@@ -418,7 +416,6 @@ class EcarePatient(models.Model):
         }
         return payload
     
-
     def post_data_history_software(self):
         url = "http://124.109.34.141:8080/Registration/PostCouple"
 
