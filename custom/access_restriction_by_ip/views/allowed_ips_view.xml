@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="allowed_ips_form" model="ir.ui.view">
+        <field name="name">allowed.ips.form</field>
+        <field name="model">allowed.ips</field>
+        <field name="arch" type="xml">
+            <form string="Allowed IPs">
+                <group>
+<!--                    <group>-->
+<!--                        <field name="users_ip"/>-->
+<!--                    </group>-->
+                    <group>
+                        <field name="ip_address"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <field name="is_active"/>
+                    </group>
+                </group>
+            </form>
+
+        </field>
+    </record>
+        <record id="allowed_ips_tree" model="ir.ui.view">
+        <field name="name">allowed.ips.tree</field>
+        <field name="model">allowed.ips</field>
+        <field name="arch" type="xml">
+            <tree string="Allowed IPs">
+<!--            <field name="users_ip"/>-->
+            <field name="ip_address"/>
+            <field name="description"/>
+            <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+        <record id="ec_allowed_ips_action_tree" model="ir.actions.act_window">
+            <field name="name">Allowed IPs</field>
+            <field name="res_model">allowed.ips</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Click to allow any IP.
+                </p>
+            </field>
+        </record>
+        <menuitem action="ec_allowed_ips_action_tree"
+                  id="ec_allowed_ips_list_menu"
+                  parent="ecare_appointment.ec_main_configuration"
+                  sequence="500" />
+
+    </data>
+</odoo>
