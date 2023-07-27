@@ -11,7 +11,7 @@
     'maintainer': 'Rashid Noor',
     'license': 'LGPL-3',
     'support': '',
-    'depends': ['base', 'mail', 'contacts', 'ecare_core', 'account'],
+    'depends': ['base', 'mail', 'contacts', 'ecare_core', 'account', 'access_restriction_by_ip'],
     'demo': [],
     'data': [
         'security/ec_security.xml',
