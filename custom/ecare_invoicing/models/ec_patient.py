@@ -27,7 +27,7 @@ class Patient(models.Model):
             and aml.product_id is not null
             and am.state = 'posted'
         order by
-            aml.create_date desc;
+            am.id desc, am.name desc;  
         '''
 
         self._cr.execute(query, {'partner_id': self.partner_id.id})

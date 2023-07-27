@@ -348,7 +348,7 @@ class EcarePatient(models.Model):
 
         # POST API to update the data at that side ICSI existing history software
 
-        # self.post_data_history_software()
+        self.post_data_history_software()
 
     def constraints_validation(self):
         if self.husband_marital_status != 'Unmarried':
@@ -362,6 +362,10 @@ class EcarePatient(models.Model):
 
 
     def get_payload(self):
+        yom = None
+        if self.yom:
+            yom = int(self.yom[:self.yom.index('Y')])
+
         payload = {
             "Female": {
                 "Patient_id": 0,
@@ -405,7 +409,7 @@ class EcarePatient(models.Model):
             },
             "Couple": {
                 "Couple_id": self.mr_num,
-                "Marriage_period": self.yom or 0,
+                "Marriage_period": yom,
                 "Couple_Detail": "",
                 "Couple_Address": "",
                 "Informed_by": "",
@@ -416,8 +420,7 @@ class EcarePatient(models.Model):
     
 
     def post_data_history_software(self):
-        # url = "http://124.109.34.141:8080/Registration/PostCouple"
-        url = ''
+        url = "http://124.109.34.141:8080/Registration/PostCouple"
 
         header = {
             'Authorization': 'jq2hCPjOSo/U2vql6WKJ/lVXsmJ4s90K',
