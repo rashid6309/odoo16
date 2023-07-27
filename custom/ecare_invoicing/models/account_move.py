@@ -38,7 +38,8 @@ class AccountMove(models.Model):
 
     sub_category_id = fields.Many2one(comodel_name='ec.slot.category',
                                       string="Location",
-                                      domain=[('parent_category_id', '!=', False)]
+                                      domain=[('parent_category_id', '!=', False)],
+                                      readonly=True
                                       )
 
     ''' For showing purpose only '''
