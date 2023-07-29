@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
 
         'data/data.xml',
+        'data/system_parameter.xml',
         # Views
         'views/third_party_api_log.xml',
         'views/ec_patient.xml',
