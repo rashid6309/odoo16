@@ -417,7 +417,12 @@ class EcarePatient(models.Model):
         return payload
     
     def post_data_history_software(self):
-        url = "http://124.109.34.141:8080/Registration/PostCouple"
+        history_software_ip = self.env['ir.config_parameter'].sudo().get_param('ecare_core.icsi.history.software.ip')
+        if not history_software_ip:
+            raise UserError("History Software Ip is not unavailable. Please contact administrator.")
+
+        history_software_ip = history_software_ip.strip()
+        url = f"http://{history_software_ip}:8080/Registration/PostCouple"
 
         header = {
             'Authorization': 'jq2hCPjOSo/U2vql6WKJ/lVXsmJ4s90K',
@@ -427,7 +432,12 @@ class EcarePatient(models.Model):
         payload = self.get_payload()
 
         payload = json.dumps(payload) # Make JSON
-        r = requests.post(url=url, data=payload, headers=header)
+        try:
+            r = requests.post(url=url, data=payload, headers=header)
+        except Exception as e:
+            _logger.warning(e)
+            raise UserError("System is unable to connect with history software. Please contact administrator.")
+
         if r.status_code != 200:
             _logger.warning("Failure in adding patient  in the icsi history software...")
             _logger.warning(r.content)
