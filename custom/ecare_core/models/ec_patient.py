@@ -431,3 +431,9 @@ class EcarePatient(models.Model):
             self.env['third.party.api.log'].sudo().create(api_log_values)
         except Exception as e:
             _logger.warning(e)
+
+    def action_patient_profile_print_report(self):
+        self.ensure_one()
+        [datas] = self.read()
+        return self.env.ref('ecare_reporting.ec_patient_profile_report').report_action(self, data=datas)
+

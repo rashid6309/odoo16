@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+
+        <record id="custom_patient_profile" model="report.paperformat">
+            <field name="name">Patient Profile Paperformat</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">10.</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="disable_shrinking" eval="False"/>
+            <field name="dpi">96</field>
+        </record>
+
+        <report
+                id="ec_patient_profile_report"
+                model="ec.medical.patient"
+                string="Patient Profile Report"
+                report_type="qweb-pdf"
+                name="ecare_reporting.ec_patient_profile_report_doc"
+                paperformat="custom_patient_profile"
+                file="Slot Report"
+        />
+
+
+        <template id="ec_patient_profile_report_doc">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <div style="text-align: center;">
+                        <h1>Patient Profile</h1>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <small><b>MR No:</b> <span style="margin-left: 5px;"><t t-out="name"/></span></small>
+                    </div>
+                </div>
+                <table style="height:auto;padding:5%;border: 1px solid black;" width="100%">
+                        <tr >
+                            <td style="width: 25%;text-align: left; font-weight: bold;">Wife Photo ID</td>
+                            <td/>
+                            <td style="width: 25%;text-align: left; font-weight: bold;" colspan="2">Husband Photo ID</td>
+                        </tr>
+                        <tr >
+                            <td  colspan="2"><img src="{{ image_1920 }}" style="width: 60%; height: 250px;"/></td>
+                            <td  colspan="2"><img src="{{ husband_image }}" style="width: 60%; height: 250px;"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%;text-align: left; font-weight: bold;padding-top:2%">Wife Name:</td>
+                            <td style="width: 25%;text-align: left;padding-top:2% "><span class="text-field-value" t-esc="wife_name"/></td>
+                            <td style="width: 25%; text-align: left; font-weight: bold;padding-top:2%">Husband Name:</td>
+                            <td style="width: 25%;text-align: left; margin-right:25%;padding-top:2%"><span class="text-field-value" t-esc="husband_name"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%;padding-top:1%; text-align: left; font-weight: bold;">CNIC:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="wife_nic"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">CNIC:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="husband_nic"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Passport:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="wife_passport"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">Passport:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="husband_passport"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Driving License:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="wife_driving_license"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">Driving License:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="husband_driving_license"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Date of Birth:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="wife_dob"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">Date of Birth:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="husband_dob"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Phone(res):</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="phone_res_wife"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">Phone(res):</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="phone_res_husband"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Phone(office):</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="phone_ofc_wife"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">Phone(office):</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="phone_ofc_husband"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Mobile:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="mobile_wife"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">Mobile:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="mobile_husband"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Email:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="email_wife"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">Email:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="email_husband"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Marital Status:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="marital_status"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">Marital Status:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="husband_marital_status"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Married Since:</td>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="married_since"/></td>
+                            <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;"/>
+                            <td style="width: 25%; padding-top:1%;"><span class="text-field-value"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;" colspan="3">Preferred Contact Details:-</td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left;" colspan="3"><span class="text-field-value" t-esc="preferred_mobile"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;" colspan="3">Address:-</td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">House No:</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2"><span class="text-field-value" t-esc="preferred_mobile"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">Street No / Name:</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2"><span class="text-field-value" t-esc="street"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">City</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2"><span class="text-field-value" t-esc="city"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">Country</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2"><span class="text-field-value" t-esc="country_id[1]"/></td>
+                        </tr>
+
+<!--                        Next of Kin section-->
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Next of kin:-</td>
+                            <td style="width:25%;"/>
+                            <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;" colspan="2">Parent details (if applicable)</td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left;">Contact Name:</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;"><span class="text-field-value" t-esc="emer_contact_name"/></td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;">Father Name:</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;"><span class="text-field-value" t-esc="father_name"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left;">Address:</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;"><span class="text-field-value" t-esc="emer_contact_addr"/></td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;">Father CNIC:</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;"><span class="text-field-value" t-esc="father_nic"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left;">Relation:</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;"><span class="text-field-value" t-esc="emer_contact_relation"/></td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;">Mother Name:</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;"><span class="text-field-value" t-esc="mother_name"/></td>
+                        </tr>
+                        <tr >
+                            <td style="width: 25%; padding-top:1%;text-align: left;">Emergency CNIC:</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;"><span class="text-field-value" t-esc="emer_contact_nic"/></td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;">Mobile(Mother):</td>
+                            <td style="width: 25%; padding-top:1%;text-align: left;"><span class="text-field-value" t-esc="mobile_number"/></td>
+                        </tr>
+                </table>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>
+
+
+<!--                        <div class="row mt-4 mb-3">-->
+<!--                            <div class="col-12">-->
+<!--                                <t t-if="o.nof == 's'">-->
+<!--                                <strong>Foetus Details-->
+<!--                                </strong>-->
+<!--                                </t>-->
+<!--                                <t t-else="">-->
+<!--                                <strong>Foetus # <t t-esc="i"/>-->
+<!--                                </strong>-->
+<!--                                </t>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-4 p-0 d-flex">-->
+<!--                                        <div class="col-12">-->
+<!--                                            <span class="pr-3 border-right">-->
+<!--                                                <b>L.M.P</b>-->
+<!--                                            </span>-->
+<!--                                            <span class="pl-3 text-field-value" t-if="o.obstetrics_file" t-field="o.obstetrics_file.lmp" />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-4 p-0 d-flex">-->
+<!--                                        <div class="col-12">-->
+<!--                                            <span class="pr-3 border-right">-->
+<!--                                                <b>E.D.D</b>-->
+<!--                                            </span>-->
+<!--                                            <span class="pl-3 text-field-value mr-5" t-if="o.obstetrics_file" t-field="o.obstetrics_file.edd" />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-4 p-0 d-flex">-->
+<!--                                        <div class="col-12">-->
+<!--                                            <span class="pr-3 border-right">-->
+<!--                                                <b>US E.D.D</b>-->
+<!--                                            </span>-->
+<!--                                                <t t-if="l.us_edd">-->
+<!--                                                 <span class="pl-3 text-field-value mr-5" t-if="l.us_edd" t-field="l.us_edd" />-->
+<!--                                                </t>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-12 p-0 d-flex">-->
+<!--                                        <div class="col-12">-->
+<!--                                            <t t-if="totalFoetus == 1">-->
+<!--                                                <b><span>Singleton Pregnancy</span></b>-->
+<!--                                            </t>-->
+<!--                                            <t t-elif="totalFoetus == 2">-->
+<!--                                                <t t-if="o.foetus_types=='dd'">-->
+<!--                                                 <b><span >Twin Pregnancy</span></b>(Dichorionic Diamniotic)-->
+<!--                                                </t>-->
+<!--                                                <t t-if="o.foetus_types=='dm'">-->
+<!--                                                 <b><span >Twin Pregnancy</span></b>(Dichorionic Monoamniotic)-->
+<!--                                                </t>-->
+<!--                                                <t t-if="o.foetus_types=='md'">-->
+<!--                                                 <b><span >Twin Pregnancy</span></b>(Monochorionic Diamniotic)-->
+<!--                                                </t>-->
+<!--                                                <t t-if="o.foetus_types=='mm'">-->
+<!--                                                 <b><span >Twin Pregnancy</span></b>(Monochorionic Monoamniotic)-->
+<!--                                                </t>-->
+<!--                                            </t>-->
+<!--                                            <t t-elif="totalFoetus == 3">-->
+<!--                                                <t t-if="o.foetus_types_triplets=='tt'">-->
+<!--                                                    <b><span >Triplet Pregnancy</span></b>(Trichorionic Triamniotic)-->
+<!--                                                </t>-->
+<!--                                                <t t-if="o.foetus_types_triplets=='dt'">-->
+<!--                                                    <b><span >Triplet Pregnancy</span></b>(Dichorionic Triamniotic)-->
+<!--                                                </t>-->
+<!--                                                <t t-if="o.foetus_types_triplets=='dd'">-->
+<!--                                                    <b><span >Triplet Pregnancy</span></b>(Dichorionic Diamniotic)-->
+<!--                                                </t>-->
+<!--                                                <t t-if="o.foetus_types_triplets=='mt'">-->
+<!--                                                    <b><span >Triplet Pregnancy</span></b>(Monochorionic Triamniotic)-->
+<!--                                                </t>-->
+<!--                                                <t t-if="o.foetus_types_triplets=='md'">-->
+<!--                                                    <b><span >Triplet Pregnancy</span></b>(Monochorionic Diamniotic)-->
+<!--                                                </t>-->
+<!--                                                <t t-if="o.foetus_types_triplets=='mm'">-->
+<!--                                                    <b><span >Triplet Pregnancy</span></b>(Monochorionic Monoamniotic)-->
+<!--                                                </t>-->
+<!--                                            </t>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
