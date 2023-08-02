@@ -20,8 +20,7 @@ class EcarePatient(models.Model):
 
     _order = "write_date desc, id desc"
     _rec_name = "name"
-    _rec_names_search = ['name', 'mr_num', 'mobile_wife', 'mobile_husband', 'preferred_mobile', 'wife_nic',
-                         'husband_nic']
+    _rec_names_search = ['name', 'mr_num', 'mobile_wife', 'mobile_husband', 'preferred_mobile', 'wife_nic', 'husband_nic']
 
     # Legacy system fields
     legacy_wife_id = fields.Integer()
@@ -53,8 +52,8 @@ class EcarePatient(models.Model):
                               string='CNIC',
                               tracking=True)
 
-    wife_dob = fields.Date(string='Date of Birth')
-    husband_dob = fields.Date(string='Date of Birth')
+    wife_dob = fields.Date(string='DATE OF BIRTH')
+    husband_dob = fields.Date(string='DATE OF BIRTH')
     wife_age = fields.Char(string='Age', compute='_get_age_wife')
     husband_age = fields.Char(string='Age', compute='_get_age_husband')
 
@@ -102,19 +101,19 @@ class EcarePatient(models.Model):
 
     # To be used for wife
     marital_status = fields.Selection(selection=MARITAL_STATUS,
-                                      string='Marital Status',
+                                      string='MARITAL STATUS',
                                       required=False,
                                       tracking=True,
                                       default="Married")
 
     # To be used for Husband
     husband_marital_status = fields.Selection(selection=MARITAL_STATUS,
-                                              string='Marital Status',
-                                              required=False,
-                                              tracking=True,
-                                              default="Married")
+                                      string='MARITAL STATUS',
+                                      required=False,
+                                      tracking=True,
+                                      default="Married")
 
-    married_since = fields.Date(string="Married Since")
+    married_since = fields.Date(string="MARRIED SINCE")
     yom = fields.Char('Years of Marriage', compute='get_marriage_years')
 
     # Father Details
@@ -134,10 +133,10 @@ class EcarePatient(models.Model):
     emer_contact_name = fields.Char(string="Contact Name")
     emer_contact_addr = fields.Char(string='Address')
     emer_contact_relation = fields.Selection(string='Relation',
-                                             selection=[('m', 'Mother'), ('f', 'Father'),
+                                             selection=[('m', 'Mother'),('f', 'Father'),
                                                         ('s', 'Sibling'), ('fr', 'Friend'),
                                                         ('u', 'Uncle'), ('a', 'Aunt'),
-                                                        ('c', 'Children'), ('N/A', 'N/A')])
+                                                        ('c', 'Children'),('N/A','N/A')])
     emer_contact_nic = fields.Char(size=15, string="Emergency CNIC",
                                    tracking=True)
 
@@ -171,25 +170,26 @@ class EcarePatient(models.Model):
         wife_image = vals.get("image_1920")
         admin_user = self.env.user.has_group("ecare_appointment.group_appointment_super_administrator")
 
-        if wife_image != None:  # Key found in the vals
+        if wife_image != None: # Key found in the vals
             if not self.image_1920 and wife_image:
                 # GO AHEAD Don't check anything.
                 pass
-            elif self.image_1920 and wife_image == False and not admin_user:  # Means deletion check for admin
+            elif self.image_1920 and wife_image == False and not admin_user: # Means deletion check for admin
                 raise AccessError("Only Administrator can edit/delete photo ids.")
-            elif self.image_1920 and wife_image != self.image_1920 and not admin_user and wife_image != None:  # Means deleting and uploading new.
+            elif self.image_1920 and wife_image != self.image_1920 and not admin_user and wife_image != None: # Means deleting and uploading new.
                 raise AccessError("Only Administrator can edit/delete photo ids.")
 
-        if husband_image != None:  # key found in the vals
+        if husband_image != None: # key found in the vals
             if not self.husband_image and husband_image:
                 # GO AHEAD Don't check anything.
                 pass
-            elif self.husband_image and husband_image == False and not admin_user:  # Means deletion check for admin
+            elif self.husband_image and husband_image == False and not admin_user: # Means deletion check for admin
                 raise AccessError("Only Administrator can edit/delete photo ids.")
             elif self.husband_image and husband_image != self.husband_image and not admin_user:
                 raise AccessError("Only Administrator can edit/delete photo ids.")
 
         return super(EcarePatient, self).write(vals)
+
 
     @api.depends('wife_dob')
     @api.onchange('wife_dob')
@@ -285,7 +285,7 @@ class EcarePatient(models.Model):
 
             patient_name = self.get_patient_name_with_mr(patient_name)
 
-            if patient.name != patient_name:  # Then call write
+            if patient.name != patient_name: # Then call write
                 patient.name = patient_name
                 patient.display_name = patient_name
 
@@ -327,7 +327,7 @@ class EcarePatient(models.Model):
             "context": context,
             'domain': [('partner_id', '=', partner_id.id),
                        ('move_type', 'in', ['out_refund', 'out_invoice'])
-                       ]
+                     ]
         }
 
     def get_patient_name_with_mr(self, patient_name=False):
@@ -348,19 +348,22 @@ class EcarePatient(models.Model):
 
         # POST API to update the data at that side ICSI existing history software
 
-        # self.post_data_history_software()
+        self.post_data_history_software()
 
     def constraints_validation(self):
-        # Please validate according to the married status.
-      if self.husband_marital_status != 'Unmarried':
+        if self.husband_marital_status != 'Unmarried':
             if not ((self.wife_nic or self.wife_passport) and self.wife_dob and self.mobile_wife and self.married_since):
                 raise models.ValidationError(" Wife cnic or passport, dob, mobile, martial status and married since are mandatory")
 
-      if self.marital_status != 'Unmarried':
+        if self.marital_status != 'Unmarried':
             if not ((self.husband_nic or self.husband_passport) and self.husband_dob and self.mobile_husband):
                 raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
 
     def get_payload(self):
+        yom = None
+        if self.yom:
+            yom = int(self.yom[:self.yom.index('Y')])
+
         payload = {
             "Female": {
                 "Patient_id": 0,
@@ -404,7 +407,7 @@ class EcarePatient(models.Model):
             },
             "Couple": {
                 "Couple_id": self.mr_num,
-                "Marriage_period": self.yom or 0,
+                "Marriage_period": yom,
                 "Couple_Detail": "",
                 "Couple_Address": "",
                 "Informed_by": "",
@@ -412,10 +415,14 @@ class EcarePatient(models.Model):
             }
         }
         return payload
-
+    
     def post_data_history_software(self):
-        # url = "http://124.109.34.141:8080/Registration/PostCouple"
-        url = ''
+        history_software_ip = self.env['ir.config_parameter'].sudo().get_param('ecare_core.icsi.history.software.ip')
+        if not history_software_ip:
+            raise UserError("History Software Ip is not unavailable. Please contact administrator.")
+
+        history_software_ip = history_software_ip.strip()
+        url = f"http://{history_software_ip}:8080/Registration/PostCouple"
 
         header = {
             'Authorization': 'jq2hCPjOSo/U2vql6WKJ/lVXsmJ4s90K',
@@ -424,8 +431,13 @@ class EcarePatient(models.Model):
 
         payload = self.get_payload()
 
-        payload = json.dumps(payload)  # Make JSON
-        r = requests.post(url=url, data=payload, headers=header)
+        payload = json.dumps(payload) # Make JSON
+        try:
+            r = requests.post(url=url, data=payload, headers=header)
+        except Exception as e:
+            _logger.warning(e)
+            raise UserError("System is unable to connect with history software. Please contact administrator.")
+
         if r.status_code != 200:
             _logger.warning("Failure in adding patient  in the icsi history software...")
             _logger.warning(r.content)
@@ -435,10 +447,10 @@ class EcarePatient(models.Model):
         # Add line in the third party api log
         try:
             api_log_values = {
-                'name': 'ICSI History Software: Patient Creation',
-                'url': url,
-                'payload': payload,
-                'response': "Status: " + str(r.status_code) + " " + str(r.content)
+            'name': 'ICSI History Software: Patient Creation',
+            'url': url,
+            'payload': payload,
+            'response': "Status: " + str(r.status_code) + " " + str(r.content)
             }
             # use this otherwise give rights in the csv
             self.env['third.party.api.log'].sudo().create(api_log_values)
