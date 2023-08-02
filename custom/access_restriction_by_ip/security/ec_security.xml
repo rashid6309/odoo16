@@ -9,5 +9,10 @@
                    eval="[(4,ref('ecare_appointment.group_appointment_administrator'))]"/>
         </record>
 
+        <record id="ecare_appointment.group_appointment_super_administrator" model="res.groups">
+            <field name="implied_ids" eval="[(4,ref('access_restriction_by_ip.group_ec_medical_allowed_ip'))]"/>
+        </record>
+
+
     </data>
 </odoo>

@@ -52,8 +52,8 @@ class EcarePatient(models.Model):
                               string='CNIC',
                               tracking=True)
 
-    wife_dob = fields.Date(string='Date of Birth')
-    husband_dob = fields.Date(string='Date of Birth')
+    wife_dob = fields.Date(string='DATE OF BIRTH')
+    husband_dob = fields.Date(string='DATE OF BIRTH')
     wife_age = fields.Char(string='Age', compute='_get_age_wife')
     husband_age = fields.Char(string='Age', compute='_get_age_husband')
 
@@ -101,14 +101,14 @@ class EcarePatient(models.Model):
 
     # To be used for wife
     marital_status = fields.Selection(selection=MARITAL_STATUS,
-                                      string='Marital Status',
+                                      string='MARITAL STATUS',
                                       required=False,
                                       tracking=True,
                                       default="Married")
 
     # To be used for Husband
     husband_marital_status = fields.Selection(selection=MARITAL_STATUS,
-                                      string='Marital Status',
+                                      string='MARITAL STATUS',
                                       required=False,
                                       tracking=True,
                                       default="Married")
