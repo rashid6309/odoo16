@@ -1,5 +1,5 @@
 from odoo import api, models, fields, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.ecare_invoicing.models.product_template import ProductTemplate
 
@@ -36,7 +36,10 @@ class AccountMove(models.Model):
         default="entry",
     )
 
-
+    sub_category_id = fields.Many2one(comodel_name='ec.slot.category',
+                                      string="Location",
+                                      domain=[('parent_category_id', '!=', False)]
+                                      )
 
     ''' For showing purpose only '''
     # this compute will compute below
@@ -233,7 +236,7 @@ class AccountMove(models.Model):
                 'domain': [('id', 'in', refund_invoices.ids),
                            ('move_type', '=', 'out_refund')],
             }
-        return
+        raise ValidationError("No refund has been made yet.")
 
     @api.model
     def find_patient(self):

@@ -36,8 +36,8 @@ class DocumentAttachment(models.Model):
 
     def write(self, vals_list):
         record = super(DocumentAttachment, self).write(vals_list)
-        if record.patient_id:
-            record.patient_id.update_write_date()
+        if self.patient_id:
+            self.patient_id.update_write_date()
         return  record
 
 

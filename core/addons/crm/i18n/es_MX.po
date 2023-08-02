@@ -1775,7 +1775,7 @@ msgid ""
 "this partner"
 msgstr ""
 "Si se establece, este equipo de ventas se utilizará para las ventas y "
-"asignaciones relacionadas con este partner."
+"asignaciones relacionadas con este contacto."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_team__alias_bounced_content
@@ -1841,9 +1841,8 @@ msgid ""
 "mobile and phone field in a model."
 msgstr ""
 "Indica si el número de teléfono depurado de la lista negra es un número "
-"celular. Sirve para distinguir qué número está en la lista negra"
-"             cuando hay un campo de celular y otro de teléfono fijo en un "
-"modelo."
+"celular. Sirve para distinguir qué número está en la lista negra cuando hay "
+"un campo de celular y otro de teléfono fijo en un modelo."
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_lead__phone_blacklisted
@@ -2916,7 +2915,7 @@ msgid ""
 msgstr ""
 "ID opcional de un hilo (registro) al que se adjuntarán todos los mensajes "
 "entrantes, incluso si no fueron respuestas del mismo. Si se establece, se "
-"deshabilitará completamente la creación de nuevos registros."
+"deshabilitará por completo la creación de nuevos registros."
 
 #. module: crm
 #: model_terms:ir.ui.view,arch_db:crm.quick_create_opportunity_form

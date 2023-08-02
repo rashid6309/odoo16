@@ -52,8 +52,8 @@ class EcarePatient(models.Model):
                               string='CNIC',
                               tracking=True)
 
-    wife_dob = fields.Date(string='Date of Birth')
-    husband_dob = fields.Date(string='Date of Birth')
+    wife_dob = fields.Date(string='DATE OF BIRTH')
+    husband_dob = fields.Date(string='DATE OF BIRTH')
     wife_age = fields.Char(string='Age', compute='_get_age_wife')
     husband_age = fields.Char(string='Age', compute='_get_age_husband')
 
@@ -101,14 +101,14 @@ class EcarePatient(models.Model):
 
     # To be used for wife
     marital_status = fields.Selection(selection=MARITAL_STATUS,
-                                      string='Marital Status',
+                                      string='MARITAL STATUS',
                                       required=False,
                                       tracking=True,
                                       default="Married")
 
     # To be used for Husband
     husband_marital_status = fields.Selection(selection=MARITAL_STATUS,
-                                      string='Marital Status',
+                                      string='MARITAL STATUS',
                                       required=False,
                                       tracking=True,
                                       default="Married")
@@ -315,12 +315,14 @@ class EcarePatient(models.Model):
             'default_partner_id': partner_id.id,
             'default_move_type': 'out_invoice'
         })
-
+        tree_view_id = self.env.ref('account.view_out_invoice_tree')
+        form_view_id = self.env.ref('account.view_move_form')
         return {
             "name": _("Invoices"),
             "type": 'ir.actions.act_window',
             "res_model": 'account.move',
             'view_mode': 'tree,form',
+            'views': [(tree_view_id.id, 'tree'), (form_view_id.id, 'form')],
             "target": 'current',
             "context": context,
             'domain': [('partner_id', '=', partner_id.id),
@@ -337,6 +339,7 @@ class EcarePatient(models.Model):
 
     def action_register(self):
         self.ensure_one()
+        self.constraints_validation()
         self.mr_num = self.env['ir.sequence'].next_by_code('ecare_core.patient.sequence.mr.no') or _('New')
         patient_name = self.get_patient_name_with_mr()
         # have to do it manually otherwise it was throwing error now due to rec_name update.
@@ -346,8 +349,21 @@ class EcarePatient(models.Model):
         # POST API to update the data at that side ICSI existing history software
 
         self.post_data_history_software()
-    
+
+    def constraints_validation(self):
+        if self.husband_marital_status != 'Unmarried':
+            if not ((self.wife_nic or self.wife_passport) and self.wife_dob and self.mobile_wife and self.married_since):
+                raise models.ValidationError(" Wife cnic or passport, dob, mobile, martial status and married since are mandatory")
+
+        if self.marital_status != 'Unmarried':
+            if not ((self.husband_nic or self.husband_passport) and self.husband_dob and self.mobile_husband):
+                raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
+
     def get_payload(self):
+        yom = None
+        if self.yom:
+            yom = int(self.yom[:self.yom.index('Y')])
+
         payload = {
             "Female": {
                 "Patient_id": 0,
@@ -391,7 +407,7 @@ class EcarePatient(models.Model):
             },
             "Couple": {
                 "Couple_id": self.mr_num,
-                "Marriage_period": self.yom or 0,
+                "Marriage_period": yom,
                 "Couple_Detail": "",
                 "Couple_Address": "",
                 "Informed_by": "",
@@ -400,9 +416,13 @@ class EcarePatient(models.Model):
         }
         return payload
     
-
     def post_data_history_software(self):
-        url = "http://124.109.34.141:8080/Registration/PostCouple"
+        history_software_ip = self.env['ir.config_parameter'].sudo().get_param('ecare_core.icsi.history.software.ip')
+        if not history_software_ip:
+            raise UserError("History Software Ip is not unavailable. Please contact administrator.")
+
+        history_software_ip = history_software_ip.strip()
+        url = f"http://{history_software_ip}:8080/Registration/PostCouple"
 
         header = {
             'Authorization': 'jq2hCPjOSo/U2vql6WKJ/lVXsmJ4s90K',
@@ -412,7 +432,12 @@ class EcarePatient(models.Model):
         payload = self.get_payload()
 
         payload = json.dumps(payload) # Make JSON
-        r = requests.post(url=url, data=payload, headers=header)
+        try:
+            r = requests.post(url=url, data=payload, headers=header)
+        except Exception as e:
+            _logger.warning(e)
+            raise UserError("System is unable to connect with history software. Please contact administrator.")
+
         if r.status_code != 200:
             _logger.warning("Failure in adding patient  in the icsi history software...")
             _logger.warning(r.content)

@@ -219,6 +219,38 @@ class EcareSlotsReporting(models.TransientModel):
         payment_mode_query_param = EcareSlotsReporting.handle_single_value_tuple(payment_modes)
         return user_list, user_query_param, invoice_type_query_param, payment_mode_query_param, payment_methods
 
+    def calculate_summary_block(self, records):
+
+        summary_block = defaultdict(float)
+
+        data = [record[0]['data'] for record in records]
+        for _, _, _, _, _, _, \
+                journal5, receivable_amt6, discount8, _, _ in data:
+
+            summary_block['net_amount'] += receivable_amt6  # It'll (-) the refund amount which is added later on.
+            summary_block['discount'] += discount8
+            summary_block['refund'] += receivable_amt6 if receivable_amt6 < 0 else 0
+
+            ''' If change keys to this than remember to change in the xml as well '''
+
+            # if journal5 == 'Bank':
+            #     summary_block['bank_amount'] += receivable_amt6
+            if journal5 in ['Cheque', 'Demand Draft']:
+                summary_block['cheque_amount'] += receivable_amt6
+            elif journal5 == 'Online':
+                summary_block['online_amount'] += receivable_amt6
+            elif journal5 == 'Cash':
+                summary_block['cash_amount'] += receivable_amt6
+            elif journal5 in ['Credit Card', 'Debit Card']:
+                summary_block['credit_amount'] += receivable_amt6
+            else:
+                summary_block['other'] += receivable_amt6
+
+        summary_block['total_amount'] = summary_block['net_amount'] \
+                                        + summary_block['discount'] \
+                                        + abs(summary_block['refund'])
+
+        return summary_block
 
     def build_fetch_cash_report_data(self, report: bool, limit: int, offset: int,
                                      payment_mode: list, invoice_type: list,
@@ -255,6 +287,7 @@ class EcareSlotsReporting(models.TransientModel):
         query = """
                 SELECT json_build_object(
                     'header', (SELECT json_build_array(
+                        'SR.', -- Add the Serial Number column to the header
                         'Date',
                         'Patient',
                         'Payment Ref',
@@ -267,6 +300,7 @@ class EcareSlotsReporting(models.TransientModel):
                         'Last Update By'
                     ) FROM account_move LIMIT 1),
                     'data', json_build_array(
+                        row_number() over(),
                         to_CHAR(payment.create_date + interval '5h', 'dd-mm-yyyy HH24:MI:SS'),
                         rp.display_name,
                         move.name,
@@ -383,7 +417,6 @@ class EcareSlotsReporting(models.TransientModel):
                                               date, date_end,
                                               client_user_id)
 
-        data = [record[0]['data'] for record in without_pagination_records]
 
         """
             CASH: Cash
@@ -392,33 +425,7 @@ class EcareSlotsReporting(models.TransientModel):
             Cheque/D.Draft: Cheque + D.Draft 
             Other: Rest
         """
-        summary_block = defaultdict(float)
-
-        for _, _, _, _, _, \
-                journal5, receivable_amt6, paid_amount7, discount8,  _ in data:
-
-            summary_block['net_amount'] += receivable_amt6  # It'll (-) the refund amount which is added later on.
-            summary_block['discount'] += discount8
-            summary_block['refund'] += paid_amount7 if receivable_amt6 < 0 else 0
-
-            ''' If change keys to this than remember to change in the xml as well '''
-
-            # if journal5 == 'Bank':
-            #     summary_block['bank_amount'] += receivable_amt6
-            if journal5 in ['Cheque', 'Demand Draft']:
-                summary_block['cheque_amount'] += receivable_amt6
-            elif journal5 == 'Online':
-                summary_block['online_amount'] += receivable_amt6
-            elif journal5 == 'Cash':
-                summary_block['cash_amount'] += receivable_amt6
-            elif journal5 in ['Credit Card', 'Debit Card']:
-                summary_block['credit_amount'] += receivable_amt6
-            else:
-                summary_block['other'] += receivable_amt6
-
-        summary_block['total_amount'] = summary_block['net_amount'] \
-                                        + summary_block['discount'] \
-                                        + abs(summary_block['refund'])
+        summary_block = self.calculate_summary_block(without_pagination_records)
 
         header = []
         data = []
@@ -586,6 +593,7 @@ class EcareSlotsReporting(models.TransientModel):
         query = """
                 SELECT json_build_object(
                     'header', (SELECT json_build_array(
+                        'SR.',
                         'Date',
                         'Patient',
                         'Payment Ref',
@@ -597,6 +605,7 @@ class EcareSlotsReporting(models.TransientModel):
                         'Last Update By'
                     ) FROM account_move LIMIT 1),
                     'data', json_build_array(
+                        row_number() over(PARTITION BY pp.id),
                         to_CHAR(payment.create_date + interval '5h', 'dd-mm-yyyy HH24:MI:SS'),
                         rp.display_name,
                         move.name,
@@ -684,6 +693,7 @@ class EcareSlotsReporting(models.TransientModel):
         records = self._cr.fetchall()
         return records, payment_methods, product_list, total_pages
 
+
     @api.model
     def services_cash_report(self, limit, offset,
                              payment_mode, invoice_type,
@@ -696,35 +706,8 @@ class EcareSlotsReporting(models.TransientModel):
                                                   limit, offset,
                                                   payment_mode, invoice_type,
                                                   date, date_end, client_product_id)
-        summary_block = defaultdict(float)
 
-        data = [record[0]['data'] for record in without_pagination_records]
-
-        for _, _,  _, _, _, \
-                journal5, receivable_amt6,  discount8,  _,  _ in data:
-
-            summary_block['net_amount'] += receivable_amt6  # It'll (-) the refund amount which is added later on.
-            summary_block['discount'] += discount8
-            summary_block['refund'] += receivable_amt6 if receivable_amt6 < 0 else 0
-
-            ''' If change keys to this than remember to change in the xml as well '''
-
-            # if journal5 == 'Bank':
-            #     summary_block['bank_amount'] += receivable_amt6
-            if journal5 in ['Cheque', 'Demand Draft']:
-                summary_block['cheque_amount'] += receivable_amt6
-            elif journal5 == 'Online':
-                summary_block['online_amount'] += receivable_amt6
-            elif journal5 == 'Cash':
-                summary_block['cash_amount'] += receivable_amt6
-            elif journal5 in ['Credit Card', 'Debit Card']:
-                summary_block['credit_amount'] += receivable_amt6
-            else:
-                summary_block['other'] += receivable_amt6
-
-        summary_block['total_amount'] = summary_block['net_amount'] \
-                                        + summary_block['discount'] \
-                                        + abs(summary_block['refund'])
+        summary_block = self.calculate_summary_block(without_pagination_records)
 
         # Get the data with pagination --> Same query with limit and offset parameter
         header = []
@@ -943,30 +926,6 @@ class EcareSlotsReporting(models.TransientModel):
 
         result = self.amount_due_cases(None,None , True) # TODO as we have now migrated it due cases to odoo default report.
 
-    def get_cash_report_data(self, date, date_end, payment_mode, invoice_type, user_id):
-        records, _, _, _ = self.build_fetch_cash_report_data(True, None, None, payment_mode, invoice_type, date, date_end, user_id)
-
-        header = [record[0]['header'] for record in records]
-
-        data = [record[0]['data'] for record in records]
-
-        return {
-            'header': header,
-            'data': data,
-            'payment_date': date,
-            'date_end': date_end
-        }
-
-    @api.model
-    def print_cash_report(self, date, date_end, payment_mode, invoice_type, user_id):
-        result = self.get_cash_report_data(date, date_end, payment_mode, invoice_type, user_id)
-        return self.env.ref('ecare_reporting.ec_cash_report').report_action(self, data=result)
-
-    @api.model
-    def print_cash_report_excel(self, date, date_end, payment_mode, invoice_type, user_id):
-        result = self.get_cash_report_data(date, date_end, payment_mode, invoice_type, user_id)
-        return self.env.ref('ecare_reporting.ec_cash_excel_report').report_action(self, data=result)
-
     def get_services_report_data(self, date, date_end, payment_mode, invoice_type, product_id):
         records, _, _, _ = self.build_fetch_services_report_data(True,
                                                                  None, None,
@@ -976,11 +935,14 @@ class EcareSlotsReporting(models.TransientModel):
 
         header = [record[0]['header'] for record in records]
         data = [record[0]['data'] for record in records]
+        # Summary method
+        summary_block = self.calculate_summary_block(records)
 
         return {
             'header': header,
             'data': data,
-            'services_payment_date': date
+            'services_payment_date': date,
+            'summary_block': summary_block
         }
 
     @api.model
@@ -992,3 +954,29 @@ class EcareSlotsReporting(models.TransientModel):
     def print_services_report_excel(self, date, date_end, payment_mode, invoice_type, product_id):
         result = self.get_services_report_data(date, date_end, payment_mode, invoice_type, product_id)
         return self.env.ref('ecare_reporting.ec_services_excel_report').report_action(self, data=result)
+
+    def get_cash_report_data(self, date, date_end, payment_mode, invoice_type, user_id):
+        records, _, _, _ = self.build_fetch_cash_report_data(True, None, None, payment_mode, invoice_type, date, date_end, user_id)
+
+        summary_block = self.calculate_summary_block(records)
+        header = [record[0]['header'] for record in records]
+
+        data = [record[0]['data'] for record in records]
+
+        return {
+            'header': header,
+            'data': data,
+            'payment_date': date,
+            'date_end': date_end,
+            'summary_block': summary_block
+        }
+
+    @api.model
+    def print_cash_report(self, date, date_end, payment_mode, invoice_type, user_id):
+        result = self.get_cash_report_data(date, date_end, payment_mode, invoice_type, user_id)
+        return self.env.ref('ecare_reporting.ec_cash_report').report_action(self, data=result)
+
+    @api.model
+    def print_cash_report_excel(self, date, date_end, payment_mode, invoice_type, user_id):
+        result = self.get_cash_report_data(date, date_end, payment_mode, invoice_type, user_id)
+        return self.env.ref('ecare_reporting.ec_cash_excel_report').report_action(self, data=result)

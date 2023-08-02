@@ -16,7 +16,7 @@
                 <field name="amount_untaxed_signed" position="attributes">
                     <attribute name="string">Amount</attribute>
                 </field>
-<!--                <field name="activity_ids" position="replace"/>-->
+                <!--                <field name="activity_ids" position="replace"/>-->
             </field>
         </record>
 
@@ -50,8 +50,13 @@
                 </xpath>
                 <field name="partner_id" position="attributes">
                     <attribute name="options">{'no_quick_create': True,
-                        'no_create': True}</attribute>
+                        'no_create': True}
+                    </attribute>
                 </field>
+                <field name="partner_id" position="after">
+                    <field name="sub_category_id"/>
+                </field>
+
                 <xpath expr="//control/create[@name='add_note_control']" position="replace"/>
                 <xpath expr="//control/create[@name='add_section_control']" position="replace"/>
 
@@ -69,7 +74,8 @@
 
                 <xpath expr="//button[@name='button_draft']" position="attributes">
                     <attribute name="attrs">{'invisible' : ['|', ('show_reset_to_draft_button', '=', False),
-                        ('payment_state', '=', 'paid')]}</attribute>
+                        ('payment_state', '=', 'paid')]}
+                    </attribute>
                 </xpath>
 
                 <!-- Header ends -->
@@ -82,10 +88,10 @@
                     <field name="invoice_payment_term_id" invisible="1"/>
                 </xpath>
 
-<!--                <xpath expr="//field[@name='price_unit']" position="attributes">-->
-<!--                    <attribute name="readonly">True</attribute>-->
-<!--                    <attribute name="force_save">True</attribute>-->
-<!--                </xpath>-->
+                <!--                <xpath expr="//field[@name='price_unit']" position="attributes">-->
+                <!--                    <attribute name="readonly">True</attribute>-->
+                <!--                    <attribute name="force_save">True</attribute>-->
+                <!--                </xpath>-->
 
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']" position="attributes">
                     <attribute name="optional">hide</attribute>
@@ -115,7 +121,7 @@
 
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="attributes">
                     <attribute name="attrs">
-                           {'readonly': ['|', ('price_editable', '=', False), ('move_type', '!=', 'out_invoice')]}
+                        {'readonly': ['|', ('price_editable', '=', False), ('move_type', '!=', 'out_invoice')]}
                     </attribute>
                 </xpath>
 
@@ -145,7 +151,6 @@
                                 string="Refund Details"/>
                     </group>
                 </field>
-
             </field>
         </record>
 
