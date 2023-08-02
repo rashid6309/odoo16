@@ -113,7 +113,7 @@ class EcarePatient(models.Model):
                                       tracking=True,
                                       default="Married")
 
-    married_since = fields.Date(string="Married Since")
+    married_since = fields.Date(string="MARRIED SINCE")
     yom = fields.Char('Years of Marriage', compute='get_marriage_years')
 
     # Father Details

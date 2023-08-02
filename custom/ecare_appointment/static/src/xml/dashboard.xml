@@ -172,7 +172,7 @@
                                          <h6 title="Create Invoice" id="invoice" class="icon_bottom mr-5"
                                              t-att-booked_slot_id="slotDetail.booked_slot_id"
                                              t-att-partner_id="slotDetail.partner_id"
-                                             t-att-sub_category_id="slot.category_id"
+                                             t-att-sub_category_id="slotDetail.sub_category"
                                          ><i  class="i_bottom fa fa-money"></i></h6>
                                     </div>
 
