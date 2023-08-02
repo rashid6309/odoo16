@@ -36,8 +36,9 @@ class AccountMove(models.Model):
         default="entry",
     )
 
-    sub_category_id = fields.Many2one(comodel_name='ec.slot.sub.category',
+    tertiary_category_id = fields.Many2one(comodel_name='ec.slot.sub.category',
                                       string="Location",
+                                      ondelete='restrict'
                                       )
 
     ''' For showing purpose only '''
