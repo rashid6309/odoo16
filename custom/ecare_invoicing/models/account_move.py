@@ -36,12 +36,13 @@ class AccountMove(models.Model):
         default="entry",
     )
 
-    sub_category_id = fields.Many2one(comodel_name='ec.slot.category',
+    tertiary_category_id = fields.Many2one(comodel_name='ec.slot.sub.category',
                                       string="Location",
-                                      domain=[('parent_category_id', '!=', False)]
+                                      ondelete='restrict'
                                       )
 
     ''' For showing purpose only '''
+
     # this compute will compute below
     total_receivable = fields.Monetary(string="Invoiced",
                                    compute="_calculate_invoice_stats",

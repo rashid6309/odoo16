@@ -283,7 +283,7 @@ var EcareAppointmentDashboard = AbstractAction.extend({
                         context: {
                             default_move_type: 'out_invoice',
                             default_partner_id: parseInt(partner_id),
-                            default_sub_category_id: parseInt(sub_category_id),
+                            default_tertiary_category_id: parseInt(sub_category_id),
                         },
                     }, options)
 

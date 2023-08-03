@@ -26,6 +26,7 @@
             <field name="model">account.move</field>
             <field name="inherit_id" ref="account.view_out_invoice_tree"/>
             <field name="arch" type="xml">
+                <field name="ref" position="replace"/>
                 <field name="activity_ids" position="replace"/>
                 <field name="amount_untaxed_signed" position="replace"/>
                 <field name="date" position="replace"/>
@@ -54,7 +55,9 @@
                     </attribute>
                 </field>
                 <field name="partner_id" position="after">
-                    <field name="sub_category_id"/>
+                    <field name="tertiary_category_id"
+                           force_save="1"
+                           readonly="1"/>
                 </field>
 
                 <xpath expr="//control/create[@name='add_note_control']" position="replace"/>
