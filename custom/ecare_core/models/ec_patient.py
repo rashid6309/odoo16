@@ -315,12 +315,14 @@ class EcarePatient(models.Model):
             'default_partner_id': partner_id.id,
             'default_move_type': 'out_invoice'
         })
-
+        tree_view_id = self.env.ref('account.view_out_invoice_tree')
+        form_view_id = self.env.ref('account.view_move_form')
         return {
             "name": _("Invoices"),
             "type": 'ir.actions.act_window',
             "res_model": 'account.move',
             'view_mode': 'tree,form',
+            'views': [(tree_view_id.id, 'tree'), (form_view_id.id, 'form')],
             "target": 'current',
             "context": context,
             'domain': [('partner_id', '=', partner_id.id),
@@ -337,6 +339,7 @@ class EcarePatient(models.Model):
 
     def action_register(self):
         self.ensure_one()
+        self.constraints_validation()
         self.mr_num = self.env['ir.sequence'].next_by_code('ecare_core.patient.sequence.mr.no') or _('New')
         patient_name = self.get_patient_name_with_mr()
         # have to do it manually otherwise it was throwing error now due to rec_name update.
@@ -346,8 +349,21 @@ class EcarePatient(models.Model):
         # POST API to update the data at that side ICSI existing history software
 
         self.post_data_history_software()
-    
+
+    def constraints_validation(self):
+        if self.husband_marital_status != 'Unmarried':
+            if not ((self.wife_nic or self.wife_passport) and self.wife_dob and self.mobile_wife and self.married_since):
+                raise models.ValidationError(" Wife cnic or passport, dob, mobile, martial status and married since are mandatory")
+
+        if self.marital_status != 'Unmarried':
+            if not ((self.husband_nic or self.husband_passport) and self.husband_dob and self.mobile_husband):
+                raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
+
     def get_payload(self):
+        yom = None
+        if self.yom:
+            yom = int(self.yom[:self.yom.index('Y')])
+
         payload = {
             "Female": {
                 "Patient_id": 0,
@@ -391,7 +407,7 @@ class EcarePatient(models.Model):
             },
             "Couple": {
                 "Couple_id": self.mr_num,
-                "Marriage_period": self.yom or 0,
+                "Marriage_period": yom,
                 "Couple_Detail": "",
                 "Couple_Address": "",
                 "Informed_by": "",
@@ -400,7 +416,6 @@ class EcarePatient(models.Model):
         }
         return payload
     
-
     def post_data_history_software(self):
         history_software_ip = self.env['ir.config_parameter'].sudo().get_param('ecare_core.icsi.history.software.ip')
         if not history_software_ip:

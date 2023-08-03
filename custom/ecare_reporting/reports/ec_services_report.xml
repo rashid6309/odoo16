@@ -48,7 +48,7 @@
                         <small><b>Date:</b> <span style="margin-left: 5px;"><t t-out="services_payment_date"/></span></small>
                     </div>
                     <div style="margin-top: 20px;">
-                        <t t-set="product_index" t-value="8"/>
+                        <t t-set="product_index" t-value="9"/>
                         <table style="width: 100%; border: 1px solid #333; border-collapse: collapse;">
                             <thead>
                                 <tr style="background-color: #f2f2f2;">

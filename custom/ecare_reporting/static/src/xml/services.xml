@@ -51,12 +51,14 @@
                         <!--                        <t t-if="widget.notification">-->
                         <tbody>
                             <t t-set="current_service_id" t-value="0"/>
-                            <t t-set="product_index" t-value="8"/>
+                            <t t-set="line_amount_index" t-value="7"/>
+                            <t t-set="product_name_index" t-value="4"/>
+                            <t t-set="product_index" t-value="9"/>
 
                             <t t-foreach="widget.data" t-as="data">
                                 <t t-if="current_service_id != data[product_index]">
                                     <t t-set="current_service_id" t-value="data[product_index]"/>
-                                    <t t-set="service_name" t-value="data[3]"/>
+                                    <t t-set="service_name" t-value="data[product_name_index]"/>
                                     <tr class="o_group_header">
                                         <th colspan="11">
                                             <div class="card-header" id="headingOne">
@@ -70,7 +72,7 @@
                                         </th>
                                     </tr>
                                 </t>
-                                <t t-if="data[6] > 0">
+                                <t t-if="data[line_amount_index] > 0">
                                     <tr>
                                         <t t-set="i" t-value="0"/>
                                         <t t-foreach="data" t-as="record">

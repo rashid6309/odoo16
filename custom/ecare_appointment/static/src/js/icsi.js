@@ -267,10 +267,12 @@ var EcareAppointmentDashboard = AbstractAction.extend({
             },
                  createInvoice: function (e){
                     var self = this;
-                    var partner_id = e.currentTarget.attributes.partner_id.nodeValue;
+                    let partner_id = e.currentTarget.attributes.partner_id.nodeValue;
+                    let sub_category_id = e.currentTarget.attributes.sub_category_id.nodeValue;
                     var options = {
                         on_reverse_breadcrumb: this.on_reverse_breadcrumb,
                     };
+//                    console.log(self)
                     this.do_action({
                         name: _t("Create Invoice"),
                         type: 'ir.actions.act_window',
@@ -279,8 +281,9 @@ var EcareAppointmentDashboard = AbstractAction.extend({
                         views: [[false, 'form']],
                         target: 'current',
                         context: {
-                        default_move_type: 'out_invoice',
-                        default_partner_id: parseInt(partner_id),
+                            default_move_type: 'out_invoice',
+                            default_partner_id: parseInt(partner_id),
+                            default_sub_category_id: parseInt(sub_category_id),
                         },
                     }, options)
 
@@ -732,7 +735,8 @@ var EcareAppointmentDashboard = AbstractAction.extend({
             args: [local_date,parseInt(local_activeId),parseInt(local_primaryActiveId)],
         })
         .then(function (res) {
-                    console.log(res)
+//                    console.log("Uncomment this if required to see the fetched data");
+//                    console.log(res);
                     self.notification = res['notification'];
                     self.day_name = res['day_name'];
                     self.primary_categories = res['primary_categories'];

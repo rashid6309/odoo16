@@ -81,7 +81,7 @@ class CashDetailXlsx(models.AbstractModel):
         # Header
 
         row, col = 0, 0
-        worksheet.set_column(col, col + columns_count, 30)
+        worksheet.set_column(col+1, col + columns_count, 30)
 
         company_name = self.env.user.company_id.name
 
@@ -110,27 +110,31 @@ class CashDetailXlsx(models.AbstractModel):
 
         records = data['data']  # Same it is also in 2D which is not required but still.
 
-        for rec in records:
-            col = 0
+        for sr, date, patient, payment_ref, product_name, invoice, \
+                journal5, receivable_amt6, paid_amount7, discount8,  last_updated_by in records:
             row += 1
-            worksheet.write(row, col, str(rec[0]) or "", row_head_format)
+
+            col = 0
+            worksheet.write(row, col, sr or "", row_head_format)
             col += 1
-            worksheet.write(row, col, rec[1].strip() if rec[1] else "", row_head_format)
+            worksheet.write(row, col, date or "", row_head_format)
             col += 1
-            worksheet.write(row, col, rec[2] or "", row_head_format)
+            worksheet.write(row, col, patient.strip() if patient else "", row_head_format)
             col += 1
-            worksheet.write(row, col, rec[3] or "", row_head_format)
+            worksheet.write(row, col, payment_ref or "", row_head_format)
             col += 1
-            worksheet.write(row, col, rec[4] or "", row_head_format)
+            worksheet.write(row, col, product_name or "", row_head_format)
             col += 1
-            worksheet.write(row, col, rec[5] or "", row_head_format)
+            worksheet.write(row, col, invoice or "", row_head_format)
             col += 1
-            worksheet.write(row, col, rec[6] or 0, amount_row_format)
+            worksheet.write(row, col, journal5 or "", row_head_format)
             col += 1
-            worksheet.write(row, col, rec[7] or 0, amount_row_format)
+            worksheet.write(row, col, receivable_amt6 or "", row_head_format)
             col += 1
-            worksheet.write(row, col, rec[8] or 0, amount_row_format)
+            worksheet.write(row, col, paid_amount7 or 0, amount_row_format)
             col += 1
-            worksheet.write(row, col, rec[9] or "", row_head_format)
+            worksheet.write(row, col, discount8 or 0, amount_row_format)
+            col += 1
+            worksheet.write(row, col, last_updated_by or 0, amount_row_format)
 
         workbook.close()

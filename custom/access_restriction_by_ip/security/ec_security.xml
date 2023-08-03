@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_ec_medical_allowed_ip" model="res.groups">
+            <field name="name">Allowed Everywhere (IP)</field>
+            <field name="category_id" ref="ecare_appointment.module_ec_medical_category"/>
+            <field name="implied_ids"
+                   eval="[(4,ref('ecare_appointment.group_appointment_administrator'))]"/>
+        </record>
+
+    </data>
+</odoo>
