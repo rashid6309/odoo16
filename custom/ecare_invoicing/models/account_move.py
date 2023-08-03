@@ -42,6 +42,7 @@ class AccountMove(models.Model):
                                       )
 
     ''' For showing purpose only '''
+
     # this compute will compute below
     total_receivable = fields.Monetary(string="Invoiced",
                                    compute="_calculate_invoice_stats",
