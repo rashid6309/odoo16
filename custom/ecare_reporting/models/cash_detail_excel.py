@@ -88,9 +88,51 @@ class CashDetailXlsx(models.AbstractModel):
         worksheet.set_row(row, 20)
         worksheet.merge_range(row, col, row, col + columns_count, company_name, medicsi_name_format)
 
+        row += 2
+        col = 1
+        worksheet.write(row, col, 'TOTAL INVOICE', column_head_format)
+        col += 1
+        worksheet.write(row, col, 'DISCOUNT', column_head_format)
+        col += 1
+        worksheet.write(row, col, 'REFUND', column_head_format)
+        col += 1
+        worksheet.write(row, col, 'NET AMT', column_head_format)
         row += 1
+        col = 1
+        worksheet.write(row, col, data['summary_block'].get('total_amount') or 0, amount_row_format)
+        col += 1
+        worksheet.write(row, col, data['summary_block'].get('discount') or 0, amount_row_format)
+        col += 1
+        worksheet.write(row, col, data['summary_block'].get('refund') or 0, amount_row_format)
+        col += 1
+        worksheet.write(row, col, data['summary_block'].get('net_amount') or 0, amount_row_format)
+        row += 1
+        col = 1
+        worksheet.write(row, col, 'CASH', column_head_format)
+        col += 1
+        worksheet.write(row, col, 'BY CHEQUE/D.DRAFT', column_head_format)
+        col += 1
+        worksheet.write(row, col, 'BY C.CARD/D. CARD', column_head_format)
+        col += 1
+        worksheet.write(row, col, 'ONLINE', column_head_format)
+        col += 1
+        worksheet.write(row, col, 'OTHERS', column_head_format)
+        row += 1
+        col = 1
+        worksheet.write(row, col, data['summary_block'].get('cash_amount') or 0, amount_row_format)
+        col += 1
+        worksheet.write(row, col, data['summary_block'].get('cheque_amount') or 0, amount_row_format)
+        col += 1
+        worksheet.write(row, col, data['summary_block'].get('credit_amount') or 0, amount_row_format)
+        col += 1
+        worksheet.write(row, col, data['summary_block'].get('online_amount') or 0, amount_row_format)
+        col += 1
+        worksheet.write(row, col, data['summary_block'].get('other') or 0, amount_row_format)
 
-        worksheet.set_row(row, 15)
+        row += 2
+        col = 0
+
+        # worksheet.set_row(row, 15)
         worksheet.merge_range(row, col, row, col + columns_count, "Cash Detail Report ", report_heading)
 
         worksheet.set_row(row, 30)
