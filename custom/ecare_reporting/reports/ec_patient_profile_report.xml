@@ -32,6 +32,11 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.basic_layout">
+
+                        <xpath expr="//link[last()]" position="after">
+                            <link rel="stylesheet" type="text/css" href="/ecare_reporting/static/src/css/reporting.css"/>
+                        </xpath>
+
                         <div class="page">
                             <div style="text-align: center;">
                                 <h1>Patient Profile</h1>
@@ -44,7 +49,7 @@
                             </div>
 
                         </div>
-<!--                        border: 1px solid black;-->
+                        <!--                        border: 1px solid black;-->
                         <table style="height:auto;padding:5%;" width="100%">
                             <tr >
                                 <td style="width: 25%;text-align: left; font-weight: bold;">Wife Photo ID</td>
@@ -138,8 +143,8 @@
                             <tr >
                                 <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;">Married Since:</td>
                                 <td style="width: 25%; padding-top:1%;"><span class="text-field-value" t-esc="o.married_since"/></td>
-<!--                                <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;"/>-->
-<!--                                <td style="width: 25%; padding-top:1%;"><span class="text-field-value"/></td>-->
+                                <!--                                <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;"/>-->
+                                <!--                                <td style="width: 25%; padding-top:1%;"><span class="text-field-value"/></td>-->
                             </tr>
                             <tr >
                                 <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;" colspan="3">Preferred Contact Details:-</td>
