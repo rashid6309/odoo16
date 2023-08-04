@@ -93,6 +93,8 @@ class ReportController(http.Controller):
         :returns: Response with an attachment header
 
         """
+        raise odoo.exceptions.ValidationError('Draft invoice cannot be printed')
+
         requestcontent = json.loads(data)
         url, type_ = requestcontent[0], requestcontent[1]
         reportname = '???'
