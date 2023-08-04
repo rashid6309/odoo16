@@ -458,7 +458,5 @@ class EcarePatient(models.Model):
             _logger.warning(e)
 
     def action_patient_profile_print_report(self):
-        self.ensure_one()
-        [datas] = self.read()
-        return self.env.ref('ecare_reporting.ec_patient_profile_report').report_action(self, data=datas)
+        return self.env.ref('ecare_reporting.ec_patient_profile_report').report_action(self)
 
