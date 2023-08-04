@@ -8,7 +8,7 @@
 
     <t t-name="board_summary">
         <div class="col-6">
-                        <table class="table table-striped">
+            <table class="table table-striped">
                           <thead>
                             <tr>
                                 <th style="text-transform: uppercase;font-weight: bold;" scope="col">Total Invoice</th>
@@ -44,7 +44,7 @@
                             </tr>
                           </tbody>
                         </table>
-                </div>
+        </div>
     </t>
     <t t-name="header_board">
           <div class="container-fluid">
