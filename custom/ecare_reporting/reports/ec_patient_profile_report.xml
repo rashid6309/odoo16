@@ -80,14 +80,13 @@
                             </tr>
                             <tr>
 
-                                <td style="width: 50%;text-align: left;padding-top:2%">
+                                <td style="text-align: left;padding-top:2%" colspan="2">
                                     <span style="font-weight: bold;">Wife Name:</span>
                                     <span class="text-field-value" t-esc="o.wife_name"/>
                                 </td>
 
-                                <td/>
 
-                                <td style="width: 50%; text-align: left; padding-top:2%">
+                                <td style="text-align: left; padding-top:2%" colspan="2">
                                     <span style="font-weight: bold;">Husband Name:</span>
                                     <span class="text-field-value" t-esc="o.husband_name"/>
                                 </td>
