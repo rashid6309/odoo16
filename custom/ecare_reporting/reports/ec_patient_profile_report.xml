@@ -22,7 +22,7 @@
                 id="ec_patient_profile_report"
                 model="ec.medical.patient"
                 string="Patient Profile Report"
-                report_type="qweb-html"
+                report_type="qweb-pdf"
                 name="ecare_reporting.ec_patient_profile_report_doc"
                 paperformat="custom_patient_profile"
                 file="Slot Report"
