@@ -64,21 +64,30 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <img src="{{ o.image_1920 }}" style="width: 60%; height: 250px;"/>
+                                    <img
+                                            t-att-src="image_data_uri(o.image_1920)"
+                                            style="width: 60%; height: 250px;"
+                                            alt="Wife Image"/>
                                 </td>
                                 <td colspan="2">
-                                    <img src="{{ o.husband_image }}" style="width: 60%; height: 250px;"/>
+                                    <img
+                                            src="{{ o.husband_image }}"
+                                            t-att-src="image_data_uri(o.husband_image)"
+                                            style="width: 60%; height: 250px;"
+                                            alt="Husband Image"
+                                    />
                                 </td>
                             </tr>
                             <tr>
 
-                                <td style="width: 20%;text-align: left;padding-top:2%">
+                                <td style="width: 50%;text-align: left;padding-top:2%">
                                     <span style="font-weight: bold;">Wife Name:</span>
                                     <span class="text-field-value" t-esc="o.wife_name"/>
                                 </td>
+
                                 <td/>
 
-                                <td style="width: 25%; text-align: left; padding-top:2%">
+                                <td style="width: 50%; text-align: left; padding-top:2%">
                                     <span style="font-weight: bold;">Husband Name:</span>
                                     <span class="text-field-value" t-esc="o.husband_name"/>
                                 </td>
@@ -120,7 +129,7 @@
                                 </td>
                                 <td/>
 
-                                <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">
+                                <td style="width: 25%; padding-top:1%; text-align: left;">
                                     <span style="font-weight: bold;">Driving License:</span>
                                     <span class="text-field-value" t-esc="o.husband_driving_license"/>
                                 </td>
@@ -129,12 +138,12 @@
                             <tr>
                                 <td style="width: 25%; padding-top:1%;text-align: left; ">
                                     <span style="font-weight: bold;">Date of Birth</span>
-                                    <span class="text-field-value" t-esc="o.wife_dob"/>
+                                    <span class="text-field-value" t-field="o.wife_dob"/>
                                 </td>
                                 <td/>
                                 <td style="width: 25%; padding-top:1%; text-align: left; ">
                                     <span style="font-weight: bold;">Date of Birth</span>
-                                    <span class="text-field-value" t-esc="o.husband_dob"/>
+                                    <span class="text-field-value" t-field="o.husband_dob"/>
                                 </td>
                                 <td/>
                             </tr>
@@ -184,7 +193,7 @@
                                     <td/>
 
                                 </td>
-                                <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;">
+                                <td style="width: 25%; padding-top:1%; text-align: left;">
                                     <span style="font-weight: bold;">Email:</span>
                                     <span class="text-field-value" t-esc="o.email_husband"/>
                                     <td/>
@@ -206,18 +215,19 @@
                                 <td style="width: 25%; padding-top:1%;text-align: left; ">
 
                                     <span style="font-weight: bold;">Married Since:</span>
-                                    <span class="text-field-value" t-esc="o.married_since"/>
+                                    <span class="text-field-value" t-field="o.married_since"/>
                                     <td/>
                                 </td>
                                 <!--                                <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;"/>-->
                                 <!--                                <td style="width: 25%; padding-top:1%;"><span class="text-field-value"/></td>-->
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left; font-weight: bold;" colspan="3">
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="3">
 
                                     <span style="font-weight: bold;">Preferred Contact Details:-</span>
                                     <span class="text-field-value" t-esc="o.preferred_mobile"/>
-                                    <td/>
+                                <td/>
+
                                 </td>
                             </tr>
                             <tr>
@@ -226,16 +236,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">House No:
-                                </td>
                                 <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
-                                    <span class="text-field-value" t-esc="o.preferred_mobile"/>
+
+                                    <span style="font-weight: bold;">House No:</span>
+                                    <span class="text-field-value" t-esc="o.street"/>
+
                                 </td>
+
+                                <td/>
                             </tr>
                             <tr>
                                 <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Street No / Name:</span>
-                                    <span class="text-field-value" t-esc="o.street"/>
+                                    <span class="text-field-value" t-esc="o.street2"/>
                                     <td/>
                                 </td>
 
@@ -244,17 +257,16 @@
                                 <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">City</span>
                                     <span class="text-field-value" t-esc="o.city"/>
-                                    <td/>
+                                <td/>
+
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">Country</td>
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
+                                    <span style="font-weight: bold;">Country</span>
+                                    <span t-if="o.country_id" class="text-field-value" t-esc="o.country_id.name"/>
+                                </td>
                                 <td/>
-                                <t t-if="o.country_id">
-                                    <td class="abc" style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
-                                        <span class="text-field-value" t-esc="o.country_id.name"/>
-                                    </td>
-                                </t>
                             </tr>
 
                             <!--                        Next of Kin section-->
