@@ -37,30 +37,30 @@
 
         <!-- Explicit Form View -->
 
-<!--        <record id="document_management_form_view" model="ir.ui.view">-->
-<!--            <field name="name">document.management.form.view</field>-->
-<!--            <field name="model">document.management</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <form>-->
-<!--                    <sheet>-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="name"/>-->
-<!--                                <field name="attachment_ids" widget="many2many_binary"/>-->
-<!--                                <field name="patient_id"-->
-<!--                                       invisible="1"-->
-<!--                                       force_save="1"-->
-<!--                                       attrs="{'invisible': [('patient_id', '=', False)]}"/>-->
-<!--                            </group>-->
-<!--                            <group>-->
-<!--                                <field name="issue_date"/>-->
-<!--                                <field name="expiry_date"/>-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                    </sheet>-->
-<!--                </form>-->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="document_management_form_view" model="ir.ui.view">
+            <field name="name">document.management.form.view</field>
+            <field name="model">document.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="attachment_ids" widget="many2many_binary"/>
+                                <field name="patient_id"
+                                       invisible="1"
+                                       force_save="1"
+                                       attrs="{'invisible': [('patient_id', '=', False)]}"/>
+                            </group>
+                            <group>
+                                <field name="issue_date"/>
+                                <field name="expiry_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
         <!-- Explicit Action -->
 
