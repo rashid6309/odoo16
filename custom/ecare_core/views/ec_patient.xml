@@ -156,7 +156,6 @@
                         </div>
                         <group>
                             <group>
-                                <field name="company_id"/>
                                 <field name="mr_num"
                                        readonly="True"
                                        force_save="True"
