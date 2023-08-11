@@ -510,10 +510,17 @@
     .o_horizontal_separator {
         &:not(:empty) {
             box-shadow: 0 $border-width 0 $o-form-separator-color;
+            background-color: #ddb0ff;
+            font-size: inherit;
+            padding-left: 7px;
         }
 
         &:empty {
             height: $o-form-spacing-unit * 2;
+            background-color: #ddb0ff;
+            font-size: inherit;
+            padding-left: 7px;
+
         }
     }
 
