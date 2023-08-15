@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+<record id="ec_medical_first_consultation_form_view" model="ir.ui.view">
+    <field name="name">ec.medical.first.consultation.form</field>
+    <field name="model">ec.medical.first.consultation</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <form string="First Consultation">
+            <div class="d-flex scroll-to card-header" id="general_examination_section_link">
+                <div class="col-6">
+                    <a data-toggle="collapse" data-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General Examination</h4></a>
+                </div>
+                <div class="col-6 text-right" style="margin-top:9px">
+                </div>
+            </div>
+            <div class="card-block mb-5 pl-4 collapse" id="general_examination_section">
+                <group>
+                        <!-- General Examination Fields -->
+                        <field name="name"/>
+                        <field name="female_marriage"/>
+                        <field name="female_relation"/>
+                        <field name="female_family_system"/>
+                        <field name="female_living_togather"/>
+                        <field name="female_living_togather_reason"/>
+                        <field name="female_living_duration_years"/>
+                        <field name="female_living_duration_month"/>
+                        <field name="female_complaints"/>
+                        <field name="female_complaints_duration_years"/>
+                        <field name="female_complaints_duration_month"/>
+                        <field name="female_age_at_marriage"/>
+                        <field name="female_parity"/>
+                    </group>
+            </div>
+            <notebook>
+                <!-- General Examination Tab -->
+                <page string="General Examination">
+                    <group>
+                        <!-- General Examination Fields -->
+                        <field name="name"/>
+                        <field name="female_marriage"/>
+                        <field name="female_relation"/>
+                        <field name="female_family_system"/>
+                        <field name="female_living_togather"/>
+                        <field name="female_living_togather_reason"/>
+                        <field name="female_living_duration_years"/>
+                        <field name="female_living_duration_month"/>
+                        <field name="female_complaints"/>
+                        <field name="female_complaints_duration_years"/>
+                        <field name="female_complaints_duration_month"/>
+                        <field name="female_age_at_marriage"/>
+                        <field name="female_parity"/>
+                    </group>
+                </page>
+
+                <!-- Gynaecological History Tab -->
+                <page string="Gynaecological History">
+                    <group>
+                        <!-- Gynaecological History Fields -->
+                        <field name="female_age_at_menarche"/>
+                        <field name="female_menarche_type"/>
+                        <field name="female_menstrual_cycle"/>
+                        <field name="female_menstrual_days"/>
+                        <field name="female_menstrual_gap"/>
+                        <field name="female_menstrual_comments"/>
+                        <field name="female_menstrual_days_from"/>
+                        <field name="female_menstrual_days_to"/>
+                        <field name="female_menstrual_all_comments"/>
+                        <field name="female_menstrual_flow"/>
+                        <field name="female_dysmenorrhoea"/>
+                        <field name="female_pain_intensity"/>
+                        <field name="female_lmp"/>
+                        <field name="female_complications"/>
+                        <field name="female_complications_other"/>
+                        <field name="female_complains"/>
+                    </group>
+                </page>
+
+                <!-- Obstetrics History Tab -->
+                <page string="Obstetrics History">
+                        <tree editable="top">
+                            <field name="obs_history_ids"
+                                   nolabel="1" editable="top">
+                            </field>
+                        </tree>
+                </page>
+            </notebook>
+        </form>
+    </field>
+</record>
+
+    </data>
+</odoo>

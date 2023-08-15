@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_ec_medical_obstetrics_history_tree">
+            <field name="name">ec.medical.obstetrics.history.tree</field>
+            <field name="model">ec.medical.obstetrics.history</field>
+            <field name="arch" type="xml">
+                <tree string="Female Obstetrics History">
+                    <field name="patient"/>
+                    <field name="baby_name"/>
+                    <field name="pob"/>
+                    <field name="dob"/>
+                    <field name="age"/>
+                    <field name="baby_notes"/>
+                    <field name="dop"/>
+                    <field name="mod"/>
+<!--                    <field name="indication"/>-->
+                    <field name="other_indications"/>
+                    <field name="complications"/>
+                    <field name="comp_del"/>
+                    <field name="comp_pp"/>
+                    <field name="comp_prag"/>
+                    <field name="gender"/>
+                    <field name="weight"/>
+                    <field name="health"/>
+                    <field name="alive"/>
+                    <field name="feed"/>
+                    <field name="state"/>
+                    <field name="labour_history"/>
+                    <field name="legacy_system_ID"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
