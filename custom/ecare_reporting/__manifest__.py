@@ -31,6 +31,7 @@
         'views/reports.xml',
         'views/account_move.xml',
         'views/reporting_view.xml',
+        'views/patient.xml',
 
         # Menu
         'data/menus.xml',

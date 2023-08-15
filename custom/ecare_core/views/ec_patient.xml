@@ -131,10 +131,6 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_patient_profile_print_report"
-                                type="object"
-                                string="Print Report"
-                                class="btn btn-primary"/>
 
                         <button name="action_register"
                                 type="object"
