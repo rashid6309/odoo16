@@ -73,18 +73,18 @@ var EcareAppointmentDashboard = AbstractAction.extend({
 
     render_dashboards: function(){
         var self = this;
-        const schedule_id = document.getElementById("rescheduled_slot");
+        let schedule_id = document.getElementById("rescheduled_slot");
 
         if (schedule_id != null && localStorage['isReschedule'])
         {
-        self.$el.html(QWeb.render("DashboardSwitchAppointment", {widget: self}));
-        document.getElementsByClassName("o_main_navbar")[0].style.visibility="hidden";
-        localStorage['reschedule_slot_id'] = schedule_id.innerText;
+            self.$el.html(QWeb.render("DashboardSwitchAppointment", {widget: self}));
+            document.getElementsByClassName("o_main_navbar")[0].style.visibility="hidden";
+            localStorage['reschedule_slot_id'] = schedule_id.innerText;
         }
         else
         {
-        document.getElementsByClassName("o_main_navbar")[0].style.visibility="visible";
-        self.$el.html(QWeb.render("DashboardAppointmentCustom", {widget: self}));
+            document.getElementsByClassName("o_main_navbar")[0].style.visibility="visible";
+            self.$el.html(QWeb.render("DashboardAppointmentCustom", {widget: self}));
         }
     },
 
@@ -214,13 +214,14 @@ var EcareAppointmentDashboard = AbstractAction.extend({
 
             },
           onClickSwitchSlot: function (e){
+
                     var self = this;
                     e.stopPropagation();
                     e.preventDefault();
 
-
                         if (confirm('Are you sure, you want to switch the slot here?')) {
-                          if (localStorage['reschedule_slot_id'] != null && localStorage['reschedule_slot_id'] !='' && localStorage['reschedule_slot_id'] != undefined)
+
+                            if (localStorage['reschedule_slot_id'] != null && localStorage['reschedule_slot_id'] !='' && localStorage['reschedule_slot_id'] != undefined)
                                 {
                                      var booked_slot_id = localStorage['reschedule_slot_id']
 
@@ -240,7 +241,7 @@ var EcareAppointmentDashboard = AbstractAction.extend({
                         var update_slot_record = rpc.query({
                                 model: 'ec.booked.slot.record',
                                 method: 'switch_slot_record',
-                                args: [parseInt(booked_slot_id),start_time, end_time, date, parseInt(category_id), parseInt(sub_category), parseInt(configurator_id)],
+                                args: [parseInt(booked_slot_id.replace(",","")),start_time, end_time, date, parseInt(category_id), parseInt(sub_category), parseInt(configurator_id)],
                             })
                             .then(function(result) {
                             self.fetch_data().then(function(res){

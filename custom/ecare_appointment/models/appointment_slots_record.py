@@ -102,6 +102,12 @@ class EcareAppointmentSlot(models.Model):
 
     ''' Override methods '''
 
+    @api.model
+    def default_get(self, default_fields):
+        res = super(EcareAppointmentSlot, self).default_get(default_fields)
+        res['existing_partner_id'] = self.partner_id
+        return res
+
     @api.model_create_multi
     def create(self, vals_list):
         obj = super(EcareAppointmentSlot, self).create(vals_list)

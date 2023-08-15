@@ -131,10 +131,6 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_patient_profile_print_report"
-                                type="object"
-                                string="Print Report"
-                                class="btn btn-primary"/>
 
                         <button name="action_register"
                                 type="object"
@@ -184,14 +180,14 @@
                                        attrs="{'required': [('husband_marital_status', '=', 'Married')]}"/>
 
                                 <field name="wife_nic"/>
-<!--                                       attrs="{'required': [-->
-<!--                                       ('husband_marital_status', '=', 'Married'),-->
-<!--                                       ('wife_passport', '=', False)]}"/>-->
+                                <!--                                       attrs="{'required': [-->
+                                <!--                                       ('husband_marital_status', '=', 'Married'),-->
+                                <!--                                       ('wife_passport', '=', False)]}"/>-->
 
                                 <field name="wife_passport"/>
-<!--                                       attrs="{'required': [-->
-<!--                                       ('husband_marital_status', '=', 'Married'),-->
-<!--                                       ('wife_nic', '=', False)]}"/>-->
+                                <!--                                       attrs="{'required': [-->
+                                <!--                                       ('husband_marital_status', '=', 'Married'),-->
+                                <!--                                       ('wife_nic', '=', False)]}"/>-->
 
                                 <field name="wife_driving_license"/>
                                 <field name="wife_dob"/>
@@ -203,7 +199,7 @@
                                 <field name="phone_res_wife"/>
                                 <field name="phone_ofc_wife"/>
                                 <field name="mobile_wife"/>
-<!--                                       attrs="{'required': [('husband_marital_status', '=', 'Married')]}"/>-->
+                                <!--                                       attrs="{'required': [('husband_marital_status', '=', 'Married')]}"/>-->
 
                                 <field name="email_wife"/>
                                 <field name="marital_status"
@@ -222,19 +218,19 @@
 
 
                                 <field name="husband_name"/>
-<!--                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>-->
+                                <!--                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>-->
                                 />
 
                                 <field name="husband_nic"/>
-<!--                                       attrs="{'required': [-->
-<!--                                       ('marital_status', '=', 'Married'),-->
-<!--                                       ('husband_passport', '=', False)]}"/>-->
+                                <!--                                       attrs="{'required': [-->
+                                <!--                                       ('marital_status', '=', 'Married'),-->
+                                <!--                                       ('husband_passport', '=', False)]}"/>-->
                                 />
 
                                 <field name="husband_passport"/>
-<!--                                       attrs="{'required': [-->
-<!--                                               ('marital_status', '=', 'Married'),-->
-<!--                                               ('husband_nic', '=', False)]}"/>-->
+                                <!--                                       attrs="{'required': [-->
+                                <!--                                               ('marital_status', '=', 'Married'),-->
+                                <!--                                               ('husband_nic', '=', False)]}"/>-->
                                 />
 
                                 <field name="husband_driving_license"/>
@@ -243,12 +239,12 @@
                                 <field name="phone_res_husband"/>
                                 <field name="phone_ofc_husband"/>
                                 <field name="mobile_husband"/>
-<!--                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>-->
+                                <!--                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>-->
                                 />
                                 <field name="email_husband"/>
 
                                 <field name="husband_marital_status"/>
-<!--                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>-->
+                                <!--                                       attrs="{'required': [('marital_status', '=', 'Married')]}"/>-->
                                 />
                             </group>
                         </group>
@@ -256,9 +252,7 @@
                             <field name="yom" readonly="1" force_save="1"/>
                         </group>
                         <group string="Preferred Contact Details" name="preferred_contact_detail">
-                            <group>
                                 <field name="preferred_mobile" required="False"/>
-                            </group>
                         </group>
                         <group string="Address">
                             <field name="type"
@@ -271,7 +265,7 @@
                         </group>
                         <group>
                             <group>
-<!--                                required="True"-->
+                                <!--                                required="True"-->
                                 <field name="street"
                                        string="House No"
                                        placeholder="Street..."
@@ -285,7 +279,7 @@
                                        class="o_address_street"
                                        attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
 
-<!--                                required="True"-->
+                                <!--                                required="True"-->
                                 <field name="city"
                                        string="CITY"
                                        placeholder="City"
@@ -294,9 +288,9 @@
                             </group>
 
                             <group>
-<!--                                <field name="state_id" class="o_address_state" placeholder="State"-->
-<!--                                       options="{'no_open': True, 'no_quick_create': True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>-->
-<!--                                <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>-->
+                                <!--                                <field name="state_id" class="o_address_state" placeholder="State"-->
+                                <!--                                       options="{'no_open': True, 'no_quick_create': True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>-->
+                                <!--                                <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>-->
                                 <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
                             </group>
                         </group>
