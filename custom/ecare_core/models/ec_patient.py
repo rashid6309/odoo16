@@ -348,7 +348,7 @@ class EcarePatient(models.Model):
 
         # POST API to update the data at that side ICSI existing history software
 
-        self.post_data_history_software()
+        # self.post_data_history_software()
 
     def constraints_validation(self):
         if self.husband_marital_status != 'Unmarried':

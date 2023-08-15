@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="ec_medical_patient_form_view" model="ir.ui.view">
+            <field name="name">ec.medical.patient.form.view</field>
+            <field name="model">ec.medical.patient</field>
+            <field name="inherit_id" ref="ecare_core.ec_patient_form_view"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <button name="action_open_patient_slots" position="before">
+                    <button style="float: right;"
+                            name="action_open_patient_first_consultation"
+                            type="object" class="btn btn-primary"
+                            string="First Consultation"/>
+                </button>
+            </field>
+        </record>
+
+        <!-- Explicit Actions -->
+
+        <record id="ec_medical_patient_action" model="ir.actions.act_window">
+            <field name="name">Patient</field>
+            <field name="res_model">ec.medical.patient</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="target">current</field>
+        </record>
+
+        <record id="ec_patient_kanban_view_action" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ecare_core.ec_patient_tree_view"/>
+            <field name="act_window_id" ref="ec_medical_patient_action"/>
+        </record>
+
+        <record id="ec_patient_form_view_action" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ec_medical_patient_form_view"/>
+            <field name="act_window_id" ref="ec_medical_patient_action"/>
+        </record>
+
+        <record id="ec_patient_kanban_view_action" model="ir.actions.act_window.view">
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="ecare_core.ec_patient_kanban_view"/>
+            <field name="act_window_id" ref="ec_medical_patient_action"/>
+        </record>
+
+
+        <!-- Menu-item for patient -->
+
+        <menuitem id="ec_medical_patient_menu"
+                  name="Patient"
+                  parent="ec_medical_root"
+                  sequence="50"
+                  action="ecare_medical_history.ec_medical_patient_action"/>
+
+
+    </data>
+</odoo>

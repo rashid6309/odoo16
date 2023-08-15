@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_individual_patient_all,access_individual_patient_all,model_ec_individual_patient,,1,1,1,1
 access_ec_medical_first_consultation,ec.medical.first.consultation,model_ec_medical_first_consultation,,1,1,1,1
 access_ec_medical_obstetrics_history,ec.medical.obstetrics.history,model_ec_medical_obstetrics_history,,1,1,1,1
 access_ec_medical_gynaecological_history,ec.medical.gynaecological.history,model_ec_medical_gynaecological_history,,1,1,1,1

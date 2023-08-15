@@ -5,6 +5,21 @@ class FemaleGeneralExamination(models.Model):
     _name = 'ec.medical.general.examination'
     _description = "Female General Examination"
 
+    MONTHS = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+        ('11', '11'),
+        ('12', '12'),
+    ]
+
     female_marriage = fields.Selection([('first', '1st'),
                                         ('second', '2nd'),
                                         ('third', '3rd'),
@@ -26,21 +41,6 @@ class FemaleGeneralExamination(models.Model):
                                        default="yes", string='Living Togather')
 
     female_living_togather_reason = fields.Char(string='Living Togather')
-
-    MONTHS = [
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-        ('6', '6'),
-        ('7', '7'),
-        ('8', '8'),
-        ('9', '9'),
-        ('10', '10'),
-        ('11', '11'),
-        ('12', '12'),
-    ]
 
     female_living_duration_years = fields.Integer(string='Living Duration')
     female_living_duration_month = fields.Selection(selection=MONTHS,
