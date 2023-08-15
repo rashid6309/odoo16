@@ -25,6 +25,7 @@ class AccountMove(models.Model):
     source_id = fields.Many2one(ondelete='set null')
     sale_order_count = fields.Integer(compute="_compute_origin_so_count", string='Sale Order Count')
 
+
     def unlink(self):
         downpayment_lines = self.mapped('line_ids.sale_line_ids').filtered(lambda line: line.is_downpayment and line.invoice_lines <= self.mapped('line_ids'))
         res = super(AccountMove, self).unlink()

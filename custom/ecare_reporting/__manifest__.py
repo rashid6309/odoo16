@@ -24,6 +24,7 @@
         'reports/ec_cash_report.xml',
         'reports/ec_cash_due_report.xml',
         'reports/ec_services_report.xml',
+        'reports/ec_patient_profile_report.xml',
 
         # Views
 
@@ -45,7 +46,7 @@
             'ecare_reporting/static/src/xml/amount_due_reporting.xml',
             'ecare_reporting/static/src/xml/services.xml',
             'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js',
-            'ecare_reporting/static/src/css/reporting.css'
+            'ecare_reporting/static/src/css/reporting.css',
         ],
 
     },

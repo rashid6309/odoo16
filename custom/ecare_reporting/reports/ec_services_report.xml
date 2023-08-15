@@ -47,6 +47,44 @@
                     <div style="margin-top: 20px;">
                         <small><b>Date:</b> <span style="margin-left: 5px;"><t t-out="services_payment_date"/></span></small>
                     </div>
+                    <div class="col-6">
+                        <table class="table table-striped" style="border: 1px solid #333; border-collapse: collapse;">
+                            <thead  style="border: 1px solid #333; padding: 10px;">
+                                <tr>
+                                    <th style="text-transform: uppercase;border: 1px solid #333; " scope="col">Total Invoice</th>
+                                    <th style="text-transform: uppercase;border: 1px solid #333; " scope="col">Discount</th>
+                                    <th style="text-transform: uppercase;border: 1px solid #333; " scope="col">Refund</th>
+                                    <th style="text-transform: uppercase;border: 1px solid #333; " scope="col">Net Amt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border: 1px solid #333; padding: 10px;"><t t-out="summary_block.get('total_amount') or 0"></t></td>
+                                    <td style="border: 1px solid #333; padding: 10px;"><t t-out="summary_block.get('discount') or 0"></t></td>
+                                    <td style="border: 1px solid #333; padding: 10px;"><t t-out="summary_block.get('refund') or 0"></t></td>
+                                    <td style="border: 1px solid #333; padding: 10px;"><t t-out="summary_block.get('net_amount') or 0"></t></td>
+                                </tr>
+                            </tbody>
+                            <thead  style="border: 1px solid #333; padding: 10px;">
+                                <tr>
+                                    <th style="text-transform: uppercase;border: 1px solid #333; " scope="col">Cash</th>
+                                    <th style="text-transform: uppercase;border: 1px solid #333; " scope="col">By Cheque/D.Draft</th>
+                                    <th style="text-transform: uppercase;border: 1px solid #333; " scope="col">By C.Card/D. Card</th>
+                                    <th style="text-transform: uppercase;border: 1px solid #333; " scope="col">Online</th>
+                                    <th style="text-transform: uppercase;border: 1px solid #333; " scope="col">Others</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border: 1px solid #333; padding: 10px;"><t t-out="summary_block.get('cash_amount') or 0"></t></td>
+                                    <td style="border: 1px solid #333; padding: 10px;"><t t-out="summary_block.get('cheque_amount') or 0"></t></td>
+                                    <td style="border: 1px solid #333; padding: 10px;"><t t-out="summary_block.get('credit_amount') or 0"></t></td>
+                                    <td style="border: 1px solid #333; padding: 10px;"><t t-out="summary_block.get('online_amount') or 0"></t></td>
+                                    <td style="border: 1px solid #333; padding: 10px;"><t t-out="summary_block.get('other')"></t></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div style="margin-top: 20px;">
                         <t t-set="product_index" t-value="9"/>
                         <table style="width: 100%; border: 1px solid #333; border-collapse: collapse;">

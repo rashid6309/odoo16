@@ -38,7 +38,7 @@ class AccountMove(models.Model):
 
     tertiary_category_id = fields.Many2one(comodel_name='ec.slot.sub.category',
                                       string="Location",
-                                      ondelete='restrict'
+                                      domain=[('parent_category_id', '!=', False)]
                                       )
 
     ''' For showing purpose only '''
