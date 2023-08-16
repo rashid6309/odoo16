@@ -1,30 +1,27 @@
 from odoo import models, fields
 
+from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
-class FemaleGeneralExamination(models.Model):
-    _name = 'ec.medical.general.examination'
+
+class GeneralExamination(models.Model):
+    _name = 'ec.general.history'
     _description = "Female General Examination"
 
-    MONTHS = [
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-        ('6', '6'),
-        ('7', '7'),
-        ('8', '8'),
-        ('9', '9'),
-        ('10', '10'),
-        ('11', '11'),
-        ('12', '12'),
-    ]
+    ''' Static attributes '''
 
-    female_marriage = fields.Selection([('first', '1st'),
-                                        ('second', '2nd'),
-                                        ('third', '3rd'),
-                                        ('fourth', '4rth')],
-                                       default="first", string='Female Marriage')
+    ''' Common '''
+
+    patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                 ondelete='restrict')
+
+    ''' Female data-members'''
+
+    female_marriage = fields.Selection(selection=StaticMember.MARRIAGE,
+                                       default="first",
+                                       string='Female Marriage')
+
+    female_age = fields.Char(string="Female Age",
+                             related="patient_id.wife_age")
 
     female_relation = fields.Selection([('first_cousin', '1st Cousin'),
                                  ('second_cousin', '2nd Cousin'),
@@ -43,7 +40,7 @@ class FemaleGeneralExamination(models.Model):
     female_living_togather_reason = fields.Char(string='Living Togather')
 
     female_living_duration_years = fields.Integer(string='Living Duration')
-    female_living_duration_month = fields.Selection(selection=MONTHS,
+    female_living_duration_month = fields.Selection(selection=StaticMember.MONTHS,
                                                     string='Living Duration')
 
     female_complaints = fields.Selection([('primary_infertility', 'Primary Infertility'),
@@ -52,7 +49,7 @@ class FemaleGeneralExamination(models.Model):
 
     # complaints_duration
     female_complaints_duration_years = fields.Integer(string='Complaints Duration')
-    female_complaints_duration_month = fields.Selection(selection=MONTHS,
+    female_complaints_duration_month = fields.Selection(selection=StaticMember.MONTHS,
                                                         string='Complaints Duration')
 
     # years_of_marriage
@@ -62,6 +59,15 @@ class FemaleGeneralExamination(models.Model):
     female_parity = fields.Char(string='Parity')
 
 
+    ''' Male Fields '''
+
+    male_marriage = fields.Selection(selection=StaticMember.MARRIAGE,
+                                     string="Male Marriage",
+                                     )
+
+    male_comment = fields.Char(string="Details")
+    male_age = fields.Char(related="patient_id.husband_age",
+                           string="Age")
 
 
 

@@ -20,7 +20,7 @@ class EcMedicalPatient(models.Model):
 
 
     def action_open_patient_first_consultation(self):
-        first_consultation_id = self.env['ec.medical.first.consultation'].search(domain=[('patient_id', '=', self.id)])
+        first_consultation_id = self.env['ec.first.consultation'].search(domain=[('patient_id', '=', self.id)])
 
         value = {}
         if first_consultation_id:
@@ -34,7 +34,7 @@ class EcMedicalPatient(models.Model):
         action = {
             "name": _("First Consultation"),
             "type": 'ir.actions.act_window',
-            "res_model": 'ec.medical.first.consultation',
+            "res_model": 'ec.first.consultation',
             'view_mode': 'form',
             'view_id': self.env.ref('ecare_medical_history.ec_medical_first_consultation_form_view').id,
             "context": context,

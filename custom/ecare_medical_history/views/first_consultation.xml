@@ -3,8 +3,8 @@
     <data>
 
         <record id="ec_medical_first_consultation_form_view" model="ir.ui.view">
-            <field name="name">ec.medical.first.consultation.form</field>
-            <field name="model">ec.medical.first.consultation</field>
+            <field name="name">ec.first.consultation.form</field>
+            <field name="model">ec.first.consultation</field>
             <field name="arch" type="xml">
                 <form string="First Consultation">
                     <div class="d-flex scroll-to card-header" id="general_examination_section_link">
@@ -91,7 +91,7 @@
 
         <record id="ec_medical_first_consultation_action" model="ir.actions.act_window">
             <field name="name">First Consultation</field>
-            <field name="res_model">ec.medical.first.consultation</field>
+            <field name="res_model">ec.first.consultation</field>
             <field name="view_mode">tree,form</field>
         </record>
 

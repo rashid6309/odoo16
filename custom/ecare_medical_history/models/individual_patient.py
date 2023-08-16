@@ -1,6 +1,8 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
 
+from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
+
 from logging import getLogger
 _logger = getLogger(__name__)
 
@@ -8,10 +10,7 @@ _logger = getLogger(__name__)
 class SinglePatient(models.Model):
     _name = "ec.individual.patient"
 
-    values = [('male', "Male"),
-            ("female", "Female")]
-
-    key = fields.Selection(selection=values,
+    key = fields.Selection(selection=StaticMember.GENDER_1,
                            required=True,)
 
     name = fields.Char(string="Name")

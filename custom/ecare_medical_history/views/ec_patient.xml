@@ -3,7 +3,7 @@
     <data>
 
         <record id="ec_medical_patient_form_view" model="ir.ui.view">
-            <field name="name">ec.medical.patient.form.view</field>
+            <field name="name">ec.patient.form.view</field>
             <field name="model">ec.medical.patient</field>
             <field name="inherit_id" ref="ecare_core.ec_patient_form_view"/>
             <field name="mode">primary</field>
