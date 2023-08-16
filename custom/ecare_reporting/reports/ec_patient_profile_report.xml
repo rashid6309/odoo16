@@ -54,11 +54,11 @@
 
                         </div>
                         <!--                        border: 1px solid black;-->
-                        <table style="height:auto;padding:5%;" width="100%">
-                            <tr>
-                                <td style="width: 25%; text-align: left; font-weight: bold;">Wife Photo ID</td>
+                        <table style="height:auto;padding:5%;" width="100%" class="bg_color">
+                            <tr >
+                                <td style="width: 25%; text-align: left; font-weight: bold; border:0px">Wife Photo ID</td>
                                 <td/>
-                                <td style="width: 25%; text-align: left; font-weight: bold;" colspan="2">Husband Photo
+                                <td style="width: 25%; text-align: left; font-weight: bold; border:0px" colspan="2">Husband Photo
                                     ID
                                 </td>
                             </tr>
