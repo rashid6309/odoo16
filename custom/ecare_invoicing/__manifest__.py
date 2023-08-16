@@ -35,10 +35,10 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js',
+            # 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js',
             'ecare_invoicing/static/src/xml/templates_inherited.xml',
-            'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css',
-            'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js'
+            # 'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css',
+            # 'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js'
         ],
 
     },
