@@ -145,90 +145,78 @@
                                 <td/>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left; ">
+                                <td style="width: 25%; padding-top:1%;text-align: left; " colspan="2">
                                     <span style="font-weight: bold;">Date of Birth</span>
                                     <span class="text-field-value" t-field="o.wife_dob"/>
                                 </td>
-                                <td/>
-                                <td style="width: 25%; padding-top:1%; text-align: left; ">
+
+                                <td style="width: 25%; padding-top:1%; text-align: left; " colspan="2">
                                     <span style="font-weight: bold;">Date of Birth</span>
                                     <span class="text-field-value" t-field="o.husband_dob"/>
                                 </td>
-                                <td/>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left; ">
+                                <td style="width: 25%; padding-top:1%;text-align: left; " colspan="2">
                                     <span style="font-weight: bold;">Phone(res):</span>
                                     <span class="text-field-value" t-esc="o.phone_res_wife"/>
                                 </td>
-                                <td/>
-                                <td style="width: 25%; padding-top:1%; text-align: left;">
+                                <td style="width: 25%; padding-top:1%; text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Phone(res):</span>
                                     <span class="text-field-value" t-esc="o.phone_res_husband"/>
-                                    <td/>
                                 </td>
                             </tr>
 
                             <tr/>
 
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left; ">
+                                <td style="width: 25%; padding-top:1%;text-align: left; " colspan="2">
                                     <span style="font-weight: bold;">Phone(office):</span>
                                     <span class="text-field-value" t-esc="o.phone_ofc_wife"/>
-                                    <td/>
                                 </td>
 
-                                <td style="width: 25%; padding-top:1%; text-align: left; ">
+                                <td style="width: 25%; padding-top:1%; text-align: left; " colspan="2">
                                     <span style="font-weight: bold;">Phone(office):</span>
                                     <span class="text-field-value" t-esc="o.phone_ofc_husband"/>
-                                    <td/>
                                 </td>
 
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Mobile:</span>
                                     <span class="text-field-value" t-esc="o.mobile_wife"/>
-                                    <td/>
                                 </td>
-                                <td style="width: 25%; padding-top:1%; text-align: left;">
+                                <td style="width: 25%; padding-top:1%; text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Mobile:</span>
                                     <span class="text-field-value" t-esc="o.mobile_husband"/>
-                                    <td/>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
-
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Email:</span>
                                     <span class="text-field-value" t-esc="o.email_wife"/>
-                                    <td/>
-
                                 </td>
-                                <td style="width: 25%; padding-top:1%; text-align: left;">
+
+                                <td style="width: 25%; padding-top:1%; text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Email:</span>
                                     <span class="text-field-value" t-esc="o.email_husband"/>
-                                    <td/>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left; ">
+                                <td style="width: 25%; padding-top:1%;text-align: left; " colspan="2">
                                     <span style="font-weight: bold;">Marital Status</span>
                                     <span class="text-field-value" t-esc="o.marital_status"/>
-                                    <td/>
                                 </td>
-                                <td style="width: 25%; padding-top:1%; text-align: left; ">
+
+                                <td style="width: 25%; padding-top:1%; text-align: left; " colspan="2">
                                     <span style="font-weight: bold;">Marital Status</span>
                                     <span class="text-field-value" t-esc="o.husband_marital_status"/>
-                                    <td/>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left; ">
+                                <td style="width: 25%; padding-top:1%;text-align: left; " colspan="2">
 
                                     <span style="font-weight: bold;">Married Since:</span>
                                     <span class="text-field-value" t-field="o.married_since"/>
-                                    <td/>
                                 </td>
                                 <!--                                <td style="width: 25%; padding-top:1%; text-align: left; font-weight: bold;"/>-->
                                 <!--                                <td style="width: 25%; padding-top:1%;"><span class="text-field-value"/></td>-->
@@ -317,54 +305,47 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Contact Name:</span>
                                     <span class="text-field-value" t-esc="o.emer_contact_name"/>
-                                    <td/>
                                 </td>
 
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Father Name:</span>
                                     <span class="text-field-value" t-esc="o.father_name"/>
-                                    <td/>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Address:</span>
                                     <span class="text-field-value" t-esc="o.emer_contact_addr"/>
-                                    <td/>
                                 </td>
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Father CNIC:</span>
                                     <span class="text-field-value" t-esc="o.father_nic"/>
-                                    <td/>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Relation:</span>
                                     <span class="text-field-value" t-esc="o.emer_contact_relation"/>
-                                    <td/>
                                 </td>
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
+
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Mother Name:</span>
                                     <span class="text-field-value" t-esc="o.mother_name"/>
-                                    <td/>
                                 </td>
 
                             </tr>
                             <tr>
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Emergency CNIC:</span>
                                     <span class="text-field-value" t-esc="o.emer_contact_nic"/>
-                                    <td/>
                                 </td>
 
-                                <td style="width: 25%; padding-top:1%;text-align: left;">
+                                <td style="width: 25%; padding-top:1%;text-align: left;" colspan="2">
                                     <span style="font-weight: bold;">Mobile(Mother):</span>
                                     <span class="text-field-value" t-esc="o.mobile_number"/>
-                                    <td/>
                                 </td>
                             </tr>
                         </table>
