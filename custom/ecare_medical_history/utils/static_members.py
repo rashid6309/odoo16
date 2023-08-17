@@ -156,8 +156,8 @@ class StaticMember:
         ('none', 'None'),
     ]
 
-    SIDE = [('right', "Right",
-             'left', "Left")]
+    SIDE = [('right', "Right"),
+            ('left', "Left")]
 
     SIZE = [('normal', "Normal"),
             ('small', "Small"),
