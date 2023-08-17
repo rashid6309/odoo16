@@ -3,6 +3,8 @@ from . import individual_patient
 from . import general_history
 from . import female_obstetrics_history
 from . import female_gynaecological_history
+from . import medical_history
+from . import procedure
 from . import first_consultation
 from . import social_history
 from . import lab_history

@@ -5,5 +5,7 @@ access_ec_obstetrics_history,ec.obstetrics.history,model_ec_obstetrics_history,,
 access_ec_gynaecological_history,ec.gynaecological.history,model_ec_gynaecological_history,,1,1,1,1
 access_ec_general_examination,ec.general.examination,model_ec_general_history,,1,1,1,1
 access_ec_social_history_all,access_ec_social_history_all,model_ec_social_history,,1,1,1,1
+access_ec_medical_history_all,access_ec_medical_history_all,model_ec_medical_history,,1,1,1,1
+access_ec_medical_patient_procedures_all,access_ec_medical_patient_procedures_all,model_ec_medical_patient_procedures,,1,1,1,1
 access_ec_lab_history_all,access_ec_lab_history_all,model_ec_lab_history,,1,1,1,1
 access_genital_examination_all,access_genital_examination_all,model_ec_genital_examination,,1,1,1,1

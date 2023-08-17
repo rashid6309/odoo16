@@ -28,6 +28,7 @@
         'views/female_obstetrics_history.xml',
 
         'views/ec_patient.xml',
+        'views/ec_procedure.xml',
 
     ],
     'assets': {

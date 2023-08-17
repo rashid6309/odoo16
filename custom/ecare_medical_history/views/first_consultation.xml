@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-
         <record id="ec_medical_first_consultation_form_view" model="ir.ui.view">
             <field name="name">ec.first.consultation.form</field>
             <field name="model">ec.first.consultation</field>
@@ -84,6 +83,85 @@
                                 </field>
                             </tree>
                         </page>
+                        <page string="Medical and Surgical History" class="mt-0 patient_tabs_headings">
+                            <group col="12" class="mt-0">
+                                <group string="Medical History" col="6" colspan="6" class="mt-0">
+                                    <separator string="Details of the medical condition" style="font-size:small" colspan="6" />
+                                    <!-- <separator string="Dates if relevant" style="font-size:small" /> -->
+                                    <field name="female_adrenal_pr" placeholder="Add Details" colspan="6" />
+                                    <!-- <field name="allergies_pr" /> -->
+                                    <field name="female_adrenal_pr_d" string="" placeholder="Since" colspan="6" />
+                                    <field name="female_ant_pr" placeholder="" colspan="6" />
+                                    <field name="female_ant_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_aut_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_aut_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_btransfusion_pr" placeholder="" colspan="6" />
+                                    <field name="female_btransfusion_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_complications_pr" colspan="6" placeholder="Complications" string="" default=" " readonly="0" attrs="{'readonly': [('female_btransfusion_pr', 'not in',['y'])]}" />
+                                    <field name="female_car_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_car_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_diabetes_select_pr" placeholder="" colspan="6" string="Diabetes" />
+                                    <field name="female_diabetes_pr" placeholder="" colspan="6" string="" />
+                                    <field name="female_diabetes_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_dvt_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_dvt_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_gal_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_gal_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_gas_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_gas_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_gyn_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_gyn_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_hae_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_hae_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_hdisease_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_hdisease_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_htension_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_htension_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_int_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_int_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_janduice_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_janduice_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_liver_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_liver_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_low_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_low_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_mal_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_mal_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_neu_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_neu_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_renal_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_renal_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_res_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_res_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_saa_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_saa_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_alcohol_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_alcohol_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_ske_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_ske_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_thy_select_pr" placeholder="" colspan="6" string="Thyroid" />
+                                    <field name="female_thy_pr" placeholder="Add Details" colspan="6" string="" />
+                                    <field name="female_thy_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_uinfact_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_uinfact_pr_d" string="" colspan="6" placeholder="Since" />
+                                    <field name="female_others_pr" placeholder="Add Details" colspan="6" />
+                                    <field name="female_others_pr_d" string="" colspan="6" placeholder="Since" />
+                                </group>
+                                <group string="Surgical History" class="mt-0" col="6" colspan="6">
+                                    <div style="margin-top: -7%;">
+                                        <button type="action" style="float:right;"
+                                                class="btn-primary"
+                                                name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
+                                                context="{'default_procedure_id':id}"
+                                                string="Add" target="current"/>
+                                    </div>
+                                    <separator string="Details of Surgery" style="font-size:small" colspan="6" />
+                                    <field class="custom-scrollbar opd-notes-height" name="pat_procedures" mode="kanban" nolabel="1"
+                                           string="Patient Procedures" create="false"/>
+                                </group>
+                            </group>
+                        </page>
+
                     </notebook>
                 </form>
             </field>
