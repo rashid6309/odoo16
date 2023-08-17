@@ -2,8 +2,8 @@
 <odoo>
     <data>
         <record model="ir.ui.view" id="view_ec_medical_obstetrics_history_tree">
-            <field name="name">ec.medical.obstetrics.history.tree</field>
-            <field name="model">ec.medical.obstetrics.history</field>
+            <field name="name">ec.obstetrics.history.tree</field>
+            <field name="model">ec.obstetrics.history</field>
             <field name="arch" type="xml">
                 <tree string="Female Obstetrics History">
                     <field name="patient"/>

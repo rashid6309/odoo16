@@ -1,5 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ec_medical_first_consultation,ec.medical.first.consultation,model_ec_medical_first_consultation,,1,1,1,1
-access_ec_medical_obstetrics_history,ec.medical.obstetrics.history,model_ec_medical_obstetrics_history,,1,1,1,1
-access_ec_medical_gynaecological_history,ec.medical.gynaecological.history,model_ec_medical_gynaecological_history,,1,1,1,1
-access_ec_medical_general_examination,ec.medical.general.examination,model_ec_medical_general_examination,,1,1,1,1
+access_individual_patient_all,access_individual_patient_all,model_ec_individual_patient,,1,1,1,1
+access_ec_first_consultation,ec.first.consultation,model_ec_first_consultation,,1,1,1,1
+access_ec_obstetrics_history,ec.obstetrics.history,model_ec_obstetrics_history,,1,1,1,1
+access_ec_gynaecological_history,ec.gynaecological.history,model_ec_gynaecological_history,,1,1,1,1
+access_ec_general_examination,ec.general.examination,model_ec_general_history,,1,1,1,1
+access_ec_social_history_all,access_ec_social_history_all,model_ec_social_history,,1,1,1,1
+access_ec_lab_history_all,access_ec_lab_history_all,model_ec_lab_history,,1,1,1,1
+access_genital_examination_all,access_genital_examination_all,model_ec_genital_examination,,1,1,1,1
