@@ -42,10 +42,10 @@
             'ecare_appointment/static/src/js/icsi.js',
             'ecare_appointment/static/src/css/lib/nv.d3.css',
             'ecare_appointment/static/src/js/lib/d3.min.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js',
+            # 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js',
             'ecare_appointment/static/src/xml/dashboard.xml',
-            'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css',
-            'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js'
+            # 'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css',
+            # 'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js'
         ],
 
     },
