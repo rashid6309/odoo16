@@ -17,9 +17,6 @@
         # Security
         'security/ir.model.access.csv',
 
-        # Static xml's
-        'data/paper_format.xml',
-
         # Reports here
         'reports/services_report.xml',
         'reports/ec_slot_reporting.xml',
