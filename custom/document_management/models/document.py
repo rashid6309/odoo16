@@ -27,17 +27,26 @@ class DocumentAttachment(models.Model):
     # FK where this will be used we can inherit as well.
     patient_id = fields.Many2one(comodel_name="ec.medical.patient", copy=False, ondelete='restrict')
 
+    def mark_attachments_public(self):
+        # Public so that every user can also access these.
+        for attachment in self.attachment_ids:
+            attachment.public = True
+
     @api.model_create_multi
     def create(self, vals_list):
         record = super(DocumentAttachment, self).create(vals_list)
         if record.patient_id:
             record.patient_id.update_write_date()
+
+        self.mark_attachments_public()
         return  record
 
     def write(self, vals_list):
         record = super(DocumentAttachment, self).write(vals_list)
         if self.patient_id:
             self.patient_id.update_write_date()
+
+        self.mark_attachments_public()
         return  record
 
 
@@ -54,13 +63,10 @@ class Patient(models.Model):
     def document_view(self):
         self.ensure_one()
 
-        action = self.env["ir.actions.actions"]._for_xml_id("document_management.document_management_action")
-
         context = self._context.copy()
         context.update(
             {'default_patient_id': self.id}
         )
-        action['context'] = context
 
         return {
             "name": _("Documents "),
@@ -72,4 +78,3 @@ class Patient(models.Model):
             "context": context
         }
 
-        return action
