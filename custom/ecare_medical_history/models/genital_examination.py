@@ -9,7 +9,9 @@ class GenitalExamination(models.Model):
 
     ''' Data-members '''
     skin_condition = fields.Char(string="Skin Condition")
+    first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation")
 
+    # SIDES
     hernia = fields.Selection(selection=StaticMember.SIDE, )
     vericocele = fields.Selection(selection=StaticMember.SIDE, )
     hydrocele = fields.Selection(selection=StaticMember.SIDE, )
@@ -17,6 +19,7 @@ class GenitalExamination(models.Model):
     supermatic_cord_normal = fields.Selection(selection=StaticMember.SIDE, )
     supermatic_cord_thick = fields.Selection(selection=StaticMember.SIDE, )
     supermatic_cord_tender = fields.Selection(selection=StaticMember.SIDE, )
+
     testicular_size_right = fields.Selection(selection=StaticMember.SIZE, )
     testicular_size_left = fields.Selection(selection=StaticMember.SIZE, )
 
