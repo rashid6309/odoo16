@@ -19,6 +19,7 @@
 
         # Menu
         'data/menus.xml',
+        'data/family_history_data.xml',
 
         # Reports here
 

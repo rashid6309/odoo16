@@ -57,9 +57,8 @@ class StaticMember:
               ('Ambiguous', 'Ambiguous'),
               ('N/A', 'N/A'), ]
 
-
     GENDER_1 = [('male', "Male"),
-              ("female", "Female")]
+                ("female", "Female")]
 
     WEIGHT = [('<500', '<500 gms'),
               ('500', '500 gms'),
@@ -122,6 +121,7 @@ class StaticMember:
               ('Died within 1 year', 'Died within 1 year'),
               ('Died within 1 month', 'Died within 1 month'),
               ]
+
     ALIVE = [('N/A', 'N/A'),
              ('Alive', 'Alive'),
              ('SB', 'SB'), ]
@@ -129,8 +129,10 @@ class StaticMember:
     FEED = [('Mother', 'Mother'),
             ('Artificial', 'Artificial'),
             ('N/A', 'N/A'), ]
+
     MENARCHE_TYPE = [('irregular_since_menarche', 'Irregular Since Menarche'),
                      ]
+
     MENARCHE_CYCLE = [
         ('regular', 'Regular'),
         ('irregular', 'Irregular'),
@@ -165,3 +167,76 @@ class StaticMember:
 
     CHOICE_YES_NO = [('yes', "Yes"),
                      ('no', "No")]
+
+    ORGAN_SIZE = [('normal', 'Normal'),
+                  ('other', 'Other'),
+                  ]
+
+    UTERUS_SIZE = [('healthy', 'Healthy'),
+                   ('other', 'Other'),
+                   ]
+
+    UTERUS_MOBILITY = [('mobile', 'mobile'),
+                       ('Restricted', 'restricted'),
+                       ]
+
+    UTERUS_POSITION = [('a/v', 'A/V'),
+                       ('r/v', 'R/V'),
+                       ('mid_position', 'Mid Position'),
+                       ]
+
+    UTERUS_SIZE_POSITION = [
+        ('deviated_to_right', 'Deviated To Right'),
+        ('deviated_to_left', 'Deviated To Left'),
+        ('a/v', 'A/V'),
+        ('r/v', 'R/V'),
+        ('m/p', 'M/P'),
+    ]
+
+    THYROID = [('palpable', 'Palpable'),
+               ('non_palpable', 'Non Palpable'),
+               ]
+
+    THYROID_GOITEAR_TYPE = [('mobile', 'Mobile'),
+                            ('fixed', 'Fixed'),
+                            ]
+
+    PALLOR = [('present', 'Present'),
+              ('absent', 'Absent'),
+              ]
+
+    OVARY_SIZE = [('active', 'Active'),
+                  ('quite', 'Quite'),
+                  ('cyst', 'Cyst'),
+                  ('pcos', 'PCOs'),
+                  ('not_visualized', 'Not Visualized'),
+                  ]
+
+    UTERUS_TYPE_SIZE = [('size', 'Size'),
+                        ('position', 'Position'),
+                        ('cyst', 'Cyst'),
+                        ('pcos', 'PCOs'),
+                        ('not_visualized', 'Not Visualized'),
+                        ]
+
+    UTERUS_NOS = [('size', 'Size'),
+                  ('position', 'Position'),
+                  ('cyst', 'Cyst'),
+                  ('pcos', 'PCOs'),
+                  ('not_visualized', 'Not Visualized'),
+                  ]
+
+    FORBID = [('smooth', 'Smooth'),
+              ('distorted', 'Distorted'),
+              ('triple_echo', 'Triple Echo'),
+              ]
+
+    LINING = [('smooth', 'Smooth'),
+              ('distorted', 'Distorted'),
+              ('triple_echo', 'Triple Echo'),
+              ]
+
+    LINING_SIZE = [('smooth', 'Smooth'),
+                   ('distorted', 'Distorted'),
+                   ('triple_echo', 'Triple Echo'),
+                   ]
