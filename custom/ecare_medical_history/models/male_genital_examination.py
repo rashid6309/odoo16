@@ -9,7 +9,6 @@ class GenitalExamination(models.Model):
 
     ''' Data-members '''
     skin_condition = fields.Char(string="Skin Condition")
-    first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation")
 
     # SIDES
     hernia = fields.Selection(selection=StaticMember.SIDE, )

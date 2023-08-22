@@ -4,10 +4,8 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
 class MedicalSystematicExamination(models.Model):
-    _name = "ec.medical.systematic.examination"
-    _description = "Patient Systematic Examination"
-
-    consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
+    _name = "ec.systematic.examination"
+    _description = "Patient (Female) Systematic Examination"
 
     breast_rt = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Breast (Rt)')
     breast_rt_comment = fields.Char(string='Breast (Rt)')

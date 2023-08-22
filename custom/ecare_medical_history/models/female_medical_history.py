@@ -6,8 +6,6 @@ class MedicalHistory(models.Model):
     _name = "ec.medical.history"
     _description = "Medical History"
 
-    consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
-
     # Female-specific fields with the 'female_' prefix
     female_adrenal_pr = fields.Char('Adrenal')
     female_ant_pr = fields.Selection([('Yes', 'Yes'), ('No', 'No')], string='Anti-phospholipid Syndrome')

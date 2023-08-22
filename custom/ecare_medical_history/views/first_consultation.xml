@@ -7,7 +7,7 @@
 			<field name="arch" type="xml">
 				<form string="First Consultation">
 					<notebook>
-						<page string="Female" name="female">
+						<page string="Female History" name="female_history">
 							<div class="d-flex scroll-to card-header" id="general_examination_section_link">
 								<div class="col-6">
 									<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General Examination</h4></a>
@@ -33,6 +33,22 @@
 									<field name="female_parity"/>
 								</group>
 							</div>
+
+							<div class="d-flex scroll-to card-header" id="obstetrics_history_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#obstetrics_history_section" href="#"><h4 class="mt-2 mb-0">Obstetrics History</h4></a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px">
+								</div>
+							</div>
+							<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
+								<tree editable="top">
+									<field name="obs_history_ids"
+										   nolabel="1" editable="top">
+									</field>
+								</tree>
+							</div>
+
 
 							<div class="d-flex scroll-to card-header" id="gynaecological_history_section_link">
 								<div class="col-6">
@@ -63,21 +79,6 @@
 								</group>
 							</div>
 
-
-							<div class="d-flex scroll-to card-header" id="obstetrics_history_section_link">
-								<div class="col-6">
-									<a data-bs-toggle="collapse" data-bs-target="#obstetrics_history_section" href="#"><h4 class="mt-2 mb-0">Obstetrics History</h4></a>
-								</div>
-								<div class="col-6 text-right" style="margin-top:9px">
-								</div>
-							</div>
-							<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
-								<tree editable="top">
-									<field name="obs_history_ids"
-										   nolabel="1" editable="top">
-									</field>
-								</tree>
-							</div>
 
 
 							<div class="d-flex scroll-to card-header" id="medical_surgical_section_link">
@@ -536,7 +537,7 @@
 
 
 						</page>
-						<page string="Male" name="male">
+						<page string="Male History" name="male_history">
 							<div class="d-flex scroll-to card-header" id="genital_examination_section_link">
 								<div class="col-6">
 									<a data-bs-toggle="collapse" data-bs-target="#genital_examination_section" href="#">
@@ -562,6 +563,55 @@
 									<field name="comment"/>
 								</group>
 							</div>
+
+							<div class="d-flex scroll-to card-header" id="physical_examination_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#physical_examination_section" href="#">
+										<h4 class="mt-2 mb-0">Physical Examination</h4>
+									</a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px">
+								</div>
+							</div>
+							<div class="card-block mb-5 pl-4 collapse" id="physical_examination_section">
+								<group>
+									<field name="male_weight"/>
+									<field name="male_height"/>
+									<field name="male_bmi"/>
+									<field name="male_bp_upper"/>
+									<field name="male_bp_lower"/>
+									<field name="male_pulse"/>
+									<field name="male_temperature"/>
+									<field name="male_thyroid" widget="radio" options="{'horizontal': True}"/>
+									<field name="male_thyroid_goitear_length"/>
+									<field name="male_thyroid_goitear_width"/>
+									<field name="male_thyroid_goitear_type" widget="radio" options="{'horizontal': True}"/>
+									<field name="male_thyroid_goitear_nodule"/>
+									<field name="male_pallor" widget="radio" options="{'horizontal': True}"/>
+								</group>
+							</div>
+
+							<div class="d-flex scroll-to card-header" id="systemic_examination_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#systemic_examination_section" href="#">
+										<h4 class="mt-2 mb-0">Systemic Examination</h4>
+									</a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px">
+								</div>
+							</div>
+							<div class="card-block mb-5 pl-4 collapse" id="systemic_examination_section">
+								<group>
+									<field name="male_cvs" widget="radio" options="{'horizontal': True}"/>
+									<field name="male_cvs_comment"/>
+									<field name="male_respiratory" widget="radio" options="{'horizontal': True}"/>
+									<field name="male_respiratory_comment"/>
+									<field name="male_abdomen" widget="radio" options="{'horizontal': True}"/>
+									<field name="male_abdomen_comment"/>
+									<field name="male_systemic_other"/>
+								</group>
+							</div>
+
 						</page>
 					</notebook>
 				</form>

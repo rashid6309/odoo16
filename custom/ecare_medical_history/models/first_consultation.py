@@ -10,9 +10,11 @@ class FirstConsultation(models.Model):
                  'ec.gynaecological.history': 'ec_gynaecological_history_id',
                  'ec.medical.history': 'ec_medical_history_id',
                  'ec.medical.gynaecological.examination': 'ec_medical_gynaecological_examination_id',
-                 'ec.medical.physical.examination': 'ec_medical_physical_examination_id',
-                 'ec.medical.systematic.examination': 'ec_medical_systematic_examination_id',
-                 'ec.genital.examination': 'ec_genital_examination_id',
+                 'ec.physical.examination': 'ec_physical_examination_id',
+                 'ec.systematic.examination': 'ec_systematic_examination_id',
+                 'ec.genital.examination': 'ec_genital_examination_id', # Male after this
+                 'ec.male.physical.examination': 'ec_male_physical_examination_id',
+                 'ec.male.systemic.examination': 'ec_male_systemic_examination_id',
                  }
 
     # Inherits synchronized objects.
@@ -24,13 +26,16 @@ class FirstConsultation(models.Model):
     ec_medical_history_id = fields.Many2one(comodel_name="ec.medical.history")
 
     ec_medical_gynaecological_examination_id = fields.Many2one(comodel_name="ec.medical.gynaecological.examination")
-    ec_medical_physical_examination_id = fields.Many2one(comodel_name="ec.medical.physical.examination")
-    ec_medical_systematic_examination_id = fields.Many2one(comodel_name="ec.medical.systematic.examination")
+    ec_physical_examination_id = fields.Many2one(comodel_name="ec.physical.examination")
+    ec_medical_systematic_examination_id = fields.Many2one(comodel_name="ec.systematic.examination")
+
+    pat_procedures = fields.One2many(comodel_name='ec.medical.patient.procedures', inverse_name='procedure_id')
 
     # Male
     ec_genital_examination_id = fields.Many2one(comodel_name="ec.genital.examination")
+    ec_male_physical_examination_id = fields.Many2one(comodel_name="ec.male.physical.examination")
+    ec_male_systemic_examination_id = fields.Many2one(comodel_name="ec.male.systemic.examination")
 
-    pat_procedures = fields.One2many(comodel_name='ec.medical.patient.procedures', inverse_name='procedure_id')
 
     # Normal Attributes
     name = fields.Char(string='Name')
