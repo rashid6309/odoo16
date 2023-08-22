@@ -7,7 +7,7 @@
 			<field name="arch" type="xml">
 				<form string="First Consultation">
 					<notebook>
-						<page string="Female History" name="female_history">
+						<page string="Female" name="female">
 							<div class="d-flex scroll-to card-header" id="general_examination_section_link">
 								<div class="col-6">
 									<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General Examination</h4></a>
@@ -19,8 +19,10 @@
 								<group>
 									<!-- General Examination Fields -->
 									<field name="name"/>
-									<field name="female_marriage"/>
-									<field name="female_relation"/>
+									<field name="female_comment"/>
+									<field name="female_age"/>
+									<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
+									<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
 									<field name="female_family_system"/>
 									<field name="female_living_togather"/>
 									<field name="female_living_togather_reason"/>
@@ -79,6 +81,33 @@
 								</group>
 							</div>
 
+<!--							<div class="d-flex scroll-to card-header" id="sx_contraception_female_section_link">-->
+<!--								<div class="col-6">-->
+<!--									<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_female_section" href="#">-->
+<!--										<h4 class="mt-2 mb-0">Sexual/Contraception</h4>-->
+<!--									</a>-->
+<!--								</div>-->
+<!--								<div class="col-6 text-right" style="margin-top:9px"/>-->
+<!--							</div>-->
+
+<!--							<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_female_section">-->
+<!--								<group>-->
+<!--									<h2>-->
+<!--										Sexual-->
+<!--									</h2>-->
+
+<!--									<field name="sx_frequency"/>-->
+<!--									<field name="sx_issues"/>-->
+<!--									<field name="sx_comments"/>-->
+
+<!--									<h2>-->
+<!--										Contraception-->
+<!--									</h2>-->
+
+<!--									<field name="cn_type"/>-->
+<!--									<field name="other_comments"/>-->
+<!--								</group>-->
+<!--							</div>-->
 
 
 							<div class="d-flex scroll-to card-header" id="medical_surgical_section_link">
@@ -537,7 +566,46 @@
 
 
 						</page>
-						<page string="Male History" name="male_history">
+						<page string="Male" name="male">
+
+							<div class="d-flex scroll-to card-header" id="male_general_history_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#male_general_history_section" href="#">
+										<h4 class="mt-2 mb-0">General History</h4>
+									</a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px">
+								</div>
+							</div>
+							<div class="card-block mb-5 pl-4 collapse" id="male_general_history_section">
+								<group>
+									<field name="male_marriage" widget="radio" options="{'horizontal': True}"/>
+									<field name="male_comment"/>
+									<field name="male_age"/>
+								</group>
+							</div>
+
+<!--							<div class="d-flex scroll-to card-header" id="sx_contraception_male_section_link">-->
+<!--								<div class="col-6">-->
+<!--									<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_male_section" href="#">-->
+<!--										<h4 class="mt-2 mb-0">Sexual</h4>-->
+<!--									</a>-->
+<!--								</div>-->
+<!--								<div class="col-6 text-right" style="margin-top:9px"/>-->
+<!--							</div>-->
+
+<!--							<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_male_section">-->
+<!--								<group>-->
+<!--									<h2>-->
+<!--										Sexual-->
+<!--									</h2>-->
+
+<!--									<field name="male_sx_performance"/>-->
+<!--									<field name="male_other"/>-->
+
+<!--								</group>-->
+<!--							</div>-->
+
 							<div class="d-flex scroll-to card-header" id="genital_examination_section_link">
 								<div class="col-6">
 									<a data-bs-toggle="collapse" data-bs-target="#genital_examination_section" href="#">

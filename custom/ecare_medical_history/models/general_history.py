@@ -20,6 +20,8 @@ class GeneralExamination(models.Model):
                                        default="first",
                                        string='Female Marriage')
 
+    female_comment = fields.Char(string="Details")
+
     female_age = fields.Char(string="Female Age",
                              related="patient_id.wife_age")
 

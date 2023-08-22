@@ -244,3 +244,24 @@ class StaticMember:
                    ('distorted', 'Distorted'),
                    ('triple_echo', 'Triple Echo'),
                    ]
+
+    SX_ISSUES =[
+        ('aparunea', 'Aparunea'),
+        ('dysparunea', 'Dysparunea'),
+        ('none', 'None'),
+    ]
+
+    CN_TYPES = [
+        ('none', 'None'),
+        ('withdrawal', 'Withdrawal'),
+        ('condom', 'Condom'),
+        ('foam', 'Foam'),
+        ('ocp', 'OCP'),
+        ('injectable', 'Injectable'),
+        ('iucd', 'IUCD'),
+    ]
+
+    SX_PERFORMANCE = [
+        ('adequate', 'Adequate'),
+        ('inadequate', 'Inadequate'),
+    ]

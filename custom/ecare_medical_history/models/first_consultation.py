@@ -5,8 +5,9 @@ class FirstConsultation(models.Model):
     _name = 'ec.first.consultation'
     _description = "Patient First Consultation"
 
+    # 'ec.sx.contraception': 'ec_sx_contraception_id',
     _inherits = {'ec.general.history': 'ec_general_examination_id',
-                 'ec.obstetrics.history': 'ec_obstetrics_history_id',
+                 'ec.obstetrics.history': 'ec_obstetrics_history_id', # Female after this
                  'ec.gynaecological.history': 'ec_gynaecological_history_id',
                  'ec.medical.history': 'ec_medical_history_id',
                  'ec.medical.gynaecological.examination': 'ec_medical_gynaecological_examination_id',
@@ -18,8 +19,11 @@ class FirstConsultation(models.Model):
                  }
 
     # Inherits synchronized objects.
-    # Female
+    ''' Common '''
     ec_general_examination_id = fields.Many2one(comodel_name="ec.general.history")
+    # ec_sx_contraception_id = fields.Many2one(comodel_name="ec.sx.contraception")
+
+    ''' Female '''
     ec_obstetrics_history_id = fields.Many2one(comodel_name="ec.obstetrics.history")
     ec_gynaecological_history_id = fields.Many2one(comodel_name="ec.gynaecological.history")
     ec_social_history_id = fields.Many2one(comodel_name="ec.social.history")
@@ -31,7 +35,7 @@ class FirstConsultation(models.Model):
 
     pat_procedures = fields.One2many(comodel_name='ec.medical.patient.procedures', inverse_name='procedure_id')
 
-    # Male
+    ''' Male '''
     ec_genital_examination_id = fields.Many2one(comodel_name="ec.genital.examination")
     ec_male_physical_examination_id = fields.Many2one(comodel_name="ec.male.physical.examination")
     ec_male_systemic_examination_id = fields.Many2one(comodel_name="ec.male.systemic.examination")

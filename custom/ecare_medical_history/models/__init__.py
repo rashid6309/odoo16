@@ -1,9 +1,12 @@
 from . import patient
 from . import individual_patient
 
+# Common for both male and female
+from . import general_history
+from . import sx_contraception
+
 # Female models here
 
-from . import female_general_history
 from . import female_obstetrics_history
 from . import female_gynaecological_history
 from . import female_medical_history
@@ -21,6 +24,6 @@ from . import male_genital_examination
 from . import male_physical_examination
 from . import male_systematic_exam
 
-# First consultation dependent on all above
+# First consultation dependent on all
 from . import first_consultation
 

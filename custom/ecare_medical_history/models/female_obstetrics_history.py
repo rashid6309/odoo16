@@ -1,4 +1,3 @@
-
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError, ValidationError
 
@@ -69,9 +68,9 @@ class FemaleObstetricsHistory(models.Model):
                                        ], string='Labour')
     legacy_system_ID = fields.Char('Legacy System Id', force_save=True)
 
-    @api.constrains('dob', )
-    def _check_dob_date(self):
-        for record in self:
-            if record.dob and record.dob > fields.Date.today():
-                raise ValidationError(_(
-                    "Date of Birth can't be greater than current date!"))
+    # @api.constrains('dob', )
+    # def _check_dob_date(self):
+    #     for record in self:
+    #         if record.dob and record.dob > fields.Date.today():
+    #             raise ValidationError(_(
+    #                 "Date of Birth can't be greater than current date!"))
