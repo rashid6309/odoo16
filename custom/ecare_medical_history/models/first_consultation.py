@@ -5,8 +5,8 @@ class FirstConsultation(models.Model):
     _name = 'ec.first.consultation'
     _description = "Patient First Consultation"
 
-    # 'ec.sx.contraception': 'ec_sx_contraception_id',
     _inherits = {'ec.general.history': 'ec_general_examination_id',
+                 'ec.sx.contraception': 'ec_sx_contraception_id',
                  'ec.obstetrics.history': 'ec_obstetrics_history_id', # Female after this
                  'ec.gynaecological.history': 'ec_gynaecological_history_id',
                  'ec.medical.history': 'ec_medical_history_id',
@@ -21,7 +21,7 @@ class FirstConsultation(models.Model):
     # Inherits synchronized objects.
     ''' Common '''
     ec_general_examination_id = fields.Many2one(comodel_name="ec.general.history")
-    # ec_sx_contraception_id = fields.Many2one(comodel_name="ec.sx.contraception")
+    ec_sx_contraception_id = fields.Many2one(comodel_name="ec.sx.contraception")
 
     ''' Female '''
     ec_obstetrics_history_id = fields.Many2one(comodel_name="ec.obstetrics.history")

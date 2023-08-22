@@ -81,33 +81,39 @@
 								</group>
 							</div>
 
-<!--							<div class="d-flex scroll-to card-header" id="sx_contraception_female_section_link">-->
-<!--								<div class="col-6">-->
-<!--									<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_female_section" href="#">-->
-<!--										<h4 class="mt-2 mb-0">Sexual/Contraception</h4>-->
-<!--									</a>-->
-<!--								</div>-->
-<!--								<div class="col-6 text-right" style="margin-top:9px"/>-->
-<!--							</div>-->
+							<div class="d-flex scroll-to card-header" id="sx_contraception_female_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_female_section" href="#">
+										<h4 class="mt-2 mb-0">Sexual/Contraception</h4>
+									</a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px"/>
+							</div>
 
-<!--							<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_female_section">-->
-<!--								<group>-->
-<!--									<h2>-->
-<!--										Sexual-->
-<!--									</h2>-->
+							<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_female_section">
+								<div>
+									<h2>
+										Sexual
+									</h2>
+								</div>
+								<br/>
+								<group>
 
-<!--									<field name="sx_frequency"/>-->
-<!--									<field name="sx_issues"/>-->
-<!--									<field name="sx_comments"/>-->
+									<field name="sx_frequency" class="oe_left"/>
+									<field name="sx_issues"/>
+									<field name="sx_comments"/>
+								</group>
 
-<!--									<h2>-->
-<!--										Contraception-->
-<!--									</h2>-->
+								<div>
+									<h2> Contraception</h2>
+								</div>
+								<br/>
+								<group>
 
-<!--									<field name="cn_type"/>-->
-<!--									<field name="other_comments"/>-->
-<!--								</group>-->
-<!--							</div>-->
+									<field name="cn_type"/>
+									<field name="other_comments"/>
+								</group>
+							</div>
 
 
 							<div class="d-flex scroll-to card-header" id="medical_surgical_section_link">
@@ -585,26 +591,28 @@
 								</group>
 							</div>
 
-<!--							<div class="d-flex scroll-to card-header" id="sx_contraception_male_section_link">-->
-<!--								<div class="col-6">-->
-<!--									<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_male_section" href="#">-->
-<!--										<h4 class="mt-2 mb-0">Sexual</h4>-->
-<!--									</a>-->
-<!--								</div>-->
-<!--								<div class="col-6 text-right" style="margin-top:9px"/>-->
-<!--							</div>-->
+							<div class="d-flex scroll-to card-header" id="sx_contraception_male_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_male_section" href="#">
+										<h4 class="mt-2 mb-0">Sexual</h4>
+									</a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px"/>
+							</div>
 
-<!--							<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_male_section">-->
-<!--								<group>-->
-<!--									<h2>-->
-<!--										Sexual-->
-<!--									</h2>-->
+							<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_male_section">
+								<group>
+									<h2>
+										Sexual
+									</h2>
+								</group>
+								<group>
 
-<!--									<field name="male_sx_performance"/>-->
-<!--									<field name="male_other"/>-->
+									<field name="male_sx_performance"/>
+									<field name="male_other"/>
 
-<!--								</group>-->
-<!--							</div>-->
+								</group>
+							</div>
 
 							<div class="d-flex scroll-to card-header" id="genital_examination_section_link">
 								<div class="col-6">
