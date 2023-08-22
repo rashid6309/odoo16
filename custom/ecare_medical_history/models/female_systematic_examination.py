@@ -1,6 +1,6 @@
 from odoo import api, models, fields, _
 
-from odoo.addons.ecare_medical_history.utils.static_membebsrs import StaticMember
+from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
 class MedicalSystematicExamination(models.Model):

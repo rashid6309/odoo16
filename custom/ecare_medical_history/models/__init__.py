@@ -5,6 +5,7 @@ from . import individual_patient
 from . import general_history
 from . import sx_contraception
 from . import social_history
+from . import lab_history
 
 # Female models here
 
@@ -13,7 +14,6 @@ from . import female_gynaecological_history
 from . import female_medical_history
 from . import procedure
 from . import family_history
-from . import lab_history
 from . import gynaecological_examination
 from . import female_physical_examination
 from . import female_systematic_examination

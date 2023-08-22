@@ -589,6 +589,15 @@
 								</group>
 							</div>
 
+							<!-- Pending lab history -->
+							<div class="d-flex scroll-to card-header" id="female_lab_history_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#female_lab_history_section" href="#"><h4 class="mt-2 mb-0">Gynaecological Examination</h4></a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px">
+								</div>
+							</div>
+
 
 						</page>
 						<page string="Male" name="male">

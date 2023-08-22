@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!-- Explicit action -->
+        <record id="ec_lab_history_action" model="ir.actions.act_window">
+            <field name="name">Lab History</field>
+            <field name="res_model">ec.lab.history</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

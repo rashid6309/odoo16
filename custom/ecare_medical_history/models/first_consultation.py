@@ -35,12 +35,15 @@ class FirstConsultation(models.Model):
     ec_physical_examination_id = fields.Many2one(comodel_name="ec.physical.examination")
     ec_medical_systematic_examination_id = fields.Many2one(comodel_name="ec.systematic.examination")
 
-    pat_procedures = fields.One2many(comodel_name='ec.medical.patient.procedures', inverse_name='procedure_id')
+    pat_procedures = fields.One2many(comodel_name='ec.medical.patient.procedures', inverse_name='first_consultation_id')
+
+    female_lab_history_ids = fields.One2many(comodel_name="ec.lab.history", inverse_name="female_first_consultation_id")
 
     ''' Male '''
     ec_genital_examination_id = fields.Many2one(comodel_name="ec.genital.examination")
     ec_male_physical_examination_id = fields.Many2one(comodel_name="ec.male.physical.examination")
     ec_male_systemic_examination_id = fields.Many2one(comodel_name="ec.male.systemic.examination")
+    male_lab_history_ids = fields.One2many(comodel_name="ec.lab.history", inverse_name="male_first_consultation_id")
 
 
     # Normal Attributes
