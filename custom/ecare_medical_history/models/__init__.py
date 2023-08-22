@@ -5,7 +5,11 @@ from . import female_obstetrics_history
 from . import female_gynaecological_history
 from . import medical_history
 from . import procedure
-from . import first_consultation
+from . import family_history
 from . import social_history
 from . import lab_history
 from . import genital_examination
+from . import gynaecological_examination
+from . import physical_examination
+from . import systematic_examination
+from . import first_consultation
