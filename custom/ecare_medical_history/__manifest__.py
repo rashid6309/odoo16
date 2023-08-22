@@ -24,11 +24,13 @@
 
 
         # Views
-        'views/first_consultation.xml',
         'views/female_obstetrics_history.xml',
 
         'views/ec_patient.xml',
         'views/ec_procedure.xml',
+
+        # This Views should be below after all of its views.
+        'views/first_consultation.xml',
 
     ],
     'assets': {
