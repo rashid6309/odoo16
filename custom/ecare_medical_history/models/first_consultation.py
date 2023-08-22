@@ -7,6 +7,7 @@ class FirstConsultation(models.Model):
 
     _inherits = {'ec.general.history': 'ec_general_examination_id',
                  'ec.sx.contraception': 'ec_sx_contraception_id',
+                 'ec.social.history': 'ec_social_history_id',
                  'ec.obstetrics.history': 'ec_obstetrics_history_id', # Female after this
                  'ec.gynaecological.history': 'ec_gynaecological_history_id',
                  'ec.medical.history': 'ec_medical_history_id',
@@ -22,6 +23,7 @@ class FirstConsultation(models.Model):
     ''' Common '''
     ec_general_examination_id = fields.Many2one(comodel_name="ec.general.history")
     ec_sx_contraception_id = fields.Many2one(comodel_name="ec.sx.contraception")
+    ec_social_history_id = fields.Many2one(comodel_name="ec.social.history")
 
     ''' Female '''
     ec_obstetrics_history_id = fields.Many2one(comodel_name="ec.obstetrics.history")

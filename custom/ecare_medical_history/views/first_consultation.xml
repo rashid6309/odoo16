@@ -98,9 +98,8 @@
 								</div>
 								<br/>
 								<group>
-
-									<field name="sx_frequency" class="oe_left"/>
-									<field name="sx_issues"/>
+									<field name="sx_frequency"/>
+									<field name="sx_issues" widget="radio" options="{'horizontal': True}"/>
 									<field name="sx_comments"/>
 								</group>
 
@@ -110,7 +109,7 @@
 								<br/>
 								<group>
 
-									<field name="cn_type"/>
+									<field name="cn_type" widget="radio" options="{'horizontal': True}"/>
 									<field name="other_comments"/>
 								</group>
 							</div>
@@ -118,7 +117,9 @@
 
 							<div class="d-flex scroll-to card-header" id="medical_surgical_section_link">
 								<div class="col-6">
-									<a data-bs-toggle="collapse" data-bs-target="#medical_surgical_section" href="#"><h4 class="mt-2 mb-0">Medical and Surgical History</h4></a>
+									<a data-bs-toggle="collapse" data-bs-target="#medical_surgical_section" href="#">
+										<h4 class="mt-2 mb-0">Medical and Surgical History</h4>
+									</a>
 								</div>
 								<div class="col-6 text-right" style="margin-top:9px">
 								</div>
@@ -201,6 +202,24 @@
 									</group>
 								</group>
 							</div>
+
+							<div class="d-flex scroll-to card-header" id="female_social_history_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#female_social_history_section" href="#">
+										<h4 class="mt-2 mb-0">Social History</h4>
+									</a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px"/>
+							</div>
+
+							<div class="card-block mb-5 pl-4 collapse" id="female_social_history_section">
+								<group>
+									<field name="female_education"/>
+									<field name="female_profession"/>
+									<field name="female_dependence"/>
+								</group>
+							</div>
+
 
 							<div class="d-flex scroll-to card-header" id="family_history_section_link">
 								<div class="col-6">
@@ -608,11 +627,29 @@
 								</group>
 								<group>
 
-									<field name="male_sx_performance"/>
+									<field name="male_sx_performance" widget="radio" options="{'horizontal': True}"/>
 									<field name="male_other"/>
 
 								</group>
 							</div>
+
+							<div class="d-flex scroll-to card-header" id="male_social_history_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#male_social_history_section" href="#">
+										<h4 class="mt-2 mb-0">Social History</h4>
+									</a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px"/>
+							</div>
+
+							<div class="card-block mb-5 pl-4 collapse" id="male_social_history_section">
+								<group>
+									<field name="male_education"/>
+									<field name="male_profession"/>
+									<field name="male_dependence"/>
+								</group>
+							</div>
+
 
 							<div class="d-flex scroll-to card-header" id="genital_examination_section_link">
 								<div class="col-6">

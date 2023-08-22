@@ -10,7 +10,7 @@ class EcContraception(models.Model):
     sx_issues = fields.Selection(selection=StaticMember.SX_ISSUES,
                                  string="Issues")
 
-    sx_comments = fields.Char(string="Comments")
+    sx_comments = fields.Text(string="Comments")
 
     cn_type = fields.Selection(selection=StaticMember.CN_TYPES,
                                string="Type")
@@ -22,6 +22,6 @@ class EcContraception(models.Model):
     male_sx_performance = fields.Selection(selection=StaticMember.SX_PERFORMANCE,
                                            string="Performance")
 
-    male_other = fields.Char(string="Other")
+    male_other = fields.Text(string="Other")
 
 
