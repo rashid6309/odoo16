@@ -19,6 +19,7 @@
         'data/data.xml',
         'data/system_parameter.xml',
         # Views
+        'views/base_users_view.xml',
         'views/third_party_api_log.xml',
         'views/ec_patient.xml',
 
