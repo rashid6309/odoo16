@@ -3,9 +3,9 @@ from odoo import api, models, fields, _
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
-class MedicalSystematicExamination(models.Model):
-    _name = "ec.systematic.examination"
-    _description = "Patient (Female) Systematic Examination"
+class MedicalSystemicExamination(models.Model):
+    _name = "ec.female.systemic.examination"
+    _description = "Patient (Female) Systemic Examination"
 
     breast_rt = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Breast (Rt)')
     breast_rt_comment = fields.Char(string='Breast (Rt)')

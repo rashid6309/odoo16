@@ -37,9 +37,9 @@ class GeneralExamination(models.Model):
 
     female_living_togather = fields.Selection([('yes', 'Yes'),
                                         ('no', 'No')],
-                                       default="yes", string='Living Togather')
+                                       default="yes", string='Living Together')
 
-    female_living_togather_reason = fields.Char(string='Living Togather')
+    female_living_togather_reason = fields.Char(string='Living Together')
 
     female_living_duration_years = fields.Integer(string='Living Duration')
     female_living_duration_month = fields.Selection(selection=StaticMember.MONTHS,
@@ -47,7 +47,7 @@ class GeneralExamination(models.Model):
 
     female_complaints = fields.Selection([('primary_infertility', 'Primary Infertility'),
                                    ('secondary_infertility', 'Secondary Infertility')],
-                                  default="primary_infertility", string='complaints')
+                                  default="primary_infertility", string='Complaints')
 
     # complaints_duration
     female_complaints_duration_years = fields.Integer(string='Complaints Duration')
@@ -55,6 +55,9 @@ class GeneralExamination(models.Model):
                                                         string='Complaints Duration')
 
     # years_of_marriage
+
+    years_of_marriage = fields.Char(related="patient_id.yom",
+                                    String="Years of Marriage")
 
     female_age_at_marriage = fields.Char(string='Age at Marriage')
 

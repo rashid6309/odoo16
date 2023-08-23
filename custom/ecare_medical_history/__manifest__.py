@@ -29,6 +29,7 @@
 
         'views/ec_patient.xml',
         'views/ec_procedure.xml',
+        'views/lab_history.xml',
 
         # This Views should be below after all of its views.
         'views/first_consultation.xml',
