@@ -309,7 +309,7 @@ class EcareSlotsReporting(models.TransientModel):
                         aj."name",
                         invoice.amount_total_signed::int,
                         part.amount::int,
-                        invoice_line.fixed_amount_discount,
+                        sum(invoice_line.fixed_amount_discount),
                       	write_uid_partner.display_name
                     )
                 ) AS result
@@ -395,9 +395,8 @@ class EcareSlotsReporting(models.TransientModel):
         """
         if with_group_by:
             query  += """
-                        GROUP BY payment.create_date,move."name", rp.display_name, 
-                        part.amount , move.state,invoice.name,aj.name, invoice.amount_total_signed, write_uid_partner.display_name,
-                        invoice_line.fixed_amount_discount
+                        GROUP BY payment.create_date,move."id", rp.display_name, 
+                        part.amount , move.state,invoice.name,aj.name, invoice.amount_total_signed, write_uid_partner.display_name
                         order by payment.create_date desc
             """
 
