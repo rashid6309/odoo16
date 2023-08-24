@@ -10,8 +10,8 @@ class FemaleObstetricsHistory(models.Model):
     _name = 'ec.obstetrics.history'
     _description = "Female Obstetrics History"
 
-    patient = fields.Many2one(comodel_name='ec.medical.patient', string='Patient') # Why it is required??
-    consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
+    patient_id = fields.Many2one(comodel_name='ec.medical.patient', string='Patient') # Why it is required??
+    first_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
 
     @api.depends('dob')
     @api.onchange('dob')

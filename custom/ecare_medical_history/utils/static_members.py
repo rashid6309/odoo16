@@ -265,3 +265,13 @@ class StaticMember:
         ('adequate', 'Adequate'),
         ('inadequate', 'Inadequate'),
     ]
+
+    MEDICAL_THYROID = [
+        ('Hypothyroidism', 'Hypothyroidism'),
+        ('Hyperthyroidism', 'Hyperthyroidism')
+    ]
+
+    DIABETES_TYPE = [
+        ('IDDM', 'IDDM or type 1'),
+        ('NIDDM', 'NIDDM or type 2')
+    ]

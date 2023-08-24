@@ -24,6 +24,7 @@ from . import female_systemic_examination
 from . import male_genital_examination
 from . import male_physical_examination
 from . import male_systematic_exam
+from . import male_medical_history
 from . import male_family_history
 
 # First consultation dependent on all

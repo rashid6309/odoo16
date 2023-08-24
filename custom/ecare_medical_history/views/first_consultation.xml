@@ -45,8 +45,10 @@
 								</div>
 							</div>
 							<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
+								<field name="patient_id"/>
 								<tree editable="top">
 									<field name="obs_history_ids"
+										   context="{'default_patient_id': patient_id}"
 										   nolabel="1" editable="top">
 									</field>
 								</tree>
@@ -194,11 +196,11 @@
 											<button type="action" style="float:right;"
 													class="btn-primary"
 													name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
-													context="{'first_consultation_id':id}"
+													context="{'default_female_consultation_id':id}"
 													string="Add" target="current"/>
 										</div>
 										<separator string="Details of Surgery" style="font-size:small" colspan="6" />
-										<field class="custom-scrollbar opd-notes-height" name="pat_procedures" mode="kanban" nolabel="1"
+										<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
 											   string="Patient Procedures" create="false"/>
 									</group>
 								</group>

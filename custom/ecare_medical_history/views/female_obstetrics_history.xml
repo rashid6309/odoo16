@@ -6,7 +6,9 @@
             <field name="model">ec.obstetrics.history</field>
             <field name="arch" type="xml">
                 <tree string="Female Obstetrics History">
-                    <field name="patient"/>
+                    <field name="patient_id"
+                           readonly="1" force_save="True"/>
+
                     <field name="baby_name"/>
                     <field name="pob"/>
                     <field name="dob"/>
