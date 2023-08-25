@@ -105,6 +105,22 @@
             <field name="implied_ids" eval="[(4, ref('ecare_appointment.group_appointment_administrator'))]"/>
         </record>
 
+        <!-- Products menu -->
+        <record id="module_ecare_user_invoicing_products" model="ir.module.category">
+            <field name="name">Products</field>
+            <field name="parent_id" ref="ecare_user_management.module_ecare_invoicing_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <!-- Invoicing menu -->
+        <record id="group_ecare_invoicing_products" model="res.groups">
+            <field name="name">Enable</field>
+            <field name="category_id" ref="ecare_user_management.module_ecare_user_invoicing_products"/>
+            <field name="comment">Products Menu Access</field>
+            <field name="implied_ids" eval="[(4, ref('account.group_account_manager'))]"/>
+        </record>
+
 
     </data>
 </odoo>

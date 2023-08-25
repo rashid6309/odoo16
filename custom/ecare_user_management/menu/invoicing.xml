@@ -30,6 +30,13 @@
                   sequence="330"
         />
 
+        <menuitem id="ecare_appointment.ec_configuration_submenu_invoices"
+                  name="Products"
+                  parent="ecare_invoicing.ec_main_customers"
+                  groups="ecare_user_management.group_ecare_invoicing_products"
+                  sequence="5000"
+        />
+
 
 
     </data>
