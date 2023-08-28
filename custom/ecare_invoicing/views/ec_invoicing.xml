@@ -38,6 +38,9 @@
                     <field name="refund_amount"/>
                     <field name="payment_amount"/>
                 </field>
+                <field name="state" position="after">
+                    <field name="write_uid"/>
+                </field>
             </field>
         </record>
 

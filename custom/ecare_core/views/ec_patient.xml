@@ -72,29 +72,23 @@
                                 </p>
 
                                 <hr/>
-                                <group>
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 50%; vertical-align: baseline;">
+                                            <span style="font-weight: 650;">Wife:</span> <field name="wife_name"/><br/>
+                                            <t t-if="mobile_wife != ''">
+                                                <span style="font-weight: 650;">Mobile:</span> <field name="mobile_wife"/>
+                                            </t>
+                                        </td>
+                                        <td style="width: 50%; vertical-align: baseline;">
+                                            <span style="font-weight: 650;">Husband:</span> <field name="husband_name"/><br/>
+                                            <t t-if="mobile_husband != ''">
+                                                <span style="font-weight: 650;">Mobile:</span> <field name="mobile_husband"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </table>
 
-                                    <group style="width: 50%; float:left;">
-                                        <span style="font-weight: 650;">Wife:</span> <field name="wife_name"/>
-
-                                        <br/>
-                                        <t t-if="mobile_wife != ''">
-                                            <span style="font-weight: 650;">Mobile:</span> <field name="mobile_wife"/>
-                                        </t>
-                                    </group>
-
-                                    <group style="width: 50%;">
-                                        <span style="font-weight: 650;">Husband:</span> <field name="husband_name"/>
-
-                                        <br/>
-                                        <t t-if="mobile_husband != ''">
-                                            <span style="font-weight: 650;">Mobile:</span><field name="mobile_husband"/>
-                                        </t>
-
-                                        <br/>
-                                    </group>
-
-                                </group>
                             </div>
                         </t>
                     </templates>
@@ -252,7 +246,7 @@
                             <field name="yom" readonly="1" force_save="1"/>
                         </group>
                         <group string="Preferred Contact Details" name="preferred_contact_detail">
-                                <field name="preferred_mobile" required="False"/>
+                            <field name="preferred_mobile" required="False"/>
                         </group>
                         <group string="Address">
                             <field name="type"
