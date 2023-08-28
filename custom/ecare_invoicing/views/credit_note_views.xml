@@ -14,6 +14,9 @@
 
                 <field name="activity_ids" position="replace"/>
                 <field name="amount_untaxed_signed" position="replace"/>
+                <field name="state" position="after">
+                    <field name="write_uid"/>
+                </field>
             </field>
         </record>
 
