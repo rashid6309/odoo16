@@ -207,6 +207,7 @@
 											Solution:
 												1. We can make some field required on the first consultation, i.e., name so that user creates the record first
 												2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
+                                            	3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
 												-->
 
 											<button type="action" style="float:right;"
@@ -756,6 +757,7 @@
                                         	0. If fixing this fix the above one as well. ** Test **
                                             1. We can make some field required on the first consultation, i.e., name so that user creates the record first
                                             2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
+                                            3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
                                             -->
 										<div style="margin-top: -7%;">
 											<button type="action" style="float:right;"

@@ -1,4 +1,5 @@
 from odoo import api, models, fields, _
+from odoo.exceptions import ValidationError
 
 
 class FirstConsultation(models.Model):
@@ -73,3 +74,34 @@ class FirstConsultation(models.Model):
 
     patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                  required=True)
+
+    ''' View methods '''
+
+    @api.model
+    def action_open_patient_first_consultation(self, patient_id: int):
+        if not patient_id:
+            raise ValidationError("Please select patient.")
+
+        first_consultation_id = self.env['ec.first.consultation'].search(domain=[('patient_id', '=', patient_id)])
+
+        value = {}
+        if first_consultation_id:
+            value = {'res_id': first_consultation_id.id}
+
+        context = self.env.context.copy()
+
+        context.update({
+            'default_patient_id': patient_id,
+        })
+        action = {
+            "name": _("First Consultation"),
+            "type": 'ir.actions.act_window',
+            "res_model": 'ec.first.consultation',
+            'view_mode': 'form',
+            'view_id': self.env.ref('ecare_medical_history.ec_medical_first_consultation_form_view').id,
+            "context": context,
+            "target": 'current',
+        }
+
+        action.update(value)
+        return action

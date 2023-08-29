@@ -30,3 +30,5 @@ from . import male_family_history
 # First consultation dependent on all
 from . import first_consultation
 
+# Timeline
+from . import patient_timeline
