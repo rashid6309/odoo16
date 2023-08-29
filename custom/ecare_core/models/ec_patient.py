@@ -1,6 +1,9 @@
 from odoo import models, api, fields, _
 from odoo.exceptions import AccessError, UserError
+from odoo import tools
+from odoo import modules
 
+import base64
 import datetime
 import requests, json
 
@@ -149,9 +152,15 @@ class EcarePatient(models.Model):
         ('husband_cnic_uniq', 'unique(husband_nic)', 'The husband must be unique !'),
     ]
 
-    def update_write_date(self):
-        """ This method is called to update the write_date so that patients gets in the view at first """
-        self.write_date = datetime.datetime.now()
+    ''' Override methods '''
+
+    @api.model
+    def default_get(self, default_fields):
+        res = super(EcarePatient, self).default_get(default_fields)
+        res['husband_image']  = self._get_default_husband_avatar()
+        res['image_1920']  = self._get_default_female_avatar()
+        return res
+
 
     def write(self, vals):
         """
@@ -190,6 +199,22 @@ class EcarePatient(models.Model):
 
         return super(EcarePatient, self).write(vals)
 
+    ''' XXX Overloaded methods ends here XXX '''
+
+    def _get_default_avatar(self, image_path):
+        return base64.b64encode(open(image_path, 'rb').read())
+
+    def _get_default_husband_avatar(self):
+        image_path = modules.get_module_resource('ecare_core', 'static/img', 'male_avatar.png')
+        return self._get_default_avatar(image_path)
+
+    def _get_default_female_avatar(self):
+        image_path = modules.get_module_resource('ecare_core', 'static/img', 'female_avatar.png')
+        return self._get_default_avatar(image_path)
+
+    def update_write_date(self):
+        """ This method is called to update the write_date so that patients gets in the view at first """
+        self.write_date = datetime.datetime.now()
 
     @api.depends('wife_dob')
     @api.onchange('wife_dob')
