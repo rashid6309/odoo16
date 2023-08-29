@@ -71,7 +71,5 @@ class FirstConsultation(models.Model):
     ''' Normal attributes '''
     name = fields.Char(string='Name')
 
-    ''' One2Many'''
-
     patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                  required=True)

@@ -118,16 +118,16 @@
 							</div>
 
 
-							<div class="d-flex scroll-to card-header" id="medical_surgical_section_link">
+							<div class="d-flex scroll-to card-header" id="female_medical_surgical_section_link">
 								<div class="col-6">
-									<a data-bs-toggle="collapse" data-bs-target="#medical_surgical_section" href="#">
+									<a data-bs-toggle="collapse" data-bs-target="#female_medical_surgical_section" href="#">
 										<h4 class="mt-2 mb-0">Surgical and Medical History</h4>
 									</a>
 								</div>
 								<div class="col-6 text-right" style="margin-top:9px">
 								</div>
 							</div>
-							<div class="card-block mb-5 pl-4 collapse" id="medical_surgical_section">
+							<div class="card-block mb-5 pl-4 collapse" id="female_medical_surgical_section">
 								<group col="12" class="mt-0">
 									<group string="Medical History" col="6" colspan="6" class="mt-0">
 										<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
@@ -135,16 +135,22 @@
 										<field name="female_adrenal_pr" placeholder="Add Details" colspan="6" />
 										<!-- <field name="allergies_pr" /> -->
 										<field name="female_adrenal_pr_d" string="" placeholder="Since" colspan="6" />
-										<field name="female_ant_pr" placeholder="" colspan="6" />
+										<field name="female_ant_pr" placeholder="" colspan="6"
+											   widget="radio" options="{'horizontal': True}"/>
+
 										<field name="female_ant_pr_d" string="" colspan="6" placeholder="Since" />
 										<field name="female_aut_pr" placeholder="Add Details" colspan="6" />
 										<field name="female_aut_pr_d" string="" colspan="6" placeholder="Since" />
-										<field name="female_btransfusion_pr" placeholder="" colspan="6" />
+										<field name="female_btransfusion_pr" placeholder="" colspan="6"
+											   widget="radio" options="{'horizontal': True}"/>
+
 										<field name="female_btransfusion_pr_d" string="" colspan="6" placeholder="Since" />
 										<field name="female_complications_pr" colspan="6" placeholder="Complications" string="" default=" " readonly="0" attrs="{'readonly': [('female_btransfusion_pr', 'not in',['y'])]}" />
 										<field name="female_car_pr" placeholder="Add Details" colspan="6" />
 										<field name="female_car_pr_d" string="" colspan="6" placeholder="Since" />
-										<field name="female_diabetes_select_pr" placeholder="" colspan="6" string="Diabetes" />
+										<field name="female_diabetes_select_pr" placeholder="" colspan="6" string="Diabetes"
+											   widget="radio" options="{'horizontal': True}"/>
+
 										<field name="female_diabetes_pr" placeholder="" colspan="6" string="" />
 										<field name="female_diabetes_pr_d" string="" colspan="6" placeholder="Since" />
 										<field name="female_dvt_pr" placeholder="Add Details" colspan="6" />
@@ -183,7 +189,9 @@
 										<field name="female_alcohol_pr_d" string="" colspan="6" placeholder="Since" />
 										<field name="female_ske_pr" placeholder="Add Details" colspan="6" />
 										<field name="female_ske_pr_d" string="" colspan="6" placeholder="Since" />
-										<field name="female_thy_select_pr" placeholder="" colspan="6" string="Thyroid" />
+										<field name="female_thy_select_pr" placeholder="" colspan="6" string="Thyroid"
+											   widget="radio" options="{'horizontal': True}"/>
+
 										<field name="female_thy_pr" placeholder="Add Details" colspan="6" string="" />
 										<field name="female_thy_pr_d" string="" colspan="6" placeholder="Since" />
 										<field name="female_uinfact_pr" placeholder="Add Details" colspan="6" />
@@ -193,10 +201,18 @@
 									</group>
 									<group string="Surgical History" class="mt-0" col="6" colspan="6">
 										<div style="margin-top: -7%;">
+											<!-- BUG -->
+											<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
+											<!--
+											Solution:
+												1. We can make some field required on the first consultation, i.e., name so that user creates the record first
+												2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
+												-->
+
 											<button type="action" style="float:right;"
 													class="btn-primary"
 													name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
-													context="{'default_female_consultation_id':id}"
+													context="{'default_female_consultation_id': id}"
 													string="Add" target="current"/>
 										</div>
 										<separator string="Details of Surgery" style="font-size:small" colspan="6" />
@@ -651,6 +667,111 @@
 								</div>
 								<div class="col-6 text-right" style="margin-top:9px"/>
 							</div>
+
+
+							<div class="d-flex scroll-to card-header" id="male_medical_surgical_section_link">
+								<div class="col-6">
+									<a data-bs-toggle="collapse" data-bs-target="#male_medical_surgical_section" href="#">
+										<h4 class="mt-2 mb-0">Surgical and Medical History</h4>
+									</a>
+								</div>
+								<div class="col-6 text-right" style="margin-top:9px">
+								</div>
+							</div>
+							<div class="card-block mb-5 pl-4 collapse" id="male_medical_surgical_section">
+								<group col="12" class="mt-0">
+									<group string="Medical History" col="6" colspan="6" class="mt-0">
+										<!-- TODO -->
+										<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
+										<field name="male_adrenal_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_adrenal_pr_d" string="" placeholder="Since" colspan="6" />
+										<field name="male_ant_pr" placeholder="" colspan="6"
+											   widget="radio" options="{'horizontal': True}"/>
+
+										<field name="male_ant_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_aut_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_aut_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_btransfusion_pr" placeholder="" colspan="6"
+											   widget="radio" options="{'horizontal': True}"/>
+
+										<field name="male_btransfusion_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_complications_pr" colspan="6" placeholder="Complications" string="" default=" " readonly="0" attrs="{'readonly': [('female_btransfusion_pr', 'not in',['y'])]}" />
+										<field name="male_car_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_car_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_diabetes_select_pr" placeholder="" colspan="6" string="Diabetes"
+											   widget="radio" options="{'horizontal': True}"/>
+
+										<field name="male_diabetes_pr" placeholder="" colspan="6" string="" />
+										<field name="male_diabetes_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_dvt_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_dvt_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_gal_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_gal_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_gas_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_gas_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_gyn_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_gyn_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_hae_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_hae_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_hdisease_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_hdisease_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_htension_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_htension_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_int_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_int_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_janduice_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_janduice_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_liver_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_liver_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_low_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_low_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_mal_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_mal_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_neu_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_neu_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_renal_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_renal_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_res_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_res_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_saa_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_saa_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_alcohol_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_alcohol_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_ske_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_ske_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_thy_select_pr" placeholder="" colspan="6" string="Thyroid"
+											   widget="radio" options="{'horizontal': True}"/>
+
+										<field name="male_thy_pr" placeholder="Add Details" colspan="6" string="" />
+										<field name="male_thy_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_uinfact_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_uinfact_pr_d" string="" colspan="6" placeholder="Since" />
+										<field name="male_others_pr" placeholder="Add Details" colspan="6" />
+										<field name="male_others_pr_d" string="" colspan="6" placeholder="Since" />
+									</group>
+									<group string="Surgical History" class="mt-0" col="6" colspan="6">
+										<!-- BUG -->
+										<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
+										<!--
+                                        Solution:
+                                        	0. If fixing this fix the above one as well. ** Test **
+                                            1. We can make some field required on the first consultation, i.e., name so that user creates the record first
+                                            2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
+                                            -->
+										<div style="margin-top: -7%;">
+											<button type="action" style="float:right;"
+													class="btn-primary"
+													name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
+													context="{'default_male_consultation_id':id}"
+													string="Add" target="current"/>
+										</div>
+										<separator string="Details of Surgery" style="font-size:small" colspan="6" />
+										<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
+											   string="Patient Procedures" create="false"/>
+									</group>
+								</group>
+							</div>
+
 
 							<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_male_section">
 								<group>
