@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-        <record model="ir.ui.view" id="view_ec_medical_obstetrics_history_tree">
+
+        <record id="ec_medical_obstetrics_history_tree_view" model="ir.ui.view">
             <field name="name">ec.obstetrics.history.tree</field>
             <field name="model">ec.obstetrics.history</field>
             <field name="arch" type="xml">
-                <tree string="Female Obstetrics History">
+                <tree>
                     <field name="patient_id"
-                           readonly="1" force_save="True"/>
+                           readonly="1"/>
+
+                    <field name="first_consultation_id"/>
 
                     <field name="baby_name"/>
                     <field name="pob"/>
@@ -16,7 +19,7 @@
                     <field name="baby_notes"/>
                     <field name="dop"/>
                     <field name="mod"/>
-<!--                    <field name="indication"/>-->
+                    <!--                    <field name="indication"/>-->
                     <field name="other_indications"/>
                     <field name="complications"/>
                     <field name="comp_del"/>
@@ -33,5 +36,6 @@
                 </tree>
             </field>
         </record>
+
     </data>
 </odoo>
