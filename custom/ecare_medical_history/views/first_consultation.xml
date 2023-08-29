@@ -681,7 +681,6 @@
 							<div class="card-block mb-5 pl-4 collapse" id="male_medical_surgical_section">
 								<group col="12" class="mt-0">
 									<group string="Medical History" col="6" colspan="6" class="mt-0">
-										<!-- TODO -->
 										<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
 										<field name="male_adrenal_pr" placeholder="Add Details" colspan="6" />
 										<field name="male_adrenal_pr_d" string="" placeholder="Since" colspan="6" />
