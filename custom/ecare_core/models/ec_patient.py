@@ -205,7 +205,13 @@ class EcarePatient(models.Model):
     ''' XXX Overloaded methods ends here XXX '''
 
     def _get_default_avatar(self, image_path):
-        return base64.b64encode(open(image_path, 'rb').read())
+        encoded = None
+        with open(image_path, 'rb') as file:
+            read_file = file.read()
+            encoded = base64.b64encode(read_file)
+            file.close()
+
+        return encoded
 
     def _get_default_husband_avatar(self, avatar_id):
         avatar_name = f'{avatar_id}.svg'
@@ -492,17 +498,25 @@ class EcarePatient(models.Model):
 
     @api.model
     def change_images_with_avatar(self):
-        female_images = self.search(domain=[('image_1920', '=', None)])
+        female_images = self.search(domain=[('image_1920', '=', None)], order="id desc")
 
+        i = 0
         for f_image in female_images:
             avatar_id = randint(0, 9)
             _logger.info(f"id of the couple: {f_image.id}")
             f_image.image_1920 = f_image._get_default_female_avatar(avatar_id)
+            i +=1
+            if i > 3:
+                break
 
-        male_images = self.search(domain=[('husband_image', '=', None)])
+        i = 0
+        male_images = self.search(domain=[('husband_image', '=', None)], order="id desc")
         for m_image in male_images:
             avatar_id = randint(1, 10)
             _logger.info(f"id of the couple: {m_image.id}")
             m_image.husband_image = m_image._get_default_husband_avatar(avatar_id)
+            i +=1
+            if i > 2:
+                break
 
         _logger.info("Images uploaded success fully")
