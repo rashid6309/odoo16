@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="ir_cron_upload_couple_images" model="ir.cron">
+            <field name="name">Ecare Couple Profile: upload missing images with avatars</field>
+            <field name="model_id" ref="ecare_core.model_ec_medical_patient"/>
+            <field name="state">code</field>
+            <field name="active" eval="False"/>
+            <field name="code">model.change_images_with_avatar()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+    </data>
+</odoo>
