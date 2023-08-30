@@ -15,15 +15,20 @@
     'demo': [],
     'data': [
         'security/user_management.xml',
-        'security/document_managment.xml',
+        'security/document_management.xml',
+        'security/invoicing.xml',
         'security/ir.model.access.csv',
 
         # Menu's
         'menu/menu.xml',
         'menu/appointment.xml',
         'menu/configuration.xml',
-        'menu/customer.xml',
+        'menu/invoicing.xml',
         'menu/report.xml',
+
+        # Views
+        'views/account_move.xml',
+
     ],
     'assets': {
         'web.assets_backend': [
