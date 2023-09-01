@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="module_ecare_invoicing_parent_category" model="ir.module.category">
+            <field name="name">Healthcare: Invoicing</field>
+            <field name="sequence">100</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <!-- Allow Payments Menu --> <!-- Pending -->
+
+        <record id="module_ecare_user_invoicing_payment" model="ir.module.category">
+            <field name="name">Payments</field>
+            <field name="parent_id" ref="ecare_user_management.module_ecare_invoicing_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <record id="group_customer_invoicing_payment_allow" model="res.groups">
+            <field name="name">Allow</field>
+            <field name="category_id" ref="ecare_user_management.module_ecare_user_invoicing_payment"/>
+            <field name="comment">Create Refund Menu Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_appointment.group_appointment_administrator'))]"/>
+        </record>
+
+        <!-- Allow Refund Payment --> <!-- Pending -->
+
+        <record id="module_ecare_user_invoicing_refund_notes" model="ir.module.category">
+            <field name="name">Refund Notes</field>
+            <field name="parent_id" ref="ecare_user_management.module_ecare_invoicing_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <record id="group_customer_invoicing_refund_notes_allow" model="res.groups">
+            <field name="name">Allow</field>
+            <field name="category_id" ref="ecare_user_management.module_ecare_user_invoicing_refund_notes"/>
+            <field name="comment">Refund Menu Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_appointment.group_appointment_administrator'))]"/>
+        </record>
+
+
+        <!-- Allow Refund Payment --> <!-- Pending -->
+
+        <record id="module_ecare_user_invoicing_rate_list" model="ir.module.category">
+            <field name="name">Rate List</field>
+            <field name="parent_id" ref="ecare_user_management.module_ecare_invoicing_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <record id="group_customer_invoicing_rate_list_allow" model="res.groups">
+            <field name="name">Allow</field>
+            <field name="category_id" ref="ecare_user_management.module_ecare_user_invoicing_rate_list"/>
+            <field name="comment">Create Rate List Menu Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_appointment.group_appointment_administrator'))]"/>
+        </record>
+
+        <!-- Register Payment -->
+
+        <record id="module_ecare_user_invoicing_register_payment_allow" model="ir.module.category">
+            <field name="name">Register Payment</field>
+            <field name="parent_id" ref="ecare_user_management.module_ecare_invoicing_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <record id="group_customer_allow_register_payment" model="res.groups">
+            <field name="name">Allow</field>
+            <field name="category_id" ref="ecare_user_management.module_ecare_user_invoicing_register_payment_allow"/>
+            <field name="comment">Register Payment Menu Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_appointment.group_appointment_administrator'))]"/>
+        </record>
+
+        <!-- Allow refund -->
+
+        <record id="module_ecare_user_invoicing_create_refund" model="ir.module.category">
+            <field name="name">Create Refund</field>
+            <field name="parent_id" ref="ecare_user_management.module_ecare_invoicing_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <record id="group_customer_create_refund_allow" model="res.groups">
+            <field name="name">Allow</field>
+            <field name="category_id" ref="ecare_user_management.module_ecare_user_invoicing_create_refund"/>
+            <field name="comment">Create Refund Menu Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_appointment.group_appointment_administrator'))]"/>
+        </record>
+
+        <!-- Invoicing menu -->
+        <record id="module_ecare_user_invoicing_category" model="ir.module.category">
+            <field name="name">Invoices</field>
+            <field name="parent_id" ref="ecare_user_management.module_ecare_invoicing_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <!-- Invoicing menu -->
+        <record id="group_customer_menu" model="res.groups">
+            <field name="name">Enable</field>
+            <field name="category_id" ref="ecare_user_management.module_ecare_user_invoicing_category"/>
+            <field name="comment">Customers Menu Access</field>
+            <field name="implied_ids" eval="[(4, ref('ecare_appointment.group_appointment_administrator'))]"/>
+        </record>
+
+        <!-- Products menu -->
+        <record id="module_ecare_user_invoicing_products" model="ir.module.category">
+            <field name="name">Products</field>
+            <field name="parent_id" ref="ecare_user_management.module_ecare_invoicing_parent_category"/>
+            <field name="sequence">103</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <!-- Invoicing menu -->
+        <record id="group_ecare_invoicing_products" model="res.groups">
+            <field name="name">Enable</field>
+            <field name="category_id" ref="ecare_user_management.module_ecare_user_invoicing_products"/>
+            <field name="comment">Products Menu Access</field>
+            <field name="implied_ids" eval="[(4, ref('account.group_account_manager'))]"/>
+        </record>
+
+
+    </data>
+</odoo>
