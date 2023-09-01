@@ -4,10 +4,8 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
 class MedicalPhysicalExamination(models.Model):
-    _name = "ec.medical.physical.examination"
+    _name = "ec.physical.examination"
     _description = "Patient Physical Examination"
-
-    consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
 
     female_weight = fields.Char('Weight')
     female_height = fields.Char('Height')

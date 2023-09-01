@@ -45,14 +45,5 @@
         </record>
 
 
-        <!-- Menu-item for patient -->
-
-        <menuitem id="ec_medical_patient_menu"
-                  name="Patient"
-                  parent="ec_medical_root"
-                  sequence="50"
-                  action="ecare_medical_history.ec_medical_patient_action"/>
-
-
     </data>
 </odoo>

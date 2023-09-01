@@ -18,18 +18,26 @@
         'security/ir.model.access.csv',
 
         # Menu
-        'data/menus.xml',
         'data/family_history_data.xml',
 
         # Reports here
 
 
         # Views
-        'views/first_consultation.xml',
         'views/female_obstetrics_history.xml',
 
         'views/ec_patient.xml',
         'views/ec_procedure.xml',
+        'views/lab_history.xml',
+
+        # Timeline
+        'views/patient_timeline.xml',
+
+        # This Views should be below after all of its views.
+        'views/first_consultation.xml',
+
+        # This should be called at the end
+        'data/menus.xml',
 
     ],
     'assets': {

@@ -2,15 +2,16 @@ from odoo import api, models, fields, _
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
-class MedicalHistory(models.Model):
-    _name = "ec.medical.history"
-    _description = "Medical History"
-
-    consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
+class FemaleMedicalHistory(models.Model):
+    _name = "ec.female.medical.history"
+    _description = "Medical (Female) History"
 
     # Female-specific fields with the 'female_' prefix
     female_adrenal_pr = fields.Char('Adrenal')
-    female_ant_pr = fields.Selection([('Yes', 'Yes'), ('No', 'No')], string='Anti-phospholipid Syndrome')
+
+    female_ant_pr = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                     string='Anti-phospholipid Syndrome')
+
     female_aut_pr = fields.Char('Autoimmune Diseases')
     female_car_pr = fields.Char('Cardiac')
     female_gal_pr = fields.Char('Gall Bladder')
@@ -26,16 +27,19 @@ class MedicalHistory(models.Model):
     female_res_pr = fields.Char('Respiratory')
     female_ske_pr = fields.Char('Skeletal')
     female_thy_pr = fields.Text('Thyroid Pr')
-    female_thy_select_pr = fields.Selection([('Hypothyroidism', 'Hypothyroidism'), ('Hyperthyroidism', 'Hyperthyroidism')], 'Thyroid')
+    female_thy_select_pr = fields.Selection(selection=StaticMember.MEDICAL_THYROID,
+                                            string='Thyroid')
     female_hdisease_pr = fields.Char(string='Heart Disease')
     female_uinfact_pr = fields.Char(string='Urinary Infections')
     female_htension_pr = fields.Char(string='Hypertension Pr')
     female_allergies_pr = fields.Text(string='Allergies Pr')
-    female_btransfusion_pr = fields.Selection(selection=[('Yes', 'Yes'), ('No', 'No')], string='Blood Transfusion')
+    female_btransfusion_pr = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                              string='Blood Transfusion')
     female_janduice_pr = fields.Char(string='Jaundice')
     female_complications_pr = fields.Text(string='Complications')
     female_diabetes_pr = fields.Text(string='Diabetes Pr')
-    female_diabetes_select_pr = fields.Selection(selection=[('IDDM', 'IDDM or type 1'), ('NIDDM', 'NIDDM or type 2')], string='Diabetes')
+    female_diabetes_select_pr = fields.Selection(selection=StaticMember.DIABETES_TYPE,
+                                                 string='Diabetes')
     female_dvt_pr = fields.Char(string='DVT')
     female_saa_pr = fields.Char(string='Smoking')
     female_alcohol_pr = fields.Char(string='Alcohol')

@@ -2,10 +2,11 @@ from odoo import models, fields
 
 
 class PatientProcedures(models.Model):
-    _name = 'ec.medical.patient.procedures'
-    _description = 'Patient Procedures'
+    _name = 'ec.patient.procedures'
+    _description = 'Patient (Common) Procedures'
 
-    procedure_id = fields.Many2one('ec.first.consultation')
+    female_consultation_id = fields.Many2one(comodel_name='ec.first.consultation')
+    male_consultation_id = fields.Many2one(comodel_name='ec.first.consultation')
 
     details = fields.Char('Details')
     date_on = fields.Date('Date ON')

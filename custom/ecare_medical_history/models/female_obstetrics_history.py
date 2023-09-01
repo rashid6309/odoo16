@@ -1,4 +1,3 @@
-
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError, ValidationError
 
@@ -11,8 +10,8 @@ class FemaleObstetricsHistory(models.Model):
     _name = 'ec.obstetrics.history'
     _description = "Female Obstetrics History"
 
-    patient = fields.Many2one(comodel_name='ec.medical.patient', string='Patient')
-    consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
+    patient_id = fields.Many2one(comodel_name='ec.medical.patient', string='Patient') # Why it is required??
+    first_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
 
     @api.depends('dob')
     @api.onchange('dob')
@@ -39,6 +38,8 @@ class FemaleObstetricsHistory(models.Model):
                     r.age = str(int(years)) + 'Y ' + str(int(months)) + 'M ' + str(day) + 'D'
                 else:
                     r.age = str(int(years)) + ' Years'
+            else:
+                r.age = None
 
     baby_name = fields.Char(string='Baby Name')
     pob = fields.Char(string="Birth Place",
@@ -67,13 +68,9 @@ class FemaleObstetricsHistory(models.Model):
                                        ], string='Labour')
     legacy_system_ID = fields.Char('Legacy System Id', force_save=True)
 
-    def name_get(self):
-        return [(self.id, 'Obstetrics History')]
-
-    @api.constrains('dob', )
-    @api.onchange('dob')
-    def _check_dob_date(self):
-        for record in self:
-            if record.dob and record.dob > fields.Date.today():
-                raise ValidationError(_(
-                    "Date of Birth can't be greater than current date!"))
+    # @api.constrains('dob', )
+    # def _check_dob_date(self):
+    #     for record in self:
+    #         if record.dob and record.dob > fields.Date.today():
+    #             raise ValidationError(_(
+    #                 "Date of Birth can't be greater than current date!"))

@@ -158,12 +158,16 @@ class StaticMember:
         ('none', 'None'),
     ]
 
-    SIDE = [('right', "Right"),
-            ('left', "Left")]
+    SIDE = [
+        ('right', "Right"),
+        ('left', "Left"),
+        ]
 
-    SIZE = [('normal', "Normal"),
-            ('small', "Small"),
-            ('large', "Large")]
+    SIZE = [
+        ('normal', "Normal"),
+        ('small', "Small"),
+        ('large', "Large")
+        ]
 
     CHOICE_YES_NO = [('yes', "Yes"),
                      ('no', "No")]
@@ -240,3 +244,34 @@ class StaticMember:
                    ('distorted', 'Distorted'),
                    ('triple_echo', 'Triple Echo'),
                    ]
+
+    SX_ISSUES =[
+        ('aparunea', 'Aparunea'),
+        ('dysparunea', 'Dysparunea'),
+        ('none', 'None'),
+    ]
+
+    CN_TYPES = [
+        ('none', 'None'),
+        ('withdrawal', 'Withdrawal'),
+        ('condom', 'Condom'),
+        ('foam', 'Foam'),
+        ('ocp', 'OCP'),
+        ('injectable', 'Injectable'),
+        ('iucd', 'IUCD'),
+    ]
+
+    SX_PERFORMANCE = [
+        ('adequate', 'Adequate'),
+        ('inadequate', 'Inadequate'),
+    ]
+
+    MEDICAL_THYROID = [
+        ('Hypothyroidism', 'Hypothyroidism'),
+        ('Hyperthyroidism', 'Hyperthyroidism')
+    ]
+
+    DIABETES_TYPE = [
+        ('IDDM', 'IDDM or type 1'),
+        ('NIDDM', 'NIDDM or type 2')
+    ]
