@@ -153,6 +153,8 @@ var EcareServicesReporting = AbstractAction.extend({
                  self.total_pages = res['total_pages'];
                  self.active_page = res['active_page'];
                  self.summary_block = res['summary_block'];
+                 self.product_wise_summary_block = res['product_wise_summary_block'];
+                 console.log(self.product_wise_summary_block);
                  self.date_picker_field = res['date_picker_field'];
                  self.date_picker_field_end = res['date_picker_field_end'];
                  localStorage['services_date'] = res['date_picker_field'];
@@ -221,6 +223,8 @@ var EcareServicesReporting = AbstractAction.extend({
                  self.selected_product_id = res['selected_product_id'];
                  self.date_picker_field = res['date_picker_field'];
                  self.date_picker_field_end = res['date_picker_field_end'];
+                 self.product_wise_summary_block = res['product_wise_summary_block'];
+                 console.log(self.product_wise_summary_block);
                  localStorage['services_date'] = res['date_picker_field'];
                  localStorage['services_date_end'] = res['date_picker_field_end'];
 
@@ -276,6 +280,8 @@ var EcareServicesReporting = AbstractAction.extend({
              self.total_pages = res['total_pages'];
              self.active_page = res['active_page'];
              self.summary_block = res['summary_block'];
+             self.product_wise_summary_block = res['product_wise_summary_block'];
+             console.log(self.product_wise_summary_block);
              self.date_picker_field = res['date_picker_field'];
              self.date_picker_field_end = res['date_picker_field_end'];
 
