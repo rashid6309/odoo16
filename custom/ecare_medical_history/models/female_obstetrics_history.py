@@ -1,10 +1,14 @@
 from odoo import api, models, fields, _
-from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 from datetime import date, datetime
+'''
 
+TODO: Review attributes name
+REVIEW FULL FILE
+
+'''
 
 class FemaleObstetricsHistory(models.Model):
     _name = 'ec.obstetrics.history'
@@ -16,13 +20,15 @@ class FemaleObstetricsHistory(models.Model):
     @api.depends('dob')
     @api.onchange('dob')
     def _get_age(self):
+        '''
+        REVIEW
+        :return:
+        '''
         for r in self:
             if r.dob:
                 bdate = datetime.strptime(str(r.dob), "%Y-%m-%d").date()
                 today = date.today()
-                # if bdate > today:
-                #     r.dob = today
-                #     raise ValidationError('Date of Birth should be lesser than or equal to today')
+
                 diffdate = today - bdate
                 years = diffdate.days / 365
                 formonth = diffdate.days - (int(years) * 365.25)
@@ -63,6 +69,9 @@ class FemaleObstetricsHistory(models.Model):
     alive = fields.Selection(string='Alive', selection=StaticMember.ALIVE)
     feed = fields.Selection(string='Feed', selection=StaticMember.FEED)
     state = fields.Boolean(string='', default=True)
+    '''
+    TODO: MOVE to Static
+    '''
     labour_history = fields.Selection([('spontaneous', 'Spontaneous'),
                                        ('induced', 'Induced'),
                                        ], string='Labour')

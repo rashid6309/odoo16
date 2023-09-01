@@ -5,6 +5,12 @@ class FemaleFamilyHistory(models.Model):
     _name = 'ec.female.family.history'
     _description = 'Family (Female) History'
 
+    '''
+    # TODO: Change relation name with "ec_female_family_history_diabetes_rel"
+    # For male:
+    # TODO: Change relation name with "ec_male_family_history_diabetes_rel"
+    
+    '''
     # Female Family History Fields
     female_diabetes_ids = fields.Many2many('ec.family.relation.list', 'fhx_diabetes', 'name', 'diabetes_id',
                                        string='Diabetes')

@@ -1,6 +1,9 @@
 from odoo import models, fields, _
 from odoo.exceptions import ValidationError
 
+''' Not required Specify reason  '''
+
+
 class EcMedicalPatient(models.Model):
     _inherit = "ec.medical.patient"
 

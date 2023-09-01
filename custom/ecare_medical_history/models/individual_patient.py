@@ -6,14 +6,22 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from logging import getLogger
 _logger = getLogger(__name__)
 
+''' FIXME: RENAME model name '''
+''' Couple detail or more meaningful --> "ec.patient.couple.detail" '''
+
+''' Don't use but we will see it later if required. '''
+
 
 class SinglePatient(models.Model):
     _name = "ec.individual.patient"
+    _description = ""
+    # _rec_name = "gender"
 
+    ''' FIXME: Rename key to "GENDER" '''
     key = fields.Selection(selection=StaticMember.GENDER_1,
                            required=True,)
 
-    name = fields.Char(string="Name")
+    name = fields.Char(string="Name") # Not required
 
     patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                  required=True,

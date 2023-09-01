@@ -1,5 +1,9 @@
 from odoo import models, fields
 
+"""
+
+RENAME: "rel" name for all tables
+"""
 
 class MaleFamilyHistory(models.Model):
     _name = 'ec.male.family.history'

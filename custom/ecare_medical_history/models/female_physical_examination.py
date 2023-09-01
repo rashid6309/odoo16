@@ -5,7 +5,7 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 class MedicalPhysicalExamination(models.Model):
     _name = "ec.physical.examination"
-    _description = "Patient Physical Examination"
+    _description = "Patient (Female) Physical Examination"
 
     female_weight = fields.Char('Weight')
     female_height = fields.Char('Height')

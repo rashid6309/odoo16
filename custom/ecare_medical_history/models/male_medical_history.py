@@ -1,6 +1,11 @@
 from odoo import api, models, fields, _
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
+''' 
+    
+    Rename: all the names to the specific
+    
+'''
 
 class MaleMedicalHistory(models.Model):
     _name = "ec.male.medical.history"

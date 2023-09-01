@@ -23,6 +23,9 @@ class GenitalExamination(models.Model):
     testicular_size_left = fields.Selection(selection=StaticMember.SIZE, )
 
     testicular_size_mobility = fields.Selection(selection=StaticMember.CHOICE_YES_NO, )
+
+    # BUG FIX THIS
+    # genital_examination_comment = fields.Char(string="Comment")
     comment = fields.Char(string="Comment")
 
 

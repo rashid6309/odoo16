@@ -9,8 +9,8 @@ class LabHistory(models.Model):
     female_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation")
     male_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation")
 
-    name = fields.Char(string="Name", required=True)
-    date = fields.Date(string="Date", required=True)
+    name = fields.Char(string="Name")
+    date = fields.Date(string="Date")
     attachment_ids = fields.Many2many(comodel_name="ir.attachment",
                                       column1="lab_id",
                                       column2="attachment_id",

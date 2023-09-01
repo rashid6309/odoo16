@@ -5,7 +5,7 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 class GeneralExamination(models.Model):
     _name = 'ec.general.history'
-    _description = "Female General Examination"
+    _description = "General Examination"
 
     ''' Static attributes '''
 
