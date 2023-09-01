@@ -968,7 +968,7 @@ class EcareSlotsReporting(models.TransientModel):
             'data': data,
             'services_payment_date': date,
             'summary_block': summary_block,
-            'product_wise_total': product_wise_summary_block
+            'product_wise_summary_block': product_wise_summary_block
         }
 
     @api.model

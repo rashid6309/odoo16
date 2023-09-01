@@ -60,15 +60,16 @@
                                     <t t-set="current_service_id" t-value="data[product_index]"/>
                                     <t t-set="service_name" t-value="data[product_name_index]"/>
                                     <tr class="o_group_header">
-                                        <th class="card-header btn btn-link" id="headingOne" colspan="7">
+                                        <td id="headingOne" colspan="7" style="color:#71639e;font-weight: bold;">
                                             <t t-esc="service_name"/>
-                                        </th>
-                                        <th>
+                                        </td>
+
+                                        <td>
                                             <t t-out="widget.product_wise_summary_block[current_service_id][0]"/>
-                                        </th>
-                                        <th>
+                                        </td>
+                                        <td>
                                             <t t-out="widget.product_wise_summary_block[current_service_id][1]"/>
-                                        </th>
+                                        </td>
                                     </tr>
                                 </t>
                                 <t t-if="data[line_amount_index] > 0">
