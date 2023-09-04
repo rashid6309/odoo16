@@ -19,13 +19,12 @@ class ServicesXlsx(models.AbstractModel):
             'text_wrap': True
         })
 
-        times_heading = workbook.add_format({
+        total_row_heading = workbook.add_format({
             'border': 1,
-            'align': 'center',
-            'valign': 'vcenter',
-            'font_size': 12,
+            'align': 'left',
+            'valign': 'left',
+            'font_size': 11,
             'bold': True,
-            'fg_color': '#F8CBAD',
             'font_color': 'black',
             'text_wrap': True
         })
@@ -167,11 +166,25 @@ class ServicesXlsx(models.AbstractModel):
             return
 
         records = data['data']  # Same it is also in 2D which is not required but still.
+        product_wise_total = data['product_wise_summary_block']
 
+        curr_service_id = -1
         for sr, date, patient, payment_ref, service, invoice_number, \
-                journal5, receivable_amt6, discount8, _, last_updated_by in records:
+                journal5, receivable_amt6, discount8, service_id, last_updated_by in records:
             row += 1
             col = 0
+
+            if curr_service_id != service_id:
+                total_amount, total_discount = product_wise_total[str(service_id)]
+                worksheet.merge_range(row, col +1, row, col + 5, service, total_row_heading)
+                col += 7  # Skip the columns for sr, date, patient, payment_ref, service, invoice_number, journal5
+                worksheet.write(row, col, total_amount, total_row_heading)
+                col += 1
+                worksheet.write(row, col, total_discount, total_row_heading)
+                curr_service_id = service_id
+                row += 1
+                col = 0
+
             worksheet.write(row, col, sr or "", row_head_format)
             col += 1
             worksheet.write(row, col, str(date) or "", row_head_format)

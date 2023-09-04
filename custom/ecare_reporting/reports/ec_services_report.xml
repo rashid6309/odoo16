@@ -83,7 +83,28 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <t t-set="current_service_id" t-value="-1"/>
+                                <t t-set="line_amount_index" t-value="7"/>
+                                <t t-set="product_name_index" t-value="4"/>
+                                <t t-set="product_index" t-value="9"/>
                                 <t t-foreach="data" t-as="data">
+                                    <t t-if="current_service_id != data[product_index]">
+                                        <t t-set="current_service_id" t-value="data[product_index]"/>
+                                        <t t-set="service_name" t-value="data[product_name_index]"/>
+                                        <tr>
+                                            <td colspan="7" style="font-weight: bold;padding: 10px;">
+                                                <t t-esc="service_name"/>
+                                            </td>
+
+                                            <td  style="border: 1px solid #333; padding: 10px;">
+                                                <t t-out="product_wise_summary_block[str(current_service_id)][0]"/>
+                                            </td>
+                                            <td style="border: 1px solid #333; padding: 10px;">
+                                                <t t-out="product_wise_summary_block[str(current_service_id)][1]"/>
+                                            </td>
+                                            <td style="border: 1px solid #333; padding: 10px;"/>
+                                        </tr>
+                                    </t>
                                     <tr>
                                         <t t-set="i" t-value="0"/>
                                         <t t-foreach="data" t-as="record">
