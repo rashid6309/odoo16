@@ -64,11 +64,11 @@
                                             <t t-esc="service_name"/>
                                         </td>
 
-                                        <td>
-                                            <t t-out="widget.product_wise_summary_block[current_service_id][0]"/>
+                                        <td style="font-weight: bold;">
+                                            <t  t-out="widget.product_wise_summary_block[current_service_id][0]"/>
                                         </td>
-                                        <td>
-                                            <t t-out="widget.product_wise_summary_block[current_service_id][1]"/>
+                                        <td style="font-weight: bold;">
+                                            <t  t-out="widget.product_wise_summary_block[current_service_id][1]"/>
                                         </td>
                                     </tr>
                                 </t>

@@ -96,10 +96,10 @@
                                                 <t t-esc="service_name"/>
                                             </td>
 
-                                            <td  style="border: 1px solid #333; padding: 10px;">
+                                            <td  style="border: 1px solid #333; padding: 10px; font-weight: bold;">
                                                 <t t-out="product_wise_summary_block[str(current_service_id)][0]"/>
                                             </td>
-                                            <td style="border: 1px solid #333; padding: 10px;">
+                                            <td style="border: 1px solid #333; padding: 10px; font-weight: bold;">
                                                 <t t-out="product_wise_summary_block[str(current_service_id)][1]"/>
                                             </td>
                                             <td style="border: 1px solid #333; padding: 10px;"/>
