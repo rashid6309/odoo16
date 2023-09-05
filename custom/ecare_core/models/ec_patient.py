@@ -1,8 +1,11 @@
 from odoo import models, api, fields, _
 from odoo.exceptions import AccessError, UserError
+from odoo import modules
 
+import base64
 import datetime
 import requests, json
+from random import randint
 
 from logging import getLogger
 
@@ -149,9 +152,18 @@ class EcarePatient(models.Model):
         ('husband_cnic_uniq', 'unique(husband_nic)', 'The husband must be unique !'),
     ]
 
-    def update_write_date(self):
-        """ This method is called to update the write_date so that patients gets in the view at first """
-        self.write_date = datetime.datetime.now()
+    ''' Override methods '''
+
+    @api.model
+    def default_get(self, default_fields):
+        res = super(EcarePatient, self).default_get(default_fields)
+
+        ''' Picture random selection '''
+        avatar_id = randint(0, 9)
+        res['husband_image']  = self._get_default_husband_avatar(avatar_id)
+        res['image_1920']  = self._get_default_female_avatar(avatar_id)
+        return res
+
 
     def write(self, vals):
         """
@@ -190,6 +202,30 @@ class EcarePatient(models.Model):
 
         return super(EcarePatient, self).write(vals)
 
+    ''' XXX Overloaded methods ends here XXX '''
+
+    def _get_default_avatar(self, image_path):
+        encoded = None
+        with open(image_path, 'rb') as file:
+            read_file = file.read()
+            encoded = base64.b64encode(read_file)
+            file.close()
+
+        return encoded
+
+    def _get_default_husband_avatar(self, avatar_id):
+        avatar_name = f'{avatar_id}.svg'
+        image_path = modules.get_module_resource('ecare_core', 'static/img/avatars/male', avatar_name)
+        return self._get_default_avatar(image_path)
+
+    def _get_default_female_avatar(self, avatar_id):
+        avatar_name = f'{avatar_id}.svg'
+        image_path = modules.get_module_resource('ecare_core', 'static/img/avatars/female', avatar_name)
+        return self._get_default_avatar(image_path)
+
+    def update_write_date(self):
+        """ This method is called to update the write_date so that patients gets in the view at first """
+        self.write_date = datetime.datetime.now()
 
     @api.depends('wife_dob')
     @api.onchange('wife_dob')
@@ -456,3 +492,31 @@ class EcarePatient(models.Model):
             self.env['third.party.api.log'].sudo().create(api_log_values)
         except Exception as e:
             _logger.warning(e)
+
+
+    ''' CRON JOB Methods '''
+
+    @api.model
+    def change_images_with_avatar(self):
+        female_images = self.search(domain=[('image_1920', '=', None)], order="id desc")
+
+        i = 0
+        for f_image in female_images:
+            avatar_id = randint(0, 9)
+            _logger.info(f"id of the couple: {f_image.id}")
+            f_image.image_1920 = f_image._get_default_female_avatar(avatar_id)
+            i +=1
+            if i > 3:
+                break
+
+        i = 0
+        male_images = self.search(domain=[('husband_image', '=', None)], order="id desc")
+        for m_image in male_images:
+            avatar_id = randint(1, 10)
+            _logger.info(f"id of the couple: {m_image.id}")
+            m_image.husband_image = m_image._get_default_husband_avatar(avatar_id)
+            i +=1
+            if i > 2:
+                break
+
+        _logger.info("Images uploaded success fully")

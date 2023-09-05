@@ -26,7 +26,8 @@
         'reports/ec_patient_reporting.xml',
 
         # Data
-        'data/menu.xml'
+        'data/menu.xml',
+        'data/cron_jobs.xml'
 
     ],
     'assets': {
