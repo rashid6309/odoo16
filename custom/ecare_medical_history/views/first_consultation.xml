@@ -366,8 +366,8 @@
 														</div>
 														<div style="margin-left:17px; margin-top:10px" id="collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="c_abnormalitiesOne" aria-expanded="false">
 															<div class="card-block">
-																<field name="female_c_abnormalities_ids" readonly="0" widget="many2many_checkboxes" />
-																<field name="female_other_c_abnormalities"/>
+																<field name="female_abnormalities_ids" readonly="0" widget="many2many_checkboxes" />
+																<field name="female_other_abnormalities"/>
 															</div>
 														</div>
 													</div>
@@ -383,8 +383,8 @@
 														</div>
 														<div style="margin-left:17px; margin-top:10px" id="collapsePih" class="collapse" role="tabpanel" aria-labelledby="pihOne" aria-expanded="false">
 															<div class="card-block">
-																<field name="female_pih_ids" readonly="0" widget="many2many_checkboxes" />
-																<field name="female_other_pih"/>
+																<field name="female_pregnancy_induced_hypertension_ids" readonly="0" widget="many2many_checkboxes" />
+																<field name="female_other_pregnancy_induced_hypertension"/>
 															</div>
 														</div>
 													</div>
@@ -400,8 +400,8 @@
 														</div>
 														<div style="margin-left:17px; margin-top:10px" id="collapseMisscarriages" class="collapse" role="tabpanel" aria-labelledby="misscarriagesOne" aria-expanded="false">
 															<div class="card-block">
-																<field name="female_misscarriages_ids" readonly="0" widget="many2many_checkboxes" />
-																<field name="female_other_misscarriages"/>
+																<field name="female_miscarriages_ids" readonly="0" widget="many2many_checkboxes" />
+																<field name="female_other_miscarriages"/>
 															</div>
 														</div>
 													</div>
@@ -417,8 +417,8 @@
 														</div>
 														<div style="margin-left:17px; margin-top:10px" id="collapsePb" class="collapse" role="tabpanel" aria-labelledby="pbOne" aria-expanded="false">
 															<div class="card-block">
-																<field name="female_pb_ids" readonly="0" widget="many2many_checkboxes" />
-																<field name="female_other_pb"/>
+																<field name="female_preterm_birth_ids" readonly="0" widget="many2many_checkboxes" />
+																<field name="female_other_preterm_birth"/>
 															</div>
 														</div>
 													</div>
@@ -434,8 +434,8 @@
 														</div>
 														<div style="margin-left:17px; margin-top:10px" id="collapseSb" class="collapse" role="tabpanel" aria-labelledby="sbOne" aria-expanded="false">
 															<div class="card-block">
-																<field name="female_sb_ids" readonly="0" widget="many2many_checkboxes" />
-																<field name="female_other_sb"/>
+																<field name="female_still_birth_ids" readonly="0" widget="many2many_checkboxes" />
+																<field name="female_other_still_birth"/>
 															</div>
 														</div>
 													</div>
@@ -451,8 +451,8 @@
 														</div>
 														<div style="margin-left:17px; margin-top:10px" id="collapsePmof" class="collapse" role="tabpanel" aria-labelledby="pmofOne" aria-expanded="false">
 															<div class="card-block">
-																<field name="female_pmof_ids" readonly="0" widget="many2many_checkboxes" />
-																<field name="female_other_pmof"/>
+																<field name="female_pre_mature_ovarian_failure_ids" readonly="0" widget="many2many_checkboxes" />
+																<field name="female_other_pre_mature_ovarian_failure"/>
 															</div>
 														</div>
 													</div>
@@ -468,7 +468,7 @@
 														</div>
 														<div style="margin-left:17px; margin-top:10px" id="collapseOther" class="collapse" role="tabpanel" aria-labelledby="otherOne" aria-expanded="false">
 															<div class="card-block">
-																<field name="female_other_history" />
+																<field name="female_family_history_other" />
 															</div>
 														</div>
 													</div>

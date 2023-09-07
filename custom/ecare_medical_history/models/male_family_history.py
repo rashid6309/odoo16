@@ -2,7 +2,8 @@ from odoo import models, fields
 
 """
 
-RENAME: "rel" name for all tables
+    # For male:
+    # TODO: Change relation name with "ec_male_family_history_diabetes_rel"
 """
 
 class MaleFamilyHistory(models.Model):
