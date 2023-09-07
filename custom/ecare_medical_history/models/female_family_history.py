@@ -62,7 +62,7 @@ class FemaleFamilyHistory(models.Model):
                                                 column2='ec_female_family_history_id',
                                                 string='Congenital Abnormalities')
 
-    female_other_c_abnormalities = fields.Char(string='Other Details')
+    female_other_abnormalities = fields.Char(string='Other Details')
 
     female_pregnancy_induced_hypertension_ids = fields.Many2many(comodel_name='ec.family.relation.list',
                                                                  relation='ec_female_family_history_pregnancy_induce_hypertension_rel',
@@ -76,7 +76,7 @@ class FemaleFamilyHistory(models.Model):
                                               column1='miscarriages_id',
                                               column2='ec_female_family_history_id',
                                               string='Miscarriages')
-    female_other_miscarriages = fields.Char(string='Other Details')
+    female_other_miscarriage = fields.Char(string='Other Details')
 
     female_preterm_birth_ids = fields.Many2many(comodel_name='ec.family.relation.list',
                                                 relation='ec_female_family_history_preterm_birth_rel',
