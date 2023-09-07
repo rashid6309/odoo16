@@ -1,7 +1,11 @@
 from odoo import models, fields, _
 from odoo.exceptions import ValidationError
 
-''' Not required Specify reason  '''
+''' Not required Specify reason  
+
+    *. This is not required now as we are navigating it from the patient.timeline now.
+    
+'''
 
 
 class EcMedicalPatient(models.Model):

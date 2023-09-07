@@ -7,11 +7,11 @@ class MedicalSystemicExamination(models.Model):
     _name = "ec.female.systemic.examination"
     _description = "Patient (Female) Systemic Examination"
 
-    breast_rt = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Breast (Rt)')
-    breast_rt_comment = fields.Char(string='Breast (Rt)')
+    breast_right = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Breast (Rt)')
+    breast_right_comment = fields.Char(string='Breast (Rt)')
 
-    breast_lt = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Breast (Lt)')
-    breast_lt_comment = fields.Char(string='Breast (Lt)')
+    breast_left = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Breast (Lt)')
+    breast_left_comment = fields.Char(string='Breast (Lt)')
 
     cvs = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='CVS')
     cvs_comment = fields.Char(string='CVS')

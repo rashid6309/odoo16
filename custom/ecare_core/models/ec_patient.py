@@ -2,6 +2,8 @@ from odoo import models, api, fields, _
 from odoo.exceptions import AccessError, UserError
 from odoo import modules
 
+from odoo.addons.ecare_core.utilities.helper import TimeValidation
+
 import base64
 import datetime
 import requests, json
@@ -227,55 +229,16 @@ class EcarePatient(models.Model):
         """ This method is called to update the write_date so that patients gets in the view at first """
         self.write_date = datetime.datetime.now()
 
-    @api.depends('wife_dob')
     @api.onchange('wife_dob')
     def _get_age_wife(self):
         for rec in self:
-            if rec.wife_dob:
-                bdate = datetime.datetime.strptime(str(rec.wife_dob), "%Y-%m-%d").date()
-                today = datetime.date.today()
-                diffdate = today - bdate
-                years = diffdate.days / 365
-                formonth = diffdate.days - (int(years) * 365.25)
-                months = (formonth / 31)
-                bday = bdate.day
-                tody = datetime.date.today().day
-                if tody >= bday:
-                    day = tody - bday
-                else:
-                    day = 31 - (bday - tody)
-                if int(years) < 5:
-                    rec.wife_age = str(int(years)) + 'Y ' + str(int(months)) + 'M ' + str(day) + 'D'
-                else:
-                    rec.wife_age = str(int(years)) + ' Years'
-            else:
-                rec.wife_age = ''
+            rec.wife_age = TimeValidation.convert_date_to_days_years(rec.wife_dob)
 
-    @api.depends('husband_dob')
     @api.onchange('husband_dob')
     def _get_age_husband(self):
         for rec in self:
-            if rec.husband_dob:
-                bdate = datetime.datetime.strptime(str(rec.husband_dob), "%Y-%m-%d").date()
-                today = datetime.date.today()
-                diffdate = today - bdate
-                years = diffdate.days / 365
-                formonth = diffdate.days - (int(years) * 365.25)
-                months = (formonth / 31)
-                bday = bdate.day
-                tody = datetime.date.today().day
-                if tody >= bday:
-                    day = tody - bday
-                else:
-                    day = 31 - (bday - tody)
-                if int(years) < 5:
-                    rec.husband_age = str(int(years)) + 'Y ' + str(int(months)) + 'M ' + str(day) + 'D'
-                else:
-                    rec.husband_age = str(int(years)) + ' Years'
-            else:
-                rec.husband_age = ''
+            rec.husband_dob = TimeValidation.convert_date_to_days_years(rec.husband_dob)
 
-    @api.depends('married_since')
     @api.onchange('married_since')
     def get_marriage_years(self):
         for patient in self:
@@ -293,19 +256,8 @@ class EcarePatient(models.Model):
                             'message': 'Date of Marriage should be lesser than or equal to today.'}
 
                     }
-                diffdate = today - mdate
-                years = diffdate.days / 365
-                formonth = diffdate.days - (int(years) * 365.25)
-                months = (formonth / 31)
-                bday = mdate.day
-                tody = datetime.date.today().day
-                if tody >= bday:
-                    day = tody - bday
-                else:
-                    day = 31 - (bday - tody)
-                patient.yom = str(int(years)) + 'Y ' + str(int(months)) + 'M ' + str(day) + 'D'
-            else:
-                patient.yom = ''
+
+                patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since)
 
     @api.onchange('husband_name', 'wife_name', 'mr_num')
     def _get_patient_name(self):

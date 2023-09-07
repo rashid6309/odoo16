@@ -569,10 +569,10 @@
 							<div class="card-block mb-5 pl-4 collapse" id="systematic_examination_section">
 								<section>
 									<group>
-										<field name="breast_rt"/>
-										<field name="breast_rt_comment"/>
-										<field name="breast_lt"/>
-										<field name="breast_lt_comment"/>
+										<field name="breast_right"/>
+										<field name="breast_right_comment"/>
+										<field name="breast_left"/>
+										<field name="breast_left_comment"/>
 										<field name="cvs"/>
 										<field name="cvs_comment"/>
 										<field name="respiratory"/>
@@ -600,10 +600,10 @@
 									<field name="uterus_size_comment"/>
 									<field name="uterus_position"/>
 									<field name="uterus_mobility"/>
-									<field name="ps"/>
-									<field name="ps_comment"/>
-									<field name="date"/>
-									<field name="lmp"/>
+									<field name="gynaecological_examination_ps_selection"/>
+									<field name="gynaecological_examination_ps_comment"/>
+									<field name="gynaecological_examination_date"/>
+									<field name="gynaecological_examination_lmp"/>
 									<field name="left_ovary"/>
 									<field name="left_ovary_type"/>
 									<field name="left_ovary_nos"/>
@@ -656,7 +656,7 @@
 									<field name="forbid_size_width_10"/>
 									<field name="lining"/>
 									<field name="lining_size"/>
-									<field name="comments"/>
+									<field name="gynaecological_examination_comment"/>
 								</group>
 							</div>
 

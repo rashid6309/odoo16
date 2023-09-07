@@ -23,5 +23,3 @@ class EcContraception(models.Model):
                                            string="Performance")
 
     male_other = fields.Text(string="Other")
-
-
