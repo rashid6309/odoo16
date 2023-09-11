@@ -23,6 +23,7 @@
                     <header>
                         <button name="action_open_patient_time_view"
                                 type="object"
+                                context="{'search_default_patient':id}"
                                 string="First Consultation"
                                 class="btn btn-primary"/>
 
@@ -39,6 +40,7 @@
         <record id="patient_timeline_action" model="ir.actions.act_window">
             <field name="name">Patient Timeline</field>
             <field name="res_model">ec.patient.timeline</field>
+            <field name="context">{'default_patient_id': 'id'}</field>
             <field name="view_mode">tree,form</field>
         </record>
 
