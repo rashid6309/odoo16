@@ -147,6 +147,8 @@ var AbstractView = Factory.extend({
             modelName: params.modelName,
             viewType: this.viewType,
         };
+        console.log("bajksdf");
+
 
         var controllerState = params.controllerState || {};
         var currentId = controllerState.currentId || params.currentId;

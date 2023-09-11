@@ -27,6 +27,7 @@ class FirstConsultation(models.Model):
     ec_general_examination_id = fields.Many2one(comodel_name="ec.general.history", ondelete='restrict')
     ec_sx_contraception_id = fields.Many2one(comodel_name="ec.sx.contraception", ondelete='restrict')
     ec_social_history_id = fields.Many2one(comodel_name="ec.social.history", ondelete='restrict')
+    custom_template_widget = fields.Char('Field')
 
     ''' Female '''
     ec_gynaecological_history_id = fields.Many2one(comodel_name="ec.gynaecological.history", ondelete='restrict')

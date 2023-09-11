@@ -265,6 +265,15 @@ export class View extends Component {
 
         let subType = rootNode.getAttribute("js_class");
         const bannerRoute = rootNode.getAttribute("banner_route");
+        console.log("HEr");
+        var patient_id = context['default_patient_id']
+        localStorage.setItem("record_id", this.props.resId);
+        localStorage.setItem("model_id", this.props.resModel);
+        console.log(context);
+        console.log("HEr");
+        console.log(context);
+        console.log(bannerRoute);
+        console.log(this);
         const sample = rootNode.getAttribute("sample");
 
         // determine ViewClass to instantiate (if not already done)
@@ -301,6 +310,7 @@ export class View extends Component {
             fields,
             relatedModels,
             resModel,
+
             useSampleModel: false,
             className: `${props.className} o_view_controller o_${this.env.config.viewType}_view`,
         };
@@ -397,7 +407,7 @@ View.template = "web.View";
 View.components = { WithSearch };
 View.defaultProps = {
     display: {},
-    context: {},
+//    context: {},
     loadActionMenus: false,
     loadIrFilters: false,
     className: "",

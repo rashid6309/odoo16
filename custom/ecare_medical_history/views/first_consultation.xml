@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 	<data>
+		<template id="patient_summery" name="patient_id.summery">
+			<header class="site-header">
+				<div class="site-identity">
+					<h1 js_class="banner_summary_route"><t t-esc="patient_id.name" /></h1>
+				</div>
+			</header>
+		</template>
+
 		<record id="ec_medical_first_consultation_form_view" model="ir.ui.view">
 			<field name="name">ec.first.consultation.form</field>
 			<field name="model">ec.first.consultation</field>
 			<field name="arch" type="xml">
-				<form string="First Consultation">
-					<notebook>
+				<form string="First Consultation" banner_route="/banner/generic_patient_summery_detailed" js_class="banner_summary_route">
+					<a href="#"  t-on-click="_MoreOptions">
+						<i class="fa fa-ellipsis-v"
+						   style="font-size:24px"></i>
+					</a>
+					<group>
+					<group>
+						<h1>Hello</h1>
+					</group>
+					<group>
+						<notebook>
 						<page string="Female" name="female">
 							<div class="d-flex scroll-to card-header" id="general_examination_section_link">
 								<div class="col-6">
@@ -1109,6 +1126,8 @@
 
 						</page>
 					</notebook>
+					</group>
+					</group>
 				</form>
 			</field>
 		</record>

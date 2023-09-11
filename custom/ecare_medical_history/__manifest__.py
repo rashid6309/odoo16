@@ -42,7 +42,11 @@
     ],
     'assets': {
         'web.assets_backend': [
+            'ecare_medical_history/static/src/js/custom.js',
+            'ecare_medical_history/static/src/css/custom.css',
+            'ecare_medical_history/static/src/xml/summary.xml',
         ],
+        
 
     },
     'installable': True,
