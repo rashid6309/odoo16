@@ -1187,11 +1187,10 @@ class Field(MetaField('DummyField', (object,), {})):
                 except AccessError:
                     record._fetch_field(self)
                 if not env.cache.contains(record, self):
-                    pass
-                    # raise MissingError("\n".join([
-                    #     _("Record does not exist or has been deleted."),
-                    #     _("(Record: %s, User: %s)") % (record, env.uid),
-                    # ]))
+                    raise MissingError("\n".join([
+                        _("Record does not exist or has been deleted."),
+                        _("(Record: %s, User: %s)") % (record, env.uid),
+                    ]))
                 value = env.cache.get(record, self)
 
             elif self.store and record._origin and not (self.compute and self.readonly):

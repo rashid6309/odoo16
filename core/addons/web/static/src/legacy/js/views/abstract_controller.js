@@ -337,11 +337,10 @@ var AbstractController = mvc.Controller.extend(ActionMixin, {
      * @returns {Promise}
      */
     _renderBanner: async function () {
-         console.log(this);
         if (this.bannerRoute !== undefined) {
             const response = await this._rpc({
                 route: this.bannerRoute,
-                params: {context: session.user_context, custom_abc_id: 1},
+                params: {context: session.user_context},
             });
             if (!response.html) {
                 this.$el.removeClass('o_has_banner');
@@ -403,7 +402,6 @@ var AbstractController = mvc.Controller.extend(ActionMixin, {
             this.renderButtons();
         }
         const promises = [this._renderBanner()];
-        console.log("jahdfb");
         if (params.shouldUpdateSearchComponents !== false) {
             if (this.withControlPanel) {
                 this._updateControlPanelProps(state);
