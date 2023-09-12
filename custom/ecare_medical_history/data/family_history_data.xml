@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--    <data >-->
+<!--        <record model="ec.family.relation.list" id="mother">-->
+<!--            <field name="name">Mother</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="father">-->
+<!--            <field name="name">Father</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="sister">-->
+<!--            <field name="name">Sister</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="brother">-->
+<!--            <field name="name">Brother</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="inlaws">-->
+<!--            <field name="name">In-laws</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="mfamily">-->
+<!--            <field name="name">Maternal Family</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="pfamily">-->
+<!--            <field name="name">Paternal Family</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="fcousine">-->
+<!--            <field name="name">First Cousin</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="scousine">-->
+<!--            <field name="name">Second Cousin</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="distcou">-->
+<!--            <field name="name">Distant Cousin</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="ownchil">-->
+<!--            <field name="name">Own Children</field>-->
+<!--        </record>-->
+<!--        <record model="ec.family.relation.list"  id="other">-->
+<!--            <field name="name">Other</field>-->
+<!--        </record>-->
+
+<!--    </data>-->
+</odoo>

@@ -219,11 +219,9 @@ class EcareSlotsReporting(models.TransientModel):
         payment_mode_query_param = EcareSlotsReporting.handle_single_value_tuple(payment_modes)
         return user_list, user_query_param, invoice_type_query_param, payment_mode_query_param, payment_methods
 
-    def calculate_summary_block(self, records):
-
+    def calculate_summary_block(self, data):
         summary_block = defaultdict(float)
 
-        data = [record[0]['data'] for record in records]
         for _, _, _, _, _, _, \
                 journal5, receivable_amt6, discount8, _, _ in data:
 
@@ -251,6 +249,28 @@ class EcareSlotsReporting(models.TransientModel):
                                         + abs(summary_block['refund'])
 
         return summary_block
+
+    @classmethod
+    def calculate_product_wise_totals(cls, data):
+        """
+            It will calculate product wise totals to show in the services report.
+        :param data:
+        :return:
+        """
+        product_wise_totals = dict()
+
+        for _, _, _, _, _, _, \
+                journal5, receivable_amt6, discount8, product_id, _ in data:
+
+            product_total = product_wise_totals.get(product_id, [0, 0])
+
+            product_total[0] += receivable_amt6
+            product_total[1] += discount8
+
+            product_wise_totals[product_id] = product_total
+
+        return product_wise_totals
+
 
     def build_fetch_cash_report_data(self, report: bool, limit: int, offset: int,
                                      payment_mode: list, invoice_type: list,
@@ -309,7 +329,7 @@ class EcareSlotsReporting(models.TransientModel):
                         aj."name",
                         invoice.amount_total_signed::int,
                         part.amount::int,
-                        invoice_line.fixed_amount_discount,
+                        sum(invoice_line.fixed_amount_discount),
                       	write_uid_partner.display_name
                     )
                 ) AS result
@@ -395,9 +415,8 @@ class EcareSlotsReporting(models.TransientModel):
         """
         if with_group_by:
             query  += """
-                        GROUP BY payment.create_date,move."name", rp.display_name, 
-                        part.amount , move.state,invoice.name,aj.name, invoice.amount_total_signed, write_uid_partner.display_name,
-                        invoice_line.fixed_amount_discount
+                        GROUP BY payment.create_date,move."id", rp.display_name, 
+                        part.amount , move.state,invoice.name,aj.name, invoice.amount_total_signed, write_uid_partner.display_name
                         order by payment.create_date desc
             """
 
@@ -425,7 +444,8 @@ class EcareSlotsReporting(models.TransientModel):
             Cheque/D.Draft: Cheque + D.Draft 
             Other: Rest
         """
-        summary_block = self.calculate_summary_block(without_pagination_records)
+        data = [record[0]['data'] for record in without_pagination_records]
+        summary_block = self.calculate_summary_block(data)
 
         header = []
         data = []
@@ -707,7 +727,9 @@ class EcareSlotsReporting(models.TransientModel):
                                                   payment_mode, invoice_type,
                                                   date, date_end, client_product_id)
 
-        summary_block = self.calculate_summary_block(without_pagination_records)
+        data = [record[0]['data'] for record in without_pagination_records]
+        summary_block = self.calculate_summary_block(data)
+        product_wise_summary_block = EcareSlotsReporting.calculate_product_wise_totals(data)
 
         # Get the data with pagination --> Same query with limit and offset parameter
         header = []
@@ -741,6 +763,7 @@ class EcareSlotsReporting(models.TransientModel):
             'total_pages': total_pages,
             'active_page': offset,
             'summary_block': summary_block,
+            'product_wise_summary_block': product_wise_summary_block,
         }
         return result
 
@@ -935,14 +958,17 @@ class EcareSlotsReporting(models.TransientModel):
 
         header = [record[0]['header'] for record in records]
         data = [record[0]['data'] for record in records]
+
         # Summary method
-        summary_block = self.calculate_summary_block(records)
+        summary_block = self.calculate_summary_block(data)
+        product_wise_summary_block = self.calculate_product_wise_totals(data)
 
         return {
             'header': header,
             'data': data,
             'services_payment_date': date,
-            'summary_block': summary_block
+            'summary_block': summary_block,
+            'product_wise_summary_block': product_wise_summary_block
         }
 
     @api.model
@@ -958,10 +984,10 @@ class EcareSlotsReporting(models.TransientModel):
     def get_cash_report_data(self, date, date_end, payment_mode, invoice_type, user_id):
         records, _, _, _ = self.build_fetch_cash_report_data(True, None, None, payment_mode, invoice_type, date, date_end, user_id)
 
-        summary_block = self.calculate_summary_block(records)
+        data = [record[0]['data'] for record in records]
+        summary_block = self.calculate_summary_block(data)
         header = [record[0]['header'] for record in records]
 
-        data = [record[0]['data'] for record in records]
 
         return {
             'header': header,

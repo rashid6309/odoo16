@@ -15,28 +15,38 @@
     'demo': [],
     'data': [
         # Security
-
         'security/ir.model.access.csv',
+
+        # Menu
+        'data/family_history_data.xml',
 
         # Reports here
 
-        # Views
 
-        'views/first_consultation.xml',
+        # Views
         'views/female_obstetrics_history.xml',
 
-        # Menu
+        # 'views/ec_patient.xml', # not being used now.
+        'views/ec_procedure.xml',
+        'views/lab_history.xml',
+
+        # Timeline
+        'views/patient_timeline.xml',
+
+        # This Views should be below after all of its views.
+        'views/first_consultation.xml',
+
+        # This should be called at the end
         'data/menus.xml',
+
     ],
     'assets': {
         'web.assets_backend': [
-            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css',
-            'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js',
-            'ecare_reporting/static/src/css/reporting.css',
-            'ecare_medical_history/static/src/js/*',
-            'ecare_medical_history/static/src/css/*',
+            'ecare_medical_history/static/src/js/custom.js',
+            'ecare_medical_history/static/src/css/custom.css',
+            'ecare_medical_history/static/src/xml/summary.xml',
         ],
+        
 
     },
     'installable': True,

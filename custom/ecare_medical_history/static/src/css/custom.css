@@ -1,1196 +1,219 @@
-/*.labour_fields[data-id="poscx"] {width: 900px;}*/
-.table-custom-style .oe_content_u{
-        height: auto !important;
-        overflow-x: auto;
-        max-width: 1342px !important;
+body {
+  font-family: Helvetica;
+  margin: 0;
 }
 
-.html_widget_style
+.site-header {
+  border-bottom: 1px solid #ccc;
+  padding: .5em 1em;
+  display: flex;
+  justify-content: space-between;
+  background: #39609b;
+
+}
+
+.site-identity h1 {
+  font-size: 1.5em;
+  margin: .6em 0;
+  display: inline-block;
+  margin-left: 5%;
+  width: 100%;
+  color: #fff;
+}
+
+
+.site-navigation ul,
+.site-navigation li {
+  margin: 0;
+  padding: 0;
+}
+
+.site-navigation li {
+  display: inline-block;
+  margin: 1.4em 1em 1em 1em;
+}
+
+.card-custom1
 {
-    line-height: 100%;
+    width: 182px;
+    height: 168px;
+    padding: 16px;
+    background: #C3EFC5;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+    margin: 8%;
+}
+
+.card-custom2
+{
+    width: 182px;
+    height: 168px;
+    padding: 16px;
+    background: #CAECFF;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+    margin: 8%;
+}
+
+.card-custom3
+{
+    width: 182px;
+    height: 168px;
+    padding: 16px;
+    background: #E5ECF6;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+    margin: 8%;
+}
+
+.counter-word
+{
+    width: 150px;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+.word-title
+{
+    width: 150px;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+
+.card-custom1-right
+{
+    left: -8%;
+    width: 100%;
+    height: 360px;
+    position: relative;
+    background: #FFE8F1;
+    border-radius: 8px;
+    overflow: hidden;
     margin: 5%;
 }
-
-.table_spacing_style
+.card-custom2-right
 {
-    border-collapse: separate;
-    border-spacing: 6px 8px;
-}
-
-.html_widget_style > div
-
-{
-    margin: 8px;
-}
-
-.truncate_text
-{
-
-    /* max-height: 30px; */
-    display: -webkit-box !important;
-    max-width: 200px !important;
-    -webkit-line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
-}
-.red-fields{
-    color: red;
-}
-
-
-.input-fields{
-    background-color:#ffc3fd40;
-}
-
-
-.output-fields{
-    background-color:#a6e7ba40;
-}
-.bold-total
-{
-font-weight:bold;
- font-size: 105%;
-}
-.doctor_notes_admission
-{
-    background:#009933;
-    color:#ffffff;
-    font-weight: bold;
-    margin:5px;
-}
-.consultant_notes_admission
-{
-    background:#ff1a1a4d;
-    color:#ffffff;
-    font-weight: bold;
-    margin:5px;
-}
-
-.nurse_notes_admission
-{
-    background:#ff6699;
-    color:#ffffff;
-    font-weight: bold;
-    margin:5px;
-}
-.procedure_admission
-{
-    background:#ff9933;
-    color:#ffffff;
-    font-weight: bold;
-    margin:5px;
-}
-.discharge_admission
-{
-    background-color: #0000cc;
-    color:#ffffff;
-    font-weight: bold;
-    margin:5px;
-}
-
-.ward-notes-d {
-  background: #d4fce2 !important;
-}
-.ward-notes-d div.row.mr-0.ml-0.p-1 {
-  background: #b1facb !important;
-}
-.ward-notes-c {
-  background: #ff1a1a4d !important;
-}
-.ward-notes-c div.row.mr-0.ml-0.p-1 {
-  background: #ff1a1a4d !important;
-}
-
-.ward-notes-n {
-  background: #ffe3ec !important;
-}
-
-.medication-notes-started {
- background: #d4fce2 !important;
-}
-
-.medication-notes-stopped {
- background: #ffe3ec !important;
-}
-
-.medication-notes-not_started {
- background: #fbff0273 !important;
-}
-
-.medication-notes-restarted {
- background: #02a50087 !important;
-}
-
-.patient-kanban-Male
-{
-    background: #d4fce2
-}
-
-.patient-kanban-Female
-{
-    background: #ffe3ec
-}
-
-.ward-notes-n div.row.mr-0.ml-0.p-1 {
-  background: #ffcfde !important;
-}
-
-.procedure {
-  background: #ffe3c7 !important;
-}
-
-.procedure-heading {
-  background: #ffd5ab !important;
-}
-
-.prescription {
-  background: #c7c7ff !important;
-}
-
-.deceased-true {
-  background: #ff9393 !important
-}
-
-.deceased-false {
-  background: #c7c7ff !important;
-}
-
-.prescription-heading {
-  background: #9696ff !important;
-}
-
-
-.ec_medical_vignette {
-  padding: 8px 8px;
-  min-height: 100px;
-}
-
-/*#sidebar { width: 190px; text-align: right; position: fixed;}*/
-#sidebar {
-  position: fixed;
-  left: 91%;
-  top: 200px;
-}
-#btn-ul {
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-.field_width {
-  width: 400px;
-}
-
-.vitals-color-paeds
-{
-background-color:#ffc3fd40;
-}
-
-.ventilator-color-paeds
-{
-background-color:#d4fce2;
-}
-.therapy-color-paeds
-{
-background-color:#a6b0f794;
-}
-.abgs-color-paeds
-{
-background-color:#fbff0273;
-}
-
-.ec_medical_image,
-.ec_medical_details {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.notes_ {
-  white-space: inherit;
-  overflow-x: scroll;
-  /*overflow-y: scroll;*/
-  max-width: 100%;
-  /*max-height: 300px;*/
-}
-.ante_adm {
-  max-width: 1279px;
-  padding: 0;
-}
-
-.oe_content {
-  /* max-width:1200px !important; */
-  padding: 0 !important;
-}
-.table_fixed_height {
-  height: 380px !important;
-}
-
-.table_fixed_height_rounds {
-  height: 300px;
-}
-.table_fixed_height_paeds {
-  height: 300px;
-  width: 128% !important;
-}
-
-.ante_adm_action {
-  margin: 0;
-}
-
-.summary_ {
-  white-space: inherit;
-  overflow-x: scroll;
-  /*overflow-y: scroll;*/
-  max-width: 100%;
-  /*max-height: 300px;*/
-}
-.oe_dashboard_links {
-  visibility: hidden;
-}
-.ec_medical_image {
-  width: 90px;
-  height: 90px;
-  text-align: center;
-  overflow: hidden;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  border-radius: 3px;
-  border-collapse: separate;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-  -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-}
-
-.ec_medical_picture {
-  width: 90px;
-  height: auto;
-  clip: rect(10px, 100px, 110px, 0px);
-}
-
-.ec_medical_picture_wide {
-  height: 90px;
-  width: auto;
-  clip: rect(0px, 115px, 100px, 15px);
-}
-
-.ec_medical_details {
-  width: 185px;
-  font-size: 13px;
-  padding: 2px 5px;
-  color: #4c4c4c;
-  min-height: 120px;
-}
-
-.ec_medical_details h4 {
-  margin: 0;
-  font-size: 13px;
-}
-
-.ec_medical_details h4 a {
-  color: #4c4c4c;
-}
-
-.ec_medical_details h4 a:hover {
-  text-decoration: underline;
-}
-
-.ec_medical_details ul {
-  margin: 3px 0 5px;
-  padding: 0;
-  list-style: none;
-}
-
-.ec_medical_details li {
-  margin: 2px 0;
-  padding: 0;
-}
-
-.openerp .ec_medical_vignette .oe_followers {
-  width: auto;
-  float: none;
-}
-
-*.labour_header > tbody > tr > td > div {
-  border-bottom: 0.1px inset #ebebeb;
-  /*padding: 5px;*/
-  /* margin: 5px;*/
-}
-/*div.o_horizontal_separator{*/
-/*  border-bottom: 0.1px inset #ebebeb;*/
-/*}*/
-
-div.card {
-  border: none;
-  margin-top: 5px;
-}
-/*for board views generic*/
-.o_dashboard.oe_dashboard.oe_action.oe_content {
-  padding: 0;
-}
-.oe_header.oe_header_empty.ui-sortable-handle {
-  display: none;
-}
-div.table-responsive {
-  overflow: auto;
-}
-#anti_prg_rec_tv > tree > div.o_field_one2many > div.table-responsive {
-  max-height: 350px;
-}
-#past_obs_hx_tv > tree > div.o_field_one2many > div.table-responsive {
-  max-height: 350px;
-}
-#us_tv_obs > div[name="ultra_sound"] > div > table > thead > tr > th {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  color: #4c4c4c;
-  border-bottom: 1px solid #cacaca;
-  background-color: #eee;
-}
-#anti_prg_rec_tv
-  > tree
-  > div.o_field_one2many
-  > div.table-responsive
-  > table
-  > thead
-  > tr
-  > th {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  color: #4c4c4c;
-  border-bottom: 1px solid #cacaca;
-  background-color: #eee;
-
-}
-#past_obs_hx_tv
-  > tree
-  > div.o_field_one2many
-  > div.table-responsive
-  > table
-  > thead
-  > tr
-  > th {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  color: #4c4c4c;
-  border-bottom: 1px solid #cacaca;
-  background-color: #eee;
-}
-
-div.oe_action > div.oe_content {
-  padding: 0;
-  margin: 0;
-  /* max-width: 1100px; */
-}
-.oe_dashboard_links {
-  display: none;
-}
-#accordion > .card > .card-header {
-  padding: 0.5rem 1.25rem;
-}
-
-.colla > h3 {
-  margin-bottom: 0;
-}
-
-.o_horizontal_separator {
-  /*text-decoration: underline;*/
-  border-bottom: 0.5px solid #ddd;
-}
-/*div.o_control_panel.o_breadcrumb_full{*/
-/*  margin-bottom: 25px;*/
-/*}*/
-
-.oe_content
-  > .o_view_controller
-  > .o_kanban_view.ui-sortable.o_kanban_grouped
-  > .o_kanban_group.ui-sortable {
-  width: 182px;
-}
-
-/*.o_form_view.o_dashboard.o_form_nosheet.o_form_readonly{*/
-/*  !*padding: 0px;*!*/
-/*  width: fit-content;*/
-/*}*/
-
-/*#us_tr{*/
-/*  position: sticky;*/
-/*  top: 50px; !* Don't forget this, required for the stickiness *!*/
-/*}*/
-
-
-
-/*---------------------------*/
-
-dl .obst_rounds_dt {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
-}
-dl .obst_rounds_dd {
-  display: inline-block;
-  margin: 0px 10px;
-  padding-bottom: 0;
-  font-weight: bold;
-  vertical-align: middle;
-}
-
-dl dt.obst_rounds_ipd {
-  border: 1px solid black;
-  border-radius: 100%;
-  background: #DDA0DD;
-}
-
-dl dt.obst_rounds_the {
-  border: 1px solid black;
-  border-radius: 100%;
-  background: #FCEF91;
-}
-
-dl dt.obst_rounds_lab {
-  border-radius: 100%;
-  border: 1px solid black;
-  background: #040499;
-}
-
-dl dt.obst_rounds_theatre {
-  border-radius: 100%;
-  border: 1px solid black;
-  background: #07f5f5;
-}
-
-/*---------------------------*/
-.oe_summery_card_padding {
-  padding: 0 3px 3px 3px;
-}
-.oe_summery_card_width {
-  width: 30%;
-}
-.oe_summery_card_title {
-  -webkit-box-flex: 1;
-  flex: 1 1 auto;
-  display: inline-block;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: middle;
-  font-size: 16px;
-  text-align: center;
-  margin-top: 9px;
-}
-.oe_summery_card_sticky {
-  position: sticky;
-  top: 0;
-  z-index: 99;
-  background: #f7f7f7;
-}
-
-/* #collapseFTS
-.o_group_col_6 */
-.o_td_label {
-  text-align: right;
-}
-
-.mr-number {
-  font-size: 16px;
-  font-weight: 600;
-  padding:12px;
-}
-
-#obs_us_tview table tbody td {
-  vertical-align: middle !important;
-}
-
-#summary-headings > span {
-  max-width: 20%;
-}
-
-div[name="obstetrics_progress"]
-  .o_list_view
-  .o_data_row.o_selected_row
-  > .o_data_cell:not(.o_readonly_modifier)
-  > .o_field_widget {
-  position: relative;
-}
-
-div[name="obstetrics_progress"] .o_data_row.o_selected_row {
-  background: white;
-}
-
-#obs_us_tview tr.us_view_btn {
-  height: 56px;
-}
-
-#accordion .mb-0.row {
-  align-items: center;
-}
-
-#collapseNotes tbody tr:nth-child(1) div.oe_action {
-  margin: 8px 0px !important;
-}
-
-.expand-button {
-  position: fixed !important;
-  bottom: 35px !important;
-  font-size: 45px;
-  border-radius: 100px;
-  left: 91% !important;
-  background: white !important;
-  color: #00a09d !important;
-  z-index: 2 !important;
-}
-
-.stepper .col-md-2.text-center.pl-0 > a {
-  width: 100%;
-  color: white;
-  text-transform: capitalize;
-  padding: 10px 5px;
-  margin: 6px 0px;
-  font-size: 12px;
-}
-
-#stepper-main h3 {
-  color: #00A09D;
-}
-
-.first-trimester-screening-label {
-  font-weight: bold;
-  padding: 0 15px 3px 0;
-  float: right;
-  margin-right: -2px;
-}
-
-.trimester-div {
-  width: 100%;
-  padding: 0 0 0 8px;
-}
-
-input::placeholder {
-  color: #A9A9A9;
-}
-
-.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
-  background-image: none !important;
-}
-
-.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
-  border-radius: 30px !important;
-}
-
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
-  width: 14px;
-  height: 14px;
-  margin-left: -1px;
-  /* background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAACbEAAAmxAFfJ264AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAWhQTFRF////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAz+t/MgAAAHd0Uk5TAAECAwUHCAsMDQ4PERMVGBkaGx0kJSYnKS0wMjM0OEJDREVGR0hKTlBRUlZYWl1hZGZoa21xcnR6e3+AgYOFhoeLjo+VmpudoKeqrrGztLi6vcDDxcfIzM/Q0dLU19jZ2tvc3uHi5efq7O3u7/Lz9PX29/j7/f4J+/qMAAACYklEQVR42u3ZV1dTURCG4QHEWCEYC9bQ7IKixl5jpIhYI9bQLNGIJUT8/r65wLUETpJdZu9ZrjXfLSc87wUXOQORTqfT6XQ6XcS1HbqUn5wqXB3qFOEzhTJW92PqSHR+270a/t10b1x/bwnr9v1UTL9/CRv2+0o8f2gZSRsR9rF8WNYHXrXJ+sCwsI8FYR84IOzjmrCPp2H9wVY+SsI+loR9VIV9vBf2URT2URD2cVTY/9Yp6+NWGH/A1K9sl/UxKuzfF/afbZL1n29RX33u9Vf/d3/fcO7OjQsnu2T8TH5x9ecrM5dT0f2d+TXng/L5jrj+wY/rH3uyI6Z/OuHji73x/L5fSY9+3h/L3/01+WHjAt+//2Kjxw0L+jz9Y40/YFTg69NLeBV4+3uafqhlgbdPOfgU+Pv0CB4FDD69hXsBh09f4FzA4lMNrgU8Pn2AY0GW6fvPC7gVcPk0BqcCNp9OwKWAz6dUzaEgy/n9twDrAlaf0lXbguxPTp/oOuwKuH1qnzb9hZUz9acv8r//bH1n+itRLlbA7hN1l8A/q/e/AAWW75/sBdbvv92zsj5zgdP7f3pW1mcscL5/MBV43F9YCrzuPwwFnvcn7wLv+1d6Ttb3LGC5/3kUMN0fe+ZkfecCxvurUwHr/dehgPn+3DMv61sXBLi/WxUEuf9bFIT5/4N5QSCfaNe8rG9YENCvFyzI+gYFgf2WBcH9FgUR/KYFUfwmBZH8hgXR/HrB6wT/cTyfKPVgg3+3naJu9NMavnScYm9z7s1ffWXmbAdJLHPu9sTD8ZsjXaTT6XQ6nU7HuD9fgqrAlHdXxwAAAABJRU5ErkJggg==); */
-  background-image: none;
-
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  background-color: #F5F5F5;
-  width: 9px !important;
-  height: 9px !important;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  border-radius: 30px;
-  background-color: #F5F5F5;
-  box-shadow: inset 0 0 3px rgba(0,0,0,.2);
-	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.2);
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-	border-radius: 30px;
-	background-color: #C9C9C9;
-	box-shadow: inset 0 0 3px rgba(0,0,0,.2);
-	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.2);
-}
-
-.antenatal-progress-record th, 
-.antenatal-admission th, 
-.ultrasound th, 
-.past-obstetrical-history th ,
-div[name="induction"] .table-responsive th,
-div[name="progress"] .table-responsive th
-{
-  min-width: 65px !important;
-}
-
-.ultrasound th:nth-child(3),
-.ultrasound th:nth-child(4),
-.ultrasound th:nth-child(14),
-div[name="induction"] .table-responsive th:nth-child(10),
-div[name="progress"] .table-responsive th:nth-child(10)
-{
-  min-width: 50px;
-}
-.investigations-progress th:nth-child(1)
-{
- min-width: 140px !important;
-}
-.investigations-progress th:nth-child(2)
-{
-  min-width: 70px !important;
-}
-.investigations-progress th:nth-child(3)
-{
-  min-width: 100px !important;
-}
-.investigations-progress th:nth-child(18)
-{
-  min-width: 150px !important;
-}
-.investigations-progress th:nth-child(19)
-{
-  min-width: 80px !important;
-}
-.investigations-progress th:nth-child(20)
-{
-  min-width: 150px !important;
-}
-
-.antenatal-progress-record th:nth-child(4),
-.antenatal-progress-record th:nth-child(5),
-.antenatal-progress-record th:nth-child(6),
-.antenatal-progress-record th:nth-child(7),
-.antenatal-progress-record th:nth-child(8),
-.antenatal-progress-record th:nth-child(9),
-.antenatal-progress-record th:nth-child(10),
-.antenatal-progress-record th:nth-child(11),
-.antenatal-progress-record th:nth-child(12),
-.antenatal-progress-record th:nth-child(13)
-{
-  min-width: 180px;
-}
-
-.antenatal-progress-record th:nth-child(2),
-{
-  min-width: 100px !important;
-}
-
-.antenatal-progress-record th:nth-child(3)
-{
-min-width: 140px !important;
-}
-
-.antenatal-progress-record th:nth-child(14),
-.antenatal-progress-record th:nth-child(15),
-.antenatal-progress-record th:nth-child(16),
-.antenatal-progress-record th:nth-child(17),
-.antenatal-progress-record th:nth-child(18),
-.antenatal-progress-record th:nth-child(19),
-.antenatal-progress-record th:nth-child(20)
-{
-  min-width: 50px;
-}
-.antenatal-progress-record th:nth-child(21),
-.antenatal-progress-record th:nth-child(22),
-.antenatal-progress-record th:nth-child(23)
-{
-min-width: 60px;
-}
-
-.antenatal-progress-record th:nth-child(32)
-{
-  min-width: 110px !important;
-}
-.patient_tabs_headings
-{
-  font-weight: 700;
-  font-size: 16px;
-  }
-.antenatal-progress-record th:nth-child(24),
-.antenatal-progress-record th:nth-child(25),
-.antenatal-progress-record th:nth-child(26),
-.antenatal-progress-record th:nth-child(27),
-.antenatal-progress-record th:nth-child(28),
-.antenatal-progress-record th:nth-child(29),
-.antenatal-progress-record th:nth-child(30),
-.antenatal-progress-record th:nth-child(31)
-{
-  min-width: 68px;
-}
-
-.antenatal-progress-record th:nth-child(33)
-{
-  min-width: 150px !important;
-}
-
-
-.antenatal-admission th:nth-child(13),
-.ultrasound th:nth-child(3),
-.ultrasound th:nth-child(15),
-div[name="induction"] .table-responsive th:nth-child(4),
-div[name="progress"] .table-responsive th:nth-child(11)
-{
-  min-width: 60px;
-}
-
-.antenatal-admission th:nth-child(3)
-{
-  min-width: 80px;
-}
-
-.antenatal-admission th:nth-child(11)
-{
-  min-width: 88px;
-}
-.antenatal-admission th:nth-child(8)
-{
-  min-width: 67px;
-}
-
-.antenatal-admission th:nth-child(11),
-.antenatal-admission th:nth-child(17)
-{
-  min-width: 110px !important;
-}
-.antenatal-admission th:nth-child(9),
-.antenatal-admission th:nth-child(15)
-{
-  min-width: 120px;
-}
-.antenatal-admission th:nth-child(16)
-{
-  min-width: 130px;
-}
-.antenatal-admission th:nth-child(6),
-.antenatal-admission th:nth-child(7),
-.antenatal-admission th:nth-child(18),
-{
-  min-width: 150px !important;
-}
-
-.antenatal-admission th:nth-child(19),
-{
-  min-width: 200px !important;
-}
-
-.ultrasound th:nth-child(5),
-.ultrasound th:nth-child(6),
-.ultrasound th:nth-child(7),
-.ultrasound th:nth-child(8),
-.ultrasound th:nth-child(9),
-.ultrasound th:nth-child(10),
-.ultrasound th:nth-child(11),
-div[name="induction"] .table-responsive th:nth-child(1),
-div[name="induction"] .table-responsive th:nth-child(2),
-div[name="induction"] .table-responsive th:nth-child(8),
-div[name="induction"] .table-responsive th:nth-child(9),
-div[name="progress"] .table-responsive th:nth-child(1),
-div[name="progress"] .table-responsive th:nth-child(2),
-div[name="progress"] .table-responsive th:nth-child(8),
-div[name="progress"] .table-responsive th:nth-child(9)
-{
-  min-width: 85px !important;
-}
-
-
-.ultrasound th:nth-child(12),
-.ultrasound th:nth-child(13)
-{
-  min-width: auto;
-}
-
-div[name="induction"] .table-responsive th:nth-child(4),
-div[name="induction"] .table-responsive th:nth-child(13),
-div[name="induction"] .table-responsive th:nth-child(14),
-div[name="progress"] .table-responsive th:nth-child(4),
-div[name="progress"] .table-responsive th:nth-child(14)
-{
-  min-width: 130px;
-}
-
-
-
-div[name="induction"] .table-responsive th:nth-child(6),
-div[name="induction"] .table-responsive th:nth-child(7),
-div[name="progress"] .table-responsive th:nth-child(7)
-{
-  min-width: 150px !important;
-}
-
-div[name="progress"] .table-responsive th:nth-child(15),
-div[name="progress"] .table-responsive th:nth-child(16),
-div[name="induction"] .table-responsive th:nth-child(15),
-div[name="induction"] .table-responsive th:nth-child(16) 
-{
-  min-width: 192px;
-}
-
-.past-obstetrical-history th:nth-child(5)
-{
-  min-width: 95px;
-}
-
-.past-obstetrical-history th:nth-child(7)
-{
-  min-width: 120px;
-}
-
-.past-obstetrical-history th:nth-child(8),
-.past-obstetrical-history th:nth-child(9),
-.past-obstetrical-history th:nth-child(10)
-{
-  min-width: 225px;
-}
-.past-obstetrical-history th:nth-child(16)
-{
-  min-width: 150px;
-}
-.ultrasound th:nth-child(25)
-{
-  min-width: 225px;
-}
-
-.text_hide
-{
-  white-space: nowrap;
-  min-width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.text_hide:hover {
-  overflow: visible;
-}
-
-}
-
-.ultrasound th:nth-child(16) {
-  min-width: 260px;
-}
-.text_align_center
-{
-
-}
-
-.ultrasound td > ul {
-  padding-left: 17px;
-} 
-
-/* .o_kanban_view .o_kanban_group:not(.o_column_folded) {
-  width: 185px;
-} */
-
-.notes .o_kanban_view .o_kanban_group:not(.o_column_folded) {
-  width: 185px;
-}
-
-.notes.card-block .o_kanban_view.o_kanban_grouped div[role="feed"]:nth-last-child(1) {
-  margin-right: 28px;
-}
-
-.notes .o_column_unfold, .notes .o_kanban_config.dropdown {
-  display: none;
-}
-
-.notes .oe_dashboard .oe_action {
-  border: none ;
-}
-
-.notes .o_kanban_header {
-  width:180px;
-  text-align: center;
-}
-
-.o_kanban_view .o_kanban_group .o_kanban_header > .o_kanban_header_title .o_column_title {
-  overflow: unset;
-  text-overflow: unset;
-  white-space: normal;
-}
-
-.o_kanban_view .o_kanban_group .o_kanban_header > .o_kanban_header_title {
-  line-height: 1.2;
-}
-
-div[name=p_diagnosis_selection] .table-responsive, div[name=f_diagnosis_selection] .table-responsive {
-  height: min-content;
-}
-
-div[name=foetus] ~ .o_inner_group .o_td_label {
-  text-align: left;
-}
-
-div[name=doc_ward_notes] .o_kanban_view .oe_kanban_card.oe_kanban_global_click.pstdocrnd_kanban_color_d:not(.o_kanban_ghost):nth-last-of-type(1),
-div[name=doc_rounds] .o_kanban_view .oe_kanban_global_click {
-  background: #ff8e7140;
-}
-
-div[name=nur_rounds] .o_kanban_view .oe_kanban_global_click, div[name=nurse_ward_notes] .o_kanban_view .oe_kanban_global_click {
-  background: #e4f9ff50;
-}
-
-.o_form_view .o_group .o_td_label {
-  padding-right: 10px;
-}
-
-.family-history .card div:nth-child(2) > .card-block div[aria-atomic="true"] {
-  display: -webkit-box;
-}
-
-.family-history .card div:nth-child(2) > .card-block div[aria-atomic="true"] > div {
-  padding-right: 20px;
-}
-
-.patient-mr-number {
-  margin-top: 12px;
-  margin-left: 4px;
-  font-weight: 600;
-}
-.patient-img {
-  padding-left: 10px;
-    padding-top: 10px;
-}
-
-.pstdocrnd_kanban_color_ipd, .pstdocrnd_kanban_color_the, .pstdocrnd_kanban_color_labour  {
-  width: 100% !important;
-}
-
-.pstdocrnd {
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 3px;
-  padding: 5px;
-  text-align: center;
-  letter-spacing: 0.8px;
-}
-
-.pstdocrnd-heading-the {
-  background: #07f5f5;
-}
-
-.pstdocrnd-heading-labour, .pstdocrnd-heading-d  {
-  color:white;
-  background: #040499;
-}
-.pstdocrnd-heading-day {
-  background: #FCEF91;
-}
-
-.pstdocrnd-heading-ipd, .pstdocrnd-heading-n  {
-  background: #DDA0DD;
-}
-
-.o_field_widget[name=inv_ordered_o2m] .table-responsive , .o_field_widget[name=infants] .table-responsive, div[name="induction"] .table-responsive , .past-obstetrical-history .table-responsive , .discharge-prescription .table-responsive, div[name=diagnosis]  .table-responsive, div[name="operations"] .table-responsive {
-  height: auto;
-}
-
-.o_list_view .text-danger {
-  color: #c52231 !important;
-}
-
-.opd-notes .oe_kanban_card.oe_kanban_global_click.o_kanban_record {
-  width: 100%;
-}
-
-.gynaecology-doctor-notes tbody:nth-child(1) {
-  display: flex ;
-}
-
-.gynaecology-doctor-notes tbody:nth-child(1) tr:nth-child(1) {
-  display: contents;
-} 
-
-.gynaecology-doctor-notes tbody:nth-child(1) tr:nth-child(2) {
-  margin:auto;
-  margin-right: 15px;
-} 
-
-.pstdocrnd_kanban_color_d.o_kanban_record, .pstdocrnd_kanban_color_n.o_kanban_record {
-  width: 100% !important;
-}
-.postnatal_orders_width
-{
-width: 100% !important;
-}
-
-.o_field_invalid.o_input, .o_field_invalid .o_input, .o_field_invalid.o_form_label {
-  color: red !important;
-  border-color: red !important;
-}
-
-.opd-notes .o_kanban_view.o_kanban_ungrouped .o_kanban_record, div[name="doc_ward_notes"] .o_kanban_view.o_kanban_ungrouped .o_kanban_record {
-  margin: 4px 8px 4px 0px !important;
-}
-
-.opd-notes .o_kanban_record.o_kanban_ghost, .wards-notes .o_kanban_record.o_kanban_ghost, .admission-history .o_kanban_record.o_kanban_ghost {
-  display: none;
-}
-
-.opd-notes-inv-ordered, .opd-notes-inv-ordered span span:last-child {
-  display: contents !important;
-}
-
-.opd-notes div[name="diagnosis"].o_field_many2manytags.o_field_widget.o_kanban_tags {
-  display: inline;
-}
-
-.opd-notes-height {
-  height: 392px;
-  overflow:auto;
-}
-.admission-height {
-  height: 395px;
-  overflow:auto;
-}
-
-@media (min-width: 1390px) and (max-width : 1921px) {
-  .opd-notes-height{
-    height: 708px;
-  }
-  .admission-height {
-    height: 708px;
-  }
-}
-
-.ribbon-parent-node .parent-ribbon {
-
-}
-
-.ribbon-parent-node .oe_kanban_card.oe_kanban_global_click.o_kanban_record:first-child .parent-ribbon:first-child {
-  overflow: hidden;
-  height: 265px;
-  pointer-events:none;
-  position: relative;
-  margin: 0px auto -250px auto;
-  display: block;
-}
-
-.ribbon-medication:first-child {
-  margin: 0;
-  padding: 0;
-  background: #DDA0DD;
-  color:white;
-  padding: 0.5em 0;
-  position: absolute;
-  top:0;
-  right:0;
-  transform: translateX(30%) translateY(0%) rotate(0deg);
-  transform-origin: top left;
-  width: 22px;
-  text-align: center;
-}
-
-.ribbon:first-child {
-  margin: 0;
-  padding: 0;
-  background: #DDA0DD;
-  color:white;
-  padding: 0.5em 0;
-  position: absolute;
-  top:0;
-  right:0;
-  transform: translateX(30%) translateY(0%) rotate(45deg);
-  transform-origin: top left;
-}
-.ribbon:before,
-.ribbon:after {
-  content: '';
-  position: absolute;
-  top:0;
-  margin: 0 -1px;
-  width: 100%;
-  height: 100%;
-  background: #DDA0DD;
-}
-.ribbon:before {
-  right:100%;
-}
-
-.ribbon:after {
-  left:100%;
-}
-
-.diagnosis-operations-height {
-  height: 250px !important;
-  overflow: auto;
-}
-
-.show .dropdown-menu .dropdown-header {
-  background: #c3c3c350;
-}
-
-button:focus {
-  outline: none !important;
-}
-
-.badge.badge-pill {
-  margin-top: 2px;
-}
-
-.o_badge_text {
-  margin-top: 2px;
-  margin-bottom: 2px;
-}
-
-.neonatology-menu {
-  font-family: 'Roboto';
-  font-size: 13.5px;
-  margin-left: 5px;
-}
-
-
-.ribbon-parent-node .oe_kanban_card.oe_kanban_global_click.o_kanban_record {
-  border-bottom-color: brown;
-  border-bottom: 3px solid;
-}
-
-.opd-note-detail-Normal {
-  background: #9ACD3230 !important;
-}
-.opd-note-detail-Normal div.row.mr-0.ml-0.p-1 {
-  background: #9ACD3230 !important;
-}
-
-.opd-note-detail-Emergency {
-  background: #DDA0DD50 !important;
-}
-
-.opd-note-detail-Emergency div.row.mr-0.ml-0.p-1 {
-  background: #DDA0DD50 !important;
-}
-
-.antenatal-progress-record div[name=obstetrics_progress] tr.o_data_row.text-danger {
-  background: #80008040 !important;
-}
-
-.antenatal-progress-record div[name=obstetrics_progress] tr.o_data_row.text-success {
-  background: #0014ff45 !important;
-}
-
-.o_field_widget.o_field_many2manytags .badge .o_badge_text {
-    max-width: auto !important;
-}
-
-#ward_notes_styling .o_td_label {
-    padding-right: 10px;
-    vertical-align: top;
-}
-
-#ward_notes_styling td {
-    padding: 0px 36px 0px 8px;
-    vertical-align: initial;
-}
-
-.o_input {
+    left: -8%;
+    width: 100%;
+    height: 360px;
+    position: relative;
+    background: #E5ECF6;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 5%;
+ }
+.card-custom-right-heading{
+    width: 40%;
+    left: 24px;
+    top: 32px;
+    position: absolute;
     color: black;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
 }
 
-.black-btn
+.card-custom-right-heading-special
 {
-color:black;
+    left: 58%;
+    top: 32px;
+    position: absolute;
+    color: black;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+.card-custom-right-button
+{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    left: 105px; top: 114px;
+    position: absolute;
+    background: #2F5597;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex
+}
+.card-custom-right-button-text
+{
+    color: white;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
 }
 
-.green-btn
+.divider
 {
-color:green;
+    width: 323px;
+    height: 0px;
+    left: 0px;
+    top: 186px;
+    position: absolute;
+    border: 0.50px rgba(47, 85, 151, 0.20) solid;
 }
-.red-btn
+
+.card-custom-right-extra-content
 {
-color:red;
+    width: 275px;
+    height: 45px;
+    left: 24px;
+    top: 210px;
+    position: absolute;
+    color: black;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.header-custom-text
+{
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    display: flex;
+}
+
+.header-text
+{
+    color: #2F5597;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.header2-text
+{
+    color: white;
+    font-size: 20px;
+     font-family: Inter;
+     font-weight: 400;
+     word-wrap: break-word;
+     display: inline-block;
 }
