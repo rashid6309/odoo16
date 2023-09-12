@@ -186,72 +186,94 @@
 												<group string="Medical History" col="6" colspan="6" class="mt-0">
 													<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
 													<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
-													<field name="female_adrenal_pr" placeholder="Add Details" colspan="6" />
-													<!-- <field name="allergies_pr" /> -->
-													<field name="female_adrenal_pr_d" string="" placeholder="Since" colspan="6" />
-													<field name="female_ant_pr" placeholder="" colspan="6"
-														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_adrenal" placeholder="Add Details" colspan="6" />
+													<field name="female_adrenal_date" string="" placeholder="Since" colspan="6" />
 
-													<field name="female_ant_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_aut_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_aut_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_btransfusion_pr" placeholder="" colspan="6"
+													<field name="female_anti_phospholipid_syndrome" placeholder="" colspan="6"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_anti_phospholipid_syndrome_date" string="" colspan="6" placeholder="Since" />
 
-													<field name="female_btransfusion_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_complications_pr" colspan="6" placeholder="Complications" string="" default=" " readonly="0" attrs="{'readonly': [('female_btransfusion_pr', 'not in',['y'])]}" />
-													<field name="female_car_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_car_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_diabetes_select_pr" placeholder="" colspan="6" string="Diabetes"
+													<field name="female_autoimmune_disease" placeholder="Add Details" colspan="6" />
+													<field name="female_autoimmune_disease_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_blood_transfusion" placeholder="" colspan="6"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
 
-													<field name="female_diabetes_pr" placeholder="" colspan="6" string="" />
-													<field name="female_diabetes_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_dvt_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_dvt_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_gal_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_gal_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_gas_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_gas_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_gyn_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_gyn_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_hae_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_hae_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_hdisease_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_hdisease_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_htension_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_htension_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_int_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_int_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_janduice_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_janduice_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_liver_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_liver_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_low_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_low_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_mal_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_mal_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_neu_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_neu_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_renal_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_renal_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_res_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_res_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_saa_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_saa_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_alcohol_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_alcohol_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_ske_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_ske_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_thy_select_pr" placeholder="" colspan="6" string="Thyroid"
+													<field name="female_complications_pr" colspan="6" placeholder="Complications" string="" default=" " readonly="0" attrs="{'readonly': [('female_blood_transfusion', 'not in',['y'])]}" />
+
+													<field name="female_cardiac" placeholder="Add Details" colspan="6" />
+													<field name="female_cardiac_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_diabetes_type" placeholder="" colspan="6"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_diabetes" placeholder="" colspan="6" string="" />
+													<field name="female_diabetes_date" string="" colspan="6" placeholder="Since" />
 
-													<field name="female_thy_pr" placeholder="Add Details" colspan="6" string="" />
-													<field name="female_thy_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_uinfact_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_uinfact_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="female_others_pr" placeholder="Add Details" colspan="6" />
-													<field name="female_others_pr_d" string="" colspan="6" placeholder="Since" />
+													<field name="female_dvt" placeholder="Add Details" colspan="6" />
+													<field name="female_dvt_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_gall_bladder" placeholder="Add Details" colspan="6" />
+													<field name="female_gall_bladder_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_gastric" placeholder="Add Details" colspan="6" />
+													<field name="female_gastric_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_gynaecology" placeholder="Add Details" colspan="6" />
+													<field name="female_gynaecology_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_haematology" placeholder="Add Details" colspan="6" />
+													<field name="female_haematology_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_heart_disease" placeholder="Add Details" colspan="6" />
+													<field name="female_heart_disease_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_hyper_tension" placeholder="Add Details" colspan="6" />
+													<field name="female_hyper_tension_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_intestinal" placeholder="Add Details" colspan="6" />
+													<field name="female_intestinal_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_janduice" placeholder="Add Details" colspan="6" />
+													<field name="female_janduice_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_liver" placeholder="Add Details" colspan="6" />
+													<field name="female_liver_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_low_urinary_tract" placeholder="Add Details" colspan="6" />
+													<field name="female_low_urinary_tract_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_malignancy" placeholder="Add Details" colspan="6" />
+													<field name="female_malignancy_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_neurological" placeholder="Add Details" colspan="6" />
+													<field name="female_neurological_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_renal" placeholder="Add Details" colspan="6" />
+													<field name="female_renal_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_respiratory" placeholder="Add Details" colspan="6" />
+													<field name="female_respiratory_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_smoking" placeholder="Add Details" colspan="6" />
+													<field name="female_smoking_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_alcohol" placeholder="Add Details" colspan="6" />
+													<field name="female_alcohol_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_skeletal" placeholder="Add Details" colspan="6" />
+													<field name="female_skeletal_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_thyroid_TYPE" placeholder="" colspan="6" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_thyroid" placeholder="Add Details" colspan="6" string="" />
+													<field name="female_thyroid_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_urinary_infection" placeholder="Add Details" colspan="6" />
+													<field name="female_urinary_infection_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="female_medical_history_others" placeholder="Add Details" colspan="6" />
+													<field name="female_medical_history_others_date" string="" colspan="6" placeholder="Since" />
 												</group>
 												<group string="Surgical History" class="mt-0" col="6" colspan="6">
 													<div style="margin-top: -7%;">
@@ -420,8 +442,8 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="c_abnormalitiesOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_c_abnormalities_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="female_other_c_abnormalities"/>
+																			<field name="female_abnormalities_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_other_abnormalities"/>
 																		</div>
 																	</div>
 																</div>
@@ -437,8 +459,8 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapsePih" class="collapse" role="tabpanel" aria-labelledby="pihOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_pih_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="female_other_pih"/>
+																			<field name="female_pregnancy_induced_hypertension_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_other_pregnancy_induced_hypertension"/>
 																		</div>
 																	</div>
 																</div>
@@ -454,8 +476,8 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseMisscarriages" class="collapse" role="tabpanel" aria-labelledby="misscarriagesOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_misscarriages_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="female_other_misscarriages"/>
+																			<field name="female_miscarriage_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_other_miscarriage"/>
 																		</div>
 																	</div>
 																</div>
@@ -471,8 +493,8 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapsePb" class="collapse" role="tabpanel" aria-labelledby="pbOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_pb_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="female_other_pb"/>
+																			<field name="female_preterm_birth_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_other_preterm_birth"/>
 																		</div>
 																	</div>
 																</div>
@@ -488,8 +510,8 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseSb" class="collapse" role="tabpanel" aria-labelledby="sbOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_sb_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="female_other_sb"/>
+																			<field name="female_still_birth_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_other_still_birth"/>
 																		</div>
 																	</div>
 																</div>
@@ -505,8 +527,8 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapsePmof" class="collapse" role="tabpanel" aria-labelledby="pmofOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_pmof_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="female_other_pmof"/>
+																			<field name="female_pre_mature_ovarian_failure_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_other_pre_mature_ovarian_failure"/>
 																		</div>
 																	</div>
 																</div>
@@ -522,7 +544,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseOther" class="collapse" role="tabpanel" aria-labelledby="otherOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_other_history" />
+																			<field name="female_family_history_other" />
 																		</div>
 																	</div>
 																</div>
@@ -601,10 +623,10 @@
 										<div class="card-block mb-5 pl-4 collapse" id="systematic_examination_section">
 											<section>
 												<group>
-													<field name="breast_rt"/>
-													<field name="breast_rt_comment"/>
-													<field name="breast_lt"/>
-													<field name="breast_lt_comment"/>
+													<field name="breast_right"/>
+													<field name="breast_right_comment"/>
+													<field name="breast_left"/>
+													<field name="breast_left_comment"/>
 													<field name="cvs"/>
 													<field name="cvs_comment"/>
 													<field name="respiratory"/>
@@ -632,10 +654,10 @@
 												<field name="uterus_size_comment"/>
 												<field name="uterus_position"/>
 												<field name="uterus_mobility"/>
-												<field name="ps"/>
-												<field name="ps_comment"/>
-												<field name="date"/>
-												<field name="lmp"/>
+												<field name="gynaecological_examination_ps_selection"/>
+												<field name="gynaecological_examination_ps_comment"/>
+												<field name="gynaecological_examination_date"/>
+												<field name="gynaecological_examination_lmp"/>
 												<field name="left_ovary"/>
 												<field name="left_ovary_type"/>
 												<field name="left_ovary_nos"/>
@@ -688,7 +710,7 @@
 												<field name="forbid_size_width_10"/>
 												<field name="lining"/>
 												<field name="lining_size"/>
-												<field name="comments"/>
+												<field name="gynaecological_examination_comment"/>
 											</group>
 										</div>
 
@@ -737,71 +759,94 @@
 											<group col="12" class="mt-0">
 												<group string="Medical History" col="6" colspan="6" class="mt-0">
 													<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
-													<field name="male_adrenal_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_adrenal_pr_d" string="" placeholder="Since" colspan="6" />
-													<field name="male_ant_pr" placeholder="" colspan="6"
-														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_adrenal" placeholder="Add Details" colspan="6" />
+													<field name="male_adrenal_date" string="" placeholder="Since" colspan="6" />
 
-													<field name="male_ant_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_aut_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_aut_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_btransfusion_pr" placeholder="" colspan="6"
+													<field name="male_anti_phospholipid_syndrome" placeholder="" colspan="6"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_anti_phospholipid_syndrome_date" string="" colspan="6" placeholder="Since" />
 
-													<field name="male_btransfusion_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_complications_pr" colspan="6" placeholder="Complications" string="" default=" " readonly="0" attrs="{'readonly': [('female_btransfusion_pr', 'not in',['y'])]}" />
-													<field name="male_car_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_car_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_diabetes_select_pr" placeholder="" colspan="6" string="Diabetes"
+													<field name="male_autoimmune_disease" placeholder="Add Details" colspan="6" />
+													<field name="male_autoimmune_disease_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_blood_transfusion" placeholder="" colspan="6"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
 
-													<field name="male_diabetes_pr" placeholder="" colspan="6" string="" />
-													<field name="male_diabetes_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_dvt_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_dvt_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_gal_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_gal_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_gas_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_gas_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_gyn_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_gyn_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_hae_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_hae_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_hdisease_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_hdisease_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_htension_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_htension_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_int_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_int_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_janduice_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_janduice_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_liver_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_liver_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_low_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_low_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_mal_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_mal_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_neu_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_neu_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_renal_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_renal_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_res_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_res_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_saa_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_saa_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_alcohol_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_alcohol_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_ske_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_ske_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_thy_select_pr" placeholder="" colspan="6" string="Thyroid"
+													<field name="male_complications_pr" colspan="6" placeholder="Complications" string="" default=" " readonly="0" attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
+
+													<field name="male_cardiac" placeholder="Add Details" colspan="6" />
+													<field name="male_cardiac_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_diabetes_type" placeholder="" colspan="6"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_diabetes" placeholder="" colspan="6" string="" />
+													<field name="male_diabetes_date" string="" colspan="6" placeholder="Since" />
 
-													<field name="male_thy_pr" placeholder="Add Details" colspan="6" string="" />
-													<field name="male_thy_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_uinfact_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_uinfact_pr_d" string="" colspan="6" placeholder="Since" />
-													<field name="male_others_pr" placeholder="Add Details" colspan="6" />
-													<field name="male_others_pr_d" string="" colspan="6" placeholder="Since" />
+													<field name="male_dvt" placeholder="Add Details" colspan="6" />
+													<field name="male_dvt_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_gall_bladder" placeholder="Add Details" colspan="6" />
+													<field name="male_gall_bladder_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_gastric" placeholder="Add Details" colspan="6" />
+													<field name="male_gastric_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_gynaecology" placeholder="Add Details" colspan="6" />
+													<field name="male_gynaecology_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_haematology" placeholder="Add Details" colspan="6" />
+													<field name="male_haematology_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_heart_disease" placeholder="Add Details" colspan="6" />
+													<field name="male_heart_disease_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_hyper_tension" placeholder="Add Details" colspan="6" />
+													<field name="male_hyper_tension_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_intestinal" placeholder="Add Details" colspan="6" />
+													<field name="male_intestinal_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_janduice" placeholder="Add Details" colspan="6" />
+													<field name="male_janduice_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_liver" placeholder="Add Details" colspan="6" />
+													<field name="male_liver_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_low_urinary_tract" placeholder="Add Details" colspan="6" />
+													<field name="male_low_urinary_tract_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_malignancy" placeholder="Add Details" colspan="6" />
+													<field name="male_malignancy_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_neurological" placeholder="Add Details" colspan="6" />
+													<field name="male_neurological_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_renal" placeholder="Add Details" colspan="6" />
+													<field name="male_renal_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_respiratory" placeholder="Add Details" colspan="6" />
+													<field name="male_respiratory_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_smoking" placeholder="Add Details" colspan="6" />
+													<field name="male_smoking_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_alcohol" placeholder="Add Details" colspan="6" />
+													<field name="male_alcohol_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_skeletal" placeholder="Add Details" colspan="6" />
+													<field name="male_skeletal_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_thyroid_TYPE" placeholder="" colspan="6" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_thyroid" placeholder="Add Details" colspan="6" string="" />
+													<field name="male_thyroid_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_urinary_infection" placeholder="Add Details" colspan="6" />
+													<field name="male_urinary_infection_date" string="" colspan="6" placeholder="Since" />
+
+													<field name="male_medical_history_others" placeholder="Add Details" colspan="6" />
+													<field name="male_medical_history_others_date" string="" colspan="6" placeholder="Since" />
 												</group>
 												<group string="Surgical History" class="mt-0" col="6" colspan="6">
 													<!-- BUG -->
@@ -954,24 +999,6 @@
 																</div>
 
 																<div class="card">
-																	<div class="card-header" role="tab" id="male_twinsOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseTwins" id="male_twins" aria-expanded="false" aria-controls="collapseTwins" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Twins
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapseTwins" class="collapse" role="tabpanel" aria-labelledby="twinsOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_twins_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="male_other_twins"/>
-																		</div>
-																	</div>
-																</div>
-
-																<div class="card">
 																	<div class="card-header" role="tab" id="male_tuberculosisOne">
 																		<div class="mb-0 row">
 																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseTuberculosis" id="tuberculosis" aria-expanded="false" aria-controls="collapseTuberculosis" class="collapsed colla mb-0 col-11">
@@ -1001,94 +1028,8 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="male_collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="male_c_abnormalitiesOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="male_c_abnormalities_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="male_other_c_abnormalities"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_pihOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapsePih" id="pih" aria-expanded="false" aria-controls="collapsePih" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Pregnancy Induced Hypertension
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapsePih" class="collapse" role="tabpanel" aria-labelledby="male_pihOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_pih_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="male_other_pih"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_misscarriagesOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseMisscarriages" id="male_misscarriages" aria-expanded="false" aria-controls="collapseMisscarriages" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Miscarriages
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapseMisscarriages" class="collapse" role="tabpanel" aria-labelledby="male_misscarriagesOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_misscarriages_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="male_other_misscarriages"/>
-																		</div>
-																	</div>
-																</div>
-
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_pbOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapsePb" id="pb" aria-expanded="false" aria-controls="collapsePb" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Preterm Births
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapsePb" class="collapse" role="tabpanel" aria-labelledby="male_pbOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_pb_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="male_other_pb"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_sbOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseSb" id="sb" aria-expanded="false" aria-controls="collapseSb" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Still Births
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapseSb" class="collapse" role="tabpanel" aria-labelledby="male_sbOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_sb_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="male_other_sb"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_pmofOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapsePmof" id="male_pmof" aria-expanded="false" aria-controls="collapsePmof" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Pre-mature Ovarian Failure
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapsePmof" class="collapse" role="tabpanel" aria-labelledby="male_pmofOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_pmof_ids" readonly="0" widget="many2many_checkboxes" />
-																			<field name="male_other_pmof"/>
+																			<field name="male_abnormalities_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="male_other_abnormalities"/>
 																		</div>
 																	</div>
 																</div>
@@ -1104,7 +1045,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="male_collapseOther" class="collapse" role="tabpanel" aria-labelledby="male_otherOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="male_other_history" />
+																			<field name="male_family_history_other" />
 																		</div>
 																	</div>
 																</div>
