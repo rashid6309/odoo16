@@ -257,7 +257,8 @@ class EcarePatient(models.Model):
 
                     }
 
-                patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since)
+                patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since) or ''
+            patient.yom = ''
 
     @api.onchange('husband_name', 'wife_name', 'mr_num')
     def _get_patient_name(self):
