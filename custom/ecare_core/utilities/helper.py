@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class TimeValidation:
 
     @staticmethod
@@ -10,6 +13,29 @@ class TimeValidation:
             return None
 
         return time
+
+    @staticmethod
+    def convert_date_to_days_years(convert_date):
+        if not convert_date:
+            return None
+
+        today = datetime.today().date()
+        difference = today - convert_date
+        years = difference.days / 365
+        left_days = difference.days - (int(years) * 365.25)
+        months = (left_days / 31)
+
+        birth_date_day = convert_date.day
+        today_day = today.day
+
+        if today_day >= birth_date_day:
+            day = today_day - birth_date_day
+        else:
+            day = 31 - (birth_date_day - today_day)
+        if int(years) < 5:
+            return str(int(years)) + 'Y ' + str(int(months)) + 'M ' + str(day) + 'D'
+        else:
+            return str(int(years)) + ' Years'
 
 
 class CustomNotification:

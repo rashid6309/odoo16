@@ -26,7 +26,7 @@
         # Views
         'views/female_obstetrics_history.xml',
 
-        'views/ec_patient.xml',
+        # 'views/ec_patient.xml', # not being used now.
         'views/ec_procedure.xml',
         'views/lab_history.xml',
 

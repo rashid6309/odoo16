@@ -407,7 +407,7 @@ View.template = "web.View";
 View.components = { WithSearch };
 View.defaultProps = {
     display: {},
-//    context: {},
+    context: {},
     loadActionMenus: false,
     loadIrFilters: false,
     className: "",

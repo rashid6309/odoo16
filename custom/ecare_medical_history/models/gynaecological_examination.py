@@ -17,18 +17,25 @@ class MedicalGynaecologicalExamination(models.Model):
 
     uterus_position = fields.Selection(selection=StaticMember.UTERUS_POSITION, string='Uterus Position')
     uterus_mobility = fields.Selection(selection=StaticMember.UTERUS_MOBILITY, string='Uterus Mobility')
-    ps = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='PS')
-    ps_comment = fields.Char('PS')
 
-    date = fields.Date(string='Date')
-    lmp = fields.Date(string='LMP')
-    # left_ovary = fields.Char(string='Left Ovary')
+    gynaecological_examination_ps_selection = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='PS')
+    gynaecological_examination_ps_comment = fields.Char('PS')
+
+    gynaecological_examination_date = fields.Date(string='Date')
+
+    gynaecological_examination_lmp = fields.Date(string='LMP')
+
+    gynaecological_examination_comment = fields.Char('Comments')
 
     # LEFT OVARY FIELDS
 
     left_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary')
     left_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary')
     left_ovary_nos = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary')
+    '''
+        FIXME: What is length and width?
+        Need to move to One2Many relation based on the left and right ovary. this is not required
+    '''
     left_ovary_length_1 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary')
     left_ovary_width_1 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary')
     left_ovary_length_2 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary')
@@ -41,6 +48,11 @@ class MedicalGynaecologicalExamination(models.Model):
     left_ovary_width_5 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary')
 
     # Right OVARY FIELDS
+
+    '''
+        FIXME: What is length and width?
+
+    '''
 
     right_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary')
     right_ovary_nos = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary')
@@ -64,6 +76,7 @@ class MedicalGynaecologicalExamination(models.Model):
 
     forbid_size_length_1 = fields.Selection(selection=StaticMember.FORBID, string='Forbid')
     forbid_size_width_1 = fields.Selection(selection=StaticMember.FORBID, string='Forbid')
+
     forbid_size_length_2 = fields.Selection(selection=StaticMember.FORBID, string='Forbid')
     forbid_size_width_2 = fields.Selection(selection=StaticMember.FORBID, string='Forbid')
     forbid_size_length_3 = fields.Selection(selection=StaticMember.FORBID, string='Forbid')
@@ -86,4 +99,3 @@ class MedicalGynaecologicalExamination(models.Model):
     lining = fields.Selection(selection=StaticMember.LINING, string='Lining')
     lining_size = fields.Selection(selection=StaticMember.LINING_SIZE, string='Lining')
 
-    comments = fields.Char('Comments')

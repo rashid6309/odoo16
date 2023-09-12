@@ -4,7 +4,7 @@ from . import family_relation_list
 
 # Common for both male and female
 from . import general_history
-from . import sx_contraception
+from . import sex_contraception
 from . import social_history
 from . import lab_history
 from . import procedure
