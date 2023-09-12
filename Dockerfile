@@ -22,12 +22,11 @@ COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
 
 
-# create user that will be used to run system by name odoo
-RUN adduser --system --home=/opt/odoo16ce --group odoo
-
 RUN apt-get update
-#RUN apt-get upgrade
+RUN apt-get upgrade -y
 
+# create user that will be used to run system by name odoo
+RUN adduser --system --home=/opt/odoo --group odoo
 
 RUN apt-get -y install build-essential  \
     wget git python3-pip  \
@@ -38,38 +37,62 @@ RUN apt-get -y install build-essential  \
     zlib1g-dev libpq-dev libxslt1-dev  \
     libldap2-dev libtiff5-dev  \
     libopenjp2-7-dev \
-    && apt-get -y install wkhtmltopdf
+    nano \
+    libffi-dev
+
+# install wkhtmltopdf
+RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
+RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+
+COPY ./wkhtmltopdf-installation.sh /
+
+RUN chmod +x /wkhtmltopdf-installation.sh
+
+RUN /wkhtmltopdf-installation.sh
+#RUN dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 #
-RUN pip3 install wheel
+#RUN dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb
 #
-COPY ./core/requirements.txt /opt/odoo16ce/core/requirements.txt
+#RUN apt --fix-broken install
 
-RUN pip3 install --upgrade pip
-RUN pip3 install -r /opt/odoo16ce/core/requirements.txt
+    #    wkhtmltopdf
+#RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
+#RUN sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb
+#RUN sudo apt install -f
 
-RUN #apt-get install -y libssl-dev libpq-dev
-
-RUN apt install -y nano
 # install latest postgresql-client
 RUN apt-get install -y postgresql-client
 
+#
+RUN pip3 install wheel
+RUN pip3 install --upgrade pip
+#
+#COPY ./core/requirements.txt /opt/odoo16ce/core/requirements.txt
+
+RUN pip3 install -r /opt/odoo16ce/core/requirements.txt
+
+#RUN apt-get install -y libssl-dev libpq-dev
+
+
 # Set permissions and Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
-RUN chown -R odoo /etc/odoo \
-    && chown odoo /entrypoint.sh \
-    && chmod +x /entrypoint.sh \
-    && chown odoo /etc/odoo/odoo.conf \
+RUN chown odoo:odoo -R /etc/odoo \
     && mkdir -p /mnt/extra-addons \
     && chown -R odoo /mnt/extra-addons \
-    && mkdir -p /var/lib/odoo \
-    && chown -R odoo /var/lib/odoo
+    && chmod +x /entrypoint.sh \
+    && mkdir -p /opt/odoo/data_dir \
+    && chown -R odoo:odoo /opt/odoo/data_dir \
+    && mkdir -p /opt/odoo/logs \
+    && chown -R odoo:odoo /opt/odoo/logs \
+    && mkdir -p /opt/backups \
+    && chown -R odoo:odoo /opt/backups
+
+#VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
 # Expose Odoo services
 EXPOSE 8069
 
 # Set the default config file
 ENV ODOO_RC /etc/odoo/odoo.conf
-
-#COPY ./wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
 # Set default user when running the container
 USER odoo
