@@ -237,7 +237,7 @@ class EcarePatient(models.Model):
     @api.onchange('husband_dob')
     def _get_age_husband(self):
         for rec in self:
-            rec.husband_dob = TimeValidation.convert_date_to_days_years(rec.husband_dob)
+            rec.husband_age = TimeValidation.convert_date_to_days_years(rec.husband_dob)
 
     @api.onchange('married_since')
     def get_marriage_years(self):
@@ -257,7 +257,8 @@ class EcarePatient(models.Model):
 
                     }
 
-                patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since)
+                patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since) or ''
+            patient.yom = ''
 
     @api.onchange('husband_name', 'wife_name', 'mr_num')
     def _get_patient_name(self):
