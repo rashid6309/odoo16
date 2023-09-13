@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="ec_medical_patient_procedure_form" model="ir.ui.view">
+            <field name="name">ec.medical.patient.procedures.form</field>
+            <field name="model">ec.patient.procedures</field>
+            <field name="arch" type="xml">
+                <form string="Patient Procedures" edit="true" create="false">
+                    <sheet>
+                        <group>
+                            <group>
+
+                                <field name="female_consultation_id"/>
+                                <field name="male_consultation_id"/>
+                                <field name="details" placeholder="Details..."/>
+                                <field name="date_on" placeholder="Date ON"/>
+                                <!-- <field name="procedure_id" placeholder="Date ON"/>-->
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="ec_medical_patient_procedure_kanban" model="ir.ui.view">
+            <field name="name">ec.medical.patient.procedures.kanban</field>
+            <field name="model">ec.patient.procedures</field>
+            <field name="arch" type="xml">
+                <kanban create="false">
+                    <field name="details"/>
+                    <field name="date_on"/>
+                    <templates>
+                        <t t-name="kanban-box" style="width:40mm; height:70mm;">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <table t-attf-class="o_group">
+                                    <tbody>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label" for="details">Details:</label>
+                                            </td>
+                                            <td>
+                                                <field name="details"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label" for="date_on">Date On:</label>
+                                            </td>
+                                            <td>
+                                                <field name="date_on"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="ec_medical_procedures_create_action" model="ir.actions.act_window">
+            <field name="name">Patient Procedures</field>
+            <field name="res_model">ec.patient.procedures</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Click to add a new Postnatal Doctor Round file.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

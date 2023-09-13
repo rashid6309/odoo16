@@ -19,21 +19,23 @@
         'data/data.xml',
         'data/system_parameter.xml',
         # Views
+        'views/base_users_view.xml',
         'views/third_party_api_log.xml',
         'views/ec_patient.xml',
 
         'reports/ec_patient_reporting.xml',
 
         # Data
-        'data/menu.xml'
+        'data/menu.xml',
+        'data/cron_jobs.xml'
 
     ],
     'assets': {
         'web.assets_backend': [
             'ecare_core/static/src/xml/chatter_topbar_custom.xml',
-            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css',
-            'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js'
+            # 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js',
+            # 'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css',
+            # 'https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js'
         ],
 
     },

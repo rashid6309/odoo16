@@ -1,8 +1,13 @@
 from odoo import models, api, fields, _
 from odoo.exceptions import AccessError, UserError
+from odoo import modules
 
+from odoo.addons.ecare_core.utilities.helper import TimeValidation
+
+import base64
 import datetime
 import requests, json
+from random import randint
 
 from logging import getLogger
 
@@ -149,9 +154,18 @@ class EcarePatient(models.Model):
         ('husband_cnic_uniq', 'unique(husband_nic)', 'The husband must be unique !'),
     ]
 
-    def update_write_date(self):
-        """ This method is called to update the write_date so that patients gets in the view at first """
-        self.write_date = datetime.datetime.now()
+    ''' Override methods '''
+
+    @api.model
+    def default_get(self, default_fields):
+        res = super(EcarePatient, self).default_get(default_fields)
+
+        ''' Picture random selection '''
+        avatar_id = randint(0, 9)
+        res['husband_image']  = self._get_default_husband_avatar(avatar_id)
+        res['image_1920']  = self._get_default_female_avatar(avatar_id)
+        return res
+
 
     def write(self, vals):
         """
@@ -190,56 +204,41 @@ class EcarePatient(models.Model):
 
         return super(EcarePatient, self).write(vals)
 
+    ''' XXX Overloaded methods ends here XXX '''
 
-    @api.depends('wife_dob')
+    def _get_default_avatar(self, image_path):
+        encoded = None
+        with open(image_path, 'rb') as file:
+            read_file = file.read()
+            encoded = base64.b64encode(read_file)
+            file.close()
+
+        return encoded
+
+    def _get_default_husband_avatar(self, avatar_id):
+        avatar_name = f'{avatar_id}.svg'
+        image_path = modules.get_module_resource('ecare_core', 'static/img/avatars/male', avatar_name)
+        return self._get_default_avatar(image_path)
+
+    def _get_default_female_avatar(self, avatar_id):
+        avatar_name = f'{avatar_id}.svg'
+        image_path = modules.get_module_resource('ecare_core', 'static/img/avatars/female', avatar_name)
+        return self._get_default_avatar(image_path)
+
+    def update_write_date(self):
+        """ This method is called to update the write_date so that patients gets in the view at first """
+        self.write_date = datetime.datetime.now()
+
     @api.onchange('wife_dob')
     def _get_age_wife(self):
         for rec in self:
-            if rec.wife_dob:
-                bdate = datetime.datetime.strptime(str(rec.wife_dob), "%Y-%m-%d").date()
-                today = datetime.date.today()
-                diffdate = today - bdate
-                years = diffdate.days / 365
-                formonth = diffdate.days - (int(years) * 365.25)
-                months = (formonth / 31)
-                bday = bdate.day
-                tody = datetime.date.today().day
-                if tody >= bday:
-                    day = tody - bday
-                else:
-                    day = 31 - (bday - tody)
-                if int(years) < 5:
-                    rec.wife_age = str(int(years)) + 'Y ' + str(int(months)) + 'M ' + str(day) + 'D'
-                else:
-                    rec.wife_age = str(int(years)) + ' Years'
-            else:
-                rec.wife_age = ''
+            rec.wife_age = TimeValidation.convert_date_to_days_years(rec.wife_dob)
 
-    @api.depends('husband_dob')
     @api.onchange('husband_dob')
     def _get_age_husband(self):
         for rec in self:
-            if rec.husband_dob:
-                bdate = datetime.datetime.strptime(str(rec.husband_dob), "%Y-%m-%d").date()
-                today = datetime.date.today()
-                diffdate = today - bdate
-                years = diffdate.days / 365
-                formonth = diffdate.days - (int(years) * 365.25)
-                months = (formonth / 31)
-                bday = bdate.day
-                tody = datetime.date.today().day
-                if tody >= bday:
-                    day = tody - bday
-                else:
-                    day = 31 - (bday - tody)
-                if int(years) < 5:
-                    rec.husband_age = str(int(years)) + 'Y ' + str(int(months)) + 'M ' + str(day) + 'D'
-                else:
-                    rec.husband_age = str(int(years)) + ' Years'
-            else:
-                rec.husband_age = ''
+            rec.husband_dob = TimeValidation.convert_date_to_days_years(rec.husband_dob)
 
-    @api.depends('married_since')
     @api.onchange('married_since')
     def get_marriage_years(self):
         for patient in self:
@@ -257,19 +256,8 @@ class EcarePatient(models.Model):
                             'message': 'Date of Marriage should be lesser than or equal to today.'}
 
                     }
-                diffdate = today - mdate
-                years = diffdate.days / 365
-                formonth = diffdate.days - (int(years) * 365.25)
-                months = (formonth / 31)
-                bday = mdate.day
-                tody = datetime.date.today().day
-                if tody >= bday:
-                    day = tody - bday
-                else:
-                    day = 31 - (bday - tody)
-                patient.yom = str(int(years)) + 'Y ' + str(int(months)) + 'M ' + str(day) + 'D'
-            else:
-                patient.yom = ''
+
+                patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since)
 
     @api.onchange('husband_name', 'wife_name', 'mr_num')
     def _get_patient_name(self):
@@ -348,7 +336,7 @@ class EcarePatient(models.Model):
 
         # POST API to update the data at that side ICSI existing history software
 
-        self.post_data_history_software()
+        # self.post_data_history_software()
 
     def constraints_validation(self):
         if self.husband_marital_status != 'Unmarried':
@@ -456,3 +444,31 @@ class EcarePatient(models.Model):
             self.env['third.party.api.log'].sudo().create(api_log_values)
         except Exception as e:
             _logger.warning(e)
+
+
+    ''' CRON JOB Methods '''
+
+    @api.model
+    def change_images_with_avatar(self):
+        female_images = self.search(domain=[('image_1920', '=', None)], order="id desc")
+
+        i = 0
+        for f_image in female_images:
+            avatar_id = randint(0, 9)
+            _logger.info(f"id of the couple: {f_image.id}")
+            f_image.image_1920 = f_image._get_default_female_avatar(avatar_id)
+            i +=1
+            if i > 3:
+                break
+
+        i = 0
+        male_images = self.search(domain=[('husband_image', '=', None)], order="id desc")
+        for m_image in male_images:
+            avatar_id = randint(1, 10)
+            _logger.info(f"id of the couple: {m_image.id}")
+            m_image.husband_image = m_image._get_default_husband_avatar(avatar_id)
+            i +=1
+            if i > 2:
+                break
+
+        _logger.info("Images uploaded success fully")
