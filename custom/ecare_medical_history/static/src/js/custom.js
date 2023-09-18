@@ -58,11 +58,10 @@ odoo.define('ecare_medical_history.owl_test', function (require) {
     var _t = translation._t;
     const { Component,useRef} = owl;
     const { CharField }  = require("@web/views/fields/char/char_field");
+
      class DomainSelectorTextField extends Component {
 
        setup(){
-            console.log('new work!!!');
-           console.log(this.props.record.data);
            super.setup();
            this.action = useService("action");
            this.input = useRef('inputdate')
@@ -88,6 +87,7 @@ odoo.define('ecare_medical_history.owl_test', function (require) {
         }
 
     }
+
     DomainSelectorTextField.template = "ecare_medical_history.FieldDateMultipleDate";
     registry.category("fields").add("banner_summary_widget", DomainSelectorTextField);
 });
