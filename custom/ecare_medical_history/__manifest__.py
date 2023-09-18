@@ -11,7 +11,7 @@
     'maintainer': 'Rashid Noor',
     'license': 'LGPL-3',
     'support': '',
-    'depends': ['base', 'mail', 'ecare_core'],
+    'depends': ['web', 'base', 'mail', 'ecare_core'],
     'demo': [],
     'data': [
         # Security
@@ -42,9 +42,10 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'ecare_medical_history/static/src/js/custom.js',
+            '/ecare_medical_history/static/src/js/custom.js',
             'ecare_medical_history/static/src/css/custom.css',
             'ecare_medical_history/static/src/xml/summary.xml',
+            'ecare_medical_history/static/src/xml/banner_template.xml'
         ],
         
 
