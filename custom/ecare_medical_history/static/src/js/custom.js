@@ -42,228 +42,55 @@ registry.category("views").add("banner_summary_route", PickingFormView);
 
 });
 
-//odoo.define('ecare_medical_history.inject_summary', function (require) {
-//    "use strict";
-//
-//    var core = require('web.core');
-//    var session = require('web.session');
-//    var Widget = require('web.Widget');
-//
-//    var _t = core._t;
-//
-//    var InjectSummary = Widget.extend({
-//        start: function () {
-//        alert('hello');
-//            // Check if we are on a form view
-//            if (session.model === 'ec.first.consultation' && session.view_type === 'form') {
-//                // Retrieve the current form view's DOM element
-//                var $formView = $('.o_form_view');
-//
-//                // Render and inject the global summary template
-//                var $summaryTemplate = $(core.qweb.render('ecare_medical_history.EcSummaryBoardCustom'));
-//                $formView.prepend($summaryTemplate);
-//            }
-//        },
-//    });
-//
-//    core.action_registry.add('ecare_medical_history.inject_summary', InjectSummary);
-//
-//    return InjectSummary;
-//});
 
-//
-//odoo.define('ecare_medical_history.custom_template_widget', function (require) {
-//    "use strict";
-//
-//
-//    var FormController = require('web.FormController');
-//
-//    FormController.include({
-//        /**
-//         * This method is called when the form view is initialized.
-//         */
-//        init: function (parent, model, renderer, params) {
-//            this._super.apply(this, arguments);
-//            alert("Custom JavaScript code executed on form load.");
-//            // Check if the current form view matches the one you want to target
-//            if (this.modelName === 'your_model' && this.viewType === 'form' && this.viewRef === 'your_module.your_form_view') {
-//                // Your custom code here
-//                console.log("Custom JavaScript code executed on form load.");
-//            }
-//        },
-//    });
-//});
-//
-//
-//
-//
-//odoo.define('ecare_medical_history.custom_template_widget', function (require) {
-//    "use strict";
-//
-//    var core = require('web.core');
-//    var FormView = require('web.FormView');
-//
-//    var _t = core._t;
-//
-//    FormView.include({
-//        load_record: function (record) {
-//            this._super.apply(this, arguments);
-//
-//            // Check if you are on the Sale Order form view
-//            if (this.model === 'sale.order' && this.viewType === 'form') {
-//                // Render and insert the custom template using QWeb
-//                var $customTemplate = $(core.qweb.render('your_module.CustomTemplate'));
-//                this.$('.o_form_view').prepend($customTemplate);
-//            }
-//        },
-//    });
-//});
-//
-//
-//odoo.define('ecare_medical_history.US_treeView', function (require) {
-//    "use strict";
-//
-////    var field_registry = require('web.field_registry');
-//    var Widget = require('web.Widget');
-//    var AbstractField = require('web.AbstractField');
-//    var core = require('web.core');
-//    var qweb = core.qweb;
-//    var registry = require('web.core.registry');
-//
-//    var USTreeView = Widget.extend({
-//
-//        init: function (parent, state, params) {
-//        this._super(parent);
-//        alert('hello');
-//    },
-//    _render: function () {
-//        var self = this;
-//        alert('hello');
-//    },
-//    });
-//
-//    registry.category("fields").add('US_treeView', USTreeView);
-//    return USTreeView;
-//});
+odoo.define('ecare_medical_history.owl_test', function (require) {
+"use strict";
+   const AbstractField = require('web.AbstractFieldOwl');
+   const fieldRegistry = require('web.field_registry_owl');
+    const { registry } = require('@web/core/registry');
+    const { useInputField } = require("@web/views/fields/input_field_hook");
+    const { useService } = require("@web/core/utils/hooks");
 
 
-//odoo.define('ecare_medical_history.SummeryController', function (require) {
-//    "use strict";
-//
-//    var AbstractController = require('web.AbstractController');
-//    var Context = require('web.Context');
-//    return AbstractController.include({
-//        /**
-//         * @override
-//         * @param {Widget} parent
-//         * @param {DiagramModel} model
-//         * @param {DiagramRenderer} renderer
-//         * @param {Object} params
-//         */
-//        init: function (parent, model, renderer, params) {
-//            this._super.apply(this, arguments);
-//            alert("Custom");
-//            this.summeryRoute = params.summeryRoute;
-//        },
-//        /**
-//         * Renders the html provided by the route specified by the
-//         * summeryRoute attribute on the controller (summery_route in the template).
-//         * Renders it before the view output and add a css class 'o_has_banner' to it.
-//         * There can be only one banner displayed at a time.
-//         *
-//         * If the banner contains stylesheet links or js files, they are moved to <head>
-//         * (and will only be fetched once).
-//         *
-//         * Route example:
-//         * @http.route('/module/hello', auth='user', type='json')
-//         * def hello(self):
-//         *     return {'html': '<h1>hello, world</h1>'}
-//         *
-//         * @private
-//         * @returns {Deferred}
-//         */
-//        _renderSummery: function () {
-//        alert("Custom");
-//            if (this.summeryRoute !== undefined) {
-//                var self = this;
-//                var patient_id;
-//                var evalContext = new Context(self.initialState.context).eval();
-//                patient_id = evalContext.default_patient;
-//                var hash = window.location.hash.replace('#', '');
-//                hash = JSON.parse('{"' + decodeURI(hash.replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}')
-//
-//                if (patient_id === undefined) {
-//                alert("Custom");
-//                    if (hash.model === "ec.medical.patient") {
-//                        patient_id = parseInt(hash.id);
-//                    }
-//                    else {
-//
-//                    }
-//                    if (patient_id === undefined) {
-//                        try {
-//                            patient_id = self.initialState.data.patient.res_id;
-//                        }
-//                        catch (e) {
-//                        }
-//                    }
-//
-//                }
-//
-//
-//                return this.dp
-//                    .add(this._rpc({
-//                        route: this.summeryRoute,
-//                        params: {
-//                            patient_id: patient_id === undefined ? false : patient_id,
-//                            model_context: evalContext,
-//                        }
-//                    })
-//                    )
-//                    .then(function (response) {
-//                        var $summery = $(response.html);
-//                        var defs = [];
-//                        $('link[rel="stylesheet"]', $summery).each(function (i, link) {
-//                            defs.push(ajax.loadCSS(link.href));
-//                            link.remove();
-//                        });
-//                        $('script[type="text/javascript"]', $summery).each(function (i, js) {
-//                            defs.push(ajax.loadJS(js.src));
-//                            js.remove();
-//                        });
-//                        return $.when.apply($, defs).then(function () {
-//                            $("#patient_summery").remove();
-//                            $('.o_group.o_inner_group.oe_button_box').css({ 'width': '100%', 'text-align': 'center' })
-//                            $summery.insertAfter($("table.oe_button_box.o_inner_group"));
-//                            self._$summery = $summery;
-//                        });
-//                    });
-//            }
-//            return $.when();
-//        },
-//
-//        _update: function (params, options) {
-//            this._super.apply(this, arguments)
-//            this._renderSummery()
-//            this._pushState();
-//            return this._renderBanner();
-//        },
-//
-//    });
-//
-//});
-//
-//odoo.define('ecare_medical_history.SummeryView', function (require) {
-//    "use strict";
-//    var AbstractView = require('web.AbstractView');
-//    return AbstractView.include({
-//        init: function (viewInfo, params) {
-//        alert("Custom");
-//            this._super.apply(this, arguments);
-//            this.controllerParams.summeryRoute = this.arch.attrs.summery_route;
-//        },
-//    })
-//});
+    var time = require('web.time');
+    var rpc = require('web.rpc');
+    var translation = require('web.translation');
+    var _t = translation._t;
+    const { Component,useRef} = owl;
+    const { CharField }  = require("@web/views/fields/char/char_field");
+     class DomainSelectorTextField extends Component {
+
+       setup(){
+            console.log('new work!!!');
+           console.log(this.props.record.data);
+           super.setup();
+           this.action = useService("action");
+           this.input = useRef('inputdate')
+           useInputField({ getValue: () => this.props.value || "", refName: "inputdate" });
+           useInputField({ getValue: () => this.props.record.data || "", refName: "patient_data" });
+       }
+
+
+       async _onEditPatientProfile(){
+       console.log(this.props.record.data.patient_id);
+       var patient = this.props.record.data.patient_id;
+            this.action.doActionButton({
+                type: "object",
+                resId: this.props.value[0],
+                name: "action_open_patient_time_view",
+                context: patient,
+                resModel: "ec.patient.timeline",
+                onClose: async () => {
+                    await this.props.record.model.root.load();
+                    this.props.record.model.notify();
+                },
+            });
+
+
+    }
+    DomainSelectorTextField.template = "ecare_medical_history.FieldDateMultipleDate";
+    registry.category("fields").add("banner_summary_widget", DomainSelectorTextField);
+});
 
 
 /** @odoo-module **/
