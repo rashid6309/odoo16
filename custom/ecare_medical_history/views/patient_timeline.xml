@@ -19,12 +19,7 @@
 			<field name="name">patient.timeline.form.view</field>
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="html">
-				<!--				<form string="First Consultation" banner_route="/banner/generic_patient_summery_detailed" js_class="banner_summary_route">-->
 				<form string="Patient Timeline">
-					<!--					<a href="#"  t-on-click="_MoreOptions">-->
-					<!--						<i class="fa fa-ellipsis-v"-->
-					<!--						   style="font-size:24px"></i>-->
-					<!--					</a>-->
 					<div>
 						<field style="display:block;" name="test_field" widget="banner_summary_widget"/>
 					</div>
@@ -32,10 +27,6 @@
 						<field name="name"/>
 						<field name="patient_id"/>
 					</group>
-<!--					<a href="#"  t-on-click="_MoreOptions">-->
-<!--						<i class="fa fa-ellipsis-v"-->
-<!--						   style="font-size:24px"></i>-->
-<!--					</a>-->
 					<div class="container-custom">
 						<div class="row">
 							<div class="col-md-2">
@@ -48,7 +39,7 @@
 								<div class="card-custom2">
 									<div class="card-type">
 										<div class="counter-word">0</div>
-										<div class="word-title">Frozen Embroys<br/>Stored</div>
+										<div class="word-title">Frozen Embroys Stored</div>
 									</div>
 								</div>
 								<div class="card-custom3">
@@ -74,10 +65,6 @@
 								</div>
 								<div style="width: 100%; height: 64px; background: #ED7D31">
 									<div class="header2-text">Current treatment pathway</div>
-									<!--									<div style="width: 129px; height: 48px; padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; background: white; border-radius: 4px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">-->
-									<!--                                         <button class="btn btn-dark">Automatic</button>-->
-									<!--										<div style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Automatic</div>-->
-									<!--									</div>-->
 									<div class="header2-text">Last visit: 2 days ago</div>
 									<div class="header2-text">Next visit: 25/02/22</div>
 								</div>
@@ -173,7 +160,7 @@
 													Sexual
 												</h2>
 											</div>
-											<br/>
+<!--											<br/>-->
 											<group>
 												<field name="sx_frequency"/>
 												<field name="sx_issues" widget="radio" options="{'horizontal': True}"/>
@@ -183,7 +170,7 @@
 											<div>
 												<h2> Contraception</h2>
 											</div>
-											<br/>
+<!--											<br/>-->
 											<group>
 
 												<field name="cn_type" widget="radio" options="{'horizontal': True}"/>
@@ -220,7 +207,7 @@
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
 
-													<field name="female_complications_pr" colspan="6" placeholder="Complications" string="" default=" " readonly="0" attrs="{'readonly': [('female_blood_transfusion', 'not in',['y'])]}" />
+													<field name="female_complications_pr" colspan="6" placeholder="Complications" string="" default=" " attrs="{'readonly': [('female_blood_transfusion', 'not in',['y'])]}" />
 
 													<field name="female_cardiac" placeholder="Add Details" colspan="6" />
 													<field name="female_cardiac_date" string="" colspan="6" placeholder="Since" />
@@ -360,7 +347,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseDiabetes" class="collapse" role="tabpanel" aria-labelledby="diabetesOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_diabetes_ids" readonly="0" widget="many2many_checkboxes"/>
+																			<field name="female_diabetes_ids" widget="many2many_checkboxes"/>
 																			<field name="female_other_diabetes"/>
 																		</div>
 																	</div>
@@ -377,7 +364,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_malignancies_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_malignancies_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_malignancies"/>
 																		</div>
 																	</div>
@@ -394,7 +381,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_hypertension_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_hypertension_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_hypertension"/>
 																		</div>
 																	</div>
@@ -411,7 +398,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_mental_illness_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_mental_illness_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_mental_illness"/>
 																		</div>
 																	</div>
@@ -428,7 +415,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseTwins" class="collapse" role="tabpanel" aria-labelledby="twinsOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_twins_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_twins_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_twins"/>
 																		</div>
 																	</div>
@@ -445,7 +432,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseTuberculosis" class="collapse" role="tabpanel" aria-labelledby="tuberculosisOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_tuberculosis_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_tuberculosis_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_tuberculosis"/>
 																		</div>
 																	</div>
@@ -462,7 +449,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="c_abnormalitiesOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_abnormalities_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_abnormalities_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_abnormalities"/>
 																		</div>
 																	</div>
@@ -479,7 +466,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapsePih" class="collapse" role="tabpanel" aria-labelledby="pihOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_pregnancy_induced_hypertension_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_pregnancy_induced_hypertension_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_pregnancy_induced_hypertension"/>
 																		</div>
 																	</div>
@@ -496,7 +483,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseMisscarriages" class="collapse" role="tabpanel" aria-labelledby="misscarriagesOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_miscarriage_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_miscarriage_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_miscarriage"/>
 																		</div>
 																	</div>
@@ -513,7 +500,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapsePb" class="collapse" role="tabpanel" aria-labelledby="pbOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_preterm_birth_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_preterm_birth_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_preterm_birth"/>
 																		</div>
 																	</div>
@@ -530,7 +517,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapseSb" class="collapse" role="tabpanel" aria-labelledby="sbOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_still_birth_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_still_birth_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_still_birth"/>
 																		</div>
 																	</div>
@@ -547,7 +534,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="collapsePmof" class="collapse" role="tabpanel" aria-labelledby="pmofOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="female_pre_mature_ovarian_failure_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="female_pre_mature_ovarian_failure_ids" widget="many2many_checkboxes" />
 																			<field name="female_other_pre_mature_ovarian_failure"/>
 																		</div>
 																	</div>
@@ -587,7 +574,7 @@
 										</div>
 
 										<div class="card-block mb-5 pl-4 collapse col-6" id="female_lab_history_section">
-											<br/>
+<!--											<br></br>-->
 											<group class="mt-0" col="6" colspan="6">
 												<div style="margin-top: -7%;">
 													<button type="action"
@@ -793,7 +780,7 @@
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
 
-													<field name="male_complications_pr" colspan="6" placeholder="Complications" string="" default=" " readonly="0" attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
+													<field name="male_complications_pr" colspan="6" placeholder="Complications" string="" default=" " attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
 
 													<field name="male_cardiac" placeholder="Add Details" colspan="6" />
 													<field name="male_cardiac_date" string="" colspan="6" placeholder="Since" />
@@ -958,7 +945,7 @@
 																		 aria-labelledby="male_diabetesOne"
 																		 aria-expanded="false">
 																		<div class="card-block">
-																			<field name="male_diabetes_ids" readonly="0" widget="many2many_checkboxes"/>
+																			<field name="male_diabetes_ids" widget="many2many_checkboxes"/>
 																			<field name="male_other_diabetes"/>
 																		</div>
 																	</div>
@@ -976,7 +963,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="male_collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="male_malignancies_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="male_malignancies_ids"  widget="many2many_checkboxes" />
 																			<field name="male_other_malignancies"/>
 																		</div>
 																	</div>
@@ -994,7 +981,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="male_collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="male_hypertension_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="male_hypertension_ids" widget="many2many_checkboxes" />
 																			<field name="male_other_hypertension"/>
 																		</div>
 																	</div>
@@ -1012,7 +999,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="male_collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="male_mental_illness_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="male_mental_illness_ids" widget="many2many_checkboxes" />
 																			<field name="male_other_mental_illness"/>
 																		</div>
 																	</div>
@@ -1030,7 +1017,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="male_collapseTuberculosis" class="collapse" role="tabpanel" aria-labelledby="male_tuberculosisOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="male_tuberculosis_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="male_tuberculosis_ids"  widget="many2many_checkboxes" />
 																			<field name="male_other_tuberculosis"/>
 																		</div>
 																	</div>
@@ -1048,7 +1035,7 @@
 																	</div>
 																	<div style="margin-left:17px; margin-top:10px" id="male_collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="male_c_abnormalitiesOne" aria-expanded="false">
 																		<div class="card-block">
-																			<field name="male_abnormalities_ids" readonly="0" widget="many2many_checkboxes" />
+																			<field name="male_abnormalities_ids" widget="many2many_checkboxes" />
 																			<field name="male_other_abnormalities"/>
 																		</div>
 																	</div>
@@ -1164,7 +1151,7 @@
 										</div>
 
 										<div class="card-block mb-5 pl-4 collapse col-6" id="male_lab_history_section">
-											<br/>
+<!--											<br></br>-->
 											<group class="mt-0" col="6" colspan="6">
 												<div style="margin-top: -7%;">
 													<button type="action"
@@ -1186,7 +1173,9 @@
 							</div>
 							<div class="col-md-3">
 								<div class="card-custom1-right">
-									<div class="card-custom-right-heading">Female <br/>27 years</div>
+									<div class="card-custom-right-heading">Female
+<!--										<br/>-->
+										27 years</div>
 									<div class="card-custom-right-heading-special">GxPyZ</div>
 									<div  class="card-custom-right-button">
 										<div class="card-custom-right-button-text">Obstetric History</div>
@@ -1195,7 +1184,9 @@
 									<div class="card-custom-right-extra-content">(collapsible - expands to a limit) - default is expanded</div>
 								</div>
 								<div class="card-custom2-right">
-									<div class="card-custom-right-heading">Male <br/>32 years</div>
+									<div class="card-custom-right-heading">Male
+<!--										<br></br>-->
+										32 years</div>
 									<div class="card-custom-right-heading-special">GxPyZ</div>
 									<div class="card-custom-right-button">
 										<div class="card-custom-right-button-text">Seminology</div>

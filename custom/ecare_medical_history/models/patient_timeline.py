@@ -1,10 +1,4 @@
-import uuid
-
 from odoo import models, fields, api
-
-from odoo import http
-from odoo.http import request
-from odoo.addons.web.controllers.utils import clean_action
 
 
 class PatientTimeline(models.Model):
