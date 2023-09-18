@@ -26,7 +26,7 @@
 					<group>
 						<field name="name"/>
 						<field name="timeline_patient_id"/>
-						<field name="patient_id" readonly="True" invisible="True" force_save="True"/>
+						<field name="patient_id" invisible="True" force_save="True"/>
 					</group>
 					<div class="container-custom">
 						<div class="row">
