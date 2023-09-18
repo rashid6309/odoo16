@@ -2,29 +2,35 @@
 <odoo>
 	<data>
 		<template id="patient_summery" name="patient_id.summery">
-			<header class="site-header">
-				<div class="site-identity">
-					<h1 js_class="banner_summary_route"><t t-esc="patient_id.name" /></h1>
-				</div>
-			</header>
+			<t t-name="editPatientProfile">
+				<header class="site-header o_edit_patient_profile">
+					<div class="site-identity">
+						<h1><t t-esc="patient_id.name" />
+<!--							<a href="/update/patient/profile" t-on-click="_MoreOptions" class="editPatientProfile">-->
+							<a href="#" t-on-click="_MoreOptions" class="editPatientProfile">
+								<i class="fa fa-pencil-square-o"
+								   style="font-size:24px;color: white;"></i>
+							</a>
+							<button name="ec_medical_patient_action" type="submit" string="Email" >Email</button>
+						</h1>
+					</div>
+				</header>
+			</t>
 		</template>
 
 		<record id="ec_medical_first_consultation_form_view" model="ir.ui.view">
 			<field name="name">ec.first.consultation.form</field>
 			<field name="model">ec.first.consultation</field>
 			<field name="arch" type="xml">
-				<form string="First Consultation" banner_route="/banner/generic_patient_summery_detailed" js_class="banner_summary_route">
-					<a href="#"  t-on-click="_MoreOptions">
-						<i class="fa fa-ellipsis-v"
-						   style="font-size:24px"></i>
-					</a>
+<!--				<form string="First Consultation" banner_route="/banner/generic_patient_summery_detailed" js_class="banner_summary_route">-->
+				<form string="First Consultation">
 					<div class="container-custom">
 						<div class="row">
 							<div class="col-md-2">
 								<div class="card-custom1">
 									<div class="card-type">
 										<div class="counter-word">1</div>
-										<div class="word-title">IVF/ICSI Attempt(s) Completed</div>
+										<div class="word-title editPatientProfile">IVF/ICSI Attempt(s) Completed</div>
 									</div>
 								</div>
 								<div class="card-custom2">
@@ -43,7 +49,9 @@
 							<div class="col-md-7">
 								<div style="width: 100%; height: 72px; background: #F0F0F0">
 									<div style="width: 687px; height: 24px; justify-content: flex-start; align-items: flex-start; gap: 56px; display: inline-flex">
-										<div class="header-text">Married for: 4 years</div>
+                                        <div class="header-custom-text">
+										    <div class="header-text">Married for: 4 years</div>
+                                        </div>
 										<div class="header-custom-text">
 											<div class="header-text">Relationship: 1st Cousin</div>
 										</div>
@@ -54,9 +62,10 @@
 								</div>
 								<div style="width: 100%; height: 64px; background: #ED7D31">
 									<div class="header2-text">Current treatment pathway</div>
-									<div style="width: 129px; height: 48px; padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; background: white; border-radius: 4px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-										<div style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Automatic</div>
-									</div>
+<!--									<div style="width: 129px; height: 48px; padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; background: white; border-radius: 4px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">-->
+<!--                                         <button class="btn btn-dark">Automatic</button>-->
+<!--										<div style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Automatic</div>-->
+<!--									</div>-->
 									<div class="header2-text">Last visit: 2 days ago</div>
 									<div class="header2-text">Next visit: 25/02/22</div>
 								</div>
@@ -102,7 +111,6 @@
 											<field name="patient_id"/>
 											<tree editable="top">
 												<field name="obs_history_ids"
-													   context="{'default_patient_id': patient_id}"
 													   nolabel="1" editable="top">
 												</field>
 											</tree>
