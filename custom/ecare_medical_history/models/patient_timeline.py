@@ -7,7 +7,9 @@ class PatientTimeline(models.Model):
     _inherits = {'ec.first.consultation': 'ec_first_consultation_id'}
 
     name = fields.Char(string="Name")
-    timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient", index=True)
+    timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                          string="Patient",
+                                          index=True)
 
     ec_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete='restrict')
 
