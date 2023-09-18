@@ -1,17 +1,32 @@
 import uuid
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 from odoo import http
 from odoo.http import request
+from odoo.addons.web.controllers.utils import clean_action
+
 
 class PatientTimeline(models.Model):
     _name = "ec.patient.timeline"
     _description = "Patient Timeline"
+    _inherits = {'ec.first.consultation': 'ec_first_consultation_id'}
 
     name = fields.Char(string="Name")
-    patient_id = fields.Many2one(comodel_name="ec.medical.patient")
+    patient_id = fields.Many2one(comodel_name="ec.medical.patient", index=True)
+
+    ec_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete='restrict')
+
+    test_field = fields.Char('trip_summary')
 
     def action_open_patient_time_view(self):
-        request.session['patient_id'] = str(self.patient_id.id)
-        return self.env['ec.first.consultation'].action_open_patient_first_consultation(self.patient_id.id)
+        patient_id = self.env.context.get('0')
+        return {
+            'name': 'Patient',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'views': [(False, 'form')],
+            'res_model': 'ec.medical.patient',
+            'res_id': patient_id,
+            'target': 'new',
+        }

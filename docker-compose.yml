@@ -1,6 +1,7 @@
 version: '3'
 services:
      db:
+        container_name: odoo16ce_staging_db
         image: postgres:14.8
         user: root
         environment:
@@ -8,15 +9,35 @@ services:
           - POSTGRES_PASSWORD=odoo
           - POSTGRES_DB=postgres
         volumes:
-          - ../ecare16ce-odoo--db-data-dir:/var/lib/postgresql/data
+          - tt_prod_odoo16ce_db:/var/lib/postgresql/data
+#          - tt_prod_odoo16ce_db:/etc/postgresql/14/main
+#          - /opt/tt-erp/volume/datadir_postgres:/etc/postgresql/14/main
+        ports:
+          - "5433:5432"
      web:
+       container_name: odoo16ce_staging
        build:
          context: .
          dockerfile: Dockerfile
        user: odoo
        ports:
-       - "8069:8069"
+       - "8075:8069"
+#       deploy:
+#         mode: replicated
+#         replicas: 3
        depends_on:
          - db
-#       volumes:
-#         - ../ecare16ce-odoo-data-dir:/var/lib/odoo
+       links:
+         - db
+       volumes:
+         - odoo-config:/etc/odoo:rw
+         - tt_prod_odoo16ce_data_dir:/opt/odoo/data_dir
+#         - /opt/tt-erp/volume/odoo16ce_tt_prod/extra-addons:/mnt/extra-addons
+
+volumes:
+  tt_prod_odoo16ce_data_dir:
+    external: true
+  tt_prod_odoo16ce_db:
+    external: true
+  odoo-config:
+    external: true

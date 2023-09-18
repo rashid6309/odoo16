@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+	<t t-name="ecare_medical_history.FieldDateMultipleDate" owl="1">
+<!--		        <input type="text" t-ref="inputdate"-->
+<!--		               t-on-click="_onSelectDateField" invisible="1"/>-->
+		<header class="site-header o_edit_patient_profile">
+			<div class="site-identity">
+				<h1><t t-esc="props.record.data.patient_id[1]"/>
+					<a href="#" t-on-click="_onEditPatientProfile" class="editPatientProfile">
+						<i class="fa fa-pencil-square-o"
+						   style="font-size:24px;color: white;"></i>
+					</a>
+				</h1>
+			</div>
+		</header>
+	</t>
+</templates>
