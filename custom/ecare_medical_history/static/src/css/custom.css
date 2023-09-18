@@ -179,7 +179,7 @@ body {
 
 .card-custom-right-extra-content
 {
-    width: 275px;
+    width: 80%;
     height: 45px;
     left: 24px;
     top: 210px;
@@ -197,23 +197,35 @@ body {
     align-items: flex-start;
     gap: 10px;
     display: flex;
+    width: 60%;
+    margin: 3% 0 0% 0%;
 }
 
 .header-text
 {
     color: #2F5597;
-    font-size: 20px;
+    font-size: 16px;
     font-family: Inter;
     font-weight: 500;
     word-wrap: break-word;
+    margin: 3% 3% 3% 6%;
 }
 
 .header2-text
 {
     color: white;
-    font-size: 20px;
+    font-size: 16px;
      font-family: Inter;
      font-weight: 400;
      word-wrap: break-word;
      display: inline-block;
+     margin: 3% 3% 3% 6%;
 }
+
+
+
+
+
+
+/* opj'dhnfuo;dhgvio[fk'hdjvodfnbviod fboduf bo */
+
