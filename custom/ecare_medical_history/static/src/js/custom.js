@@ -58,9 +58,7 @@ odoo.define('ecare_medical_history.owl_test', function (require) {
     var _t = translation._t;
     const { Component,useRef} = owl;
     const { CharField }  = require("@web/views/fields/char/char_field");
-    class DomainSelectorTextField extends Component {
-
-       template = "ecare_medical_history.FieldDateMultipleDate";
+     class DomainSelectorTextField extends Component {
 
        setup(){
             console.log('new work!!!');
@@ -71,6 +69,7 @@ odoo.define('ecare_medical_history.owl_test', function (require) {
            useInputField({ getValue: () => this.props.value || "", refName: "inputdate" });
            useInputField({ getValue: () => this.props.record.data || "", refName: "patient_data" });
        }
+
 
        async _onEditPatientProfile(){
        console.log(this.props.record.data.patient_id);
@@ -86,12 +85,12 @@ odoo.define('ecare_medical_history.owl_test', function (require) {
                     this.props.record.model.notify();
                 },
             });
-
-
         }
 
     }
-
+    DomainSelectorTextField.template = "ecare_medical_history.FieldDateMultipleDate";
     registry.category("fields").add("banner_summary_widget", DomainSelectorTextField);
 });
+
+
 /** @odoo-module **/
