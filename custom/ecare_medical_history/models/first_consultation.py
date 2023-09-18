@@ -71,7 +71,6 @@ class FirstConsultation(models.Model):
     male_lab_history_ids = fields.One2many(comodel_name="ec.lab.history", inverse_name="male_first_consultation_id")
 
     ''' Normal attributes '''
-    name = fields.Char(string='Name')
 
     patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                  required=True)

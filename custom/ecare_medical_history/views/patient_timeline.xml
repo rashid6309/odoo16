@@ -25,7 +25,8 @@
 					</div>
 					<group>
 						<field name="name"/>
-						<field name="patient_id"/>
+						<field name="timeline_patient_id"/>
+						<field name="patient_id" readonly="True" invisible="True" force_save="True"/>
 					</group>
 					<div class="container-custom">
 						<div class="row">
@@ -80,7 +81,6 @@
 										<div class="card-block mb-5 pl-4 collapse" id="general_examination_section">
 											<group>
 												<!-- General Examination Fields -->
-												<field name="name"/>
 												<field name="female_comment"/>
 												<field name="female_age"/>
 												<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
