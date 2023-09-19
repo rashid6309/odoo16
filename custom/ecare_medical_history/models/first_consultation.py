@@ -89,8 +89,9 @@ class FirstConsultation(models.Model):
     @api.onchange("first_consultation_patient_id")
     def populate_all_patients(self):
         for record in self:
-            patient_id = record.first_consultation_id
+            patient_id = record.first_consultation_patient_id
             record.general_history_patient_id = patient_id
+
 
     ''' View methods '''
 

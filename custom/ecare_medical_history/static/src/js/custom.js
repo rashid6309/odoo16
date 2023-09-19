@@ -72,8 +72,8 @@ odoo.define('ecare_medical_history.owl_test', function (require) {
 
 
         async _onEditPatientProfile() {
-            console.log(this.props.record.data.patient_id);
-            var patient = this.props.record.data.patient_id;
+            console.log(this.props.record.data.timeline_patient_id);
+            var patient = this.props.record.data.timeline_patient_id;
             this.action.doActionButton({
                 type: "object",
                 resId: this.props.value[0],

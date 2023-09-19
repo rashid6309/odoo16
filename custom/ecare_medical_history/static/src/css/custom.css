@@ -222,6 +222,10 @@ body {
      margin: 3% 3% 3% 6%;
 }
 
+.custom_readonly {
+    pointer-events: none;
+}
+
 
 
 

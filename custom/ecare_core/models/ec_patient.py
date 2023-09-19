@@ -242,23 +242,25 @@ class EcarePatient(models.Model):
     @api.onchange('married_since')
     def get_marriage_years(self):
         for patient in self:
-            if patient.married_since:
-                today = datetime.date.today()
-                mdate = datetime.datetime.strptime(str(patient.married_since), "%Y-%m-%d").date()
-                if mdate > today:
-                    patient.dob = today
-                    return {
+            if not patient.married_since:
+                patient.yom = ''
+                return
 
-                        'warning': {
+            today = datetime.date.today()
+            mdate = datetime.datetime.strptime(str(patient.married_since), "%Y-%m-%d").date()
+            if mdate > today:
+                patient.dob = today
+                return {
 
-                            'title': 'Warning!',
+                    'warning': {
 
-                            'message': 'Date of Marriage should be lesser than or equal to today.'}
+                        'title': 'Warning!',
 
-                    }
+                        'message': 'Date of Marriage should be lesser than or equal to today.'}
 
-                patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since) or ''
-            patient.yom = ''
+                }
+
+            patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since)
 
     @api.onchange('husband_name', 'wife_name', 'mr_num')
     def _get_patient_name(self):

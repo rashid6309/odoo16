@@ -24,9 +24,12 @@
 			<field name="arch" type="xml">
 <!--				<form string="First Consultation" banner_route="/banner/generic_patient_summery_detailed" js_class="banner_summary_route">-->
 				<form string="First Consultation">
+					<field name="first_consultation_patient_id" invisible="1" force_save="1"/>
 					<div class="container-custom">
+
 						<div class="row">
 							<div class="col-md-2">
+
 								<div class="card-custom1">
 									<div class="card-type">
 										<div class="counter-word">1</div>
@@ -73,7 +76,7 @@
 									<page string="Female" name="female">
 										<div class="d-flex scroll-to card-header" id="general_examination_section_link">
 											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General Examination</h4></a>
+												<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General History</h4></a>
 											</div>
 											<div class="col-6 text-right" style="margin-top:9px">
 											</div>
@@ -85,12 +88,12 @@
 												<field name="female_age"/>
 												<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
 												<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
-												<field name="female_family_system"/>
-												<field name="female_living_togather"/>
+												<field name="female_family_system" widget="radio" options="{'horizontal': True}"/>
+												<field name="female_living_togather" widget="radio" options="{'horizontal': True}"/>
 												<field name="female_living_togather_reason"/>
 												<field name="female_living_duration_years"/>
 												<field name="female_living_duration_month"/>
-												<field name="female_complaints"/>
+												<field name="female_complaints" widget="radio" options="{'horizontal': True}"/>
 												<field name="female_complaints_duration_years"/>
 												<field name="female_complaints_duration_month"/>
 												<field name="years_of_marriage"/>

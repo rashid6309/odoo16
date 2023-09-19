@@ -7,8 +7,6 @@ class GeneralExamination(models.Model):
     _name = 'ec.general.history'
     _description = "General Examination"
 
-    ''' Static attributes '''
-
     ''' Common '''
 
     general_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
@@ -31,7 +29,7 @@ class GeneralExamination(models.Model):
     female_living_togather = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                        default="yes", string='Living Together')
 
-    female_living_togather_reason = fields.Char(string='Living Together')
+    female_living_togather_reason = fields.Char(string='Reason')
 
     female_living_duration_years = fields.Integer(string='Living Duration')
     female_living_duration_month = fields.Selection(selection=StaticMember.MONTHS,
@@ -56,8 +54,3 @@ class GeneralExamination(models.Model):
                                      string="Male Marriage",
                                      )
     male_comment = fields.Char(string="Details")
-
-
-
-
-

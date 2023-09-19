@@ -26,7 +26,9 @@
 <!--						<field name="patient_summary" widget="banner_summary_widget"/>-->
 					</div>
 					<group>
-						<field name="timeline_patient_id"/>
+						<field name="first_consultation_patient_id" invisible="1" force_save="1"/>
+						<field name="timeline_patient_id"
+							   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 					</group>
 					<div class="container-custom">
 						<div class="row">
@@ -54,13 +56,21 @@
 								<div style="width: 100%; height: 72px; background: #F0F0F0">
 									<div style="width: 687px; height: 24px; justify-content: flex-start; align-items: flex-start; gap: 56px; display: inline-flex">
 										<div class="header-custom-text">
-											<div class="header-text">Married for: 4 years</div>
+											<div class="header-text">Married for: <span><field name="years_of_marriage"/></span></div>
 										</div>
 										<div class="header-custom-text">
-											<div class="header-text">Relationship: 1st Cousin</div>
+											<div class="header-text">Relationship:
+												<span class="custom_readonly">
+													<field name="female_relation"/>
+												</span>
+											</div>
 										</div>
 										<div class="header-custom-text">
-											<div class="header-text">Primary Infertility</div>
+											<div class="header-text">Primary Infertility
+												<span class="custom_readonly">
+													<field name="female_complaints"/>
+												</span>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -73,7 +83,7 @@
 									<page string="Female" name="female">
 										<div class="d-flex scroll-to card-header" id="general_examination_section_link">
 											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General Examination</h4></a>
+												<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General History</h4></a>
 											</div>
 											<div class="col-6 text-right" style="margin-top:9px">
 											</div>
@@ -86,12 +96,12 @@
 												<field name="female_age"/>
 												<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
 												<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
-												<field name="female_family_system"/>
-												<field name="female_living_togather"/>
+												<field name="female_family_system" widget="radio" options="{'horizontal': True}"/>
+												<field name="female_living_togather" widget="radio" options="{'horizontal': True}"/>
 												<field name="female_living_togather_reason"/>
 												<field name="female_living_duration_years"/>
 												<field name="female_living_duration_month"/>
-												<field name="female_complaints"/>
+												<field name="female_complaints" widget="radio" options="{'horizontal': True}"/>
 												<field name="female_complaints_duration_years"/>
 												<field name="female_complaints_duration_month"/>
 												<field name="years_of_marriage"/>

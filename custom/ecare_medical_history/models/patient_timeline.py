@@ -28,6 +28,8 @@ class PatientTimeline(models.Model):
         for record in self:
             patient_id = record.timeline_patient_id
             record.first_consultation_patient_id = patient_id
+            record.ec_first_consultation_id.populate_all_patients()
+            # record.first_consultation_patient_id.populate_all_patients()
 
     def action_open_patient_time_view(self):
         patient_id = self.env.context.get('0')
