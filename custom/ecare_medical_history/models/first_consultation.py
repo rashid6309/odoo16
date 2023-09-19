@@ -71,8 +71,26 @@ class FirstConsultation(models.Model):
 
     ''' Normal attributes '''
 
-    patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+    first_consultation_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                  required=True)
+
+    ''' Related '''
+
+    male_age = fields.Char(related="first_consultation_patient_id.husband_age",
+                           string="Age")
+
+    years_of_marriage = fields.Char(related="first_consultation_patient_id.yom",)
+
+    female_age = fields.Char(string="Female Age",
+                             related="first_consultation_patient_id.wife_age")
+
+    ''' On-change methods '''
+
+    @api.onchange("first_consultation_patient_id")
+    def populate_all_patients(self):
+        for record in self:
+            patient_id = record.first_consultation_id
+            record.general_history_patient_id = patient_id
 
     ''' View methods '''
 

@@ -161,13 +161,21 @@ class StaticMember:
     SIDE = [
         ('right', "Right"),
         ('left', "Left"),
-        ]
+    ]
 
     SIZE = [
         ('normal', "Normal"),
         ('small', "Small"),
         ('large', "Large")
-        ]
+    ]
+
+    FAMILY_LIVING_STYLE = [('joint', 'Joint'),
+                           ('independent', 'Independent')]
+
+    MARRIAGE_RELATION = [('first_cousin', '1st Cousin'),
+                         ('second_cousin', '2nd Cousin'),
+                         ('distant_relatives', 'Distant Relatives'),
+                         ('not_related', 'Not Related')]
 
     CHOICE_YES_NO = [('yes', "Yes"),
                      ('no', "No")]
@@ -274,4 +282,9 @@ class StaticMember:
     DIABETES_TYPE = [
         ('IDDM', 'IDDM or type 1'),
         ('NIDDM', 'NIDDM or type 2')
+    ]
+
+    INFERTILITY = [
+        ('primary_infertility', 'Primary Infertility'),
+        ('secondary_infertility', 'Secondary Infertility')
     ]

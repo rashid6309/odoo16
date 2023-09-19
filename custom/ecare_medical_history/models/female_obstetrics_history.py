@@ -21,7 +21,7 @@ class FemaleObstetricsHistory(models.Model):
     @api.depends('date_of_birth')
     def _get_age(self):
         for rec in self:
-            rec.date_of_birth = TimeValidation.convert_date_to_days_years(rec.date_of_birth)
+            rec.age = TimeValidation.convert_date_to_days_years(rec.date_of_birth)
 
     baby_name = fields.Char(string='Baby Name')
     birth_place = fields.Char(string="Birth Place",

@@ -26,7 +26,7 @@ class GenitalExamination(models.Model):
 
     # BUG FIX THIS
     # genital_examination_comment = fields.Char(string="Comment")
-    comment = fields.Char(string="Comment")
+    ec_genital_examination_comment = fields.Char(string="Comment")
 
 
 
