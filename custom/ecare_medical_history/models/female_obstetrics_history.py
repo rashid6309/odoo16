@@ -50,7 +50,7 @@ class FemaleObstetricsHistory(models.Model):
     labour_history = fields.Selection([('spontaneous', 'Spontaneous'),
                                        ('induced', 'Induced'),
                                        ], string='Labour')
-    legacy_system_ID = fields.Char('Legacy System Id', force_save=True)
+    legacy_system_ID = fields.Char(string='Legacy System Id')
 
     # @api.constrains('dob', )
     # def _check_dob_date(self):

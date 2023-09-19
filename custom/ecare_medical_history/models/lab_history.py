@@ -6,8 +6,8 @@ class LabHistory(models.Model):
     _description = "Patient Lab History"
 
 
-    female_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation")
-    male_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation")
+    female_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete="restrict")
+    male_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete="restrict")
 
     name = fields.Char(string="Name")
     date = fields.Date(string="Date")

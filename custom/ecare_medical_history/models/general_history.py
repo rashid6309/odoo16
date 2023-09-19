@@ -56,8 +56,7 @@ class GeneralExamination(models.Model):
 
     # years_of_marriage
 
-    years_of_marriage = fields.Char(related="patient_id.yom",
-                                    String="Years of Marriage")
+    years_of_marriage = fields.Char(related="patient_id.yom",)
 
     female_age_at_marriage = fields.Char(string='Age at Marriage')
 

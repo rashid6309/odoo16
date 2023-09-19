@@ -41,18 +41,17 @@ class FirstConsultation(models.Model):
     ''' Female One2many '''
     female_procedures_ids = fields.One2many(comodel_name='ec.patient.procedures',
                                         inverse_name='female_consultation_id',
-                                        string="Surgical",
-                                        ondelete='restrict')
+                                        string="Surgical",)
 
     obs_history_ids = fields.One2many(comodel_name='ec.obstetrics.history',
                                       inverse_name='first_consultation_id',
                                       string='Obstetrics History',
-                                      ondelete='restrict')
+                                      )
 
     female_lab_history_ids = fields.One2many(comodel_name="ec.lab.history",
                                              inverse_name="female_first_consultation_id",
                                              string="Labs History",
-                                             ondelete='restrict')
+                                             )
 
     ''' Male '''
     ec_genital_examination_id = fields.Many2one(comodel_name="ec.genital.examination", ondelete='restrict')
@@ -66,7 +65,7 @@ class FirstConsultation(models.Model):
     male_procedures_ids = fields.One2many(comodel_name='ec.patient.procedures',
                                             inverse_name='male_consultation_id',
                                             string="Surgical",
-                                            ondelete='restrict')
+                                            )
 
     male_lab_history_ids = fields.One2many(comodel_name="ec.lab.history", inverse_name="male_first_consultation_id")
 
