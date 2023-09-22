@@ -6,7 +6,7 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 class RepeatConsultation(models.Model):
     _name = 'ec.repeat.consultation'
-    _description = "Patient First Consultation"
+    _description = "Patient Repeat Consultation"
 
 
 
