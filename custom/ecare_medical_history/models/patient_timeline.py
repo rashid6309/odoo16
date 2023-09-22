@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class PatientTimeline(models.Model):
@@ -41,4 +41,19 @@ class PatientTimeline(models.Model):
             'res_model': 'ec.medical.patient',
             'res_id': patient_id,
             'target': 'new',
+        }
+
+    def action_open_patient_obstetrics_history(self):
+        return {
+            "name": _("Patient Obstetrics History"),
+            "type": 'ir.actions.act_window',
+            "res_model": 'ec.obstetrics.history',
+            'view_id': self.env.ref('ecare_medical_history.ec_medical_obstetrics_history_tree_view').id,
+            'view_mode': 'tree',
+            "target": 'new',
+            'context': {
+                'default_patient_id': self.timeline_patient_id.id,
+                'default_first_consultation_id': self.ec_first_consultation_id.id,
+            },
+            'domain': [('patient_id', 'in', self.timeline_patient_id)],
         }
