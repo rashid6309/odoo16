@@ -288,3 +288,9 @@ class StaticMember:
         ('primary_infertility', 'Primary Infertility'),
         ('secondary_infertility', 'Secondary Infertility')
     ]
+
+    PREVIOUS_TREATMENT_TYPE = [
+        ('ovulation_induction_intercourse', 'Ovulation Induction / Timed Sexual Intercouse'),
+        ('intra_uterine', 'Intra - Uterine Insemination'),
+        ('in_vitro_fertilization', 'In - Vitro Fertilization'),
+    ]
