@@ -4,6 +4,7 @@ access_ec_first_consultation,ec.first.consultation,model_ec_first_consultation,,
 access_ec_obstetrics_history,ec.obstetrics.history,model_ec_obstetrics_history,,1,1,1,1
 access_ec_gynaecological_history,ec.gynaecological.history,model_ec_gynaecological_history,,1,1,1,1
 access_ec_general_examination,ec.general.examination,model_ec_general_history,,1,1,1,1
+access_ec_medical_previous_treatment_all,ec_medical_previous_treatment_all,model_ec_medical_previous_treatment,,1,1,1,1
 access_ec_social_history_all,access_ec_social_history_all,model_ec_social_history,,1,1,1,1
 access_ec_female_medical_history_all,access_ec_female_medical_history_all,model_ec_female_medical_history,,1,1,1,1
 access_ec_patient_procedures_all,access_ec_patient_procedures_all,model_ec_patient_procedures,,1,1,1,1
