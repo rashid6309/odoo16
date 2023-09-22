@@ -8,7 +8,7 @@
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="xml">
 				<tree>
-<!--					<field name="name"/>-->
+					<!--					<field name="name"/>-->
 					<field name="timeline_patient_id"/>
 				</tree>
 			</field>
@@ -20,10 +20,10 @@
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="html">
 				<form string="Patient Timeline">
-					<div>
-<!--						<field style="display:block;" name="name" widget="banner_summary_widget"/>-->
+					<div style="margin-top: -2%;">
+						<!--						<field style="display:block;" name="name" widget="banner_summary_widget"/>-->
 						<field name="timeline_patient_id" style="display:block;" widget="banner_summary_widget"/>
-<!--						<field name="patient_summary" widget="banner_summary_widget"/>-->
+						<!--						<field name="patient_summary" widget="banner_summary_widget"/>-->
 					</div>
 					<group>
 						<field name="first_consultation_patient_id" invisible="1" force_save="1"/>
@@ -52,16 +52,19 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-7">
-								<div style="width: 100%; height: 72px; background: #F0F0F0">
-									<div style="width: 687px; height: 24px; justify-content: flex-start; align-items: flex-start; gap: 56px; display: inline-flex">
+							<div class="col-md-7 timeline_content">
+								<div style="width: 100%;height: 14%;background: #F0F0F0">
+									<div style="width: 100%; height: 24px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
 										<div class="header-custom-text">
-											<div class="header-text">Married for: <span><field name="years_of_marriage"/></span></div>
+											<div class="header-text">Married for:
+												<span><field name="years_of_marriage"/>
+												</span>
+											</div>
 										</div>
 										<div class="header-custom-text">
 											<div class="header-text">Relationship:
 												<span class="custom_readonly">
-													<field name="female_relation"/>
+													<field style="color: #2F5597;" name="female_relation"/>
 												</span>
 											</div>
 										</div>
@@ -74,1135 +77,1221 @@
 										</div>
 									</div>
 								</div>
+								<div style="width: 100%;height: 14%;background: #F0F0F0">
+									<div class="factor-container">
+										<div class="factor-inner-container">
+											<div class="factor-sub-container">
+												<div class="factor-title">Female Factor</div>
+												<div class="factor-action-button">
+													<div class="factor-icon">
+														<i class="fa fa-pencil-square-o" aria-hidden="true"/>
+													</div>
+													<div class="factor-action-text">Edit</div>
+												</div>
+											</div>
+											<div class="factor_divider"/>
+										</div>
+										<div class="factor-inner-container">
+											<div class="factor-sub-container">
+												<div class="factor-title">Male Factor</div>
+												<div class="factor-action-button">
+													<div class="factor-icon">
+														<i class="fa fa-pencil-square-o" aria-hidden="true"/>
+													</div>
+													<div class="factor-action-text">Edit</div>
+												</div>
+											</div>
+											<div class="factor_divider"/>
+										</div>
+									</div>
+								</div>
 								<div style="width: 100%; height: 64px; background: #ED7D31">
 									<div class="header2-text">Current treatment pathway</div>
 									<div class="header2-text">Last visit: 2 days ago</div>
 									<div class="header2-text">Next visit: 25/02/22</div>
 								</div>
-								<notebook>
-									<page string="Female" name="female">
-										<div class="d-flex scroll-to card-header" id="general_examination_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General History</h4></a>
+								<!--								Repeat Consultation-->
+								<div class="d-flex scroll-to card-header first_consultation_container" id="repeat_consultation_section_link">
+									<div class="col-6">
+										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
+											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
+									</div>
+									<div class="col-6 text-right" style="margin-top:9px">
+									</div>
+								</div>
+								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
+									<h1>Repeat Consultation</h1>
+								</div>
+
+
+								<div class="d-flex scroll-to card-header first_consultation_container" id="first_consultation_section_link">
+									<div class="col-6">
+										<a data-bs-toggle="collapse" data-bs-target="#first_consultation_section" href="#">
+											<h4 class="mt-2 mb-0">First Consultation</h4></a>
+									</div>
+									<div class="col-6 text-right" style="margin-top:9px">
+									</div>
+								</div>
+								<div class="card-block mb-5 pl-4 collapse " id="first_consultation_section">
+									<notebook>
+										<page string="Female" name="female">
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="general_examination_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General History</h4></a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
 											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="general_examination_section">
-											<group>
-												<!-- General Examination Fields -->
-<!--												<field name="patient_id"/>-->
-												<field name="female_comment"/>
-												<field name="female_age"/>
-												<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
-												<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
-												<field name="female_family_system" widget="radio" options="{'horizontal': True}"/>
-												<field name="female_living_togather" widget="radio" options="{'horizontal': True}"/>
-												<field name="female_living_togather_reason"/>
-												<field name="female_living_duration_years"/>
-												<field name="female_living_duration_month"/>
-												<field name="female_complaints" widget="radio" options="{'horizontal': True}"/>
-												<field name="female_complaints_duration_years"/>
-												<field name="female_complaints_duration_month"/>
-												<field name="years_of_marriage"/>
-												<field name="female_age_at_marriage"/>
-												<field name="female_parity"/>
-											</group>
-										</div>
-
-										<div class="d-flex scroll-to card-header" id="obstetrics_history_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#obstetrics_history_section" href="#"><h4 class="mt-2 mb-0">Obstetrics History</h4></a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
-<!--											<field name="patient_id"/>-->
-											<tree editable="top">
-												<field name="obs_history_ids"
-													   context="{'default_patient_id': timeline_patient_id}"
-													   nolabel="1" editable="top">
-												</field>
-											</tree>
-										</div>
-
-
-										<div class="d-flex scroll-to card-header" id="gynaecological_history_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#gynaecological_history_section" href="#"><h4 class="mt-2 mb-0">Gynaecological History</h4></a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="gynaecological_history_section">
-											<group>
-												<!-- Gynaecological History Fields -->
-												<field name="female_age_at_menarche"/>
-												<field name="female_menarche_type"/>
-												<field name="female_menstrual_cycle"/>
-												<field name="female_menstrual_days"/>
-												<field name="female_menstrual_gap"/>
-												<field name="female_menstrual_comments"/>
-												<field name="female_menstrual_days_from"/>
-												<field name="female_menstrual_days_to"/>
-												<field name="female_menstrual_all_comments"/>
-												<field name="female_menstrual_flow"/>
-												<field name="female_dysmenorrhoea"/>
-												<field name="female_pain_intensity"/>
-												<field name="female_lmp"/>
-												<field name="female_complications"/>
-												<field name="female_complications_other"/>
-												<field name="female_complains"/>
-											</group>
-										</div>
-
-										<div class="d-flex scroll-to card-header" id="sx_contraception_female_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_female_section" href="#">
-													<h4 class="mt-2 mb-0">Sexual/Contraception</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px"/>
-										</div>
-
-										<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_female_section">
-											<div>
-												<h2>
-													Sexual
-												</h2>
-											</div>
-<!--											<br/>-->
-											<group>
-												<field name="sx_frequency"/>
-												<field name="sx_issues" widget="radio" options="{'horizontal': True}"/>
-												<field name="sx_comments"/>
-											</group>
-
-											<div>
-												<h2> Contraception</h2>
-											</div>
-<!--											<br/>-->
-											<group>
-
-												<field name="cn_type" widget="radio" options="{'horizontal': True}"/>
-												<field name="other_comments"/>
-											</group>
-										</div>
-
-
-										<div class="d-flex scroll-to card-header" id="female_medical_surgical_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#female_medical_surgical_section" href="#">
-													<h4 class="mt-2 mb-0">Surgical and Medical History</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="female_medical_surgical_section">
-											<group col="12" class="mt-0">
-												<group string="Medical History" col="6" colspan="6" class="mt-0">
-													<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
-													<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
-													<field name="female_adrenal" placeholder="Add Details" colspan="6" />
-													<field name="female_adrenal_date" string="" placeholder="Since" colspan="6" />
-
-													<field name="female_anti_phospholipid_syndrome" placeholder="" colspan="6"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="female_anti_phospholipid_syndrome_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_autoimmune_disease" placeholder="Add Details" colspan="6" />
-													<field name="female_autoimmune_disease_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_blood_transfusion" placeholder="" colspan="6"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="female_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
-
-													<field name="female_complications_pr" colspan="6" placeholder="Complications" string="" default=" " attrs="{'readonly': [('female_blood_transfusion', 'not in',['y'])]}" />
-
-													<field name="female_cardiac" placeholder="Add Details" colspan="6" />
-													<field name="female_cardiac_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_diabetes_type" placeholder="" colspan="6"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="female_diabetes" placeholder="" colspan="6" string="" />
-													<field name="female_diabetes_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_dvt" placeholder="Add Details" colspan="6" />
-													<field name="female_dvt_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_gall_bladder" placeholder="Add Details" colspan="6" />
-													<field name="female_gall_bladder_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_gastric" placeholder="Add Details" colspan="6" />
-													<field name="female_gastric_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_gynaecology" placeholder="Add Details" colspan="6" />
-													<field name="female_gynaecology_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_haematology" placeholder="Add Details" colspan="6" />
-													<field name="female_haematology_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_heart_disease" placeholder="Add Details" colspan="6" />
-													<field name="female_heart_disease_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_hyper_tension" placeholder="Add Details" colspan="6" />
-													<field name="female_hyper_tension_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_intestinal" placeholder="Add Details" colspan="6" />
-													<field name="female_intestinal_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_janduice" placeholder="Add Details" colspan="6" />
-													<field name="female_janduice_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_liver" placeholder="Add Details" colspan="6" />
-													<field name="female_liver_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_low_urinary_tract" placeholder="Add Details" colspan="6" />
-													<field name="female_low_urinary_tract_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_malignancy" placeholder="Add Details" colspan="6" />
-													<field name="female_malignancy_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_neurological" placeholder="Add Details" colspan="6" />
-													<field name="female_neurological_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_renal" placeholder="Add Details" colspan="6" />
-													<field name="female_renal_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_respiratory" placeholder="Add Details" colspan="6" />
-													<field name="female_respiratory_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_smoking" placeholder="Add Details" colspan="6" />
-													<field name="female_smoking_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_alcohol" placeholder="Add Details" colspan="6" />
-													<field name="female_alcohol_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_skeletal" placeholder="Add Details" colspan="6" />
-													<field name="female_skeletal_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_thyroid_TYPE" placeholder="" colspan="6" string="Thyroid"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="female_thyroid" placeholder="Add Details" colspan="6" string="" />
-													<field name="female_thyroid_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_urinary_infection" placeholder="Add Details" colspan="6" />
-													<field name="female_urinary_infection_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="female_medical_history_others" placeholder="Add Details" colspan="6" />
-													<field name="female_medical_history_others_date" string="" colspan="6" placeholder="Since" />
+											<div class="card-block mb-5 pl-4 collapse" id="general_examination_section">
+												<group>
+													<!-- General Examination Fields -->
+													<!--												<field name="patient_id"/>-->
+													<field name="female_comment"/>
+													<field name="female_age"/>
+													<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_family_system" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_living_togather" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_living_togather_reason"/>
+													<field name="female_living_duration_years"/>
+													<field name="female_living_duration_month"/>
+													<field name="female_complaints" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_complaints_duration_years"/>
+													<field name="female_complaints_duration_month"/>
+													<field name="years_of_marriage"/>
+													<field name="female_age_at_marriage"/>
+													<field name="female_parity"/>
 												</group>
-												<group string="Surgical History" class="mt-0" col="6" colspan="6">
+											</div>
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="obstetrics_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#obstetrics_history_section" href="#"><h4 class="mt-2 mb-0">Obstetrics History</h4></a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
+												<!--											<field name="patient_id"/>-->
+												<tree editable="top">
+													<field name="obs_history_ids"
+														   context="{'default_patient_id': timeline_patient_id}"
+														   nolabel="1" editable="top">
+													</field>
+												</tree>
+											</div>
+
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="gynaecological_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#gynaecological_history_section" href="#"><h4 class="mt-2 mb-0">Gynaecological History</h4></a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="gynaecological_history_section">
+												<group>
+													<!-- Gynaecological History Fields -->
+													<field name="female_age_at_menarche"/>
+													<field name="female_menarche_type"/>
+													<field name="female_menstrual_cycle"/>
+													<field name="female_menstrual_days"/>
+													<field name="female_menstrual_gap"/>
+													<field name="female_menstrual_comments"/>
+													<field name="female_menstrual_days_from"/>
+													<field name="female_menstrual_days_to"/>
+													<field name="female_menstrual_all_comments"/>
+													<field name="female_menstrual_flow"/>
+													<field name="female_dysmenorrhoea"/>
+													<field name="female_pain_intensity"/>
+													<field name="female_lmp"/>
+													<field name="female_complications"/>
+													<field name="female_complications_other"/>
+													<field name="female_complains"/>
+												</group>
+											</div>
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="sx_contraception_female_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_female_section" href="#">
+														<h4 class="mt-2 mb-0">Sexual/Contraception</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px"/>
+											</div>
+
+											<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_female_section">
+												<div>
+													<h2>
+														Sexual
+													</h2>
+												</div>
+												<!--											<br/>-->
+												<group>
+													<field name="sx_frequency"/>
+													<field name="sx_issues" widget="radio" options="{'horizontal': True}"/>
+													<field name="sx_comments"/>
+												</group>
+
+												<div>
+													<h2> Contraception</h2>
+												</div>
+												<!--											<br/>-->
+												<group>
+
+													<field name="cn_type" widget="radio" options="{'horizontal': True}"/>
+													<field name="other_comments"/>
+												</group>
+											</div>
+
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="female_medical_surgical_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#female_medical_surgical_section" href="#">
+														<h4 class="mt-2 mb-0">Surgical and Medical History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="female_medical_surgical_section">
+												<group col="12" class="mt-0">
+													<group string="Medical History" col="6" colspan="6" class="mt-0">
+														<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
+														<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
+														<field name="female_adrenal" placeholder="Add Details" colspan="6" />
+														<field name="female_adrenal_date" string="" placeholder="Since" colspan="6" />
+
+														<field name="female_anti_phospholipid_syndrome" placeholder="" colspan="6"
+															   widget="radio" options="{'horizontal': True}"/>
+														<field name="female_anti_phospholipid_syndrome_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_autoimmune_disease" placeholder="Add Details" colspan="6" />
+														<field name="female_autoimmune_disease_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_blood_transfusion" placeholder="" colspan="6"
+															   widget="radio" options="{'horizontal': True}"/>
+														<field name="female_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
+
+														<field name="female_complications_pr" colspan="6" placeholder="Complications" string="" default=" " attrs="{'readonly': [('female_blood_transfusion', 'not in',['y'])]}" />
+
+														<field name="female_cardiac" placeholder="Add Details" colspan="6" />
+														<field name="female_cardiac_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_diabetes_type" placeholder="" colspan="6"
+															   widget="radio" options="{'horizontal': True}"/>
+														<field name="female_diabetes" placeholder="" colspan="6" string="" />
+														<field name="female_diabetes_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_dvt" placeholder="Add Details" colspan="6" />
+														<field name="female_dvt_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_gall_bladder" placeholder="Add Details" colspan="6" />
+														<field name="female_gall_bladder_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_gastric" placeholder="Add Details" colspan="6" />
+														<field name="female_gastric_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_gynaecology" placeholder="Add Details" colspan="6" />
+														<field name="female_gynaecology_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_haematology" placeholder="Add Details" colspan="6" />
+														<field name="female_haematology_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_heart_disease" placeholder="Add Details" colspan="6" />
+														<field name="female_heart_disease_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_hyper_tension" placeholder="Add Details" colspan="6" />
+														<field name="female_hyper_tension_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_intestinal" placeholder="Add Details" colspan="6" />
+														<field name="female_intestinal_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_janduice" placeholder="Add Details" colspan="6" />
+														<field name="female_janduice_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_liver" placeholder="Add Details" colspan="6" />
+														<field name="female_liver_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_low_urinary_tract" placeholder="Add Details" colspan="6" />
+														<field name="female_low_urinary_tract_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_malignancy" placeholder="Add Details" colspan="6" />
+														<field name="female_malignancy_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_neurological" placeholder="Add Details" colspan="6" />
+														<field name="female_neurological_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_renal" placeholder="Add Details" colspan="6" />
+														<field name="female_renal_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_respiratory" placeholder="Add Details" colspan="6" />
+														<field name="female_respiratory_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_smoking" placeholder="Add Details" colspan="6" />
+														<field name="female_smoking_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_alcohol" placeholder="Add Details" colspan="6" />
+														<field name="female_alcohol_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_skeletal" placeholder="Add Details" colspan="6" />
+														<field name="female_skeletal_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_thyroid_TYPE" placeholder="" colspan="6" string="Thyroid"
+															   widget="radio" options="{'horizontal': True}"/>
+														<field name="female_thyroid" placeholder="Add Details" colspan="6" string="" />
+														<field name="female_thyroid_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_urinary_infection" placeholder="Add Details" colspan="6" />
+														<field name="female_urinary_infection_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="female_medical_history_others" placeholder="Add Details" colspan="6" />
+														<field name="female_medical_history_others_date" string="" colspan="6" placeholder="Since" />
+													</group>
+													<group string="Surgical History" class="mt-0" col="6" colspan="6">
+														<div style="margin-top: -7%;">
+															<!-- BUG -->
+															<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
+															<!--
+                                                            Solution:
+                                                                1. We can make some field required on the first consultation, i.e., name so that user creates the record first
+                                                                2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
+                                                                3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
+                                                                -->
+
+															<button type="action" style="float:right;"
+																	class="btn-primary"
+																	name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
+																	context="{'default_female_consultation_id': id}"
+																	string="Add" target="current"/>
+														</div>
+														<separator string="Details of Surgery" style="font-size:small" colspan="6" />
+														<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
+															   string="Patient Procedures" create="false"/>
+													</group>
+												</group>
+											</div>
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="female_social_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#female_social_history_section" href="#">
+														<h4 class="mt-2 mb-0">Social History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px"/>
+											</div>
+
+											<div class="card-block mb-5 pl-4 collapse" id="female_social_history_section">
+												<group>
+													<field name="female_education"/>
+													<field name="female_profession"/>
+													<field name="female_dependence"/>
+												</group>
+											</div>
+
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="family_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#family_history_section" href="#"><h4 class="mt-2 mb-0">Family History</h4></a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="family_history_section">
+												<section>
+													<div class="row">
+														<div class="col-12 family-history">
+															<div class="bd-example" data-example-id="">
+																<div id="accordion" role="tablist" aria-multiselectable="true">
+																	<div class="card">
+																		<div class="card-header" role="tab" id="diabetesOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseDiabetes" id="diabetes" aria-expanded="false" aria-controls="collapseDiabetes" class="collapsed colla mb-0 col-11">
+																					<h3>Diabetes</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseDiabetes" class="collapse" role="tabpanel" aria-labelledby="diabetesOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_diabetes_ids" widget="many2many_checkboxes"/>
+																				<field name="female_other_diabetes"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="malignanciesOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseMalignancies" id="malignancies" aria-expanded="false" aria-controls="collapseMalignancies" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Malignancies
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_malignancies_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_malignancies"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="hypertensionOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseHypertension" id="hypertension" aria-expanded="false" aria-controls="collapseHypertension" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Hypertension
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_hypertension_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_hypertension"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="mental_illnessOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseMental_illness" id="mental_illness" aria-expanded="false" aria-controls="collapseMental_illness" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Mental Illnesses
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_mental_illness_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_mental_illness"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="twinsOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseTwins" id="twins" aria-expanded="false" aria-controls="collapseTwins" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Twins
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseTwins" class="collapse" role="tabpanel" aria-labelledby="twinsOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_twins_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_twins"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="tuberculosisOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseTuberculosis" id="tuberculosis" aria-expanded="false" aria-controls="collapseTuberculosis" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Tuberculosis
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseTuberculosis" class="collapse" role="tabpanel" aria-labelledby="tuberculosisOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_tuberculosis_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_tuberculosis"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="c_abnormalitiesOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseC_abnormalities" id="c_abnormalities" aria-expanded="false" aria-controls="collapseC_abnormalities" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Congenital Abnormalities
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="c_abnormalitiesOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_abnormalities_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_abnormalities"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="pihOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapsePih" id="pih" aria-expanded="false" aria-controls="collapsePih" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Pregnancy Induced Hypertension
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapsePih" class="collapse" role="tabpanel" aria-labelledby="pihOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_pregnancy_induced_hypertension_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_pregnancy_induced_hypertension"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="misscarriagesOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseMisscarriages" id="misscarriages" aria-expanded="false" aria-controls="collapseMisscarriages" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Miscarriages
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseMisscarriages" class="collapse" role="tabpanel" aria-labelledby="misscarriagesOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_miscarriage_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_miscarriage"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="pbOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapsePb" id="pb" aria-expanded="false" aria-controls="collapsePb" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Preterm Births
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapsePb" class="collapse" role="tabpanel" aria-labelledby="pbOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_preterm_birth_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_preterm_birth"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="sbOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseSb" id="sb" aria-expanded="false" aria-controls="collapseSb" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Still Births
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseSb" class="collapse" role="tabpanel" aria-labelledby="sbOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_still_birth_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_still_birth"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="pmofOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapsePmof" id="pmof" aria-expanded="false" aria-controls="collapsePmof" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Pre-mature Ovarian Failure
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapsePmof" class="collapse" role="tabpanel" aria-labelledby="pmofOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_pre_mature_ovarian_failure_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_pre_mature_ovarian_failure"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="otherOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse" role="button" data-bs-parent="#accordion" href="#collapseOther" id="other" aria-expanded="false" aria-controls="collapseOther" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Other
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="collapseOther" class="collapse" role="tabpanel" aria-labelledby="otherOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_family_history_other" />
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+
+											<!-- Lab history -->
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="female_lab_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#female_lab_history_section" href="#">
+														<h4 class="mt-2 mb-0">Lab History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+
+											<div class="card-block mb-5 pl-4 collapse col-6" id="female_lab_history_section">
+												<!--											<br></br>-->
+												<group class="mt-0" col="6" colspan="6">
 													<div style="margin-top: -7%;">
+														<button type="action"
+																style="float:right;"
+																class="btn-primary"
+																name="%(ecare_medical_history.ec_lab_history_action)d"
+																context="{'default_female_first_consultation_id':id}"
+																string="Add" target="new"/>
+													</div>
+													<separator string="Details" style="font-size:small" colspan="6" />
+													<field class="custom-scrollbar opd-notes-height" name="female_lab_history_ids" mode="kanban" nolabel="1"
+														   string="Lab History" create="false"/>
+
+												</group>
+											</div>
+
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="physical_examination_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#physical_examination_section" href="#"><h4 class="mt-2 mb-0">Physical Examination</h4></a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="physical_examination_section">
+												<section>
+													<group>
+														<field name="female_weight"/>
+														<field name="female_height"/>
+														<field name="female_bmi"/>
+														<field name="female_bp_upper"/>
+														<field name="female_bp_lower"/>
+														<field name="female_pulse"/>
+														<field name="female_temperature"/>
+														<field name="female_thyroid"/>
+														<field name="female_thyroid_goitear_length"/>
+														<field name="female_thyroid_goitear_width"/>
+														<field name="female_thyroid_goitear_type"/>
+														<field name="female_thyroid_goitear_nodule"/>
+														<field name="female_pallor"/>
+													</group>
+												</section>
+											</div>
+
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="systematic_examination_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#systematic_examination_section" href="#"><h4 class="mt-2 mb-0">Systemic Examination</h4></a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="systematic_examination_section">
+												<section>
+													<group>
+														<field name="breast_right"/>
+														<field name="breast_right_comment"/>
+														<field name="breast_left"/>
+														<field name="breast_left_comment"/>
+														<field name="cvs"/>
+														<field name="cvs_comment"/>
+														<field name="respiratory"/>
+														<field name="respiratory_comment"/>
+														<field name="abdomen"/>
+														<field name="abdomen_comment"/>
+														<field name="other_findings"/>
+													</group>
+												</section>
+											</div>
+
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="gynecological_examination_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#gynecological_examination_section" href="#"><h4 class="mt-2 mb-0">Gynaecological Examination</h4></a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="gynecological_examination_section">
+												<group>
+													<field name="vulva_vagina"/>
+													<field name="vulva_vagina_comment"/>
+													<field name="uterus_size"/>
+													<field name="uterus_size_comment"/>
+													<field name="uterus_position"/>
+													<field name="uterus_mobility"/>
+													<field name="gynaecological_examination_ps_selection"/>
+													<field name="gynaecological_examination_ps_comment"/>
+													<field name="gynaecological_examination_date"/>
+													<field name="gynaecological_examination_lmp"/>
+													<field name="left_ovary"/>
+													<field name="left_ovary_type"/>
+													<field name="left_ovary_nos"/>
+													<field name="left_ovary_length_1"/>
+													<field name="left_ovary_width_1"/>
+													<field name="left_ovary_length_2"/>
+													<field name="left_ovary_width_2"/>
+													<field name="left_ovary_length_3"/>
+													<field name="left_ovary_width_3"/>
+													<field name="left_ovary_length_4"/>
+													<field name="left_ovary_width_4"/>
+													<field name="left_ovary_length_5"/>
+													<field name="left_ovary_width_5"/>
+													<field name="right_ovary_type"/>
+													<field name="right_ovary_nos"/>
+													<field name="right_ovary_length_1"/>
+													<field name="right_ovary_width_1"/>
+													<field name="right_ovary_length_2"/>
+													<field name="right_ovary_width_2"/>
+													<field name="right_ovary_length_3"/>
+													<field name="right_ovary_width_3"/>
+													<field name="right_ovary_length_4"/>
+													<field name="right_ovary_width_4"/>
+													<field name="right_ovary_length_5"/>
+													<field name="right_ovary_width_5"/>
+													<field name="uterus"/>
+													<field name="uterus_size_length"/>
+													<field name="uterus_size_width"/>
+													<field name="uterus_size_position"/>
+													<field name="uterus_nos"/>
+													<field name="forbid_size_length_1"/>
+													<field name="forbid_size_width_1"/>
+													<field name="forbid_size_length_2"/>
+													<field name="forbid_size_width_2"/>
+													<field name="forbid_size_length_3"/>
+													<field name="forbid_size_width_3"/>
+													<field name="forbid_size_length_4"/>
+													<field name="forbid_size_width_4"/>
+													<field name="forbid_size_length_5"/>
+													<field name="forbid_size_width_5"/>
+													<field name="forbid_size_length_6"/>
+													<field name="forbid_size_width_6"/>
+													<field name="forbid_size_length_7"/>
+													<field name="forbid_size_width_7"/>
+													<field name="forbid_size_length_8"/>
+													<field name="forbid_size_width_8"/>
+													<field name="forbid_size_length_9"/>
+													<field name="forbid_size_width_9"/>
+													<field name="forbid_size_length_10"/>
+													<field name="forbid_size_width_10"/>
+													<field name="lining"/>
+													<field name="lining_size"/>
+													<field name="gynaecological_examination_comment"/>
+												</group>
+											</div>
+
+
+										</page>
+
+										<page string="Male" name="male">
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="male_general_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#male_general_history_section" href="#">
+														<h4 class="mt-2 mb-0">General History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="male_general_history_section">
+												<group>
+													<field name="male_marriage" widget="radio" options="{'horizontal': True}"/>
+													<field name="male_comment"/>
+													<field name="male_age"/>
+												</group>
+											</div>
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="sx_contraception_male_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_male_section" href="#">
+														<h4 class="mt-2 mb-0">Sexual</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px"/>
+											</div>
+
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="male_medical_surgical_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#male_medical_surgical_section" href="#">
+														<h4 class="mt-2 mb-0">Surgical and Medical History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="male_medical_surgical_section">
+												<group col="12" class="mt-0">
+													<group string="Medical History" col="6" colspan="6" class="mt-0">
+														<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
+														<field name="male_adrenal" placeholder="Add Details" colspan="6" />
+														<field name="male_adrenal_date" string="" placeholder="Since" colspan="6" />
+
+														<field name="male_anti_phospholipid_syndrome" placeholder="" colspan="6"
+															   widget="radio" options="{'horizontal': True}"/>
+														<field name="male_anti_phospholipid_syndrome_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_autoimmune_disease" placeholder="Add Details" colspan="6" />
+														<field name="male_autoimmune_disease_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_blood_transfusion" placeholder="" colspan="6"
+															   widget="radio" options="{'horizontal': True}"/>
+														<field name="male_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
+
+														<field name="male_complications_pr" colspan="6" placeholder="Complications" string="" default=" " attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
+
+														<field name="male_cardiac" placeholder="Add Details" colspan="6" />
+														<field name="male_cardiac_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_diabetes_type" placeholder="" colspan="6"
+															   widget="radio" options="{'horizontal': True}"/>
+														<field name="male_diabetes" placeholder="" colspan="6" string="" />
+														<field name="male_diabetes_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_dvt" placeholder="Add Details" colspan="6" />
+														<field name="male_dvt_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_gall_bladder" placeholder="Add Details" colspan="6" />
+														<field name="male_gall_bladder_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_gastric" placeholder="Add Details" colspan="6" />
+														<field name="male_gastric_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_gynaecology" placeholder="Add Details" colspan="6" />
+														<field name="male_gynaecology_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_haematology" placeholder="Add Details" colspan="6" />
+														<field name="male_haematology_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_heart_disease" placeholder="Add Details" colspan="6" />
+														<field name="male_heart_disease_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_hyper_tension" placeholder="Add Details" colspan="6" />
+														<field name="male_hyper_tension_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_intestinal" placeholder="Add Details" colspan="6" />
+														<field name="male_intestinal_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_janduice" placeholder="Add Details" colspan="6" />
+														<field name="male_janduice_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_liver" placeholder="Add Details" colspan="6" />
+														<field name="male_liver_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_low_urinary_tract" placeholder="Add Details" colspan="6" />
+														<field name="male_low_urinary_tract_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_malignancy" placeholder="Add Details" colspan="6" />
+														<field name="male_malignancy_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_neurological" placeholder="Add Details" colspan="6" />
+														<field name="male_neurological_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_renal" placeholder="Add Details" colspan="6" />
+														<field name="male_renal_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_respiratory" placeholder="Add Details" colspan="6" />
+														<field name="male_respiratory_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_smoking" placeholder="Add Details" colspan="6" />
+														<field name="male_smoking_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_alcohol" placeholder="Add Details" colspan="6" />
+														<field name="male_alcohol_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_skeletal" placeholder="Add Details" colspan="6" />
+														<field name="male_skeletal_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_thyroid_TYPE" placeholder="" colspan="6" string="Thyroid"
+															   widget="radio" options="{'horizontal': True}"/>
+														<field name="male_thyroid" placeholder="Add Details" colspan="6" string="" />
+														<field name="male_thyroid_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_urinary_infection" placeholder="Add Details" colspan="6" />
+														<field name="male_urinary_infection_date" string="" colspan="6" placeholder="Since" />
+
+														<field name="male_medical_history_others" placeholder="Add Details" colspan="6" />
+														<field name="male_medical_history_others_date" string="" colspan="6" placeholder="Since" />
+													</group>
+													<group string="Surgical History" class="mt-0" col="6" colspan="6">
 														<!-- BUG -->
 														<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
 														<!--
                                                         Solution:
+                                                            0. If fixing this fix the above one as well. ** Test **
                                                             1. We can make some field required on the first consultation, i.e., name so that user creates the record first
                                                             2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
                                                             3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
                                                             -->
-
-														<button type="action" style="float:right;"
-																class="btn-primary"
-																name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
-																context="{'default_female_consultation_id': id}"
-																string="Add" target="current"/>
-													</div>
-													<separator string="Details of Surgery" style="font-size:small" colspan="6" />
-													<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
-														   string="Patient Procedures" create="false"/>
+														<div style="margin-top: -7%;">
+															<button type="action" style="float:right;"
+																	class="btn-primary"
+																	name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
+																	context="{'default_male_consultation_id':id}"
+																	string="Add" target="current"/>
+														</div>
+														<separator string="Details of Surgery" style="font-size:small" colspan="6" />
+														<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
+															   string="Patient Procedures" create="false"/>
+													</group>
 												</group>
-											</group>
-										</div>
-
-										<div class="d-flex scroll-to card-header" id="female_social_history_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#female_social_history_section" href="#">
-													<h4 class="mt-2 mb-0">Social History</h4>
-												</a>
 											</div>
-											<div class="col-6 text-right" style="margin-top:9px"/>
-										</div>
-
-										<div class="card-block mb-5 pl-4 collapse" id="female_social_history_section">
-											<group>
-												<field name="female_education"/>
-												<field name="female_profession"/>
-												<field name="female_dependence"/>
-											</group>
-										</div>
 
 
-										<div class="d-flex scroll-to card-header" id="family_history_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#family_history_section" href="#"><h4 class="mt-2 mb-0">Family History</h4></a>
+											<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_male_section">
+												<group>
+													<h2>
+														Sexual
+													</h2>
+												</group>
+												<group>
+
+													<field name="male_sx_performance" widget="radio" options="{'horizontal': True}"/>
+													<field name="male_other"/>
+
+												</group>
 											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
+
+
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="male_social_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#male_social_history_section" href="#">
+														<h4 class="mt-2 mb-0">Social History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px"/>
 											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="family_history_section">
-											<section>
-												<div class="row">
-													<div class="col-12 family-history">
-														<div class="bd-example" data-example-id="">
-															<div id="accordion" role="tablist" aria-multiselectable="true">
-																<div class="card">
-																	<div class="card-header" role="tab" id="diabetesOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseDiabetes" id="diabetes" aria-expanded="false" aria-controls="collapseDiabetes" class="collapsed colla mb-0 col-11">
-																				<h3>Diabetes</h3>
-																			</a>
+
+											<div class="card-block mb-5 pl-4 collapse" id="male_social_history_section">
+												<group>
+													<field name="male_education"/>
+													<field name="male_profession"/>
+													<field name="male_dependence"/>
+												</group>
+											</div>
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="male_family_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#male_family_history_section" href="#">
+														<h4 class="mt-2 mb-0">Family History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+
+											<div class="card-block mb-5 pl-4 collapse" id="male_family_history_section">
+												<section>
+													<div class="row">
+														<div class="col-12 family-history">
+															<div class="bd-example" data-example-id="">
+																<div id="accordion" role="tablist" aria-multiselectable="true">
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_diabetesOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseDiabetes" id="male_diabetes" aria-expanded="false"
+																				   aria-controls="male_collapseDiabetes" class="collapsed colla mb-0 col-11">
+																					<h3>Diabetes</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px"
+																			 id="male_collapseDiabetes"
+																			 class="collapse"
+																			 role="tabpanel"
+																			 aria-labelledby="male_diabetesOne"
+																			 aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_diabetes_ids" widget="many2many_checkboxes"/>
+																				<field name="male_other_diabetes"/>
+																			</div>
 																		</div>
 																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseDiabetes" class="collapse" role="tabpanel" aria-labelledby="diabetesOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_diabetes_ids" widget="many2many_checkboxes"/>
-																			<field name="female_other_diabetes"/>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_malignanciesOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse" role="button" data-bs-parent="#accordion" href="#male_collapseMalignancies" id="male_malignancies" aria-expanded="false"
+																				   aria-controls="male_collapseMalignancies" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Malignancies
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_malignancies_ids"  widget="many2many_checkboxes" />
+																				<field name="male_other_malignancies"/>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="malignanciesOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseMalignancies" id="malignancies" aria-expanded="false" aria-controls="collapseMalignancies" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Malignancies
-																				</h3>
-																			</a>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="hypertensionOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseHypertension" id="male_hypertension" aria-expanded="false"
+																				   aria-controls="male_collapseHypertension" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Hypertension
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_hypertension_ids" widget="many2many_checkboxes" />
+																				<field name="male_other_hypertension"/>
+																			</div>
 																		</div>
 																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_malignancies_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_malignancies"/>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_mental_illnessOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseMental_illness" id="male_mental_illness" aria-expanded="false"
+																				   aria-controls="male_collapseMental_illness" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Mental Illnesses
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_mental_illness_ids" widget="many2many_checkboxes" />
+																				<field name="male_other_mental_illness"/>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="hypertensionOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseHypertension" id="hypertension" aria-expanded="false" aria-controls="collapseHypertension" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Hypertension
-																				</h3>
-																			</a>
+
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_tuberculosisOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseTuberculosis" id="tuberculosis" aria-expanded="false" aria-controls="collapseTuberculosis" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Tuberculosis
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseTuberculosis" class="collapse" role="tabpanel" aria-labelledby="male_tuberculosisOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_tuberculosis_ids"  widget="many2many_checkboxes" />
+																				<field name="male_other_tuberculosis"/>
+																			</div>
 																		</div>
 																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_hypertension_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_hypertension"/>
+
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_c_abnormalitiesOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseC_abnormalities" id="c_abnormalities" aria-expanded="false" aria-controls="collapseC_abnormalities" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Congenital Abnormalities
+																					</h3>
+																				</a>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="male_c_abnormalitiesOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_abnormalities_ids" widget="many2many_checkboxes" />
+																				<field name="male_other_abnormalities"/>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="mental_illnessOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseMental_illness" id="mental_illness" aria-expanded="false" aria-controls="collapseMental_illness" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Mental Illnesses
-																				</h3>
-																			</a>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_otherOne">
+																			<div class="mb-0 row">
+																				<a data-bs-toggle="collapse" role="button" data-bs-parent="#accordion" href="#male_collapseOther" id="male_other" aria-expanded="false" aria-controls="collapseOther" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Other
+																					</h3>
+																				</a>
+																			</div>
 																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_mental_illness_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_mental_illness"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="twinsOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseTwins" id="twins" aria-expanded="false" aria-controls="collapseTwins" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Twins
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseTwins" class="collapse" role="tabpanel" aria-labelledby="twinsOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_twins_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_twins"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="tuberculosisOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseTuberculosis" id="tuberculosis" aria-expanded="false" aria-controls="collapseTuberculosis" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Tuberculosis
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseTuberculosis" class="collapse" role="tabpanel" aria-labelledby="tuberculosisOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_tuberculosis_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_tuberculosis"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="c_abnormalitiesOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseC_abnormalities" id="c_abnormalities" aria-expanded="false" aria-controls="collapseC_abnormalities" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Congenital Abnormalities
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="c_abnormalitiesOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_abnormalities_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_abnormalities"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="pihOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapsePih" id="pih" aria-expanded="false" aria-controls="collapsePih" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Pregnancy Induced Hypertension
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapsePih" class="collapse" role="tabpanel" aria-labelledby="pihOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_pregnancy_induced_hypertension_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_pregnancy_induced_hypertension"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="misscarriagesOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseMisscarriages" id="misscarriages" aria-expanded="false" aria-controls="collapseMisscarriages" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Miscarriages
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseMisscarriages" class="collapse" role="tabpanel" aria-labelledby="misscarriagesOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_miscarriage_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_miscarriage"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="pbOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapsePb" id="pb" aria-expanded="false" aria-controls="collapsePb" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Preterm Births
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapsePb" class="collapse" role="tabpanel" aria-labelledby="pbOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_preterm_birth_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_preterm_birth"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="sbOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapseSb" id="sb" aria-expanded="false" aria-controls="collapseSb" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Still Births
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseSb" class="collapse" role="tabpanel" aria-labelledby="sbOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_still_birth_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_still_birth"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="pmofOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#collapsePmof" id="pmof" aria-expanded="false" aria-controls="collapsePmof" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Pre-mature Ovarian Failure
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapsePmof" class="collapse" role="tabpanel" aria-labelledby="pmofOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_pre_mature_ovarian_failure_ids" widget="many2many_checkboxes" />
-																			<field name="female_other_pre_mature_ovarian_failure"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="otherOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse" role="button" data-bs-parent="#accordion" href="#collapseOther" id="other" aria-expanded="false" aria-controls="collapseOther" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Other
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="collapseOther" class="collapse" role="tabpanel" aria-labelledby="otherOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="female_family_history_other" />
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseOther" class="collapse" role="tabpanel" aria-labelledby="male_otherOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_family_history_other" />
+																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
+												</section>
+											</div>
+
+											<!-- Genital Examination -->
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="genital_examination_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#genital_examination_section" href="#">
+														<h4 class="mt-2 mb-0">Genital Examination</h4>
+													</a>
 												</div>
-											</section>
-										</div>
-
-										<!-- Lab history -->
-										<div class="d-flex scroll-to card-header" id="female_lab_history_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#female_lab_history_section" href="#">
-													<h4 class="mt-2 mb-0">Lab History</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-
-										<div class="card-block mb-5 pl-4 collapse col-6" id="female_lab_history_section">
-<!--											<br></br>-->
-											<group class="mt-0" col="6" colspan="6">
-												<div style="margin-top: -7%;">
-													<button type="action"
-															style="float:right;"
-															class="btn-primary"
-															name="%(ecare_medical_history.ec_lab_history_action)d"
-															context="{'default_female_first_consultation_id':id}"
-															string="Add" target="new"/>
+												<div class="col-6 text-right" style="margin-top:9px">
 												</div>
-												<separator string="Details" style="font-size:small" colspan="6" />
-												<field class="custom-scrollbar opd-notes-height" name="female_lab_history_ids" mode="kanban" nolabel="1"
-													   string="Lab History" create="false"/>
-
-											</group>
-										</div>
-
-
-										<div class="d-flex scroll-to card-header" id="physical_examination_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#physical_examination_section" href="#"><h4 class="mt-2 mb-0">Physical Examination</h4></a>
 											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="physical_examination_section">
-											<section>
+											<div class="card-block mb-5 pl-4 collapse" id="genital_examination_section">
 												<group>
-													<field name="female_weight"/>
-													<field name="female_height"/>
-													<field name="female_bmi"/>
-													<field name="female_bp_upper"/>
-													<field name="female_bp_lower"/>
-													<field name="female_pulse"/>
-													<field name="female_temperature"/>
-													<field name="female_thyroid"/>
-													<field name="female_thyroid_goitear_length"/>
-													<field name="female_thyroid_goitear_width"/>
-													<field name="female_thyroid_goitear_type"/>
-													<field name="female_thyroid_goitear_nodule"/>
-													<field name="female_pallor"/>
+													<field name="skin_condition"/>
+													<field name="hernia" widget="radio" options="{'horizontal': True}"/>
+													<field name="vericocele"/>
+													<field name="hydrocele"/>
+													<field name="undescended_testis"/>
+													<field name="supermatic_cord_normal"/>
+													<field name="supermatic_cord_thick"/>
+													<field name="supermatic_cord_tender"/>
+													<field name="testicular_size_right" widget="radio" options="{'horizontal': True}"/>
+													<field name="testicular_size_left"/>
+													<field name="testicular_size_mobility"/>
+													<field name="ec_genital_examination_comment"/>
 												</group>
-											</section>
-										</div>
-
-
-										<div class="d-flex scroll-to card-header" id="systematic_examination_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#systematic_examination_section" href="#"><h4 class="mt-2 mb-0">Systemic Examination</h4></a>
 											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="physical_examination_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#physical_examination_section" href="#">
+														<h4 class="mt-2 mb-0">Physical Examination</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
 											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="systematic_examination_section">
-											<section>
+											<div class="card-block mb-5 pl-4 collapse" id="physical_examination_section">
 												<group>
-													<field name="breast_right"/>
-													<field name="breast_right_comment"/>
-													<field name="breast_left"/>
-													<field name="breast_left_comment"/>
-													<field name="cvs"/>
-													<field name="cvs_comment"/>
-													<field name="respiratory"/>
-													<field name="respiratory_comment"/>
-													<field name="abdomen"/>
-													<field name="abdomen_comment"/>
-													<field name="other_findings"/>
+													<field name="male_weight"/>
+													<field name="male_height"/>
+													<field name="male_bmi"/>
+													<field name="male_bp_upper"/>
+													<field name="male_bp_lower"/>
+													<field name="male_pulse"/>
+													<field name="male_temperature"/>
+													<field name="male_thyroid" widget="radio" options="{'horizontal': True}"/>
+													<field name="male_thyroid_goitear_length"/>
+													<field name="male_thyroid_goitear_width"/>
+													<field name="male_thyroid_goitear_type" widget="radio" options="{'horizontal': True}"/>
+													<field name="male_thyroid_goitear_nodule"/>
+													<field name="male_pallor" widget="radio" options="{'horizontal': True}"/>
 												</group>
-											</section>
-										</div>
-
-
-										<div class="d-flex scroll-to card-header" id="gynecological_examination_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#gynecological_examination_section" href="#"><h4 class="mt-2 mb-0">Gynaecological Examination</h4></a>
 											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
+
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="systemic_examination_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#systemic_examination_section" href="#">
+														<h4 class="mt-2 mb-0">Systemic Examination</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
 											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="gynecological_examination_section">
-											<group>
-												<field name="vulva_vagina"/>
-												<field name="vulva_vagina_comment"/>
-												<field name="uterus_size"/>
-												<field name="uterus_size_comment"/>
-												<field name="uterus_position"/>
-												<field name="uterus_mobility"/>
-												<field name="gynaecological_examination_ps_selection"/>
-												<field name="gynaecological_examination_ps_comment"/>
-												<field name="gynaecological_examination_date"/>
-												<field name="gynaecological_examination_lmp"/>
-												<field name="left_ovary"/>
-												<field name="left_ovary_type"/>
-												<field name="left_ovary_nos"/>
-												<field name="left_ovary_length_1"/>
-												<field name="left_ovary_width_1"/>
-												<field name="left_ovary_length_2"/>
-												<field name="left_ovary_width_2"/>
-												<field name="left_ovary_length_3"/>
-												<field name="left_ovary_width_3"/>
-												<field name="left_ovary_length_4"/>
-												<field name="left_ovary_width_4"/>
-												<field name="left_ovary_length_5"/>
-												<field name="left_ovary_width_5"/>
-												<field name="right_ovary_type"/>
-												<field name="right_ovary_nos"/>
-												<field name="right_ovary_length_1"/>
-												<field name="right_ovary_width_1"/>
-												<field name="right_ovary_length_2"/>
-												<field name="right_ovary_width_2"/>
-												<field name="right_ovary_length_3"/>
-												<field name="right_ovary_width_3"/>
-												<field name="right_ovary_length_4"/>
-												<field name="right_ovary_width_4"/>
-												<field name="right_ovary_length_5"/>
-												<field name="right_ovary_width_5"/>
-												<field name="uterus"/>
-												<field name="uterus_size_length"/>
-												<field name="uterus_size_width"/>
-												<field name="uterus_size_position"/>
-												<field name="uterus_nos"/>
-												<field name="forbid_size_length_1"/>
-												<field name="forbid_size_width_1"/>
-												<field name="forbid_size_length_2"/>
-												<field name="forbid_size_width_2"/>
-												<field name="forbid_size_length_3"/>
-												<field name="forbid_size_width_3"/>
-												<field name="forbid_size_length_4"/>
-												<field name="forbid_size_width_4"/>
-												<field name="forbid_size_length_5"/>
-												<field name="forbid_size_width_5"/>
-												<field name="forbid_size_length_6"/>
-												<field name="forbid_size_width_6"/>
-												<field name="forbid_size_length_7"/>
-												<field name="forbid_size_width_7"/>
-												<field name="forbid_size_length_8"/>
-												<field name="forbid_size_width_8"/>
-												<field name="forbid_size_length_9"/>
-												<field name="forbid_size_width_9"/>
-												<field name="forbid_size_length_10"/>
-												<field name="forbid_size_width_10"/>
-												<field name="lining"/>
-												<field name="lining_size"/>
-												<field name="gynaecological_examination_comment"/>
-											</group>
-										</div>
-
-
-									</page>
-
-									<page string="Male" name="male">
-
-										<div class="d-flex scroll-to card-header" id="male_general_history_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#male_general_history_section" href="#">
-													<h4 class="mt-2 mb-0">General History</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="male_general_history_section">
-											<group>
-												<field name="male_marriage" widget="radio" options="{'horizontal': True}"/>
-												<field name="male_comment"/>
-												<field name="male_age"/>
-											</group>
-										</div>
-
-										<div class="d-flex scroll-to card-header" id="sx_contraception_male_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#sx_contraception_male_section" href="#">
-													<h4 class="mt-2 mb-0">Sexual</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px"/>
-										</div>
-
-
-										<div class="d-flex scroll-to card-header" id="male_medical_surgical_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#male_medical_surgical_section" href="#">
-													<h4 class="mt-2 mb-0">Surgical and Medical History</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="male_medical_surgical_section">
-											<group col="12" class="mt-0">
-												<group string="Medical History" col="6" colspan="6" class="mt-0">
-													<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
-													<field name="male_adrenal" placeholder="Add Details" colspan="6" />
-													<field name="male_adrenal_date" string="" placeholder="Since" colspan="6" />
-
-													<field name="male_anti_phospholipid_syndrome" placeholder="" colspan="6"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="male_anti_phospholipid_syndrome_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_autoimmune_disease" placeholder="Add Details" colspan="6" />
-													<field name="male_autoimmune_disease_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_blood_transfusion" placeholder="" colspan="6"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="male_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
-
-													<field name="male_complications_pr" colspan="6" placeholder="Complications" string="" default=" " attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
-
-													<field name="male_cardiac" placeholder="Add Details" colspan="6" />
-													<field name="male_cardiac_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_diabetes_type" placeholder="" colspan="6"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="male_diabetes" placeholder="" colspan="6" string="" />
-													<field name="male_diabetes_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_dvt" placeholder="Add Details" colspan="6" />
-													<field name="male_dvt_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_gall_bladder" placeholder="Add Details" colspan="6" />
-													<field name="male_gall_bladder_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_gastric" placeholder="Add Details" colspan="6" />
-													<field name="male_gastric_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_gynaecology" placeholder="Add Details" colspan="6" />
-													<field name="male_gynaecology_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_haematology" placeholder="Add Details" colspan="6" />
-													<field name="male_haematology_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_heart_disease" placeholder="Add Details" colspan="6" />
-													<field name="male_heart_disease_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_hyper_tension" placeholder="Add Details" colspan="6" />
-													<field name="male_hyper_tension_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_intestinal" placeholder="Add Details" colspan="6" />
-													<field name="male_intestinal_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_janduice" placeholder="Add Details" colspan="6" />
-													<field name="male_janduice_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_liver" placeholder="Add Details" colspan="6" />
-													<field name="male_liver_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_low_urinary_tract" placeholder="Add Details" colspan="6" />
-													<field name="male_low_urinary_tract_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_malignancy" placeholder="Add Details" colspan="6" />
-													<field name="male_malignancy_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_neurological" placeholder="Add Details" colspan="6" />
-													<field name="male_neurological_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_renal" placeholder="Add Details" colspan="6" />
-													<field name="male_renal_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_respiratory" placeholder="Add Details" colspan="6" />
-													<field name="male_respiratory_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_smoking" placeholder="Add Details" colspan="6" />
-													<field name="male_smoking_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_alcohol" placeholder="Add Details" colspan="6" />
-													<field name="male_alcohol_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_skeletal" placeholder="Add Details" colspan="6" />
-													<field name="male_skeletal_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_thyroid_TYPE" placeholder="" colspan="6" string="Thyroid"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="male_thyroid" placeholder="Add Details" colspan="6" string="" />
-													<field name="male_thyroid_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_urinary_infection" placeholder="Add Details" colspan="6" />
-													<field name="male_urinary_infection_date" string="" colspan="6" placeholder="Since" />
-
-													<field name="male_medical_history_others" placeholder="Add Details" colspan="6" />
-													<field name="male_medical_history_others_date" string="" colspan="6" placeholder="Since" />
+											<div class="card-block mb-5 pl-4 collapse" id="systemic_examination_section">
+												<group>
+													<field name="male_cvs" widget="radio" options="{'horizontal': True}"/>
+													<field name="male_cvs_comment"/>
+													<field name="male_respiratory" widget="radio" options="{'horizontal': True}"/>
+													<field name="male_respiratory_comment"/>
+													<field name="male_abdomen" widget="radio" options="{'horizontal': True}"/>
+													<field name="male_abdomen_comment"/>
+													<field name="male_systemic_other"/>
 												</group>
-												<group string="Surgical History" class="mt-0" col="6" colspan="6">
-													<!-- BUG -->
-													<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
-													<!--
-                                                    Solution:
-                                                        0. If fixing this fix the above one as well. ** Test **
-                                                        1. We can make some field required on the first consultation, i.e., name so that user creates the record first
-                                                        2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
-                                                        3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
-                                                        -->
+											</div>
+
+											<!-- Lab history -->
+											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="male_lab_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#male_lab_history_section" href="#">
+														<h4 class="mt-2 mb-0">Lab History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+
+											<div class="card-block mb-5 pl-4 collapse col-6" id="male_lab_history_section">
+												<!--											<br></br>-->
+												<group class="mt-0" col="6" colspan="6">
 													<div style="margin-top: -7%;">
-														<button type="action" style="float:right;"
+														<button type="action"
+																style="float:right;"
 																class="btn-primary"
-																name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
-																context="{'default_male_consultation_id':id}"
-																string="Add" target="current"/>
+																name="%(ecare_medical_history.ec_lab_history_action)d"
+																context="{'default_male_first_consultation_id':id}"
+																string="Add" target="new"/>
 													</div>
-													<separator string="Details of Surgery" style="font-size:small" colspan="6" />
-													<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
-														   string="Patient Procedures" create="false"/>
+													<separator string="Details" style="font-size:small" colspan="6" />
+													<field class="custom-scrollbar opd-notes-height" name="male_lab_history_ids" mode="kanban" nolabel="1"
+														   string="Lab History" create="false"/>
+
 												</group>
-											</group>
-										</div>
-
-
-										<div class="card-block mb-5 pl-4 collapse" id="sx_contraception_male_section">
-											<group>
-												<h2>
-													Sexual
-												</h2>
-											</group>
-											<group>
-
-												<field name="male_sx_performance" widget="radio" options="{'horizontal': True}"/>
-												<field name="male_other"/>
-
-											</group>
-										</div>
-
-
-
-										<div class="d-flex scroll-to card-header" id="male_social_history_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#male_social_history_section" href="#">
-													<h4 class="mt-2 mb-0">Social History</h4>
-												</a>
 											</div>
-											<div class="col-6 text-right" style="margin-top:9px"/>
-										</div>
 
-										<div class="card-block mb-5 pl-4 collapse" id="male_social_history_section">
-											<group>
-												<field name="male_education"/>
-												<field name="male_profession"/>
-												<field name="male_dependence"/>
-											</group>
-										</div>
+										</page>
 
-										<div class="d-flex scroll-to card-header" id="male_family_history_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#male_family_history_section" href="#">
-													<h4 class="mt-2 mb-0">Family History</h4>
-												</a>
+										<page string="Previous Treatment" name="previous_treatment">
+											<div class="card-block mb-5 pl-4" id="previous_treatment_tree_section">
+												<field name="previous_treatment_ids">
+													<tree editable="bottom">
+														<field name="first_consultation_id" invisible="1" force_save="1"/>
+														<field name="type"/>
+														<field name="consultant"/>
+														<field name="oral_drugs"/>
+														<field name="down_regulation"/>
+														<field name="superovulation"/>
+														<field name="ovarian_response"/>
+														<field name="outcome"/>
+													</tree>
+												</field>
 											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
+										</page>
 
-										<div class="card-block mb-5 pl-4 collapse" id="male_family_history_section">
-											<section>
-												<div class="row">
-													<div class="col-12 family-history">
-														<div class="bd-example" data-example-id="">
-															<div id="accordion" role="tablist" aria-multiselectable="true">
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_diabetesOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseDiabetes" id="male_diabetes" aria-expanded="false"
-																			   aria-controls="male_collapseDiabetes" class="collapsed colla mb-0 col-11">
-																				<h3>Diabetes</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px"
-																		 id="male_collapseDiabetes"
-																		 class="collapse"
-																		 role="tabpanel"
-																		 aria-labelledby="male_diabetesOne"
-																		 aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_diabetes_ids" widget="many2many_checkboxes"/>
-																			<field name="male_other_diabetes"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_malignanciesOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse" role="button" data-bs-parent="#accordion" href="#male_collapseMalignancies" id="male_malignancies" aria-expanded="false"
-																			   aria-controls="male_collapseMalignancies" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Malignancies
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_malignancies_ids"  widget="many2many_checkboxes" />
-																			<field name="male_other_malignancies"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="hypertensionOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseHypertension" id="male_hypertension" aria-expanded="false"
-																			   aria-controls="male_collapseHypertension" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Hypertension
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_hypertension_ids" widget="many2many_checkboxes" />
-																			<field name="male_other_hypertension"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_mental_illnessOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseMental_illness" id="male_mental_illness" aria-expanded="false"
-																			   aria-controls="male_collapseMental_illness" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Mental Illnesses
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_mental_illness_ids" widget="many2many_checkboxes" />
-																			<field name="male_other_mental_illness"/>
-																		</div>
-																	</div>
-																</div>
+									</notebook>
+								</div>
 
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_tuberculosisOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseTuberculosis" id="tuberculosis" aria-expanded="false" aria-controls="collapseTuberculosis" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Tuberculosis
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapseTuberculosis" class="collapse" role="tabpanel" aria-labelledby="male_tuberculosisOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_tuberculosis_ids"  widget="many2many_checkboxes" />
-																			<field name="male_other_tuberculosis"/>
-																		</div>
-																	</div>
-																</div>
+								<!--								Previous Treatment -->
 
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_c_abnormalitiesOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseC_abnormalities" id="c_abnormalities" aria-expanded="false" aria-controls="collapseC_abnormalities" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Congenital Abnormalities
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="male_c_abnormalitiesOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_abnormalities_ids" widget="many2many_checkboxes" />
-																			<field name="male_other_abnormalities"/>
-																		</div>
-																	</div>
-																</div>
-																<div class="card">
-																	<div class="card-header" role="tab" id="male_otherOne">
-																		<div class="mb-0 row">
-																			<a data-bs-toggle="collapse" role="button" data-bs-parent="#accordion" href="#male_collapseOther" id="male_other" aria-expanded="false" aria-controls="collapseOther" class="collapsed colla mb-0 col-11">
-																				<h3>
-																					Other
-																				</h3>
-																			</a>
-																		</div>
-																	</div>
-																	<div style="margin-left:17px; margin-top:10px" id="male_collapseOther" class="collapse" role="tabpanel" aria-labelledby="male_otherOne" aria-expanded="false">
-																		<div class="card-block">
-																			<field name="male_family_history_other" />
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</section>
-										</div>
-
-										<!-- Genital Examination -->
-
-										<div class="d-flex scroll-to card-header" id="genital_examination_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#genital_examination_section" href="#">
-													<h4 class="mt-2 mb-0">Genital Examination</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="genital_examination_section">
-											<group>
-												<field name="skin_condition"/>
-												<field name="hernia" widget="radio" options="{'horizontal': True}"/>
-												<field name="vericocele"/>
-												<field name="hydrocele"/>
-												<field name="undescended_testis"/>
-												<field name="supermatic_cord_normal"/>
-												<field name="supermatic_cord_thick"/>
-												<field name="supermatic_cord_tender"/>
-												<field name="testicular_size_right" widget="radio" options="{'horizontal': True}"/>
-												<field name="testicular_size_left"/>
-												<field name="testicular_size_mobility"/>
-												<field name="ec_genital_examination_comment"/>
-											</group>
-										</div>
-
-										<div class="d-flex scroll-to card-header" id="physical_examination_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#physical_examination_section" href="#">
-													<h4 class="mt-2 mb-0">Physical Examination</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="physical_examination_section">
-											<group>
-												<field name="male_weight"/>
-												<field name="male_height"/>
-												<field name="male_bmi"/>
-												<field name="male_bp_upper"/>
-												<field name="male_bp_lower"/>
-												<field name="male_pulse"/>
-												<field name="male_temperature"/>
-												<field name="male_thyroid" widget="radio" options="{'horizontal': True}"/>
-												<field name="male_thyroid_goitear_length"/>
-												<field name="male_thyroid_goitear_width"/>
-												<field name="male_thyroid_goitear_type" widget="radio" options="{'horizontal': True}"/>
-												<field name="male_thyroid_goitear_nodule"/>
-												<field name="male_pallor" widget="radio" options="{'horizontal': True}"/>
-											</group>
-										</div>
-
-										<div class="d-flex scroll-to card-header" id="systemic_examination_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#systemic_examination_section" href="#">
-													<h4 class="mt-2 mb-0">Systemic Examination</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-										<div class="card-block mb-5 pl-4 collapse" id="systemic_examination_section">
-											<group>
-												<field name="male_cvs" widget="radio" options="{'horizontal': True}"/>
-												<field name="male_cvs_comment"/>
-												<field name="male_respiratory" widget="radio" options="{'horizontal': True}"/>
-												<field name="male_respiratory_comment"/>
-												<field name="male_abdomen" widget="radio" options="{'horizontal': True}"/>
-												<field name="male_abdomen_comment"/>
-												<field name="male_systemic_other"/>
-											</group>
-										</div>
-
-										<!-- Lab history -->
-										<div class="d-flex scroll-to card-header" id="male_lab_history_section_link">
-											<div class="col-6">
-												<a data-bs-toggle="collapse" data-bs-target="#male_lab_history_section" href="#">
-													<h4 class="mt-2 mb-0">Lab History</h4>
-												</a>
-											</div>
-											<div class="col-6 text-right" style="margin-top:9px">
-											</div>
-										</div>
-
-										<div class="card-block mb-5 pl-4 collapse col-6" id="male_lab_history_section">
-<!--											<br></br>-->
-											<group class="mt-0" col="6" colspan="6">
-												<div style="margin-top: -7%;">
-													<button type="action"
-															style="float:right;"
-															class="btn-primary"
-															name="%(ecare_medical_history.ec_lab_history_action)d"
-															context="{'default_male_first_consultation_id':id}"
-															string="Add" target="new"/>
-												</div>
-												<separator string="Details" style="font-size:small" colspan="6" />
-												<field class="custom-scrollbar opd-notes-height" name="male_lab_history_ids" mode="kanban" nolabel="1"
-													   string="Lab History" create="false"/>
-
-											</group>
-										</div>
-
-									</page>
-								</notebook>
+								<div class="d-flex scroll-to card-header" id="previous_treatment_section_link">
+									<div class="col-6">
+										<a data-bs-toggle="collapse" data-bs-target="#previous_treatment_section" href="#">
+											<h4 class="mt-2 mb-0">Previous Treatment</h4></a>
+									</div>
+									<div class="col-6 text-right" style="margin-top:9px">
+									</div>
+								</div>
+								<div class="card-block mb-5 pl-4 collapse" id="previous_treatment_section">
+									<h1>Previous Treatment</h1>
+								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="card-custom1-right">
 									<div class="card-custom-right-heading">Female
-<!--										<br/>-->
+										<!--										<br/>-->
 										27 years</div>
 									<div class="card-custom-right-heading-special">GxPyZ</div>
-									<div  class="card-custom-right-button">
-										<div class="card-custom-right-button-text">Obstetric History</div>
-									</div>
+									<button name="action_open_patient_obstetrics_history"
+											type="object"
+											class="card-custom-right-button"
+											string="Obstetrics History"/>
+
 									<div class="divider"/>
 									<div class="card-custom-right-extra-content">(collapsible - expands to a limit) - default is expanded</div>
 								</div>
 								<div class="card-custom2-right">
 									<div class="card-custom-right-heading">Male
-<!--										<br></br>-->
+										<!--										<br></br>-->
 										32 years</div>
 									<div class="card-custom-right-heading-special">GxPyZ</div>
-									<div class="card-custom-right-button">
-										<div class="card-custom-right-button-text">Seminology</div>
-									</div>
+									<button name="create"
+											class="card-custom-right-button"
+											string="Seminology"/>
 									<div class="divider"/>
 									<div class="card-custom-right-extra-content">(collapsible - expands to a limit) - default is expanded</div>
 								</div>
