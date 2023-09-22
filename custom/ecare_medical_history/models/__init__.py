@@ -1,6 +1,7 @@
 from . import patient
 from . import individual_patient
 from . import family_relation_list
+from . import previous_treatment
 
 # Common for both male and female
 from . import general_history
