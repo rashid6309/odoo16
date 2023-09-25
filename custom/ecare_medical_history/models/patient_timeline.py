@@ -55,5 +55,8 @@ class PatientTimeline(models.Model):
                 'default_patient_id': self.timeline_patient_id.id,
                 'default_first_consultation_id': self.ec_first_consultation_id.id,
             },
-            'domain': [('patient_id', 'in', self.timeline_patient_id)],
+            'domain': ['|',
+                ('first_consultation_id', 'in', self.ec_first_consultation_id),
+                ('patient_id', 'in', self.timeline_patient_id)
+            ],
         }
