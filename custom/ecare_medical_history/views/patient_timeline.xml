@@ -69,7 +69,7 @@
 											</div>
 										</div>
 										<div class="header-custom-text">
-											<div class="header-text">Primary Infertility
+											<div class="header-text">Infertility Type
 												<span class="custom_readonly">
 													<field name="female_complaints"/>
 												</span>

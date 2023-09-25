@@ -2,7 +2,7 @@ from odoo import api, models, fields, _
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
-class EcMedicalPreviousHistory(models.Model):
+class MedicalPreviousHistory(models.Model):
     _name = 'ec.medical.previous.treatment'
     _description = "Previous Treatment"
 
