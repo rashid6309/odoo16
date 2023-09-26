@@ -396,14 +396,14 @@ class EcarePatient(models.Model):
                 raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
 
     def get_payload(self):
-        yom = None
+        yom = 0
         if self.yom:
             yom = int(self.yom[:self.yom.index('Y')])
 
         payload = {
             "Female": {
                 "Patient_id": 0,
-                "First_name": self.wife_name,
+                "First_name": self.wife_name or "",
                 "Surname": "",
                 "Address_line1": self.street or "",
                 "Address_line2": self.street2 or "",
@@ -423,7 +423,7 @@ class EcarePatient(models.Model):
             },
             "Male": {
                 "Patient_id": 0,
-                "First_name": self.husband_name,
+                "First_name": self.husband_name or "",
                 "Surname": "",
                 "Address_line1": self.street or "",
                 "Address_line2": self.street2 or "",
