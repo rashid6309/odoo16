@@ -25,3 +25,4 @@ access_ec_sx_contraception_all,access_ec_sx_contraception_all,model_ec_sx_contra
 access_ec_male_medical_history_all,access_ec_male_medical_history_all,model_ec_male_medical_history,,1,1,1,1
 
 access_ec_patient_timeline_all,access_ec_patient_timeline_all,model_ec_patient_timeline,,1,1,1,1
+access_ec_patient_repeat_consultation_all,access_ec_patient_repeat_consultation_all,model_ec_repeat_consultation,,1,1,1,1

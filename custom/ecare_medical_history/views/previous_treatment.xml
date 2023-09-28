@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- Explicit Tree view -->
+        <record id="previous_treatment_tree_view" model="ir.ui.view">
+            <field name="name">previous.treatment.tree.view</field>
+            <field name="model">ec.medical.previous.treatment</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="first_consultation_id" invisible="1" force_save="1"/>
+                    <field name="patient_id"/>
+                    <field name="type"/>
+                    <field name="consultant"/>
+                    <field name="oral_drugs"/>
+                    <field name="down_regulation"/>
+                    <field name="superovulation"/>
+                    <field name="ovarian_response"/>
+                    <field name="outcome"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Explicit Action-->
+        <record id="previous_treatment_action" model="ir.actions.act_window">
+            <field name="name">Previous Treatment</field>
+            <field name="res_model">ec.medical.previous.treatment</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+    </data>
+
+</odoo>

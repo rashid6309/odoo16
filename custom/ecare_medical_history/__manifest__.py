@@ -25,16 +25,19 @@
 
         # Views
         'views/female_obstetrics_history.xml',
+        'views/previous_treatment.xml',
 
         # 'views/ec_patient.xml', # not being used now.
         'views/ec_procedure.xml',
         'views/lab_history.xml',
 
-        # Timeline
-        'views/patient_timeline.xml',
-
         # This Views should be below after all of its views.
         'views/first_consultation.xml',
+
+        # Repeat
+        'views/repeat_consultation.xml',
+        # Timeline
+        'views/patient_timeline.xml',
 
         # This should be called at the end
         'data/menus.xml',

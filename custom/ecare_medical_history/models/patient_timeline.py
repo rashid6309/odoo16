@@ -7,12 +7,17 @@ class PatientTimeline(models.Model):
     _rec_name = "timeline_patient_id"
     _inherits = {'ec.first.consultation': 'ec_first_consultation_id'}
 
+    ec_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete='restrict')
+
+    ''' Foreign keys '''
     timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                           string="Patient",
                                           index=True)
+    ''' One2Many'''
+    repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
+                                              inverse_name="timeline_id")
 
-    ec_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete='restrict')
-
+    ''' Computed'''
     gravida = fields.Char(string='Gravida', compute='_compute_female_values')
     parity = fields.Char(string='Parity', compute='_compute_female_values')
     miscarriages = fields.Char(string='Miscarriages', compute='_compute_female_values')
@@ -112,6 +117,11 @@ class PatientTimeline(models.Model):
             record.ec_first_consultation_id.populate_all_patients()
             # record.first_consultation_patient_id.populate_all_patients()
 
+    """
+    Action for opening views
+    *. Please put all the actions over here which open any kind of views
+    """
+
     def action_open_patient_time_view(self):
         patient_id = self.env.context.get('0')
         return {
@@ -124,21 +134,11 @@ class PatientTimeline(models.Model):
             'target': 'new',
         }
 
-    def action_open_patient_obstetrics_history(self):
-        return {
-            "name": _("Patient Obstetrics History"),
-            "type": 'ir.actions.act_window',
-            "res_model": 'ec.obstetrics.history',
-            'view_id': self.env.ref('ecare_medical_history.ec_medical_obstetrics_history_tree_view').id,
-            'view_mode': 'tree',
-            "target": 'new',
-            'context': {
-                'default_patient_id': self.timeline_patient_id.id,
-                'default_first_consultation_id': self.ec_first_consultation_id.id,
-            },
-            'flags': {'initial_mode': 'create'},
-            'domain': ['|',
-                       ('first_consultation_id', 'in', self.ec_first_consultation_id),
-                       ('patient_id', 'in', self.timeline_patient_id)
-                       ],
-        }
+    def action_timeline_open_obstetrics_history(self):
+        return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
+                                                                       self.ec_first_consultation_id)
+
+    def action_create_repeat_consultation(self):
+        return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
+
+    ''' Action for opening views block ended '''

@@ -1,9 +1,9 @@
 from odoo import api, models, fields, _
+from odoo.exceptions import ValidationError
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
-
-from datetime import date, datetime
+from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 '''
 
 TODO: Review attributes name
@@ -14,6 +14,7 @@ REVIEW FULL FILE
 class FemaleObstetricsHistory(models.Model):
     _name = 'ec.obstetrics.history'
     _description = "Female Obstetrics History"
+    _order = "create_date desc"
 
     patient_id = fields.Many2one(comodel_name='ec.medical.patient', string='Patient') # Why it is required??
     first_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
@@ -44,17 +45,40 @@ class FemaleObstetricsHistory(models.Model):
     alive = fields.Selection(string='Alive', selection=StaticMember.ALIVE)
     feed = fields.Selection(string='Feed', selection=StaticMember.FEED)
     state = fields.Boolean(string='', default=True)
-    '''
-    TODO: MOVE to Static
-    '''
-    labour_history = fields.Selection([('spontaneous', 'Spontaneous'),
-                                       ('induced', 'Induced'),
-                                       ], string='Labour')
-    legacy_system_ID = fields.Char(string='Legacy System Id')
 
-    # @api.constrains('dob', )
-    # def _check_dob_date(self):
-    #     for record in self:
-    #         if record.dob and record.dob > fields.Date.today():
-    #             raise ValidationError(_(
-    #                 "Date of Birth can't be greater than current date!"))
+    labour_history = fields.Selection(selection=StaticMember.LABOUR_HISTORY,
+                                      string='Labour')
+    # legacy_system_ID = fields.Char(string='Legacy System Id')
+
+    ''' Constrains '''
+    @api.constrains('date_of_birth')
+    def _check_dob_date(self):
+        for record in self:
+            if CustomDateTime.greater_than_today(record.date_of_birth):
+                raise ValidationError(_(
+                    "Date of Birth can't be greater than current date!"))
+
+    ''' Constrains block ended '''
+
+
+    def action_open_form_view(self, patient_id, first_consultation_id=None):
+        context = {
+            'default_patient_id': patient_id.id,
+            'default_first_consultation_id': first_consultation_id.id if first_consultation_id else None,
+        }
+
+        domain = ['|',
+                  ('first_consultation_id', '=', first_consultation_id.id if first_consultation_id else None),
+                  ('patient_id', '=', patient_id.id)
+                  ]
+        return {
+            "name": _("Patient Obstetrics History"),
+            "type": 'ir.actions.act_window',
+            "res_model": 'ec.obstetrics.history',
+            'view_id': self.env.ref('ecare_medical_history.ec_medical_obstetrics_history_tree_view').id,
+            'view_mode': 'tree',
+            "target": 'new',
+            'context': context,
+            'flags': {'initial_mode': 'create'},
+            'domain': domain,
+        }

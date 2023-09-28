@@ -28,8 +28,11 @@ from . import male_systematic_exam
 from . import male_medical_history
 from . import male_family_history
 
-# First consultation dependent on all
+# First consultation
 from . import first_consultation
+
+# repeat consultation
+from . import repeat_consultation
 
 # Timeline
 from . import patient_timeline
