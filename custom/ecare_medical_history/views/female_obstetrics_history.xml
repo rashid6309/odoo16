@@ -8,9 +8,14 @@
             <field name="arch" type="xml">
                 <tree editable="bottom">
                     <field name="patient_id"
-                           readonly="1" force_save="1"/>
+                           invisible="1"
+                           readonly="1"
+                           force_save="1"/>
 
-                    <field name="first_consultation_id"/>
+                    <field name="first_consultation_id"
+                           invisible="1"
+                           readonly="1"
+                           force_save="1"/>
 
                     <field name="baby_name"/>
                     <field name="birth_place"/>

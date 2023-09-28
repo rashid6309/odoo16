@@ -1274,7 +1274,7 @@
 								<div class="card-custom1-right">
 									<div class="card-custom-right-heading-special">GxPyZ</div>
 									<div class="card-custom-right-heading">Female</div>
-									<div class="card-custom-right-heading">27 years</div>
+									<div class="card-custom-right-heading"><span><field name="female_age"/></span></div>
 									<button name="action_open_patient_obstetrics_history"
 											type="object"
 											class="card-custom-right-button"
@@ -1291,7 +1291,7 @@
 								<div class="card-custom2-right">
 									<div class="card-custom-right-heading-special">GxPyZ</div>
 									<div class="card-custom-right-heading">Male</div>
-									<div class="card-custom-right-heading">32 years</div>
+									<div class="card-custom-right-heading"><span><field name="male_age"/></span></div>
 									<button name="create"
 											class="card-custom-right-button"
 											string="Seminology"/>
