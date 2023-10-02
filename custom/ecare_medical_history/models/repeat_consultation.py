@@ -102,7 +102,7 @@ class RepeatConsultation(models.Model):
     ''' Data methods '''
     def move_next(self):
         value = int(self.state)
-        if value > 4:
+        if value >= 4:
             return
 
         value += 1
