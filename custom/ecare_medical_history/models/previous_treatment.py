@@ -5,8 +5,11 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 class MedicalPreviousHistory(models.Model):
     _name = 'ec.medical.previous.treatment'
     _description = "Previous Treatment"
+    _order = "create_date desc"
 
     first_consultation_id = fields.Many2one('ec.first.consultation', string='First Consultation')
+    patient_id = fields.Many2one(comodel_name="ec.medical.patient", string="Patient")
+
     type = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_TYPE, default='ovulation_induction_intercourse',
                             string='Type')
     consultant = fields.Char(string='Consultant')
@@ -15,3 +18,25 @@ class MedicalPreviousHistory(models.Model):
     superovulation = fields.Char(string='Superovulation')
     ovarian_response = fields.Char(string='Ovarian Response')
     outcome = fields.Char(string='Outcome')
+
+    def action_previous_treatment_open_form_view(self, patient_id, first_consultation=None):
+        context = {
+            'default_patient_id': patient_id.id,
+            'default_first_consultation_id': first_consultation.id if first_consultation else None
+        }
+        domain = [
+            '|',
+            ('patient_id', '=', patient_id.id),
+            ('first_consultation_id', '=', first_consultation.id if first_consultation else None)
+        ]
+        return {
+            "name": _("Previous Treatment"),
+            "type": 'ir.actions.act_window',
+            "res_model": 'ec.medical.previous.treatment',
+            'view_id': self.env.ref('ecare_medical_history.previous_treatment_tree_view').id,
+            'view_mode': 'tree',
+            "target": 'new',
+            'flags': {'initial_mode': 'edit'},
+            'context': context,
+            'domain': domain,
+        }

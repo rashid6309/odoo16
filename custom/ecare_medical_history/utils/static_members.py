@@ -294,3 +294,13 @@ class StaticMember:
         ('intra_uterine', 'Intra - Uterine Insemination'),
         ('in_vitro_fertilization', 'In - Vitro Fertilization'),
     ]
+
+    ULTRASOUND_TYPE = [
+        ('abdominal', "Abdominal"),
+        ("tvs", "TVS")
+    ]
+
+    LABOUR_HISTORY = [
+        ('spontaneous', 'Spontaneous'),
+        ('induced', 'Induced'),
+    ]

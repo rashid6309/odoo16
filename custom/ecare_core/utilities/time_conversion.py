@@ -1,5 +1,5 @@
 from pytz import timezone
-from datetime import timedelta, date, datetime
+from datetime import date, datetime
 
 
 class CustomDateTime:
@@ -48,6 +48,13 @@ class CustomDateTime:
         time = str(f"{hours:02}") + ':' + str(f"{minutes:02}")
         return time
 
+    @staticmethod
+    def greater_than_today(date):
+        today = datetime.today().date()
+        if date > today:
+            return True
+
+        return False
 
 # class CustomDateTime:
         # if not time_zone:
