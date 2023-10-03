@@ -2,7 +2,7 @@ from . import patient
 from . import individual_patient
 from . import family_relation_list
 from . import previous_treatment
-
+from . import ec_medical_tvs
 # Common for both male and female
 from . import general_history
 from . import sex_contraception

@@ -20,6 +20,8 @@
         'data/menus.xml',
         'data/ecare_menu.xml',
 
+        'views/ec_medical_health_center.xml',
+        'views/investigation.xml',
         'views/consultant.xml',
         'views/consultation_type.xml',
 

@@ -1,6 +1,4 @@
-
 class StaticMember:
-
     MONTHS = [
         ('1', '1'),
         ('2', '2'),
@@ -15,6 +13,18 @@ class StaticMember:
         ('11', '11'),
         ('12', '12'),
     ]
+
+    DAY_OF_CYCLE = [
+        ('monday', 'Monday'),
+        ('tuesday', 'Tuesday'),
+        ('wednesday', 'Wednesday'),
+        ('thursday', 'Thursday'),
+        ('friday', 'Friday'),
+        ('saturday', 'Saturday'),
+        ('sunday', 'Sunday'),
+    ]
+
+
 
     MARRIAGE = [('first', '1st'),
                 ('second', '2nd'),
@@ -238,6 +248,13 @@ class StaticMember:
                   ('not_visualized', 'Not Visualized'),
                   ]
 
+    UTERUS_TVS = [
+        ('size', 'Size'),
+        ('position', 'Position'),
+        ('normal', 'Normal'),
+        ('fiobrid', 'Fiobrid'),
+    ]
+
     FORBID = [('smooth', 'Smooth'),
               ('distorted', 'Distorted'),
               ('triple_echo', 'Triple Echo'),
@@ -253,7 +270,7 @@ class StaticMember:
                    ('triple_echo', 'Triple Echo'),
                    ]
 
-    SX_ISSUES =[
+    SX_ISSUES = [
         ('aparunea', 'Aparunea'),
         ('dysparunea', 'Dysparunea'),
         ('none', 'None'),
@@ -304,3 +321,26 @@ class StaticMember:
         ('spontaneous', 'Spontaneous'),
         ('induced', 'Induced'),
     ]
+
+    LOCATION = [
+        ('sudi_pak', 'Sudi Pak'),
+        ('jannah_super', 'Jannah Super'),
+    ]
+
+    REPEAT_STATUS = [
+        ('walkin', 'Walkin Visit'),
+        ('appointment', 'Appointment'),
+    ]
+
+    REPEAT_CONSULTATION_TYPE = [
+        ('in_person', 'In-person Consultation'),
+        ('telephonic', 'Telephonic Consultation'),
+        ('online', 'Online Consultation'),
+    ]
+
+    REPEAT_TREATMENT_PLAN = [
+        ('plan1', 'Treatment Plan 1'),
+        ('plan2', 'Treatment Plan 2'),
+        ('plan3', 'Treatment Plan 3'),
+    ]
+    

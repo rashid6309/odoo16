@@ -19,6 +19,12 @@
             <field name="model">ec.repeat.consultation</field>
             <field name="arch" type="xml">
                 <form>
+                    <header attrs="{'invisible': [('state', '!=', '4')]}">
+                        <button name="action_open_tvs_form"
+                                type="object"
+                                class="btn btn-primary"
+                                string="TVS"/>
+                    </header>
                     <sheet>
                         <field name="state" invisible="True" force_save="True"/>
 
@@ -59,16 +65,41 @@
                         </group>
 
                         <group attrs="{'invisible': [('state', '!=', '4')]}">
-                            <field name="ultrasound_type"/>
+                            <!--                            <field name="ultrasound_type"/>-->
+                            <field name="location_id"
+                                   options="{'no_create_edit': True, 'no_create': True}"/>
+                            <field name="status"/>
+                            <field name="consultation_type"/>
+                            <field name="lmp"/>
+                            <field name="cycle_day"/>
+                            <field name="date"/>
+                            <field name="seen_by"
+                                   options="{'no_create_edit': True, 'no_create': True}"/>
+                            <field name="other_doctors_present" widget="many2many_tags"
+                                   options="{'no_create_edit': True, 'no_create': True}"/>
+                            <field name="seen_with"
+                                   options="{'no_create_edit': True, 'no_create': True}"/>
+                            <field name="notes"/>
+                            <field name="gpe_breast_abdominal_exam"/>
+                            <field name="vaginal_exam"/>
+                            <field name="diagnosis"/>
+                            <field name="advised"/>
+                            <field name="treatment_plan"/>
+                            <field name="procedure_plan"/>
+                            <field name="investigations" widget="many2many_tags"
+                                   options="{'no_create_edit': True, 'no_create': True}"/>
+                            <!--                            <field name="treatment_advised"/>-->
                         </group>
 
                         <group>
                             <button name="move_back"
+                                    attrs="{'invisible': [('state', '=', '1')]}"
                                     type="object"
                                     class="btn btn-secondary"
                                     string="Back"/>
 
                             <button name="move_next"
+                                    attrs="{'invisible': [('state', '=', '4')]}"
                                     type="object"
                                     class="btn btn-secondary"
                                     string="Next"/>
@@ -80,11 +111,47 @@
             </field>
         </record>
 
+        <record id="view_ec_repeat_consultation_kanban" model="ir.ui.view">
+            <field name="name">ec.repeat.consultation.kanban</field>
+            <field name="model">ec.repeat.consultation</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" create="0">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_title">
+                                    <field name="question_one_label"/>
+                                    <h5><field name="question_one_choice"/></h5>
+                                </div>
+                                <div class="oe_kanban_title">
+                                    <field name="question_two_label"/>
+                                    <h5><field name="question_two_choice"/></h5>
+                                </div>
+                                <div class="oe_kanban_title">
+                                    <field name="question_three_label"/>
+                                    <h5><field name="question_three_choice"/></h5>
+                                </div>
+                                <div class="oe_kanban_title">
+                                    <field name="question_four_label"/>
+                                </div>
+                                <div class="oe_kanban_subtitle">
+                                    <field name="lmp"/>
+                                </div>
+                                <div class="oe_kanban_footer">
+                                    <field name="state"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
         <!-- Explicit Action -->
         <record id="repeat_consultation_action" model="ir.actions.act_window">
             <field name="name">Repeat Consultation</field>
             <field name="res_model">ec.repeat.consultation</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,kanban</field>
         </record>
 
     </data>

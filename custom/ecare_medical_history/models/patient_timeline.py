@@ -5,9 +5,13 @@ class PatientTimeline(models.Model):
     _name = "ec.patient.timeline"
     _description = "Patient Timeline"
     _rec_name = "timeline_patient_id"
-    _inherits = {'ec.first.consultation': 'ec_first_consultation_id'}
+    _inherits = {
+        'ec.first.consultation': 'ec_first_consultation_id',
+        'ec.repeat.consultation': 'ec_repeat_consultation_id'
+    }
 
     ec_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete='restrict')
+    ec_repeat_consultation_id = fields.Many2one(comodel_name="ec.repeat.consultation", ondelete='restrict')
 
     ''' Foreign keys '''
     timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
