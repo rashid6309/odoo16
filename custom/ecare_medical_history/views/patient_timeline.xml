@@ -126,7 +126,7 @@
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
-									<h1>Repeat Consultation</h1>
+									<field name="repeat_consultation_ids" mode="kanban"/>
 								</div>
 
 

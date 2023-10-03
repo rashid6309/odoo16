@@ -11,7 +11,7 @@
     'maintainer': 'Rashid Noor',
     'license': 'LGPL-3',
     'support': '',
-    'depends': ['web', 'base', 'mail', 'ecare_core'],
+    'depends': ['web', 'base', 'mail', 'ecare_core', 'ecare_appointment'],
     'demo': [],
     'data': [
         # Security
@@ -36,6 +36,8 @@
 
         # Repeat
         'views/repeat_consultation.xml',
+        # TVS
+        'views/ec_medical_tvs.xml',
         # Timeline
         'views/patient_timeline.xml',
 
@@ -47,6 +49,7 @@
         'web.assets_backend': [
             '/ecare_medical_history/static/src/js/custom.js',
             'ecare_medical_history/static/src/css/custom.css',
+            'ecare_medical_history/static/src/css/scan_view.css',
             'ecare_medical_history/static/src/xml/summary.xml',
             'ecare_medical_history/static/src/xml/banner_template.xml'
         ],

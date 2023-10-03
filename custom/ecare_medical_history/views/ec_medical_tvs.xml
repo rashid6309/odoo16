@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_ec_medical_tvs_scan_form" model="ir.ui.view">
+            <field name="name">ec.medical.tvs.scan.form</field>
+            <field name="model">ec.medical.tvs.scan</field>
+            <field name="arch" type="xml">
+                <form string="TVS Scan">
+                    <div class="tvs_scan">
+                        <div class="display">
+                            <field class="output_results" name="display" id="display"
+                                   style="width: 100%;"/>
+                            <field name="tvs_id" readonly="1" invisible="1"/>
+<!--                            <input class="output_results" type="text" name="display" id="display" />-->
+                        </div>
+                        <div>
+                            <input type="button" value="&lt;8" onclick="display.value += '&lt;8,' "  class="tvs_scan_form_input"/>
+                            <input type="button" value="9" onclick="display.value += '9,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="10" onclick="display.value += '10,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="11" onclick="display.value += '11,' " class="tvs_scan_form_input"/>
+                        </div>
+                        <div>
+                            <input type="button" value="12" onclick="display.value += '12,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="13" onclick="display.value += '13,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="14" onclick="display.value += '14,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="15" onclick="display.value += '16,' " class="tvs_scan_form_input"/>
+                        </div>
+                        <div>
+                            <input type="button" value="16" onclick="display.value += '16,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="17" onclick="display.value += '17,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="18" onclick="display.value += '18,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="19" onclick="display.value += '19,' " class="tvs_scan_form_input"/>
+                        </div>
+
+                        <div>
+                            <input type="button" value="20" onclick="display.value += '20,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="21" onclick="display.value += '21,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="22" onclick="display.value += '22,' " class="tvs_scan_form_input"/>
+                            <input type="button" value="&gt;22" onclick="display.value += '&gt;22,' " class="tvs_scan_form_input"/>
+                        </div>
+
+                        <div>
+                            <input type="button" value="DE" onclick="display.value =  display.value.toString().slice(0,-1)" class="tvs_scan_form_input"/>
+                            <input type="button" value="AC" onclick="display.value = '' " class="tvs_scan_form_input"/>
+                        </div>
+                    </div>
+                    <footer>
+                        <button type="object"
+                                class="btn-primary"
+                                name="action_tvs_output_process_text"
+                                string="Save"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_ec_medical_tvs_form" model="ir.ui.view">
+            <field name="name">ec.medical.tvs.form</field>
+            <field name="model">ec.medical.tvs</field>
+            <field name="arch" type="xml">
+                <form string="TVS Record">
+                    <group>
+                        <field name="repeat_consultation_id" force_save="1"/>
+                        <field name="date"/>
+                        <field name="lmp"/>
+                        <field name="day_of_cycle"/>
+                        <field name="uterus_tvs"/>
+                        <field name="lining"/>
+                        <field name="size"/>
+                        <!--                        <field name="tуре_tvs"/>-->
+                        <field name="nos"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="rov"/>
+                        </group>
+                        <group>
+                            <button type="object"
+                                    class="btn-primary"
+                                    context="{'default_field': 'rov'}"
+                                    name="action_open_tvs_scan"
+                                    string="Begin Scan"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group><field name="lov"/></group>
+                        <group>
+                            <button type="object"
+                                    class="btn-primary"
+                                    context="{'default_field': 'lov'}"
+                                    name="action_open_tvs_scan"
+                                    string="Begin Scan"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="other_text"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Define the action -->
+        <record id="action_ec_medical_tvs" model="ir.actions.act_window">
+            <field name="name">TVS Records</field>
+            <field name="res_model">ec.medical.tvs</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

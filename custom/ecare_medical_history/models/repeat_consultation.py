@@ -90,6 +90,40 @@ class RepeatConsultation(models.Model):
     ultrasound_type = fields.Selection(selection=StaticMember.ULTRASOUND_TYPE,
                                        string="Ultrasound")
 
+    location_id = fields.Many2one(comodel_name='ec.medical.health.center',
+                                  string='Location')
+
+    status = fields.Selection(selection=StaticMember.REPEAT_STATUS,
+                              string='Status', default='walkin')
+
+    consultation_type = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE, string='Consultation Type')
+
+    # lmp_calendar = fields.Date(string='LMP')
+    cycle_day = fields.Integer(string='Cycle Day', store=True)
+    date = fields.Datetime(string='Date', default=fields.Datetime.now)
+    seen_by = fields.Many2one('res.users', string='Seen by', default=lambda self: self.env.user)
+
+    other_doctors_present = fields.Many2many('res.users', string='Other Doctors Present')
+    seen_with = fields.Many2one('res.users', string='Seen with')
+
+    notes = fields.Text(string='Notes')
+    gpe_breast_abdominal_exam = fields.Text(string='GPE / Breast / Abdominal Exam')
+    vaginal_exam = fields.Text(string='Vaginal Exam')
+
+    # Define TVS field as per your TVS form structure
+    # TVS = fields.Many2one('tvs.form', string='TVS Form')
+
+    diagnosis = fields.Text(string='Diagnosis')
+    advised = fields.Text(string='Advised')
+
+    treatment_plan = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_PLAN,
+                                      string='Treatment Plan')
+
+    procedure_plan = fields.Text(string='Procedure Plan')
+
+    investigations = fields.Many2many('ec.medical.investigation', string='Investigations')
+    # treatment_advised = fields.Many2many('treatment.type', string='Treatment Advised')
+
     ''' Override methods '''
 
     def name_get(self):
@@ -140,3 +174,32 @@ class RepeatConsultation(models.Model):
 
     def action_repeat_consultation_open_previous_treatment(self):
         return self.env['ec.medical.previous.treatment'].action_previous_treatment_open_form_view(self.patient_id)
+
+    def action_open_tvs_form(self):
+        record = self.env['ec.medical.tvs'].search([(
+            'repeat_consultation_id', '=', int(self.id)
+        )], limit=1)
+        if record:
+            return {
+                "name": _("TVS"),
+                "type": 'ir.actions.act_window',
+                "res_model": 'ec.medical.tvs',
+                'view_id': self.env.ref('ecare_medical_history.view_ec_medical_tvs_form').id,
+                'view_mode': 'form',
+                "target": 'current',
+                "res_id": record.id,
+                'flags': {'initial_mode': 'edit'},
+            }
+        else:
+            context = {
+                'default_repeat_consultation_id': self.id,
+            }
+            return {
+                "name": _("TVS"),
+                "type": 'ir.actions.act_window',
+                "res_model": 'ec.medical.tvs',
+                'view_id': self.env.ref('ecare_medical_history.view_ec_medical_tvs_form').id,
+                'view_mode': 'form',
+                "target": 'current',
+                'context': context,
+            }
