@@ -59,16 +59,30 @@
             <field name="model">ec.medical.tvs</field>
             <field name="arch" type="xml">
                 <form string="TVS Record">
+                    <div >
+                        <field name="patient_id" style="display:block;" widget="banner_summary_widget"/>
+                    </div>
                     <group>
-                        <field name="repeat_consultation_id" force_save="1"/>
-                        <field name="date"/>
+                        <field name="patient_id" invisible="1" force_save="1"/>
+                        <field name="repeat_consultation_id" invisible="1" force_save="1"/>
+                        <field name="date" force_save="1"/>
                         <field name="lmp"/>
-                        <field name="day_of_cycle"/>
-                        <field name="uterus_tvs"/>
-                        <field name="lining"/>
-                        <field name="size"/>
-                        <!--                        <field name="tуре_tvs"/>-->
-                        <field name="nos"/>
+                        <field name="day_of_cycle" widget="radio" options="{'horizontal': True}"/>
+                        <field name="uterus_tvs" widget="radio" options="{'horizontal': True}"/>
+                        <label for="lining"/>
+                        <div>
+                            <field name="lining" class="oe_inline" nolabel="1" widget="radio" options="{'horizontal': True}"/>
+                            <field name="lining_size" placeholder="size" class="oe_inline" nolabel="1"/>
+                            <span>mm</span>
+                        </div>
+                        <label for="cyst_type"/>
+                        <div>
+                            <field name="cyst_type" class="oe_inline" nolabel="1"/>
+                            <span>
+                                Nos
+                            </span>
+                            <field name="cyst_nos" class="oe_inline" nolabel="1"/>
+                        </div>
                     </group>
                     <group>
                         <group>

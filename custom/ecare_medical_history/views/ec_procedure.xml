@@ -9,9 +9,8 @@
                     <sheet>
                         <group>
                             <group>
-
-                                <field name="female_consultation_id"/>
-                                <field name="male_consultation_id"/>
+                                <field name="female_consultation_id" invisible="1" force_save="1"/>
+                                <field name="male_consultation_id" invisible="1" force_save="1"/>
                                 <field name="details" placeholder="Details..."/>
                                 <field name="date_on" placeholder="Date ON"/>
                                 <!-- <field name="procedure_id" placeholder="Date ON"/>-->

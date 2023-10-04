@@ -19,7 +19,7 @@ class MedicalPreviousHistory(models.Model):
     ovarian_response = fields.Char(string='Ovarian Response')
     outcome = fields.Char(string='Outcome')
 
-    def action_previous_treatment_open_form_view(self, patient_id, first_consultation=None):
+    def action_open_form_view(self, patient_id, first_consultation=None):
         context = {
             'default_patient_id': patient_id.id,
             'default_first_consultation_id': first_consultation.id if first_consultation else None

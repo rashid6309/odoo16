@@ -1,3 +1,4 @@
+// If it is not used till production then remove this widget "FirstConsultation" //
 odoo.define('ecare_medical_history.FirstConsultation', function (require) {
     'use strict';
     const { registry } = require('@web/core/registry');
@@ -61,38 +62,40 @@ odoo.define('ecare_medical_history.owl_test', function (require) {
 
     const { Component, useRef } = owl;
 
-    class DomainSelectorTextField extends Component {
+    class PatientBanner extends Component {
         setup() {
             super.setup();
             this.action = useService("action");
-            this.input = useRef('inputdate')
-            useInputField({ getValue: () => this.props.value || "", refName: "inputdate" });
-            useInputField({ getValue: () => this.props.record.data || "", refName: "patient_data" });
+//            console.log(this.props.value);
+//            console.log(this.props.record.data);
+
+            // This will be required for mapping inputs
+//            this.input = useRef('inputdate')
+//            useInputField({ getValue: () => this.props.value || "", refName: "inputdate" });
+//            useInputField({ getValue: () => this.props.record.data || "", refName: "patient_data" });
         }
 
 
         async _onEditPatientProfile() {
-            console.log(this.props.record.data.timeline_patient_id);
-            var patient = this.props.record.data.timeline_patient_id;
+//            console.log(this.props.record.data);
+//            console.log(this.props.value);
             this.action.doActionButton({
                 type: "object",
                 resId: this.props.value[0],
                 name: "action_open_patient_time_view",
-                context: patient,
+                context: this.props.value,
                 resModel: "ec.patient.timeline",
                 onClose: async () => {
                     await this.props.record.model.root.load();
                     this.props.record.model.notify();
-
-
                 },
             });
         }
 
     }
 
-    DomainSelectorTextField.template = "ecare_medical_history.FieldDateMultipleDate";
-    registry.category("fields").add("banner_summary_widget", DomainSelectorTextField);
+    PatientBanner.template = "ecare_medical_history.FieldDateMultipleDate";
+    registry.category("fields").add("banner_summary_widget", PatientBanner);
 });
 
 
