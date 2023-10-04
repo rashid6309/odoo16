@@ -1,4 +1,20 @@
 class StaticMember:
+
+    COMPLAINS = [
+        ('intermenstrual_bleeding','Intermenstrual Bleeding'),
+        ('spotting', 'Spotting'),
+        ('pcb', 'PCB'),
+    ]
+
+    COMPLICATIONS = [
+        ('viginal_discharge','Viginal Discharge'),
+        ('endometriosis', 'Endometriosis'),
+        ('pid', 'PID'),
+        ('fibroids', 'Fibroids'),
+        ('pcos', 'PCOS'),
+        ('none', 'None'),
+    ]
+
     MONTHS = [
         ('1', '1'),
         ('2', '2'),

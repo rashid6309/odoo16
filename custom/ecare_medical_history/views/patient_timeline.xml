@@ -151,20 +151,39 @@
 												<group>
 													<!-- General Examination Fields -->
 													<!--												<field name="patient_id"/>-->
-													<field name="female_comment"/>
-													<field name="female_age"/>
 													<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_comment" placeholder="details..."/>
+													<field name="female_age"/>
 													<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_family_system" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_living_togather" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_living_togather_reason"/>
-													<field name="female_living_duration_years"/>
-													<field name="female_living_duration_month"/>
+													<label for="female_living_togather">Living Together</label>
+													<div>
+														<field name="female_living_togather" widget="radio" options="{'horizontal': True}" class="oe_inline"/>
+														<field name="female_living_togather_reason" nolabel="1" placeholder="reason..." class="oe_inline"/>
+													</div>
+
+													<label for="female_living_duration_years" string="Living Duration Years"/>
+													<div>
+														<field name="female_living_duration_years" class="oe_inline"/>
+														<field name="female_living_duration_month" placeholder="Month" nolabel="1" class="oe_inline"/>
+													</div>
+
 													<field name="female_complaints" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_complaints_duration_years"/>
-													<field name="female_complaints_duration_month"/>
+
+													<label for="female_complaints_duration_years" string="Complaints Duration Years"/>
+													<div>
+														<field name="female_complaints_duration_years" class="oe_inline"/>
+														<field name="female_complaints_duration_month" placeholder="Month" nolabel="1" class="oe_inline"/>
+													</div>
+
 													<field name="years_of_marriage"/>
-													<field name="female_age_at_marriage"/>
+
+													<label for="female_age_at_marriage" string="Age at Marriage"/>
+													<div>
+														<field name="female_age_at_marriage" class="oe_inline"/>
+														<span class="oe_inline">Years</span>
+													</div>
+
 													<field name="female_parity"/>
 												</group>
 											</div>
@@ -197,22 +216,98 @@
 											<div class="card-block mb-5 pl-4 collapse" id="gynaecological_history_section">
 												<group>
 													<!-- Gynaecological History Fields -->
-													<field name="female_age_at_menarche"/>
-													<field name="female_menarche_type"/>
-													<field name="female_menstrual_cycle"/>
-													<field name="female_menstrual_days"/>
-													<field name="female_menstrual_gap"/>
-													<field name="female_menstrual_comments"/>
-													<field name="female_menstrual_days_from"/>
-													<field name="female_menstrual_days_to"/>
-													<field name="female_menstrual_all_comments"/>
-													<field name="female_menstrual_flow"/>
-													<field name="female_dysmenorrhoea"/>
-													<field name="female_pain_intensity"/>
+
+													<label for="female_age_at_menarche"/>
+													<div>
+														<field name="female_age_at_menarche" class="oe_inline"/>
+														<span class="oe_inline">
+															Years
+														</span>
+													</div>
+
+													<field name="female_menarche_type" string="Menarche Type"  widget="radio" options="{'horizontal': True}"/>
+													<field name="female_menstrual_cycle"  widget="radio" options="{'horizontal': True}"/>
+
+													<div/>
+													<div style="width: 201%;">
+														<div>
+															<span>
+																Days
+															</span>
+															<field name="female_menstrual_days" class="oe_inline" nolabel="1"/>
+															<span >
+																Gap
+															</span>
+															<field name="female_menstrual_gap" class="oe_inline" nolabel="1"/>
+															<span>
+																Comments
+															</span>
+															<field name="female_menstrual_comments" class="oe_inline" nolabel="1"/>
+														</div>
+													</div>
+
+													<div/>
+													<div style="width: 201%;">
+														<div>
+															<span>
+																Days
+															</span>
+															<span>
+																From
+															</span>
+															<field name="female_menstrual_days_from" class="oe_inline" nolabel="1"/>
+															<span>
+																To
+															</span>
+															<field name="female_menstrual_days_to" class="oe_inline" nolabel="1"/>
+														</div>
+													</div>
+
+													<div/>
+													<div style="width: 201%;">
+														<div>
+															<span>
+																Days
+															</span>
+															<span>
+																Gap
+															</span>
+															<field name="female_menstrual_gap_from" class="oe_inline" nolabel="1"/>
+															<span>
+																To
+															</span>
+															<field name="female_menstrual_gap_to" class="oe_inline" nolabel="1"/>
+															<span>
+																Other
+															</span>
+															<field name="female_menstrual_gap_other" class="oe_inline" nolabel="1"/>
+														</div>
+													</div>
+													<div/>
+													<div style="width: 201%;">
+														<div>
+															<span>
+																Comments
+															</span>
+															<field name="female_menstrual_all_comments" class="oe_inline" nolabel="1"/>
+														</div>
+													</div>
+
+													<field name="female_menstrual_flow" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_dysmenorrhoea" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_pain_intensity" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_lmp"/>
-													<field name="female_complications"/>
-													<field name="female_complications_other"/>
-													<field name="female_complains"/>
+													<field name="female_complications" widget="radio" options="{'horizontal': True}"/>
+													<div/>
+													<div style="width: 201%;">
+														<div>
+															<span>
+																Other
+															</span>
+															<field name="female_complications_other" class="oe_inline" nolabel="1"/>
+														</div>
+													</div>
+													<field name="female_complains" widget="radio" options="{'horizontal': True}"/>
 												</group>
 											</div>
 
@@ -262,7 +357,6 @@
 											<div class="card-block mb-5 pl-4 collapse" id="female_medical_surgical_section">
 												<group col="12" class="mt-0">
 													<group string="Medical History" col="6" colspan="6" class="mt-0">
-														<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
 														<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
 														<field name="female_adrenal" placeholder="Add Details" colspan="6" />
 														<field name="female_adrenal_date" string="" placeholder="Since" colspan="6" />
@@ -370,7 +464,6 @@
 																	context="{'default_female_consultation_id': id}"
 																	string="Add" target="current"/>
 														</div>
-														<separator string="Details of Surgery" style="font-size:small" colspan="6" />
 														<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
 															   string="Patient Procedures" create="false"/>
 													</group>
@@ -673,19 +766,61 @@
 											<div class="card-block mb-5 pl-4 collapse" id="physical_examination_section">
 												<section>
 													<group>
-														<field name="female_weight"/>
-														<field name="female_height"/>
-														<field name="female_bmi"/>
-														<field name="female_bp_upper"/>
-														<field name="female_bp_lower"/>
-														<field name="female_pulse"/>
-														<field name="female_temperature"/>
-														<field name="female_thyroid"/>
+														<label for="female_weight"/>
+														<div>
+															<field name="female_weight" class="oe_inline" nolabel="1"/>
+															<span>
+																KG
+															</span>
+														</div>
+														<label for="female_height"/>
+														<div>
+															<field name="female_height" class="oe_inline" nolabel="1"/>
+															<span>
+																CM
+															</span>
+														</div>
+														<label for="female_bmi"/>
+														<div>
+															<field name="female_bmi" class="oe_inline" nolabel="1"/>
+															<span>
+																KG/sqm
+															</span>
+														</div>
+														<label for="female_bp_upper"/>
+														<div>
+															<field name="female_bp_upper" class="oe_inline" nolabel="1"/>
+															<span>
+																/
+															</span>
+															<field name="female_bp_lower" class="oe_inline" nolabel="1"/>
+															<span>
+																mmHg
+															</span>
+														</div>
+
+														<label for="female_pulse"/>
+														<div>
+															<field name="female_pulse" class="oe_inline" nolabel="1"/>
+															<span>
+																/mm
+															</span>
+														</div>
+
+														<label for="female_temperature"/>
+														<div>
+															<field name="female_temperature" class="oe_inline" nolabel="1"/>
+															<span>
+																C
+															</span>
+														</div>
+
+														<field name="female_thyroid"  widget="radio" options="{'horizontal': True}"/>
 														<field name="female_thyroid_goitear_length"/>
 														<field name="female_thyroid_goitear_width"/>
 														<field name="female_thyroid_goitear_type"/>
 														<field name="female_thyroid_goitear_nodule"/>
-														<field name="female_pallor"/>
+														<field name="female_pallor"  widget="radio" options="{'horizontal': True}"/>
 													</group>
 												</section>
 											</div>
@@ -701,16 +836,37 @@
 											<div class="card-block mb-5 pl-4 collapse" id="systematic_examination_section">
 												<section>
 													<group>
-														<field name="breast_right"/>
-														<field name="breast_right_comment"/>
-														<field name="breast_left"/>
-														<field name="breast_left_comment"/>
-														<field name="cvs"/>
-														<field name="cvs_comment"/>
-														<field name="respiratory"/>
-														<field name="respiratory_comment"/>
-														<field name="abdomen"/>
-														<field name="abdomen_comment"/>
+														<label for="breast_right"/>
+														<div>
+															<field name="breast_right" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+															<field name="breast_right_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+														</div>
+														<label for="breast_left"/>
+														<div>
+															<field name="breast_left" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+															<field name="breast_left_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+														</div>
+														<label for="cvs"/>
+														<div>
+															<field name="cvs" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+															<field name="cvs_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+														</div>
+														<label for="respiratory"/>
+														<div>
+															<field name="respiratory" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+															<field name="respiratory_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+														</div>
+														<label for="abdomen_comment"/>
+														<div>
+															<field name="breast_right" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+															<field name="breast_right_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+														</div>
+														<label for="abdomen"/>
+														<div>
+															<field name="abdomen" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+															<field name="abdomen_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+														</div>
+
 														<field name="other_findings"/>
 													</group>
 												</section>
@@ -836,7 +992,6 @@
 											<div class="card-block mb-5 pl-4 collapse" id="male_medical_surgical_section">
 												<group col="12" class="mt-0">
 													<group string="Medical History" col="6" colspan="6" class="mt-0">
-														<separator string="Details of the medical condition" style="font-size:small" colspan="6" />
 														<field name="male_adrenal" placeholder="Add Details" colspan="6" />
 														<field name="male_adrenal_date" string="" placeholder="Since" colspan="6" />
 
@@ -943,8 +1098,7 @@
 																	context="{'default_male_consultation_id':id}"
 																	string="Add" target="current"/>
 														</div>
-														<separator string="Details of Surgery" style="font-size:small" colspan="6" />
-														<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
+														<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids"  mode="kanban" nolabel="1"
 															   string="Patient Procedures" create="false"/>
 													</group>
 												</group>

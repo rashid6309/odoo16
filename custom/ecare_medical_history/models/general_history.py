@@ -18,7 +18,7 @@ class GeneralExamination(models.Model):
                                        default="first",
                                        string='Female Marriage')
 
-    female_comment = fields.Char(string="Details")
+    female_comment = fields.Text(string="Details")
 
     female_relation = fields.Selection(selection=StaticMember.MARRIAGE_RELATION,
                                 default="first_cousin", string='Relation')
