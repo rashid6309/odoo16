@@ -30,7 +30,7 @@
 
                         <group attrs="{'invisible': [('state', '!=', '1')]}">
                             <field name="question_one_label"/>
-                            <field name="question_one_choice"/>
+                            <field name="question_one_choice" widget="radio"/>
                         </group>
 
                         <group attrs="{'invisible': ['|', ('question_one_choice', '=', 'no'), ('state', '!=', '1')]}">
@@ -40,7 +40,7 @@
 
                         <group attrs="{'invisible': [('state', '!=', '2')]}">
                             <field name="question_two_label"/>
-                            <field name="question_two_choice"/>
+                            <field name="question_two_choice" widget="radio"/>
 
                             <button name="action_repeat_consultation_open_obstetrics_history"
                                     attrs="{'invisible': [('question_two_choice', '=', 'no')]}"
@@ -51,7 +51,7 @@
 
                         <group attrs="{'invisible': [('state', '!=', '3')]}">
                             <field name="question_three_label"/>
-                            <field name="question_three_choice"/>
+                            <field name="question_three_choice" widget="radio"/>
 
                             <button name="action_repeat_consultation_open_previous_treatment"
                                     attrs="{'invisible': [('question_three_choice', '=', 'no')]}"

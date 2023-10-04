@@ -14,12 +14,12 @@ class MedicalSystemicExamination(models.Model):
     breast_left_comment = fields.Char(string='Breast (Lt)')
 
     cvs = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='CVS')
-    cvs_comment = fields.Char(string='CVS')
+    cvs_comment = fields.Char(string='CVS Comments')
 
     respiratory = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Respiratory')
-    respiratory_comment = fields.Char(string='Respiratory')
+    respiratory_comment = fields.Char(string='Respiratory Comment')
 
     abdomen = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Abdomen')
-    abdomen_comment = fields.Char(string='Abdomen')
+    abdomen_comment = fields.Char(string='Abdomen Comment')
     other_findings = fields.Char(string='Other Findings')
 

@@ -3,6 +3,9 @@ body {
   margin: 0;
 }
 
+table {
+    table-layout: auto !important;
+}
 .site-header {
   border-bottom: 1px solid #ccc;
   padding: .5em 1em;

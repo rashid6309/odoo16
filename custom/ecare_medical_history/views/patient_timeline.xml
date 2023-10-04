@@ -84,7 +84,7 @@
 												<div class="factor-title">Female Factor</div>
 												<div class="factor-action-button">
 													<div class="factor-icon">
-														<i class="fa fa-pencil-square-o" aria-hidden="true"/>
+														<i title="Edit" class="fa fa-pencil-square-o" aria-hidden="true"/>
 													</div>
 													<div class="factor-action-text">Edit</div>
 												</div>
@@ -96,7 +96,7 @@
 												<div class="factor-title">Male Factor</div>
 												<div class="factor-action-button">
 													<div class="factor-icon">
-														<i class="fa fa-pencil-square-o" aria-hidden="true"/>
+														<i title="Edit" class="fa fa-pencil-square-o" aria-hidden="true"/>
 													</div>
 													<div class="factor-action-text">Edit</div>
 												</div>
@@ -110,19 +110,18 @@
 									<div class="header2-text">Last visit: 2 days ago</div>
 									<div class="header2-text">Next visit: 25/02/22</div>
 								</div>
-								<div>
-									<button name="action_create_repeat_consultation"
-											type="object"
-											class="card-custom-right-button"
-											string="Add New"/>
-								</div>
+
 								<!--								Repeat Consultation-->
-								<div class="d-flex scroll-to card-header first_consultation_container" id="repeat_consultation_section_link">
+								<div class="d-flex scroll-to card-header first_consultation_container mt-2" id="repeat_consultation_section_link">
 									<div class="col-6">
 										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
 											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
 									</div>
-									<div class="col-6 text-right" style="margin-top:9px">
+									<div class="col-6 text-right">
+										<button name="action_create_repeat_consultation"
+												type="object"
+												class="card-custom-right-button"
+												string="Add New"/>
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
@@ -1279,11 +1278,11 @@
 
 									<div class="divider"/>
 									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#femaleCollapseSection" href="#">
-										<i class="fa fa-minus-square" aria-hidden="true"/>
+										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
 									</a>
 									<div class="show" id="femaleCollapseSection"><field name="female_family_history" widget="html"/></div>
 
-<!--									<div class="show" id="femaleCollapseSection">(collapsible - expands to a limit) - default is expanded</div>-->
+									<!--									<div class="show" id="femaleCollapseSection">(collapsible - expands to a limit) - default is expanded</div>-->
 								</div>
 								<div class="card-custom2-right">
 									<div class="card-custom-right-heading-special">GxPyZ</div>
@@ -1294,10 +1293,10 @@
 											string="Seminology"/>
 									<div class="divider"/>
 									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
-										<i class="fa fa-minus-square" aria-hidden="true"/>
+										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
 									</a>
-								<div class="show" id="maleCollapseSection"><field name="male_family_history" widget="html"/></div>
-<!--								<div class="show" id="maleCollapseSection">(collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded </div>-->
+									<div class="show" id="maleCollapseSection"><field name="male_family_history" widget="html"/></div>
+									<!--								<div class="show" id="maleCollapseSection">(collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded </div>-->
 								</div>
 							</div>
 						</div>
