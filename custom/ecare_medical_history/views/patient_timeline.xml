@@ -945,7 +945,7 @@
 																	string="Add" target="current"/>
 														</div>
 														<separator string="Details of Surgery" style="font-size:small" colspan="6" />
-														<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
+														<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids" mode="kanban" nolabel="1"
 															   string="Patient Procedures" create="false"/>
 													</group>
 												</group>
