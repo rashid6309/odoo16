@@ -18,7 +18,10 @@
             <field name="name">repeat.consultation.form.view</field>
             <field name="model">ec.repeat.consultation</field>
             <field name="arch" type="xml">
-                <form>
+                <form unlink="0" create="0">
+                    <div >
+                        <field name="patient_id" style="display:block;" widget="banner_summary_widget"/>
+                    </div>
                     <header attrs="{'invisible': [('state', '!=', '4')]}">
                         <button name="action_open_tvs_form"
                                 type="object"
@@ -27,21 +30,30 @@
                     </header>
                     <sheet>
                         <field name="state" invisible="True" force_save="True"/>
-
-                        <group attrs="{'invisible': [('state', '!=', '1')]}">
+                        <!-- Incase group needs to be hidden -->
+<!--                        attrs="{'invisible': [('state', '!=', '1')]}"-->
+                        <group >
                             <field name="question_one_label"/>
                             <field name="question_one_choice" widget="radio"/>
                         </group>
 
-                        <group attrs="{'invisible': ['|', ('question_one_choice', '=', 'no'), ('state', '!=', '1')]}">
-                            <field name="lmp"/>
-                            <field name="lmp_embryo"/>
+                        <group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
+                            <group>
+                                <field name="lmp"/>
+                                <field name="lmp_embryo"/>
+                            </group>
+
+                            <!-- TODO -->
+                            <group>
+                                <i attrs="{'invisible': [('question_one_choice', '=', 'no')]}"> Pregnancy Form details are pending.</i>
+                            </group>
                         </group>
 
-                        <group attrs="{'invisible': [('state', '!=', '2')]}">
+                        <group attrs="{'invisible': [('state', 'in', ['1'])]}">
                             <field name="question_two_label"/>
                             <field name="question_two_choice" widget="radio"/>
-
+                        </group>
+                        <group>
                             <button name="action_repeat_consultation_open_obstetrics_history"
                                     attrs="{'invisible': [('question_two_choice', '=', 'no')]}"
                                     type="object"
@@ -49,10 +61,11 @@
                                     class="btn btn-secondary"/>
                         </group>
 
-                        <group attrs="{'invisible': [('state', '!=', '3')]}">
+                        <group attrs="{'invisible': [('state', 'in', ['1', '2'])]}">
                             <field name="question_three_label"/>
                             <field name="question_three_choice" widget="radio"/>
-
+                        </group>
+                        <group>
                             <button name="action_repeat_consultation_open_previous_treatment"
                                     attrs="{'invisible': [('question_three_choice', '=', 'no')]}"
                                     type="object"
@@ -65,9 +78,8 @@
                         </group>
 
                         <group attrs="{'invisible': [('state', '!=', '4')]}">
-                            <!--                            <field name="ultrasound_type"/>-->
                             <field name="location_id"
-                                   options="{'no_create_edit': True, 'no_create': True}"/>
+                                   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
                             <field name="status"/>
                             <field name="consultation_type"/>
                             <field name="lmp"/>
@@ -86,20 +98,25 @@
                             <field name="advised"/>
                             <field name="treatment_plan"/>
                             <field name="procedure_plan"/>
-                            <field name="investigations" widget="many2many_tags"
+                            <field name="investigations_ids" widget="many2many_tags"
                                    options="{'no_create_edit': True, 'no_create': True}"/>
                             <!--                            <field name="treatment_advised"/>-->
                         </group>
+                        <group attrs="{'invisible': [('state', '!=', '4')]}">
+                                <action_open_form_viewfield name="ultrasound_type" widget="radio" options="{'horizontal': True}"/>
+                        </group>
 
-                        <group>
+
+                        <group attrs="{'invisible': ['|',
+                                                     '|', ('question_one_choice', '=', 'yes'),
+                                                     ('question_two_choice', '=', 'yes'), ('question_three_choice', '=', 'yes')]}"
+                        >
                             <button name="move_back"
-                                    attrs="{'invisible': [('state', '=', '1')]}"
                                     type="object"
                                     class="btn btn-secondary"
                                     string="Back"/>
 
                             <button name="move_next"
-                                    attrs="{'invisible': [('state', '=', '4')]}"
                                     type="object"
                                     class="btn btn-secondary"
                                     string="Next"/>
@@ -152,6 +169,7 @@
             <field name="name">Repeat Consultation</field>
             <field name="res_model">ec.repeat.consultation</field>
             <field name="view_mode">tree,form,kanban</field>
+            <field name="target">current</field>
         </record>
 
     </data>

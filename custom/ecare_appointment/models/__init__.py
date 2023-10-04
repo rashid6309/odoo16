@@ -8,4 +8,4 @@ from . import slot_schedule
 from . import block_slot
 from . import ec_medical_health_centers
 from . import investigation
-
+from . import treatment_list

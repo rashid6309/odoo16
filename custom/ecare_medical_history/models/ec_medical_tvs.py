@@ -59,6 +59,39 @@ class EcMedicalTVS(models.Model):
                     },
                 }
 
+    def action_open_form_view(self, repeat_consultation_id):
+
+        target = 'current'
+
+        tvs_exist = self.env['ec.medical.tvs'].search([(
+            'repeat_consultation_id', '=', repeat_consultation_id.id
+        )], limit=1)
+
+        if tvs_exist:
+            return {
+                "name": _("TVS"),
+                "type": 'ir.actions.act_window',
+                "res_model": 'ec.medical.tvs',
+                'view_id': self.env.ref('ecare_medical_history.view_ec_medical_tvs_form').id,
+                'view_mode': 'form',
+                "target": target,
+                "res_id": tvs_exist.id,
+                'flags': {'initial_mode': 'edit'},
+            }
+
+        context = self.env.context.copy()
+        context['default_repeat_consultation_id'] = repeat_consultation_id
+
+        return {
+            "name": _("TVS"),
+            "type": 'ir.actions.act_window',
+            "res_model": 'ec.medical.tvs',
+            'view_id': self.env.ref('ecare_medical_history.view_ec_medical_tvs_form').id,
+            'view_mode': 'form',
+            "target": target,
+            'context': context,
+        }
+
 
 class EcMedicalTVSScan(models.TransientModel):
     _name = 'ec.medical.tvs.scan'

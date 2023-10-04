@@ -37,10 +37,18 @@ class RepeatConsultation(models.Model):
                                      )
     question_one_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                            string="Choice",
+                                           readonly=True,
+                                           states={'1': [('readonly', False)]},
                                            default='no')
 
-    lmp = fields.Date(string="LMP")
-    lmp_embryo = fields.Date(string="LMP Embryo")
+    lmp = fields.Date(string="LMP",
+                      readonly=True,
+                      states={'1': [('readonly', False)]},
+                      )
+    lmp_embryo = fields.Date(string="LMP Embryo",
+                             readonly=True,
+                             states = {'1': [('readonly', False)]}
+                             )
 
     """ Question Two
         Yes: Move to obstetrics 
@@ -49,10 +57,12 @@ class RepeatConsultation(models.Model):
     question_two_label = fields.Char(string="Question 2:",
                                      default="Has the couple had any conception since the last visit?",
                                      store=False,
-                                     readonly=1)
+                                     readonly=True)
     question_two_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                            string="Choice",
-                                           default='no'
+                                           default='no',
+                                           readonly=True,
+                                           states={'2': [('readonly', False)]},
                                            )
 
     """ Question Three
@@ -66,7 +76,9 @@ class RepeatConsultation(models.Model):
                                       readonly=1)
     question_three_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                              string="Choice",
-                                             default='no'
+                                             default='no',
+                                             readonly=True,
+                                             states={'3': [('readonly', False)]},
                                              )
 
     """ Question Four
@@ -121,8 +133,8 @@ class RepeatConsultation(models.Model):
 
     procedure_plan = fields.Text(string='Procedure Plan')
 
-    investigations = fields.Many2many('ec.medical.investigation', string='Investigations')
-    # treatment_advised = fields.Many2many('treatment.type', string='Treatment Advised')
+    investigations_ids = fields.Many2many('ec.medical.investigation', string='Investigations')
+    treatment_advised_ids = fields.Many2many(comodel_name='ec.medical.treatment.list', string='Treatment Advised')
 
     ''' Override methods '''
 
@@ -173,33 +185,7 @@ class RepeatConsultation(models.Model):
                                                                        None)
 
     def action_repeat_consultation_open_previous_treatment(self):
-        return self.env['ec.medical.previous.treatment'].action_previous_treatment_open_form_view(self.patient_id)
+        return self.env['ec.medical.previous.treatment'].action_open_form_view(self.patient_id)
 
     def action_open_tvs_form(self):
-        record = self.env['ec.medical.tvs'].search([(
-            'repeat_consultation_id', '=', int(self.id)
-        )], limit=1)
-        if record:
-            return {
-                "name": _("TVS"),
-                "type": 'ir.actions.act_window',
-                "res_model": 'ec.medical.tvs',
-                'view_id': self.env.ref('ecare_medical_history.view_ec_medical_tvs_form').id,
-                'view_mode': 'form',
-                "target": 'current',
-                "res_id": record.id,
-                'flags': {'initial_mode': 'edit'},
-            }
-        else:
-            context = {
-                'default_repeat_consultation_id': self.id,
-            }
-            return {
-                "name": _("TVS"),
-                "type": 'ir.actions.act_window',
-                "res_model": 'ec.medical.tvs',
-                'view_id': self.env.ref('ecare_medical_history.view_ec_medical_tvs_form').id,
-                'view_mode': 'form',
-                "target": 'current',
-                'context': context,
-            }
+        return self.env['ec.medical.tvs'].action_open_form(self)

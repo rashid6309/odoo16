@@ -123,7 +123,9 @@
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
-									<field name="repeat_consultation_ids" mode="kanban"/>
+									<field name="repeat_consultation_ids"
+										   mode="kanban"
+										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>
 								</div>
 
 
