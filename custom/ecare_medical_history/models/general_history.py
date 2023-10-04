@@ -31,17 +31,17 @@ class GeneralExamination(models.Model):
 
     female_living_togather_reason = fields.Char(string='Reason')
 
-    female_living_duration_years = fields.Integer(string='Living Duration')
+    female_living_duration_years = fields.Integer(string='Living Duration Years')
     female_living_duration_month = fields.Selection(selection=StaticMember.MONTHS,
-                                                    string='Living Duration')
+                                                    string='Living Duration Month')
 
     female_complaints = fields.Selection(selection=StaticMember.INFERTILITY,
                                   default="primary_infertility", string='Complaints')
 
     # complaints_duration
-    female_complaints_duration_years = fields.Integer(string='Complaints Duration')
+    female_complaints_duration_years = fields.Integer(string='Complaints Duration Year')
     female_complaints_duration_month = fields.Selection(selection=StaticMember.MONTHS,
-                                                        string='Complaints Duration')
+                                                        string='Complaints Duration Month')
 
     # years_of_marriage
     female_age_at_marriage = fields.Char(string='Age at Marriage')
