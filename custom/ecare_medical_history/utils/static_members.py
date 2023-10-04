@@ -328,7 +328,7 @@ class StaticMember:
     ]
 
     REPEAT_STATUS = [
-        ('walkin', 'Walkin Visit'),
+        ('walkin', 'Walk-in Visit'),
         ('appointment', 'Appointment'),
     ]
 
@@ -342,5 +342,13 @@ class StaticMember:
         ('plan1', 'Treatment Plan 1'),
         ('plan2', 'Treatment Plan 2'),
         ('plan3', 'Treatment Plan 3'),
+    ]
+
+    SEEN_WITH = [
+        ('husband', "Husband"),
+        ('mother', "Mother"),
+        ('mother_in_law', "Mother-in-Law"),
+        ('sister', "Sister"),
+        ('other', "Other")
     ]
     

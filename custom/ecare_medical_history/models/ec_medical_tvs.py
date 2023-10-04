@@ -7,10 +7,19 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 class EcMedicalTVS(models.Model):
     _name = 'ec.medical.tvs'
     _description = "Patient TVS"
+    _rec_name = "patient_id"
 
+    patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                 string="Patient",
+                                 readonly=True)
     repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
+                                             readonly=True,
                                              string='Repeat Consultation')
-    date = fields.Date(string='Date')
+
+    date = fields.Date(string='Date',
+                       default=fields.Datetime.now,
+                       readonly=True)
+
     lmp = fields.Date(string='LMP')
 
     day_of_cycle = fields.Selection(selection=StaticMember.DAY_OF_CYCLE,
@@ -19,21 +28,14 @@ class EcMedicalTVS(models.Model):
     uterus_tvs = fields.Selection(selection=StaticMember.UTERUS_TVS, string='Uterus')
 
     lining = fields.Selection(selection=StaticMember.LINING, string='Lining')
-
-    size = fields.Selection([
-        ('size1', 'Size 1'),
-        ('size2', 'Size 2'),
-    ], string='Size')
+    lining_size = fields.Char(string='Size')
 
     # tуре_tvs = fields.Selection([
     #     ('type1', 'Type 1'),
     #     ('type2', 'Type 2'),
     # ], string='Туре')
-
-    nos = fields.Selection([
-        ('no1', 'No 1'),
-        ('no2', 'No 2'),
-    ], string='Nos')
+    cyst_type = fields.Char(string="Cyst Type")
+    cyst_nos = fields.Char(string='Size')
 
     rov = fields.Text(string='ROV')
 
@@ -59,8 +61,7 @@ class EcMedicalTVS(models.Model):
                     },
                 }
 
-    def action_open_form_view(self, repeat_consultation_id):
-
+    def action_open_form_view(self, repeat_consultation_id, patient_id):
         target = 'current'
 
         tvs_exist = self.env['ec.medical.tvs'].search([(
@@ -80,7 +81,8 @@ class EcMedicalTVS(models.Model):
             }
 
         context = self.env.context.copy()
-        context['default_repeat_consultation_id'] = repeat_consultation_id
+        context['default_repeat_consultation_id'] = repeat_consultation_id.id
+        context['default_patient_id'] = patient_id.id
 
         return {
             "name": _("TVS"),

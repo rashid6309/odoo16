@@ -82,7 +82,7 @@
                                    options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
                             <field name="status"/>
                             <field name="consultation_type"/>
-                            <field name="lmp"/>
+                            <field name="lmp_question_four"/>
                             <field name="cycle_day"/>
                             <field name="date"/>
                             <field name="seen_by"
@@ -100,6 +100,8 @@
                             <field name="procedure_plan"/>
                             <field name="investigations_ids" widget="many2many_tags"
                                    options="{'no_create_edit': True, 'no_create': True}"/>
+                            <field name="treatment_advised_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True, 'no_create': True}"/>
                             <!--                            <field name="treatment_advised"/>-->
                         </group>
                         <group attrs="{'invisible': [('state', '!=', '4')]}">
@@ -108,8 +110,11 @@
 
 
                         <group attrs="{'invisible': ['|',
-                                                     '|', ('question_one_choice', '=', 'yes'),
-                                                     ('question_two_choice', '=', 'yes'), ('question_three_choice', '=', 'yes')]}"
+                                                     '|',
+                                                     '|',
+                                                     ('question_one_choice', '=', 'yes'),
+                                                     ('question_two_choice', '=', 'yes'), ('question_three_choice', '=', 'yes'),
+                                                     ('state', '=', '4')]}"
                         >
                             <button name="move_back"
                                     type="object"

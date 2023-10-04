@@ -106,17 +106,29 @@ class RepeatConsultation(models.Model):
                                   string='Location')
 
     status = fields.Selection(selection=StaticMember.REPEAT_STATUS,
-                              string='Status', default='walkin')
+                              string='Status',
+                              default='walkin')
 
-    consultation_type = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE, string='Consultation Type')
+    consultation_type = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE,
+                                         string='Consultation Type')
 
-    # lmp_calendar = fields.Date(string='LMP')
+    lmp_question_four = fields.Date(string='LMP') # using above one here.
     cycle_day = fields.Integer(string='Cycle Day', store=True)
-    date = fields.Datetime(string='Date', default=fields.Datetime.now)
-    seen_by = fields.Many2one('res.users', string='Seen by', default=lambda self: self.env.user)
 
-    other_doctors_present = fields.Many2many('res.users', string='Other Doctors Present')
-    seen_with = fields.Many2one('res.users', string='Seen with')
+    date = fields.Datetime(string='Date',
+                           readonly=True,
+                           default=fields.Datetime.now)
+
+    seen_by = fields.Many2one(comodel_name='res.users',
+                              string='Seen by',
+                              readonly=True,
+                              default=lambda self: self.env.user)
+
+    other_doctors_present = fields.Many2many(comodel_name='res.consultant',
+                                             string='Other Doctors Present')
+    ''' Seen with list required '''
+    seen_with = fields.Selection(selection=StaticMember.SEEN_WITH,
+                                string='Seen with')
 
     notes = fields.Text(string='Notes')
     gpe_breast_abdominal_exam = fields.Text(string='GPE / Breast / Abdominal Exam')
@@ -133,8 +145,17 @@ class RepeatConsultation(models.Model):
 
     procedure_plan = fields.Text(string='Procedure Plan')
 
-    investigations_ids = fields.Many2many('ec.medical.investigation', string='Investigations')
-    treatment_advised_ids = fields.Many2many(comodel_name='ec.medical.treatment.list', string='Treatment Advised')
+    investigations_ids = fields.Many2many(comodel_name='ec.medical.investigation',
+                                          relation="repeat_consultation_medical_investigation_rel",
+                                          column1="repeat_consultation_id",
+                                          column2="investigation_id",
+                                          string='Investigations')
+
+    treatment_advised_ids = fields.Many2many(comodel_name='ec.medical.treatment.list',
+                                             relation="repeat_consultation_medical_treatment_list_rel",
+                                             column1="repeat_consultation_id",
+                                             column2="treatment_list_id",
+                                             string='Treatment Advised')
 
     ''' Override methods '''
 
@@ -188,4 +209,4 @@ class RepeatConsultation(models.Model):
         return self.env['ec.medical.previous.treatment'].action_open_form_view(self.patient_id)
 
     def action_open_tvs_form(self):
-        return self.env['ec.medical.tvs'].action_open_form(self)
+        return self.env['ec.medical.tvs'].action_open_form_view(self, self.patient_id)
