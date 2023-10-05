@@ -235,7 +235,7 @@
 																Days
 															</span>
 															<field name="female_menstrual_days" class="oe_inline" nolabel="1"/>
-															<span >
+															<span>
 																Gap
 															</span>
 															<field name="female_menstrual_gap" class="oe_inline" nolabel="1"/>
@@ -326,7 +326,7 @@
 														Sexual
 													</h2>
 												</div>
-												<!--											<br/>-->
+												<!--											 -->
 												<group>
 													<field name="sx_frequency"/>
 													<field name="sx_issues" widget="radio" options="{'horizontal': True}"/>
@@ -336,7 +336,7 @@
 												<div>
 													<h2> Contraception</h2>
 												</div>
-												<!--											<br/>-->
+												<!--											 -->
 												<group>
 
 													<field name="cn_type" widget="radio" options="{'horizontal': True}"/>
@@ -882,41 +882,181 @@
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="gynecological_examination_section">
 												<group>
-													<field name="vulva_vagina"/>
-													<field name="vulva_vagina_comment"/>
-													<field name="uterus_size"/>
-													<field name="uterus_size_comment"/>
-													<field name="uterus_position"/>
-													<field name="uterus_mobility"/>
-													<field name="gynaecological_examination_ps_selection"/>
-													<field name="gynaecological_examination_ps_comment"/>
+													<label for="vulva_vagina"/>
+													<div>
+														<field name="vulva_vagina" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+														<field name="vulva_vagina_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+													</div>
+													<label for="uterus_size"/>
+													<div>
+														<field name="uterus_size" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+														<field name="uterus_size_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+													</div>
+
+													<field name="uterus_position" widget="radio" options="{'horizontal': True}"/>
+													<field name="uterus_mobility" widget="radio" options="{'horizontal': True}"/>
+
+													<label for="gynaecological_examination_ps_selection"/>
+													<div>
+														<field name="gynaecological_examination_ps_selection" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+														<field name="gynaecological_examination_ps_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+													</div>
+
 													<field name="gynaecological_examination_date"/>
 													<field name="gynaecological_examination_lmp"/>
-													<field name="left_ovary"/>
-													<field name="left_ovary_type"/>
-													<field name="left_ovary_nos"/>
-													<field name="left_ovary_length_1"/>
-													<field name="left_ovary_width_1"/>
-													<field name="left_ovary_length_2"/>
-													<field name="left_ovary_width_2"/>
-													<field name="left_ovary_length_3"/>
-													<field name="left_ovary_width_3"/>
-													<field name="left_ovary_length_4"/>
-													<field name="left_ovary_width_4"/>
-													<field name="left_ovary_length_5"/>
-													<field name="left_ovary_width_5"/>
-													<field name="right_ovary_type"/>
-													<field name="right_ovary_nos"/>
-													<field name="right_ovary_length_1"/>
-													<field name="right_ovary_width_1"/>
-													<field name="right_ovary_length_2"/>
-													<field name="right_ovary_width_2"/>
-													<field name="right_ovary_length_3"/>
-													<field name="right_ovary_width_3"/>
-													<field name="right_ovary_length_4"/>
-													<field name="right_ovary_width_4"/>
-													<field name="right_ovary_length_5"/>
-													<field name="right_ovary_width_5"/>
+
+
+													<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
+
+													<div/>
+													<div>
+
+														<span>
+															Type
+														</span>
+														<field name="left_ovary_type" class="oe_inline" nolabel="1"/>
+														<span>
+															Nos
+														</span>
+														<field name="left_ovary_nos" class="oe_inline" nolabel="1"/>
+
+														<span>
+															Size
+														</span>
+														<field name="left_ovary_length_1" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="left_ovary_width_1" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+														 
+														<span>
+															Size
+														</span>
+														<field name="left_ovary_length_2" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="left_ovary_width_2" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+														 
+														<span>
+															Size
+														</span>
+														<field name="left_ovary_length_3" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="left_ovary_width_3" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+														 
+														<span>
+															Size
+														</span>
+														<field name="left_ovary_length_4" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="left_ovary_width_4" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+														 
+														<span>
+															Size
+														</span>
+														<field name="left_ovary_length_5" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="left_ovary_width_5" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+													</div>
+
+													<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
+
+													<div/>
+													<div>
+														<span>
+															Type
+														</span>
+														<field name="right_ovary_type" class="oe_inline" nolabel="1"/>
+														<span>
+															Nos
+														</span>
+														<field name="right_ovary_nos" class="oe_inline" nolabel="1"/>
+
+														 
+														<span>
+															Size
+														</span>
+														<field name="right_ovary_length_1" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="right_ovary_width_1" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+														 
+														<span>
+															Size
+														</span>
+														<field name="right_ovary_length_2" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="right_ovary_width_2" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+														 
+														<span>
+															Size
+														</span>
+														<field name="right_ovary_length_3" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="right_ovary_width_3" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+														 
+														<span>
+															Size
+														</span>
+														<field name="right_ovary_length_4" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="right_ovary_width_4" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+														 
+														<span>
+															Size
+														</span>
+														<field name="right_ovary_length_5" class="oe_inline" nolabel="1"/>
+														<span>
+															x
+														</span>
+														<field name="right_ovary_width_5" class="oe_inline" nolabel="1"/>
+														<span>
+															cm
+														</span>
+													</div>
+
+
 													<field name="uterus"/>
 													<field name="uterus_size_length"/>
 													<field name="uterus_size_width"/>

@@ -53,7 +53,7 @@ class MedicalGynaecologicalExamination(models.Model):
         FIXME: What is length and width?
 
     '''
-
+    right_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary')
     right_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Type')
     right_ovary_nos = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Nos')
     right_ovary_length_1 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Length 1')
