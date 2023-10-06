@@ -80,7 +80,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-7 timeline_content">
+							<div class="col-md-8 timeline_content">
 								<!--								Repeat Consultation-->
 								<div class="d-flex scroll-to card-header first_consultation_container mt-2" id="repeat_consultation_section_link">
 									<div class="col-6">
@@ -1623,20 +1623,20 @@
 									<h1>Previous Treatment</h1>
 								</div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<div class="card-custom1-right">
 									<div class="card-type">
 										<div>
 											<span class="word-title editPatientProfile">Married for:</span>
-											<span class="counter-word"><field name="years_of_marriage" readonly="1"/></span>
+											<span class="counter-word"><field name="years_of_marriage"/></span>
 										</div>
 										<div>
 											<span class="word-title editPatientProfile">Relationship:</span>
-											<span class="counter-word"><field style="color: #2F5597;" name="female_relation" readonly="1"/></span>
+											<span class="counter-word"><field style="color: #2F5597;" name="female_relation"/></span>
 										</div>
 										<div>
 											<span class="word-title editPatientProfile">Infertility Type:</span>
-											<span class="counter-word"><field name="female_complaints" readonly="1"/></span>
+											<span><field class="counter-word" name="female_complaints"/></span>
 										</div>
 									</div>
 								</div>
