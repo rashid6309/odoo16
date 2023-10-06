@@ -1,7 +1,7 @@
 {
     'name': 'eCare Reporting',
     'version': '1.0.0',
-    'category': 'Healthcare',
+    'category': 'Healthcare - Reporting',
     'summary': 'Healthcare',
     'description': 'Healthcare',
     'live_test_url': '',

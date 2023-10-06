@@ -13,14 +13,59 @@
         <!--            </field>-->
         <!--        </record>-->
 
+        <!-- Explicit Kanban View -->
+
+        <record id="view_ec_repeat_consultation_kanban" model="ir.ui.view">
+            <field name="name">ec.repeat.consultation.kanban</field>
+            <field name="model">ec.repeat.consultation</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" create="0">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_title">
+                                    <field name="question_one_label"/>
+                                    <h5><field name="question_one_choice"/></h5>
+                                </div>
+                                <div class="oe_kanban_title">
+                                    <field name="question_two_label"/>
+                                    <h5><field name="question_two_choice"/></h5>
+                                </div>
+                                <div class="oe_kanban_title">
+                                    <field name="question_three_label"/>
+                                    <h5><field name="question_three_choice"/></h5>
+                                </div>
+                                <div class="oe_kanban_title">
+                                    <field name="question_four_label"/>
+                                </div>
+                                <div class="oe_kanban_subtitle">
+                                    <field name="lmp"/>
+                                </div>
+                                <div class="oe_kanban_footer">
+                                    <field name="state"/>
+                                </div>
+                                <button name="action_set_working_consultation"
+                                        type="object"
+                                        string="Edit"
+                                        class="btn btn-primary"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
         <!-- Explicit form view -->
         <record id="repeat_consultation_form_view" model="ir.ui.view">
             <field name="name">repeat.consultation.form.view</field>
             <field name="model">ec.repeat.consultation</field>
             <field name="arch" type="xml">
                 <form unlink="0" create="0">
-                    <div >
-                        <field name="patient_id" style="display:block;" widget="banner_summary_widget"/>
+                    <div>
+                        <field name="repeat_patient_id"
+                               style="display:block;"
+                               widget="banner_summary_widget"/>
                     </div>
                     <header attrs="{'invisible': [('state', '!=', '4')]}">
                         <button name="action_open_tvs_form"
@@ -130,42 +175,6 @@
                     </sheet>
 
                 </form>
-            </field>
-        </record>
-
-        <record id="view_ec_repeat_consultation_kanban" model="ir.ui.view">
-            <field name="name">ec.repeat.consultation.kanban</field>
-            <field name="model">ec.repeat.consultation</field>
-            <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile" create="0">
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click">
-                                <div class="oe_kanban_title">
-                                    <field name="question_one_label"/>
-                                    <h5><field name="question_one_choice"/></h5>
-                                </div>
-                                <div class="oe_kanban_title">
-                                    <field name="question_two_label"/>
-                                    <h5><field name="question_two_choice"/></h5>
-                                </div>
-                                <div class="oe_kanban_title">
-                                    <field name="question_three_label"/>
-                                    <h5><field name="question_three_choice"/></h5>
-                                </div>
-                                <div class="oe_kanban_title">
-                                    <field name="question_four_label"/>
-                                </div>
-                                <div class="oe_kanban_subtitle">
-                                    <field name="lmp"/>
-                                </div>
-                                <div class="oe_kanban_footer">
-                                    <field name="state"/>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
             </field>
         </record>
 

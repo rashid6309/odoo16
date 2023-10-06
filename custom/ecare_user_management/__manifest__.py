@@ -1,7 +1,7 @@
 {
     'name': 'eCare User Management',
     'version': '1.0.0',
-    'category': 'Healthcare',
+    'category': 'Healthcare - User Management',
     'summary': 'Healthcare',
     'description': 'Healthcare',
     'live_test_url': '',

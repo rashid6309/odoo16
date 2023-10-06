@@ -1,7 +1,7 @@
 {
     'name': 'eCare Medical History',
     'version': '1.0.0',
-    'category': 'Healthcare',
+    'category': 'Healthcare - Medical History',
     'summary': 'Healthcare',
     'description': 'Healthcare',
     'live_test_url': '',

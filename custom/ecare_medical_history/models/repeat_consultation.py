@@ -12,7 +12,7 @@ class RepeatConsultation(models.Model):
 
     ''' Foreign Keys '''
 
-    patient_id = fields.Many2one(comodel_name="ec.medical.patient")
+    repeat_patient_id = fields.Many2one(comodel_name="ec.medical.patient")
     timeline_id = fields.Many2one(comodel_name="ec.patient.timeline")
 
     ''' Data attributes '''
@@ -162,7 +162,7 @@ class RepeatConsultation(models.Model):
     def name_get(self):
         result = []
         for record in self:
-            name = f"Repeat Consultation- {record.create_date.date()} - {record.patient_id.name}"
+            name = f"Repeat Consultation- {record.create_date.date()} - {record.repeat_patient_id.name}"
             result.append((record.id, name))
         return result
 
@@ -185,7 +185,7 @@ class RepeatConsultation(models.Model):
 
     def action_open_form_view(self, patient_id, timeline_id):
         context = {
-            'default_patient_id': patient_id.id,
+            'default_repeat_patient_id': patient_id.id,
             'default_timeline_id': timeline_id.id
         }
 
@@ -200,13 +200,19 @@ class RepeatConsultation(models.Model):
             'context': context,
         }
 
+    def action_set_working_consultation(self):
+        """
+        It will make the consultation editable on the patient.timeline
+        """
+        self.timeline_id.ec_repeat_consultation_id = self.id
+
     """ Other actions opening place over here"""
     def action_repeat_consultation_open_obstetrics_history(self):
-        return self.env['ec.obstetrics.history'].action_open_form_view(self.patient_id,
+        return self.env['ec.obstetrics.history'].action_open_form_view(self.repeat_patient_id,
                                                                        None)
 
     def action_repeat_consultation_open_previous_treatment(self):
-        return self.env['ec.medical.previous.treatment'].action_open_form_view(self.patient_id)
+        return self.env['ec.medical.previous.treatment'].action_open_form_view(self.repeat_patient_id)
 
     def action_open_tvs_form(self):
-        return self.env['ec.medical.tvs'].action_open_form_view(self, self.patient_id)
+        return self.env['ec.medical.tvs'].action_open_form_view(self, self.repeat_patient_id)

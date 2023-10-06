@@ -1,7 +1,7 @@
 {
     'name': 'eCare Invoicing',
     'version': '1.0.0',
-    'category': 'Healthcare',
+    'category': 'Healthcare - Invoicing',
     'summary': 'Healthcare',
     'description': 'Healthcare',
     'live_test_url': '',
