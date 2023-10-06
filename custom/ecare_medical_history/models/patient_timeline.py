@@ -29,14 +29,6 @@ class PatientTimeline(models.Model):
     male_family_history = fields.Char(string='Male Family History', compute='_compute_family_history')
     female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
 
-    ''' 
-    * Anywhere banner is required we can use this. 
-    * No other purpose of this its just
-    * Conceptually we can use the widget on anyfield. 
-    '''
-
-    def _compute_female_values(self):
-        pass
 
     @staticmethod
     def _compute_patient_family_history(family_history, fields_to_process):

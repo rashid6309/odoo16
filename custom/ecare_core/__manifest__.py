@@ -1,7 +1,7 @@
 {
     'name': 'eCare',
     'version': '1.0.0',
-    'category': 'Healthcare',
+    'category': 'Healthcare - Patient',
     'summary': 'Healthcare',
     'description': 'Healthcare',
     'live_test_url': '',

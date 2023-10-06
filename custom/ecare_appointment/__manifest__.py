@@ -1,7 +1,7 @@
 {
     'name': 'eCare Appointment',
     'version': '1.0.0',
-    'category': 'Healthcare',
+    'category': 'Healthcare - Appointment',
     'summary': 'Healthcare',
     'description': 'Healthcare',
     'live_test_url': '',
