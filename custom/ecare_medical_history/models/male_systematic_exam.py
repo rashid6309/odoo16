@@ -9,7 +9,7 @@ class MaleSystemicExam(models.Model):
     male_cvs = fields.Selection(selection=StaticMember.ORGAN_SIZE, string="CVS")
     male_cvs_comment = fields.Char(string="Comment")
 
-    male_respiratory = fields.Selection(selection=StaticMember.ORGAN_SIZE, string="Respiratory")
+    male_respiratory_systematic = fields.Selection(selection=StaticMember.ORGAN_SIZE, string="Respiratory")
     male_respiratory_comment = fields.Char(string="Comment")
     male_abdomen = fields.Selection(selection=StaticMember.ORGAN_SIZE, string="Abdomen")
     male_abdomen_comment = fields.Char(string="Comment")

@@ -17,7 +17,7 @@ class MaleMedicalPhysicalExamination(models.Model):
     male_bp_lower = fields.Char('B.P')
     male_pulse = fields.Char('Pulse')
     male_temperature = fields.Char(string='Temperature')
-    male_thyroid = fields.Selection(selection=StaticMember.THYROID,
+    male_thyroid_physical = fields.Selection(selection=StaticMember.THYROID,
                                     string='Thyroid')
     male_thyroid_goitear_length = fields.Char(string='Goitear')
     male_thyroid_goitear_width = fields.Char(string='Goitear')

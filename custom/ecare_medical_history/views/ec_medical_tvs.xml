@@ -6,6 +6,11 @@
             <field name="model">ec.medical.tvs.scan</field>
             <field name="arch" type="xml">
                 <form string="TVS Scan">
+                <script>
+                    $(document).ready(function(){
+                        $('.modal-content').css({'width': '44%'});
+                    });
+                </script>
                     <div class="tvs_scan">
                         <div class="display">
                             <field class="output_results" name="display" id="display"

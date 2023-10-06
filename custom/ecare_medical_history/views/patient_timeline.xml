@@ -33,20 +33,34 @@
 							<div class="col-md-2">
 								<div class="card-custom1">
 									<div class="card-type">
-										<div class="counter-word">1</div>
-										<div class="word-title editPatientProfile">IVF/ICSI Attempt(s) Completed</div>
+										<div>
+											<span class="word-title editPatientProfile">IVF/ICSI Attempt(s) Completed:</span>
+											<span class="counter-word">0</span>
+										</div>
+										<div>
+											<span class="word-title editPatientProfile">Frozen Embroys Stored:</span>
+											<span class="counter-word">0</span>
+										</div>
+										<div>
+											<span class="word-title editPatientProfile">Sperm Straws Stored:</span>
+											<span class="counter-word">0</span>
+										</div>
 									</div>
 								</div>
 								<div class="card-custom2">
 									<div class="card-type">
-										<div class="counter-word">0</div>
-										<div class="word-title">Frozen Embroys Stored</div>
-									</div>
-								</div>
-								<div class="card-custom3">
-									<div class="card-type">
-										<div class="counter-word">3</div>
-										<div class="word-title">Sperm Straws Stored</div>
+										<div class="factor-inner-container">
+											<div class="factor-sub-container">
+												<div class="factor-title">Female Factor</div>
+												<div class="factor-action-button">
+													<div class="factor-icon">
+														<i title="Edit" class="fa fa-pencil-square-o" aria-hidden="true"/>
+													</div>
+													<div class="factor-action-text">Edit</div>
+												</div>
+											</div>
+											<div class="factor_divider"/>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -931,7 +945,7 @@
 														<span>
 															cm
 														</span>
-														 
+
 														<span>
 															Size
 														</span>
@@ -943,7 +957,7 @@
 														<span>
 															cm
 														</span>
-														 
+
 														<span>
 															Size
 														</span>
@@ -955,7 +969,7 @@
 														<span>
 															cm
 														</span>
-														 
+
 														<span>
 															Size
 														</span>
@@ -967,7 +981,7 @@
 														<span>
 															cm
 														</span>
-														 
+
 														<span>
 															Size
 														</span>
@@ -994,7 +1008,7 @@
 														</span>
 														<field name="right_ovary_nos" class="oe_inline" nolabel="1"/>
 
-														 
+
 														<span>
 															Size
 														</span>
@@ -1006,7 +1020,7 @@
 														<span>
 															cm
 														</span>
-														 
+
 														<span>
 															Size
 														</span>
@@ -1018,7 +1032,7 @@
 														<span>
 															cm
 														</span>
-														 
+
 														<span>
 															Size
 														</span>
@@ -1030,7 +1044,7 @@
 														<span>
 															cm
 														</span>
-														 
+
 														<span>
 															Size
 														</span>
@@ -1042,7 +1056,7 @@
 														<span>
 															cm
 														</span>
-														 
+
 														<span>
 															Size
 														</span>
@@ -1057,7 +1071,7 @@
 													</div>
 
 
-													<field name="uterus"/>
+													<field name="uterus" widget="radio" options="{'horizontal': True}"/>
 													<field name="uterus_size_length"/>
 													<field name="uterus_size_width"/>
 													<field name="uterus_size_position"/>
@@ -1082,8 +1096,18 @@
 													<field name="forbid_size_width_9"/>
 													<field name="forbid_size_length_10"/>
 													<field name="forbid_size_width_10"/>
-													<field name="lining"/>
-													<field name="lining_size"/>
+													<label for="lining"/>
+													<div>
+														<field name="lining" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+														<span class="oe_inline">
+															Size
+														</span>
+														<field name="lining_size" class="oe_inline" nolabel="1"/>
+														<span class="oe_inline">
+															mm
+														</span>
+													</div>
+
 													<field name="gynaecological_examination_comment"/>
 												</group>
 											</div>
@@ -1444,15 +1468,15 @@
 												<group>
 													<field name="skin_condition"/>
 													<field name="hernia" widget="radio" options="{'horizontal': True}"/>
-													<field name="vericocele"/>
-													<field name="hydrocele"/>
-													<field name="undescended_testis"/>
-													<field name="supermatic_cord_normal"/>
-													<field name="supermatic_cord_thick"/>
-													<field name="supermatic_cord_tender"/>
+													<field name="vericocele"  widget="radio" options="{'horizontal': True}"/>
+													<field name="hydrocele" widget="radio" options="{'horizontal': True}"/>
+													<field name="undescended_testis" widget="radio" options="{'horizontal': True}"/>
+													<field name="supermatic_cord_normal" widget="radio" options="{'horizontal': True}"/>
+													<field name="supermatic_cord_thick" widget="radio" options="{'horizontal': True}"/>
+													<field name="supermatic_cord_tender" widget="radio" options="{'horizontal': True}"/>
 													<field name="testicular_size_right" widget="radio" options="{'horizontal': True}"/>
-													<field name="testicular_size_left"/>
-													<field name="testicular_size_mobility"/>
+													<field name="testicular_size_left" widget="radio" options="{'horizontal': True}"/>
+													<field name="testicular_size_mobility" widget="radio" options="{'horizontal': True}"/>
 													<field name="ec_genital_examination_comment"/>
 												</group>
 											</div>
@@ -1467,21 +1491,66 @@
 												</div>
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="physical_examination_section">
-												<group>
-													<field name="male_weight"/>
-													<field name="male_height"/>
-													<field name="male_bmi"/>
-													<field name="male_bp_upper"/>
-													<field name="male_bp_lower"/>
-													<field name="male_pulse"/>
-													<field name="male_temperature"/>
-													<field name="male_thyroid" widget="radio" options="{'horizontal': True}"/>
-													<field name="male_thyroid_goitear_length"/>
-													<field name="male_thyroid_goitear_width"/>
-													<field name="male_thyroid_goitear_type" widget="radio" options="{'horizontal': True}"/>
-													<field name="male_thyroid_goitear_nodule"/>
-													<field name="male_pallor" widget="radio" options="{'horizontal': True}"/>
-												</group>
+												<section>
+													<group>
+														<label for="male_weight"/>
+														<div>
+															<field name="male_weight" class="oe_inline" nolabel="1"/>
+															<span>
+																KG
+															</span>
+														</div>
+														<label for="male_height"/>
+														<div>
+															<field name="male_height" class="oe_inline" nolabel="1"/>
+															<span>
+																CM
+															</span>
+														</div>
+														<label for="male_bmi"/>
+														<div>
+															<field name="male_bmi" class="oe_inline" nolabel="1"/>
+															<span>
+																KG/sqm
+															</span>
+														</div>
+														<label for="male_bp_upper"/>
+														<div>
+															<field name="male_bp_upper" class="oe_inline" nolabel="1"/>
+															<span>
+																/
+															</span>
+															<field name="male_bp_lower" class="oe_inline" nolabel="1"/>
+															<span>
+																mmHg
+															</span>
+														</div>
+
+														<label for="male_pulse"/>
+														<div>
+															<field name="male_pulse" class="oe_inline" nolabel="1"/>
+															<span>
+																/mm
+															</span>
+														</div>
+
+														<label for="male_temperature"/>
+														<div>
+															<field name="male_temperature" class="oe_inline" nolabel="1"/>
+															<span>
+																C
+															</span>
+														</div>
+
+														<field name="male_thyroid_physical"  widget="radio" options="{'horizontal': True}"/>
+														<field name="male_thyroid_goitear_length"/>
+														<field name="male_thyroid_goitear_width"/>
+														<field name="male_thyroid_goitear_type"/>
+														<field name="male_thyroid_goitear_nodule"/>
+														<field name="male_pallor"  widget="radio" options="{'horizontal': True}"/>
+													</group>
+												</section>
+
 											</div>
 
 											<div class="d-flex scroll-to card-header first_consultation_sub_container" id="systemic_examination_section_link">
@@ -1495,13 +1564,23 @@
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="systemic_examination_section">
 												<group>
-													<field name="male_cvs" widget="radio" options="{'horizontal': True}"/>
-													<field name="male_cvs_comment"/>
-													<field name="male_respiratory" widget="radio" options="{'horizontal': True}"/>
-													<field name="male_respiratory_comment"/>
-													<field name="male_abdomen" widget="radio" options="{'horizontal': True}"/>
-													<field name="male_abdomen_comment"/>
-													<field name="male_systemic_other"/>
+													<label for="male_cvs"/>
+													<div>
+														<field name="male_cvs" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+														<field name="male_cvs_comment" placeholder="other.." class="oe_inline" nolabel="1"/>
+													</div>
+													<label for="male_respiratory"/>
+													<div>
+														<field name="male_respiratory_systematic" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+														<field name="male_respiratory_comment" class="oe_inline" nolabel="1" placeholder="other.."/>
+													</div>
+													<label for="male_abdomen"/>
+													<div>
+														<field name="male_abdomen" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+														<field name="male_abdomen_comment" placeholder="other.." class="oe_inline" nolabel="1"/>
+													</div>
+
+													<field name="male_systemic_other" placeholder="other.."/>
 												</group>
 											</div>
 

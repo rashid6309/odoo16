@@ -51,7 +51,7 @@ table {
 
 .card-custom1
 {
-    width: 100%;
+    width: 110%;
     height: 145px;
     padding: 16px;
     background: #C3EFC5;
@@ -107,7 +107,7 @@ table {
     width: 150px;
     text-align: center;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-family: Inter;
     font-weight: 400;
     word-wrap: break-word;
@@ -233,12 +233,21 @@ color: #2F5597;
     pointer-events: none;
 }
 
+@media (min-width: 720px) {
 .timeline_content
 {
     overflow-y: scroll;
     max-height: 440px;
 }
+}
 
+@media (min-width: 1080px) {
+.timeline_content
+{
+    overflow-y: scroll;
+    max-height: 840px;
+}
+}
 
 
 .right-inner-addon {
