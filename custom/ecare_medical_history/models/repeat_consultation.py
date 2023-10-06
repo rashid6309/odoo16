@@ -1,5 +1,5 @@
 from odoo import api, models, fields, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from logging import getLogger
@@ -202,8 +202,11 @@ class RepeatConsultation(models.Model):
 
     def action_set_working_consultation(self):
         """
-        It will make the consultation editable on the patient.timeline
+        It will make the consultation-editable on the patient.timeline
         """
+        if self.timeline_id.ec_repeat_consultation_id.id == self.id:
+            raise UserError("Consultation is already selected.")
+
         self.timeline_id.ec_repeat_consultation_id = self.id
 
     """ Other actions opening place over here"""
