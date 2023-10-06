@@ -141,6 +141,7 @@
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
+									<field name="state" invisible="1"/>
 									<field name="timeline_id"/>
 									<field name="question_one_label"/>
 									<field name="question_one_choice"/>

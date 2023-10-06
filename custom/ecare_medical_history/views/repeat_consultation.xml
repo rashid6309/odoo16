@@ -74,8 +74,6 @@
                                 string="TVS"/>
                     </header>
                     <sheet>
-                        <field name="timeline_id"/>
-<!--                        <field name="timeline_id" force_save="1" invisible="1"/>-->
                         <field name="state" invisible="True" force_save="True"/>
                         <!-- Incase group needs to be hidden -->
 <!--                        attrs="{'invisible': [('state', '!=', '1')]}"-->
