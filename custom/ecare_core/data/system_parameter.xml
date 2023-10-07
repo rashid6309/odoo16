@@ -7,4 +7,12 @@
             <field name="value">124.109.34.141</field>
         </record>
     </data>
+
+    <data noupdate="1">
+
+        <record id="ecare_icsi_history_software_status" model="ir.config_parameter">
+            <field name="key">ecare_core.icsi.history.software.integration.status</field>
+            <field name="value">disabled</field>
+        </record>
+    </data>
 </odoo>
