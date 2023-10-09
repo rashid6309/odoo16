@@ -2,12 +2,24 @@
 <odoo>
 	<data>
 
+		<!-- Search View -->
+        <record id="ec_patient_timeline_view_search" model="ir.ui.view">
+            <field name="name">ec.patient.timeline.search.view</field>
+            <field name="model">ec.patient.timeline</field>
+            <field name="arch" type="xml">
+                <search string="Patient Timeline">
+                    <field name="timeline_patient_mr_num" string="Patient Mr No."/>
+                    <field name="timeline_patient_name" string="Patient Name"/>
+                </search>
+            </field>
+        </record>
+
 		<!-- Tree View -->
 		<record id="patient_timeline_tree_view" model="ir.ui.view">
 			<field name="name">patient.timeline.tree.view</field>
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="xml">
-				<tree>
+				<tree create="0">
 					<!--					<field name="name"/>-->
 					<field name="timeline_patient_id"/>
 				</tree>
@@ -19,13 +31,13 @@
 			<field name="name">patient.timeline.form.view</field>
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="html">
-				<form string="Patient Timeline">
+				<form string="Patient Timeline" create="0">
 					<div style="margin-top: -2%;">
 						<field name="timeline_patient_id" style="display:block;" widget="banner_summary_widget"/>
 					</div>
 					<group>
 						<field name="first_consultation_patient_id" invisible="1" force_save="1"/>
-						<field name="timeline_patient_id"
+						<field name="timeline_patient_id" invisible="1"
 							   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 					</group>
 					<div class="container-custom">

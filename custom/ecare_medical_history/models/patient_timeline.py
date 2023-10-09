@@ -1,10 +1,17 @@
 from odoo import models, fields, api, _
 
 
+
 class PatientTimeline(models.Model):
     _name = "ec.patient.timeline"
     _description = "Patient Timeline"
     _rec_name = "timeline_patient_id"
+
+    _sql_constraints = [
+        ('timeline_patient_id_unique', 'unique (timeline_patient_id)',
+         'Multiple patient timelines cant be created, rather open the existing one!'),
+    ]
+
     _inherits = {
         'ec.first.consultation': 'ec_first_consultation_id',
         'ec.repeat.consultation': 'ec_repeat_consultation_id'
@@ -17,6 +24,10 @@ class PatientTimeline(models.Model):
     timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                           string="Patient",
                                           index=True)
+
+    timeline_patient_mr_num = fields.Char('MR No.', related="timeline_patient_id.mr_num", store=True)
+    timeline_patient_name = fields.Char('Patient Name', related="timeline_patient_id.name", store=True)
+
     ''' One2Many'''
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
                                               inverse_name="timeline_id")
@@ -30,19 +41,19 @@ class PatientTimeline(models.Model):
     female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
 
     ''' Override methods '''
+
     @api.model
     def create(self, vals):
         res = super(PatientTimeline, self).create(vals)
         res.ec_repeat_consultation_id.update(
             {'timeline_id': res.id,
              'repeat_patient_id': res.timeline_patient_id
-            }
+             }
         )
 
         return res
 
     ''' XXX - Override methods - XXX'''
-
 
     @staticmethod
     def _compute_patient_family_history(family_history, fields_to_process):
@@ -89,7 +100,6 @@ class PatientTimeline(models.Model):
             family_history=self.ec_first_consultation_id.ec_male_family_history_id,
             fields_to_process=male_fields_to_process
         )
-
 
         # Female Fields Processing
 
@@ -152,3 +162,12 @@ class PatientTimeline(models.Model):
         return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
 
     ''' Action for opening views block ended '''
+
+    def action_mandatory_patient_timeline(self, patient):
+        timeline_rec = {
+            'first_consultation_patient_id': patient.id,
+            'timeline_patient_id': patient.id,
+        }
+
+        return timeline_rec
+
