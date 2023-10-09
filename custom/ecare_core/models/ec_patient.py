@@ -409,6 +409,8 @@ class EcarePatient(models.Model):
     
     def post_data_history_software(self):
         history_software_ip = self.env['ir.config_parameter'].sudo().get_param('ecare_core.icsi.history.software.ip')
+        history_software_integration_status = self.env['ir.config_parameter'].sudo().get_param('ecare_core.icsi.history.software.integration.status')
+
         if not history_software_ip:
             raise UserError("History Software Ip is not unavailable. Please contact administrator.")
 
@@ -421,27 +423,28 @@ class EcarePatient(models.Model):
         }
 
         payload = self.get_payload()
+        r = None
+        if history_software_integration_status == 'enabled':
+            try:
+                payload = json.dumps(payload)  # Make JSON
+                r = requests.post(url=url, data=payload, headers=header)
+            except Exception as e:
+                _logger.warning(e)
+                raise UserError("System is unable to connect with history software. Please contact administrator.")
 
-        payload = json.dumps(payload) # Make JSON
-        try:
-            r = requests.post(url=url, data=payload, headers=header)
-        except Exception as e:
-            _logger.warning(e)
-            raise UserError("System is unable to connect with history software. Please contact administrator.")
-
-        if r.status_code != 200:
-            _logger.warning("Failure in adding patient  in the icsi history software...")
-            _logger.warning(r.content)
-        else:
-            _logger.info("Patient added in the icsi history software...")
-            _logger.info(r.content)
+            if r.status_code != 200:
+                _logger.warning("Failure in adding patient  in the icsi history software...")
+                _logger.warning(r.content)
+            else:
+                _logger.info("Patient added in the icsi history software...")
+                _logger.info(r.content)
         # Add line in the third party api log
         try:
             api_log_values = {
             'name': 'ICSI History Software: Patient Creation',
             'url': url,
             'payload': payload,
-            'response': "Status: " + str(r.status_code) + " " + str(r.content)
+            'response': "Status: " + str(r.status_code) + " " + str(r.content) if r else "Integration is disabled."
             }
             # use this otherwise give rights in the csv
             self.env['third.party.api.log'].sudo().create(api_log_values)
