@@ -191,6 +191,19 @@ table {
     position: relative;
     left: 52%;
 }
+
+.card-custom-right-button-btn
+{
+    padding: 3%;
+    background: #2F5597;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    position: relative;
+    left: 52%;
+}
 .card-custom-right-button-text
 {
     color: white;
@@ -199,6 +212,24 @@ table {
     font-weight: 400;
     word-wrap: break-word;
 }
+
+@media (min-width: 1080px)
+{
+    .card-custom-right-button-btn
+    {
+        padding: 3%;
+        background: #2F5597;
+        border-radius: 4px;
+        color: white;
+        font-size: 16px;
+        font-family: Inter;
+        font-weight: 400;
+        position: relative;
+        left: 52%;
+        width: min-content;
+    }
+}
+
 
 .divider
 {
@@ -313,7 +344,7 @@ color: #2F5597;
     justify-content: flex-start;
     align-items: flex-end;
     display: inline-flex;
-    gap: 2pc;
+    gap: 1.5pc;
 }
 
 .factor-title {

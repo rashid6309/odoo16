@@ -1646,7 +1646,7 @@
 									<div class="card-custom-right-heading"><span><field name="female_age"/></span></div>
 									<button name="action_timeline_open_obstetrics_history"
 											type="object"
-											class="card-custom-right-button"
+											class="card-custom-right-button-btn"
 											string="Obstetrics History"/>
 
 									<div class="divider"/>
@@ -1658,7 +1658,7 @@
 									<!--									<div class="show" id="femaleCollapseSection">(collapsible - expands to a limit) - default is expanded</div>-->
 								</div>
 								<div class="card-custom3-right">
-									<div class="card-custom-right-heading-special">GxPyZ</div>
+									<div class="card-custom-right-heading-special"/>
 									<div class="card-custom-right-heading">Male</div>
 									<div class="card-custom-right-heading"><span><field name="male_age"/></span></div>
 									<button name="create"
