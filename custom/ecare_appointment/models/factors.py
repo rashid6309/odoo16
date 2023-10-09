@@ -7,6 +7,7 @@ class EcMedicalFactors(models.Model):
     _order = 'create_date desc'
 
     type = fields.Selection(string='Type', required=1,
-                            selection=[('male', 'female'),
-                                       ('female', 'Female')])
+                            selection=[('male', 'Male'),
+                                       ('female', 'Female')],
+                            )
     name = fields.Char('Name', required=True)
