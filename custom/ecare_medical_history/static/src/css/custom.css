@@ -58,7 +58,12 @@ table {
     border-radius: 4px;
 }
 
-.first_consultation_sub_container{
+.first_consultation_sub_container_female{
+    background: #7C2F9733;
+    border-radius: 4px;
+}
+
+.first_consultation_sub_container_male{
     background: rgba(47, 85, 151, 0.15);
     border-radius: 4px;
 }
@@ -292,7 +297,8 @@ color: #2F5597;
     pointer-events: none;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 1080px)
+{
 .timeline_content
 {
     overflow-y: scroll;
@@ -300,7 +306,7 @@ color: #2F5597;
 }
 }
 
-@media (min-width: 1080px) {
+@media (min-width: 1920px) {
 .timeline_content
 {
     overflow-y: scroll;
