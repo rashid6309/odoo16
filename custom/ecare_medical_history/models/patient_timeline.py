@@ -25,8 +25,21 @@ class PatientTimeline(models.Model):
                                           string="Patient",
                                           index=True)
 
+    # Related Fields which are used for kanban view
+    # Related Fields Used for data representation purposes
     timeline_patient_mr_num = fields.Char('MR No.', related="timeline_patient_id.mr_num", store=True)
     timeline_patient_name = fields.Char('Patient Name', related="timeline_patient_id.name", store=True)
+    timeline_patient_wife_name = fields.Char('Wife Name', related="timeline_patient_id.wife_name", store=True)
+    timeline_patient_husband_name = fields.Char('Husband Name', related="timeline_patient_id.husband_name", store=True)
+
+    timeline_patient_mobile_wife = fields.Char('Mobile Wife', related="timeline_patient_id.mobile_wife", store=True)
+    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband", store=True)
+
+    timeline_patient_wife_image = fields.Binary('Patient Wife Image', related="timeline_patient_id.image_1920",
+                                                store=True)
+    timeline_patient_husband_image = fields.Binary('Patient Husband Image', related="timeline_patient_id.husband_image",
+                                                   store=True)
+
 
     ''' One2Many'''
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
@@ -68,13 +81,13 @@ class PatientTimeline(models.Model):
             if field_name in ('male_family_history_other', 'female_family_history_other'):
                 family_members_list = field_records
                 if family_members_list:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong>({family_members_list})'
+                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{family_members_list}'
                     family_history_text.append(field_text)
             elif field_records or (custom_field and custom_field.strip()):
                 custom_text = f' ({custom_field.strip()})' if custom_field else ''
                 family_members_list = [rec.name for rec in field_records]
                 if family_members_list:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong>({", ".join(family_members_list)}){custom_text}'
+                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{", ".join(family_members_list)}{custom_text}'
                     family_history_text.append(field_text)
 
         if family_history_text:
