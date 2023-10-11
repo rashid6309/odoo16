@@ -11,7 +11,7 @@
         <!-- Menu-item for patient -->
 
         <menuitem id="ec_medical_patient_menu"
-                  name="Patient"
+                  name="Timelines"
                   parent="ec_medical_root"
                   sequence="50"
                   action="ecare_medical_history.patient_timeline_action"/>
