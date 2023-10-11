@@ -39,11 +39,11 @@ class FemaleObstetricsHistory(models.Model):
     complication_post_partum = fields.Text(string='Complications in Post-partum')
     complication_pregnancy = fields.Text(string='Complication In Pregnancy')
 
-    gender = fields.Selection(string='Gender', selection=StaticMember.GENDER)
-    weight = fields.Selection(string='Weight', selection=StaticMember.WEIGHT)
-    health = fields.Selection(string='Health', selection=StaticMember.HEALTH)
-    alive = fields.Selection(string='Alive', selection=StaticMember.ALIVE)
-    feed = fields.Selection(string='Feed', selection=StaticMember.FEED)
+    gender = fields.Selection(string='Child Gender', selection=StaticMember.GENDER)
+    weight = fields.Selection(string='Child Weight', selection=StaticMember.WEIGHT)
+    health = fields.Selection(string='Child Health', selection=StaticMember.HEALTH)
+    alive = fields.Selection(string='Child Alive', selection=StaticMember.ALIVE)
+    feed = fields.Selection(string='Child Feed', selection=StaticMember.FEED)
     state = fields.Boolean(string='', default=True)
 
     labour_history = fields.Selection(selection=StaticMember.LABOUR_HISTORY,

@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-
+from odoo.addons.ecare_core.utilities.helper import TimeValidation
 
 
 class PatientTimeline(models.Model):
@@ -40,12 +40,16 @@ class PatientTimeline(models.Model):
     timeline_patient_husband_image = fields.Binary('Patient Husband Image', related="timeline_patient_id.husband_image",
                                                    store=True)
 
-
     ''' One2Many'''
+
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
                                               inverse_name="timeline_id")
 
+    show_repeat_section_state = fields.Boolean(default=False, string='Div State')
+    show_repeat_consultation_history_section = fields.Boolean(default=False)
+
     ''' Computed'''
+
     gravida = fields.Char(string='Gravida', compute='_compute_female_values')
     parity = fields.Char(string='Parity', compute='_compute_female_values')
     miscarriages = fields.Char(string='Miscarriages', compute='_compute_female_values')
@@ -172,7 +176,17 @@ class PatientTimeline(models.Model):
                                                                        self.ec_first_consultation_id)
 
     def action_create_repeat_consultation(self):
-        return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
+        self.show_repeat_section_state = True
+        if self.show_repeat_consultation_history_section is False:
+            self.show_repeat_consultation_history_section = True
+            return
+
+        repeat_consultation_id = self.env['ec.repeat.consultation'].create({
+            'timeline_id': self.id,
+            'repeat_patient_id': self.timeline_patient_id.id
+        })
+        self.ec_repeat_consultation_id = repeat_consultation_id.id
+            # return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
 
     ''' Action for opening views block ended '''
 
@@ -184,3 +198,32 @@ class PatientTimeline(models.Model):
 
         return timeline_rec
 
+    @api.onchange('biological_female_dob')
+    def _get_biological_age_female(self):
+        for rec in self:
+            rec.biological_female_age = TimeValidation.convert_date_to_days_years(rec.biological_female_dob)
+
+    @api.onchange('biological_male_dob')
+    def _get_biological_age_male(self):
+        for rec in self:
+            rec.biological_male_age = TimeValidation.convert_date_to_days_years(rec.biological_male_dob)
+
+    ''' Data methods '''
+    def move_next(self):
+        value = int(self.state)
+        if value >= 4:
+            return
+
+        value += 1
+        self.state = str(value)
+
+    def move_back(self):
+        value = int(self.state)
+        if value <= 1:
+            return
+
+        value -= 1
+        self.state = str(value)
+
+    def action_save_repeat_consultation_section(self):
+        self.show_repeat_section_state = False

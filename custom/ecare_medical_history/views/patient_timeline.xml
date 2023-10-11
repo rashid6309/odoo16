@@ -128,20 +128,124 @@
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
-									<field name="state" invisible="1"/>
-									<field name="question_one_label"/>
-									<field name="question_one_choice"/>
-									<field name="question_two_label"/>
-									<field name="question_two_choice"/>
-									<field name="question_three_label"/>
-									<field name="question_three_choice"/>
-									<!--									<field name="repeat_consultation_ids"-->
-									<!--										   mode="kanban"-->
-									<!--										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>-->
+									<div attrs="{'invisible':[('show_repeat_section_state', '=', False)]}">
+										<field name="state" invisible="1"/>
+										<field name="show_repeat_section_state" invisible="1"/>
+										<group>
+											<group >
+												<field name="question_one_label"/>
+												<field name="question_one_choice" widget="radio"/>
+											</group>
+
+											<group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
+												<group>
+													<field name="lmp"/>
+													<field name="lmp_embryo"/>
+												</group>
+
+												<!-- TODO -->
+												<group>
+													<i attrs="{'invisible': [('question_one_choice', '=', 'no')]}"> Pregnancy Form details are pending.</i>
+												</group>
+											</group>
+
+											<group attrs="{'invisible': [('state', 'in', ['1'])]}">
+												<field name="question_two_label"/>
+												<field name="question_two_choice" widget="radio"/>
+											</group>
+											<!--											<group>-->
+											<!--												<button name="action_repeat_consultation_open_obstetrics_history"-->
+											<!--														attrs="{'invisible': [('question_two_choice', '=', 'no')]}"-->
+											<!--														type="object"-->
+											<!--														string="Add Obstetrics History"-->
+											<!--														class="btn btn-secondary"/>-->
+											<!--											</group>-->
+
+											<group attrs="{'invisible': [('state', 'in', ['1', '2'])]}">
+												<field name="question_three_label"/>
+												<field name="question_three_choice" widget="radio"/>
+											</group>
+
+											<!--											<group>-->
+											<!--												<button name="action_repeat_consultation_open_previous_treatment"-->
+											<!--														attrs="{'invisible': [('question_three_choice', '=', 'no')]}"-->
+											<!--														type="object"-->
+											<!--														string="Add Previous Treatment"-->
+											<!--														class="btn btn-secondary"/>-->
+											<!--											</group>-->
+
+											<group attrs="{'invisible': [('state', '!=', '4')]}">
+												<field name="question_four_label"/>
+											</group>
+
+											<group attrs="{'invisible': [('state', '!=', '4')]}">
+												<field name="location_id"
+													   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+												<field name="status"/>
+												<field name="consultation_type"/>
+												<field name="lmp_question_four"/>
+												<field name="cycle_day"/>
+												<field name="date"/>
+												<field name="seen_by"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="other_doctors_present" widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="seen_with"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="notes"/>
+												<field name="gpe_breast_abdominal_exam"/>
+												<field name="vaginal_exam"/>
+												<field name="diagnosis"/>
+												<field name="advised"/>
+												<field name="treatment_plan"/>
+												<field name="procedure_plan"/>
+												<field name="investigations_ids" widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="treatment_advised_ids" widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<!--                            <field name="treatment_advised"/>-->
+											</group>
+											<group attrs="{'invisible': [('state', '!=', '4')]}">
+												<action_open_form_viewfield name="ultrasound_type" widget="radio" options="{'horizontal': True}"/>
+											</group>
+
+
+											<group attrs="{'invisible': ['|',
+                                                     '|',
+                                                     '|',
+                                                     ('question_one_choice', '=', 'yes'),
+                                                     ('question_two_choice', '=', 'yes'), ('question_three_choice', '=', 'yes'),
+                                                     ('state', '=', '4')]}"
+											>
+												<button name="move_back"
+														type="object"
+														class="btn btn-secondary"
+														string="Back"/>
+
+												<button name="move_next"
+														type="object"
+														class="btn btn-secondary"
+														string="Next"/>
+											</group>
+										</group>
+									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
+									<field name="show_repeat_consultation_history_section"
+										   invisible="1"
+										   force_save="1"
+									/>
+
+									<div>
+										<button name="action_save_repeat_consultation_section"
+												type="object"
+												class="btn btn-primary"
+												attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+												string="Save"/>
+									</div>
 									<field name="repeat_consultation_ids"
 										   mode="kanban"
+										   attrs="{'invisible': [('show_repeat_consultation_history_section', '=', False)]}"
 										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>
 								</div>
 
@@ -791,21 +895,21 @@
 														<div>
 															<field name="female_weight" class="oe_inline" nolabel="1"/>
 															<span>
-																KG
+																kg
 															</span>
 														</div>
 														<label for="female_height"/>
 														<div>
 															<field name="female_height" class="oe_inline" nolabel="1"/>
 															<span>
-																CM
+																cm
 															</span>
 														</div>
 														<label for="female_bmi"/>
 														<div>
 															<field name="female_bmi" class="oe_inline" nolabel="1"/>
 															<span>
-																KG/sqm
+																Kg/sqm
 															</span>
 														</div>
 														<label for="female_bp_upper"/>
@@ -824,7 +928,7 @@
 														<div>
 															<field name="female_pulse" class="oe_inline" nolabel="1"/>
 															<span>
-																/mm
+																/min
 															</span>
 														</div>
 
@@ -1464,6 +1568,35 @@
 												</section>
 											</div>
 
+											<!-- Lab history -->
+											<div class="d-flex scroll-to card-header first_consultation_sub_container_male" id="male_lab_history_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#male_lab_history_section" href="#">
+														<h4 class="mt-2 mb-0">Lab History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+
+											<div class="card-block mb-5 pl-4 collapse col-6" id="male_lab_history_section">
+												<!--											<br></br>-->
+												<group class="mt-0" col="6" colspan="6">
+													<div style="margin-top: -7%;">
+														<button type="action"
+																style="float:right;"
+																class="btn-primary"
+																name="%(ecare_medical_history.ec_lab_history_action)d"
+																context="{'default_male_first_consultation_id':id}"
+																string="Add" target="new"/>
+													</div>
+													<separator string="Details" style="font-size:small" colspan="6" />
+													<field class="custom-scrollbar opd-notes-height" name="male_lab_history_ids" mode="kanban" nolabel="1"
+														   string="Lab History" create="false"/>
+
+												</group>
+											</div>
+
 											<!-- Genital Examination -->
 
 											<div class="d-flex scroll-to card-header first_consultation_sub_container_male" id="genital_examination_section_link">
@@ -1508,21 +1641,21 @@
 														<div>
 															<field name="male_weight" class="oe_inline" nolabel="1"/>
 															<span>
-																KG
+																kg
 															</span>
 														</div>
 														<label for="male_height"/>
 														<div>
 															<field name="male_height" class="oe_inline" nolabel="1"/>
 															<span>
-																CM
+																cm
 															</span>
 														</div>
 														<label for="male_bmi"/>
 														<div>
 															<field name="male_bmi" class="oe_inline" nolabel="1"/>
 															<span>
-																KG/sqm
+																Kg/sqm
 															</span>
 														</div>
 														<label for="male_bp_upper"/>
@@ -1541,7 +1674,7 @@
 														<div>
 															<field name="male_pulse" class="oe_inline" nolabel="1"/>
 															<span>
-																/mm
+																/min
 															</span>
 														</div>
 
@@ -1595,34 +1728,6 @@
 												</group>
 											</div>
 
-											<!-- Lab history -->
-											<div class="d-flex scroll-to card-header first_consultation_sub_container_male" id="male_lab_history_section_link">
-												<div class="col-6">
-													<a data-bs-toggle="collapse" data-bs-target="#male_lab_history_section" href="#">
-														<h4 class="mt-2 mb-0">Lab History</h4>
-													</a>
-												</div>
-												<div class="col-6 text-right" style="margin-top:9px">
-												</div>
-											</div>
-
-											<div class="card-block mb-5 pl-4 collapse col-6" id="male_lab_history_section">
-												<!--											<br></br>-->
-												<group class="mt-0" col="6" colspan="6">
-													<div style="margin-top: -7%;">
-														<button type="action"
-																style="float:right;"
-																class="btn-primary"
-																name="%(ecare_medical_history.ec_lab_history_action)d"
-																context="{'default_male_first_consultation_id':id}"
-																string="Add" target="new"/>
-													</div>
-													<separator string="Details" style="font-size:small" colspan="6" />
-													<field class="custom-scrollbar opd-notes-height" name="male_lab_history_ids" mode="kanban" nolabel="1"
-														   string="Lab History" create="false"/>
-
-												</group>
-											</div>
 
 										</page>
 
@@ -1713,7 +1818,7 @@
 			<field name="model">ec.patient.timeline</field>
 			<field name="priority">1</field>
 			<field name="arch" type="xml">
-				<kanban class="o_kanban_mobile">
+				<kanban class="o_kanban_mobile" create="0">
 					<field name="timeline_patient_mr_num"/>
 					<field name="timeline_patient_name"/>
 					<!--                    <field name="wife_age"/>-->
