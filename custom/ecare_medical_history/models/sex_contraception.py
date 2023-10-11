@@ -15,7 +15,7 @@ class EcContraception(models.Model):
     cn_type = fields.Selection(selection=StaticMember.CN_TYPES,
                                string="Type")
 
-    other_comments = fields.Char(string="Other")
+    other_comments = fields.Char(string="Comments")
 
     ''' Male attributes '''
 
