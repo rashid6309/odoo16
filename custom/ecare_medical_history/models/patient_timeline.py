@@ -1,10 +1,17 @@
 from odoo import models, fields, api, _
 
 
+
 class PatientTimeline(models.Model):
     _name = "ec.patient.timeline"
     _description = "Patient Timeline"
     _rec_name = "timeline_patient_id"
+
+    _sql_constraints = [
+        ('timeline_patient_id_unique', 'unique (timeline_patient_id)',
+         'Multiple patient timelines cant be created, rather open the existing one!'),
+    ]
+
     _inherits = {
         'ec.first.consultation': 'ec_first_consultation_id',
         'ec.repeat.consultation': 'ec_repeat_consultation_id'
@@ -17,6 +24,23 @@ class PatientTimeline(models.Model):
     timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                           string="Patient",
                                           index=True)
+
+    # Related Fields which are used for kanban view
+    # Related Fields Used for data representation purposes
+    timeline_patient_mr_num = fields.Char('MR No.', related="timeline_patient_id.mr_num", store=True)
+    timeline_patient_name = fields.Char('Patient Name', related="timeline_patient_id.name", store=True)
+    timeline_patient_wife_name = fields.Char('Wife Name', related="timeline_patient_id.wife_name", store=True)
+    timeline_patient_husband_name = fields.Char('Husband Name', related="timeline_patient_id.husband_name", store=True)
+
+    timeline_patient_mobile_wife = fields.Char('Mobile Wife', related="timeline_patient_id.mobile_wife", store=True)
+    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband", store=True)
+
+    timeline_patient_wife_image = fields.Binary('Patient Wife Image', related="timeline_patient_id.image_1920",
+                                                store=True)
+    timeline_patient_husband_image = fields.Binary('Patient Husband Image', related="timeline_patient_id.husband_image",
+                                                   store=True)
+
+
     ''' One2Many'''
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
                                               inverse_name="timeline_id")
@@ -30,19 +54,19 @@ class PatientTimeline(models.Model):
     female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
 
     ''' Override methods '''
+
     @api.model
     def create(self, vals):
         res = super(PatientTimeline, self).create(vals)
         res.ec_repeat_consultation_id.update(
             {'timeline_id': res.id,
              'repeat_patient_id': res.timeline_patient_id
-            }
+             }
         )
 
         return res
 
     ''' XXX - Override methods - XXX'''
-
 
     @staticmethod
     def _compute_patient_family_history(family_history, fields_to_process):
@@ -57,13 +81,13 @@ class PatientTimeline(models.Model):
             if field_name in ('male_family_history_other', 'female_family_history_other'):
                 family_members_list = field_records
                 if family_members_list:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong>({family_members_list})'
+                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{family_members_list}'
                     family_history_text.append(field_text)
             elif field_records or (custom_field and custom_field.strip()):
                 custom_text = f' ({custom_field.strip()})' if custom_field else ''
                 family_members_list = [rec.name for rec in field_records]
                 if family_members_list:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong>({", ".join(family_members_list)}){custom_text}'
+                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{", ".join(family_members_list)}{custom_text}'
                     family_history_text.append(field_text)
 
         if family_history_text:
@@ -89,7 +113,6 @@ class PatientTimeline(models.Model):
             family_history=self.ec_first_consultation_id.ec_male_family_history_id,
             fields_to_process=male_fields_to_process
         )
-
 
         # Female Fields Processing
 
@@ -152,3 +175,12 @@ class PatientTimeline(models.Model):
         return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
 
     ''' Action for opening views block ended '''
+
+    def action_mandatory_patient_timeline(self, patient):
+        timeline_rec = {
+            'first_consultation_patient_id': patient.id,
+            'timeline_patient_id': patient.id,
+        }
+
+        return timeline_rec
+

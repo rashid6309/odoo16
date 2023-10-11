@@ -41,6 +41,9 @@
         # Timeline
         'views/patient_timeline.xml',
 
+        # Timeline Wizard
+        'views/ec_patient_timeline_wizard.xml',
+
         # This should be called at the end
         'data/menus.xml',
 

@@ -36,3 +36,4 @@ from . import repeat_consultation
 
 # Timeline
 from . import patient_timeline
+from . import patient_timeline_wizard

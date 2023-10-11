@@ -6,6 +6,11 @@ class FirstConsultation(models.Model):
     _name = 'ec.first.consultation'
     _description = "Patient First Consultation"
 
+    _sql_constraints = [
+        ('first_consultation_patient_id_unique', 'unique (first_consultation_patient_id)',
+         'Multiple first consultations for a patient cant be created!'),
+    ]
+
     _inherits = {'ec.general.history': 'ec_general_examination_id',
                  'ec.sx.contraception': 'ec_sx_contraception_id',
                  'ec.social.history': 'ec_social_history_id',

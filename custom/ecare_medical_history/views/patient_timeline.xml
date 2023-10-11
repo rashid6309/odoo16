@@ -2,12 +2,24 @@
 <odoo>
 	<data>
 
+		<!-- Search View -->
+		<record id="ec_patient_timeline_view_search" model="ir.ui.view">
+			<field name="name">ec.patient.timeline.search.view</field>
+			<field name="model">ec.patient.timeline</field>
+			<field name="arch" type="xml">
+				<search string="Patient Timeline">
+					<field name="timeline_patient_mr_num" string="Patient Mr No."/>
+					<field name="timeline_patient_name" string="Patient Name"/>
+				</search>
+			</field>
+		</record>
+
 		<!-- Tree View -->
 		<record id="patient_timeline_tree_view" model="ir.ui.view">
 			<field name="name">patient.timeline.tree.view</field>
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="xml">
-				<tree>
+				<tree create="0">
 					<!--					<field name="name"/>-->
 					<field name="timeline_patient_id"/>
 				</tree>
@@ -19,13 +31,13 @@
 			<field name="name">patient.timeline.form.view</field>
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="html">
-				<form string="Patient Timeline">
+				<form string="Patient Timeline" create="0">
 					<div style="margin-top: -2%;">
 						<field name="timeline_patient_id" style="display:block;" widget="banner_summary_widget"/>
 					</div>
 					<group>
 						<field name="first_consultation_patient_id" invisible="1" force_save="1"/>
-						<field name="timeline_patient_id"
+						<field name="timeline_patient_id" invisible="1"
 							   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 					</group>
 					<div class="container-custom">
@@ -82,34 +94,37 @@
 							</div>
 							<div class="col-md-8 timeline_content">
 								<!--								Repeat Consultation-->
-<!--								<div class="d-flex scroll-to card-header first_consultation_container mt-2" id="repeat_consultation_section_link">-->
-<!--									<div class="col-6">-->
-<!--										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">-->
-<!--											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>-->
-<!--									</div>-->
-<!--									<div class="col-6 text-right">-->
-<!--										<button name="action_create_repeat_consultation"-->
-<!--												type="object"-->
-<!--												class="card-custom-right-button"-->
-<!--												string="Add New"/>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">-->
-<!--									<field name="repeat_consultation_ids"-->
-<!--										   mode="kanban"-->
-<!--										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>-->
-<!--								</div>-->
+								<!--								<div class="d-flex scroll-to card-header first_consultation_container mt-2" id="repeat_consultation_section_link">-->
+								<!--									<div class="col-6">-->
+								<!--										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">-->
+								<!--											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>-->
+								<!--									</div>-->
+								<!--									<div class="col-6 text-right">-->
+								<!--										<button name="action_create_repeat_consultation"-->
+								<!--												type="object"-->
+								<!--												class="card-custom-right-button"-->
+								<!--												string="Add New"/>-->
+								<!--									</div>-->
+								<!--								</div>-->
+								<!--								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">-->
+								<!--									<field name="repeat_consultation_ids"-->
+								<!--										   mode="kanban"-->
+								<!--										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>-->
+								<!--								</div>-->
+								<div class="col-12 text-right" style="text-align: right">
+									<button name="action_create_repeat_consultation"
+											type="object"
+											class="vtn btn-primary"
+											string="Add New">
+										<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
+										Add New
 
+									</button>
+								</div>
 								<div class="d-flex scroll-to card-header first_consultation_container mt-2" id="repeat_consultation_section_link">
 									<div class="col-6">
 										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
 											<h4 class="mt-2 mb-0">Repeat Consultation II</h4></a>
-									</div>
-									<div class="col-6 text-right">
-										<button name="action_create_repeat_consultation"
-												type="object"
-												class="card-custom-right-button"
-												string="Add New"/>
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
@@ -120,9 +135,9 @@
 									<field name="question_two_choice"/>
 									<field name="question_three_label"/>
 									<field name="question_three_choice"/>
-<!--									<field name="repeat_consultation_ids"-->
-<!--										   mode="kanban"-->
-<!--										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>-->
+									<!--									<field name="repeat_consultation_ids"-->
+									<!--										   mode="kanban"-->
+									<!--										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>-->
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
 									<field name="repeat_consultation_ids"
@@ -155,6 +170,10 @@
 													<!--												<field name="patient_id"/>-->
 													<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_comment" placeholder="details..."/>
+
+													<field name="biological_female_dob"/>
+													<field name="biological_female_age"/>
+
 													<field name="female_age"/>
 													<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_family_system" widget="radio" options="{'horizontal': True}"/>
@@ -1118,6 +1137,10 @@
 												<group>
 													<field name="male_marriage" widget="radio" options="{'horizontal': True}"/>
 													<field name="male_comment"/>
+
+													<field name="biological_male_dob"/>
+													<field name="biological_male_age"/>
+
 													<field name="male_age"/>
 												</group>
 											</div>
@@ -1635,9 +1658,17 @@
 									</div>
 								</div>
 								<div class="card-custom2-right">
-									<div class="card-custom-right-heading-special">GxPyZ</div>
-									<div class="card-custom-right-heading">Female</div>
-									<div class="card-custom-right-heading"><span><field name="female_age"/></span></div>
+									<div>
+										<div class="card-custom-right-heading">Female</div>
+										<div class="card-custom-right-heading-special">G<sub>x</sub>P<sub>y</sub><sup>Z</sup></div>
+
+									</div>
+									<div class="card-custom-right-heading">
+										<span>
+											<field name="biological_female_age"/>
+											<field name="female_age" attrs="{'invisible': [('biological_female_age', '!=', False)]}"/>
+										</span>
+									</div>
 									<button name="action_timeline_open_obstetrics_history"
 											type="object"
 											class="card-custom-right-button-btn"
@@ -1654,7 +1685,11 @@
 								<div class="card-custom3-right">
 									<div class="card-custom-right-heading-special"/>
 									<div class="card-custom-right-heading">Male</div>
-									<div class="card-custom-right-heading"><span><field name="male_age"/></span></div>
+									<div class="card-custom-right-heading">
+										<span>
+											<field name="biological_male_age"/>
+											<field name="male_age" attrs="{'invisible': [('biological_male_age', '!=', False)]}"/>										</span>
+									</div>
 									<button name="create"
 											class="card-custom-right-button"
 											string="Seminology"/>
@@ -1672,11 +1707,69 @@
 			</field>
 		</record>
 
+		<!-- Kanban View -->
+		<record id="ec_patient_timeline_kanban_view" model="ir.ui.view">
+			<field name="name">ec.patient.timeline.kanban.view</field>
+			<field name="model">ec.patient.timeline</field>
+			<field name="priority">1</field>
+			<field name="arch" type="xml">
+				<kanban class="o_kanban_mobile">
+					<field name="timeline_patient_mr_num"/>
+					<field name="timeline_patient_name"/>
+					<!--                    <field name="wife_age"/>-->
+					<!--                    <field name="marital_status"/>-->
+					<!--                    <field name="image_1920"/>-->
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_content oe_kanban_global_click">
+								<group style="margin:2%;">
+
+									<field name="timeline_patient_wife_image" widget="image"
+										   options='{"size": [128, 128],"zoom": true, "zoom_delay": 1000 }'
+										   class="bg-view"/>
+								</group>
+
+								<group  style="margin:2%;">
+									<field name="timeline_patient_husband_image" widget="image"
+										   options='{"size": [128, 128],"zoom": true, "zoom_delay": 1000 }'
+										   class="bg-view"/>
+								</group>
+
+								<p style="margin:2%; font-weight: 700;">
+									<field name="timeline_patient_name" t-if="record.timeline_patient_mr_num.value == '' "/>
+									<field name="timeline_patient_mr_num" t-if="record.timeline_patient_mr_num.value != ''"/>
+								</p>
+								<hr/>
+								<table style="width: 100%;">
+									<tr>
+										<td style="width: 50%; vertical-align: baseline;">
+											<span style="font-weight: 650;">Wife:</span> <field name="timeline_patient_wife_name"/><br/>
+											<t t-if="mobile_wife != ''">
+												<span style="font-weight: 650;">Mobile:</span> <field name="timeline_patient_mobile_wife"/>
+											</t>
+										</td>
+										<td style="width: 50%; vertical-align: baseline;">
+											<span style="font-weight: 650;">Husband:</span> <field name="timeline_patient_husband_name"/><br/>
+											<t t-if="mobile_husband != ''">
+												<span style="font-weight: 650;">Mobile:</span> <field name="timeline_patient_mobile_husband"/>
+											</t>
+										</td>
+									</tr>
+								</table>
+
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+
 		<!-- Explicit action -->
 		<record id="patient_timeline_action" model="ir.actions.act_window">
 			<field name="name">Patient Timeline</field>
 			<field name="res_model">ec.patient.timeline</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">kanban,tree,form</field>
 		</record>
 
 	</data>

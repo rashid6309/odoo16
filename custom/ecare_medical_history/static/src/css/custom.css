@@ -144,6 +144,7 @@ table {
     border-radius: 8px;
     overflow: hidden;
     margin: 2%;
+    pointer-events: none;
     padding: 2%;
 }
 
@@ -173,6 +174,7 @@ table {
     font-size: 16px;
     font-family: Inter;
     font-weight: 400;
+    display: inline-block;
     word-wrap: break-word;
 }
 
@@ -181,6 +183,7 @@ table {
     color: black;
     font-size: 16px;
     font-weight: 700;
+    display: inline-block;
     word-wrap: break-word;
     text-align: right;
 }
@@ -209,7 +212,6 @@ table {
         font-family: Inter;
         font-weight: 400;
         position: relative;
-        left: 52%;
         width: min-content;
     }
 }
@@ -236,7 +238,6 @@ table {
         font-family: Inter;
         font-weight: 400;
         position: relative;
-        left: 52%;
         width: max-content;
     }
 }
