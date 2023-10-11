@@ -21,5 +21,5 @@ class MedicalSystemicExamination(models.Model):
 
     abdomen = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Abdomen')
     abdomen_comment = fields.Char(string='Abdomen Comment')
-    other_findings = fields.Char(string='Other Findings')
+    other_findings = fields.Text(string='Other Findings')
 
