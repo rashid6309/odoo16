@@ -1,6 +1,5 @@
 from odoo import models, api, fields, _
 
-from odoo.addons.ecare_core.utilities.helper import TimeValidation
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
@@ -34,7 +33,7 @@ class GeneralExamination(models.Model):
     female_living_togather = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                        default="yes", string='Living Together')
 
-    female_living_togather_reason = fields.Char(string='Reason')
+    female_living_togather_reason = fields.Text(string='Reason')
 
     female_living_duration_years = fields.Integer(string='Living Duration Years')
     female_living_duration_month = fields.Selection(selection=StaticMember.MONTHS,
@@ -62,13 +61,3 @@ class GeneralExamination(models.Model):
 
     biological_male_dob = fields.Date(string='BIOLOGICAL DATE OF BIRTH')
     biological_male_age = fields.Char(string='Age', compute='_get_biological_age_male', store=True)
-
-    @api.onchange('biological_female_dob')
-    def _get_biological_age_female(self):
-        for rec in self:
-            rec.biological_female_age = TimeValidation.convert_date_to_days_years(rec.biological_female_dob)
-
-    @api.onchange('biological_male_dob')
-    def _get_biological_age_male(self):
-        for rec in self:
-            rec.biological_male_age = TimeValidation.convert_date_to_days_years(rec.biological_male_dob)
