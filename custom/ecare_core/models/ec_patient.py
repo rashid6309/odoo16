@@ -1,5 +1,5 @@
 from odoo import models, api, fields, _
-from odoo.exceptions import AccessError, UserError
+from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo import modules
 
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
@@ -342,13 +342,29 @@ class EcarePatient(models.Model):
         # self.post_data_history_software()
 
     def constraints_validation(self):
-        if self.husband_marital_status != 'Unmarried':
-            if not ((self.wife_nic or self.wife_passport) and self.wife_dob and self.mobile_wife and self.married_since):
-                raise models.ValidationError(" Wife cnic or passport, dob, mobile, martial status and married since are mandatory")
+        WIFE_CONSTRAINT_MSG = "Wife cnic or passport, dob mobile and mobile are mandatory"
+        HUSBAND_CONSTRAINT_MSG = "Husband name, cnic or passport, dob and mobile are mandatory"
 
-        if self.marital_status != 'Unmarried':
-            if not ((self.husband_nic or self.husband_passport) and self.husband_dob and self.mobile_husband):
-                raise models.ValidationError(" Husband cnic, dob , mobile, martial status are mandatory")
+        '''Unmarried checks are separated now'''
+        if self.husband_marital_status == 'Unmarried':
+            if not ((self.husband_nic or self.husband_passport) and self.husband_name and self.husband_dob and self.mobile_husband):
+                raise ValidationError(HUSBAND_CONSTRAINT_MSG)
+
+        if self.marital_status == 'Unmarried':
+            if not ((self.wife_nic or self.wife_passport) and self.wife_dob and self.mobile_wife):
+                raise ValidationError(WIFE_CONSTRAINT_MSG)
+
+        WIFE_CONSTRAINT_MSG = "Wife cnic or passport, dob, mobile, martial status and married since are mandatory"
+        HUSBAND_CONSTRAINT_MSG = "Husband name, cnic or passport, dob, mobile, martial status and married since are mandatory"
+
+        ''' If Unmarried at both sides then fire this condition'''
+        if self.husband_marital_status != 'Unmarried' and self.marital_status != 'Unmarried':
+            if not ((self.wife_nic or self.wife_passport) and self.wife_dob and self.mobile_wife and self.married_since):
+                raise ValidationError(WIFE_CONSTRAINT_MSG)
+
+        if self.marital_status != 'Unmarried' and self.husband_marital_status != 'Unmarried':
+            if not ((self.husband_nic or self.husband_passport) and self.husband_name and self.husband_dob and self.mobile_husband):
+                raise ValidationError(HUSBAND_CONSTRAINT_MSG)
 
     def get_payload(self):
         yom = 0
