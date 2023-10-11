@@ -110,6 +110,7 @@
                             <field name="question_three_label"/>
                             <field name="question_three_choice" widget="radio"/>
                         </group>
+
                         <group>
                             <button name="action_repeat_consultation_open_previous_treatment"
                                     attrs="{'invisible': [('question_three_choice', '=', 'no')]}"
