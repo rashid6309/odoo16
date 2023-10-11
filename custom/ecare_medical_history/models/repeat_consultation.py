@@ -16,6 +16,7 @@ class RepeatConsultation(models.Model):
     timeline_id = fields.Many2one(comodel_name="ec.patient.timeline")
 
     ''' Data attributes '''
+    ''' @FIX: state to repeat_consultation_state '''
 
     state = fields.Selection(selection=[('1', "Question 1"),
                                         ('2', "Question 2"),
@@ -30,6 +31,7 @@ class RepeatConsultation(models.Model):
         * LMP for Embryo
     No: move to the next question
     """
+
     question_one_label = fields.Char(string="Question 1:",
                                      default="Is the couple currently pregnant?",
                                      store=False,
@@ -204,6 +206,7 @@ class RepeatConsultation(models.Model):
         """
         It will make the consultation-editable on the patient.timeline
         """
+        self.timeline_id.show_repeat_section_state = True
         if self.timeline_id.ec_repeat_consultation_id.id == self.id:
             raise UserError("Consultation is already selected.")
 
