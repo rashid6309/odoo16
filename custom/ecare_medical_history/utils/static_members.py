@@ -214,13 +214,13 @@ class StaticMember:
                    ('other', 'Other'),
                    ]
 
-    UTERUS_MOBILITY = [('mobile', 'mobile'),
-                       ('Restricted', 'restricted'),
+    UTERUS_MOBILITY = [('mobile', 'Mobile'),
+                       ('Restricted', 'Restricted'),
                        ]
 
     UTERUS_POSITION = [('a/v', 'A/V'),
                        ('r/v', 'R/V'),
-                       ('mid_position', 'Mid Position'),
+                       ('mid_position', 'Mid-Position'),
                        ]
 
     UTERUS_SIZE_POSITION = [
