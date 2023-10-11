@@ -13,7 +13,7 @@ class RepeatConsultation(models.Model):
     ''' Foreign Keys '''
 
     repeat_patient_id = fields.Many2one(comodel_name="ec.medical.patient")
-    timeline_id = fields.Many2one(comodel_name="ec.patient.timeline")
+    timeline_id = fields.Many2one(comodel_name="ec.patient.timeline", ondelete="restrict")
 
     ''' Data attributes '''
     ''' @FIX: state to repeat_consultation_state '''

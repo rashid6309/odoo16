@@ -18,7 +18,7 @@ class PatientTimeline(models.Model):
     }
 
     ec_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete='restrict')
-    ec_repeat_consultation_id = fields.Many2one(comodel_name="ec.repeat.consultation", ondelete='restrict')
+    ec_repeat_consultation_id = fields.Many2one(comodel_name="ec.repeat.consultation", ondelete='cascade')
 
     ''' Foreign keys '''
     timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
