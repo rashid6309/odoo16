@@ -1266,7 +1266,7 @@
 																	context="{'default_male_consultation_id':id}"
 																	string="Add" target="current"/>
 														</div>
-														<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids"  mode="kanban" nolabel="1"
+														<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="kanban" nolabel="1"
 															   string="Patient Procedures" create="false"/>
 													</group>
 												</group>
@@ -1713,7 +1713,7 @@
 			<field name="model">ec.patient.timeline</field>
 			<field name="priority">1</field>
 			<field name="arch" type="xml">
-				<kanban class="o_kanban_mobile">
+				<kanban class="o_kanban_mobile" create="0">
 					<field name="timeline_patient_mr_num"/>
 					<field name="timeline_patient_name"/>
 					<!--                    <field name="wife_age"/>-->
