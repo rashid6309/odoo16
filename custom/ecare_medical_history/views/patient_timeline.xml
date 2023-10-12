@@ -211,12 +211,9 @@
 
 
 											<group attrs="{'invisible': ['|',
-                                                     '|',
-                                                     '|',
                                                      ('question_one_choice', '=', 'yes'),
-                                                     ('question_two_choice', '=', 'yes'), ('question_three_choice', '=', 'yes'),
-                                                     ('state', '=', '4')]}"
-											>
+                                                     ('state', '=', '4')]}">
+
 												<button name="move_back"
 														type="object"
 														class="btn btn-secondary"
