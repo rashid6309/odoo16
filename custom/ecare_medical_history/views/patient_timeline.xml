@@ -224,8 +224,6 @@
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_treatment_advised_ids" widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
-											</group>
-											<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
 												<field name="repeat_ultrasound_type" widget="radio" options="{'horizontal': True}"/>
 											</group>
 										</group>
