@@ -9,6 +9,7 @@ _logger = getLogger(__name__)
 class RepeatConsultation(models.Model):
     _name = 'ec.repeat.consultation'
     _description = "Patient Repeat Consultation"
+    _order = "create_date desc"
 
     ''' Foreign Keys '''
 
