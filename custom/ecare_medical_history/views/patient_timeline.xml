@@ -111,10 +111,27 @@
 								<!--										   mode="kanban"-->
 								<!--										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>-->
 								<!--								</div>-->
-								<div class="col-12 text-right" style="text-align: right">
+								<div class="col-12 text-right"
+									 style="text-align: right"
+									 attrs="{'invisible':[('show_repeat_section_state', '=', False)]}">
+									<h5>
+										<span style="padding: 0.5%;"
+											  class="first_consultation_container">Repeat Consultation is in progress.
+										</span>
+									</h5>
+								</div>
+								<script>
+									function showRepeatConsultationSection() {
+									var targetDiv = document.getElementById("repeat_consultation_section");
+									targetDiv.classList.add("show");
+									return false;
+									}
+								</script>
+								<div class="col-12 text-right" style="text-align: right" attrs="{'invisible':[('show_repeat_section_state', '=', True)]}">
 									<button name="action_create_repeat_consultation"
 											type="object"
-											class="vtn btn-primary"
+											class="btn btn-primary"
+											onclick="showRepeatConsultationSection()"
 											string="Add New">
 										<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										Add New
@@ -124,7 +141,7 @@
 								<div class="d-flex scroll-to card-header first_consultation_container mt-2" id="repeat_consultation_section_link">
 									<div class="col-6">
 										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
-											<h4 class="mt-2 mb-0">Repeat Consultation II</h4></a>
+											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
@@ -213,9 +230,6 @@
 												<action_open_form_viewfield name="ultrasound_type" widget="radio" options="{'horizontal': True}"/>
 											</group>
 										</group>
-									</div>
-
-									<div>
 										<group attrs="{'invisible': ['|',
                                                      ('question_one_choice', '=', 'yes'),
                                                      ('state', '=', '4')]}">
@@ -236,6 +250,7 @@
 												attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
 												string="Save"/>
 									</div>
+
 									<field name="repeat_consultation_ids"
 										   mode="kanban"
 										   attrs="{'invisible': [('show_repeat_consultation_history_section', '=', False)]}"
