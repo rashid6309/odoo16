@@ -128,6 +128,10 @@
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
+									<field name="show_repeat_consultation_history_section"
+										   invisible="1"
+										   force_save="1"
+									/>
 									<div attrs="{'invisible':[('show_repeat_section_state', '=', False)]}">
 										<field name="state" invisible="1"/>
 										<field name="show_repeat_section_state" invisible="1"/>
@@ -208,32 +212,24 @@
 											<group attrs="{'invisible': [('state', '!=', '4')]}">
 												<action_open_form_viewfield name="ultrasound_type" widget="radio" options="{'horizontal': True}"/>
 											</group>
+										</group>
+									</div>
 
-
-											<group attrs="{'invisible': ['|',
+									<div>
+										<group attrs="{'invisible': ['|',
                                                      ('question_one_choice', '=', 'yes'),
                                                      ('state', '=', '4')]}">
 
-												<button name="move_back"
-														type="object"
-														class="btn btn-secondary"
-														string="Back"/>
+											<button name="move_back"
+													type="object"
+													class="btn btn-secondary"
+													string="Back"/>
 
-												<button name="move_next"
-														type="object"
-														class="btn btn-secondary"
-														string="Next"/>
-											</group>
+											<button name="move_next"
+													type="object"
+													class="btn btn-secondary"
+													string="Next"/>
 										</group>
-									</div>
-								</div>
-								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
-									<field name="show_repeat_consultation_history_section"
-										   invisible="1"
-										   force_save="1"
-									/>
-
-									<div>
 										<button name="action_save_repeat_consultation_section"
 												type="object"
 												class="btn btn-primary"
@@ -273,7 +269,7 @@
 													<field name="female_comment" placeholder="details..."/>
 
 													<field name="biological_female_dob"/>
-													<field name="biological_female_age"/>
+													<field name="biological_female_age" force_save="1"/>
 
 													<field name="female_age"/>
 													<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
@@ -1240,7 +1236,7 @@
 													<field name="male_comment"/>
 
 													<field name="biological_male_dob"/>
-													<field name="biological_male_age"/>
+													<field name="biological_male_age" force_save="1"/>
 
 													<field name="male_age"/>
 												</group>
@@ -1767,7 +1763,7 @@
 									</div>
 									<div class="card-custom-right-heading">
 										<span>
-											<field name="biological_female_age"/>
+											<field name="biological_female_age" force_save="1"/>
 											<field name="female_age" attrs="{'invisible': [('biological_female_age', '!=', False)]}"/>
 										</span>
 									</div>
@@ -1789,7 +1785,7 @@
 									<div class="card-custom-right-heading">Male</div>
 									<div class="card-custom-right-heading">
 										<span>
-											<field name="biological_male_age"/>
+											<field name="biological_male_age" force_save="1"/>
 											<field name="male_age" attrs="{'invisible': [('biological_male_age', '!=', False)]}"/>										</span>
 									</div>
 									<button name="create"
