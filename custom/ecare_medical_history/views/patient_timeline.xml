@@ -72,7 +72,7 @@
 												</div>
 											</div>
 											<div class="factor_divider"/>
-											<field name="female_factor_ids" widget="many2many_tags"/>
+											<field name="female_factor_ids" options="{'color_field': 'color','no_create': True,}" widget="many2many_tags"/>
 										</div>
 									</div>
 								</div>
@@ -89,7 +89,7 @@
 												</div>
 											</div>
 											<div class="factor_divider"/>
-											<field name="male_factor_ids" widget="many2many_tags"/>
+											<field name="male_factor_ids" options="{'color_field': 'color', 'no_create': True,}" widget="many2many_tags"/>
 										</div>
 									</div>
 								</div>
