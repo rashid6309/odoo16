@@ -39,10 +39,10 @@
                                     <field name="question_four_label"/>
                                 </div>
                                 <div class="oe_kanban_subtitle">
-                                    <field name="lmp"/>
+                                    <field name="repeat_lmp"/>
                                 </div>
                                 <div class="oe_kanban_footer">
-                                    <field name="state"/>
+                                    <field name="repeat_state"/>
                                 </div>
                                 <button name="action_set_working_consultation"
                                         type="object"
@@ -67,16 +67,15 @@
                                style="display:block;"
                                widget="banner_summary_widget"/>
                     </div>
-                    <header attrs="{'invisible': [('state', '!=', '4')]}">
+                    <header attrs="{'invisible': [('repeat_state', '!=', '4')]}">
                         <button name="action_open_tvs_form"
                                 type="object"
                                 class="btn btn-primary"
                                 string="TVS"/>
                     </header>
                     <sheet>
-                        <field name="state" invisible="True" force_save="True"/>
+                        <field name="repeat_state" invisible="True" force_save="True"/>
                         <!-- Incase group needs to be hidden -->
-<!--                        attrs="{'invisible': [('state', '!=', '1')]}"-->
                         <group >
                             <field name="question_one_label"/>
                             <field name="question_one_choice" widget="radio"/>
@@ -84,8 +83,8 @@
 
                         <group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
                             <group>
-                                <field name="lmp"/>
-                                <field name="lmp_embryo"/>
+                                <field name="repeat_lmp"/>
+                                <field name="repeat_lmp_embryo"/>
                             </group>
 
                             <!-- TODO -->
@@ -94,7 +93,7 @@
                             </group>
                         </group>
 
-                        <group attrs="{'invisible': [('state', 'in', ['1'])]}">
+                        <group attrs="{'invisible': [('repeat_state', 'in', ['1'])]}">
                             <field name="question_two_label"/>
                             <field name="question_two_choice" widget="radio"/>
                         </group>
@@ -106,7 +105,7 @@
                                     class="btn btn-secondary"/>
                         </group>
 
-                        <group attrs="{'invisible': [('state', 'in', ['1', '2'])]}">
+                        <group attrs="{'invisible': [('repeat_state', 'in', ['1', '2'])]}">
                             <field name="question_three_label"/>
                             <field name="question_three_choice" widget="radio"/>
                         </group>
@@ -119,39 +118,38 @@
                                     class="btn btn-secondary"/>
                         </group>
 
-                        <group attrs="{'invisible': [('state', '!=', '4')]}">
+                        <group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
                             <field name="question_four_label"/>
                         </group>
 
-                        <group attrs="{'invisible': [('state', '!=', '4')]}">
-                            <field name="location_id"
+                        <group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+                            <field name="repeat_location_id"
                                    options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
-                            <field name="status"/>
-                            <field name="consultation_type"/>
+                            <field name="repeat_status"/>
+                            <field name="repeat_consultation_type"/>
                             <field name="lmp_question_four"/>
-                            <field name="cycle_day"/>
-                            <field name="date"/>
-                            <field name="seen_by"
+                            <field name="repeat_cycle_day"/>
+                            <field name="repeat_date"/>
+                            <field name="repeat_seen_by"
                                    options="{'no_create_edit': True, 'no_create': True}"/>
-                            <field name="other_doctors_present" widget="many2many_tags"
+                            <field name="repeat_other_doctors_present" widget="many2many_tags"
                                    options="{'no_create_edit': True, 'no_create': True}"/>
-                            <field name="seen_with"
+                            <field name="repeat_seen_with"
                                    options="{'no_create_edit': True, 'no_create': True}"/>
-                            <field name="notes"/>
-                            <field name="gpe_breast_abdominal_exam"/>
-                            <field name="vaginal_exam"/>
-                            <field name="diagnosis"/>
-                            <field name="advised"/>
-                            <field name="treatment_plan"/>
-                            <field name="procedure_plan"/>
-                            <field name="investigations_ids" widget="many2many_tags"
+                            <field name="repeat_notes"/>
+                            <field name="repeat_gpe_breast_abdominal_exam"/>
+                            <field name="repeat_vaginal_exam"/>
+                            <field name="repeat_diagnosis"/>
+                            <field name="repeat_advised"/>
+                            <field name="repeat_treatment_plan"/>
+                            <field name="repeat_procedure_plan"/>
+                            <field name="repeat_investigations_ids" widget="many2many_tags"
                                    options="{'no_create_edit': True, 'no_create': True}"/>
-                            <field name="treatment_advised_ids" widget="many2many_tags"
+                            <field name="repeat_treatment_advised_ids" widget="many2many_tags"
                                    options="{'no_create_edit': True, 'no_create': True}"/>
-                            <!--                            <field name="treatment_advised"/>-->
                         </group>
-                        <group attrs="{'invisible': [('state', '!=', '4')]}">
-                                <action_open_form_viewfield name="ultrasound_type" widget="radio" options="{'horizontal': True}"/>
+                        <group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+                                <field name="repeat_ultrasound_type" widget="radio" options="{'horizontal': True}"/>
                         </group>
 
 
@@ -160,7 +158,7 @@
                                                      '|',
                                                      ('question_one_choice', '=', 'yes'),
                                                      ('question_two_choice', '=', 'yes'), ('question_three_choice', '=', 'yes'),
-                                                     ('state', '=', '4')]}"
+                                                     ('repeat_state', '=', '4')]}"
                         >
                             <button name="move_back"
                                     type="object"

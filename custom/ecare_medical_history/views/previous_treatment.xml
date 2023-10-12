@@ -7,8 +7,8 @@
             <field name="model">ec.medical.previous.treatment</field>
             <field name="arch" type="xml">
                 <tree editable="top">
-                    <field name="first_consultation_id" invisible="1" force_save="1"/>
-                    <field name="patient_id" readonly="1" force_save="1"/>
+                    <field name="first_consultation_id" invisible="1" readonly="1" force_save="1"/>
+                    <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="type"/>
                     <field name="consultant"/>
                     <field name="oral_drugs"/>
