@@ -20,8 +20,9 @@
             <field name="model">ec.medical.factors</field>
             <field name="arch" type="xml">
                 <tree editable="top">
-                    <field name="type"/>
+                    <field name="type" required="1"/>
                     <field name="name"/>
+                    <field name="color" widget="color_picker"/>
                 </tree>
             </field>
         </record>
