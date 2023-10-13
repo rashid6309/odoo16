@@ -19,11 +19,6 @@ class FemaleObstetricsHistory(models.Model):
     patient_id = fields.Many2one(comodel_name='ec.medical.patient', string='Patient') # Why it is required??
     first_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
 
-    @api.depends('date_of_birth')
-    def _get_age(self):
-        for rec in self:
-            rec.age = TimeValidation.convert_date_to_days_years(rec.date_of_birth)
-
     baby_name = fields.Char(string='Baby Name')
     birth_place = fields.Char(string="Birth Place",
                       required=False, )
@@ -57,9 +52,13 @@ class FemaleObstetricsHistory(models.Model):
             if CustomDateTime.greater_than_today(record.date_of_birth):
                 raise ValidationError(_(
                     "Date of Birth can't be greater than current date!"))
+    @api.depends('date_of_birth')
+    def _get_age(self):
+        for rec in self:
+            rec.age = TimeValidation.convert_date_to_days_years(rec.date_of_birth)
+
 
     ''' Constrains block ended '''
-
 
     def action_open_form_view(self, patient_id, first_consultation_id=None):
         context = {
