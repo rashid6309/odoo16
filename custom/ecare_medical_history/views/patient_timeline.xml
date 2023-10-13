@@ -64,15 +64,11 @@
 										<div class="factor-inner-container">
 											<div class="factor-sub-container">
 												<div class="factor-title">Female Factor</div>
-												<div class="factor-action-button">
-													<div class="factor-icon">
-														<i title="Edit" class="fa fa-pencil-square-o" aria-hidden="true"/>
-													</div>
-													<div class="factor-action-text">Edit</div>
-												</div>
 											</div>
 											<div class="factor_divider"/>
-											<field name="female_factor_ids" options="{'color_field': 'color','no_create': True,}" widget="many2many_tags"/>
+											<field name="female_factor_ids" options="{'color_field': 'color','no_create': True,}"
+												   placeholder="Add..."
+												   widget="many2many_tags"/>
 										</div>
 									</div>
 								</div>
@@ -81,15 +77,11 @@
 										<div class="factor-inner-container">
 											<div class="factor-sub-container">
 												<div class="factor-title">Male Factor</div>
-												<div class="factor-action-button">
-													<div class="factor-icon">
-														<i title="Edit" class="fa fa-pencil-square-o" aria-hidden="true"/>
-													</div>
-													<div class="factor-action-text">Edit</div>
-												</div>
 											</div>
 											<div class="factor_divider"/>
-											<field name="male_factor_ids" options="{'color_field': 'color', 'no_create': True,}" widget="many2many_tags"/>
+											<field name="male_factor_ids" options="{'color_field': 'color', 'no_create': True,}"
+												   placeholder="Add..."
+												   widget="many2many_tags"/>
 										</div>
 									</div>
 								</div>
