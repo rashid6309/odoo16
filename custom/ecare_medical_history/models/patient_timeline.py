@@ -243,3 +243,7 @@ class PatientTimeline(models.Model):
 
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
+
+    def action_open_tvs_form(self):
+        return self.env['ec.medical.tvs'].action_open_form_view(self, self.ec_repeat_consultation_id)
+
