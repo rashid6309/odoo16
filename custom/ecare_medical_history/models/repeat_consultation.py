@@ -9,21 +9,22 @@ _logger = getLogger(__name__)
 class RepeatConsultation(models.Model):
     _name = 'ec.repeat.consultation'
     _description = "Patient Repeat Consultation"
+    _order = "create_date desc"
 
     ''' Foreign Keys '''
 
     repeat_patient_id = fields.Many2one(comodel_name="ec.medical.patient")
-    timeline_id = fields.Many2one(comodel_name="ec.patient.timeline", ondelete="restrict")
+    repeat_timeline_id = fields.Many2one(comodel_name="ec.patient.timeline", ondelete="restrict")
 
     ''' Data attributes '''
     ''' @FIX: state to repeat_consultation_state '''
 
-    state = fields.Selection(selection=[('1', "Question 1"),
-                                        ('2', "Question 2"),
-                                        ('3', "Question 3"),
-                                        ('4', "Question 4")],
-                             default="1",
-                             required=True)
+    repeat_state = fields.Selection(selection=[('1', "Question 1"),
+                                               ('2', "Question 2"),
+                                               ('3', "Question 3"),
+                                               ('4', "Question 4")],
+                                    default="1",
+                                    required=True)
 
     """ Question One
     Yes: Open the pregnancy assessment form
@@ -43,14 +44,14 @@ class RepeatConsultation(models.Model):
                                            states={'1': [('readonly', False)]},
                                            default='no')
 
-    lmp = fields.Date(string="LMP",
-                      readonly=True,
-                      states={'1': [('readonly', False)]},
-                      )
-    lmp_embryo = fields.Date(string="LMP Embryo",
+    repeat_lmp = fields.Date(string="LMP",
                              readonly=True,
-                             states = {'1': [('readonly', False)]}
+                             states={'1': [('readonly', False)]},
                              )
+    repeat_lmp_embryo = fields.Date(string="LMP Embryo",
+                                    readonly=True,
+                                    states = {'1': [('readonly', False)]}
+                                    )
 
     """ Question Two
         Yes: Move to obstetrics 
@@ -73,9 +74,9 @@ class RepeatConsultation(models.Model):
 
     """
     question_three_label = fields.Char(string="Question 3:",
-                                      default="Has the couple had any treatment outside of ICSI Pvt. Ltd. since last visit?",
-                                      store=False,
-                                      readonly=1)
+                                       default="Has the couple had any treatment outside of ICSI Pvt. Ltd. since last visit?",
+                                       store=False,
+                                       readonly=1)
     question_three_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                              string="Choice",
                                              default='no',
@@ -101,63 +102,63 @@ class RepeatConsultation(models.Model):
         Abdominal
         TVS
     """
-    ultrasound_type = fields.Selection(selection=StaticMember.ULTRASOUND_TYPE,
-                                       string="Ultrasound")
+    repeat_ultrasound_type = fields.Selection(selection=StaticMember.ULTRASOUND_TYPE,
+                                              string="Ultrasound")
 
-    location_id = fields.Many2one(comodel_name='ec.medical.health.center',
-                                  string='Location')
+    repeat_location_id = fields.Many2one(comodel_name='ec.medical.health.center',
+                                         string='Location')
 
-    status = fields.Selection(selection=StaticMember.REPEAT_STATUS,
-                              string='Status',
-                              default='walkin')
+    repeat_status = fields.Selection(selection=StaticMember.REPEAT_STATUS,
+                                     string='Status',
+                                     default='walkin')
 
-    consultation_type = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE,
-                                         string='Consultation Type')
+    repeat_consultation_type = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE,
+                                                string='Consultation Type')
 
     lmp_question_four = fields.Date(string='LMP') # using above one here.
-    cycle_day = fields.Integer(string='Cycle Day', store=True)
+    repeat_cycle_day = fields.Integer(string='Cycle Day', store=True)
 
-    date = fields.Datetime(string='Date',
-                           readonly=True,
-                           default=fields.Datetime.now)
+    repeat_date = fields.Datetime(string='Date',
+                                  readonly=True,
+                                  default=fields.Datetime.now)
 
-    seen_by = fields.Many2one(comodel_name='res.users',
-                              string='Seen by',
-                              readonly=True,
-                              default=lambda self: self.env.user)
+    repeat_seen_by = fields.Many2one(comodel_name='res.users',
+                                     string='Seen by',
+                                     readonly=True,
+                                     default=lambda self: self.env.user)
 
-    other_doctors_present = fields.Many2many(comodel_name='res.consultant',
-                                             string='Other Doctors Present')
+    repeat_other_doctors_present = fields.Many2many(comodel_name='res.consultant',
+                                                    string='Other Doctors Present')
     ''' Seen with list required '''
-    seen_with = fields.Selection(selection=StaticMember.SEEN_WITH,
-                                string='Seen with')
+    repeat_seen_with = fields.Selection(selection=StaticMember.SEEN_WITH,
+                                        string='Seen with')
 
-    notes = fields.Text(string='Notes')
-    gpe_breast_abdominal_exam = fields.Text(string='GPE / Breast / Abdominal Exam')
-    vaginal_exam = fields.Text(string='Vaginal Exam')
+    repeat_notes = fields.Text(string='Notes')
+    repeat_gpe_breast_abdominal_exam = fields.Text(string='GPE / Breast / Abdominal Exam')
+    repeat_vaginal_exam = fields.Text(string='Vaginal Exam')
 
     # Define TVS field as per your TVS form structure
     # TVS = fields.Many2one('tvs.form', string='TVS Form')
 
-    diagnosis = fields.Text(string='Diagnosis')
-    advised = fields.Text(string='Advised')
+    repeat_diagnosis = fields.Text(string='Diagnosis')
+    repeat_advised = fields.Text(string='Advised')
 
-    treatment_plan = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_PLAN,
-                                      string='Treatment Plan')
+    repeat_treatment_plan = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_PLAN,
+                                             string='Treatment Plan')
 
-    procedure_plan = fields.Text(string='Procedure Plan')
+    repeat_procedure_plan = fields.Text(string='Procedure Plan')
 
-    investigations_ids = fields.Many2many(comodel_name='ec.medical.investigation',
-                                          relation="repeat_consultation_medical_investigation_rel",
-                                          column1="repeat_consultation_id",
-                                          column2="investigation_id",
-                                          string='Investigations')
+    repeat_investigations_ids = fields.Many2many(comodel_name='ec.medical.investigation',
+                                                 relation="repeat_consultation_medical_investigation_rel",
+                                                 column1="repeat_consultation_id",
+                                                 column2="investigation_id",
+                                                 string='Investigations')
 
-    treatment_advised_ids = fields.Many2many(comodel_name='ec.medical.treatment.list',
-                                             relation="repeat_consultation_medical_treatment_list_rel",
-                                             column1="repeat_consultation_id",
-                                             column2="treatment_list_id",
-                                             string='Treatment Advised')
+    repeat_treatment_advised_ids = fields.Many2many(comodel_name='ec.medical.treatment.list',
+                                                    relation="repeat_consultation_medical_treatment_list_rel",
+                                                    column1="repeat_consultation_id",
+                                                    column2="treatment_list_id",
+                                                    string='Treatment Advised')
 
     ''' Override methods '''
 
@@ -188,7 +189,7 @@ class RepeatConsultation(models.Model):
     def action_open_form_view(self, patient_id, timeline_id):
         context = {
             'default_repeat_patient_id': patient_id.id,
-            'default_timeline_id': timeline_id.id
+            'default_repeat_timeline_id': timeline_id.id
         }
 
         return {
@@ -206,11 +207,11 @@ class RepeatConsultation(models.Model):
         """
         It will make the consultation-editable on the patient.timeline
         """
-        self.timeline_id.show_repeat_section_state = True
-        if self.timeline_id.ec_repeat_consultation_id.id == self.id:
+        self.repeat_timeline_id.show_repeat_section_state = True
+        if self.repeat_timeline_id.ec_repeat_consultation_id.id == self.id:
             raise UserError("Consultation is already selected.")
 
-        self.timeline_id.ec_repeat_consultation_id = self.id
+        self.repeat_timeline_id.ec_repeat_consultation_id = self.id
 
     """ Other actions opening place over here"""
     def action_repeat_consultation_open_obstetrics_history(self):

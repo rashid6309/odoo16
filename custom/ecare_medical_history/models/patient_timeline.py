@@ -43,7 +43,7 @@ class PatientTimeline(models.Model):
     ''' One2Many'''
 
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
-                                              inverse_name="timeline_id")
+                                              inverse_name="repeat_timeline_id")
 
     show_repeat_section_state = fields.Boolean(default=False, string='Div State')
     show_repeat_consultation_history_section = fields.Boolean(default=False)
@@ -59,11 +59,21 @@ class PatientTimeline(models.Model):
 
     ''' Override methods '''
 
+    # Female Factor
+
+    female_factor_ids = fields.Many2many('ec.medical.factors',
+                                         relation="timeline_female_factor_rel",
+                                         column1="timeline_id", column2="female_factor_id",
+                                         domain=[('type', 'in', ['female'])])
+    male_factor_ids = fields.Many2many('ec.medical.factors',
+                                       relation="timeline_male_factor_rel",
+                                       column1="timeline_id", column2="male_factor_id",
+                                       domain=[('type', 'in', ['male'])])
     @api.model
     def create(self, vals):
         res = super(PatientTimeline, self).create(vals)
         res.ec_repeat_consultation_id.update(
-            {'timeline_id': res.id,
+            {'repeat_timeline_id': res.id,
              'repeat_patient_id': res.timeline_patient_id
              }
         )
@@ -182,7 +192,7 @@ class PatientTimeline(models.Model):
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create({
-            'timeline_id': self.id,
+            'repeat_timeline_id': self.id,
             'repeat_patient_id': self.timeline_patient_id.id
         })
         self.ec_repeat_consultation_id = repeat_consultation_id.id
@@ -198,6 +208,11 @@ class PatientTimeline(models.Model):
 
         return timeline_rec
 
+    def action_create_timeline_from_patient(self, patient):
+        values = self.action_mandatory_patient_timeline(patient)
+        patient_timeline_id = self.env['ec.patient.timeline'].create(values)
+        return patient_timeline_id
+
     @api.onchange('biological_female_dob')
     def _get_biological_age_female(self):
         for rec in self:
@@ -210,20 +225,20 @@ class PatientTimeline(models.Model):
 
     ''' Data methods '''
     def move_next(self):
-        value = int(self.state)
+        value = int(self.repeat_state)
         if value >= 4:
             return
 
         value += 1
-        self.state = str(value)
+        self.repeat_state = str(value)
 
     def move_back(self):
-        value = int(self.state)
+        value = int(self.repeat_state)
         if value <= 1:
             return
 
         value -= 1
-        self.state = str(value)
+        self.repeat_state = str(value)
 
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
