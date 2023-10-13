@@ -61,11 +61,12 @@ class PatientTimeline(models.Model):
 
     # Female Factor
 
-    female_factor_ids = fields.Many2many('ec.medical.factors',
+    female_factor_ids = fields.Many2many(comodel_name='ec.medical.factors',
                                          relation="timeline_female_factor_rel",
-                                         column1="timeline_id", column2="female_factor_id",
+                                         column1="timeline_id",
+                                         column2="female_factor_id",
                                          domain=[('type', 'in', ['female'])])
-    male_factor_ids = fields.Many2many('ec.medical.factors',
+    male_factor_ids = fields.Many2many(comodel_name='ec.medical.factors',
                                        relation="timeline_male_factor_rel",
                                        column1="timeline_id", column2="male_factor_id",
                                        domain=[('type', 'in', ['male'])])
