@@ -199,9 +199,11 @@ class RepeatConsultation(models.Model):
         """
         It will make the consultation-editable on the patient.timeline
         """
+        if self.repeat_timeline_id.show_repeat_section_state is True:
+            raise UserError("Consultation is already in progress.")
         self.repeat_timeline_id.show_repeat_section_state = True
         if self.repeat_timeline_id.ec_repeat_consultation_id.id == self.id:
-            raise UserError("Consultation is already selected.")
+            return
 
         self.repeat_timeline_id.ec_repeat_consultation_id = self.id
 
