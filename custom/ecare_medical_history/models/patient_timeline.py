@@ -197,7 +197,7 @@ class PatientTimeline(models.Model):
             'repeat_patient_id': self.timeline_patient_id.id
         })
         self.ec_repeat_consultation_id = repeat_consultation_id.id
-            # return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
+        # return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
 
     ''' Action for opening views block ended '''
 
@@ -246,4 +246,11 @@ class PatientTimeline(models.Model):
 
     def action_open_tvs_form(self):
         return self.env['ec.medical.tvs'].action_open_form_view(self, self.ec_repeat_consultation_id)
+
+    def action_repeat_consultation_open_previous_treatment(self):
+        return self.env['ec.medical.previous.treatment'].action_open_form_view(self.ec_repeat_consultation_id)
+
+    def action_repeat_consultation_open_obstetrics_history(self):
+        return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
+                                                                       None)
 

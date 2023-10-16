@@ -6,6 +6,12 @@ class EcMedicalFactors(models.Model):
     _description = "Medical Factor"
     _order = 'create_date desc'
 
+    _sql_constraints = [
+        ('name_unique', 'unique (name)',
+         'Multiple factors with same name can not be created!'),
+    ]
+
+
     type = fields.Selection(string='Type', required=1,
                             selection=[('male', 'Male'),
                                        ('female', 'Female')],
