@@ -182,11 +182,22 @@
 												   widget="radio"/>
 										</group>
 										<group>
-											<button name="action_repeat_consultation_open_obstetrics_history"
-													attrs="{'invisible': [('question_two_choice', '=', 'no')]}"
-													type="object"
-													string="Add Obstetrics History"
-													class="btn btn-secondary"/>
+											<field name="ec_first_consultation_id" invisible="1"/>
+											<field name="ec_repeat_consultation_id" invisible="1"/>
+											<tree editable="top" attrs="{'invisible': [('question_two_choice', '=', 'no')]}">
+												<field name="obs_history_ids"
+													   context="{'default_patient_id': timeline_patient_id,
+													   'default_first_consultation_id' : ec_first_consultation_id,
+													   'default_repeat_consultation_id' : ec_repeat_consultation_id,
+													   }"
+													   nolabel="1" editable="top">
+												</field>
+											</tree>
+											<!--											<button name="action_repeat_consultation_open_obstetrics_history"-->
+											<!--													attrs="{'invisible': [('question_two_choice', '=', 'no')]}"-->
+											<!--													type="object"-->
+											<!--													string="Add Obstetrics History"-->
+											<!--													class="btn btn-secondary"/>-->
 										</group>
 										<group attrs="{'invisible': [('repeat_state', 'in', ['1', '2'])]}">
 											<field name="question_three_label"/>

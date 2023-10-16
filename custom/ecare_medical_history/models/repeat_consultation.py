@@ -3,6 +3,7 @@ from odoo.exceptions import UserError
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from logging import getLogger
+
 _logger = getLogger(__name__)
 
 
@@ -25,6 +26,13 @@ class RepeatConsultation(models.Model):
                                                ('4', "Question 4")],
                                     default="1",
                                     required=True)
+
+    """ OBS History Relational Field"""
+
+    repeat_obs_history_ids = fields.One2many(comodel_name='ec.obstetrics.history',
+                                             inverse_name='repeat_consultation_id',
+                                             string='Obstetrics History',
+                                             )
 
     """ Question One
     Yes: Open the pregnancy assessment form
@@ -107,7 +115,7 @@ class RepeatConsultation(models.Model):
     repeat_consultation_type = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE,
                                                 string='Consultation Type')
 
-    lmp_question_four = fields.Date(string='LMP') # using above one here.
+    lmp_question_four = fields.Date(string='LMP')  # using above one here.
     repeat_cycle_day = fields.Integer(string='Cycle Day', store=True)
 
     repeat_date = fields.Datetime(string='Date',
@@ -162,6 +170,7 @@ class RepeatConsultation(models.Model):
         return result
 
     ''' Data methods '''
+
     def move_next(self):
         value = int(self.state)
         if value >= 4:
@@ -208,6 +217,7 @@ class RepeatConsultation(models.Model):
         self.repeat_timeline_id.ec_repeat_consultation_id = self.id
 
     """ Other actions opening place over here"""
+
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.repeat_patient_id,
                                                                        None)

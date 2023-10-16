@@ -18,6 +18,7 @@ class FemaleObstetricsHistory(models.Model):
 
     patient_id = fields.Many2one(comodel_name='ec.medical.patient', string='Patient') # Why it is required??
     first_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
+    repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation', string='Repeat Consultation')
 
     @api.depends('date_of_birth')
     def _get_age(self):
