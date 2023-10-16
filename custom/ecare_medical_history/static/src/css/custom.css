@@ -197,25 +197,8 @@ table {
     font-family: Inter;
     font-weight: 400;
     position: relative;
-    left: 52%;
+    width: 100%;
 }
-
-@media (min-width: 1280px)
-{
-    .card-custom-right-button-btn
-    {
-        padding: 3%;
-        background: #2F5597;
-        border-radius: 4px;
-        color: white;
-        font-size: 16px;
-        font-family: Inter;
-        font-weight: 400;
-        position: relative;
-        width: min-content;
-    }
-}
-
 
 .card-custom-right-button-text
 {
@@ -226,8 +209,7 @@ table {
     word-wrap: break-word;
 }
 
-@media (min-width: 1920px)
-{
+
     .card-custom-right-button-btn
     {
         padding: 3%;
@@ -238,10 +220,8 @@ table {
         font-family: Inter;
         font-weight: 400;
         position: relative;
-        width: max-content;
+        width: 100%;
     }
-}
-
 
 .divider
 {

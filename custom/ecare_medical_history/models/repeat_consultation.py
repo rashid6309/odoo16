@@ -40,17 +40,13 @@ class RepeatConsultation(models.Model):
                                      )
     question_one_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                            string="Choice",
-                                           readonly=True,
-                                           states={'1': [('readonly', False)]},
                                            default='no')
 
     repeat_lmp = fields.Date(string="LMP",
                              readonly=True,
-                             states={'1': [('readonly', False)]},
                              )
     repeat_lmp_embryo = fields.Date(string="LMP Embryo",
                                     readonly=True,
-                                    states = {'1': [('readonly', False)]}
                                     )
 
     """ Question Two
@@ -64,8 +60,6 @@ class RepeatConsultation(models.Model):
     question_two_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                            string="Choice",
                                            default='no',
-                                           readonly=True,
-                                           states={'2': [('readonly', False)]},
                                            )
 
     """ Question Three
@@ -80,8 +74,6 @@ class RepeatConsultation(models.Model):
     question_three_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                              string="Choice",
                                              default='no',
-                                             readonly=True,
-                                             states={'3': [('readonly', False)]},
                                              )
 
     """ Question Four

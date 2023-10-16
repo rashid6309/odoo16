@@ -13,3 +13,12 @@ class EcMedicalFactors(models.Model):
     name = fields.Char('Name', required=True)
 
     color = fields.Integer('Color Index')
+
+    '''This wizard will be used in case if we need to make that edit button along with factors functional'''
+
+
+class EcMedicalFactorsWizard(models.TransientModel):
+    _name = "ec.medical.factors.wizard"
+    _description = "Wizard to select Factors"
+
+    factor_ids = fields.Many2many('ec.medical.factors', required=1)

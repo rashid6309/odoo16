@@ -19,13 +19,16 @@
             <field name="name">ec.repeat.consultation.kanban</field>
             <field name="model">ec.repeat.consultation</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile" create="0">
+                <kanban create="0">
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click">
-                                <div class="oe_kanban_title">
-                                    <field name="question_one_label"/>
-                                    <h5><field name="question_one_choice"/></h5>
+                            <div t-attf-class="oe_kanban_card  w-100 repeat_kanban">
+                                <div class="row mr-0 ml-0 p-1">
+                                    <div class="col-12 text-center font-weight-bold p-0">
+                                        Consultation Date
+                                        <b> / </b>
+                                        <field name="create_date"/>
+                                    </div>
                                 </div>
                                 <div class="oe_kanban_title">
                                     <field name="question_two_label"/>
@@ -38,18 +41,130 @@
                                 <div class="oe_kanban_title">
                                     <field name="question_four_label"/>
                                 </div>
-                                <div class="oe_kanban_subtitle">
-                                    <field name="repeat_lmp"/>
-                                </div>
-                                <div class="oe_kanban_footer">
-                                    <field name="repeat_state"/>
-                                </div>
+                                <table t-attf-class="o_group m-0 table_spacing_style">
+                                    <tbody>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Ultrasound</label>
+                                            </td>
+                                            <td><field name="repeat_ultrasound_type"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Location</label>
+                                            </td>
+                                            <td><field name="repeat_location_id"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Status</label>
+                                            </td>
+                                            <td><field name="repeat_status"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Consultation Type</label>
+                                            </td>
+                                            <td><field name="repeat_consultation_type"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">LMP</label>
+                                            </td>
+                                            <td><field name="lmp_question_four"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Cycle Day</label>
+                                            </td>
+                                            <td><field name="repeat_cycle_day"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Date</label>
+                                            </td>
+                                            <td><field name="repeat_date"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Seen by</label>
+                                            </td>
+                                            <td><field name="repeat_seen_by"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Repeat cycle day</label>
+                                            </td>
+                                            <td><field name="repeat_cycle_day"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Repeat Date</label>
+                                            </td>
+                                            <td><field name="repeat_date"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Seen by</label>
+                                            </td>
+                                            <td><field name="repeat_seen_by"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Other Doctors Present</label>
+                                            </td>
+                                            <td><field name="repeat_other_doctors_present"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Seen with</label>
+                                            </td>
+                                            <td><field name="repeat_seen_with"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Notes</label>
+                                            </td>
+                                            <td><field name="repeat_notes"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">GPE / Breast / Abdominal Exam</label>
+                                            </td>
+                                            <td><field name="repeat_gpe_breast_abdominal_exam"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Vaginal Exam</label>
+                                            </td>
+                                            <td><field name="repeat_vaginal_exam"/></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Diagnosis</label>
+                                            </td>
+                                            <td><field name="repeat_diagnosis"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Advised</label>
+                                            </td>
+                                            <td><field name="repeat_advised"/></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Treatment Plan</label>
+                                            </td>
+                                            <td><field name="repeat_treatment_plan"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Procedure Plan</label>
+                                            </td>
+                                            <td><field name="repeat_procedure_plan"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Investigations</label>
+                                            </td>
+                                            <td><field name="repeat_investigations_ids"/></td>
+                                            <td class="o_td_label">
+                                                <label class="o_form_label">Treatment Advised</label>
+                                            </td>
+                                            <td><field name="repeat_treatment_advised_ids"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
                                 <button name="action_set_working_consultation"
                                         type="object"
                                         string="Edit"
                                         class="btn btn-primary"/>
                             </div>
                         </t>
+
                     </templates>
                 </kanban>
             </field>
@@ -76,12 +191,14 @@
                     <sheet>
                         <field name="repeat_state" invisible="True" force_save="True"/>
                         <!-- Incase group needs to be hidden -->
-                        <group >
+                        <group>
                             <field name="question_one_label"/>
-                            <field name="question_one_choice" widget="radio"/>
+                            <field name="question_one_choice"
+                                   attrs="{'readonly':[('repeat_state','!=','1')]}"
+                                   widget="radio"/>
                         </group>
 
-                        <group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
+                        <group attrs="{'invisible': [('question_one_choice', '=', 'no')],'readonly':[('repeat_state','!=','1')]}">
                             <group>
                                 <field name="repeat_lmp"/>
                                 <field name="repeat_lmp_embryo"/>
@@ -95,7 +212,7 @@
 
                         <group attrs="{'invisible': [('repeat_state', 'in', ['1'])]}">
                             <field name="question_two_label"/>
-                            <field name="question_two_choice" widget="radio"/>
+                            <field name="question_two_choice" widget="radio" attrs="{'readonly':[('repeat_state','!=','2')]}"/>
                         </group>
                         <group>
                             <button name="action_repeat_consultation_open_obstetrics_history"
@@ -107,7 +224,7 @@
 
                         <group attrs="{'invisible': [('repeat_state', 'in', ['1', '2'])]}">
                             <field name="question_three_label"/>
-                            <field name="question_three_choice" widget="radio"/>
+                            <field name="question_three_choice" widget="radio" attrs="{'readonly':[('repeat_state','!=','3')]}"/>
                         </group>
 
                         <group>
@@ -149,7 +266,7 @@
                                    options="{'no_create_edit': True, 'no_create': True}"/>
                         </group>
                         <group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
-                                <field name="repeat_ultrasound_type" widget="radio" options="{'horizontal': True}"/>
+                            <field name="repeat_ultrasound_type" widget="radio" options="{'horizontal': True}"/>
                         </group>
 
 

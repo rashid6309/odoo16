@@ -458,3 +458,7 @@ input[type="date"] {
     color:grey
 }
 
+.repeat_kanban
+{
+    background: #c291e78c !important;
+}
