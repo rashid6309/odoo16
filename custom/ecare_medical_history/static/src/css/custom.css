@@ -391,5 +391,9 @@ color: #2F5597;
 }
 
 
+ .o_field_many2many_checkboxes div {
+    display: inline-table;
+  }
+
 /* uf bo */
 
