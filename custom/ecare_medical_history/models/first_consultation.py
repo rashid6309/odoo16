@@ -33,9 +33,7 @@ class FirstConsultation(models.Model):
     ec_sx_contraception_id = fields.Many2one(comodel_name="ec.sx.contraception", ondelete='restrict')
     ec_social_history_id = fields.Many2one(comodel_name="ec.social.history", ondelete='restrict')
     custom_template_widget = fields.Char('Field')
-    previous_treatment_ids = fields.One2many(inverse_name='first_consultation_id',
-                                             comodel_name='ec.medical.previous.treatment',
-                                             string='Previous Treatment')
+
 
     ''' Female '''
     ec_gynaecological_history_id = fields.Many2one(comodel_name="ec.gynaecological.history", ondelete='restrict')
@@ -50,11 +48,6 @@ class FirstConsultation(models.Model):
     female_procedures_ids = fields.One2many(comodel_name='ec.patient.procedures',
                                             inverse_name='female_consultation_id',
                                             string="Surgical",)
-
-    obs_history_ids = fields.One2many(comodel_name='ec.obstetrics.history',
-                                      inverse_name='first_consultation_id',
-                                      string='Obstetrics History',
-                                      )
 
     female_lab_history_ids = fields.One2many(comodel_name="ec.lab.history",
                                              inverse_name="female_first_consultation_id",

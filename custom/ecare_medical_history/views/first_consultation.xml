@@ -110,12 +110,12 @@
 											</div>
 										</div>
 										<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
-											<tree editable="top">
-												<field name="obs_history_ids"
-													   context="{'default_patient_id': first_consultation_patient_id}"
-													   nolabel="1" editable="top">
-												</field>
-											</tree>
+<!--											<tree editable="top">-->
+<!--												<field name="obs_history_ids"-->
+<!--													   context="{'default_patient_id': first_consultation_patient_id}"-->
+<!--													   nolabel="1" editable="top">-->
+<!--												</field>-->
+<!--											</tree>-->
 										</div>
 
 

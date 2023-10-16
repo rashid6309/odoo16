@@ -16,7 +16,7 @@
                     </sheet>
                     <footer>
                         <button name="create_timeline"
-                                string="Create Patient Timeline"
+                                string="Create Timeline"
                                 type="object"
                                 class="btn-primary"/>
                         <button string="Cancel"
@@ -31,7 +31,7 @@
         <!-- Explicit Actions -->
 
         <record id="ec_patient_timeline_wizard_action" model="ir.actions.act_window">
-            <field name="name">Patient Timeline Wizard</field>
+            <field name="name">Create Timeline</field>
             <field name="res_model">ec.patient.timeline.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>

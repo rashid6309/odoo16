@@ -17,8 +17,7 @@ class FemaleObstetricsHistory(models.Model):
     _order = "create_date desc"
 
     patient_id = fields.Many2one(comodel_name='ec.medical.patient', string='Patient') # Why it is required??
-    first_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
-    repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation', string='Repeat Consultation')
+    timeline_id = fields.Many2one(comodel_name='ec.patient.timeline', string='Patient Timeline')
 
     baby_name = fields.Char(string='Baby Name')
     birth_place = fields.Char(string="Birth Place",
@@ -61,14 +60,14 @@ class FemaleObstetricsHistory(models.Model):
 
     ''' Constrains block ended '''
 
-    def action_open_form_view(self, patient_id, first_consultation_id=None):
+    def action_open_form_view(self, patient_id, timeline_id=None):
         context = {
             'default_patient_id': patient_id.id,
-            'default_first_consultation_id': first_consultation_id.id if first_consultation_id else None,
+            'default_timeline_id': timeline_id.id if timeline_id else None,
         }
 
         domain = ['|',
-                  ('first_consultation_id', '=', first_consultation_id.id if first_consultation_id else None),
+                  ('timeline_id', '=', timeline_id.id if timeline_id else None),
                   ('patient_id', '=', patient_id.id)
                   ]
         return {

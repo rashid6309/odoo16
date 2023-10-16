@@ -17,7 +17,7 @@
                   action="ecare_medical_history.patient_timeline_action"/>
 
         <menuitem id="ec_medical_patient_timeline_menu"
-                  name="Create Patient Timeline"
+                  name="Create Timeline"
                   parent="ec_medical_root"
                   sequence="60"
                   action="ecare_medical_history.ec_patient_timeline_wizard_action"/>

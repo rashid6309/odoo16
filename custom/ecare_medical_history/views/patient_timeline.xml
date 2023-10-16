@@ -182,13 +182,10 @@
 												   widget="radio"/>
 										</group>
 										<group>
-											<field name="ec_first_consultation_id" invisible="1"/>
-											<field name="ec_repeat_consultation_id" invisible="1"/>
 											<tree editable="top" attrs="{'invisible': [('question_two_choice', '=', 'no')]}">
-												<field name="obs_history_ids"
+												<field name="repeat_obs_history_ids"
 													   context="{'default_patient_id': timeline_patient_id,
-													   'default_first_consultation_id' : ec_first_consultation_id,
-													   'default_repeat_consultation_id' : ec_repeat_consultation_id,
+													   'default_timeline_id' : id,
 													   }"
 													   nolabel="1" editable="top">
 												</field>
@@ -205,13 +202,21 @@
 												   attrs="{'readonly':[('repeat_state','!=','3')]}"
 												   widget="radio"/>
 										</group>
-										<group>
-											<button name="action_repeat_consultation_open_previous_treatment"
-													attrs="{'invisible': [('question_three_choice', '=', 'no')]}"
-													type="object"
-													string="Add Previous Treatment"
-													class="btn btn-secondary"/>
-										</group>
+										<div>
+											<tree editable="top" attrs="{'invisible': [('question_three_choice', '=', 'no')]}">
+												<field name="timeline_previous_treatment_ids"
+													   context="{'default_patient_id': timeline_patient_id,
+													   'default_timeline_id' : id,
+													   }"
+													   nolabel="1" editable="top">
+												</field>
+											</tree>
+											<!--											<button name="action_repeat_consultation_open_previous_treatment"-->
+											<!--													attrs="{'invisible': [('question_three_choice', '=', 'no')]}"-->
+											<!--													type="object"-->
+											<!--													string="Add Previous Treatment"-->
+											<!--													class="btn btn-secondary"/>-->
+										</div>
 										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
 											<field name="question_four_label"/>
 										</group>
@@ -358,8 +363,9 @@
 											<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
 												<!--											<field name="patient_id"/>-->
 												<tree editable="top">
-													<field name="obs_history_ids"
-														   context="{'default_patient_id': timeline_patient_id}"
+													<field name="first_obs_history_ids"
+														   context="{'default_patient_id': timeline_patient_id,
+													   				'default_timeline_id' : id,}"
 														   nolabel="1" editable="top">
 													</field>
 												</tree>
@@ -1768,9 +1774,14 @@
 
 										<page string="Previous Treatment" name="previous_treatment">
 											<div class="card-block mb-5 pl-4" id="previous_treatment_tree_section">
-												<field name="previous_treatment_ids"
-													   context="{'default_patient_id': timeline_patient_id}">
-												</field>
+												<tree editable="top">
+													<field name="first_previous_treatment_ids"
+														   context="{'default_patient_id': timeline_patient_id,
+													   'default_timeline_id' : id,
+													   }"
+														   nolabel="1" editable="top">
+													</field>
+												</tree>
 											</div>
 										</page>
 

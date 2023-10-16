@@ -40,6 +40,40 @@ class PatientTimeline(models.Model):
     timeline_patient_husband_image = fields.Binary('Patient Husband Image', related="timeline_patient_id.husband_image",
                                                    store=True)
 
+    """ OBS History Relational Field"""
+
+    timeline_obs_history_ids = fields.One2many(comodel_name='ec.obstetrics.history',
+                                               inverse_name='timeline_id',
+                                               string='Obstetrics History',
+                                               )
+
+    first_obs_history_ids = fields.One2many(comodel_name='ec.obstetrics.history',
+                                            inverse_name='timeline_id',
+                                            string='Obstetrics History',
+                                            )
+
+    repeat_obs_history_ids = fields.One2many(comodel_name='ec.obstetrics.history',
+                                             inverse_name='timeline_id',
+                                             string='Obstetrics History',
+                                             )
+
+    """ Previous Treatment Relational Field"""
+
+    timeline_previous_treatment_ids = fields.One2many(comodel_name='ec.medical.previous.treatment',
+                                                      inverse_name='timeline_id',
+                                                      string='Previous Treatment',
+                                                      )
+
+    first_previous_treatment_ids = fields.One2many(comodel_name='ec.medical.previous.treatment',
+                                                   inverse_name='timeline_id',
+                                                   string='Previous Treatment',
+                                                   )
+
+    repeat_previous_treatment_ids = fields.One2many(comodel_name='ec.medical.previous.treatment',
+                                                    inverse_name='timeline_id',
+                                                    string='Previous Treatment',
+                                                    )
+
     ''' One2Many'''
 
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
@@ -184,7 +218,7 @@ class PatientTimeline(models.Model):
 
     def action_timeline_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
-                                                                       self.ec_first_consultation_id)
+                                                                       self)
 
     def action_create_repeat_consultation(self):
         self.show_repeat_section_state = True
@@ -248,7 +282,7 @@ class PatientTimeline(models.Model):
         return self.env['ec.medical.tvs'].action_open_form_view(self, self.ec_repeat_consultation_id)
 
     def action_repeat_consultation_open_previous_treatment(self):
-        return self.env['ec.medical.previous.treatment'].action_open_form_view(self.ec_repeat_consultation_id)
+        return self.env['ec.medical.previous.treatment'].action_open_form_view(self)
 
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,

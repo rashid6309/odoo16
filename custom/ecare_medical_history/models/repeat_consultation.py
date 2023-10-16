@@ -27,12 +27,6 @@ class RepeatConsultation(models.Model):
                                     default="1",
                                     required=True)
 
-    """ OBS History Relational Field"""
-
-    repeat_obs_history_ids = fields.One2many(comodel_name='ec.obstetrics.history',
-                                             inverse_name='repeat_consultation_id',
-                                             string='Obstetrics History',
-                                             )
 
     """ Question One
     Yes: Open the pregnancy assessment form

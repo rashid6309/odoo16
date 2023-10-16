@@ -7,7 +7,7 @@ class MedicalPreviousHistory(models.Model):
     _description = "Previous Treatment"
     _order = "create_date desc"
 
-    first_consultation_id = fields.Many2one('ec.first.consultation', string='First Consultation')
+    timeline_id = fields.Many2one('ec.patient.timeline', string='Patient Timeline')
     patient_id = fields.Many2one(comodel_name="ec.medical.patient", string="Patient")
 
     type = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_TYPE, default='ovulation_induction_intercourse',
@@ -19,15 +19,15 @@ class MedicalPreviousHistory(models.Model):
     ovarian_response = fields.Char(string='Ovarian Response')
     outcome = fields.Char(string='Outcome')
 
-    def action_open_form_view(self, patient_id, first_consultation=None):
+    def action_open_form_view(self, patient_id, timeline_id=None):
         context = {
             'default_patient_id': patient_id.id,
-            'default_first_consultation_id': first_consultation.id if first_consultation else None
+            'default_timeline_id': timeline_id.id if timeline_id else None
         }
         domain = [
             '|',
             ('patient_id', '=', patient_id.id),
-            ('first_consultation_id', '=', first_consultation.id if first_consultation else None)
+            ('timeline_id', '=', timeline_id.id if timeline_id else None)
         ]
         return {
             "name": _("Previous Treatment"),

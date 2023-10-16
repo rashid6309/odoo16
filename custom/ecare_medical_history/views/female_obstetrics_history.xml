@@ -12,11 +12,6 @@
                            readonly="1"
                            force_save="1"/>
 
-                    <field name="first_consultation_id"
-                           invisible="1"
-                           readonly="1"
-                           force_save="1"/>
-
                     <field name="baby_name"/>
                     <field name="birth_place"/>
                     <field name="date_of_birth"/>
@@ -36,6 +31,7 @@
                     <field name="feed"/>
                     <field name="state"/>
                     <field name="labour_history"/>
+                    <field name="create_date"/>
 <!--                    <field name="legacy_system_ID"/>-->
                 </tree>
             </field>
