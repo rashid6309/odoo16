@@ -203,7 +203,7 @@ class RepeatConsultation(models.Model):
         It will make the consultation-editable on the patient.timeline
         """
         if self.repeat_timeline_id.show_repeat_section_state is True:
-            raise UserError("Consultation is already in progress.")
+            raise UserError("Consultation is already in progress, close the running consultation first.")
         self.repeat_timeline_id.show_repeat_section_state = True
         if self.repeat_timeline_id.ec_repeat_consultation_id.id == self.id:
             return
@@ -220,4 +220,4 @@ class RepeatConsultation(models.Model):
         return self.env['ec.medical.previous.treatment'].action_open_form_view(self.repeat_patient_id)
 
     def action_open_tvs_form(self):
-        return self.env['ec.medical.tvs'].action_open_form_view(self, self.repeat_patient_id)
+        return self.env['ec.medical.tvs'].action_open_form_view(self, target='new')

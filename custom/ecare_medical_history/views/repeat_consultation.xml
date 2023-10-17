@@ -19,7 +19,7 @@
             <field name="name">ec.repeat.consultation.kanban</field>
             <field name="model">ec.repeat.consultation</field>
             <field name="arch" type="xml">
-                <kanban create="0">
+                <kanban create="0" class="oe_background_grey o_kanban_dashboard o_account_kanban">
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban">
@@ -158,10 +158,16 @@
                                     </tbody>
                                 </table>
 
+                                <button name="action_open_tvs_form"
+                                        type="object"
+                                        context="{'default_target': 'new','default_repeat_consultation': 1}"
+                                        string="TVS"
+                                        class="btn btn-primary repeat_kanban_button"/>
+
                                 <button name="action_set_working_consultation"
                                         type="object"
                                         string="Edit"
-                                        class="btn btn-primary"/>
+                                        class="btn btn-primary repeat_kanban_button"/>
                             </div>
                         </t>
 

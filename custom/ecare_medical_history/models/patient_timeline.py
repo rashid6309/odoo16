@@ -33,7 +33,8 @@ class PatientTimeline(models.Model):
     timeline_patient_husband_name = fields.Char('Husband Name', related="timeline_patient_id.husband_name", store=True)
 
     timeline_patient_mobile_wife = fields.Char('Mobile Wife', related="timeline_patient_id.mobile_wife", store=True)
-    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband", store=True)
+    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband",
+                                                  store=True)
 
     timeline_patient_wife_image = fields.Binary('Patient Wife Image', related="timeline_patient_id.image_1920",
                                                 store=True)
@@ -63,6 +64,9 @@ class PatientTimeline(models.Model):
                                                       inverse_name='timeline_id',
                                                       string='Previous Treatment',
                                                       )
+
+    repeat_consultation_date = fields.Datetime(string='Consultation Date',
+                                               related='ec_repeat_consultation_id.create_date')
 
     first_previous_treatment_ids = fields.One2many(comodel_name='ec.medical.previous.treatment',
                                                    inverse_name='timeline_id',
@@ -104,6 +108,64 @@ class PatientTimeline(models.Model):
                                        relation="timeline_male_factor_rel",
                                        column1="timeline_id", column2="male_factor_id",
                                        domain=[('type', 'in', ['male'])])
+
+
+
+    def _compute_female_values(self):
+        top = abort = alive = sb = cesearian = forceps = miscarriage = svd = ventouse = prev_pret_del = prev_lwbb = nnd = False
+        try:
+            obs_histories = self.env['ec.obstetrics.history'].search([
+                ('patient_id', '=', self.timeline_patient_id.id)
+            ])
+            pregs = len(obs_histories) or False
+            self.gravida = pregs + 1
+            for obs_history in obs_histories:
+                dop = obs_history.duration_of_pregnancy
+                # If dop contains "<" or ">" these signs then just replace with "" (Empty String)
+                if dop:
+                    dop = dop.replace("<", "").replace(">", "")
+                    dop = int(dop)
+
+                if dop:
+                    if dop <= 24:
+                        abort += 1
+                    elif 25 <= dop <= 37:
+                        prev_pret_del += 1
+                    elif dop >= 40:  # Do nothing
+                        pass
+
+                if obs_history.health == 'NND-28' or obs_history.health == 'nnd3d' or obs_history.health == 'nnd7d' or \
+                        obs_history.health == 'nnd10d':
+                    nnd = nnd + 1
+                if obs_history.weight == '>5' or obs_history.weight == '' or obs_history.weight == 'N/A':
+                    pass
+                elif obs_history.weight == '<1':
+                    prev_lwbb = prev_lwbb + 1
+                elif float(obs_history.weight) < 2.5:
+                    prev_lwbb = prev_lwbb + 1
+
+                if obs_history.alive == 'Alive':
+                    alive = alive + 1
+                if obs_history.alive == 'SB':
+                    sb = sb + 1
+                if obs_history.mode_of_delivery == 'CAESAREAN':
+                    cesearian = cesearian + 1
+                if obs_history.mode_of_delivery == 'FORCEPS':
+                    forceps = forceps + 1
+                if obs_history.mode_of_delivery == 'MISCARRIAGE':
+                    miscarriage = miscarriage + 1
+                if obs_history.mode_of_delivery == 'TOP':
+                    top = top + 1
+                if obs_history.mode_of_delivery == 'SVD':
+                    svd = svd + 1
+                if obs_history.mode_of_delivery == 'VENTOUSE':
+                    ventouse = ventouse + 1
+            para = pregs - abort
+            self.parity = para
+        except:
+            pass
+        self.miscarriages = miscarriage or 0
+
     @api.model
     def create(self, vals):
         res = super(PatientTimeline, self).create(vals)
@@ -259,6 +321,7 @@ class PatientTimeline(models.Model):
             rec.biological_male_age = TimeValidation.convert_date_to_days_years(rec.biological_male_dob)
 
     ''' Data methods '''
+
     def move_next(self):
         value = int(self.repeat_state)
         if value >= 4:
@@ -279,7 +342,7 @@ class PatientTimeline(models.Model):
         self.show_repeat_section_state = False
 
     def action_open_tvs_form(self):
-        return self.env['ec.medical.tvs'].action_open_form_view(self, self.ec_repeat_consultation_id)
+        return self.env['ec.medical.tvs'].action_open_form_view(self.ec_repeat_consultation_id)
 
     def action_repeat_consultation_open_previous_treatment(self):
         return self.env['ec.medical.previous.treatment'].action_open_form_view(self)
@@ -287,4 +350,3 @@ class PatientTimeline(models.Model):
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
                                                                        None)
-

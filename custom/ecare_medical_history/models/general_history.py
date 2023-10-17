@@ -21,7 +21,7 @@ class GeneralExamination(models.Model):
 
     female_comment = fields.Text(string="Details")
 
-    biological_female_dob = fields.Date(string='BIOLOGICAL DATE OF BIRTH')
+    biological_female_dob = fields.Date(string='Biological DOB')
     biological_female_age = fields.Char(string='Age', compute='_get_biological_age_female', store=True)
 
     female_relation = fields.Selection(selection=StaticMember.MARRIAGE_RELATION,
@@ -59,5 +59,5 @@ class GeneralExamination(models.Model):
                                      )
     male_comment = fields.Char(string="Details")
 
-    biological_male_dob = fields.Date(string='BIOLOGICAL DATE OF BIRTH')
+    biological_male_dob = fields.Date(string='Biological DOB')
     biological_male_age = fields.Char(string='Age', compute='_get_biological_age_male', store=True)

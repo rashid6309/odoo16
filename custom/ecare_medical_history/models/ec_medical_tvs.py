@@ -61,8 +61,9 @@ class EcMedicalTVS(models.Model):
                     },
                 }
 
-    def action_open_form_view(self, repeat_consultation_id, patient_id):
-        target = 'current'
+    def action_open_form_view(self, repeat_consultation_id, target='current'):
+        context = self.env.context.copy()
+        context['target'] = target
 
         tvs_exist = self.env['ec.medical.tvs'].search([(
             'repeat_consultation_id', '=', repeat_consultation_id.id
@@ -80,9 +81,8 @@ class EcMedicalTVS(models.Model):
                 'flags': {'initial_mode': 'edit'},
             }
 
-        context = self.env.context.copy()
         context['default_repeat_consultation_id'] = repeat_consultation_id.id
-        context['default_patient_id'] = patient_id.id
+        context['default_patient_id'] = repeat_consultation_id.repeat_timeline_id.timeline_patient_id.id
 
         return {
             "name": _("TVS"),

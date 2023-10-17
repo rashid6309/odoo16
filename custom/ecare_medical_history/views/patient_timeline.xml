@@ -139,6 +139,7 @@
 										<field name="show_repeat_section_state" invisible="1"/>
 										<group>
 											<group>
+												<field name="repeat_consultation_date"/>
 												<field name="question_one_label"/>
 												<field name="question_one_choice"
 													   attrs="{'readonly':[('repeat_state','!=','1')]}"
@@ -181,7 +182,7 @@
 												   attrs="{'readonly':[('repeat_state','!=','2')]}"
 												   widget="radio"/>
 										</group>
-										<group>
+										<div>
 											<tree editable="top" attrs="{'invisible': [('question_two_choice', '=', 'no')]}">
 												<field name="repeat_obs_history_ids"
 													   context="{'default_patient_id': timeline_patient_id,
@@ -195,7 +196,7 @@
 											<!--													type="object"-->
 											<!--													string="Add Obstetrics History"-->
 											<!--													class="btn btn-secondary"/>-->
-										</group>
+										</div>
 										<group attrs="{'invisible': [('repeat_state', 'in', ['1', '2'])]}">
 											<field name="question_three_label"/>
 											<field name="question_three_choice"
@@ -250,11 +251,17 @@
 										</group>
 
 
-
-										<group attrs="{'invisible': ['|',
-                                                     ('question_one_choice', '=', 'yes'),
-                                                     ('repeat_state', '=', '4')]}">
-
+										<div style="text-align-last: right;background: #adb5bd;">
+											<button name="action_save_repeat_consultation_section"
+													type="object"
+													class="btn btn-primary"
+													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+													string="Close Consultation"/>
+											<button name="action_open_tvs_form"
+													type="object"
+													attrs="{'invisible': [('repeat_state', '!=', '4')]}"
+													class="btn btn-primary"
+													string="TVS"/>
 											<button name="move_back"
 													type="object"
 													attrs="{'invisible': [('repeat_state', '=', '1')]}"
@@ -263,29 +270,17 @@
 
 											<button name="move_next"
 													type="object"
+													attrs="{'invisible': [('repeat_state', '=', '4')]}"
 													class="btn btn-secondary"
-													string="Next"/>
-										</group>
-										<group>
-											<button name="action_open_tvs_form"
-													type="object"
-													attrs="{'invisible': [('repeat_state', '!=', '4')]}"
-													class="btn btn-primary"
-													string="TVS"/>
-										</group>
-										<button name="action_save_repeat_consultation_section"
-												type="object"
-												class="btn btn-primary"
-												attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
-												string="Save"/>
+													string="Save &amp; Next"/>
+										</div>
 									</div>
-									<div>
+									<section>
 										<field name="repeat_consultation_ids"
 											   mode="kanban"
-											   class="w-100-repeat-kanban"
 											   attrs="{'invisible': [('show_repeat_consultation_history_section', '=', False)]}"
 											   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>
-									</div>
+									</section>
 
 								</div>
 
@@ -1796,7 +1791,7 @@
 									<div class="card-type">
 										<div>
 											<span class="word-title editPatientProfile">Married for:</span>
-											<span class="counter-word"><field name="years_of_marriage"/></span>
+											<span class="counter-word"><field style="color: #2F5597;" name="years_of_marriage"/></span>
 										</div>
 										<div>
 											<span class="word-title editPatientProfile">Relationship:</span>
@@ -1804,14 +1799,14 @@
 										</div>
 										<div>
 											<span class="word-title editPatientProfile">Infertility Type:</span>
-											<span><field class="counter-word" name="female_complaints"/></span>
+											<span><field class="counter-word" style="color: #2F5597;" name="female_complaints"/></span>
 										</div>
 									</div>
 								</div>
 								<div class="card-custom2-right">
 									<div>
 										<div class="card-custom-right-heading">Female</div>
-										<div class="card-custom-right-heading-special">G<sub>x</sub>P<sub>y</sub><sup>Z</sup></div>
+										<div class="card-custom-right-heading-special">G<sub><field name="gravida"/></sub>P<sup>+<field name="miscarriages"/></sup><sub><field name="parity"/></sub></div>
 
 									</div>
 									<div class="card-custom-right-heading">
@@ -1834,7 +1829,7 @@
 									<!--									<div class="show" id="femaleCollapseSection">(collapsible - expands to a limit) - default is expanded</div>-->
 								</div>
 								<div class="card-custom3-right">
-									<div class="card-custom-right-heading-special"/>
+									<div class="card-custom-right-heading-special1"/>
 									<div class="card-custom-right-heading">Male</div>
 									<div class="card-custom-right-heading">
 										<span>

@@ -6,7 +6,7 @@
             <field name="name">ec.obstetrics.history.tree</field>
             <field name="model">ec.obstetrics.history</field>
             <field name="arch" type="xml">
-                <tree editable="top">
+                <tree editable="top" export_xlsx="false">
                     <field name="patient_id"
                            invisible="1"
                            readonly="1"

@@ -26,7 +26,7 @@ table {
 #female_complaints_1
 {
     width: auto;
-    color: black;
+    color: #2F5597;
     font-size: 16px;
     font-family: Inter;
     font-weight: 600;
@@ -116,7 +116,7 @@ table {
 .counter-word
 {
     width: 150px;
-    text-align: center;
+    text-align: left;
     color: black;
     font-size: 16px;
     font-family: Inter;
@@ -169,7 +169,7 @@ table {
     padding: 2%;
  }
 .card-custom-right-heading{
-    width: 40%;
+    width: 60%;
     color: black;
     font-size: 16px;
     font-family: Inter;
@@ -179,6 +179,17 @@ table {
 }
 
 .card-custom-right-heading-special
+{
+    color: black;
+    font-size: 16px;
+    font-weight: 700;
+    display: inline-block;
+    word-wrap: break-word;
+    text-align: right;
+    margin-left: 10%;
+}
+
+.card-custom-right-heading-special1
 {
     color: black;
     font-size: 16px;
@@ -394,6 +405,18 @@ color: #2F5597;
  .o_field_many2many_checkboxes div {
     display: inline-table;
   }
+
+  button
+  {
+      margin: 1%;
+  }
+
+  .repeat_kanban_button
+  {
+   width:10%;
+  }
+
+
 
 /* uf bo */
 
