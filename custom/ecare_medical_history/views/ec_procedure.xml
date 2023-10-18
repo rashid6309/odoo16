@@ -5,7 +5,7 @@
             <field name="name">ec.medical.patient.procedures.form</field>
             <field name="model">ec.patient.procedures</field>
             <field name="arch" type="xml">
-                <form string="Patient Procedures" edit="true" create="false">
+                <form string="Surgical Detail" edit="true" create="false">
                     <sheet>
                         <group>
                             <group>
@@ -57,13 +57,13 @@
             </field>
         </record>
         <record id="ec_medical_procedures_create_action" model="ir.actions.act_window">
-            <field name="name">Patient Procedures</field>
+            <field name="name">Surgical Detail</field>
             <field name="res_model">ec.patient.procedures</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Click to add a new Postnatal Doctor Round file.
+                    Click to add a new surgical detail.
                 </p>
             </field>
         </record>
