@@ -308,10 +308,10 @@
 													<!-- General Examination Fields -->
 													<!--												<field name="patient_id"/>-->
 													<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_comment" placeholder="details..."/>
+													<field name="female_comment" placeholder="Details..."/>
 
 													<field name="biological_female_dob"/>
-													<field name="biological_female_age" force_save="1"/>
+													<field name="biological_female_age" attrs="{'invisible': [('biological_female_age', '!=', False)]}" force_save="1"/>
 
 													<field name="female_age"/>
 													<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
@@ -319,7 +319,7 @@
 													<label for="female_living_togather">Living Together</label>
 													<div>
 														<field name="female_living_togather" widget="radio" options="{'horizontal': True}" class="oe_inline"/>
-														<field name="female_living_togather_reason" nolabel="1" placeholder="reason..." class="oe_inline"/>
+														<field name="female_living_togather_reason" nolabel="1" placeholder="Reason..." class="oe_inline"/>
 													</div>
 
 													<label for="female_living_duration_years" string="Living Duration Years"/>
@@ -428,10 +428,10 @@
 													<div style="width: 201%;">
 														<div>
 															<span>
-																Days
+																Gap
 															</span>
 															<span>
-																Gap
+																Days
 															</span>
 															<field name="female_menstrual_gap_from" class="oe_inline" nolabel="1"/>
 															<span>
@@ -458,17 +458,15 @@
 													<field name="female_dysmenorrhoea" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_pain_intensity" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_lmp"/>
-													<field name="female_complications" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_complications_ids" widget="many2many_checkboxes"/>
 													<div/>
-													<div style="width: 201%;">
-														<div>
-															<span>
-																Other
-															</span>
-															<field name="female_complications_other" class="oe_inline" nolabel="1"/>
-														</div>
+													<div>
+														<span>
+															Other
+														</span>
+														<field name="female_complications_other" class="oe_inline" nolabel="1"/>
 													</div>
-													<field name="female_complains" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_complains_ids" widget="many2many_checkboxes"/>
 												</group>
 											</div>
 
@@ -505,17 +503,17 @@
 												</group>
 											</div>
 
-
-											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="female_medical_surgical_section_link">
+											<!-- Medical History-->
+											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="female_medical_section_link">
 												<div class="col-6">
-													<a data-bs-toggle="collapse" data-bs-target="#female_medical_surgical_section" href="#">
-														<h4 class="mt-2 mb-0">Surgical and Medical History</h4>
+													<a data-bs-toggle="collapse" data-bs-target="#female_medical_section" href="#">
+														<h4 class="mt-2 mb-0">Medical History</h4>
 													</a>
 												</div>
 												<div class="col-6 text-right" style="margin-top:9px">
 												</div>
 											</div>
-											<div class="card-block mb-5 pl-4 collapse" id="female_medical_surgical_section">
+											<div class="card-block mb-5 pl-4 collapse" id="female_medical_section">
 												<group col="12" class="mt-0">
 													<group string="Medical History" col="6" colspan="6" class="mt-0">
 														<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
@@ -608,7 +606,23 @@
 														<field name="female_medical_history_others" placeholder="Add Details" colspan="6" />
 														<field name="female_medical_history_others_date" string="" colspan="6" placeholder="Since" />
 													</group>
-													<group string="Surgical History" class="mt-0" col="6" colspan="6">
+												</group>
+											</div>
+
+
+											<!-- Surgical History-->
+											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="female_surgical_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#female_surgical_section" href="#">
+														<h4 class="mt-2 mb-0">Surgical History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="female_surgical_section">
+												<group col="12" class="mt-0">
+													<group string="Surgical History" col="6" colspan="6" class="mt-0">
 														<div style="margin-top: -7%;">
 															<!-- BUG -->
 															<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
@@ -673,7 +687,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseDiabetes" class="collapse" role="tabpanel" aria-labelledby="diabetesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_diabetes_ids" widget="many2many_checkboxes"/>
-																				<field name="female_other_diabetes"/>
+																				<field name="female_other_diabetes" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -690,7 +704,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_malignancies_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_malignancies"/>
+																				<field name="female_other_malignancies" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -707,7 +721,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_hypertension"/>
+																				<field name="female_other_hypertension" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -724,7 +738,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_mental_illness_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_mental_illness"/>
+																				<field name="female_other_mental_illness" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -741,7 +755,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseTwins" class="collapse" role="tabpanel" aria-labelledby="twinsOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_twins_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_twins"/>
+																				<field name="female_other_twins" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -758,7 +772,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseTuberculosis" class="collapse" role="tabpanel" aria-labelledby="tuberculosisOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_tuberculosis_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_tuberculosis"/>
+																				<field name="female_other_tuberculosis" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -775,7 +789,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="c_abnormalitiesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_abnormalities_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_abnormalities"/>
+																				<field name="female_other_abnormalities" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -792,7 +806,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapsePih" class="collapse" role="tabpanel" aria-labelledby="pihOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_pregnancy_induced_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_pregnancy_induced_hypertension"/>
+																				<field name="female_other_pregnancy_induced_hypertension" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -809,7 +823,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseMisscarriages" class="collapse" role="tabpanel" aria-labelledby="misscarriagesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_miscarriage_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_miscarriage"/>
+																				<field name="female_other_miscarriage" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -826,7 +840,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapsePb" class="collapse" role="tabpanel" aria-labelledby="pbOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_preterm_birth_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_preterm_birth"/>
+																				<field name="female_other_preterm_birth" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -843,7 +857,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseSb" class="collapse" role="tabpanel" aria-labelledby="sbOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_still_birth_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_still_birth"/>
+																				<field name="female_other_still_birth" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -860,7 +874,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapsePmof" class="collapse" role="tabpanel" aria-labelledby="pmofOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_pre_mature_ovarian_failure_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_pre_mature_ovarian_failure"/>
+																				<field name="female_other_pre_mature_ovarian_failure" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -876,7 +890,7 @@
 																		</div>
 																		<div style="margin-left:17px; margin-top:10px" id="collapseOther" class="collapse" role="tabpanel" aria-labelledby="otherOne" aria-expanded="false">
 																			<div class="card-block">
-																				<field name="female_family_history_other" />
+																				<field name="female_family_history_other" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -1069,183 +1083,183 @@
 
 													<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
 
-													<div/>
-													<div>
+													<!--													<div/>-->
+													<!--													<div>-->
 
-														<span>
-															Type
-														</span>
-														<field name="left_ovary_type" class="oe_inline" nolabel="1"/>
-														<span>
-															Nos
-														</span>
-														<field name="left_ovary_nos" class="oe_inline" nolabel="1"/>
+													<!--														<span>-->
+													<!--															Type-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_type" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															Nos-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_nos" class="oe_inline" nolabel="1"/>-->
 
-														<span>
-															Size
-														</span>
-														<field name="left_ovary_length_1" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="left_ovary_width_1" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_length_1" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_width_1" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
 
-														<span>
-															Size
-														</span>
-														<field name="left_ovary_length_2" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="left_ovary_width_2" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_length_2" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_width_2" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
 
-														<span>
-															Size
-														</span>
-														<field name="left_ovary_length_3" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="left_ovary_width_3" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_length_3" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_width_3" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
 
-														<span>
-															Size
-														</span>
-														<field name="left_ovary_length_4" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="left_ovary_width_4" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_length_4" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_width_4" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
 
-														<span>
-															Size
-														</span>
-														<field name="left_ovary_length_5" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="left_ovary_width_5" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
-													</div>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_length_5" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="left_ovary_width_5" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
+													<!--													</div>-->
 
 													<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
 
-													<div/>
-													<div>
-														<span>
-															Type
-														</span>
-														<field name="right_ovary_type" class="oe_inline" nolabel="1"/>
-														<span>
-															Nos
-														</span>
-														<field name="right_ovary_nos" class="oe_inline" nolabel="1"/>
+													<!--													<div/>-->
+													<!--													<div>-->
+													<!--														<span>-->
+													<!--															Type-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_type" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															Nos-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_nos" class="oe_inline" nolabel="1"/>-->
 
 
-														<span>
-															Size
-														</span>
-														<field name="right_ovary_length_1" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="right_ovary_width_1" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_length_1" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_width_1" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
 
-														<span>
-															Size
-														</span>
-														<field name="right_ovary_length_2" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="right_ovary_width_2" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_length_2" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_width_2" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
 
-														<span>
-															Size
-														</span>
-														<field name="right_ovary_length_3" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="right_ovary_width_3" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_length_3" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_width_3" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
 
-														<span>
-															Size
-														</span>
-														<field name="right_ovary_length_4" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="right_ovary_width_4" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_length_4" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_width_4" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
 
-														<span>
-															Size
-														</span>
-														<field name="right_ovary_length_5" class="oe_inline" nolabel="1"/>
-														<span>
-															x
-														</span>
-														<field name="right_ovary_width_5" class="oe_inline" nolabel="1"/>
-														<span>
-															cm
-														</span>
-													</div>
+													<!--														<span>-->
+													<!--															Size-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_length_5" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															x-->
+													<!--														</span>-->
+													<!--														<field name="right_ovary_width_5" class="oe_inline" nolabel="1"/>-->
+													<!--														<span>-->
+													<!--															cm-->
+													<!--														</span>-->
+													<!--													</div>-->
 
 
 													<field name="uterus" widget="radio" options="{'horizontal': True}"/>
 													<field name="uterus_size_length"/>
 													<field name="uterus_size_width"/>
 													<field name="uterus_size_position"/>
-													<field name="uterus_nos"/>
-													<field name="forbid_size_length_1"/>
-													<field name="forbid_size_width_1"/>
-													<field name="forbid_size_length_2"/>
-													<field name="forbid_size_width_2"/>
-													<field name="forbid_size_length_3"/>
-													<field name="forbid_size_width_3"/>
-													<field name="forbid_size_length_4"/>
-													<field name="forbid_size_width_4"/>
-													<field name="forbid_size_length_5"/>
-													<field name="forbid_size_width_5"/>
-													<field name="forbid_size_length_6"/>
-													<field name="forbid_size_width_6"/>
-													<field name="forbid_size_length_7"/>
-													<field name="forbid_size_width_7"/>
-													<field name="forbid_size_length_8"/>
-													<field name="forbid_size_width_8"/>
-													<field name="forbid_size_length_9"/>
-													<field name="forbid_size_width_9"/>
-													<field name="forbid_size_length_10"/>
-													<field name="forbid_size_width_10"/>
-													<label for="lining"/>
+													<!--													<field name="uterus_nos"/>-->
+													<!--													<field name="forbid_size_length_1"/>-->
+													<!--													<field name="forbid_size_width_1"/>-->
+													<!--													<field name="forbid_size_length_2"/>-->
+													<!--													<field name="forbid_size_width_2"/>-->
+													<!--													<field name="forbid_size_length_3"/>-->
+													<!--													<field name="forbid_size_width_3"/>-->
+													<!--													<field name="forbid_size_length_4"/>-->
+													<!--													<field name="forbid_size_width_4"/>-->
+													<!--													<field name="forbid_size_length_5"/>-->
+													<!--													<field name="forbid_size_width_5"/>-->
+													<!--													<field name="forbid_size_length_6"/>-->
+													<!--													<field name="forbid_size_width_6"/>-->
+													<!--													<field name="forbid_size_length_7"/>-->
+													<!--													<field name="forbid_size_width_7"/>-->
+													<!--													<field name="forbid_size_length_8"/>-->
+													<!--													<field name="forbid_size_width_8"/>-->
+													<!--													<field name="forbid_size_length_9"/>-->
+													<!--													<field name="forbid_size_width_9"/>-->
+													<!--													<field name="forbid_size_length_10"/>-->
+													<!--													<field name="forbid_size_width_10"/>-->
+													<label for="lining_ids"/>
 													<div>
-														<field name="lining" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
+														<field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/>
 														<span class="oe_inline">
 															Size
 														</span>
@@ -1279,25 +1293,24 @@
 													<field name="male_comment"/>
 
 													<field name="biological_male_dob"/>
-													<field name="biological_male_age" force_save="1"/>
+													<field name="biological_male_age" attrs="{'invisible': [('biological_male_dob', '!=', False)]}" force_save="1"/>
 
 													<field name="male_age"/>
 												</group>
 											</div>
 
 
-
-											<div class="d-flex scroll-to card-header first_consultation_sub_container_male" id="male_medical_surgical_section_link">
+											<!-- Medical History -->
+											<div class="d-flex scroll-to card-header first_consultation_sub_container_male" id="male_medical_section_link">
 												<div class="col-6">
-													<a data-bs-toggle="collapse" data-bs-target="#male_medical_surgical_section" href="#">
-														<h4 class="mt-2 mb-0">Surgical and Medical History</h4>
+													<a data-bs-toggle="collapse" data-bs-target="#male_medical_section" href="#">
+														<h4 class="mt-2 mb-0">Medical History</h4>
 													</a>
 												</div>
 												<div class="col-6 text-right" style="margin-top:9px">
 												</div>
 											</div>
-
-											<div class="card-block mb-5 pl-4 collapse" id="male_medical_surgical_section">
+											<div class="card-block mb-5 pl-4 collapse" id="male_medical_section">
 												<group col="12" class="mt-0">
 													<group string="Medical History" col="6" colspan="6" class="mt-0">
 														<field name="male_adrenal" placeholder="Add Details" colspan="6" />
@@ -1389,6 +1402,22 @@
 														<field name="male_medical_history_others" placeholder="Add Details" colspan="6" />
 														<field name="male_medical_history_others_date" string="" colspan="6" placeholder="Since" />
 													</group>
+												</group>
+											</div>
+
+
+											<!-- Surgical History -->
+											<div class="d-flex scroll-to card-header first_consultation_sub_container_male" id="male_surgical_section_link">
+												<div class="col-6">
+													<a data-bs-toggle="collapse" data-bs-target="#male_surgical_section" href="#">
+														<h4 class="mt-2 mb-0">Surgical History</h4>
+													</a>
+												</div>
+												<div class="col-6 text-right" style="margin-top:9px">
+												</div>
+											</div>
+											<div class="card-block mb-5 pl-4 collapse" id="male_surgical_section">
+												<group col="12" class="mt-0">
 													<group string="Surgical History" class="mt-0" col="6" colspan="6">
 														<!-- BUG -->
 														<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
@@ -1411,6 +1440,7 @@
 													</group>
 												</group>
 											</div>
+
 
 											<div class="d-flex scroll-to card-header first_consultation_sub_container_male" id="sx_contraception_male_section_link">
 												<div class="col-6">
@@ -1487,7 +1517,7 @@
 																			 aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_diabetes_ids" widget="many2many_checkboxes"/>
-																				<field name="male_other_diabetes"/>
+																				<field name="male_other_diabetes" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -1505,7 +1535,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_malignancies_ids"  widget="many2many_checkboxes" />
-																				<field name="male_other_malignancies"/>
+																				<field name="male_other_malignancies" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -1523,7 +1553,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_hypertension"/>
+																				<field name="male_other_hypertension" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -1541,7 +1571,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_mental_illness_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_mental_illness"/>
+																				<field name="male_other_mental_illness" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -1559,7 +1589,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseTuberculosis" class="collapse" role="tabpanel" aria-labelledby="male_tuberculosisOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_tuberculosis_ids"  widget="many2many_checkboxes" />
-																				<field name="male_other_tuberculosis"/>
+																				<field name="male_other_tuberculosis" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -1577,7 +1607,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseC_abnormalities" class="collapse" role="tabpanel" aria-labelledby="male_c_abnormalitiesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_abnormalities_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_abnormalities"/>
+																				<field name="male_other_abnormalities" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -1593,7 +1623,7 @@
 																		</div>
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseOther" class="collapse" role="tabpanel" aria-labelledby="male_otherOne" aria-expanded="false">
 																			<div class="card-block">
-																				<field name="male_family_history_other" />
+																				<field name="male_family_history_other" placeholder="Other..."/>
 																			</div>
 																		</div>
 																	</div>
@@ -1836,7 +1866,8 @@
 											<field name="biological_male_age" force_save="1"/>
 											<field name="male_age" attrs="{'invisible': [('biological_male_age', '!=', False)]}"/>										</span>
 									</div>
-									<button name="create"
+									<button name="action_open_seminology"
+											type="object"
 											class="card-custom-right-button"
 											string="Seminology"/>
 									<div class="divider"/>
