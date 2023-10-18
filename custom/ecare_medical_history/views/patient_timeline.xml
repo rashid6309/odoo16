@@ -965,11 +965,11 @@
 														<label for="female_bp_upper"/>
 														<div>
 															<field name="female_bp_upper" class="oe_inline" nolabel="1"/>
-															<span>
+															<span class="oe_inline">
 																/
 															</span>
 															<field name="female_bp_lower" class="oe_inline" nolabel="1"/>
-															<span>
+															<span class="oe_inline">
 																mmHg
 															</span>
 														</div>
@@ -983,13 +983,15 @@
 														</div>
 
 														<label for="female_temperature"/>
-														<group>
+														<div>
 															<field name="female_temperature" class="oe_inline" nolabel="1"/>
 															<span>
 																C
 															</span>
-														</group>
-														<group string="Goitear">
+														</div>
+													</group>
+													<group string="Goitear">
+														<group>
 															<field name="female_thyroid"  widget="radio" options="{'horizontal': True}"/>
 															<field name="female_thyroid_goitear_length"/>
 															<field name="female_thyroid_goitear_width"/>
@@ -997,9 +999,8 @@
 															<field name="female_thyroid_goitear_nodule"/>
 														</group>
 
-
-														<field name="female_pallor"  widget="radio" options="{'horizontal': True}"/>
 													</group>
+
 												</section>
 											</div>
 
