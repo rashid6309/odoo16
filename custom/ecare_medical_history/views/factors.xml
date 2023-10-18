@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-<!--        <record id="ec_medical_factors_form" model="ir.ui.view">-->
-<!--            <field name="name">ec.medical.factors.form</field>-->
-<!--            <field name="model">ec.medical.factors</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <form string="Factors">-->
-<!--                    <sheet>-->
-<!--                        <group>-->
-<!--                            <field name="name"/>-->
-<!--                        </group>-->
-<!--                    </sheet>-->
-<!--                </form>-->
-<!--            </field>-->
-<!--        </record>-->
 
         <record id="ec_medical_factors_tree_view" model="ir.ui.view">
             <field name="name">ec.medical.factors.tree.view</field>
@@ -41,7 +28,7 @@
             id="ec_medical_factors_menu"
             name="Factors"
             action="ec_medical_factors_action"
-            parent="ec_main_configuration"
+            parent="ec_medical_history_configuration"
             sequence="4800"/>
 
     </data>

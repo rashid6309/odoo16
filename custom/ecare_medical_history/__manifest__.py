@@ -11,7 +11,7 @@
     'maintainer': 'Rashid Noor',
     'license': 'LGPL-3',
     'support': '',
-    'depends': ['web', 'base', 'mail', 'ecare_core', 'ecare_appointment'],
+    'depends': ['web', 'base', 'mail', 'ecare_core'],
     'demo': [],
     'data': [
         # Security
@@ -19,9 +19,16 @@
 
         # Menu
         'data/family_history_data.xml',
+        'data/menus.xml',
 
         # Reports here
 
+        # Views - Independent
+        'views/health_center.xml',
+        'views/investigation.xml',
+        'views/factors.xml',
+        'views/treatment_list.xml',
+        'data/ec_medical_multi_selection_data.xml',
 
         # Views
         'views/female_obstetrics_history.xml',
@@ -44,8 +51,7 @@
         'views/ec_patient_timeline_wizard.xml',
 
         # This should be called at the end
-        'data/menus.xml',
-        'data/ec_medical_multi_selection_data.xml',
+        'data/view_menus.xml',
 
     ],
     'assets': {

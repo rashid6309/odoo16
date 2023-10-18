@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <menuitem
+                id="ec_medical_root"
+                name="eCare Medical"
+                sequence="200"
+        />
+
+        <!-- Menu-item for patient -->
+
+        <menuitem id="ec_medical_patient_menu"
+                  name="Timelines"
+                  parent="ec_medical_root"
+                  sequence="50"
+                  action="ecare_medical_history.patient_timeline_action"/>
+
+        <menuitem id="ec_medical_patient_timeline_menu"
+                  name="Create Timeline"
+                  parent="ec_medical_root"
+                  sequence="60"
+                  action="ecare_medical_history.ec_patient_timeline_wizard_action"/>
+
+        <menuitem id="ec_medical_history_configuration"
+                  name="Configuration"
+                  parent="ec_medical_root"
+                  sequence="100"/>
+
+
+    </data>
+</odoo>

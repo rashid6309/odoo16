@@ -8,19 +8,11 @@
                 sequence="200"
         />
 
-        <!-- Menu-item for patient -->
-
-        <menuitem id="ec_medical_patient_menu"
-                  name="Timelines"
+        <menuitem id="ec_medical_history_configuration"
+                  name="Configuration"
                   parent="ec_medical_root"
-                  sequence="50"
-                  action="ecare_medical_history.patient_timeline_action"/>
+                  sequence="100"/>
 
-        <menuitem id="ec_medical_patient_timeline_menu"
-                  name="Create Timeline"
-                  parent="ec_medical_root"
-                  sequence="60"
-                  action="ecare_medical_history.ec_patient_timeline_wizard_action"/>
 
     </data>
 </odoo>

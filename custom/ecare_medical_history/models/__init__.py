@@ -1,8 +1,16 @@
+# Independent modules
+from . import ec_medical_multi_selection
+from . import ec_medical_health_centers
+from . import investigation
+from . import treatment_list
+from . import factors
+
 from . import patient
 from . import individual_patient
 from . import family_relation_list
 from . import previous_treatment
 from . import ec_medical_tvs
+
 # Common for both male and female
 from . import general_history
 from . import sex_contraception
@@ -38,5 +46,3 @@ from . import repeat_consultation
 from . import patient_timeline
 from . import patient_timeline_wizard
 
-# Multi Selection
-from . import ec_medical_multi_selection
