@@ -6,7 +6,7 @@ class FemaleGynaecologicalHistory(models.Model):
     _name = 'ec.gynaecological.history'
     _description = "Female Gynaecological History"
 
-    female_age_at_menarche = fields.Char(string='Age at Menarche')
+    female_age_at_menarche = fields.Selection(selection=StaticMember.AGE_AT_MENARCHE, string='Age at Menarche')
     female_menarche_type = fields.Selection(selection=StaticMember.MENARCHE_TYPE, string='Age at Menarche')
     female_menstrual_cycle = fields.Selection(selection=StaticMember.MENARCHE_CYCLE, string='Menstrual Cycle')
     female_menstrual_days = fields.Date(string='Menstrual Cycle Days')
@@ -23,9 +23,17 @@ class FemaleGynaecologicalHistory(models.Model):
     female_dysmenorrhoea = fields.Selection(selection=StaticMember.DYSMENORRHOEA, string='Dysmenorrhoea')
     female_pain_intensity = fields.Selection(selection=StaticMember.INTENSITY, string='Pain Intensity')
     female_lmp = fields.Date(string='LMP')
-    female_complications = fields.Selection(selection=StaticMember.COMPLICATIONS,
-                                            string='Complications')
+    female_complications_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                                relation='gynaecological_history_multi_selection_complications',
+                                                column1='gynaecological_id',
+                                                column2='multi_selection_id',
+                                                string='Complications', domain="[('type', '=', 'complications')]")
+
     female_complications_other = fields.Char(string='Other Complications')
-    female_complains = fields.Selection(selection=StaticMember.COMPLAINS,
-                                        string='Complains')
+    female_complains_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                            relation='gynaecological_history_multi_selection_complains',
+                                            column1='gynaecological_id',
+                                            column2='multi_selection_id',
+                                            string='Complains', domain="[('type', '=', 'complains')]")
+
 
