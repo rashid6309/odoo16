@@ -435,9 +435,9 @@
 															</span>
 															<field name="female_menstrual_gap_from" class="oe_inline" nolabel="1"/>
 															<span>
-																To
+																Month
 															</span>
-															<field name="female_menstrual_gap_to" class="oe_inline" nolabel="1"/>
+															<field name="female_menstrual_gap_to_month" class="oe_inline" nolabel="1"/>
 															<span>
 																Other
 															</span>
