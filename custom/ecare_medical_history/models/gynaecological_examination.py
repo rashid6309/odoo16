@@ -18,8 +18,8 @@ class MedicalGynaecologicalExamination(models.Model):
     uterus_position = fields.Selection(selection=StaticMember.UTERUS_POSITION, string='Uterus Position')
     uterus_mobility = fields.Selection(selection=StaticMember.UTERUS_MOBILITY, string='Uterus Mobility')
 
-    gynaecological_examination_ps_selection = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='PS')
-    gynaecological_examination_ps_comment = fields.Char('PS Comment')
+    gynaecological_examination_ps_selection = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='P/S')
+    gynaecological_examination_ps_comment = fields.Char('P/S Comment')
 
     gynaecological_examination_date = fields.Date(string='Date')
 
@@ -96,6 +96,10 @@ class MedicalGynaecologicalExamination(models.Model):
     forbid_size_length_10 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 10')
     forbid_size_width_10 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 10')
 
-    lining = fields.Selection(selection=StaticMember.LINING, string='Lining')
+    lining_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                  relation='gynaecological_examination_multi_selection_lining',
+                                  column1='gynaecological_id',
+                                  column2='multi_selection_id',
+                                  string='Lining', domain="[('type', '=', 'lining')]")
     lining_size = fields.Selection(selection=StaticMember.LINING_SIZE, string='Lining Size')
 
