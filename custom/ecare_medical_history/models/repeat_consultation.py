@@ -18,7 +18,6 @@ class RepeatConsultation(models.Model):
     repeat_timeline_id = fields.Many2one(comodel_name="ec.patient.timeline", ondelete="restrict")
 
     ''' Data attributes '''
-    ''' @FIX: state to repeat_consultation_state '''
 
     repeat_state = fields.Selection(selection=[('1', "Question 1"),
                                                ('2', "Question 2"),

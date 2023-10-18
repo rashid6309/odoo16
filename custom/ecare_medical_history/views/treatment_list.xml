@@ -39,7 +39,7 @@
                 id="ec_medical_treatment_menu"
                 name="Treatments"
                 action="ec_medical_treatment_list_action"
-                parent="ec_main_configuration"
+                parent="ec_medical_history_configuration"
                 sequence="4800"/>
 
     </data>

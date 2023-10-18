@@ -38,7 +38,7 @@
             id="ec_medical_centers_menu"
             name="Health Center"
             action="ec_medical_health_center_action"
-            parent="ec_main_configuration"
+            parent="ec_medical_history_configuration"
             sequence="4600"/>
 
     </data>

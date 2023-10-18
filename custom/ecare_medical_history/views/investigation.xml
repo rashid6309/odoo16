@@ -39,7 +39,7 @@
             id="ec_medical_investigation_menu"
             name="Investigations"
             action="ec_medical_investigation_action"
-            parent="ec_main_configuration"
+            parent="ec_medical_history_configuration"
             sequence="4700"/>
 
     </data>

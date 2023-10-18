@@ -14,8 +14,20 @@ order by create date desc.
 Anywhere the previous treatments is shown all of its records are visible. 
 order by create date desc.
 
+<h4>Limitations</h4>
+
+To show fields listed below multiple times in the "patient.timeline" due to browser view limitation (As when view is rendered n+1 times browser gets confused when auto-filling (DOB) labels). Following are where this scenario is applicable.
+<li>Obstetrics</li>
+<li>Previous Treatment</li>
+
+The key here is to build the joins on the same (FK) - inverse_name and the model(in here it is "patient.timeline") should be same.
+
+
 <h2>Repeat Consultation </h2>
 <li>Unique constraint is applied at DB</li>
+
+
+<h2> Done but removed due to change request (Only for developes) </h2>
 <h3> Factors </h3>
 Factor edit button which was initially decided was actually discarded for now, below is the code needed to be used in case:
 Under Male Factor
