@@ -117,7 +117,7 @@ class FirstConsultation(models.Model):
             "type": 'ir.actions.act_window',
             "res_model": 'ec.first.consultation',
             'view_mode': 'form',
-            'view_id': self.env.ref('ecare_medical_history.ec_medical_first_consultation_form_view').id,
+            # 'view_id': self.env.ref('ecare_medical_history.ec_medical_first_consultation_form_view').id,
             "context": context,
             "target": 'current',
         }
