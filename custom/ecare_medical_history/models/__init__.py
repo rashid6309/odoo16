@@ -37,3 +37,6 @@ from . import repeat_consultation
 # Timeline
 from . import patient_timeline
 from . import patient_timeline_wizard
+
+# Multi Selection
+from . import ec_medical_multi_selection
