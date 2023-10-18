@@ -77,7 +77,7 @@
                         <label for="lining"/>
                         <div>
                             <field name="lining" class="oe_inline" nolabel="1" widget="radio" options="{'horizontal': True}"/>
-                            <field name="lining_size" placeholder="size" class="oe_inline" nolabel="1"/>
+                            <field name="lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
                             <span>mm</span>
                         </div>
                         <label for="cyst_type"/>
