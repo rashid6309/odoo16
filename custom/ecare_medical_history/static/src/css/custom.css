@@ -416,6 +416,10 @@ color: #2F5597;
    width:10%;
   }
 
+.o_input
+{
+    border-bottom: 1px solid #CCC;
+}
 
 
 /* uf bo */
