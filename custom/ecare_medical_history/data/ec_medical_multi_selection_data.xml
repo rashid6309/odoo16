@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+<!--        Lining-->
+        <record model="ec.medical.multi.selection" id="smooth">
+            <field name="name">Smooth</field>
+            <field name="type">lining</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="distorted">
+            <field name="name">Distorted</field>
+            <field name="type">lining</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="triple_echo">
+            <field name="name">Triple Echo</field>
+            <field name="type">lining</field>
+        </record>
+
+<!--        Complications-->
+        <record model="ec.medical.multi.selection" id="viginal_discharge">
+            <field name="name">Viginal Discharge</field>
+            <field name="type">complications</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="endometriosis">
+            <field name="name">Endometriosis</field>
+            <field name="type">complications</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="pid">
+            <field name="name">PID</field>
+            <field name="type">complications</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="fibroids">
+            <field name="name">Fibroids</field>
+            <field name="type">complications</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="pcos">
+            <field name="name">PCOS</field>
+            <field name="type">complications</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="none">
+            <field name="name">None</field>
+            <field name="type">complications</field>
+        </record>
+
+<!--        Complains-->
+
+        <record model="ec.medical.multi.selection" id="intermenstrual_bleeding">
+            <field name="name">Intermenstrual Bleeding</field>
+            <field name="type">complains</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="spotting">
+            <field name="name">Spotting</field>
+            <field name="type">complains</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="pcb">
+            <field name="name">PCB</field>
+            <field name="type">complains</field>
+        </record>
+
+    </data>
+</odoo>
