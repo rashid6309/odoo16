@@ -32,7 +32,6 @@
         'views/lab_history.xml',
 
         # This Views should be below after all of its views.
-        'views/first_consultation.xml',
 
         # Repeat
         'views/repeat_consultation.xml',
@@ -46,6 +45,7 @@
 
         # This should be called at the end
         'data/menus.xml',
+        'data/ec_medical_multi_selection_data.xml',
 
     ],
     'assets': {
