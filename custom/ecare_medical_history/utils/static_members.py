@@ -456,5 +456,6 @@ class StaticMember:
         ('lining', 'Lining'),
         ('complications', 'Complications'),
         ('complains', 'Complains'),
+        ('dysmenorrhoea', 'Dysmenorrhoea'),
     ]
     

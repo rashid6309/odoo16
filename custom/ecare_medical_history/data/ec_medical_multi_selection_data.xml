@@ -57,5 +57,24 @@
             <field name="type">complains</field>
         </record>
 
+<!--        Dysmenorrhoea-->
+
+        <record model="ec.medical.multi.selection" id="before_menses">
+            <field name="name">Before Menses</field>
+            <field name="type">dysmenorrhoea</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="during_menses">
+            <field name="name">During Menses</field>
+            <field name="type">dysmenorrhoea</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="after_menses">
+            <field name="name">After Menses</field>
+            <field name="type">dysmenorrhoea</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="dysmenorrhoea_none">
+            <field name="name">None</field>
+            <field name="type">dysmenorrhoea</field>
+        </record>
+
     </data>
 </odoo>

@@ -98,10 +98,10 @@
                                                 <label for="repeat_seen_by" class="o_form_label">Seen by</label>
                                             </td>
                                             <td><field name="repeat_seen_by"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_other_doctors_present" class="o_form_label">Other Doctors Present</label>
-                                            </td>
-                                            <td><field name="repeat_other_doctors_present"/></td>
+<!--                                            <td class="o_td_label">-->
+<!--                                                <label for="repeat_other_doctors_present" class="o_form_label">Other Doctors Present</label>-->
+<!--                                            </td>-->
+<!--                                            <td><field name="repeat_other_doctors_present"/></td>-->
                                         </tr>
                                         <tr>
                                             <td class="o_td_label">
@@ -255,8 +255,8 @@
                             <field name="repeat_date"/>
                             <field name="repeat_seen_by"
                                    options="{'no_create_edit': True, 'no_create': True}"/>
-                            <field name="repeat_other_doctors_present" widget="many2many_tags"
-                                   options="{'no_create_edit': True, 'no_create': True}"/>
+<!--                            <field name="repeat_other_doctors_present" widget="many2many_tags"-->
+<!--                                   options="{'no_create_edit': True, 'no_create': True}"/>-->
                             <field name="repeat_seen_with"
                                    options="{'no_create_edit': True, 'no_create': True}"/>
                             <field name="repeat_notes"/>
