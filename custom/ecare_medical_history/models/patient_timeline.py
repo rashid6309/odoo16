@@ -1,6 +1,8 @@
 from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
 
+from odoo.exceptions import AccessError, UserError, ValidationError
+
 
 class PatientTimeline(models.Model):
     _name = "ec.patient.timeline"
@@ -350,3 +352,6 @@ class PatientTimeline(models.Model):
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
                                                                        None)
+
+    def action_open_seminology(self):
+        raise UserError("Module is under development phase.")
