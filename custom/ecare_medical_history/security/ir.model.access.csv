@@ -30,3 +30,7 @@ access_ec_male_medical_history_all,access_ec_male_medical_history_all,model_ec_m
 access_ec_patient_timeline_all,access_ec_patient_timeline_all,model_ec_patient_timeline,,1,1,1,1
 access_ec_patient_timeline_wizard_all,access_ec_patient_timeline_wizard_all,model_ec_patient_timeline_wizard,,1,1,1,1
 access_ec_patient_repeat_consultation_all,access_ec_patient_repeat_consultation_all,model_ec_repeat_consultation,,1,1,1,1
+
+
+access_ec_medical_multi_selection_all,access_ec_medical_multi_selection_all,model_ec_medical_multi_selection,,1,1,1,1
+
