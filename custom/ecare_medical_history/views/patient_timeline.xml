@@ -232,8 +232,8 @@
 											<field name="repeat_date"/>
 											<field name="repeat_seen_by"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
-											<!--											<field name="repeat_other_doctors_present" widget="many2many_tags"-->
-											<!--												   options="{'no_create_edit': True, 'no_create': True}"/>-->
+																					<field name="repeat_other_doctors_present" widget="many2many_tags"
+																						   options="{'no_create_edit': True, 'no_create': True}"/>
 											<field name="repeat_seen_with"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
 											<field name="repeat_notes"/>
