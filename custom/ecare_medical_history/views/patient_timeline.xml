@@ -232,8 +232,8 @@
 											<field name="repeat_date"/>
 											<field name="repeat_seen_by"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
-											<field name="repeat_other_doctors_present" widget="many2many_tags"
-												   options="{'no_create_edit': True, 'no_create': True}"/>
+											<!--											<field name="repeat_other_doctors_present" widget="many2many_tags"-->
+											<!--												   options="{'no_create_edit': True, 'no_create': True}"/>-->
 											<field name="repeat_seen_with"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
 											<field name="repeat_notes"/>
@@ -311,9 +311,9 @@
 													<field name="female_comment" placeholder="Details..."/>
 
 													<field name="biological_female_dob"/>
-													<field name="biological_female_age" attrs="{'invisible': [('biological_female_age', '!=', False)]}" force_save="1"/>
+													<field name="biological_female_age" attrs="{'invisible': [('biological_female_dob', '=', False)]}" force_save="1"/>
 
-													<field name="female_age"/>
+													<field name="female_age" attrs="{'invisible': [('biological_female_age', '!=', False)]}"/>
 													<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_family_system" widget="radio" options="{'horizontal': True}"/>
 													<label for="female_living_togather">Living Together</label>
@@ -455,7 +455,7 @@
 													</div>
 
 													<field name="female_menstrual_flow" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_dysmenorrhoea" widget="radio" options="{'horizontal': True}"/>
+													<field name="female_dysmenorrhoea_ids" widget="many2many_checkboxes"/>
 													<field name="female_pain_intensity" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_lmp"/>
 													<field name="female_complications_ids" widget="many2many_checkboxes"/>
@@ -965,11 +965,11 @@
 														<label for="female_bp_upper"/>
 														<div>
 															<field name="female_bp_upper" class="oe_inline" nolabel="1"/>
-															<span>
+															<span class="oe_inline">
 																/
 															</span>
 															<field name="female_bp_lower" class="oe_inline" nolabel="1"/>
-															<span>
+															<span class="oe_inline">
 																mmHg
 															</span>
 														</div>
@@ -989,14 +989,18 @@
 																C
 															</span>
 														</div>
-
-														<field name="female_thyroid"  widget="radio" options="{'horizontal': True}"/>
-														<field name="female_thyroid_goitear_length"/>
-														<field name="female_thyroid_goitear_width"/>
-														<field name="female_thyroid_goitear_type"/>
-														<field name="female_thyroid_goitear_nodule"/>
-														<field name="female_pallor"  widget="radio" options="{'horizontal': True}"/>
 													</group>
+													<group string="Goitear">
+														<group>
+															<field name="female_thyroid"  widget="radio" options="{'horizontal': True}"/>
+															<field name="female_thyroid_goitear_length"/>
+															<field name="female_thyroid_goitear_width"/>
+															<field name="female_thyroid_goitear_type"/>
+															<field name="female_thyroid_goitear_nodule"/>
+														</group>
+
+													</group>
+
 												</section>
 											</div>
 
@@ -1293,9 +1297,9 @@
 													<field name="male_comment"/>
 
 													<field name="biological_male_dob"/>
-													<field name="biological_male_age" attrs="{'invisible': [('biological_male_dob', '!=', False)]}" force_save="1"/>
+													<field name="biological_male_age" attrs="{'invisible': [('biological_male_dob', '=', False)]}" force_save="1"/>
 
-													<field name="male_age"/>
+													<field name="male_age" attrs="{'invisible': [('biological_male_age', '!=', False)]}"/>
 												</group>
 											</div>
 

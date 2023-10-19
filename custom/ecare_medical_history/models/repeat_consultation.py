@@ -120,8 +120,8 @@ class RepeatConsultation(models.Model):
                                      readonly=True,
                                      default=lambda self: self.env.user)
 
-    repeat_other_doctors_present = fields.Many2many(comodel_name='res.consultant',
-                                                    string='Other Doctors Present')
+    # repeat_other_doctors_present = fields.Many2many(comodel_name='res.consultant',
+    #                                                 string='Other Doctors Present')
     ''' Seen with list required '''
     repeat_seen_with = fields.Selection(selection=StaticMember.SEEN_WITH,
                                         string='Seen with')

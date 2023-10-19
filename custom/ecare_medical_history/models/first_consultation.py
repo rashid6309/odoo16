@@ -78,7 +78,7 @@ class FirstConsultation(models.Model):
     ''' Related '''
 
     male_age = fields.Char(related="first_consultation_patient_id.husband_age",
-                           string="Age")
+                           string="Male Age")
 
     years_of_marriage = fields.Char(related="first_consultation_patient_id.yom",)
 

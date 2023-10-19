@@ -30,6 +30,32 @@ class StaticMember:
         ('12', '12'),
     ]
 
+    GOITEAR_LENGTH = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+    ]
+
+    GOITEAR_WIDTH = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+    ]
+
     DAY_OF_CYCLE = [
         ('monday', 'Monday'),
         ('tuesday', 'Tuesday'),
@@ -456,5 +482,6 @@ class StaticMember:
         ('lining', 'Lining'),
         ('complications', 'Complications'),
         ('complains', 'Complains'),
+        ('dysmenorrhoea', 'Dysmenorrhoea'),
     ]
     
