@@ -3,6 +3,9 @@ from odoo.addons.ecare_core.utilities.helper import TimeValidation
 
 from odoo.exceptions import AccessError, UserError, ValidationError
 
+from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
+
+
 
 class PatientTimeline(models.Model):
     _name = "ec.patient.timeline"
@@ -99,16 +102,16 @@ class PatientTimeline(models.Model):
                                        column1="timeline_id", column2="male_factor_id",
                                        domain=[('type', 'in', ['male'])])
 
-    ''' Computed'''
+    ''' Computed '''
 
     gravida = fields.Char(string='Gravida', compute='_compute_female_values')
     parity = fields.Char(string='Parity', compute='_compute_female_values')
     miscarriages = fields.Char(string='Miscarriages', compute='_compute_female_values')
 
-
-    ''' Required '''
     male_family_history = fields.Char(string='Male Family History', compute='_compute_family_history')
     female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
+
+    infertility_type = fields.Char(readonly=True, compute="_compute_infertility_type")
 
     ''' Static methods '''
     @staticmethod
@@ -239,6 +242,13 @@ class PatientTimeline(models.Model):
             family_history=self.ec_first_consultation_id.ec_female_family_history_id,
             fields_to_process=fields_to_process
         )
+
+    def _compute_infertility_type(self):
+        for record in self:
+            if len(record.first_obs_history_ids) > 0:
+                record.infertility_type = StaticMember.INFERTILITY[1][1]
+            else:
+                record.infertility_type = StaticMember.INFERTILITY[0][1]
 
     ''' Override methods '''
 

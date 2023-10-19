@@ -1875,7 +1875,7 @@
 										</div>
 										<div>
 											<span class="word-title editPatientProfile">Infertility Type:</span>
-											<span><field class="counter-word" style="color: #2F5597;" name="female_complaints"/></span>
+											<span><field class="counter-word" style="color: #2F5597;" name="infertility_type"/></span>
 										</div>
 									</div>
 								</div>
