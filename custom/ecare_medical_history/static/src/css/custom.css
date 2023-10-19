@@ -89,9 +89,6 @@ table {
     border-radius: 4px;
 }
 
-
-
-
 .card-custom1
 {
     width: 100%;
@@ -315,8 +312,6 @@ color: #2F5597;
 .custom_readonly {
     pointer-events: none;
 }
-
-
 
 .right-inner-addon {
     position: relative;
