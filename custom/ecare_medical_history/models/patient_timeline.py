@@ -19,36 +19,35 @@ class PatientTimeline(models.Model):
         'ec.repeat.consultation': 'ec_repeat_consultation_id'
     }
 
+    ''' FK's to build inherits '''
     ec_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete='restrict')
     ec_repeat_consultation_id = fields.Many2one(comodel_name="ec.repeat.consultation", ondelete='cascade')
+
+    ''' FK's related-attributes '''
+    repeat_consultation_date = fields.Datetime(string='Consultation Date',
+                                               related='ec_repeat_consultation_id.create_date')
 
     ''' Foreign keys '''
     timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                           string="Patient",
                                           index=True)
 
+    ''' Related patient attributes '''
+
     # Related Fields which are used for kanban view
     # Related Fields Used for data representation purposes
-    timeline_patient_mr_num = fields.Char('MR No.', related="timeline_patient_id.mr_num", store=True)
-    timeline_patient_name = fields.Char('Patient Name', related="timeline_patient_id.name", store=True)
-    timeline_patient_wife_name = fields.Char('Wife Name', related="timeline_patient_id.wife_name", store=True)
-    timeline_patient_husband_name = fields.Char('Husband Name', related="timeline_patient_id.husband_name", store=True)
+    timeline_patient_mr_num = fields.Char('MR No.', related="timeline_patient_id.mr_num")
+    timeline_patient_name = fields.Char('Patient Name', related="timeline_patient_id.name")
+    timeline_patient_wife_name = fields.Char('Wife Name', related="timeline_patient_id.wife_name")
+    timeline_patient_husband_name = fields.Char('Husband Name', related="timeline_patient_id.husband_name")
 
-    timeline_patient_mobile_wife = fields.Char('Mobile Wife', related="timeline_patient_id.mobile_wife", store=True)
-    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband",
-                                                  store=True)
+    timeline_patient_mobile_wife = fields.Char('Mobile Wife', related="timeline_patient_id.mobile_wife")
+    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband",)
 
-    timeline_patient_wife_image = fields.Binary('Patient Wife Image', related="timeline_patient_id.image_1920",
-                                                store=True)
-    timeline_patient_husband_image = fields.Binary('Patient Husband Image', related="timeline_patient_id.husband_image",
-                                                   store=True)
+    timeline_patient_wife_image = fields.Binary('Patient Wife Image', related="timeline_patient_id.image_1920")
+    timeline_patient_husband_image = fields.Binary('Patient Husband Image', related="timeline_patient_id.husband_image")
 
     """ OBS History Relational Field"""
-
-    timeline_obs_history_ids = fields.One2many(comodel_name='ec.obstetrics.history',
-                                               inverse_name='timeline_id',
-                                               string='Obstetrics History',
-                                               )
 
     first_obs_history_ids = fields.One2many(comodel_name='ec.obstetrics.history',
                                             inverse_name='timeline_id',
@@ -60,15 +59,12 @@ class PatientTimeline(models.Model):
                                              string='Obstetrics History',
                                              )
 
-    """ Previous Treatment Relational Field"""
+    """ Previous Treatment Relational Field See details in data/notes.md """
 
     timeline_previous_treatment_ids = fields.One2many(comodel_name='ec.medical.previous.treatment',
                                                       inverse_name='timeline_id',
                                                       string='Previous Treatment',
                                                       )
-
-    repeat_consultation_date = fields.Datetime(string='Consultation Date',
-                                               related='ec_repeat_consultation_id.create_date')
 
     first_previous_treatment_ids = fields.One2many(comodel_name='ec.medical.previous.treatment',
                                                    inverse_name='timeline_id',
@@ -85,22 +81,14 @@ class PatientTimeline(models.Model):
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
                                               inverse_name="repeat_timeline_id")
 
+    ''' To control when to show '''
+
     show_repeat_section_state = fields.Boolean(default=False, string='Div State')
     show_repeat_consultation_history_section = fields.Boolean(default=False)
 
-    ''' Computed'''
+    ''' Many2many '''
 
-    gravida = fields.Char(string='Gravida', compute='_compute_female_values')
-    parity = fields.Char(string='Parity', compute='_compute_female_values')
-    miscarriages = fields.Char(string='Miscarriages', compute='_compute_female_values')
-
-    male_family_history = fields.Char(string='Male Family History', compute='_compute_family_history')
-    female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
-
-    ''' Override methods '''
-
-    # Female Factor
-
+    # Factors
     female_factor_ids = fields.Many2many(comodel_name='ec.medical.factors',
                                          relation="timeline_female_factor_rel",
                                          column1="timeline_id",
@@ -111,9 +99,50 @@ class PatientTimeline(models.Model):
                                        column1="timeline_id", column2="male_factor_id",
                                        domain=[('type', 'in', ['male'])])
 
+    ''' Computed'''
 
+    gravida = fields.Char(string='Gravida', compute='_compute_female_values')
+    parity = fields.Char(string='Parity', compute='_compute_female_values')
+    miscarriages = fields.Char(string='Miscarriages', compute='_compute_female_values')
+
+
+    ''' Required '''
+    male_family_history = fields.Char(string='Male Family History', compute='_compute_family_history')
+    female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
+
+    ''' Static methods '''
+    @staticmethod
+    def _compute_patient_family_history(family_history, fields_to_process):
+        if not family_history:
+            return None
+
+        family_history_text = []
+
+        for field_name, (field_label, custom_field_name) in fields_to_process.items():
+            field_records = getattr(family_history, field_name)
+            custom_field = getattr(family_history, custom_field_name)
+            if field_name in ('male_family_history_other', 'female_family_history_other'):
+                family_members_list = field_records
+                if family_members_list:
+                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{family_members_list}'
+                    family_history_text.append(field_text)
+            elif field_records or (custom_field and custom_field.strip()):
+                custom_text = f' ({custom_field.strip()})' if custom_field else ''
+                family_members_list = [rec.name for rec in field_records]
+                if family_members_list:
+                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{", ".join(family_members_list)}{custom_text}'
+                    family_history_text.append(field_text)
+
+        if family_history_text:
+            family_history_text = '<br>'.join(family_history_text)
+            return family_history_text
+
+        return None
+
+    ''' Computed methods '''
 
     def _compute_female_values(self):
+        ''' TODO @Rashid: please change the variables name :: '''
         top = abort = alive = sb = cesearian = forceps = miscarriage = svd = ventouse = prev_pret_del = prev_lwbb = nnd = False
         try:
             obs_histories = self.env['ec.obstetrics.history'].search([
@@ -168,47 +197,6 @@ class PatientTimeline(models.Model):
             pass
         self.miscarriages = miscarriage or 0
 
-    @api.model
-    def create(self, vals):
-        res = super(PatientTimeline, self).create(vals)
-        res.ec_repeat_consultation_id.update(
-            {'repeat_timeline_id': res.id,
-             'repeat_patient_id': res.timeline_patient_id
-             }
-        )
-
-        return res
-
-    ''' XXX - Override methods - XXX'''
-
-    @staticmethod
-    def _compute_patient_family_history(family_history, fields_to_process):
-        if not family_history:
-            return None
-
-        family_history_text = []
-
-        for field_name, (field_label, custom_field_name) in fields_to_process.items():
-            field_records = getattr(family_history, field_name)
-            custom_field = getattr(family_history, custom_field_name)
-            if field_name in ('male_family_history_other', 'female_family_history_other'):
-                family_members_list = field_records
-                if family_members_list:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{family_members_list}'
-                    family_history_text.append(field_text)
-            elif field_records or (custom_field and custom_field.strip()):
-                custom_text = f' ({custom_field.strip()})' if custom_field else ''
-                family_members_list = [rec.name for rec in field_records]
-                if family_members_list:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{", ".join(family_members_list)}{custom_text}'
-                    family_history_text.append(field_text)
-
-        if family_history_text:
-            family_history_text = '<br>'.join(family_history_text)
-            return family_history_text
-
-        return None
-
     def _compute_family_history(self):
         # Male Fields Processing
 
@@ -252,6 +240,22 @@ class PatientTimeline(models.Model):
             fields_to_process=fields_to_process
         )
 
+    ''' Override methods '''
+
+    @api.model
+    def create(self, vals):
+        res = super(PatientTimeline, self).create(vals)
+        res.ec_repeat_consultation_id.update(
+            {'repeat_timeline_id': res.id,
+             'repeat_patient_id': res.timeline_patient_id
+             }
+        )
+
+        return res
+
+    ''' XXX - Override methods - XXX'''
+
+    ''' Onchange methods '''
     @api.onchange("timeline_patient_id")
     def populate_dependent_patient_field(self):
         """
@@ -262,6 +266,16 @@ class PatientTimeline(models.Model):
             record.first_consultation_patient_id = patient_id
             record.ec_first_consultation_id.populate_all_patients()
             # record.first_consultation_patient_id.populate_all_patients()
+
+    @api.onchange('biological_female_dob')
+    def _get_biological_age_female(self):
+        for rec in self:
+            rec.biological_female_age = TimeValidation.convert_date_to_days_years(rec.biological_female_dob)
+
+    @api.onchange('biological_male_dob')
+    def _get_biological_age_male(self):
+        for rec in self:
+            rec.biological_male_age = TimeValidation.convert_date_to_days_years(rec.biological_male_dob)
 
     """
     Action for opening views
@@ -312,15 +326,17 @@ class PatientTimeline(models.Model):
         patient_timeline_id = self.env['ec.patient.timeline'].create(values)
         return patient_timeline_id
 
-    @api.onchange('biological_female_dob')
-    def _get_biological_age_female(self):
-        for rec in self:
-            rec.biological_female_age = TimeValidation.convert_date_to_days_years(rec.biological_female_dob)
+    def action_open_tvs_form(self):
+        return self.env['ec.medical.tvs'].action_open_form_view(self.ec_repeat_consultation_id)
 
-    @api.onchange('biological_male_dob')
-    def _get_biological_age_male(self):
-        for rec in self:
-            rec.biological_male_age = TimeValidation.convert_date_to_days_years(rec.biological_male_dob)
+    def action_repeat_consultation_open_previous_treatment(self):
+        return self.env['ec.medical.previous.treatment'].action_open_form_view(self)
+
+    def action_repeat_consultation_open_obstetrics_history(self):
+        return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
+                                                                       None)
+    def action_open_seminology(self):
+        raise UserError("Module is under development phase.")
 
     ''' Data methods '''
 
@@ -342,16 +358,3 @@ class PatientTimeline(models.Model):
 
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
-
-    def action_open_tvs_form(self):
-        return self.env['ec.medical.tvs'].action_open_form_view(self.ec_repeat_consultation_id)
-
-    def action_repeat_consultation_open_previous_treatment(self):
-        return self.env['ec.medical.previous.treatment'].action_open_form_view(self)
-
-    def action_repeat_consultation_open_obstetrics_history(self):
-        return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
-                                                                       None)
-
-    def action_open_seminology(self):
-        raise UserError("Module is under development phase.")

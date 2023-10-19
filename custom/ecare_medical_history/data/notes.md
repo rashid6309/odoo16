@@ -11,12 +11,12 @@ Anywhere the obstetrics is shown all of its records are visible.
 order by create date desc.
 
 <h3>Previous Treatment</h3>
-Anywhere the previous treatments is shown all of its records are visible. 
+Anywhere the previous treatments is shown, all of its records are visible. 
 order by create date desc.
 
 <h4>Limitations</h4>
 
-To show fields listed below multiple times in the "patient.timeline" due to browser view limitation (As when view is rendered n+1 times browser gets confused when auto-filling (DOB) labels). Following are where this scenario is applicable.
+To show fields listed below multiple (in a relevant section i.e., First etc) times in the "patient.timeline" due to browser view limitation (As when view is rendered n+1 times browser gets confused when auto-filling (DOB) labels). Following are where this scenario is applicable.
 <li>Obstetrics</li>
 <li>Previous Treatment</li>
 
