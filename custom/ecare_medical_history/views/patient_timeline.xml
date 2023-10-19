@@ -322,18 +322,22 @@
 														<field name="female_living_togather_reason" nolabel="1" placeholder="Reason..." class="oe_inline"/>
 													</div>
 
-													<label for="female_living_duration_years" string="Living Duration Years"/>
+													<label for="female_living_duration_years"/>
 													<div>
 														<field name="female_living_duration_years" class="oe_inline"/>
-														<field name="female_living_duration_month" placeholder="Month" nolabel="1" class="oe_inline"/>
+														<span class="oe_inline">Years</span>
+														<field name="female_living_duration_month" nolabel="1" class="oe_inline"/>
+														<span class="oe_inline">Months</span>
 													</div>
 
 													<field name="female_complaints" widget="radio" options="{'horizontal': True}"/>
 
-													<label for="female_complaints_duration_years" string="Complaints Duration Years"/>
+													<label for="female_complaints_duration_years"/>
 													<div>
 														<field name="female_complaints_duration_years" class="oe_inline"/>
-														<field name="female_complaints_duration_month" placeholder="Month" nolabel="1" class="oe_inline"/>
+														<span class="oe_inline">Years</span>
+														<field name="female_complaints_duration_month"  nolabel="1" class="oe_inline"/>
+														<span class="oe_inline">Months</span>
 													</div>
 
 													<field name="years_of_marriage"/>
@@ -515,7 +519,7 @@
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="female_medical_section">
 												<group col="12" class="mt-0">
-													<group string="Medical History" col="6" colspan="6" class="mt-0">
+													<group string="" col="6" colspan="6" class="mt-0">
 														<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
 														<field name="female_adrenal" placeholder="Add Details" colspan="6" />
 														<field name="female_adrenal_date" string="" placeholder="Since" colspan="6" />
@@ -621,27 +625,25 @@
 												</div>
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="female_surgical_section">
-												<group col="12" class="mt-0">
-													<group string="Surgical History" col="6" colspan="6" class="mt-0">
-														<div style="margin-top: -7%;">
-															<!-- BUG -->
-															<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
-															<!--
-                                                            Solution:
-                                                                1. We can make some field required on the first consultation, i.e., name so that user creates the record first
-                                                                2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
-                                                                3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
-                                                                -->
+												<group>
+													<div>
+														<!-- BUG -->
+														<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
+														<!--
+														Solution:
+															1. We can make some field required on the first consultation, i.e., name so that user creates the record first
+															2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
+															3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
+															-->
 
-															<button type="action" style="float:right;"
-																	class="btn-primary"
-																	name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
-																	context="{'default_female_consultation_id': id}"
-																	string="Add" target="current"/>
-														</div>
-														<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
-															   string="Patient Procedures" create="false"/>
-													</group>
+														<button type="action" style="float:right;"
+																class="btn-primary mt--5"
+																name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
+																context="{'default_female_consultation_id': id}"
+																string="Add" target="current"/>
+													</div>
+													<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
+														   string="Patient Procedures" create="false"/>
 												</group>
 											</div>
 
@@ -918,12 +920,11 @@
 													<div style="margin-top: -7%;">
 														<button type="action"
 																style="float:right;"
-																class="btn-primary"
+																class="btn-primary mt--5"
 																name="%(ecare_medical_history.ec_lab_history_action)d"
 																context="{'default_female_first_consultation_id':id}"
 																string="Add" target="new"/>
 													</div>
-													<separator string="Details" style="font-size:small" colspan="6" />
 													<field class="custom-scrollbar opd-notes-height" name="female_lab_history_ids" mode="kanban" nolabel="1"
 														   string="Lab History" create="false"/>
 
@@ -989,18 +990,42 @@
 																C
 															</span>
 														</div>
-													</group>
-													<group string="Goitear">
-														<group>
-															<field name="female_thyroid"  widget="radio" options="{'horizontal': True}"/>
-															<field name="female_thyroid_goitear_length"/>
-															<field name="female_thyroid_goitear_width"/>
-															<field name="female_thyroid_goitear_type"/>
-															<field name="female_thyroid_goitear_nodule"/>
-														</group>
-
+														<field name="female_thyroid" widget="radio" options="{'horizontal': true}"/>
 													</group>
 
+<!--													<label for="female_living_duration_years"/>-->
+<!--													<div>-->
+<!--														<field name="female_living_duration_years" class="oe_inline"/>-->
+<!--														<span class="oe_inline">Years</span>-->
+<!--														<field name="female_living_duration_month" nolabel="1" class="oe_inline"/>-->
+<!--														<span class="oe_inline">Months</span>-->
+<!--													</div>-->
+
+													<div string="Goitear" class="bg-light bg-gradient">
+														<div><h3>Goitear</h3></div>
+														<div>
+<!--															<span class="oe_inline">Goitear</span>-->
+															<span class="oe_inline">Size</span>
+															<field name="female_thyroid_goitear_length" nolabel="1" class="oe_inline"/>
+															<span>x</span>
+															<field name="female_thyroid_goitear_width" nolabel="1" class="oe_inline"/>
+															<span>cm</span>
+
+															<field name="female_thyroid_goitear_type"
+																   widget="radio"
+																   options="{'horizontal': True}"
+																   nolabel="1"
+																   style="margin-left: 7%"
+																   class="oe_inline"/>
+														</div>
+
+														<field name="female_thyroid_goitear_nodule"/>
+														<span class="oe_inline">Nodule</span>
+
+													</div>
+													<group>
+														<field name="female_pallor" widget="radio" options="{'horizontal': true}"/>
+													</group>
 												</section>
 											</div>
 
@@ -1421,8 +1446,8 @@
 												</div>
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="male_surgical_section">
-												<group col="12" class="mt-0">
-													<group string="Surgical History" class="mt-0" col="6" colspan="6">
+												<group>
+													<div>
 														<!-- BUG -->
 														<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
 														<!--
@@ -1432,16 +1457,14 @@
                                                             2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
                                                             3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
                                                             -->
-														<div style="margin-top: -7%;">
-															<button type="action" style="float:right;"
-																	class="btn-primary"
-																	name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
-																	context="{'default_male_consultation_id':id}"
-																	string="Add" target="current"/>
-														</div>
-														<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="kanban" nolabel="1"
-															   string="Patient Procedures" create="false"/>
-													</group>
+														<button type="action" style="float:right;"
+																class="btn-primary mt--5"
+																name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
+																context="{'default_male_consultation_id':id}"
+																string="Add" target="current"/>
+													</div>
+													<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="kanban" nolabel="1"
+														   string="Patient Procedures" create="false"/>
 												</group>
 											</div>
 
@@ -1660,10 +1683,8 @@
 																context="{'default_male_first_consultation_id':id}"
 																string="Add" target="new"/>
 													</div>
-													<separator string="Details" style="font-size:small" colspan="6" />
 													<field class="custom-scrollbar opd-notes-height" name="male_lab_history_ids" mode="kanban" nolabel="1"
 														   string="Lab History" create="false"/>
-
 												</group>
 											</div>
 
@@ -1755,14 +1776,35 @@
 																C
 															</span>
 														</div>
-
-														<field name="male_thyroid_physical"  widget="radio" options="{'horizontal': True}"/>
-														<field name="male_thyroid_goitear_length"/>
-														<field name="male_thyroid_goitear_width"/>
-														<field name="male_thyroid_goitear_type"/>
-														<field name="male_thyroid_goitear_nodule"/>
-														<field name="male_pallor"  widget="radio" options="{'horizontal': True}"/>
+														<field name="male_thyroid_physical"/>
 													</group>
+
+													<div string="Goitear" class="bg-light bg-gradient">
+														<div><h3>Goitear</h3></div>
+														<div>
+															<!--															<span class="oe_inline">Goitear</span>-->
+															<span class="oe_inline">Size</span>
+															<field name="male_thyroid_goitear_length" nolabel="1" class="oe_inline"/>
+															<span>x</span>
+															<field name="male_thyroid_goitear_width" nolabel="1" class="oe_inline"/>
+															<span>cm</span>
+
+															<field name="male_thyroid_goitear_type"
+																   widget="radio"
+																   options="{'horizontal': True}"
+																   nolabel="1"
+																   style="margin-left: 7%"
+																   class="oe_inline"/>
+														</div>
+
+														<field name="male_thyroid_goitear_nodule"/>
+														<span class="oe_inline">Nodule</span>
+
+													</div>
+													<group>
+														<field name="female_pallor" widget="radio" options="{'horizontal': true}"/>
+													</group>
+
 												</section>
 
 											</div>

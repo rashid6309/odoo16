@@ -9,4 +9,4 @@ class PatientProcedures(models.Model):
     male_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', ondelete="restrict")
 
     details = fields.Char('Details')
-    date_on = fields.Date('Date ON')
+    date_on = fields.Date('Date On')

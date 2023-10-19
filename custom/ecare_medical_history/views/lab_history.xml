@@ -36,7 +36,9 @@
                     <group>
                         <field name="name"/>
                         <field name="date"/>
-                        <field name="attachment_ids" widget="many2many_binary"/>
+                        <field name="filename" invisible="True" force_save="True"/>
+                        <field name="attachment_id" filename="filename"/>
+<!--                        <field name="attachment_ids" widget="many2many_binary"/>-->
                     </group>
                 </form>
             </field>

@@ -19,10 +19,12 @@ class MaleMedicalPhysicalExamination(models.Model):
     male_temperature = fields.Char(string='Temperature')
     male_thyroid_physical = fields.Selection(selection=StaticMember.THYROID,
                                     string='Thyroid')
-    male_thyroid_goitear_length = fields.Char(string='Goitear')
-    male_thyroid_goitear_width = fields.Char(string='Goitear')
+    male_thyroid_goitear_length = fields.Selection(selection=StaticMember.GOITEAR_LENGTH,
+                                                   string='Goitear Lenght')
+    male_thyroid_goitear_width = fields.Selection(selection=StaticMember.GOITEAR_LENGTH,
+                                                  string='Goitear Width')
     male_thyroid_goitear_type = fields.Selection(selection=StaticMember.THYROID_GOITEAR_TYPE,
-                                                 string='Goitear')
+                                                 string='Goitear Type')
 
     male_thyroid_goitear_nodule = fields.Boolean(string='Nodule')
     male_pallor = fields.Selection(selection=StaticMember.PALLOR,

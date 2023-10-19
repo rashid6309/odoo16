@@ -24,9 +24,4 @@ class GenitalExamination(models.Model):
 
     testicular_size_mobility = fields.Selection(selection=StaticMember.CHOICE_YES_NO, )
 
-    # BUG FIX THIS
-    # genital_examination_comment = fields.Char(string="Comment")
     ec_genital_examination_comment = fields.Char(string="Comment")
-
-
-

@@ -6,7 +6,8 @@ class EcContraception(models.Model):
     _name = 'ec.sx.contraception'
     _description = "Patient Contraception"
 
-    sx_frequency = fields.Integer(string="Frequency")
+    sx_frequency = fields.Selection(selection=StaticMember.YEARS,
+                                    string="Frequency")
     sx_issues = fields.Selection(selection=StaticMember.SX_ISSUES,
                                  string="Issues")
 
@@ -15,7 +16,7 @@ class EcContraception(models.Model):
     cn_type = fields.Selection(selection=StaticMember.CN_TYPES,
                                string="Type")
 
-    other_comments = fields.Char(string="Comments")
+    other_comments = fields.Text(string="Comments")
 
     ''' Male attributes '''
 
