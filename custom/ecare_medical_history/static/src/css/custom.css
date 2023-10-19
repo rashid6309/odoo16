@@ -1,3 +1,24 @@
+.timeline_content
+{
+    overflow-y: auto;
+    max-height: 59vh;
+}
+
+.timeline_content .o_notebook_content.tab-content{
+    overflow-y: auto;
+    max-height: 59vh;
+}
+
+@media(min-width:1600px){
+    .timeline_content{
+        max-height: 70vh;
+    }
+
+    .timeline_content .o_notebook_content.tab-content{
+        max-height: 70vh;
+    }
+}
+
 body {
   font-family: Helvetica;
   margin: 0;
@@ -295,22 +316,7 @@ color: #2F5597;
     pointer-events: none;
 }
 
-@media (min-width: 1080px)
-{
-    .timeline_content
-    {
-        overflow-y: scroll;
-        max-height: 440px;
-    }
-}
 
-@media (min-width: 1920px) {
-    .timeline_content
-    {
-        overflow-y: scroll;
-        max-height: 840px;
-    }
-}
 
 .right-inner-addon {
     position: relative;
