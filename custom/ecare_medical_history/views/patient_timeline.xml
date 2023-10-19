@@ -991,20 +991,10 @@
 															</span>
 														</div>
 														<field name="female_thyroid" widget="radio" options="{'horizontal': true}"/>
-													</group>
 
-<!--													<label for="female_living_duration_years"/>-->
-<!--													<div>-->
-<!--														<field name="female_living_duration_years" class="oe_inline"/>-->
-<!--														<span class="oe_inline">Years</span>-->
-<!--														<field name="female_living_duration_month" nolabel="1" class="oe_inline"/>-->
-<!--														<span class="oe_inline">Months</span>-->
-<!--													</div>-->
+														<label for="female_thyroid_goitear_length" />
 
-													<div string="Goitear" class="bg-light bg-gradient">
-														<div><h3>Goitear</h3></div>
-														<div>
-<!--															<span class="oe_inline">Goitear</span>-->
+														<div class="bg-light bg-gradient">
 															<span class="oe_inline">Size</span>
 															<field name="female_thyroid_goitear_length" nolabel="1" class="oe_inline"/>
 															<span>x</span>
@@ -1017,15 +1007,15 @@
 																   nolabel="1"
 																   style="margin-left: 7%"
 																   class="oe_inline"/>
+															<div/>
+
+															<field name="female_thyroid_goitear_nodule"/>
+															<span class="oe_inline">Nodule</span>
 														</div>
 
-														<field name="female_thyroid_goitear_nodule"/>
-														<span class="oe_inline">Nodule</span>
-
-													</div>
-													<group>
 														<field name="female_pallor" widget="radio" options="{'horizontal': true}"/>
 													</group>
+
 												</section>
 											</div>
 
@@ -1673,7 +1663,6 @@
 											</div>
 
 											<div class="card-block mb-5 pl-4 collapse col-6" id="male_lab_history_section">
-												<!--											<br></br>-->
 												<group class="mt-0" col="6" colspan="6">
 													<div style="margin-top: -7%;">
 														<button type="action"
@@ -1776,13 +1765,10 @@
 																C
 															</span>
 														</div>
-														<field name="male_thyroid_physical"/>
-													</group>
+														<field name="male_thyroid_physical" widget="radio" options="{'horizontal': true}"/>
 
-													<div string="Goitear" class="bg-light bg-gradient">
-														<div><h3>Goitear</h3></div>
-														<div>
-															<!--															<span class="oe_inline">Goitear</span>-->
+														<label for="male_thyroid_goitear_length"/>
+														<div class="bg-light bg-gradient">
 															<span class="oe_inline">Size</span>
 															<field name="male_thyroid_goitear_length" nolabel="1" class="oe_inline"/>
 															<span>x</span>
@@ -1795,13 +1781,11 @@
 																   nolabel="1"
 																   style="margin-left: 7%"
 																   class="oe_inline"/>
+															<div/>
+
+															<field name="male_thyroid_goitear_nodule"/>
+															<span class="oe_inline">Nodule</span>
 														</div>
-
-														<field name="male_thyroid_goitear_nodule"/>
-														<span class="oe_inline">Nodule</span>
-
-													</div>
-													<group>
 														<field name="female_pallor" widget="radio" options="{'horizontal': true}"/>
 													</group>
 

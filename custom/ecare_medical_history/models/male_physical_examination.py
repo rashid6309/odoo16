@@ -3,9 +3,6 @@ from odoo import api, models, fields, _
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
-''' Copied from the female and just changed the attributes names '''
-
-
 class MaleMedicalPhysicalExamination(models.Model):
     _name = "ec.male.physical.examination"
     _description = "Patient (Male) Physical Examination"
@@ -20,7 +17,7 @@ class MaleMedicalPhysicalExamination(models.Model):
     male_thyroid_physical = fields.Selection(selection=StaticMember.THYROID,
                                     string='Thyroid')
     male_thyroid_goitear_length = fields.Selection(selection=StaticMember.GOITEAR_LENGTH,
-                                                   string='Goitear Lenght')
+                                                   string='Goitear')
     male_thyroid_goitear_width = fields.Selection(selection=StaticMember.GOITEAR_LENGTH,
                                                   string='Goitear Width')
     male_thyroid_goitear_type = fields.Selection(selection=StaticMember.THYROID_GOITEAR_TYPE,
