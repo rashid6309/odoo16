@@ -232,8 +232,8 @@
 											<field name="repeat_date"/>
 											<field name="repeat_seen_by"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
-																					<field name="repeat_other_doctors_present" widget="many2many_tags"
-																						   options="{'no_create_edit': True, 'no_create': True}"/>
+											<field name="repeat_other_doctors_present" widget="many2many_tags"
+												   options="{'no_create_edit': True, 'no_create': True}"/>
 											<field name="repeat_seen_with"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
 											<field name="repeat_notes"/>
@@ -518,98 +518,96 @@
 												</div>
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="female_medical_section">
-												<group col="12" class="mt-0">
-													<group string="" col="6" colspan="6" class="mt-0">
-														<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
-														<field name="female_adrenal" placeholder="Add Details" colspan="6" />
-														<field name="female_adrenal_date" string="" placeholder="Since" colspan="6" />
+												<group class="mt-0">
+													<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
+													<field name="female_adrenal" placeholder="Add Details" />
+													<field name="female_adrenal_date" string="" placeholder="Since" />
 
-														<field name="female_anti_phospholipid_syndrome" placeholder="" colspan="6"
-															   widget="radio" options="{'horizontal': True}"/>
-														<field name="female_anti_phospholipid_syndrome_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_anti_phospholipid_syndrome" placeholder=""
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_anti_phospholipid_syndrome_date" string="" placeholder="Since" />
 
-														<field name="female_autoimmune_disease" placeholder="Add Details" colspan="6" />
-														<field name="female_autoimmune_disease_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_autoimmune_disease" placeholder="Add Details" />
+													<field name="female_autoimmune_disease_date" string="" placeholder="Since" />
 
-														<field name="female_blood_transfusion" placeholder="" colspan="6"
-															   widget="radio" options="{'horizontal': True}"/>
-														<field name="female_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
+													<field name="female_blood_transfusion" placeholder=""
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_blood_transfusion_date" string="" placeholder="Since"/>
 
-														<field name="female_complications_pr" colspan="6" placeholder="Complications" string="" default=" " attrs="{'readonly': [('female_blood_transfusion', 'not in',['y'])]}" />
+													<field name="female_complications_pr" placeholder="Complications" string="" default=" " attrs="{'readonly': [('female_blood_transfusion', 'not in',['y'])]}" />
 
-														<field name="female_cardiac" placeholder="Add Details" colspan="6" />
-														<field name="female_cardiac_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_cardiac" placeholder="Add Details" />
+													<field name="female_cardiac_date" string="" placeholder="Since" />
 
-														<field name="female_diabetes_type" placeholder="" colspan="6"
-															   widget="radio" options="{'horizontal': True}"/>
-														<field name="female_diabetes" placeholder="" colspan="6" string="" />
-														<field name="female_diabetes_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_diabetes_type" placeholder=""
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_diabetes" placeholder="" string="" />
+													<field name="female_diabetes_date" string="" placeholder="Since" />
 
-														<field name="female_dvt" placeholder="Add Details" colspan="6" />
-														<field name="female_dvt_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_dvt" placeholder="Add Details" />
+													<field name="female_dvt_date" string="" placeholder="Since" />
 
-														<field name="female_gall_bladder" placeholder="Add Details" colspan="6" />
-														<field name="female_gall_bladder_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_gall_bladder" placeholder="Add Details" />
+													<field name="female_gall_bladder_date" string="" placeholder="Since" />
 
-														<field name="female_gastric" placeholder="Add Details" colspan="6" />
-														<field name="female_gastric_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_gastric" placeholder="Add Details" />
+													<field name="female_gastric_date" string="" placeholder="Since" />
 
-														<field name="female_gynaecology" placeholder="Add Details" colspan="6" />
-														<field name="female_gynaecology_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_gynaecology" placeholder="Add Details" />
+													<field name="female_gynaecology_date" string="" placeholder="Since" />
 
-														<field name="female_haematology" placeholder="Add Details" colspan="6" />
-														<field name="female_haematology_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_haematology" placeholder="Add Details" />
+													<field name="female_haematology_date" string="" placeholder="Since" />
 
-														<field name="female_heart_disease" placeholder="Add Details" colspan="6" />
-														<field name="female_heart_disease_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_heart_disease" placeholder="Add Details" />
+													<field name="female_heart_disease_date" string="" placeholder="Since" />
 
-														<field name="female_hyper_tension" placeholder="Add Details" colspan="6" />
-														<field name="female_hyper_tension_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_hyper_tension" placeholder="Add Details" />
+													<field name="female_hyper_tension_date" string="" placeholder="Since" />
 
-														<field name="female_intestinal" placeholder="Add Details" colspan="6" />
-														<field name="female_intestinal_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_intestinal" placeholder="Add Details" />
+													<field name="female_intestinal_date" string="" placeholder="Since" />
 
-														<field name="female_janduice" placeholder="Add Details" colspan="6" />
-														<field name="female_janduice_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_janduice" placeholder="Add Details" />
+													<field name="female_janduice_date" string="" placeholder="Since" />
 
-														<field name="female_liver" placeholder="Add Details" colspan="6" />
-														<field name="female_liver_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_liver" placeholder="Add Details" />
+													<field name="female_liver_date" string="" placeholder="Since" />
 
-														<field name="female_low_urinary_tract" placeholder="Add Details" colspan="6" />
-														<field name="female_low_urinary_tract_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_low_urinary_tract" placeholder="Add Details" />
+													<field name="female_low_urinary_tract_date" string="" placeholder="Since" />
 
-														<field name="female_malignancy" placeholder="Add Details" colspan="6" />
-														<field name="female_malignancy_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_malignancy" placeholder="Add Details" />
+													<field name="female_malignancy_date" string="" placeholder="Since" />
 
-														<field name="female_neurological" placeholder="Add Details" colspan="6" />
-														<field name="female_neurological_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_neurological" placeholder="Add Details" />
+													<field name="female_neurological_date" string="" placeholder="Since" />
 
-														<field name="female_renal" placeholder="Add Details" colspan="6" />
-														<field name="female_renal_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_renal" placeholder="Add Details" />
+													<field name="female_renal_date" string="" placeholder="Since" />
 
-														<field name="female_respiratory" placeholder="Add Details" colspan="6" />
-														<field name="female_respiratory_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_respiratory" placeholder="Add Details" />
+													<field name="female_respiratory_date" string="" placeholder="Since" />
 
-														<field name="female_smoking" placeholder="Add Details" colspan="6" />
-														<field name="female_smoking_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_smoking" placeholder="Add Details" />
+													<field name="female_smoking_date" string="" placeholder="Since" />
 
-														<field name="female_alcohol" placeholder="Add Details" colspan="6" />
-														<field name="female_alcohol_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_alcohol" placeholder="Add Details" />
+													<field name="female_alcohol_date" string="" placeholder="Since" />
 
-														<field name="female_skeletal" placeholder="Add Details" colspan="6" />
-														<field name="female_skeletal_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_skeletal" placeholder="Add Details" />
+													<field name="female_skeletal_date" string="" placeholder="Since" />
 
-														<field name="female_thyroid_TYPE" placeholder="" colspan="6" string="Thyroid"
-															   widget="radio" options="{'horizontal': True}"/>
-														<field name="female_thyroid" placeholder="Add Details" colspan="6" string="" />
-														<field name="female_thyroid_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_thyroid_TYPE" placeholder="" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_thyroid" placeholder="Add Details" string="" />
+													<field name="female_thyroid_date" string="" placeholder="Since" />
 
-														<field name="female_urinary_infection" placeholder="Add Details" colspan="6" />
-														<field name="female_urinary_infection_date" string="" colspan="6" placeholder="Since" />
+													<field name="female_urinary_infection" placeholder="Add Details" />
+													<field name="female_urinary_infection_date" string="" placeholder="Since" />
 
-														<field name="female_medical_history_others" placeholder="Add Details" colspan="6" />
-														<field name="female_medical_history_others_date" string="" colspan="6" placeholder="Since" />
-													</group>
+													<field name="female_medical_history_others" placeholder="Add Details" />
+													<field name="female_medical_history_others_date" string="" placeholder="Since" />
 												</group>
 											</div>
 
@@ -1330,97 +1328,95 @@
 												</div>
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="male_medical_section">
-												<group col="12" class="mt-0">
-													<group string="Medical History" col="6" colspan="6" class="mt-0">
-														<field name="male_adrenal" placeholder="Add Details" colspan="6" />
-														<field name="male_adrenal_date" string="" placeholder="Since" colspan="6" />
+												<group class="mt-0">
+													<field name="male_adrenal" placeholder="Add Details" />
+													<field name="male_adrenal_date" string="" placeholder="Since" />
 
-														<field name="male_anti_phospholipid_syndrome" placeholder="" colspan="6"
-															   widget="radio" options="{'horizontal': True}"/>
-														<field name="male_anti_phospholipid_syndrome_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_anti_phospholipid_syndrome" placeholder=""
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_anti_phospholipid_syndrome_date" string="" placeholder="Since" />
 
-														<field name="male_autoimmune_disease" placeholder="Add Details" colspan="6" />
-														<field name="male_autoimmune_disease_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_autoimmune_disease" placeholder="Add Details" />
+													<field name="male_autoimmune_disease_date" string="" placeholder="Since" />
 
-														<field name="male_blood_transfusion" placeholder="" colspan="6"
-															   widget="radio" options="{'horizontal': True}"/>
-														<field name="male_blood_transfusion_date" string="" colspan="6" placeholder="Since"/>
+													<field name="male_blood_transfusion" placeholder=""
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_blood_transfusion_date" string="" placeholder="Since"/>
 
-														<field name="male_complications_pr" colspan="6" placeholder="Complications" string="" default=" " attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
+													<field name="male_complications_pr" placeholder="Complications" string="" default=" " attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
 
-														<field name="male_cardiac" placeholder="Add Details" colspan="6" />
-														<field name="male_cardiac_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_cardiac" placeholder="Add Details" />
+													<field name="male_cardiac_date" string="" placeholder="Since" />
 
-														<field name="male_diabetes_type" placeholder="" colspan="6"
-															   widget="radio" options="{'horizontal': True}"/>
-														<field name="male_diabetes" placeholder="" colspan="6" string="" />
-														<field name="male_diabetes_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_diabetes_type" placeholder=""
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_diabetes" placeholder="" string="" />
+													<field name="male_diabetes_date" string="" placeholder="Since" />
 
-														<field name="male_dvt" placeholder="Add Details" colspan="6" />
-														<field name="male_dvt_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_dvt" placeholder="Add Details" />
+													<field name="male_dvt_date" string="" placeholder="Since" />
 
-														<field name="male_gall_bladder" placeholder="Add Details" colspan="6" />
-														<field name="male_gall_bladder_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_gall_bladder" placeholder="Add Details" />
+													<field name="male_gall_bladder_date" string="" placeholder="Since" />
 
-														<field name="male_gastric" placeholder="Add Details" colspan="6" />
-														<field name="male_gastric_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_gastric" placeholder="Add Details" />
+													<field name="male_gastric_date" string="" placeholder="Since" />
 
-														<field name="male_gynaecology" placeholder="Add Details" colspan="6" />
-														<field name="male_gynaecology_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_gynaecology" placeholder="Add Details" />
+													<field name="male_gynaecology_date" string="" placeholder="Since" />
 
-														<field name="male_haematology" placeholder="Add Details" colspan="6" />
-														<field name="male_haematology_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_haematology" placeholder="Add Details" />
+													<field name="male_haematology_date" string="" placeholder="Since" />
 
-														<field name="male_heart_disease" placeholder="Add Details" colspan="6" />
-														<field name="male_heart_disease_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_heart_disease" placeholder="Add Details" />
+													<field name="male_heart_disease_date" string="" placeholder="Since" />
 
-														<field name="male_hyper_tension" placeholder="Add Details" colspan="6" />
-														<field name="male_hyper_tension_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_hyper_tension" placeholder="Add Details" />
+													<field name="male_hyper_tension_date" string="" placeholder="Since" />
 
-														<field name="male_intestinal" placeholder="Add Details" colspan="6" />
-														<field name="male_intestinal_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_intestinal" placeholder="Add Details" />
+													<field name="male_intestinal_date" string="" placeholder="Since" />
 
-														<field name="male_janduice" placeholder="Add Details" colspan="6" />
-														<field name="male_janduice_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_janduice" placeholder="Add Details" />
+													<field name="male_janduice_date" string="" placeholder="Since" />
 
-														<field name="male_liver" placeholder="Add Details" colspan="6" />
-														<field name="male_liver_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_liver" placeholder="Add Details" />
+													<field name="male_liver_date" string="" placeholder="Since" />
 
-														<field name="male_low_urinary_tract" placeholder="Add Details" colspan="6" />
-														<field name="male_low_urinary_tract_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_low_urinary_tract" placeholder="Add Details" />
+													<field name="male_low_urinary_tract_date" string="" placeholder="Since" />
 
-														<field name="male_malignancy" placeholder="Add Details" colspan="6" />
-														<field name="male_malignancy_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_malignancy" placeholder="Add Details" />
+													<field name="male_malignancy_date" string="" placeholder="Since" />
 
-														<field name="male_neurological" placeholder="Add Details" colspan="6" />
-														<field name="male_neurological_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_neurological" placeholder="Add Details" />
+													<field name="male_neurological_date" string="" placeholder="Since" />
 
-														<field name="male_renal" placeholder="Add Details" colspan="6" />
-														<field name="male_renal_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_renal" placeholder="Add Details" />
+													<field name="male_renal_date" string="" placeholder="Since" />
 
-														<field name="male_respiratory" placeholder="Add Details" colspan="6" />
-														<field name="male_respiratory_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_respiratory" placeholder="Add Details" />
+													<field name="male_respiratory_date" string="" placeholder="Since" />
 
-														<field name="male_smoking" placeholder="Add Details" colspan="6" />
-														<field name="male_smoking_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_smoking" placeholder="Add Details" />
+													<field name="male_smoking_date" string="" placeholder="Since" />
 
-														<field name="male_alcohol" placeholder="Add Details" colspan="6" />
-														<field name="male_alcohol_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_alcohol" placeholder="Add Details" />
+													<field name="male_alcohol_date" string="" placeholder="Since" />
 
-														<field name="male_skeletal" placeholder="Add Details" colspan="6" />
-														<field name="male_skeletal_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_skeletal" placeholder="Add Details" />
+													<field name="male_skeletal_date" string="" placeholder="Since" />
 
-														<field name="male_thyroid_TYPE" placeholder="" colspan="6" string="Thyroid"
-															   widget="radio" options="{'horizontal': True}"/>
-														<field name="male_thyroid" placeholder="Add Details" colspan="6" string="" />
-														<field name="male_thyroid_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_thyroid_TYPE" placeholder="" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_thyroid" placeholder="Add Details" string="" />
+													<field name="male_thyroid_date" string="" placeholder="Since" />
 
-														<field name="male_urinary_infection" placeholder="Add Details" colspan="6" />
-														<field name="male_urinary_infection_date" string="" colspan="6" placeholder="Since" />
+													<field name="male_urinary_infection" placeholder="Add Details" />
+													<field name="male_urinary_infection_date" string="" placeholder="Since" />
 
-														<field name="male_medical_history_others" placeholder="Add Details" colspan="6" />
-														<field name="male_medical_history_others_date" string="" colspan="6" placeholder="Since" />
-													</group>
+													<field name="male_medical_history_others" placeholder="Add Details" />
+													<field name="male_medical_history_others_date" string="" placeholder="Since" />
 												</group>
 											</div>
 
