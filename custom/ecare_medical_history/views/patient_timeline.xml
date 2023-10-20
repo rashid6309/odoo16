@@ -46,15 +46,15 @@
 								<div class="card-custom1">
 									<div class="card-type">
 										<div>
-											<span class="word-title editPatientProfile">IVF/ICSI Attempt(s) Completed:</span>
+											<span class="word-title">IVF/ICSI Attempt(s) Completed:</span>
 											<span class="counter-word">0</span>
 										</div>
 										<div>
-											<span class="word-title editPatientProfile">Frozen Embroys Stored:</span>
+											<span class="word-title">Frozen Embroys Stored:</span>
 											<span class="counter-word">0</span>
 										</div>
 										<div>
-											<span class="word-title editPatientProfile">Sperm Straws Stored:</span>
+											<span class="word-title">Sperm Straws Stored:</span>
 											<span class="counter-word">0</span>
 										</div>
 									</div>
@@ -1850,15 +1850,15 @@
 								<div class="card-custom1-right">
 									<div class="card-type">
 										<div>
-											<span class="word-title editPatientProfile">Married for:</span>
+											<span class="word-title">Married for:</span>
 											<span class="counter-word"><field style="color: #2F5597;" name="years_of_marriage"/></span>
 										</div>
 										<div>
-											<span class="word-title editPatientProfile">Relationship:</span>
+											<span class="word-title">Relationship:</span>
 											<span class="counter-word"><field style="color: #2F5597;" name="female_relation"/></span>
 										</div>
 										<div>
-											<span class="word-title editPatientProfile">Infertility Type:</span>
+											<span class="word-title">Infertility Type:</span>
 											<span><field class="counter-word" style="color: #2F5597;" name="infertility_type"/></span>
 										</div>
 									</div>

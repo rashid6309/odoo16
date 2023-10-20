@@ -20,7 +20,7 @@
 }
 
 body {
-  font-family: Helvetica;
+  font-family: Inter;
   margin: 0;
 }
 
@@ -80,7 +80,7 @@ table {
 }
 
 .first_consultation_sub_container_female{
-    background: #7C2F9733;
+    background: #FFE8F0;
     border-radius: 4px;
 }
 
@@ -204,7 +204,6 @@ table {
     display: inline-block;
     word-wrap: break-word;
     text-align: right;
-    margin-left: 10%;
 }
 
 .card-custom-right-heading-special1
@@ -306,7 +305,7 @@ color: #2F5597;
      font-weight: 400;
      word-wrap: break-word;
      display: inline-block;
-     margin: 3% 3% 3% 6%;
+     margin: 3% 3% 3% 3%;
 }
 
 .custom_readonly {
@@ -422,3 +421,7 @@ color: #2F5597;
     border-bottom: 1px solid #CCC;
 }
 
+ .editPatientProfile
+ {
+     margin-left: 10px;
+ }
