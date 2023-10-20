@@ -80,12 +80,12 @@ table {
 }
 
 .first_consultation_sub_container_female{
-    background: #7C2F9733;
+    background: #FFE8F0;
     border-radius: 4px;
 }
 
 .first_consultation_sub_container_male{
-    background: rgba(47, 85, 151, 0.15);
+    background: #CAECFF;
     border-radius: 4px;
 }
 
@@ -108,7 +108,7 @@ table {
     width: 100%;
     height: auto;
     padding: 16px;
-    background: #E0D1E5;
+    background: #FFE8F1;
     border-radius: 8px;
     justify-content: center;
     align-items: center;
@@ -180,7 +180,7 @@ table {
 {
     width: 100%;
     height: auto;
-    background: #E5ECF6;
+    background: #CAECFF;
     border-radius: 8px;
     overflow: hidden;
     margin: 2%;
@@ -403,19 +403,22 @@ color: #2F5597;
 }
 
 
- .o_field_many2many_checkboxes div {
+.o_field_many2many_checkboxes div {
     display: inline-table;
-  }
+}
 
-  button
-  {
-      margin: 1%;
-  }
+button{
+    margin: 1%;
+}
 
-  .repeat_kanban_button
-  {
-   width:10%;
-  }
+.repeat_kanban_button {
+    width:10%;
+}
+
+.repeat_kanban
+{
+    background: #FFE8F1 !important;
+}
 
 .o_input
 {

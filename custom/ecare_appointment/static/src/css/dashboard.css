@@ -457,8 +457,3 @@ input[type="date"] {
     pointer-events: none !important;
     color:grey
 }
-
-.repeat_kanban
-{
-    background: #c291e78c !important;
-}
