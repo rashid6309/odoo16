@@ -158,23 +158,6 @@
 												</group>
 											</group>
 
-											<!--											<group>-->
-											<!--												<button name="action_repeat_consultation_open_obstetrics_history"-->
-											<!--														attrs="{'invisible': [('question_two_choice', '=', 'no')]}"-->
-											<!--														type="object"-->
-											<!--														string="Add Obstetrics History"-->
-											<!--														class="btn btn-secondary"/>-->
-											<!--											</group>-->
-
-
-											<!--											<group>-->
-											<!--												<button name="action_repeat_consultation_open_previous_treatment"-->
-											<!--														attrs="{'invisible': [('question_three_choice', '=', 'no')]}"-->
-											<!--														type="object"-->
-											<!--														string="Add Previous Treatment"-->
-											<!--														class="btn btn-secondary"/>-->
-											<!--											</group>-->
-
 										</group>
 										<group attrs="{'invisible': [('repeat_state', 'in', ['1'])]}">
 											<field name="question_two_label"/>
@@ -191,11 +174,7 @@
 													   nolabel="1" editable="top">
 												</field>
 											</tree>
-											<!--											<button name="action_repeat_consultation_open_obstetrics_history"-->
-											<!--													attrs="{'invisible': [('question_two_choice', '=', 'no')]}"-->
-											<!--													type="object"-->
-											<!--													string="Add Obstetrics History"-->
-											<!--													class="btn btn-secondary"/>-->
+
 										</div>
 										<group attrs="{'invisible': [('repeat_state', 'in', ['1', '2'])]}">
 											<field name="question_three_label"/>
@@ -212,11 +191,7 @@
 													   nolabel="1" editable="top">
 												</field>
 											</tree>
-											<!--											<button name="action_repeat_consultation_open_previous_treatment"-->
-											<!--													attrs="{'invisible': [('question_three_choice', '=', 'no')]}"-->
-											<!--													type="object"-->
-											<!--													string="Add Previous Treatment"-->
-											<!--													class="btn btn-secondary"/>-->
+
 										</div>
 										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
 											<field name="question_four_label"/>
@@ -1100,180 +1075,14 @@
 
 													<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
 
-													<!--													<div/>-->
-													<!--													<div>-->
-
-													<!--														<span>-->
-													<!--															Type-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_type" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															Nos-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_nos" class="oe_inline" nolabel="1"/>-->
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_length_1" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_width_1" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_length_2" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_width_2" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_length_3" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_width_3" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_length_4" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_width_4" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_length_5" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="left_ovary_width_5" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-													<!--													</div>-->
-
 													<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
-
-													<!--													<div/>-->
-													<!--													<div>-->
-													<!--														<span>-->
-													<!--															Type-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_type" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															Nos-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_nos" class="oe_inline" nolabel="1"/>-->
-
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_length_1" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_width_1" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_length_2" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_width_2" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_length_3" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_width_3" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_length_4" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_width_4" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-
-													<!--														<span>-->
-													<!--															Size-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_length_5" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															x-->
-													<!--														</span>-->
-													<!--														<field name="right_ovary_width_5" class="oe_inline" nolabel="1"/>-->
-													<!--														<span>-->
-													<!--															cm-->
-													<!--														</span>-->
-													<!--													</div>-->
 
 
 													<field name="uterus" widget="radio" options="{'horizontal': True}"/>
 													<field name="uterus_size_length"/>
 													<field name="uterus_size_width"/>
 													<field name="uterus_size_position"/>
-													<!--													<field name="uterus_nos"/>-->
-													<!--													<field name="forbid_size_length_1"/>-->
-													<!--													<field name="forbid_size_width_1"/>-->
-													<!--													<field name="forbid_size_length_2"/>-->
-													<!--													<field name="forbid_size_width_2"/>-->
-													<!--													<field name="forbid_size_length_3"/>-->
-													<!--													<field name="forbid_size_width_3"/>-->
-													<!--													<field name="forbid_size_length_4"/>-->
-													<!--													<field name="forbid_size_width_4"/>-->
-													<!--													<field name="forbid_size_length_5"/>-->
-													<!--													<field name="forbid_size_width_5"/>-->
-													<!--													<field name="forbid_size_length_6"/>-->
-													<!--													<field name="forbid_size_width_6"/>-->
-													<!--													<field name="forbid_size_length_7"/>-->
-													<!--													<field name="forbid_size_width_7"/>-->
-													<!--													<field name="forbid_size_length_8"/>-->
-													<!--													<field name="forbid_size_width_8"/>-->
-													<!--													<field name="forbid_size_length_9"/>-->
-													<!--													<field name="forbid_size_width_9"/>-->
-													<!--													<field name="forbid_size_length_10"/>-->
-													<!--													<field name="forbid_size_width_10"/>-->
+
 													<label for="lining_ids"/>
 													<div>
 														<field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/>
