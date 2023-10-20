@@ -2,7 +2,6 @@ from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
 
 from odoo.exceptions import AccessError, UserError, ValidationError
-
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
@@ -145,60 +144,43 @@ class PatientTimeline(models.Model):
     ''' Computed methods '''
 
     def _compute_female_values(self):
-        ''' TODO @Rashid: please change the variables name :: '''
-        top = abort = alive = sb = cesearian = forceps = miscarriage = svd = ventouse = prev_pret_del = prev_lwbb = nnd = False
-        try:
-            obs_histories = self.env['ec.obstetrics.history'].search([
-                ('patient_id', '=', self.timeline_patient_id.id)
-            ])
-            pregs = len(obs_histories) or False
-            self.gravida = pregs + 1
-            for obs_history in obs_histories:
-                dop = obs_history.duration_of_pregnancy
-                # If dop contains "<" or ">" these signs then just replace with "" (Empty String)
-                if dop:
-                    dop = dop.replace("<", "").replace(">", "")
-                    dop = int(dop)
+        """
+        Gravida: Total number of records in the obs.history
+        Miscarriages: Before 24 and mode_of_delivery == "MISCARRIAGE"
+        Parity: Total number of records in obs.history but duration of pregnancy >= 24
 
-                if dop:
-                    if dop <= 24:
-                        abort += 1
-                    elif 25 <= dop <= 37:
-                        prev_pret_del += 1
-                    elif dop >= 40:  # Do nothing
-                        pass
+        :return: Set value to the gravida, parity and miscarriage attributes
+        """
 
-                if obs_history.health == 'NND-28' or obs_history.health == 'nnd3d' or obs_history.health == 'nnd7d' or \
-                        obs_history.health == 'nnd10d':
-                    nnd = nnd + 1
-                if obs_history.weight == '>5' or obs_history.weight == '' or obs_history.weight == 'N/A':
-                    pass
-                elif obs_history.weight == '<1':
-                    prev_lwbb = prev_lwbb + 1
-                elif float(obs_history.weight) < 2.5:
-                    prev_lwbb = prev_lwbb + 1
+        gravida, parity, miscarriages = 0, 0, 0
 
-                if obs_history.alive == 'Alive':
-                    alive = alive + 1
-                if obs_history.alive == 'SB':
-                    sb = sb + 1
-                if obs_history.mode_of_delivery == 'CAESAREAN':
-                    cesearian = cesearian + 1
-                if obs_history.mode_of_delivery == 'FORCEPS':
-                    forceps = forceps + 1
-                if obs_history.mode_of_delivery == 'MISCARRIAGE':
-                    miscarriage = miscarriage + 1
-                if obs_history.mode_of_delivery == 'TOP':
-                    top = top + 1
-                if obs_history.mode_of_delivery == 'SVD':
-                    svd = svd + 1
-                if obs_history.mode_of_delivery == 'VENTOUSE':
-                    ventouse = ventouse + 1
-            para = pregs - abort
-            self.parity = para
-        except:
-            pass
-        self.miscarriages = miscarriage or 0
+        obs_histories = self.env['ec.obstetrics.history'].search([
+            ('patient_id', '=', self.timeline_patient_id.id)
+        ])
+
+        if not obs_histories:
+            self.gravida = gravida
+            self.parity = parity
+            self.miscarriages = miscarriages
+            return
+
+        pregnancies = len(obs_histories)
+        count_after_24_weeks = 0 # Or parity
+        for obs_history in obs_histories:
+            dop = obs_history.duration_of_pregnancy.replace("<", "").replace(">", "") \
+                if obs_history.duration_of_pregnancy else None
+
+            if dop:
+                dop = int(dop)
+
+                if dop >= 24:
+                    count_after_24_weeks += 1
+                if dop < 24 and obs_history.mode_of_delivery == 'MISCARRIAGE':
+                    miscarriages += 1
+
+        self.gravida = pregnancies
+        self.miscarriages = miscarriages
+        self.parity = count_after_24_weeks
 
     def _compute_family_history(self):
         # Male Fields Processing
