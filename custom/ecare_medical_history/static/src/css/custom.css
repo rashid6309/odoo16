@@ -4,7 +4,7 @@
     max-height: 64vh;
 }
 
-@media(min-width:1600px){
+@media(min-width:1175px){
     .timeline_content{
         max-height: 75vh;
     }
@@ -291,7 +291,7 @@ color: #2F5597;
 .header2-text
 {
     color: white;
-    font-size: 16px;
+    font-size: 15px;
      font-family: Inter;
      font-weight: 400;
      word-wrap: break-word;
