@@ -1,13 +1,7 @@
 .timeline_content
 {
     overflow-y: auto;
-    max-height: 64vh;
-}
-
-@media(min-width:1175px){
-    .timeline_content{
-        max-height: 75vh;
-    }
+    max-height: 74vh;
 }
 
 body {
