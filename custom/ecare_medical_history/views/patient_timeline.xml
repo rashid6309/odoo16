@@ -112,7 +112,12 @@
 									return false;
 									}
 								</script>
-								<div class="col-12 text-right" style="text-align: right" attrs="{'invisible':[('show_repeat_section_state', '=', True)]}">
+								<div class="d-flex scroll-to card-header-custom first_consultation_container mt-2" id="repeat_consultation_section_link">
+									<div class="col-10">
+										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
+											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
+									</div>
+									<div class="col-2 text-right" style="text-align: right" attrs="{'invisible':[('show_repeat_section_state', '=', True)]}">
 									<button name="action_create_repeat_consultation"
 											type="object"
 											class="btn btn-primary"
@@ -123,11 +128,6 @@
 
 									</button>
 								</div>
-								<div class="d-flex scroll-to card-header first_consultation_container mt-2" id="repeat_consultation_section_link">
-									<div class="col-6">
-										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
-											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
-									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
 									<field name="show_repeat_consultation_history_section"
@@ -260,7 +260,7 @@
 								</div>
 
 
-								<div class="d-flex scroll-to card-header first_consultation_container" id="first_consultation_section_link">
+								<div class="d-flex scroll-to card-header-custom first_consultation_container" id="first_consultation_section_link">
 									<div class="col-6">
 										<a data-bs-toggle="collapse" data-bs-target="#first_consultation_section" href="#">
 											<h4 class="mt-2 mb-0">First Consultation</h4></a>
