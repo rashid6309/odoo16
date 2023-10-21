@@ -269,7 +269,7 @@
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse " id="first_consultation_section">
-									<notebook>
+									<notebook class="notebook-headers-custom">
 										<page string="Female" name="female">
 											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="general_examination_section_link">
 												<div class="col-6">

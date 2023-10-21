@@ -422,3 +422,10 @@ button{
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     margin-bottom: 5px;
 }
+
+.notebook-headers-custom {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0; /* or however far down you want the sticky effect to start */
+    z-index: 1; /* to ensure it's above other content */
+}
