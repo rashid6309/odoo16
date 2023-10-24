@@ -1,26 +1,28 @@
-from odoo import models, fields, _
-from odoo.exceptions import ValidationError
-
-''' Not required Specify reason  
-
-    *. This is not required now as we are navigating it from the patient.timeline now.
-    
-'''
+from odoo import models, fields, api, _
 
 
 class EcMedicalPatient(models.Model):
     _inherit = "ec.medical.patient"
 
+    def _compute_next_visit(self):
+        date = fields.Datetime.now()
+        for rec in self:
+            appointment_id = self.env['ec.booked.slot.record'].search(
+                domain=[('partner_id', '=', rec.id),
+                        ('date', '>=', date.today())],
+                order="date asc",
+                limit=1
+            )
+            visit = "Not Scheduled"
+            if appointment_id:
+                visit = f'{appointment_id.date} {appointment_id.start} - {appointment_id.stop}'
 
-    ''' Overriden methods '''
+            return visit
 
-    def action_register(self):
-        try:
-            super().action_register()
-            self.env['ec.individual.patient'].create_individuals(self.id)
-        except Exception:
-            raise ValidationError("Action Register is failing. Please contact administrator.")
-
-        return True
-
-    ''' XXX -- END -- XXX '''
+    @api.model
+    def get_banner_data_values(self, patient_id):
+        patient = self.search(domain=[('id', '=', patient_id)])
+        values = {
+            'next_visit': patient._compute_next_visit()
+        }
+        return values

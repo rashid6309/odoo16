@@ -45,17 +45,17 @@ odoo.define('ecare_medical_history.FirstConsultation', function (require) {
 });
 
 
-odoo.define('ecare_medical_history.owl_test', function (require) {
+odoo.define('ecare_medical_history.patient_banner', function (require) {
     "use strict";
     // const AbstractField = require('web.AbstractFieldOwl');
     // const fieldRegistry = require('web.field_registry_owl');
     const { registry } = require('@web/core/registry');
     const { useInputField } = require("@web/views/fields/input_field_hook");
     const { useService } = require("@web/core/utils/hooks");
-
-
     // var time = require('web.time');
-    // var rpc = require('web.rpc');
+    var rpc = require('web.rpc');
+    const { onWillStart } = owl;
+
     // var translation = require('web.translation');
     // var _t = translation._t;
     // const { CharField }  = require("@web/views/fields/char/char_field");
@@ -66,8 +66,10 @@ odoo.define('ecare_medical_history.owl_test', function (require) {
         setup() {
             super.setup();
             this.action = useService("action");
-//            console.log(this.props.value);
-//            console.log(this.props.record.data);
+
+            onWillStart(async () => {
+                await this._prepare_banner_data_values()
+            });
 
             // This will be required for mapping inputs
 //            this.input = useRef('inputdate')
@@ -76,9 +78,21 @@ odoo.define('ecare_medical_history.owl_test', function (require) {
         }
 
 
+        async _prepare_banner_data_values(){
+            var self = this;
+
+            let patient_id = this.props.value[0];
+            await rpc.query({
+                model: 'ec.medical.patient',
+                method: 'get_banner_data_values',
+                args: [patient_id],
+            })
+            .then(function(result) {
+                self.data_values = result;
+            });
+        }
+
         async _onEditPatientProfile() {
-//            console.log(this.props.record.data);
-//            console.log(this.props.value);
             this.action.doActionButton({
                 type: "object",
                 resId: this.props.value[0],

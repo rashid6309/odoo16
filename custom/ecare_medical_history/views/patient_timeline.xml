@@ -140,6 +140,8 @@
 										<group>
 											<group>
 												<field name="repeat_consultation_date"/>
+											</group>
+											<group>
 												<field name="question_one_label"/>
 												<field name="question_one_choice"
 													   attrs="{'readonly':[('repeat_state','!=','1')]}"
