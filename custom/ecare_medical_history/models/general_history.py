@@ -52,8 +52,6 @@ class GeneralExamination(models.Model):
     # years_of_marriage
     female_age_at_marriage = fields.Char(string='Age at Marriage')
 
-    female_parity = fields.Char(string='Parity')
-
     ''' Male Fields '''
 
     male_marriage = fields.Selection(selection=StaticMember.MARRIAGE,

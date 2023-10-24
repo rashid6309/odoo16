@@ -109,9 +109,11 @@ class RepeatConsultation(models.Model):
                                                 string='Consultation Type')
 
     lmp_question_four = fields.Date(string='LMP')  # using above one here.
-    repeat_cycle_day = fields.Integer(string='Cycle Day', store=True)
+    repeat_cycle_day = fields.Integer(string='Cycle Day',
+                                      readonly=True,
+                                      store=True)
 
-    repeat_date = fields.Datetime(string='Date',
+    repeat_date = fields.Datetime(string='Consultation Time',
                                   readonly=True,
                                   default=fields.Datetime.now)
 
@@ -179,6 +181,8 @@ class RepeatConsultation(models.Model):
 
         value -= 1
         self.state = str(value)
+
+    ''' Views/Action'''
 
     def action_open_form_view(self, patient_id, timeline_id):
         context = {

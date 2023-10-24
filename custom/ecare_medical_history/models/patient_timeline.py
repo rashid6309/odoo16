@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
+from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 
 from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
@@ -26,8 +27,7 @@ class PatientTimeline(models.Model):
     ec_repeat_consultation_id = fields.Many2one(comodel_name="ec.repeat.consultation", ondelete='cascade')
 
     ''' FK's related-attributes '''
-    repeat_consultation_date = fields.Datetime(string='Consultation Date',
-                                               related='ec_repeat_consultation_id.create_date')
+
 
     ''' Foreign keys '''
     timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
@@ -103,9 +103,10 @@ class PatientTimeline(models.Model):
 
     ''' Computed '''
 
-    gravida = fields.Char(string='Gravida', compute='_compute_female_values')
-    parity = fields.Char(string='Parity', compute='_compute_female_values')
-    miscarriages = fields.Char(string='Miscarriages', compute='_compute_female_values')
+    gravida_w = fields.Char(string='Gravida', compute='_compute_female_values')
+    parity_x = fields.Char(string='Parity', compute='_compute_female_values')
+    miscarriages_y = fields.Char(string='Miscarriages', compute='_compute_female_values')
+    alive_z = fields.Char(string='Alive', compute='_compute_female_values')
 
     male_family_history = fields.Char(string='Male Family History', compute='_compute_family_history')
     female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
@@ -143,6 +144,20 @@ class PatientTimeline(models.Model):
 
     ''' Computed methods '''
 
+    @api.onchange('repeat_date', 'lmp_question_four')
+    def _compute_cycle_day(self):
+        """
+        This is the onchange on the repeat consultation form.
+        Formula: (Consultation Date - LMP) + 1
+        :return: cycle day
+        """
+        if CustomDateTime.greater_than_today(self.lmp_question_four):
+            raise ValidationError(_(
+                "Date can't be greater than current date!"))
+
+        cycle_day = (self.repeat_date.date() - self.lmp_question_four).days
+        self.repeat_cycle_day = cycle_day + 1
+
     def _compute_female_values(self):
         """
         Gravida: Total number of records in the obs.history
@@ -152,7 +167,7 @@ class PatientTimeline(models.Model):
         :return: Set value to the gravida, parity and miscarriage attributes
         """
 
-        gravida, parity, miscarriages = 0, 0, 0
+        gravida, parity, miscarriages, alive = 0, 0, 0, 0
 
         obs_histories = self.env['ec.obstetrics.history'].search([
             ('patient_id', '=', self.timeline_patient_id.id)
@@ -178,9 +193,14 @@ class PatientTimeline(models.Model):
                 if dop < 24 and obs_history.mode_of_delivery == 'MISCARRIAGE':
                     miscarriages += 1
 
-        self.gravida = pregnancies
-        self.miscarriages = miscarriages
-        self.parity = count_after_24_weeks
+            if obs_history.alive == 'Alive':
+                alive += 1
+
+
+        self.gravida_w = pregnancies
+        self.parity_x = count_after_24_weeks
+        self.miscarriages_y = miscarriages
+        self.alive_z = alive
 
     def _compute_family_history(self):
         # Male Fields Processing
@@ -350,3 +370,4 @@ class PatientTimeline(models.Model):
 
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
+
