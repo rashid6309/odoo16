@@ -333,6 +333,9 @@
 												   widget="radio"
 												   options="{'horizontal': True}"/>
 										</group>
+
+										<!-- Last section in the repeat before the footer -->
+
 										<group>
 
 											<field name="counseling_and_discussion"/>
