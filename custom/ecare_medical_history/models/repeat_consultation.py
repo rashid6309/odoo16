@@ -11,11 +11,16 @@ class RepeatConsultation(models.Model):
     _name = 'ec.repeat.consultation'
     _description = "Patient Repeat Consultation"
     _order = "create_date desc"
+    _inherits = {
+        'ec.medical.tvs': 'repeat_tvs_id',
+    }
 
     ''' Foreign Keys '''
 
     repeat_patient_id = fields.Many2one(comodel_name="ec.medical.patient")
     repeat_timeline_id = fields.Many2one(comodel_name="ec.patient.timeline", ondelete="restrict")
+
+    repeat_tvs_id = fields.Many2one(comodel_name="ec.medical.tvs")
 
     ''' Data attributes '''
 
