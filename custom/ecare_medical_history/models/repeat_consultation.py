@@ -106,7 +106,7 @@ class RepeatConsultation(models.Model):
                                      default='walkin')
 
     repeat_consultation_type = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE,
-                                                string='Consultation Type')
+                                                string='Interaction')
 
     lmp_question_four = fields.Date(string='LMP')  # using above one here.
     repeat_cycle_day = fields.Integer(string='Cycle Day',
@@ -126,7 +126,7 @@ class RepeatConsultation(models.Model):
                                                     string='Other Doctors Present')
     ''' Seen with list required '''
     repeat_seen_with = fields.Selection(selection=StaticMember.SEEN_WITH,
-                                        string='Seen with')
+                                        string='Consultation with')
 
     repeat_notes = fields.Text(string='Notes')
     repeat_gpe_breast_abdominal_exam = fields.Text(string='GPE / Breast / Abdominal Exam')

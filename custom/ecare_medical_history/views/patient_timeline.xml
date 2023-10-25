@@ -207,7 +207,6 @@
 											<field name="repeat_consultation_type"/>
 											<field name="lmp_question_four"/>
 											<field name="repeat_cycle_day"/>
-											<field name="repeat_date"/>
 											<field name="repeat_seen_by"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
 											<field name="repeat_other_doctors_present" widget="many2many_tags"
@@ -1644,6 +1643,14 @@
 													</field>
 												</tree>
 											</div>
+										</page>
+
+										<page string="Conclusion" name="conclusion">
+											<!-- Remove if not required in coming days... -->
+<!--											<group>-->
+<!--												<label for="timeline_conclusion"/>-->
+<!--											</group>-->
+											<field name="timeline_conclusion" placeholder="Add..."/>
 										</page>
 
 									</notebook>

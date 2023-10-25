@@ -475,7 +475,8 @@ class StaticMember:
 
     ULTRASOUND_TYPE = [
         ('abdominal', "Abdominal"),
-        ("tvs", "TVS")
+        ("tvs", "TVS"),
+        ("both", "Both"),
     ]
 
     LABOUR_HISTORY = [

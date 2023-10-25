@@ -26,15 +26,14 @@ class PatientTimeline(models.Model):
     ec_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete='restrict')
     ec_repeat_consultation_id = fields.Many2one(comodel_name="ec.repeat.consultation", ondelete='cascade')
 
-    ''' FK's related-attributes '''
-
-
     ''' Foreign keys '''
     timeline_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                           string="Patient",
                                           index=True)
 
-    ''' Related patient attributes '''
+    ''' FK's related-attributes '''
+
+    ''' Patient attributes '''
 
     # Related Fields which are used for kanban view
     # Related Fields Used for data representation purposes
@@ -112,6 +111,9 @@ class PatientTimeline(models.Model):
     female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
 
     infertility_type = fields.Char(readonly=True, compute="_compute_infertility_type")
+
+    ''' Data members '''
+    timeline_conclusion = fields.Html(string="Conclusion")
 
     ''' Static methods '''
     @staticmethod
