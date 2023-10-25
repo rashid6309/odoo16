@@ -140,10 +140,8 @@
 											<group>
 												<field name="repeat_date"/>
 												<field name="repeat_consultation_interaction"
-													   widget="radio" options="{'horizontal': True}"
 												/>
-												<field name="repeat_consultation_with"
-													   widget="radio" options="{'horizontal': True}"/>
+												<field name="repeat_consultation_with"/>
 												<field name="repeat_seen_by"/>
 											</group>
 											<group>
@@ -230,18 +228,14 @@
 										</group>
 
 										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
-											<group>
-												<field name="is_couple_living_together"
-													   widget="radio"
-													   options="{'horizontal': True}"
-												/>
-											</group>
-											<group>
-												<field name="is_couple_using_contraception"
-													   widget="radio"
-													   options="{'horizontal': True}"
-												/>
-											</group>
+											<field name="is_couple_living_together"
+												   widget="radio"
+												   options="{'horizontal': True}"
+											/>
+											<field name="is_couple_using_contraception"
+												   widget="radio"
+												   options="{'horizontal': True}"
+											/>
 										</group>
 										<label for="repeat_note" class="oe_left"
 											   attrs="{'invisible': [('repeat_state', '!=', '4')]}" />
@@ -336,8 +330,7 @@
 
 										<!-- Last section in the repeat before the footer -->
 
-										<group>
-
+										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
 											<field name="counseling_and_discussion"/>
 											<field name="repeat_diagnosis"/>
 											<field name="repeat_investigations_ids" widget="many2many_tags"
