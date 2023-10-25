@@ -258,54 +258,99 @@
 											<field name="repeat_thyroid"/>
 											<field name="repeat_abdominal"/>
 											<field name="repeat_breast"/>
-											<field name="pelvic_examination_state"
+											<field name="repeat_pelvic_examination_state"
 												   widget="radio"
 												   options="{'horizontal': True}"
 											/>
 										</group>
 
 										<group attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('pelvic_examination_state', '=', 'no')]}">
+																	 ('repeat_pelvic_examination_state', '=', 'no')]}">
 
-											<label for="examination_type" class="label_with_no_string"/>
-											<field name="examination_type" nolabel="1"
+											<label for="repeat_examination_type" class="label_with_no_string"/>
+											<field name="repeat_examination_type" nolabel="1"
 												   widget="radio"
 												   options="{'horizontal': True}"
 											/>
 
-											<field name="findings_on_inspection"
+											<field name="repeat_findings_on_inspection"
 												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('examination_type', '!=', 'inspection')]}"
+																	 ('repeat_examination_type', '!=', 'inspection')]}"
 											/>
 
 											<field name="repeat_valva_vaginal_exam"
 												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('examination_type', '!=', 'p/v')]}"
+																	 ('repeat_examination_type', '!=', 'p/v')]}"
 											/>
 
-											<field name="cervix"
+											<field name="repeat_cervix"
 												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('examination_type', '!=', 'p/v')]}"
+																	 ('repeat_examination_type', '!=', 'p/v')]}"
 											/>
 
-											<field name="uterus_and_adnexae"
+											<field name="repeat_uterus_and_adnexae"
 												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('examination_type', '!=', 'p/v')]}"
+																	 ('repeat_examination_type', '!=', 'p/v')]}"
 											/>
 
+											<field name="repeat_swab_taken"
+												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
+																	 ('repeat_examination_type', '!=', 'inspection')]}"
+											/>
+
+											<field name="repeat_hvs"/>
+
+											<field name="repeat_endocervical"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
+											/>
+
+											<field name="repeat_no_swab_taken"/>
+
+											<field name="repeat_method_of_hvs"
+												   widget="radio"
+												   options="{'horizontal': True}"
+											/>
+
+											<field name="repeat_pap_smear_done"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
+											/>
+
+											<field name="repeat_pipelle_sampling_done"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
+											/>
+
+											<field name="repeat_other_findings"
+												   attrs="{'invisible': [('repeat_examination_type', '=', 'inspection')]}"
+											/>
 
 										</group>
 
 										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+											<field name="scan_required"
+												   widget="radio"
+												   options="{'horizontal': True}"/>
+											<field name="repeat_ultrasound_type"
+												   widget="radio"
+												   options="{'horizontal': True}"/>
+										</group>
+										<group>
 
+											<field name="counseling_and_discussion"/>
 											<field name="repeat_diagnosis"/>
-											<field name="repeat_advised"/>
-											<field name="repeat_treatment_plan"/>
-											<field name="repeat_procedure_plan"/>
 											<field name="repeat_investigations_ids" widget="many2many_tags"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
+
+											<field name="repeat_treatment_plan"/>
+
 											<field name="repeat_treatment_advised_ids" widget="many2many_tags"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
+											<field name="repeat_new_treatment_pathway"
+												   widget="radio"
+												   options="{'horizontal': True}"
+											/>
+
+
+											<!-- Remove -->
 											<field name="repeat_ultrasound_type" widget="radio" options="{'horizontal': True}"/>
 											<label for="male_thyroid_goitear_length" string="Uterus"/>
 											<div class="bg-light bg-gradient">

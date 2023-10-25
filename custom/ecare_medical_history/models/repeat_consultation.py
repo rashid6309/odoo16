@@ -139,12 +139,8 @@ class RepeatConsultation(models.Model):
     # TVS = fields.Many2one('tvs.form', string='TVS Form')
 
     repeat_diagnosis = fields.Text(string='Diagnosis')
-    repeat_advised = fields.Text(string='Advised')
 
-    repeat_treatment_plan = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_PLAN,
-                                             string='Treatment Plan')
-
-    repeat_procedure_plan = fields.Text(string='Procedure Plan')
+    repeat_treatment_plan = fields.Html(string='Plan')
 
     repeat_note = fields.Html(string="Notes")
 
@@ -168,26 +164,54 @@ class RepeatConsultation(models.Model):
     repeat_abdominal = fields.Text(string="Abdominal")
     repeat_breast = fields.Text(string="Breast")
 
-    pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+    repeat_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                 default='yes',
                                                 string="Pelvic examination done?")
 
-    examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
+    repeat_examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
                                         string="Pelvic examination type")
 
-    findings_on_inspection = fields.Text(string="Findings on inspection")
+    repeat_findings_on_inspection = fields.Text(string="Findings on inspection")
 
     repeat_vaginal_exam = fields.Text(string='Vaginal Exam')
     repeat_valva_vaginal_exam = fields.Text(string='Valva and Vagina')
-    cervix = fields.Text(string="Cervix")
-    uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
+    repeat_cervix = fields.Text(string="Cervix")
+    repeat_uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
 
+    repeat_swab_taken = fields.Boolean(string="Swab taken",
+                                default=False)
+
+    repeat_hvs = fields.Boolean(string="HVS",
+                         default=False)
     is_size = fields.Boolean('Size')
     is_position = fields.Boolean('Position')
     is_fiobrid = fields.Boolean('Fiobrid')
     is_normal = fields.Boolean('Normal')
 
 
+    repeat_endocervical = fields.Boolean(string="Endocervical",
+                                  default=False)
+
+    repeat_no_swab_taken = fields.Boolean(string="No swab taken",
+                                   default=False)
+
+    repeat_method_of_hvs = fields.Selection(string="Method of HVS",
+                                     selection=StaticMember.METHOD_OF_HVS)
+
+    repeat_pap_smear_done = fields.Boolean(string="Pap smear done",
+                                    default=False)
+
+    repeat_pipelle_sampling_done = fields.Boolean(string="Pipelle sampling done",
+                                           default=False)
+
+    repeat_other_findings = fields.Text(string="Other findings")
+
+    scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                     string="Scan required?")
+
+    repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_PATHWAY)
+
+    counseling_and_discussion = fields.Html(string="Counseling and discussion done")
 
     ''' Override methods '''
 

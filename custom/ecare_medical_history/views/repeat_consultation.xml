@@ -124,10 +124,6 @@
                                                 <label for="repeat_diagnosis" class="o_form_label">Diagnosis</label>
                                             </td>
                                             <td><field name="repeat_diagnosis"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_advised" class="o_form_label">Advised</label>
-                                            </td>
-                                            <td><field name="repeat_advised"/></td>
                                         </tr>
 
                                         <tr>
@@ -135,10 +131,6 @@
                                                 <label for="repeat_treatment_plan" class="o_form_label">Treatment Plan</label>
                                             </td>
                                             <td><field name="repeat_treatment_plan"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_procedure_plan" class="o_form_label">Procedure Plan</label>
-                                            </td>
-                                            <td><field name="repeat_procedure_plan"/></td>
                                         </tr>
                                         <tr>
                                             <td class="o_td_label">
