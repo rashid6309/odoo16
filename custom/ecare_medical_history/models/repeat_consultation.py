@@ -168,21 +168,42 @@ class RepeatConsultation(models.Model):
     repeat_abdominal = fields.Text(string="Abdominal")
     repeat_breast = fields.Text(string="Breast")
 
-    pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+    repeat_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                 default='yes',
                                                 string="Pelvic examination done?")
 
-    examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
+    repeat_examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
                                         string="Pelvic examination type")
 
-    findings_on_inspection = fields.Text(string="Findings on inspection")
+    repeat_findings_on_inspection = fields.Text(string="Findings on inspection")
 
     repeat_vaginal_exam = fields.Text(string='Vaginal Exam')
     repeat_valva_vaginal_exam = fields.Text(string='Valva and Vagina')
-    cervix = fields.Text(string="Cervix")
-    uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
+    repeat_cervix = fields.Text(string="Cervix")
+    repeat_uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
 
+    repeat_swab_taken = fields.Boolean(string="Swab taken",
+                                default=False)
 
+    repeat_hvs = fields.Boolean(string="HVS",
+                         default=False)
+
+    repeat_endocervical = fields.Boolean(string="Endocervical",
+                                  default=False)
+
+    repeat_no_swab_taken = fields.Boolean(string="No swab taken",
+                                   default=False)
+
+    repeat_method_of_hvs = fields.Selection(string="Method of HVS",
+                                     selection=StaticMember.METHOD_OF_HVS)
+
+    repeat_pap_smear_done = fields.Boolean(string="Pap smear done",
+                                    default=False)
+
+    repeat_pipelle_sampling_done = fields.Boolean(string="Pipelle sampling done",
+                                           default=False)
+
+    repeat_other_findings = fields.Text(string="Other findings")
 
     ''' Override methods '''
 

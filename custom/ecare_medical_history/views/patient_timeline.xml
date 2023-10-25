@@ -118,16 +118,16 @@
 											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
 									</div>
 									<div class="col-2 text-right" style="text-align: right" attrs="{'invisible':[('show_repeat_section_state', '=', True)]}">
-									<button name="action_create_repeat_consultation"
-											type="object"
-											class="btn btn-primary"
-											onclick="showRepeatConsultationSection()"
-											string="Add New">
-										<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
-										Add New
+										<button name="action_create_repeat_consultation"
+												type="object"
+												class="btn btn-primary"
+												onclick="showRepeatConsultationSection()"
+												string="Add New">
+											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
+											Add New
 
-									</button>
-								</div>
+										</button>
+									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
 									<field name="show_repeat_consultation_history_section"
@@ -216,9 +216,9 @@
 											</tree>
 
 										</div>
-<!--										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">-->
-<!--											<field name="question_four_label"/>-->
-<!--										</group>-->
+										<!--										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">-->
+										<!--											<field name="question_four_label"/>-->
+										<!--										</group>-->
 
 										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
 											<group>
@@ -258,41 +258,70 @@
 											<field name="repeat_thyroid"/>
 											<field name="repeat_abdominal"/>
 											<field name="repeat_breast"/>
-											<field name="pelvic_examination_state"
+											<field name="repeat_pelvic_examination_state"
 												   widget="radio"
 												   options="{'horizontal': True}"
 											/>
 										</group>
 
 										<group attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('pelvic_examination_state', '=', 'no')]}">
+																	 ('repeat_pelvic_examination_state', '=', 'no')]}">
 
-											<label for="examination_type" class="label_with_no_string"/>
-											<field name="examination_type" nolabel="1"
+											<label for="repeat_examination_type" class="label_with_no_string"/>
+											<field name="repeat_examination_type" nolabel="1"
 												   widget="radio"
 												   options="{'horizontal': True}"
 											/>
 
-											<field name="findings_on_inspection"
+											<field name="repeat_findings_on_inspection"
 												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('examination_type', '!=', 'inspection')]}"
+																	 ('repeat_examination_type', '!=', 'inspection')]}"
 											/>
 
 											<field name="repeat_valva_vaginal_exam"
 												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('examination_type', '!=', 'p/v')]}"
+																	 ('repeat_examination_type', '!=', 'p/v')]}"
 											/>
 
-											<field name="cervix"
+											<field name="repeat_cervix"
 												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('examination_type', '!=', 'p/v')]}"
+																	 ('repeat_examination_type', '!=', 'p/v')]}"
 											/>
 
-											<field name="uterus_and_adnexae"
+											<field name="repeat_uterus_and_adnexae"
 												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('examination_type', '!=', 'p/v')]}"
+																	 ('repeat_examination_type', '!=', 'p/v')]}"
 											/>
 
+											<field name="repeat_swab_taken"
+												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
+																	 ('repeat_examination_type', '!=', 'inspection')]}"
+											/>
+
+											<field name="repeat_hvs"/>
+
+											<field name="repeat_endocervical"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
+											/>
+
+											<field name="repeat_no_swab_taken"/>
+
+											<field name="repeat_method_of_hvs"
+												   widget="radio"
+												   options="{'horizontal': True}"
+											/>
+
+											<field name="repeat_pap_smear_done"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
+											/>
+
+											<field name="repeat_pipelle_sampling_done"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
+											/>
+
+											<field name="repeat_other_findings"
+												   attrs="{'invisible': [('repeat_examination_type', '=', 'inspection')]}"
+											/>
 
 										</group>
 
@@ -1729,9 +1758,9 @@
 
 										<page string="Conclusion" name="conclusion">
 											<!-- Remove if not required in coming days... -->
-<!--											<group>-->
-<!--												<label for="timeline_conclusion"/>-->
-<!--											</group>-->
+											<!--											<group>-->
+											<!--												<label for="timeline_conclusion"/>-->
+											<!--											</group>-->
 											<field name="timeline_conclusion" placeholder="Add..."/>
 										</page>
 

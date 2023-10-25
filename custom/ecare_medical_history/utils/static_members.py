@@ -532,3 +532,9 @@ class StaticMember:
         ('p/v', 'P/V'),
         ('p/s', 'P/S'),
     ]
+
+    METHOD_OF_HVS = [
+        ('self_swab', 'Self swab without speculum'),
+        ('operator_swab', 'Operator swab without speculum'),
+        ('speculum_swab', 'Speculum swab'),
+    ]
