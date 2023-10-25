@@ -135,11 +135,31 @@
 										   force_save="1"
 									/>
 									<div attrs="{'invisible':[('show_repeat_section_state', '=', False)]}">
+
+										<group>
+											<group>
+												<field name="repeat_date"/>
+												<field name="repeat_consultation_interaction"
+													   widget="radio" options="{'horizontal': True}"
+												/>
+												<field name="repeat_consultation_with"
+													   widget="radio" options="{'horizontal': True}"/>
+												<field name="repeat_seen_by"/>
+											</group>
+											<group>
+												<field name="repeat_location_id"
+													   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+												<field name="repeat_status"
+													   widget="radio" options="{'horizontal': True}"/>
+												<field name="repeat_seen_with_other"
+													   attrs="{'required': [('repeat_consultation_with', '=', 'other')]}"/>
+												<field name="repeat_other_doctors_present" widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
+											</group>
+										</group>
+
 										<field name="repeat_state" invisible="1"/>
 										<field name="show_repeat_section_state" invisible="1"/>
-										<group>
-											<field name="repeat_date"/>
-										</group>
 										<group>
 
 											<group>
@@ -196,26 +216,88 @@
 											</tree>
 
 										</div>
+<!--										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">-->
+<!--											<field name="question_four_label"/>-->
+<!--										</group>-->
+
 										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
-											<field name="question_four_label"/>
+											<group>
+												<field name="lmp_question_four"/>
+											</group>
+											<group>
+												<field name="repeat_cycle_day"/>
+											</group>
 										</group>
 
 										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
-											<field name="repeat_location_id"
-												   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
-											<field name="repeat_status"/>
-											<field name="repeat_consultation_type"/>
-											<field name="lmp_question_four"/>
-											<field name="repeat_cycle_day"/>
-											<field name="repeat_seen_by"
-												   options="{'no_create_edit': True, 'no_create': True}"/>
-											<field name="repeat_other_doctors_present" widget="many2many_tags"
-												   options="{'no_create_edit': True, 'no_create': True}"/>
-											<field name="repeat_seen_with"
-												   options="{'no_create_edit': True, 'no_create': True}"/>
-											<field name="repeat_notes"/>
-											<field name="repeat_gpe_breast_abdominal_exam"/>
-											<field name="repeat_vaginal_exam"/>
+											<group>
+												<field name="is_couple_living_together"
+													   widget="radio"
+													   options="{'horizontal': True}"
+												/>
+											</group>
+											<group>
+												<field name="is_couple_using_contraception"
+													   widget="radio"
+													   options="{'horizontal': True}"
+												/>
+											</group>
+										</group>
+										<label for="repeat_note" class="oe_left"
+											   attrs="{'invisible': [('repeat_state', '!=', '4')]}" />
+										<field name="repeat_note"
+											   nolabel="1"
+											   placeholder="Add..."
+											   attrs="{'invisible': [('repeat_state', '!=', '4')]}" />
+
+										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+											<field name="repeat_examination_required"
+												   widget="radio"
+												   options="{'horizontal': True}"/>
+											<field name="repeat_gpe"/>
+											<field name="repeat_thyroid"/>
+											<field name="repeat_abdominal"/>
+											<field name="repeat_breast"/>
+											<field name="pelvic_examination_state"
+												   widget="radio"
+												   options="{'horizontal': True}"
+											/>
+										</group>
+
+										<group attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
+																	 ('pelvic_examination_state', '=', 'no')]}">
+
+											<label for="examination_type" class="label_with_no_string"/>
+											<field name="examination_type" nolabel="1"
+												   widget="radio"
+												   options="{'horizontal': True}"
+											/>
+
+											<field name="findings_on_inspection"
+												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
+																	 ('examination_type', '!=', 'inspection')]}"
+											/>
+
+											<field name="repeat_valva_vaginal_exam"
+												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
+																	 ('examination_type', '!=', 'p/v')]}"
+											/>
+
+											<field name="cervix"
+												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
+																	 ('examination_type', '!=', 'p/v')]}"
+											/>
+
+											<field name="uterus_and_adnexae"
+												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
+																	 ('examination_type', '!=', 'p/v')]}"
+											/>
+
+
+										</group>
+
+										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+
 											<field name="repeat_diagnosis"/>
 											<field name="repeat_advised"/>
 											<field name="repeat_treatment_plan"/>

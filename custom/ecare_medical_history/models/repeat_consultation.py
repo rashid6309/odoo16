@@ -80,15 +80,20 @@ class RepeatConsultation(models.Model):
     """ Question Four
         Yes: Open the treatment outside of ICSI from and add a record in the previous treatment history 
         No: move to next question
-
+        
+        -- Removed in the meeting 24-10-2023
     """
     question_four_label = fields.Char(string="Question 4:",
                                       default="What is the purpose of today’s visit?",
                                       store=False,
                                       readonly=1)
-    # question_four_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-    #                                         default='no'
-    #                                         )
+
+    ''' Additional questions '''
+    is_couple_living_together = fields.Selection(selection=StaticMember.CHOICE_YES_NO_NA,
+                                                 string="Is the couple living together?")
+
+    is_couple_using_contraception = fields.Selection(selection=StaticMember.CHOICE_YES_NO_NA,
+                                                     string="Is the couple using contraception?")
 
     """
         Ultrasound
@@ -105,7 +110,7 @@ class RepeatConsultation(models.Model):
                                      string='Status',
                                      default='walkin')
 
-    repeat_consultation_type = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE,
+    repeat_consultation_interaction = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE,
                                                 string='Interaction')
 
     lmp_question_four = fields.Date(string='LMP')  # using above one here.
@@ -113,7 +118,7 @@ class RepeatConsultation(models.Model):
                                       readonly=True,
                                       store=True)
 
-    repeat_date = fields.Datetime(string='Consultation Time',
+    repeat_date = fields.Datetime(string='Consultation Date',
                                   readonly=True,
                                   default=fields.Datetime.now)
 
@@ -125,12 +130,10 @@ class RepeatConsultation(models.Model):
     repeat_other_doctors_present = fields.Many2many(comodel_name='res.consultant',
                                                     string='Other Doctors Present')
     ''' Seen with list required '''
-    repeat_seen_with = fields.Selection(selection=StaticMember.SEEN_WITH,
+    repeat_consultation_with = fields.Selection(selection=StaticMember.SEEN_WITH,
                                         string='Consultation with')
 
-    repeat_notes = fields.Text(string='Notes')
-    repeat_gpe_breast_abdominal_exam = fields.Text(string='GPE / Breast / Abdominal Exam')
-    repeat_vaginal_exam = fields.Text(string='Vaginal Exam')
+    repeat_seen_with_other = fields.Text(string='Other Present')
 
     # Define TVS field as per your TVS form structure
     # TVS = fields.Many2one('tvs.form', string='TVS Form')
@@ -143,6 +146,8 @@ class RepeatConsultation(models.Model):
 
     repeat_procedure_plan = fields.Text(string='Procedure Plan')
 
+    repeat_note = fields.Html(string="Notes")
+
     repeat_investigations_ids = fields.Many2many(comodel_name='ec.medical.investigation',
                                                  relation="repeat_consultation_medical_investigation_rel",
                                                  column1="repeat_consultation_id",
@@ -154,6 +159,30 @@ class RepeatConsultation(models.Model):
                                                     column1="repeat_consultation_id",
                                                     column2="treatment_list_id",
                                                     string='Treatment Advised')
+
+    repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                   string="Examination Required")
+
+    repeat_gpe = fields.Text(string='GPE')
+    repeat_thyroid = fields.Text(string="Thyroid")
+    repeat_abdominal = fields.Text(string="Abdominal")
+    repeat_breast = fields.Text(string="Breast")
+
+    pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                default='yes',
+                                                string="Pelvic examination done?")
+
+    examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
+                                        string="Pelvic examination type")
+
+    findings_on_inspection = fields.Text(string="Findings on inspection")
+
+    repeat_vaginal_exam = fields.Text(string='Vaginal Exam')
+    repeat_valva_vaginal_exam = fields.Text(string='Valva and Vagina')
+    cervix = fields.Text(string="Cervix")
+    uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
+
+
 
     ''' Override methods '''
 

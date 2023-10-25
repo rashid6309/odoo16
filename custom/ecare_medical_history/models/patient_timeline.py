@@ -154,6 +154,7 @@ class PatientTimeline(models.Model):
         :return: cycle day
         """
         if CustomDateTime.greater_than_today(self.lmp_question_four):
+            self.lmp_question_four = None
             raise ValidationError(_(
                 "Date can't be greater than current date!"))
 

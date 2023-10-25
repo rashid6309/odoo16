@@ -521,3 +521,14 @@ class StaticMember:
         ('dysmenorrhoea', 'Dysmenorrhoea'),
     ]
     
+    CHOICE_YES_NO_NA = [
+        ('yes', 'Yes'),
+        ('no', 'No'),
+        ('na', 'NA'),
+    ]
+
+    PELVIC_EXAM_CHOICES = [
+        ('inspection', 'Inspection only'),
+        ('p/v', 'P/V'),
+        ('p/s', 'P/S'),
+    ]

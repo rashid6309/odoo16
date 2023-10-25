@@ -429,3 +429,8 @@ button{
     top: 0; /* or however far down you want the sticky effect to start */
     z-index: 1; /* to ensure it's above other content */
 }
+
+/*Use this to make label but with no-string*/
+.label_with_no_string{
+    visibility: hidden;
+}
