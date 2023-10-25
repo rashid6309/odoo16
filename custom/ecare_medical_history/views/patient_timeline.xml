@@ -118,16 +118,16 @@
 											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
 									</div>
 									<div class="col-2 text-right" style="text-align: right" attrs="{'invisible':[('show_repeat_section_state', '=', True)]}">
-									<button name="action_create_repeat_consultation"
-											type="object"
-											class="btn btn-primary"
-											onclick="showRepeatConsultationSection()"
-											string="Add New">
-										<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
-										Add New
+										<button name="action_create_repeat_consultation"
+												type="object"
+												class="btn btn-primary"
+												onclick="showRepeatConsultationSection()"
+												string="Add New">
+											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
+											Add New
 
-									</button>
-								</div>
+										</button>
+									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
 									<field name="show_repeat_consultation_history_section"
@@ -216,9 +216,9 @@
 											</tree>
 
 										</div>
-<!--										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">-->
-<!--											<field name="question_four_label"/>-->
-<!--										</group>-->
+										<!--										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">-->
+										<!--											<field name="question_four_label"/>-->
+										<!--										</group>-->
 
 										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
 											<group>
@@ -307,6 +307,33 @@
 											<field name="repeat_treatment_advised_ids" widget="many2many_tags"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
 											<field name="repeat_ultrasound_type" widget="radio" options="{'horizontal': True}"/>
+											<label for="male_thyroid_goitear_length" string="Uterus"/>
+											<div class="bg-light bg-gradient">
+												<field name="is_size" nolabel="1" class="oe_inline"/>
+												<span class="oe_inline">Size</span>
+												<field name="is_position" nolabel="1" class="oe_inline"/>
+												<span class="oe_inline">Position</span>
+												<field name="is_fiobrid" nolabel="1" class="oe_inline"/>
+												<span class="oe_inline">Fiobrid</span>
+												<field name="is_normal" nolabel="1" class="oe_inline"/>
+												<span class="oe_inline">Normal</span>
+												<span class="oe_inline">Size</span>
+												<field name="female_thyroid_goitear_length" nolabel="1" class="oe_inline"/>
+												<span>x</span>
+												<field name="female_thyroid_goitear_width" nolabel="1" class="oe_inline"/>
+												<span>cm</span>
+
+												<field name="female_thyroid_goitear_type"
+													   widget="radio"
+													   options="{'horizontal': True}"
+													   nolabel="1"
+													   style="margin-left: 7%"
+													   class="oe_inline"/>
+												<div/>
+
+												<field name="female_thyroid_goitear_nodule"/>
+												<span class="oe_inline">Nodule</span>
+											</div>
 										</group>
 
 
@@ -1729,9 +1756,9 @@
 
 										<page string="Conclusion" name="conclusion">
 											<!-- Remove if not required in coming days... -->
-<!--											<group>-->
-<!--												<label for="timeline_conclusion"/>-->
-<!--											</group>-->
+											<!--											<group>-->
+											<!--												<label for="timeline_conclusion"/>-->
+											<!--											</group>-->
 											<field name="timeline_conclusion" placeholder="Add..."/>
 										</page>
 

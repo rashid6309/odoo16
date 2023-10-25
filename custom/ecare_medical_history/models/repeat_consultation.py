@@ -182,6 +182,11 @@ class RepeatConsultation(models.Model):
     cervix = fields.Text(string="Cervix")
     uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
 
+    is_size = fields.Boolean('Size')
+    is_position = fields.Boolean('Position')
+    is_fiobrid = fields.Boolean('Fiobrid')
+    is_normal = fields.Boolean('Normal')
+
 
 
     ''' Override methods '''
