@@ -500,10 +500,10 @@ class StaticMember:
         ('online', 'Online Consultation'),
     ]
 
-    REPEAT_TREATMENT_PLAN = [
-        ('plan1', 'Treatment Plan 1'),
-        ('plan2', 'Treatment Plan 2'),
-        ('plan3', 'Treatment Plan 3'),
+    REPEAT_TREATMENT_PATHWAY = [
+        ('no', 'No'),
+        ('oi/ti', 'OI/TI'),
+        ('natural', 'Natural cycle IUI'),
     ]
 
     SEEN_WITH = [
@@ -538,3 +538,4 @@ class StaticMember:
         ('operator_swab', 'Operator swab without speculum'),
         ('speculum_swab', 'Speculum swab'),
     ]
+

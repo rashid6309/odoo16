@@ -139,12 +139,8 @@ class RepeatConsultation(models.Model):
     # TVS = fields.Many2one('tvs.form', string='TVS Form')
 
     repeat_diagnosis = fields.Text(string='Diagnosis')
-    repeat_advised = fields.Text(string='Advised')
 
-    repeat_treatment_plan = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_PLAN,
-                                             string='Treatment Plan')
-
-    repeat_procedure_plan = fields.Text(string='Procedure Plan')
+    repeat_treatment_plan = fields.Html(string='Plan')
 
     repeat_note = fields.Html(string="Notes")
 
@@ -204,6 +200,13 @@ class RepeatConsultation(models.Model):
                                            default=False)
 
     repeat_other_findings = fields.Text(string="Other findings")
+
+    scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                     string="Scan required?")
+
+    repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_PATHWAY)
+
+    counseling_and_discussion = fields.Html(string="Counseling and discussion done")
 
     ''' Override methods '''
 

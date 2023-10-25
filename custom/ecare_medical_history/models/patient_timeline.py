@@ -177,9 +177,10 @@ class PatientTimeline(models.Model):
         ])
 
         if not obs_histories:
-            self.gravida = gravida
-            self.parity = parity
-            self.miscarriages = miscarriages
+            self.gravida_w = 0
+            self.parity_x = 0
+            self.miscarriages_y = miscarriages
+            self.alive_z = alive
             return
 
         pregnancies = len(obs_histories)
