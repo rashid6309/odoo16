@@ -204,7 +204,8 @@
 												   widget="radio"/>
 										</group>
 										<div>
-											<tree editable="top" attrs="{'invisible': [('question_three_choice', '=', 'no')]}">
+											<tree editable="top" attrs="{'invisible': [('question_three_choice', '=', 'no'),
+											('repeat_state', 'in', ['1', '2'])]}">
 												<field name="timeline_previous_treatment_ids"
 													   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
