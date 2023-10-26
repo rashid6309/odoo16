@@ -333,6 +333,48 @@
 												   options="{'horizontal': True}"/>
 										</group>
 
+										<!-- TVS Section -->
+										<group>
+
+											<field name="tvs_uterus_tvs" widget="radio" options="{'horizontal': True}"/>
+											<field name="tvs_cycle_day" invisible="1" force_save="1"/>
+											<label for="tvs_lining"/>
+											<div>
+												<field name="tvs_lining" class="oe_inline" nolabel="1" widget="radio" options="{'horizontal': True}"/>
+												<field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
+												<span>mm</span>
+											</div>
+										</group>
+
+										<group>
+											<group>
+												<field name="tvs_rov" readonly="1" force_save="1"/>
+											</group>
+											<group>
+												<button type="object"
+														class="btn-primary"
+														context="{'default_field': 'tvs_rov'}"
+														name="action_open_tvs_scan"
+														string="Begin Scan"/>
+											</group>
+										</group>
+										<group>
+											<group><field name="tvs_lov" readonly="1" force_save="1"/></group>
+											<group>
+												<button type="object"
+														class="btn-primary"
+														context="{'default_field': 'tvs_lov'}"
+														name="action_open_tvs_scan"
+														string="Begin Scan"/>
+											</group>
+										</group>
+										<group>
+											<field name="tvs_other_text"/>
+										</group>
+
+										<!-- TVS section ends -->
+
+
 										<!-- Last section in the repeat before the footer -->
 
 										<group>

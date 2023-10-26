@@ -159,7 +159,10 @@ class PatientTimeline(models.Model):
                 "Date can't be greater than current date!"))
 
         cycle_day = (self.repeat_date.date() - self.lmp_question_four).days
-        self.repeat_cycle_day = cycle_day + 1
+        cycle_day += 1
+
+        self.repeat_cycle_day = cycle_day
+        self.tvs_cycle_day = cycle_day
 
     def _compute_female_values(self):
         """
@@ -262,9 +265,7 @@ class PatientTimeline(models.Model):
     def create(self, vals):
         res = super(PatientTimeline, self).create(vals)
         res.ec_repeat_consultation_id.update(
-            {'repeat_timeline_id': res.id,
-             'repeat_patient_id': res.timeline_patient_id
-             }
+            res._get_repeat_consultation_mandatory_attribute()
         )
 
         return res
@@ -321,8 +322,7 @@ class PatientTimeline(models.Model):
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create({
-            'repeat_timeline_id': self.id,
-            'repeat_patient_id': self.timeline_patient_id.id
+            self._get_repeat_consultation_mandatory_attribute()
         })
         self.ec_repeat_consultation_id = repeat_consultation_id.id
         # return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
@@ -353,8 +353,20 @@ class PatientTimeline(models.Model):
                                                                        None)
     def action_open_seminology(self):
         raise UserError("Module is under development phase.")
+    
+    def action_open_tvs_scan(self):
+        return self.ec_repeat_consultation_id.repeat_tvs_id.action_open_tvs_scan()
 
     ''' Data methods '''
+
+    def _get_repeat_consultation_mandatory_attribute(self):
+        patient_id = self.timeline_patient_id.id
+        return {
+            'repeat_timeline_id': self.id,
+            'repeat_patient_id': patient_id,
+            'tvs_patient_id': patient_id,
+            'tvs_repeat_consultation_id': self.id
+        }
 
     def move_next(self):
         value = int(self.repeat_state)

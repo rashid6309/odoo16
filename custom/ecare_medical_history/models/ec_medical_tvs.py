@@ -1,5 +1,5 @@
 from odoo import api, models, fields, _
-from odoo.exceptions import ValidationError
+
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
@@ -16,24 +16,13 @@ class EcMedicalTVS(models.Model):
                                              readonly=True,
                                              string='Repeat Consultation')
 
-    tvs_date = fields.Date(string='Date',
-                       default=fields.Datetime.now,
-                       readonly=True)
-
-    tvs_lmp = fields.Date(string='LMP')
-
-    tvs_day_of_cycle = fields.Selection(selection=StaticMember.DAY_OF_CYCLE,
-                                    string='Day of Cycle')
+    tvs_cycle_day = fields.Integer(readonly=1, string="Cycle day")
 
     tvs_uterus_tvs = fields.Selection(selection=StaticMember.UTERUS_TVS, string='Uterus')
 
     tvs_lining = fields.Selection(selection=StaticMember.LINING, string='Lining')
     tvs_lining_size = fields.Char(string='Size')
 
-    # tуре_tvs = fields.Selection([
-    #     ('type1', 'Type 1'),
-    #     ('type2', 'Type 2'),
-    # ], string='Туре')
     cyst_type = fields.Char(string="Cyst Type")
     cyst_nos = fields.Char(string='Size')
 
