@@ -176,6 +176,15 @@ class RepeatConsultation(models.Model):
     repeat_examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
                                         string="Pelvic examination type")
 
+    inspection_only = fields.Boolean(default=False,
+                                     string="Inspection Only")
+
+    p_v_only = fields.Boolean(default=False,
+                              string="P/V")
+
+    p_s_only = fields.Boolean(default=False,
+                              string="P/S")
+
     repeat_findings_on_inspection = fields.Text(string="Findings on inspection")
 
     repeat_vaginal_exam = fields.Text(string='Vaginal Exam')

@@ -253,57 +253,73 @@
 											/>
 										</group>
 
+										<div class="d-flex" attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+											<field name="inspection_only"/>
+											<label for="inspection_only"/>
+
+											<field name="p_v_only"/>
+											<label for="p_v_only"/>
+
+											<field name="p_s_only"/>
+											<label for="p_s_only"/>
+										</div>
+
 										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
 
-											<label for="repeat_examination_type" class="label_with_no_string"/>
-											<field name="repeat_examination_type" nolabel="1"
-												   widget="radio"
-												   options="{'horizontal': True}"
-											/>
-
 											<field name="repeat_findings_on_inspection"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'inspection')]}"
+												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
 											/>
 
 											<field name="repeat_valva_vaginal_exam"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/v')]}"
+												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 											/>
 
 											<field name="repeat_cervix"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/v')]}"
+												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 											/>
 
 											<field name="repeat_uterus_and_adnexae"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/v')]}"
+												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 											/>
-
+										</group>
+										<div class="d-flex" attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+											<label for="repeat_swab_taken"
+												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
+											/>
 											<field name="repeat_swab_taken"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'inspection')]}"
+												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
 											/>
 
+											<label for="repeat_hvs"/>
 											<field name="repeat_hvs"/>
 
+											<label for="repeat_endocervical"
+												   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+											/>
 											<field name="repeat_endocervical"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
+												   attrs="{'invisible': [('p_s_only', '!=', True)]}"
 											/>
 
+											<label for="repeat_no_swab_taken"/>
 											<field name="repeat_no_swab_taken"/>
+										</div>
 
-											<field name="repeat_method_of_hvs"
-												   widget="radio"
-												   options="{'horizontal': True}"
-											/>
+										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+											<field name="repeat_method_of_hvs"/>
+										</group>
 
+										<div class="d-flex" attrs="{'invisible': ['|', ('repeat_pelvic_examination_state', '=', 'no'), ('p_s_only', '!=', True)]}">
+											<label for="repeat_pap_smear_done"/>
 											<field name="repeat_pap_smear_done"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
 											/>
-
+											<label for="repeat_pipelle_sampling_done"/>
 											<field name="repeat_pipelle_sampling_done"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
 											/>
+										</div>
+										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
 
 											<field name="repeat_other_findings"
-												   attrs="{'invisible': [('repeat_examination_type', '=', 'inspection')]}"
+												   attrs="{'invisible': [('inspection_only', '=', True)]}"
 											/>
 
 										</group>
@@ -321,6 +337,7 @@
 
 										<group>
 											<field name="counseling_and_discussion"/>
+
 											<field name="repeat_diagnosis"/>
 											<field name="repeat_investigations_ids" widget="many2many_tags"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
@@ -329,13 +346,11 @@
 
 											<field name="repeat_treatment_advised_ids" widget="many2many_tags"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
+
 											<field name="repeat_new_treatment_pathway"
 												   widget="radio"
 												   options="{'horizontal': True}"
 											/>
-
-
-											<!-- Remove -->
 										</group>
 
 
