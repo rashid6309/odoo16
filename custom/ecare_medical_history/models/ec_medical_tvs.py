@@ -18,10 +18,13 @@ class EcMedicalTVS(models.Model):
 
     tvs_cycle_day = fields.Integer(readonly=1, string="Cycle day")
 
-    tvs_uterus_tvs = fields.Selection(selection=StaticMember.UTERUS_TVS, string='Uterus')
+    tvs_uterus_tvs = fields.Selection(selection=StaticMember.UTERUS_TVS,
+                                      string='Uterus')
 
-    tvs_lining = fields.Selection(selection=StaticMember.LINING, string='Lining')
-    tvs_lining_size = fields.Char(string='Size')
+    tvs_lining = fields.Selection(selection=StaticMember.LINING,
+                                  string='Lining')
+    tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
+                                       string='Size')
 
     cyst_type = fields.Char(string="Cyst Type")
     cyst_nos = fields.Char(string='Size')
