@@ -23,13 +23,13 @@ class RepeatConsultation(models.Model):
     # repeat_tvs_id = fields.Many2one(comodel_name="ec.medical.tvs")
 
     ''' Data attributes '''
-
-    repeat_state = fields.Selection(selection=[('1', "Question 1"),
-                                               ('2', "Question 2"),
-                                               ('3', "Question 3"),
-                                               ('4', "Question 4")],
-                                    default="1",
-                                    required=True)
+    #
+    # repeat_state = fields.Selection(selection=[('1', "Question 1"),
+    #                                            ('2', "Question 2"),
+    #                                            ('3', "Question 3"),
+    #                                            ('4', "Question 4")],
+    #                                 default="1",
+    #                                 required=True)
 
 
     """ Question One

@@ -156,18 +156,17 @@
 											</group>
 										</group>
 
-										<field name="repeat_state" invisible="1"/>
+<!--										<field name="repeat_state" invisible="1"/>-->
 										<field name="show_repeat_section_state" invisible="1"/>
 										<group>
 
 											<group>
 												<field name="question_one_label"/>
 												<field name="question_one_choice"
-													   attrs="{'readonly':[('repeat_state','!=','1')]}"
 													   widget="radio"/>
 											</group>
 
-											<group attrs="{'invisible': [('question_one_choice', '=', 'no')],'readonly':[('repeat_state','!=','1')]}">
+											<group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
 												<group>
 													<field name="repeat_lmp"/>
 													<field name="repeat_lmp_embryo"/>
@@ -180,10 +179,9 @@
 											</group>
 
 										</group>
-										<group attrs="{'invisible': [('repeat_state', 'in', ['1'])]}">
+										<group>
 											<field name="question_two_label"/>
 											<field name="question_two_choice"
-												   attrs="{'readonly':[('repeat_state','!=','2')]}"
 												   widget="radio"/>
 										</group>
 										<div>
@@ -197,15 +195,13 @@
 											</tree>
 
 										</div>
-										<group attrs="{'invisible': [('repeat_state', 'in', ['1', '2'])]}">
+										<group>
 											<field name="question_three_label"/>
 											<field name="question_three_choice"
-												   attrs="{'readonly':[('repeat_state','!=','3')]}"
 												   widget="radio"/>
 										</group>
 										<div>
-											<tree editable="top" attrs="{'invisible': [('question_three_choice', '=', 'no'),
-											('repeat_state', 'in', ['1', '2'])]}">
+											<tree editable="top" attrs="{'invisible': [('question_three_choice', '=', 'no')]}">
 												<field name="timeline_previous_treatment_ids"
 													   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
@@ -219,7 +215,7 @@
 										<!--											<field name="question_four_label"/>-->
 										<!--										</group>-->
 
-										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+										<group>
 											<group>
 												<field name="lmp_question_four"/>
 											</group>
@@ -228,7 +224,7 @@
 											</group>
 										</group>
 
-										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+										<group>
 											<field name="is_couple_living_together"
 												   widget="radio"
 												   options="{'horizontal': True}"
@@ -238,14 +234,12 @@
 												   options="{'horizontal': True}"
 											/>
 										</group>
-										<label for="repeat_note" class="oe_left"
-											   attrs="{'invisible': [('repeat_state', '!=', '4')]}" />
+										<label for="repeat_note" class="oe_left"/>
 										<field name="repeat_note"
 											   nolabel="1"
-											   placeholder="Add..."
-											   attrs="{'invisible': [('repeat_state', '!=', '4')]}" />
+											   placeholder="Add..."/>
 
-										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+										<group>
 											<field name="repeat_examination_required"
 												   widget="radio"
 												   options="{'horizontal': True}"/>
@@ -259,8 +253,7 @@
 											/>
 										</group>
 
-										<group attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_pelvic_examination_state', '=', 'no')]}">
+										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
 
 											<label for="repeat_examination_type" class="label_with_no_string"/>
 											<field name="repeat_examination_type" nolabel="1"
@@ -269,28 +262,23 @@
 											/>
 
 											<field name="repeat_findings_on_inspection"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'inspection')]}"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'inspection')]}"
 											/>
 
 											<field name="repeat_valva_vaginal_exam"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'p/v')]}"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/v')]}"
 											/>
 
 											<field name="repeat_cervix"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'p/v')]}"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/v')]}"
 											/>
 
 											<field name="repeat_uterus_and_adnexae"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'p/v')]}"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/v')]}"
 											/>
 
 											<field name="repeat_swab_taken"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'inspection')]}"
+												   attrs="{'invisible': [('repeat_examination_type', '!=', 'inspection')]}"
 											/>
 
 											<field name="repeat_hvs"/>
@@ -320,7 +308,7 @@
 
 										</group>
 
-										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+										<group>
 											<field name="scan_required"
 												   widget="radio"
 												   options="{'horizontal': True}"/>
@@ -331,7 +319,7 @@
 
 										<!-- Last section in the repeat before the footer -->
 
-										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+										<group>
 											<field name="counseling_and_discussion"/>
 											<field name="repeat_diagnosis"/>
 											<field name="repeat_investigations_ids" widget="many2many_tags"
@@ -359,20 +347,19 @@
 													string="Close Consultation"/>
 											<button name="action_open_tvs_form"
 													type="object"
-													attrs="{'invisible': [('repeat_state', '!=', '4')]}"
 													class="btn btn-primary"
 													string="TVS"/>
-											<button name="move_back"
-													type="object"
-													attrs="{'invisible': [('repeat_state', '=', '1')]}"
-													class="btn btn-secondary"
-													string="Back"/>
+<!--											<button name="move_back"-->
+<!--													type="object"-->
+<!--													attrs="{'invisible': [('repeat_state', '=', '1')]}"-->
+<!--													class="btn btn-secondary"-->
+<!--													string="Back"/>-->
 
-											<button name="move_next"
-													type="object"
-													attrs="{'invisible': [('repeat_state', '=', '4')]}"
-													class="btn btn-secondary"
-													string="Save &amp; Next"/>
+<!--											<button name="move_next"-->
+<!--													type="object"-->
+<!--													attrs="{'invisible': [('repeat_state', '=', '4')]}"-->
+<!--													class="btn btn-secondary"-->
+<!--													string="Save &amp; Next"/>-->
 										</div>
 									</div>
 									<section>
