@@ -87,24 +87,6 @@
 								</div>
 							</div>
 							<div class="col-md-8 timeline_content">
-								<!--								Repeat Consultation-->
-								<!--								<div class="d-flex scroll-to card-header first_consultation_container mt-2" id="repeat_consultation_section_link">-->
-								<!--									<div class="col-6">-->
-								<!--										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">-->
-								<!--											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>-->
-								<!--									</div>-->
-								<!--									<div class="col-6 text-right">-->
-								<!--										<button name="action_create_repeat_consultation"-->
-								<!--												type="object"-->
-								<!--												class="card-custom-right-button"-->
-								<!--												string="Add New"/>-->
-								<!--									</div>-->
-								<!--								</div>-->
-								<!--								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">-->
-								<!--									<field name="repeat_consultation_ids"-->
-								<!--										   mode="kanban"-->
-								<!--										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>-->
-								<!--								</div>-->
 								<script>
 									function showRepeatConsultationSection() {
 									var targetDiv = document.getElementById("repeat_consultation_section");
