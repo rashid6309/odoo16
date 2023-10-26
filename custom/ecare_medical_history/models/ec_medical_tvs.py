@@ -10,30 +10,61 @@ class EcMedicalTVS(models.Model):
     _rec_name = "tvs_patient_id"
 
     tvs_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
-                                 string="Patient",
-                                 readonly=True)
+                                     string="Patient",
+                                     readonly=True)
     tvs_repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
-                                             readonly=True,
-                                             string='Repeat Consultation')
+                                                 readonly=True,
+                                                 string='Repeat Consultation')
 
     tvs_cycle_day = fields.Integer(readonly=1, string="Cycle day")
 
     tvs_uterus_tvs = fields.Selection(selection=StaticMember.UTERUS_TVS,
                                       string='Uterus')
 
-    tvs_lining = fields.Selection(selection=StaticMember.LINING,
-                                  string='Lining')
+    tvs_uterus_position_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                               relation='tvs_uterus_multi_selection_repeat_position',
+                                               column1='tvs_id',
+                                               column2='multi_selection_id',
+                                               string='Position',
+                                               domain="[('type', '=', 'position')]")
+
+    tvs_uterus_tvs_size = fields.Boolean(default=False, string="Size")
+    tvs_uterus_tvs_position = fields.Boolean(default=False, string="Position")
+    tvs_uterus_tvs_normal = fields.Boolean(default=False, string="Normal")
+    tvs_uterus_tvs_fiobrid = fields.Boolean(default=False, string="Fiobrid")
+
+    tvs_uterus_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
+                                         string='Size X')
+
+    tvs_uterus_size_y= fields.Selection(selection=StaticMember.SIZE_INTEGER,
+                                        string='Size Y')
+
+    tvs_uterus_position = fields.Selection(selection=StaticMember.UTERUS_SIZE_POSITION,
+                                           string='Position')
+
+    tvs_linining_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                        relation='repeat_multi_selection_repeat_position',
+                                        column1='tvs_id',
+                                        column2='multi_selection_id',
+                                        string='Linining',
+                                        domain="[('type', '=', 'linining')]")
+
     tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                        string='Size')
 
-    cyst_type = fields.Char(string="Cyst Type")
-    cyst_nos = fields.Char(string='Size')
+    cyst_type = fields.Selection(selection=StaticMember.CYST_TYPE)
+    tvs_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
+                                            inverse_name="tvs_fiobrid_id",
+                                            string="Fiobrid")
 
     tvs_rov = fields.Text(string='ROV', readonly=True)
 
     tvs_lov = fields.Text(string='LOV', readonly=True)
 
     tvs_other_text = fields.Text(string='Other')
+    tvs_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",
+                                            inverse_name="tvs_cyst_size_id",
+                                            string="Sizes")
 
     def action_open_tvs_scan(self):
         context = self._context.copy()

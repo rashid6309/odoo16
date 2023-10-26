@@ -96,5 +96,25 @@
             <field name="type">position</field>
         </record>
 
+        <record model="ec.medical.multi.selection" id="position_5">
+            <field name="name">M/V</field>
+            <field name="type">position</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="lining_smooth">
+            <field name="name">Smooth</field>
+            <field name="type">linining</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="lining_distorted">
+            <field name="name">Distorted</field>
+            <field name="type">linining</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="lining_triple_echo">
+            <field name="name">Triple Echo</field>
+            <field name="type">linining</field>
+        </record>
+
     </data>
 </odoo>

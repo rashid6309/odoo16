@@ -156,7 +156,7 @@
 											</group>
 										</group>
 
-										<!--										<field name="repeat_state" invisible="1"/>-->
+<!--										<field name="repeat_state" invisible="1"/>-->
 										<field name="show_repeat_section_state" invisible="1"/>
 										<group>
 
@@ -334,48 +334,136 @@
 										</group>
 
 										<!-- TVS Section -->
-										<group>
+										<div class="golden_gradient d-flex flex-column">
+											<div class="d-flex align-items-center">
+												<div class="col-md-1">
+													Uterus
+												</div>
+												<div class="col-md-11">
+													<div class="d-flex">
+														<label for="tvs_uterus_tvs_size"/>
+														<field name="tvs_uterus_tvs_size"/>
 
-											<field name="tvs_uterus_tvs" widget="radio" options="{'horizontal': True}"/>
-											<!--											<field name="tvs_cycle_day" invisible="1" force_save="1"/>-->
-											<label for="tvs_lining"/>
-											<div>
-												<field name="tvs_lining" class="oe_inline" nolabel="1" widget="radio" options="{'horizontal': True}"/>
-												<field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
-												<span>mm</span>
+														<label for="tvs_uterus_tvs_position"/>
+														<field name="tvs_uterus_tvs_position"/>
+
+														<label for="tvs_uterus_tvs_normal"/>
+														<field name="tvs_uterus_tvs_normal"/>
+
+														<label for="tvs_uterus_tvs_fiobrid"/>
+														<field name="tvs_uterus_tvs_fiobrid"/>
+
+													</div>
+													<div class="d-flex bg-light bg-gradient"
+														 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
+														<span>Size</span>
+														<field name="tvs_uterus_size_x"/>
+														<span class="m-2">x</span>
+
+														<field name="tvs_uterus_size_y"/>
+														<span>cm</span>
+													</div>
+													<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+														<div class="col-md-1">
+															Position
+														</div>
+														<div class="d-flex">
+															<field name="tvs_uterus_position_ids" widget="many2many_checkboxes"/>
+														</div>
+													</div>
+													<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
+														<div class="col-md-1">
+															Fiobrid
+														</div>
+														<field name="tvs_generic_sizes_ids">
+															<tree editable="bottom">
+
+																<field name="generic_size_x"/>
+																<field name="generic_size_y"/>
+
+															</tree>
+														</field>
+													</div>
+												</div>
 											</div>
-										</group>
+											<div class="d-flex">
 
-										<group>
-											<group>
-												<field name="tvs_rov"/>
-											</group>
-											<group>
-												<button type="object"
-														class="btn-primary"
-														context="{'default_field': 'tvs_rov'}"
-														name="action_open_tvs_scan"
-														string="Begin Scan"/>
-											</group>
-										</group>
-										<group>
-											<group><field name="tvs_lov"/></group>
-											<group>
-												<button type="object"
-														class="btn-primary"
-														context="{'default_field': 'tvs_lov'}"
-														name="action_open_tvs_scan"
-														string="Begin Scan"/>
-											</group>
-										</group>
-										<group>
-											<field name="tvs_other_text"/>
-										</group>
+												<div class="col-md-1">
+													Linining
+												</div>
+												<div class="d-flex">
+													<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
+													<field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
+													<span>mm</span>
+												</div>
+											</div>
+
+											<div class="d-flex align-items-center">
+												<div class="col-md-1">
+													Cyst
+												</div>
+												<div class="col-md-11 d-flex flex-column">
+													<div>
+														<span>Type</span>
+														<field name="cyst_type"/>
+													</div>
+													<div>
+														<field name="tvs_cyst_size_ids">
+															<tree editable="bottom">
+
+																<field name="generic_size_x"/>
+																<field name="generic_size_y"/>
+
+															</tree>
+														</field>
+													</div>
+												</div>
+											</div>
+
+											<div class="d-flex">
+												<div class="col-md-1">
+													ROV
+												</div>
+												<div class="d-flex col-md-11">
+													<field name="tvs_rov"/>
+
+													<button type="object"
+															class="btn-primary"
+															context="{'default_field': 'tvs_rov'}"
+															name="action_open_tvs_scan"
+															string="Begin Scan"/>
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="col-md-1">
+													LOV
+												</div>
+												<div class="d-flex col-md-11">
+													<field name="tvs_lov"/>
+
+													<button type="object"
+															class="btn-primary"
+															context="{'default_field': 'tvs_lov'}"
+															name="action_open_tvs_scan"
+															string="Begin Scan"/>
+												</div>
+											</div>
+
+											<div class="d-flex">
+												<div class="col-md-1">
+													Other
+												</div>
+												<div class="col-md-11 bg-light">
+
+													<field name="tvs_other_text"/>
+												</div>
+
+
+											</div>
+
+										</div>
 
 										<!-- TVS section ends -->
-
-
-										<!-- Last section in the repeat before the footer -->
 
 										<group>
 											<field name="counseling_and_discussion"/>
@@ -393,38 +481,6 @@
 												   widget="radio"
 												   options="{'horizontal': True}"
 											/>
-
-
-											<!-- Remove -->
-											<field name="repeat_ultrasound_type" widget="radio" options="{'horizontal': True}"/>
-											<label for="male_thyroid_goitear_length" string="Uterus"/>
-											<div class="bg-light bg-gradient">
-												<field name="is_size" nolabel="1" class="oe_inline"/>
-												<span class="oe_inline">Size</span>
-												<field name="is_position" nolabel="1" class="oe_inline"/>
-												<span class="oe_inline">Position</span>
-												<field name="is_fiobrid" nolabel="1" class="oe_inline"/>
-												<span class="oe_inline">Fiobrid</span>
-												<field name="is_normal" nolabel="1" class="oe_inline"/>
-												<span class="oe_inline">Normal</span>
-												<div/>
-												<div attrs="{'invisible':[('is_size', '=', False)]}">
-													<span class="oe_inline">Size </span>
-													<field name="female_repeat_uterus_length" nolabel="1" class="oe_inline"/>
-													<span>x</span>
-													<field name="female_repeat_uterus_width" nolabel="1" class="oe_inline"/>
-													<span>cm</span>
-												</div>
-												<div attrs="{'invisible':[('is_position', '=', False)]}">
-													<span class="oe_inline">Position: </span>
-													<field class="oe_inline" name="repeat_position_ids" widget="many2many_checkboxes"/>
-												</div>
-												<div attrs="{'invisible':[('is_fiobrid', '=', False)]}">
-													<span style="vertical-align: top;" class="oe_inline">Fiobrid: </span>
-													<field class="oe_inline" name="repeat_fiobrid_ids" mode="tree"/>
-												</div>
-
-											</div>
 										</group>
 
 
@@ -434,17 +490,6 @@
 													class="btn btn-primary"
 													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
 													string="Close Consultation"/>
-											<!--											<button name="move_back"-->
-											<!--													type="object"-->
-											<!--													attrs="{'invisible': [('repeat_state', '=', '1')]}"-->
-											<!--													class="btn btn-secondary"-->
-											<!--													string="Back"/>-->
-
-											<!--											<button name="move_next"-->
-											<!--													type="object"-->
-											<!--													attrs="{'invisible': [('repeat_state', '=', '4')]}"-->
-											<!--													class="btn btn-secondary"-->
-											<!--													string="Save &amp; Next"/>-->
 										</div>
 									</div>
 									<section>

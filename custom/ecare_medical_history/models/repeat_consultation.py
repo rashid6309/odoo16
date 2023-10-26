@@ -205,12 +205,6 @@ class RepeatConsultation(models.Model):
     female_repeat_uterus_length = fields.Selection(selection=StaticMember.GOITEAR_LENGTH, string='Uterus')
     female_repeat_uterus_width = fields.Selection(selection=StaticMember.GOITEAR_LENGTH, string='Uterus')
 
-    repeat_position_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
-                                           relation='repeat_multi_selection_repeat_position',
-                                           column1='repeat_id',
-                                           column2='multi_selection_id',
-                                           string='Position', domain="[('type', '=', 'position')]")
-
     repeat_fiobrid_ids = fields.One2many('ec.repeat.fiobrid', 'repeat_id', string="Fiobrid")
 
     repeat_endocervical = fields.Boolean(string="Endocervical",

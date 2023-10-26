@@ -42,7 +42,7 @@
 
         # Repeat
         'views/repeat_consultation.xml',
-        'views/repeat_fiobrid.xml',
+        # 'views/repeat_fiobrid.xml',
         # TVS
         'views/ec_medical_tvs.xml',
         # Timeline

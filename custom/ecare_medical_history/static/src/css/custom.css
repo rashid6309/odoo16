@@ -441,3 +441,7 @@ button{
     max-height: auto !important;
     height: auto !important;
 }
+
+.golden_gradient{
+    background: linear-gradient(to bottom, #FAFDF2, #EAEAD0);
+}

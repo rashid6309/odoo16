@@ -575,3 +575,8 @@ class StaticMember:
         ('speculum_swab', 'Speculum swab'),
     ]
 
+    CYST_TYPE = [
+        ('solid', 'Solid'),
+        ('provide1', 'Provide'),
+        ('provide2', 'Provide'),
+    ]
