@@ -140,10 +140,8 @@
 											<group>
 												<field name="repeat_date"/>
 												<field name="repeat_consultation_interaction"
-													   widget="radio" options="{'horizontal': True}"
 												/>
-												<field name="repeat_consultation_with"
-													   widget="radio" options="{'horizontal': True}"/>
+												<field name="repeat_consultation_with"/>
 												<field name="repeat_seen_by"/>
 											</group>
 											<group>
@@ -158,18 +156,17 @@
 											</group>
 										</group>
 
-										<field name="repeat_state" invisible="1"/>
+<!--										<field name="repeat_state" invisible="1"/>-->
 										<field name="show_repeat_section_state" invisible="1"/>
 										<group>
 
 											<group>
 												<field name="question_one_label"/>
 												<field name="question_one_choice"
-													   attrs="{'readonly':[('repeat_state','!=','1')]}"
 													   widget="radio"/>
 											</group>
 
-											<group attrs="{'invisible': [('question_one_choice', '=', 'no')],'readonly':[('repeat_state','!=','1')]}">
+											<group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
 												<group>
 													<field name="repeat_lmp"/>
 													<field name="repeat_lmp_embryo"/>
@@ -182,10 +179,9 @@
 											</group>
 
 										</group>
-										<group attrs="{'invisible': [('repeat_state', 'in', ['1'])]}">
+										<group>
 											<field name="question_two_label"/>
 											<field name="question_two_choice"
-												   attrs="{'readonly':[('repeat_state','!=','2')]}"
 												   widget="radio"/>
 										</group>
 										<div>
@@ -199,10 +195,9 @@
 											</tree>
 
 										</div>
-										<group attrs="{'invisible': [('repeat_state', 'in', ['1', '2'])]}">
+										<group>
 											<field name="question_three_label"/>
 											<field name="question_three_choice"
-												   attrs="{'readonly':[('repeat_state','!=','3')]}"
 												   widget="radio"/>
 										</group>
 										<div>
@@ -220,7 +215,7 @@
 										<!--											<field name="question_four_label"/>-->
 										<!--										</group>-->
 
-										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+										<group>
 											<group>
 												<field name="lmp_question_four"/>
 											</group>
@@ -229,28 +224,22 @@
 											</group>
 										</group>
 
-										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
-											<group>
-												<field name="is_couple_living_together"
-													   widget="radio"
-													   options="{'horizontal': True}"
-												/>
-											</group>
-											<group>
-												<field name="is_couple_using_contraception"
-													   widget="radio"
-													   options="{'horizontal': True}"
-												/>
-											</group>
+										<group>
+											<field name="is_couple_living_together"
+												   widget="radio"
+												   options="{'horizontal': True}"
+											/>
+											<field name="is_couple_using_contraception"
+												   widget="radio"
+												   options="{'horizontal': True}"
+											/>
 										</group>
-										<label for="repeat_note" class="oe_left"
-											   attrs="{'invisible': [('repeat_state', '!=', '4')]}" />
+										<label for="repeat_note" class="oe_left"/>
 										<field name="repeat_note"
 											   nolabel="1"
-											   placeholder="Add..."
-											   attrs="{'invisible': [('repeat_state', '!=', '4')]}" />
+											   placeholder="Add..."/>
 
-										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+										<group>
 											<field name="repeat_examination_required"
 												   widget="radio"
 												   options="{'horizontal': True}"/>
@@ -264,68 +253,78 @@
 											/>
 										</group>
 
-										<group attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_pelvic_examination_state', '=', 'no')]}">
+										<div class="d-flex" attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+											<field name="inspection_only"/>
+											<label for="inspection_only"/>
 
-											<label for="repeat_examination_type" class="label_with_no_string"/>
-											<field name="repeat_examination_type" nolabel="1"
-												   widget="radio"
-												   options="{'horizontal': True}"
-											/>
+											<field name="p_v_only"/>
+											<label for="p_v_only"/>
+
+											<field name="p_s_only"/>
+											<label for="p_s_only"/>
+										</div>
+
+										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
 
 											<field name="repeat_findings_on_inspection"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'inspection')]}"
+												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
 											/>
 
 											<field name="repeat_valva_vaginal_exam"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'p/v')]}"
+												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 											/>
 
 											<field name="repeat_cervix"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'p/v')]}"
+												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 											/>
 
 											<field name="repeat_uterus_and_adnexae"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'p/v')]}"
+												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 											/>
-
+										</group>
+										<div class="d-flex" attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+											<label for="repeat_swab_taken"
+												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
+											/>
 											<field name="repeat_swab_taken"
-												   attrs="{'invisible': ['|', ('repeat_state', '!=', '4'),
-																	 ('repeat_examination_type', '!=', 'inspection')]}"
+												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
 											/>
 
+											<label for="repeat_hvs"/>
 											<field name="repeat_hvs"/>
 
+											<label for="repeat_endocervical"
+												   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+											/>
 											<field name="repeat_endocervical"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
+												   attrs="{'invisible': [('p_s_only', '!=', True)]}"
 											/>
 
+											<label for="repeat_no_swab_taken"/>
 											<field name="repeat_no_swab_taken"/>
+										</div>
 
-											<field name="repeat_method_of_hvs"
-												   widget="radio"
-												   options="{'horizontal': True}"
-											/>
+										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+											<field name="repeat_method_of_hvs"/>
+										</group>
 
+										<div class="d-flex" attrs="{'invisible': ['|', ('repeat_pelvic_examination_state', '=', 'no'), ('p_s_only', '!=', True)]}">
+											<label for="repeat_pap_smear_done"/>
 											<field name="repeat_pap_smear_done"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
 											/>
-
+											<label for="repeat_pipelle_sampling_done"/>
 											<field name="repeat_pipelle_sampling_done"
-												   attrs="{'invisible': [('repeat_examination_type', '!=', 'p/s')]}"
 											/>
+										</div>
+										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
 
 											<field name="repeat_other_findings"
-												   attrs="{'invisible': [('repeat_examination_type', '=', 'inspection')]}"
+												   attrs="{'invisible': [('inspection_only', '=', True)]}"
 											/>
 
 										</group>
 
-										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">
+										<group>
 											<field name="scan_required"
 												   widget="radio"
 												   options="{'horizontal': True}"/>
@@ -333,9 +332,54 @@
 												   widget="radio"
 												   options="{'horizontal': True}"/>
 										</group>
+
+										<!-- TVS Section -->
 										<group>
 
+											<field name="tvs_uterus_tvs" widget="radio" options="{'horizontal': True}"/>
+<!--											<field name="tvs_cycle_day" invisible="1" force_save="1"/>-->
+											<label for="tvs_lining"/>
+											<div>
+												<field name="tvs_lining" class="oe_inline" nolabel="1" widget="radio" options="{'horizontal': True}"/>
+												<field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
+												<span>mm</span>
+											</div>
+										</group>
+
+										<group>
+											<group>
+												<field name="tvs_rov"/>
+											</group>
+											<group>
+												<button type="object"
+														class="btn-primary"
+														context="{'default_field': 'tvs_rov'}"
+														name="action_open_tvs_scan"
+														string="Begin Scan"/>
+											</group>
+										</group>
+										<group>
+											<group><field name="tvs_lov"/></group>
+											<group>
+												<button type="object"
+														class="btn-primary"
+														context="{'default_field': 'tvs_lov'}"
+														name="action_open_tvs_scan"
+														string="Begin Scan"/>
+											</group>
+										</group>
+										<group>
+											<field name="tvs_other_text"/>
+										</group>
+
+										<!-- TVS section ends -->
+
+
+										<!-- Last section in the repeat before the footer -->
+
+										<group>
 											<field name="counseling_and_discussion"/>
+
 											<field name="repeat_diagnosis"/>
 											<field name="repeat_investigations_ids" widget="many2many_tags"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
@@ -344,6 +388,7 @@
 
 											<field name="repeat_treatment_advised_ids" widget="many2many_tags"
 												   options="{'no_create_edit': True, 'no_create': True}"/>
+
 											<field name="repeat_new_treatment_pathway"
 												   widget="radio"
 												   options="{'horizontal': True}"
@@ -388,22 +433,17 @@
 													class="btn btn-primary"
 													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
 													string="Close Consultation"/>
-											<button name="action_open_tvs_form"
-													type="object"
-													attrs="{'invisible': [('repeat_state', '!=', '4')]}"
-													class="btn btn-primary"
-													string="TVS"/>
-											<button name="move_back"
-													type="object"
-													attrs="{'invisible': [('repeat_state', '=', '1')]}"
-													class="btn btn-secondary"
-													string="Back"/>
+<!--											<button name="move_back"-->
+<!--													type="object"-->
+<!--													attrs="{'invisible': [('repeat_state', '=', '1')]}"-->
+<!--													class="btn btn-secondary"-->
+<!--													string="Back"/>-->
 
-											<button name="move_next"
-													type="object"
-													attrs="{'invisible': [('repeat_state', '=', '4')]}"
-													class="btn btn-secondary"
-													string="Save &amp; Next"/>
+<!--											<button name="move_next"-->
+<!--													type="object"-->
+<!--													attrs="{'invisible': [('repeat_state', '=', '4')]}"-->
+<!--													class="btn btn-secondary"-->
+<!--													string="Save &amp; Next"/>-->
 										</div>
 									</div>
 									<section>

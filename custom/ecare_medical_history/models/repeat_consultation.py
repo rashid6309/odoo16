@@ -11,20 +11,25 @@ class RepeatConsultation(models.Model):
     _name = 'ec.repeat.consultation'
     _description = "Patient Repeat Consultation"
     _order = "create_date desc"
+    _inherits = {
+        'ec.medical.tvs': 'repeat_tvs_id',
+    }
 
     ''' Foreign Keys '''
 
     repeat_patient_id = fields.Many2one(comodel_name="ec.medical.patient")
     repeat_timeline_id = fields.Many2one(comodel_name="ec.patient.timeline", ondelete="restrict")
 
-    ''' Data attributes '''
+    repeat_tvs_id = fields.Many2one(comodel_name="ec.medical.tvs")
 
-    repeat_state = fields.Selection(selection=[('1', "Question 1"),
-                                               ('2', "Question 2"),
-                                               ('3', "Question 3"),
-                                               ('4', "Question 4")],
-                                    default="1",
-                                    required=True)
+    ''' Data attributes '''
+    #
+    # repeat_state = fields.Selection(selection=[('1', "Question 1"),
+    #                                            ('2', "Question 2"),
+    #                                            ('3', "Question 3"),
+    #                                            ('4', "Question 4")],
+    #                                 default="1",
+    #                                 required=True)
 
 
     """ Question One
@@ -170,6 +175,15 @@ class RepeatConsultation(models.Model):
 
     repeat_examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
                                         string="Pelvic examination type")
+
+    inspection_only = fields.Boolean(default=False,
+                                     string="Inspection Only")
+
+    p_v_only = fields.Boolean(default=False,
+                              string="P/V")
+
+    p_s_only = fields.Boolean(default=False,
+                              string="P/S")
 
     repeat_findings_on_inspection = fields.Text(string="Findings on inspection")
 

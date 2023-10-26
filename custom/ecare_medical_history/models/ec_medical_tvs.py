@@ -1,5 +1,5 @@
 from odoo import api, models, fields, _
-from odoo.exceptions import ValidationError
+
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
@@ -7,41 +7,33 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 class EcMedicalTVS(models.Model):
     _name = 'ec.medical.tvs'
     _description = "Patient TVS"
-    _rec_name = "patient_id"
+    _rec_name = "tvs_patient_id"
 
-    patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+    tvs_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                  string="Patient",
                                  readonly=True)
-    repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
+    tvs_repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
                                              readonly=True,
                                              string='Repeat Consultation')
 
-    date = fields.Date(string='Date',
-                       default=fields.Datetime.now,
-                       readonly=True)
+    tvs_cycle_day = fields.Integer(readonly=1, string="Cycle day")
 
-    lmp = fields.Date(string='LMP')
+    tvs_uterus_tvs = fields.Selection(selection=StaticMember.UTERUS_TVS,
+                                      string='Uterus')
 
-    day_of_cycle = fields.Selection(selection=StaticMember.DAY_OF_CYCLE,
-                                    string='Day of Cycle')
+    tvs_lining = fields.Selection(selection=StaticMember.LINING,
+                                  string='Lining')
+    tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
+                                       string='Size')
 
-    uterus_tvs = fields.Selection(selection=StaticMember.UTERUS_TVS, string='Uterus')
-
-    lining = fields.Selection(selection=StaticMember.LINING, string='Lining')
-    lining_size = fields.Char(string='Size')
-
-    # tуре_tvs = fields.Selection([
-    #     ('type1', 'Type 1'),
-    #     ('type2', 'Type 2'),
-    # ], string='Туре')
     cyst_type = fields.Char(string="Cyst Type")
     cyst_nos = fields.Char(string='Size')
 
-    rov = fields.Text(string='ROV')
+    tvs_rov = fields.Text(string='ROV', readonly=True)
 
-    lov = fields.Text(string='LOV')
+    tvs_lov = fields.Text(string='LOV', readonly=True)
 
-    other_text = fields.Text(string='Other')
+    tvs_other_text = fields.Text(string='Other')
 
     def action_open_tvs_scan(self):
         context = self._context.copy()
@@ -66,7 +58,7 @@ class EcMedicalTVS(models.Model):
         context['target'] = target
 
         tvs_exist = self.env['ec.medical.tvs'].search([(
-            'repeat_consultation_id', '=', repeat_consultation_id.id
+            'tvs_repeat_consultation_id', '=', repeat_consultation_id.id
         )], limit=1)
 
         if tvs_exist:
@@ -81,8 +73,8 @@ class EcMedicalTVS(models.Model):
                 'flags': {'initial_mode': 'edit'},
             }
 
-        context['default_repeat_consultation_id'] = repeat_consultation_id.id
-        context['default_patient_id'] = repeat_consultation_id.repeat_timeline_id.timeline_patient_id.id
+        context['default_tvs_repeat_consultation_id'] = repeat_consultation_id.id
+        context['default_tvs_patient_id'] = repeat_consultation_id.repeat_timeline_id.timeline_patient_id.id
 
         return {
             "name": _("TVS"),
@@ -110,12 +102,12 @@ class EcMedicalTVSScan(models.TransientModel):
 
             if context and record:
                 field = context.get('default_field')
-                if field and field == 'rov':
+                if field and field == 'tvs_rov':
                     return record.write({
-                        'rov': str(self.display),
+                        'tvs_rov': str(self.display),
                     })
-                elif field and field == 'lov':
+                elif field and field == 'tvs_lov':
                     return record.write({
-                        'lov': str(self.display),
+                        'tvs_lov': str(self.display),
                     })
 
