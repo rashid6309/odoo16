@@ -8,10 +8,10 @@ class GenericSizes(models.Model):
     _description = "Generic Sizes "
 
     generic_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
-                                      string='Size X')
+                                      string='Size (cm)')
 
     generic_size_y = fields.Selection(selection=StaticMember.SIZE_INTEGER,
-                                      string='Size Y')
+                                      string='Size (cm)')
 
     tvs_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")
     tvs_cyst_size_id = fields.Many2one(comodel_name="ec.medical.tvs")
