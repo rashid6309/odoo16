@@ -434,3 +434,10 @@ button{
 .label_with_no_string{
     visibility: hidden;
 }
+
+.table-responsive > table > thead > tr > th{
+    width: 11.88% !important;
+    max-width:fit-content !important;
+    max-height: auto !important;
+    height: auto !important;
+}
