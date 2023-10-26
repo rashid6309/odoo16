@@ -20,7 +20,7 @@
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="xml">
 				<tree create="0">
-					<!--				<field name="name"/>-->
+					<!--					<field name="name"/>-->
 					<field name="timeline_patient_id"/>
 				</tree>
 			</field>
@@ -436,7 +436,6 @@
 												<span>mm</span>
 											</div>
 										</group>
-
 										<group>
 										</group>
 

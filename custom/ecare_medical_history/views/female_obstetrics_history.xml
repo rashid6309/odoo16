@@ -17,7 +17,7 @@
                     <field name="date_of_birth"/>
                     <field name="age"/>
                     <field name="baby_notes"/>
-                    <field name="duration_of_pregnancy"/>
+                    <field name="duration_of_pregnancy" string="Dur. of Preg"/>
                     <field name="mode_of_delivery"/>
                     <field name="other_indications"/>
                     <field name="complications"/>

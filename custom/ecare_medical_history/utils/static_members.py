@@ -554,6 +554,7 @@ class StaticMember:
         ('complications', 'Complications'),
         ('complains', 'Complains'),
         ('dysmenorrhoea', 'Dysmenorrhoea'),
+        ('position', 'Position'),
     ]
     
     CHOICE_YES_NO_NA = [
