@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+	<!-- Tree View -->
+		<record id="ec_repeat_fiobrid_tree_view" model="ir.ui.view">
+			<field name="name">ec.repeat.fiobrid.tree.view</field>
+			<field name="model">ec.repeat.fiobrid</field>
+			<field name="arch" type="xml">
+				<tree editable="bottom">
+					<!--					<field name="name"/>-->
+					<field name="repeat_id" invisible="1"/>
+					<field name="length"/>
+					<field name="width"/>
+				</tree>
+			</field>
+		</record>
+    </data>
+</odoo>
