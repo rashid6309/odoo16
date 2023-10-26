@@ -26,9 +26,9 @@ class EcMedicalTVS(models.Model):
     cyst_type = fields.Char(string="Cyst Type")
     cyst_nos = fields.Char(string='Size')
 
-    tvs_rov = fields.Text(string='ROV')
+    tvs_rov = fields.Text(string='ROV', readonly=True)
 
-    tvs_lov = fields.Text(string='LOV')
+    tvs_lov = fields.Text(string='LOV', readonly=True)
 
     tvs_other_text = fields.Text(string='Other')
 

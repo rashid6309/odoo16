@@ -321,9 +321,9 @@ class PatientTimeline(models.Model):
             self.show_repeat_consultation_history_section = True
             return
 
-        repeat_consultation_id = self.env['ec.repeat.consultation'].create({
+        repeat_consultation_id = self.env['ec.repeat.consultation'].create(
             self._get_repeat_consultation_mandatory_attribute()
-        })
+        )
         self.ec_repeat_consultation_id = repeat_consultation_id.id
         # return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
 
