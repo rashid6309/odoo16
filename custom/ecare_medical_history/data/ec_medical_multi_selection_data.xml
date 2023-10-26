@@ -71,9 +71,29 @@
             <field name="name">After Menses</field>
             <field name="type">dysmenorrhoea</field>
         </record>
+
         <record model="ec.medical.multi.selection" id="dysmenorrhoea_none">
             <field name="name">None</field>
             <field name="type">dysmenorrhoea</field>
+        </record>
+
+<!--        Position-->
+        <record model="ec.medical.multi.selection" id="position_1">
+            <field name="name">Deviated to Right</field>
+            <field name="type">position</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="position_2">
+            <field name="name">Deviated to Left</field>
+            <field name="type">position</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="position_3">
+            <field name="name">A/V</field>
+            <field name="type">position</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="position_4">
+            <field name="name">R/V</field>
+            <field name="type">position</field>
         </record>
 
     </data>

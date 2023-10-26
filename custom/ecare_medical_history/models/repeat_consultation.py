@@ -116,7 +116,7 @@ class RepeatConsultation(models.Model):
                                      default='walkin')
 
     repeat_consultation_interaction = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE,
-                                                string='Interaction')
+                                                       string='Interaction')
 
     lmp_question_four = fields.Date(string='LMP')  # using above one here.
     repeat_cycle_day = fields.Integer(string='Cycle Day',
@@ -136,7 +136,7 @@ class RepeatConsultation(models.Model):
                                                     string='Other Doctors Present')
     ''' Seen with list required '''
     repeat_consultation_with = fields.Selection(selection=StaticMember.SEEN_WITH,
-                                        string='Consultation with')
+                                                string='Consultation with')
 
     repeat_seen_with_other = fields.Text(string='Other Present')
 
@@ -170,11 +170,11 @@ class RepeatConsultation(models.Model):
     repeat_breast = fields.Text(string="Breast")
 
     repeat_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                                default='yes',
-                                                string="Pelvic examination done?")
+                                                       default='yes',
+                                                       string="Pelvic examination done?")
 
     repeat_examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
-                                        string="Pelvic examination type")
+                                               string="Pelvic examination type")
 
     inspection_only = fields.Boolean(default=False,
                                      string="Inspection Only")
@@ -193,30 +193,40 @@ class RepeatConsultation(models.Model):
     repeat_uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
 
     repeat_swab_taken = fields.Boolean(string="Swab taken",
-                                default=False)
+                                       default=False)
 
     repeat_hvs = fields.Boolean(string="HVS",
-                         default=False)
+                                default=False)
     is_size = fields.Boolean('Size')
     is_position = fields.Boolean('Position')
     is_fiobrid = fields.Boolean('Fiobrid')
     is_normal = fields.Boolean('Normal')
 
+    female_repeat_uterus_length = fields.Selection(selection=StaticMember.GOITEAR_LENGTH, string='Uterus')
+    female_repeat_uterus_width = fields.Selection(selection=StaticMember.GOITEAR_LENGTH, string='Uterus')
+
+    repeat_position_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                           relation='repeat_multi_selection_repeat_position',
+                                           column1='repeat_id',
+                                           column2='multi_selection_id',
+                                           string='Position', domain="[('type', '=', 'position')]")
+
+    repeat_fiobrid_ids = fields.One2many('ec.repeat.fiobrid', 'repeat_id', string="Fiobrid")
 
     repeat_endocervical = fields.Boolean(string="Endocervical",
-                                  default=False)
+                                         default=False)
 
     repeat_no_swab_taken = fields.Boolean(string="No swab taken",
-                                   default=False)
+                                          default=False)
 
     repeat_method_of_hvs = fields.Selection(string="Method of HVS",
-                                     selection=StaticMember.METHOD_OF_HVS)
+                                            selection=StaticMember.METHOD_OF_HVS)
 
     repeat_pap_smear_done = fields.Boolean(string="Pap smear done",
-                                    default=False)
+                                           default=False)
 
     repeat_pipelle_sampling_done = fields.Boolean(string="Pipelle sampling done",
-                                           default=False)
+                                                  default=False)
 
     repeat_other_findings = fields.Text(string="Other findings")
 
@@ -296,3 +306,15 @@ class RepeatConsultation(models.Model):
 
     def action_open_tvs_form(self):
         return self.env['ec.medical.tvs'].action_open_form_view(self, target='new')
+
+
+# Fiobrid
+class RepeatFiobrid(models.Model):
+    _name = 'ec.repeat.fiobrid'
+    _description = "Patient Repeat Fiobrid"
+
+    repeat_id = fields.Many2one('ec.repeat.consultation')
+
+    length = fields.Integer('Length')
+    width = fields.Integer('Width')
+

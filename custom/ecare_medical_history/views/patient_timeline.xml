@@ -156,7 +156,7 @@
 											</group>
 										</group>
 
-<!--										<field name="repeat_state" invisible="1"/>-->
+										<!--										<field name="repeat_state" invisible="1"/>-->
 										<field name="show_repeat_section_state" invisible="1"/>
 										<group>
 
@@ -337,7 +337,7 @@
 										<group>
 
 											<field name="tvs_uterus_tvs" widget="radio" options="{'horizontal': True}"/>
-<!--											<field name="tvs_cycle_day" invisible="1" force_save="1"/>-->
+											<!--											<field name="tvs_cycle_day" invisible="1" force_save="1"/>-->
 											<label for="tvs_lining"/>
 											<div>
 												<field name="tvs_lining" class="oe_inline" nolabel="1" widget="radio" options="{'horizontal': True}"/>
@@ -407,22 +407,23 @@
 												<span class="oe_inline">Fiobrid</span>
 												<field name="is_normal" nolabel="1" class="oe_inline"/>
 												<span class="oe_inline">Normal</span>
-												<span class="oe_inline">Size</span>
-												<field name="female_thyroid_goitear_length" nolabel="1" class="oe_inline"/>
-												<span>x</span>
-												<field name="female_thyroid_goitear_width" nolabel="1" class="oe_inline"/>
-												<span>cm</span>
-
-												<field name="female_thyroid_goitear_type"
-													   widget="radio"
-													   options="{'horizontal': True}"
-													   nolabel="1"
-													   style="margin-left: 7%"
-													   class="oe_inline"/>
 												<div/>
+												<div attrs="{'invisible':[('is_size', '=', False)]}">
+													<span class="oe_inline">Size </span>
+													<field name="female_repeat_uterus_length" nolabel="1" class="oe_inline"/>
+													<span>x</span>
+													<field name="female_repeat_uterus_width" nolabel="1" class="oe_inline"/>
+													<span>cm</span>
+												</div>
+												<div attrs="{'invisible':[('is_position', '=', False)]}">
+													<span class="oe_inline">Position: </span>
+													<field class="oe_inline" name="repeat_position_ids" widget="many2many_checkboxes"/>
+												</div>
+												<div attrs="{'invisible':[('is_fiobrid', '=', False)]}">
+													<span style="vertical-align: top;" class="oe_inline">Fiobrid: </span>
+													<field class="oe_inline" name="repeat_fiobrid_ids" mode="tree"/>
+												</div>
 
-												<field name="female_thyroid_goitear_nodule"/>
-												<span class="oe_inline">Nodule</span>
 											</div>
 										</group>
 
@@ -433,17 +434,17 @@
 													class="btn btn-primary"
 													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
 													string="Close Consultation"/>
-<!--											<button name="move_back"-->
-<!--													type="object"-->
-<!--													attrs="{'invisible': [('repeat_state', '=', '1')]}"-->
-<!--													class="btn btn-secondary"-->
-<!--													string="Back"/>-->
+											<!--											<button name="move_back"-->
+											<!--													type="object"-->
+											<!--													attrs="{'invisible': [('repeat_state', '=', '1')]}"-->
+											<!--													class="btn btn-secondary"-->
+											<!--													string="Back"/>-->
 
-<!--											<button name="move_next"-->
-<!--													type="object"-->
-<!--													attrs="{'invisible': [('repeat_state', '=', '4')]}"-->
-<!--													class="btn btn-secondary"-->
-<!--													string="Save &amp; Next"/>-->
+											<!--											<button name="move_next"-->
+											<!--													type="object"-->
+											<!--													attrs="{'invisible': [('repeat_state', '=', '4')]}"-->
+											<!--													class="btn btn-secondary"-->
+											<!--													string="Save &amp; Next"/>-->
 										</div>
 									</div>
 									<section>
