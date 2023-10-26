@@ -57,9 +57,9 @@ class EcMedicalTVS(models.Model):
                                             inverse_name="tvs_fiobrid_id",
                                             string="Fiobrid")
 
-    tvs_rov = fields.Text(string='ROV', readonly=True)
+    tvs_rov = fields.Char(string='ROV', readonly=True)
 
-    tvs_lov = fields.Text(string='LOV', readonly=True)
+    tvs_lov = fields.Char(string='LOV', readonly=True)
 
     tvs_other_text = fields.Text(string='Other')
     tvs_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",

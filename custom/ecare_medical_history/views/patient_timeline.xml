@@ -334,12 +334,12 @@
 										</group>
 
 										<!-- TVS Section -->
-										<div class="golden_gradient d-flex flex-column">
-											<div class="d-flex align-items-center">
+										<div class="d-flex flex-column">
+											<div class="d-flex align-items-center  bg-light bg-gradient">
 												<div class="col-md-1">
 													Uterus
 												</div>
-												<div class="col-md-11">
+												<div class="col-md-11 ">
 													<div class="d-flex">
 														<label for="tvs_uterus_tvs_size"/>
 														<field name="tvs_uterus_tvs_size"/>
@@ -354,7 +354,7 @@
 														<field name="tvs_uterus_tvs_fiobrid"/>
 
 													</div>
-													<div class="d-flex bg-light bg-gradient"
+													<div class="d-flex"
 														 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
 														<span>Size</span>
 														<field name="tvs_uterus_size_x"/>
@@ -386,7 +386,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="d-flex">
+											<div class="d-flex ">
 
 												<div class="col-md-1">
 													Linining
@@ -398,12 +398,12 @@
 												</div>
 											</div>
 
-											<div class="d-flex align-items-center">
+											<div class="d-flex align-items-center bg-light bg-gradient">
 												<div class="col-md-1">
 													Cyst
 												</div>
 												<div class="col-md-11 d-flex flex-column">
-													<div>
+													<div class="d-flex">
 														<span>Type</span>
 														<field name="cyst_type"/>
 													</div>
@@ -434,7 +434,7 @@
 															string="Begin Scan"/>
 												</div>
 											</div>
-											<div class="d-flex">
+											<div class="d-flex bg-light bg-gradient">
 												<div class="col-md-1">
 													LOV
 												</div>
@@ -453,7 +453,7 @@
 												<div class="col-md-1">
 													Other
 												</div>
-												<div class="col-md-11 bg-light">
+												<div class="col-md-11">
 
 													<field name="tvs_other_text"/>
 												</div>

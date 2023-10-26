@@ -15,7 +15,7 @@ class EcMedicalPatient(models.Model):
             )
             visit = "Not Scheduled"
             if appointment_id:
-                visit = f'{appointment_id.date} {appointment_id.start} - {appointment_id.stop}'
+                visit = f'{appointment_id.date} {appointment_id.start}'
 
             return visit
 
