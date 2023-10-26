@@ -334,7 +334,7 @@
 										</group>
 
 										<!-- TVS Section -->
-										<div class="bg-light bg-gradient d-flex flex-column">
+										<div class="golden_gradient d-flex flex-column">
 											<div class="d-flex align-items-center">
 												<div class="col-md-1">
 													Uterus
@@ -363,17 +363,15 @@
 														<field name="tvs_uterus_size_y"/>
 														<span>cm</span>
 													</div>
-													<div class="d-flex" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+													<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
 														<div class="col-md-1">
-															Linining
+															Position
 														</div>
 														<div class="d-flex">
-															<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
-															<field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
-															<span>mm</span>
+															<field name="tvs_uterus_position_ids" widget="many2many_checkboxes"/>
 														</div>
 													</div>
-													<div class="d-flex align-items-center" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
+													<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
 														<div class="col-md-1">
 															Fiobrid
 														</div>
@@ -388,8 +386,19 @@
 													</div>
 												</div>
 											</div>
-
 											<div class="d-flex">
+
+												<div class="col-md-1">
+													Linining
+												</div>
+												<div class="d-flex">
+													<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
+													<field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
+													<span>mm</span>
+												</div>
+											</div>
+
+											<div class="d-flex align-items-center">
 												<div class="col-md-1">
 													Cyst
 												</div>
@@ -409,8 +418,6 @@
 														</field>
 													</div>
 												</div>
-
-
 											</div>
 
 											<div class="d-flex">
@@ -458,9 +465,6 @@
 
 										<!-- TVS section ends -->
 
-
-										<!-- Last section in the repeat before the footer -->
-
 										<group>
 											<field name="counseling_and_discussion"/>
 
@@ -486,17 +490,6 @@
 													class="btn btn-primary"
 													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
 													string="Close Consultation"/>
-<!--											<button name="move_back"-->
-<!--													type="object"-->
-<!--													attrs="{'invisible': [('repeat_state', '=', '1')]}"-->
-<!--													class="btn btn-secondary"-->
-<!--													string="Back"/>-->
-
-<!--											<button name="move_next"-->
-<!--													type="object"-->
-<!--													attrs="{'invisible': [('repeat_state', '=', '4')]}"-->
-<!--													class="btn btn-secondary"-->
-<!--													string="Save &amp; Next"/>-->
 										</div>
 									</div>
 									<section>
