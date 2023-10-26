@@ -72,20 +72,6 @@
                         <field name="tvs_repeat_consultation_id" invisible="1" force_save="1"/>
                         <field name="tvs_uterus_tvs" widget="radio" options="{'horizontal': True}"/>
                         <field name="tvs_cycle_day" widget="radio" options="{'horizontal': True}"/>
-                        <label for="tvs_lining"/>
-                        <div>
-                            <field name="tvs_lining" class="oe_inline" nolabel="1" widget="radio" options="{'horizontal': True}"/>
-                            <field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
-                            <span>mm</span>
-                        </div>
-                        <label for="cyst_type"/>
-                        <div>
-                            <field name="cyst_type" class="oe_inline" nolabel="1"/>
-                            <span>
-                                Nos
-                            </span>
-                            <field name="cyst_nos" class="oe_inline" nolabel="1"/>
-                        </div>
                     </group>
                     <group>
                         <group>

@@ -21,6 +21,12 @@ class EcMedicalTVS(models.Model):
     tvs_uterus_tvs = fields.Selection(selection=StaticMember.UTERUS_TVS,
                                       string='Uterus')
 
+    tvs_uterus_position_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                               relation='tvs_uterus_multi_selection_repeat_position',
+                                               column1='tvs_id',
+                                               column2='multi_selection_id',
+                                               string='Position',
+                                               domain="[('type', '=', 'position')]")
 
     tvs_uterus_tvs_size = fields.Boolean(default=False, string="Size")
     tvs_uterus_tvs_position = fields.Boolean(default=False, string="Position")
@@ -36,13 +42,20 @@ class EcMedicalTVS(models.Model):
     tvs_uterus_position = fields.Selection(selection=StaticMember.UTERUS_SIZE_POSITION,
                                            string='Position')
 
-    tvs_lining = fields.Selection(selection=StaticMember.LINING,
-                                  string='Lining')
+    tvs_linining_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                        relation='repeat_multi_selection_repeat_position',
+                                        column1='tvs_id',
+                                        column2='multi_selection_id',
+                                        string='Linining',
+                                        domain="[('type', '=', 'linining')]")
+
     tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                        string='Size')
 
-    cyst_type = fields.Char(string="Cyst Type")
-    cyst_nos = fields.Char(string='Size')
+    cyst_type = fields.Char(string="Type")
+    tvs_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
+                                            inverse_name="tvs_fiobrid_id",
+                                            string="Fiobrid")
 
     tvs_rov = fields.Text(string='ROV', readonly=True)
 
@@ -50,7 +63,8 @@ class EcMedicalTVS(models.Model):
 
     tvs_other_text = fields.Text(string='Other')
     tvs_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",
-                                        inverse_name="tvs_fiobrid_id")
+                                            inverse_name="tvs_cyst_size_id",
+                                            string="Sizes")
 
     def action_open_tvs_scan(self):
         context = self._context.copy()

@@ -6,4 +6,4 @@ class EcMedicalMultiSelection(models.Model):
     _name = 'ec.medical.multi.selection'
 
     name = fields.Char(string='Name')
-    type = fields.Selection(selection=StaticMember.MULTI_SELECTION_FIELD, string='Type')
+    type = fields.Char(string="Type")

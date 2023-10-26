@@ -14,3 +14,4 @@ class GenericSizes(models.Model):
                                       string='Size Y')
 
     tvs_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")
+    tvs_cyst_size_id = fields.Many2one(comodel_name="ec.medical.tvs")

@@ -361,14 +361,27 @@
 														<span class="m-2">x</span>
 
 														<field name="tvs_uterus_size_y"/>
+														<span>cm</span>
 													</div>
-													<div>
+													<div class="d-flex" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+														<div class="col-md-1">
+															<label for="tvs_linining_ids"/>
+														</div>
+														<div class="d-flex">
+															<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
+															<field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
+															<span>mm</span>
+														</div>
+													</div>
+													<div class="d-flex" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
+														<div class="col-md-1">
+															Fiobrid
+														</div>
 														<field name="tvs_generic_sizes_ids">
 															<tree editable="bottom">
 
 																<field name="generic_size_x"/>
 																<field name="generic_size_y"/>
-																<span>cm</span>
 
 															</tree>
 														</field>
@@ -377,10 +390,23 @@
 											</div>
 
 											<div class="d-flex">
-												<div></div>
-												<div></div>
-											</div>
-											<div>
+												<div class="col-md-1">
+													Cyst
+												</div>
+
+												<div class="d-flex">
+													<field name="cyst_type"/>
+												</div>
+												<div>
+													<field name="tvs_cyst_size_ids">
+														<tree editable="bottom">
+
+															<field name="generic_size_x"/>
+															<field name="generic_size_y"/>
+
+														</tree>
+													</field>
+												</div>
 
 											</div>
 
@@ -426,18 +452,6 @@
 											</div>
 
 										</div>
-
-										<group>
-
-											<label for="tvs_lining"/>
-											<div>
-												<field name="tvs_lining" class="oe_inline" nolabel="1" widget="radio" options="{'horizontal': True}"/>
-												<field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
-												<span>mm</span>
-											</div>
-										</group>
-										<group>
-										</group>
 
 										<!-- TVS section ends -->
 
