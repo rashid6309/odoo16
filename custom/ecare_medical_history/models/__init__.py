@@ -4,6 +4,7 @@ from . import ec_medical_health_centers
 from . import investigation
 from . import treatment_list
 from . import factors
+from . import generic_size
 
 from . import patient
 from . import individual_patient

@@ -37,3 +37,5 @@ access_ec_medical_investigation_all,access_ec_medical_investigation_all,model_ec
 access_ec_medical_factors_all,access_ec_medical_factors_all,model_ec_medical_factors,,1,1,1,1
 access_ec_medical_treatment_list_all,access_ec_medical_treatment_list_all,model_ec_medical_treatment_list,,1,1,1,1
 access_ec_medical_multi_selection_all,access_ec_medical_multi_selection_all,model_ec_medical_multi_selection,,1,1,1,1
+
+access_ec_generic_size_all,access_ec_generic_size_all,model_ec_generic_size,,1,1,1,1

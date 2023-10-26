@@ -20,7 +20,7 @@
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="xml">
 				<tree create="0">
-					<!--					<field name="name"/>-->
+					<!--				<field name="name"/>-->
 					<field name="timeline_patient_id"/>
 				</tree>
 			</field>
@@ -334,10 +334,101 @@
 										</group>
 
 										<!-- TVS Section -->
+										<div class="bg-light bg-gradient d-flex flex-column">
+											<div class="d-flex">
+												<div class="col-md-1 text-justify text-center">
+													Uterus
+												</div>
+												<div class="col-md-11">
+													<div class="d-flex">
+														<label for="tvs_uterus_tvs_size"/>
+														<field name="tvs_uterus_tvs_size"/>
+
+														<label for="tvs_uterus_tvs_position"/>
+														<field name="tvs_uterus_tvs_position"/>
+
+														<label for="tvs_uterus_tvs_normal"/>
+														<field name="tvs_uterus_tvs_normal"/>
+
+														<label for="tvs_uterus_tvs_fiobrid"/>
+														<field name="tvs_uterus_tvs_fiobrid"/>
+
+													</div>
+													<div class="d-flex bg-light bg-gradient"
+														 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
+														<span>Size</span>
+														<field name="tvs_uterus_size_x"/>
+														<span class="m-2">x</span>
+
+														<field name="tvs_uterus_size_y"/>
+													</div>
+													<div>
+														<field name="tvs_generic_sizes_ids">
+															<tree editable="bottom">
+
+																<field name="generic_size_x"/>
+																<field name="generic_size_y"/>
+																<span>cm</span>
+
+															</tree>
+														</field>
+													</div>
+												</div>
+											</div>
+
+											<div class="d-flex">
+												<div></div>
+												<div></div>
+											</div>
+											<div>
+
+											</div>
+
+											<div class="d-flex">
+												<div class="col-md-1">
+													ROV
+												</div>
+												<div class="d-flex col-md-11">
+													<field name="tvs_rov"/>
+
+													<button type="object"
+															class="btn-primary"
+															context="{'default_field': 'tvs_rov'}"
+															name="action_open_tvs_scan"
+															string="Begin Scan"/>
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="col-md-1">
+													LOV
+												</div>
+												<div class="d-flex col-md-11">
+													<field name="tvs_lov"/>
+
+													<button type="object"
+															class="btn-primary"
+															context="{'default_field': 'tvs_lov'}"
+															name="action_open_tvs_scan"
+															string="Begin Scan"/>
+												</div>
+											</div>
+
+											<div class="d-flex">
+												<div class="col-md-1">
+													Other
+												</div>
+												<div class="col-md-11 bg-light">
+
+													<field name="tvs_other_text"/>
+												</div>
+
+
+											</div>
+
+										</div>
+
 										<group>
 
-											<field name="tvs_uterus_tvs" widget="radio" options="{'horizontal': True}"/>
-<!--											<field name="tvs_cycle_day" invisible="1" force_save="1"/>-->
 											<label for="tvs_lining"/>
 											<div>
 												<field name="tvs_lining" class="oe_inline" nolabel="1" widget="radio" options="{'horizontal': True}"/>
@@ -347,29 +438,6 @@
 										</group>
 
 										<group>
-											<group>
-												<field name="tvs_rov"/>
-											</group>
-											<group>
-												<button type="object"
-														class="btn-primary"
-														context="{'default_field': 'tvs_rov'}"
-														name="action_open_tvs_scan"
-														string="Begin Scan"/>
-											</group>
-										</group>
-										<group>
-											<group><field name="tvs_lov"/></group>
-											<group>
-												<button type="object"
-														class="btn-primary"
-														context="{'default_field': 'tvs_lov'}"
-														name="action_open_tvs_scan"
-														string="Begin Scan"/>
-											</group>
-										</group>
-										<group>
-											<field name="tvs_other_text"/>
 										</group>
 
 										<!-- TVS section ends -->
