@@ -1089,7 +1089,7 @@ class StockMove(TransactionCase):
             'name': "storage category"
         })
 
-        self.env['stock.location'].create({
+        shelf1_location = self.env['stock.location'].create({
             'name': 'shelf1',
             'usage': 'internal',
             'location_id': self.stock_location.id,
@@ -1100,6 +1100,8 @@ class StockMove(TransactionCase):
             'location_id': self.stock_location.id,
             'storage_category_id': storage_category.id,
         })
+
+        self.env['stock.quant']._update_available_quantity(self.product, shelf1_location, 1.0)
 
         # putaway from stock to child location with storage_category
         putaway = self.env['stock.putaway.rule'].create({
@@ -6085,3 +6087,43 @@ class StockMove(TransactionCase):
         self.assertEqual(receipt.state, 'done')
         self.assertEqual(len(receipt.move_line_ids), 1)
         self.assertEqual(receipt.move_line_ids.qty_done, 1)
+
+    def test_skip_putaway_if_dest_loc_set_by_user(self):
+        """
+        Suppose the putaway rules and storage categories enabled. On the
+        detailed operations, the user adds a new line, set a specific
+        destination location and then the done quantity. In such cases, since
+        the user has defined himself the destination location, we should not try
+        to apply any putaway rule that would override his choice.
+        """
+        self.env.user.write({'groups_id': [(4, self.env.ref('stock.group_stock_storage_categories').id)]})
+
+        child_location = self.stock_location.child_ids[0]
+        in_type = self.env.ref('stock.picking_type_in')
+
+        in_type.show_operations = True
+
+        receipt = self.env['stock.picking'].create({
+            'location_id': self.customer_location.id,
+            'location_dest_id': self.stock_location.id,
+            'picking_type_id': in_type.id,
+            'move_ids': [(0, 0, {
+                'name': self.product.name,
+                'location_id': self.customer_location.id,
+                'location_dest_id': self.stock_location.id,
+                'product_id': self.product.id,
+                'product_uom': self.product.uom_id.id,
+                'product_uom_qty': 2.0,
+            })],
+        })
+        receipt.action_confirm()
+
+        with Form(receipt) as receipt_form:
+            with receipt_form.move_line_nosuggest_ids.new() as line:
+                line.product_id = self.product
+                line.location_dest_id = child_location
+                line.qty_done = 2
+
+        self.assertRecordValues(receipt.move_ids.move_line_ids[-1], [
+            {'location_dest_id': child_location.id, 'product_id': self.product.id, 'qty_done': 2},
+        ])

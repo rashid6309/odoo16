@@ -39,12 +39,7 @@ export class OnboardingBanner extends Component {
     }
 
     async loadBanner(bannerRoute) {
-        const response = await this.rpc(bannerRoute, {
-            context: this.user.context,
-            record_id: record_id,
-            model_id: model_id
-        });
-
+        const response = await this.rpc(bannerRoute, { context: this.user.context });
         if (!response.html) {
             return;
         }

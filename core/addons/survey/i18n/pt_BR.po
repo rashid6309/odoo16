@@ -10,6 +10,8 @@
 # Kevilyn Rosa, 2023
 # Marcel Savegnago <marcel.savegnago@gmail.com>, 2023
 # Diego Sayron, 2023
+# adrianojprado <adrianojprado@gmail.com>, 2023
+# Éder Brito <britoederr@gmail.com>, 2023
 # Layna Nascimento, 2023
 # 
 msgid ""
@@ -1218,7 +1220,7 @@ msgstr "Falha na Certificação"
 #. module: survey
 #: model_terms:ir.ui.view,arch_db:survey.survey_survey_view_form
 msgid "Certification Title"
-msgstr ""
+msgstr "Título da certificação"
 
 #. module: survey
 #: model_terms:ir.ui.view,arch_db:survey.certification_report_view_classic
@@ -2041,7 +2043,7 @@ msgstr "Hemiunu"
 #: code:addons/survey/static/src/js/tours/survey_tour.js:0
 #, python-format
 msgid "Here, you can overview all the participations."
-msgstr "Here, you can overview all the participations."
+msgstr "Aqui você pode ter uma visão geral de todas as participações."
 
 #. module: survey
 #: model:survey.question.answer,value:survey.survey_feedback_p2_q1_sug1
@@ -3081,8 +3083,8 @@ msgstr "Número de Erros"
 #. module: survey
 #: model:ir.model.fields,help:survey.field_survey_survey__message_needaction_counter
 #: model:ir.model.fields,help:survey.field_survey_user_input__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Número de mensagens que requer uma ação"
+msgid "Number of messages requiring action"
+msgstr "Número de mensagens que requerem ação"
 
 #. module: survey
 #: model:ir.model.fields,help:survey.field_survey_survey__message_has_error_counter
@@ -4118,7 +4120,7 @@ msgstr "Sucesso"
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey__success_ratio
 msgid "Success Ratio (%)"
-msgstr "Success Ratio (%)"
+msgstr "Taxa de sucesso (%)"
 
 #. module: survey
 #: model_terms:ir.ui.view,arch_db:survey.survey_page_statistics_inner
@@ -5263,6 +5265,8 @@ msgid ""
 "You cannot delete questions from surveys \"%(survey_names)s\" while live "
 "sessions are in progress."
 msgstr ""
+"Não é possível excluir perguntas dos questionários \"%(survey_names)s\" "
+"enquanto as sessões ao vivo estiverem em andamento."
 
 #. module: survey
 #: code:addons/survey/models/survey_survey.py:0

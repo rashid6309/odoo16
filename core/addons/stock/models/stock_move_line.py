@@ -219,9 +219,10 @@ class StockMoveLine(models.Model):
 
     @api.onchange('result_package_id', 'product_id', 'product_uom_id', 'qty_done')
     def _onchange_putaway_location(self):
-        if not self.id and self.user_has_groups('stock.group_stock_multi_locations') and self.product_id and self.qty_done:
+        default_dest_location = self._get_default_dest_location()
+        if not self.id and self.user_has_groups('stock.group_stock_multi_locations') and self.product_id and self.qty_done \
+                and self.location_dest_id == default_dest_location:
             qty_done = self.product_uom_id._compute_quantity(self.qty_done, self.product_id.uom_id)
-            default_dest_location = self._get_default_dest_location()
             self.location_dest_id = default_dest_location.with_context(exclude_sml_ids=self.ids)._get_putaway_strategy(
                 self.product_id, quantity=qty_done, package=self.result_package_id,
                 packaging=self.move_id.product_packaging_id)
@@ -288,8 +289,6 @@ class StockMoveLine(models.Model):
                 vals['company_id'] = self.env['stock.move'].browse(vals['move_id']).company_id.id
             elif vals.get('picking_id'):
                 vals['company_id'] = self.env['stock.picking'].browse(vals['picking_id']).company_id.id
-            if self.env.context.get('import_file') and vals.get('reserved_uom_qty'):
-                raise UserError(_("It is not allowed to import reserved quantity, you have to use the quantity directly."))
 
         mls = super().create(vals_list)
 
@@ -326,6 +325,9 @@ class StockMoveLine(models.Model):
             move.with_context(avoid_putaway_rules=True).product_uom_qty = move.quantity_done
 
         for ml, vals in zip(mls, vals_list):
+            if self.env.context.get('import_file') and ml.reserved_uom_qty and not ml.move_id._should_bypass_reservation():
+                raise UserError(_("It is not allowed to import reserved quantity, you have to use the quantity directly."))
+
             if ml.state == 'done':
                 if ml.product_id.type == 'product':
                     Quant = self.env['stock.quant']
@@ -897,6 +899,8 @@ class StockMoveLine(models.Model):
 
     def action_revert_inventory(self):
         move_vals = []
+        # remove inventory mode
+        self = self.with_context(inventory_mode=False)
         processed_move_line = self.env['stock.move.line']
         for move_line in self:
             if move_line.is_inventory and not float_is_zero(move_line.qty_done, precision_digits=move_line.product_uom_id.rounding):

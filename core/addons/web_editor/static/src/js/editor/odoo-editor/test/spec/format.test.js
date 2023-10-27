@@ -427,7 +427,7 @@ describe('Format', () => {
                     await setTestSelection(selection);
                     await strikeThrough(editor);
                 },
-                contentAfter: `<p>ab${s(`c`)}[ ]${s(`d`)}ef</p>`,
+                contentAfter: `<p>ab${s(`c[ ]d`)}ef</p>`,
             });
         });
         it('should make strikeThrough then more then remove', async () => {
@@ -552,12 +552,7 @@ describe('Format', () => {
                 stepFunction: async editor => {
                     insertText(editor, 'A');
                 },
-                contentAfter: `<p>A[]${s(`<br><br>`)}</p>`,
-                // Note: In the browser, the actual result is the following:
-                // contentAfter: `<p>${s(`A[]<br><br>`)}</p>`,
-                // It is arguable which version is better than the other but in
-                // any case this is a trade-off because it matches the native
-                // behavior of contentEditable in that case.
+                contentAfter: `<p>${s(`A[]<br><br>`)}</p>`,
             });
         });
         it('should not format non-editable text (strikeThrough)', async () => {
@@ -819,6 +814,27 @@ describe('Format', () => {
                 `),
             });
         });
+        it('should add font size in selected table cells', async () => {
+            await testEditor(BasicEditor, {
+                contentBefore: '<table><tbody><tr><td class="o_selected_td"><p>[<br></p></td><td class="o_selected_td"><p><br></p>]</td></tr><tr><td><p><br></p></td><td><p><br></p></td></tr></tbody></table>',
+                stepFunction: setFontSize('48px'),
+                contentAfter: '<table><tbody><tr><td><p><span style="font-size: 48px;">[]<br></span></p></td><td><p><span style="font-size: 48px;"><br></span></p></td></tr><tr><td><p><br></p></td><td><p><br></p></td></tr></tbody></table>',
+            });
+        });
+        it('should add font size in all table cells', async () => {
+            await testEditor(BasicEditor, {
+                contentBefore: '<table><tbody><tr><td class="o_selected_td"><p>[<br></p></td><td class="o_selected_td"><p><br></p></td></tr><tr><td class="o_selected_td"><p><br></p></td><td class="o_selected_td"><p><br>]</p></td></tr></tbody></table>',
+                stepFunction: setFontSize('36px'),
+                contentAfter: '<table><tbody><tr><td><p><span style="font-size: 36px;">[]<br></span></p></td><td><p><span style="font-size: 36px;"><br></span></p></td></tr><tr><td><p><span style="font-size: 36px;"><br></span></p></td><td><p><span style="font-size: 36px;"><br></span></p></td></tr></tbody></table>',
+            });
+        });
+        it('should add font size in selected table cells with h1 as first child', async () => {
+            await testEditor(BasicEditor, {
+                contentBefore: '<table><tbody><tr><td class="o_selected_td"><h1>[<br></h1></td><td class="o_selected_td"><h1><br>]</h1></td></tr><tr><td><h1><br></h1></td><td><h1><br></h1></td></tr></tbody></table>',
+                stepFunction: setFontSize('18px'),
+                contentAfter: '<table><tbody><tr><td><h1><span style="font-size: 18px;">[]<br></span></h1></td><td><h1><span style="font-size: 18px;"><br></span></h1></td></tr><tr><td><h1><br></h1></td><td><h1><br></h1></td></tr></tbody></table>',
+            });
+        });
     });
 
     it('should add style to a span parent of an inline', async () => {
@@ -875,6 +891,15 @@ describe('Format', () => {
                 contentBefore: `<p>[before</p><p contenteditable="false">noneditable</p><p>after]</p>`,
                 stepFunction: switchDirection,
                 contentAfter: `<p dir="rtl">[before</p><p contenteditable="false">noneditable</p><p dir="rtl">after]</p>`,
+            });
+        });
+    });
+    describe('removeFormat', () => {
+        it('should remove the background image when clear the format', async () => {
+            await testEditor(BasicEditor, {
+                contentBefore: '<div><p><font class="text-gradient" style="background-image: linear-gradient(135deg, rgb(255, 204, 51) 0%, rgb(226, 51, 255) 100%);">[ab]</font></p></div>',
+                stepFunction: editor => editor.execCommand('removeFormat'),
+                contentAfter: '<div><p><span style="">[ab]</span></p></div>',
             });
         });
     });
@@ -981,13 +1006,6 @@ describe('setTagName', () => {
                 contentBefore: '<div>[ab]</div>',
                 stepFunction: editor => editor.execCommand('setTag', 'h1'),
                 contentAfter: '<div><h1>[ab]</h1></div>',
-            });
-        });
-        it('should remove the background image while turning a p>font into a heading 1>span', async () => {
-            await testEditor(BasicEditor, {
-                contentBefore: '<div><p><font class="text-gradient" style="background-image: linear-gradient(135deg, rgb(255, 204, 51) 0%, rgb(226, 51, 255) 100%);">[ab]</font></p></div>',
-                stepFunction: editor => editor.execCommand('setTag', 'h1'),
-                contentAfter: '<div><h1><span style="">[ab]</span></h1></div>',
             });
         });
         it('should turn three table cells with paragraph to table cells with heading 1', async () => {

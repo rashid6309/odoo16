@@ -91,6 +91,14 @@ msgstr ""
 
 #. module: account_edi_ubl_cii
 #. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_20.py:0
+#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_20.py:0
+#, python-format
+msgid "Conditional cash/payment discount"
+msgstr "Escompte conditionnel"
+
+#. module: account_edi_ubl_cii
+#. odoo-python
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_cii_facturx.py:0
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_20.py:0
 #, python-format
@@ -164,7 +172,7 @@ msgstr "Chaque ligne de facture doit comporter au moins une taxe."
 #. module: account_edi_ubl_cii
 #: model:ir.model,name:account_edi_ubl_cii.model_mail_template
 msgid "Email Templates"
-msgstr "Modèles d'emails"
+msgstr "Modèles d'email"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
@@ -234,8 +242,9 @@ msgstr "Aucun Electronic Address Scheme (EAS) n'a pu être trouvé pour %s."
 #. odoo-python
 #: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
 #, python-format
-msgid "No gross price nor net price found for line in xml"
-msgstr "Aucun prix brut ni prix net trouvé pour la ligne en xml"
+msgid ""
+"No gross price, net price nor line subtotal amount found for line in xml"
+msgstr "Aucun prix brut, prix net ou sous-total trouvé pour la ligne en xml"
 
 #. module: account_edi_ubl_cii
 #: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.account_invoice_pdfa_3_facturx_metadata

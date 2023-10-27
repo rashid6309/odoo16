@@ -375,6 +375,9 @@ class StockMove(models.Model):
                     continue
                 ml.qty_done -= qty_ml_dec
                 quantity -= move.product_uom._compute_quantity(qty_ml_dec, move.product_uom, round=False)
+                if not ml.exists():
+                    # If decreasing the move line qty_done to 0 let it to be unlinked (i.e. for immediate transfers)
+                    continue
                 # Unreserve
                 if (not move.picking_id.immediate_transfer and move.reserved_availability < move.product_uom_qty):
                     continue
@@ -971,7 +974,7 @@ Please change the quantity done or the rounding precision of your unit of measur
             for __, g in groupby(candidate_moves, key=itemgetter(*distinct_fields)):
                 moves = self.env['stock.move'].concat(*g)
                 # Merge all positive moves together
-                if len(moves) > 1:
+                if len(moves) > 1 and any(m in self for m in moves):
                     # link all move lines to record 0 (the one we will keep).
                     moves.mapped('move_line_ids').write({'move_id': moves[0].id})
                     # merge move data
@@ -979,8 +982,9 @@ Please change the quantity done or the rounding precision of your unit of measur
                     # update merged moves dicts
                     moves_to_unlink |= moves[1:]
                     merged_moves |= moves[0]
-                # Add the now single positive move to its limited key record
-                moves_by_neg_key[neg_key(moves[0])] |= moves[0]
+                    moves = moves[0]
+                for m in moves:
+                    moves_by_neg_key[neg_key(m)] |= m
 
         for neg_move in neg_qty_moves:
             # Check all the candidates that matches the same limited key, and adjust their quantities to absorb negative moves
@@ -1014,7 +1018,7 @@ Please change the quantity done or the rounding precision of your unit of measur
             moves_to_unlink.sudo().unlink()
 
         if moves_to_cancel:
-            moves_to_cancel._action_cancel()
+            moves_to_cancel.filtered(lambda m: float_is_zero(m.quantity_done, precision_rounding=m.product_uom.rounding))._action_cancel()
 
         return (self | merged_moves) - moves_to_unlink
 
@@ -1408,7 +1412,7 @@ Please change the quantity done or the rounding precision of your unit of measur
         product_id = self.product_id.with_context(lang=self._get_lang())
         date = self._get_mto_procurement_date()
         if self.location_id.warehouse_id and self.location_id.warehouse_id.lot_stock_id.parent_path in self.location_id.parent_path:
-            date = self.product_id._get_date_with_security_lead_days(self.date, self.location_id)
+            date = self.product_id._get_date_with_security_lead_days(self.date, self.location_id, route_ids=self.route_ids)
         return {
             'product_description_variants': self.description_picking and self.description_picking.replace(product_id._get_description(self.picking_type_id), ''),
             'date_planned': date,
@@ -1625,6 +1629,7 @@ Please change the quantity done or the rounding precision of your unit of measur
                             'lot_id': lot_id.id,
                             'lot_name': lot_id.name,
                             'owner_id': owner_id.id,
+                            'package_id': package_id.id,
                         })
                         move_line_vals_list.append(move_line_vals)
                         missing_reserved_quantity -= qty_added
@@ -1711,7 +1716,7 @@ Please change the quantity done or the rounding precision of your unit of measur
         StockMove.browse(partially_available_moves_ids).write({'state': 'partially_available'})
         StockMove.browse(assigned_moves_ids).write({'state': 'assigned'})
         if not self.env.context.get('bypass_entire_pack'):
-            self.mapped('picking_id')._check_entire_pack()
+            self.picking_id._check_entire_pack()
         StockMove.browse(moves_to_redirect).move_line_ids._apply_putaway_strategy()
 
     def _action_cancel(self):
@@ -1882,7 +1887,7 @@ Please change the quantity done or the rounding precision of your unit of measur
         :returns: list of dict. stock move values """
         self.ensure_one()
         if self.state in ('done', 'cancel'):
-            raise UserError(_('You cannot split a stock move that has been set to \'Done\'.'))
+            raise UserError(_('You cannot split a stock move that has been set to \'Done\' or \'Cancel\'.'))
         elif self.state == 'draft':
             # we restrict the split of a draft move because if not confirmed yet, it may be replaced by several other moves in
             # case of phantom bom (with mrp module). And we don't want to deal with this complexity by copying the product that will explode.

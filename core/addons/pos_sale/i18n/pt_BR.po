@@ -5,7 +5,6 @@
 # Translators:
 # Elio Viniski <elio@edoo.me>, 2022
 # Éder Brito <britoederr@gmail.com>, 2022
-# Fernando Colus <fcolus1@gmail.com>, 2022
 # Martin Trigaux, 2022
 # Kevilyn Rosa, 2023
 # Layna Nascimento, 2023
@@ -295,7 +294,7 @@ msgstr "Configuração do Ponto de Vendas"
 #. module: pos_sale
 #: model:ir.model,name:pos_sale.model_pos_order_line
 msgid "Point of Sale Order Lines"
-msgstr "Linhas de pedido de Ponto de Venda"
+msgstr "Linhas de pedido do ponto de venda"
 
 #. module: pos_sale
 #: model:ir.model,name:pos_sale.model_pos_order
@@ -574,7 +573,7 @@ msgstr "Valor não pago"
 #: code:addons/pos_sale/static/src/js/OrderManagementScreen/SaleOrderManagementScreen.js:0
 #, python-format
 msgid "What do you want to do?"
-msgstr "O que você quer fazer?"
+msgstr "O que você deseja fazer?"
 
 #. module: pos_sale
 #. odoo-javascript
