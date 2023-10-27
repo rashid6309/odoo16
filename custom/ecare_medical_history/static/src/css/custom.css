@@ -445,3 +445,10 @@ button{
 .golden_gradient{
     background: linear-gradient(to bottom, #FAFDF2, #EAEAD0);
 }
+
+#first_consultation_section> div> .o_notebook_headers
+{
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 999 !important;
+}
