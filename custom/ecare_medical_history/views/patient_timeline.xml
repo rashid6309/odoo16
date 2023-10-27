@@ -87,24 +87,6 @@
 								</div>
 							</div>
 							<div class="col-md-8 timeline_content">
-								<!--								Repeat Consultation-->
-								<!--								<div class="d-flex scroll-to card-header first_consultation_container mt-2" id="repeat_consultation_section_link">-->
-								<!--									<div class="col-6">-->
-								<!--										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">-->
-								<!--											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>-->
-								<!--									</div>-->
-								<!--									<div class="col-6 text-right">-->
-								<!--										<button name="action_create_repeat_consultation"-->
-								<!--												type="object"-->
-								<!--												class="card-custom-right-button"-->
-								<!--												string="Add New"/>-->
-								<!--									</div>-->
-								<!--								</div>-->
-								<!--								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">-->
-								<!--									<field name="repeat_consultation_ids"-->
-								<!--										   mode="kanban"-->
-								<!--										   options="{'form_view_ref': 'ecare_medical_history.repeat_consultation_form_view'}"/>-->
-								<!--								</div>-->
 								<script>
 									function showRepeatConsultationSection() {
 									var targetDiv = document.getElementById("repeat_consultation_section");
@@ -334,12 +316,12 @@
 										</group>
 
 										<!-- TVS Section -->
-										<div class="golden_gradient d-flex flex-column">
-											<div class="d-flex align-items-center">
+										<div class="d-flex flex-column">
+											<div class="d-flex align-items-center  bg-light bg-gradient">
 												<div class="col-md-1">
 													Uterus
 												</div>
-												<div class="col-md-11">
+												<div class="col-md-11 ">
 													<div class="d-flex">
 														<label for="tvs_uterus_tvs_size"/>
 														<field name="tvs_uterus_tvs_size"/>
@@ -354,7 +336,7 @@
 														<field name="tvs_uterus_tvs_fiobrid"/>
 
 													</div>
-													<div class="d-flex bg-light bg-gradient"
+													<div class="d-flex"
 														 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
 														<span>Size</span>
 														<field name="tvs_uterus_size_x"/>
@@ -386,7 +368,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="d-flex">
+											<div class="d-flex ">
 
 												<div class="col-md-1">
 													Linining
@@ -398,12 +380,12 @@
 												</div>
 											</div>
 
-											<div class="d-flex align-items-center">
+											<div class="d-flex align-items-center bg-light bg-gradient">
 												<div class="col-md-1">
 													Cyst
 												</div>
 												<div class="col-md-11 d-flex flex-column">
-													<div>
+													<div class="d-flex">
 														<span>Type</span>
 														<field name="cyst_type"/>
 													</div>
@@ -434,7 +416,7 @@
 															string="Begin Scan"/>
 												</div>
 											</div>
-											<div class="d-flex">
+											<div class="d-flex bg-light bg-gradient">
 												<div class="col-md-1">
 													LOV
 												</div>
@@ -453,7 +435,7 @@
 												<div class="col-md-1">
 													Other
 												</div>
-												<div class="col-md-11 bg-light">
+												<div class="col-md-11">
 
 													<field name="tvs_other_text"/>
 												</div>
