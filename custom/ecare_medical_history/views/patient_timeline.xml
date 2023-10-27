@@ -32,6 +32,16 @@
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="html">
 				<form string="Patient Timeline" create="0">
+					<script>
+						function scrollToRepeat(element_id){
+							setTimeout(function() {
+								var innerDiv = document.getElementById(element_id);
+								if (innerDiv) {
+									innerDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+								}
+							}, 1000);
+						}
+					</script>
 					<div style="margin-top: -2%;">
 						<field name="timeline_patient_id" style="display:block;" widget="banner_summary_widget"/>
 					</div>
@@ -1903,11 +1913,7 @@
 										</page>
 
 										<page string="Conclusion" name="conclusion">
-											<!-- Remove if not required in coming days... -->
-											<!--											<group>-->
-											<!--												<label for="timeline_conclusion"/>-->
-											<!--											</group>-->
-											<field name="timeline_conclusion" placeholder="Add..."/>
+											<field name="timeline_conclusion" placeholder="Type..."/>
 										</page>
 
 									</notebook>

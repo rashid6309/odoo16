@@ -13,17 +13,32 @@
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban">
                                 <t t-set="rec_id" t-value="record.id.raw_value"/>
-                                <div class="row">
+                                <div>
                                     <div class="d-flex" style="justify-content: space-between">
                                         <div>
                                             Consultation Date
                                             <b> / </b>
                                             <field name="repeat_date"/>
                                         </div>
-                                        <div class="text-center font-weight-bold">
-                                            <a data-bs-toggle="collapse"
-                                               t-att-data-bs-target="'#family_history_section_' + rec_id" href="#">
-                                                <i class="fa fa-bars fa-2x" aria-hidden="true"/></a>
+                                        <div class="text-center font-weight-bold d-flex align-items-end">
+                                            <div>
+
+                                                <a data-bs-toggle="collapse"
+                                                   t-att-data-bs-target="'#family_history_section_' + rec_id" href="#">
+                                                    <i class="fa fa-bars fa-2x" aria-hidden="true"/></a>
+                                            </div>
+
+                                            <div>
+
+                                                <a name="action_set_working_consultation"
+                                                        type="object"
+                                                        string="Edit"
+                                                        class="repeat_kanban_button"
+                                                        onclick="scrollToRepeat()">
+                                                    <i class="fa fa-edit fa-2x" aria-hidden="true"/>
+                                                </a>
+
+                                            </div>
                                         </div>
                                     </div>
                                     <hr/>
@@ -156,18 +171,6 @@
                                         </div>
                                     </section>
                                 </div>
-
-
-                                <button name="action_set_working_consultation"
-                                        type="object"
-                                        string="Edit"
-                                        class="btn btn-primary repeat_kanban_button"
-                                        onclick="setTimeout(function() {
-                                          var innerDiv = document.getElementById('repeat_consultation_section');
-                                          if (innerDiv) {
-                                            innerDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                          }
-                                        }, 1000);"/>
                             </div>
                         </t>
 
