@@ -8,7 +8,7 @@
                 <form string="TVS Scan">
                 <script>
                     $(document).ready(function(){
-                        $('.modal-content').css({'width': '44%'});
+                        $('.modal-content').css({'max-width': '42%'});
                     });
                 </script>
                     <div class="tvs_scan">
@@ -16,37 +16,37 @@
                             <field class="output_results" name="display" id="display"
                                    style="width: 100%;"/>
                             <field name="tvs_id" readonly="1" invisible="1"/>
-<!--                            <input class="output_results" type="text" name="display" id="display" />-->
+                            <!--                            <input class="output_results" type="text" name="display" id="display" />-->
                         </div>
-                        <div>
-                            <input type="button" value="&lt;8" onclick="display.value += '&lt;8,' "  class="tvs_scan_form_input"/>
-                            <input type="button" value="9" onclick="display.value += '9,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="10" onclick="display.value += '10,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="11" onclick="display.value += '11,' " class="tvs_scan_form_input"/>
-                        </div>
-                        <div>
-                            <input type="button" value="12" onclick="display.value += '12,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="13" onclick="display.value += '13,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="14" onclick="display.value += '14,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="15" onclick="display.value += '16,' " class="tvs_scan_form_input"/>
-                        </div>
-                        <div>
-                            <input type="button" value="16" onclick="display.value += '16,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="17" onclick="display.value += '17,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="18" onclick="display.value += '18,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="19" onclick="display.value += '19,' " class="tvs_scan_form_input"/>
-                        </div>
-
-                        <div>
-                            <input type="button" value="20" onclick="display.value += '20,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="21" onclick="display.value += '21,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="22" onclick="display.value += '22,' " class="tvs_scan_form_input"/>
-                            <input type="button" value="&gt;22" onclick="display.value += '&gt;22,' " class="tvs_scan_form_input"/>
-                        </div>
-
-                        <div>
-                            <input type="button" value="DE" onclick="display.value =  display.value.toString().slice(0,-1)" class="tvs_scan_form_input"/>
-                            <input type="button" value="AC" onclick="display.value = '' " class="tvs_scan_form_input"/>
+                        <div class="d-flex flex-column">
+                            <div>
+                                <input type="button" value="&lt;8" onclick="display.value += '&lt;8,' "  class="tvs_scan_form_input"/>
+                                <input type="button" value="9" onclick="display.value += '9,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="10" onclick="display.value += '10,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="11" onclick="display.value += '11,' " class="tvs_scan_form_input"/>
+                            </div>
+                            <div>
+                                <input type="button" value="12" onclick="display.value += '12,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="13" onclick="display.value += '13,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="14" onclick="display.value += '14,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="15" onclick="display.value += '16,' " class="tvs_scan_form_input"/>
+                            </div>
+                            <div>
+                                <input type="button" value="16" onclick="display.value += '16,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="17" onclick="display.value += '17,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="18" onclick="display.value += '18,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="19" onclick="display.value += '19,' " class="tvs_scan_form_input"/>
+                            </div>
+                            <div>
+                                <input type="button" value="20" onclick="display.value += '20,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="21" onclick="display.value += '21,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="22" onclick="display.value += '22,' " class="tvs_scan_form_input"/>
+                                <input type="button" value="&gt;22" onclick="display.value += '&gt;22,' " class="tvs_scan_form_input"/>
+                            </div>
+                            <div>
+                                <input type="button" value="DE" onclick="display.value =  display.value.toString().slice(0,-1)" class="tvs_scan_form_input"/>
+                                <input type="button" value="AC" onclick="display.value = '' " class="tvs_scan_form_input"/>
+                            </div>
                         </div>
                     </div>
                     <footer>
