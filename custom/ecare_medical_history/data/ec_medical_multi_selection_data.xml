@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
-<!--        Lining-->
-        <record model="ec.medical.multi.selection" id="smooth">
-            <field name="name">Smooth</field>
-            <field name="type">lining</field>
-        </record>
-        <record model="ec.medical.multi.selection" id="distorted">
-            <field name="name">Distorted</field>
-            <field name="type">lining</field>
-        </record>
-        <record model="ec.medical.multi.selection" id="triple_echo">
-            <field name="name">Triple Echo</field>
-            <field name="type">lining</field>
-        </record>
 
 <!--        Complications-->
         <record model="ec.medical.multi.selection" id="viginal_discharge">
@@ -108,6 +95,11 @@
 
         <record model="ec.medical.multi.selection" id="lining_distorted">
             <field name="name">Distorted</field>
+            <field name="type">linining</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="lining_solid_or_lesion">
+            <field name="name">Solid or Suspected Cavity Lesion</field>
             <field name="type">linining</field>
         </record>
 

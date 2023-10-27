@@ -147,7 +147,7 @@ class RepeatConsultation(models.Model):
 
     repeat_treatment_plan = fields.Html(string='Plan')
 
-    repeat_note = fields.Html(string="Notes")
+    repeat_note = fields.Html(string="Reason for visit / Couple concerns / History of presenting complaints")
 
     repeat_investigations_ids = fields.Many2many(comodel_name='ec.medical.investigation',
                                                  relation="repeat_consultation_medical_investigation_rel",
@@ -199,13 +199,11 @@ class RepeatConsultation(models.Model):
                                 default=False)
     is_size = fields.Boolean('Size')
     is_position = fields.Boolean('Position')
-    is_fiobrid = fields.Boolean('Fiobrid')
+    is_fiobrid = fields.Boolean('Fibroid')
     is_normal = fields.Boolean('Normal')
 
     female_repeat_uterus_length = fields.Selection(selection=StaticMember.GOITEAR_LENGTH, string='Uterus')
     female_repeat_uterus_width = fields.Selection(selection=StaticMember.GOITEAR_LENGTH, string='Uterus')
-
-    repeat_fiobrid_ids = fields.One2many('ec.repeat.fiobrid', 'repeat_id', string="Fiobrid")
 
     repeat_endocervical = fields.Boolean(string="Endocervical",
                                          default=False)
@@ -227,7 +225,7 @@ class RepeatConsultation(models.Model):
     scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                      string="Scan required?")
 
-    repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_PATHWAY)
+    repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO)
 
     counseling_and_discussion = fields.Html(string="Counseling and discussion done")
 
@@ -302,7 +300,7 @@ class RepeatConsultation(models.Model):
         return self.env['ec.medical.tvs'].action_open_form_view(self, target='new')
 
 
-# Fiobrid
+# Fibroid
 class RepeatFiobrid(models.Model):
     _name = 'ec.repeat.fiobrid'
     _description = "Patient Repeat Fiobrid"

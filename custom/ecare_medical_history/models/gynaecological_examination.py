@@ -100,6 +100,6 @@ class MedicalGynaecologicalExamination(models.Model):
                                   relation='gynaecological_examination_multi_selection_lining',
                                   column1='gynaecological_id',
                                   column2='multi_selection_id',
-                                  string='Lining', domain="[('type', '=', 'lining')]")
+                                  string='Lining', domain="[('type', '=', 'linining')]")
     lining_size = fields.Selection(selection=StaticMember.LINING_SIZE, string='Lining Size')
 

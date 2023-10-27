@@ -31,7 +31,7 @@ class EcMedicalTVS(models.Model):
     tvs_uterus_tvs_size = fields.Boolean(default=False, string="Size")
     tvs_uterus_tvs_position = fields.Boolean(default=False, string="Position")
     tvs_uterus_tvs_normal = fields.Boolean(default=False, string="Normal")
-    tvs_uterus_tvs_fiobrid = fields.Boolean(default=False, string="Fiobrid")
+    tvs_uterus_tvs_fiobrid = fields.Boolean(default=False, string="Fibroid")
 
     tvs_uterus_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                          string='Size X')
@@ -52,14 +52,13 @@ class EcMedicalTVS(models.Model):
     tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                        string='Size')
 
-    cyst_type = fields.Selection(selection=StaticMember.CYST_TYPE)
     tvs_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                             inverse_name="tvs_fiobrid_id",
-                                            string="Fiobrid")
+                                            string="Fibroid")
 
-    tvs_rov = fields.Char(string='ROV', readonly=True)
+    tvs_rov = fields.Char(string='ROV',)
 
-    tvs_lov = fields.Char(string='LOV', readonly=True)
+    tvs_lov = fields.Char(string='LOV',)
 
     tvs_other_text = fields.Text(string='Other')
     tvs_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",
@@ -133,12 +132,13 @@ class EcMedicalTVSScan(models.TransientModel):
 
             if context and record:
                 field = context.get('default_field')
+                display = self.display or None
                 if field and field == 'tvs_rov':
                     return record.write({
-                        'tvs_rov': str(self.display),
+                        'tvs_rov': display,
                     })
                 elif field and field == 'tvs_lov':
                     return record.write({
-                        'tvs_lov': str(self.display),
+                        'tvs_lov': display,
                     })
 
