@@ -5,6 +5,7 @@
 # Translators:
 # Martin Trigaux, 2022
 # JH CHOI <hwangtog@gmail.com>, 2022
+# Daye Jeong, 2023
 # Sarah Park, 2023
 # 
 msgid ""
@@ -3706,17 +3707,17 @@ msgstr "잘못된 도메인 왼쪽 피연산자 %s"
 
 #. module: stock
 #. odoo-python
-#: code:addons/stock/models/product.py:0
+#: code:addons/stock/models/product.py:0 code:addons/stock/models/product.py:0
 #, python-format
 msgid "Invalid domain operator %s"
 msgstr "잘못된 도메인 피연산자 %s"
 
 #. module: stock
 #. odoo-python
-#: code:addons/stock/models/product.py:0
+#: code:addons/stock/models/product.py:0 code:addons/stock/models/product.py:0
 #, python-format
-msgid "Invalid domain right operand %s"
-msgstr "잘못된 도메인 오른쪽 피연산자 %s"
+msgid "Invalid domain right operand '%s'. It must be of type Integer/Float"
+msgstr "도메인의 우측 피연산자 값 '%s' 항목이 잘못되었습니다. 값은 반드시 정수 또는 부동 소수점 형식이어야 합니다."
 
 #. module: stock
 #. odoo-python
@@ -3911,7 +3912,7 @@ msgstr "완료된 수량 편집 가능 여부"
 msgid ""
 "It is not allowed to import reserved quantity, you have to use the quantity "
 "directly."
-msgstr ""
+msgstr "예약된 수량은 가져올 수 없으며, 수량은 바로 사용해야 합니다."
 
 #. module: stock
 #. odoo-python
@@ -5073,7 +5074,7 @@ msgstr "지난 12개월동안의 재고 입고 이동 수"
 #: model:ir.model.fields,help:stock.field_stock_lot__message_needaction_counter
 #: model:ir.model.fields,help:stock.field_stock_picking__message_needaction_counter
 #: model:ir.model.fields,help:stock.field_stock_scrap__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr "조치가 필요한 메시지 수"
 
 #. module: stock
@@ -5756,7 +5757,7 @@ msgstr "선행 작업"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_warehouse_orderpoint__route_id
 msgid "Preferred Route"
-msgstr ""
+msgstr "선호하는 경로"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_product_replenish__route_ids
@@ -7279,6 +7280,13 @@ msgid "Sequence return"
 msgstr "순서 반환"
 
 #. module: stock
+#. odoo-python
+#: code:addons/stock/models/stock_picking.py:0
+#, python-format
+msgid "Sequences %s already exist."
+msgstr "해당하는 %s 순서가 이미 존재합니다."
+
+#. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_move__lot_ids
 msgid "Serial Numbers"
 msgstr "일련번호"
@@ -8615,7 +8623,7 @@ msgstr "전체 경로"
 #: model_terms:ir.ui.view,arch_db:stock.view_production_lot_form
 #: model_terms:ir.ui.view,arch_db:stock.view_template_property_form
 msgid "Traceability"
-msgstr "추적"
+msgstr "추적가능성"
 
 #. module: stock
 #. odoo-javascript
@@ -8626,7 +8634,7 @@ msgstr "추적"
 #: model_terms:ir.ui.view,arch_db:stock.report_stock_inventory
 #, python-format
 msgid "Traceability Report"
-msgstr "추적 보고서"
+msgstr "추적가능성 보고서"
 
 #. module: stock
 #: model:ir.model.fields,help:stock.field_res_config_settings__module_product_expiry
@@ -9731,8 +9739,8 @@ msgstr "임시 이동을 분할할 수 없습니다. 먼저 확인해야 합니�
 #. odoo-python
 #: code:addons/stock/models/stock_move.py:0
 #, python-format
-msgid "You cannot split a stock move that has been set to 'Done'."
-msgstr "'완료'로 설정된 재고 이동을 분할할 수 없습니다."
+msgid "You cannot split a stock move that has been set to 'Done' or 'Cancel'."
+msgstr "'완료' 또는 '취소'로 설정된 재고 이동 항목은 분할할 수 없습니다."
 
 #. module: stock
 #. odoo-python

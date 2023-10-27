@@ -5,6 +5,7 @@
 # Translators:
 # Martin Trigaux, 2022
 # Linkup <link-up@naver.com>, 2022
+# Daye Jeong, 2023
 # Sarah Park, 2023
 # 
 msgid ""
@@ -83,6 +84,14 @@ msgstr "BIS3 DE (XRechnung)"
 msgid ""
 "Common functions for EDI documents: generate the data, the constraints, etc"
 msgstr "EDI 문서의 공통 기능: 데이터 생성, 제약 조건 등"
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_20.py:0
+#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_20.py:0
+#, python-format
+msgid "Conditional cash/payment discount"
+msgstr "조건부 현금 할인/결제 할인"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
@@ -219,8 +228,9 @@ msgstr "%s에 대한 전자주소체계 (EAS, Electronic Address Scheme)를 찾�
 #. odoo-python
 #: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
 #, python-format
-msgid "No gross price nor net price found for line in xml"
-msgstr "xml 항목에서 총 금액 또는 순 금액을 찾을 수 없습니다"
+msgid ""
+"No gross price, net price nor line subtotal amount found for line in xml"
+msgstr "xml 항목에서 총 금액, 순 금액 또는 항목 소계 금액을 찾을 수 없습니다."
 
 #. module: account_edi_ubl_cii
 #: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.account_invoice_pdfa_3_facturx_metadata

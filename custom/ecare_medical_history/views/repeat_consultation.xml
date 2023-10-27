@@ -2,17 +2,6 @@
 <odoo>
     <data>
 
-        <!-- Explicit tree view -->
-        <!--        <record id="repeat_consultation_form_view" model="ir.ui.view">-->
-        <!--            <field name="name">repeat.consultation.form.view</field>-->
-        <!--            <field name="model">ec.repeat.consultation</field>-->
-        <!--            <field name="arch" type="xml">-->
-        <!--                <tree>-->
-
-        <!--                </tree>-->
-        <!--            </field>-->
-        <!--        </record>-->
-
         <!-- Explicit Kanban View -->
 
         <record id="view_ec_repeat_consultation_kanban" model="ir.ui.view">

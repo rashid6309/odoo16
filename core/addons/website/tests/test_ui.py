@@ -412,7 +412,6 @@ class TestUi(odoo.tests.HttpCase):
 
     def test_28_website_text_edition(self):
         self.start_tour('/@/', 'website_text_edition', login='admin')
-        self.start_tour("/?enable_editor=1", "website_page_options", login="admin")
 
     def test_29_website_backend_menus_redirect(self):
         Menu = self.env['ir.ui.menu']
@@ -428,3 +427,6 @@ class TestUi(odoo.tests.HttpCase):
 
     def test_30_website_text_animations(self):
         self.start_tour("/", 'text_animations', login='admin')
+
+    def test_website_media_dialog_image_shape(self):
+        self.start_tour("/", 'website_media_dialog_image_shape', login='admin')

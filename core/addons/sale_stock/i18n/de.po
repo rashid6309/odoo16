@@ -104,7 +104,7 @@ msgid ""
 msgstr ""
 "Je nach Produktkonfiguration kann die gelieferte Menge automatisch durch einen Mechanismus berechnet werden:\n"
 "  - Manuell: Die Menge wird manuell auf der Position eingestellt\n"
-"  - Kostenstelle aus Auslagen: Die Menge ist die Mengensumme aus gebuchten Auslagen\n"
+"  - Kostenrechnung aus Auslagen: Die Menge ist die Mengensumme aus gebuchten Auslagen\n"
 "  - Zeiterfassung: Die Menge ist die Summe der Stunden, die für Aufgaben erfasst wurden, die mit dieser Verkaufsposition verbunden sind.\n"
 "  - Lagerbuchungen: Die Menge stammt aus bestätigten Kommissionierungen\n"
 
@@ -180,7 +180,7 @@ msgstr "Datum:"
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_res_users__property_warehouse_id
 msgid "Default Warehouse"
-msgstr "Standard-Lagerhaus"
+msgstr "Standardlagerhaus"
 
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.view_order_form_inherit_sale_stock
@@ -211,9 +211,10 @@ msgid ""
 "either use the minimum or maximum lead time of the order lines."
 msgstr ""
 "Liefertermin, den Sie dem Kunden zusagen können, errechnet sich bei "
-"Serviceprodukten aus der minimalen Vorlaufzeit der Auftragspositionen. Bei "
-"Versand wird die Versandbedingung des Auftrags berücksichtigt, um entweder "
-"die minimale oder maximale Vorlaufzeit der Auftragspositionen zu verwenden."
+"Dienstleistungsprodukten aus der minimalen Vorlaufzeit der "
+"Auftragspositionen. Bei Versand wird die Versandbedingung des Auftrags "
+"berücksichtigt, um entweder die minimale oder maximale Vorlaufzeit der "
+"Auftragspositionen zu verwenden."
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order_line__display_qty_widget
@@ -228,7 +229,7 @@ msgstr "Incoterms auf Verkaufsaufträgen und Rechnungen anzeigen"
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.res_config_settings_view_form_sale
 msgid "Display incoterms on orders &amp; invoices"
-msgstr "Lieferbedingungen für Aufträgen und Rechnungen anzeigen"
+msgstr "Zeigen Sie Incoterms auf Aufträgen & Rechnungen an"
 
 #. module: sale_stock
 #: code:addons/sale_stock/models/sale_order.py:0
@@ -531,7 +532,7 @@ msgstr "Angebote"
 #: code:addons/sale_stock/static/src/widgets/qty_at_date_widget.xml:0
 #, python-format
 msgid "Remaining demand available at"
-msgstr "Restliche Bedarf verfügbar am"
+msgstr "Restlicher Bedarf verfügbar am"
 
 #. module: sale_stock
 #. openerp-web
@@ -635,7 +636,7 @@ msgstr "Alle Produkte auf einmal versenden"
 #. module: sale_stock
 #: model:ir.model.fields.selection,name:sale_stock.selection__res_config_settings__default_picking_policy__direct
 msgid "Ship products as soon as available, with back orders"
-msgstr "Versenden Sie Produkte so schnell wie möglich, mit Lieferrückstanden"
+msgstr "Produkte so schnell wie möglich versenden, mit Lieferrückstanden"
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order__picking_policy
@@ -759,7 +760,7 @@ msgstr "Wenn alle Produkte bereit sind"
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.res_config_settings_view_form_stock
 msgid "When to start shipping"
-msgstr "Wann mit dem Versand beginnen "
+msgstr "Wann soll mit dem Versand begonnen wird"
 
 #. module: sale_stock
 #: model_terms:ir.ui.view,arch_db:sale_stock.exception_on_so

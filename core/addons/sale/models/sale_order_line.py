@@ -638,10 +638,12 @@ class SaleOrderLine(models.Model):
             # remove packaging if not match the product
             if line.product_packaging_id.product_id != line.product_id:
                 line.product_packaging_id = False
-            # Find biggest suitable packaging
+            # suggest biggest suitable packaging matching the SO's company
             if line.product_id and line.product_uom_qty and line.product_uom:
-                line.product_packaging_id = line.product_id.packaging_ids.filtered(
-                    'sales')._find_suitable_product_packaging(line.product_uom_qty, line.product_uom) or line.product_packaging_id
+                suggested_packaging = line.product_id.packaging_ids\
+                        .filtered(lambda p: p.sales and (p.product_id.company_id <= p.company_id <= line.company_id))\
+                        ._find_suitable_product_packaging(line.product_uom_qty, line.product_uom)
+                line.product_packaging_id = suggested_packaging or line.product_packaging_id
 
     @api.depends('product_packaging_id', 'product_uom', 'product_uom_qty')
     def _compute_product_packaging_qty(self):
@@ -724,7 +726,7 @@ class SaleOrderLine(models.Model):
         domain = expression.AND([[('so_line', 'in', self.ids)], additional_domain])
         data = self.env['account.analytic.line'].read_group(
             domain,
-            ['so_line', 'unit_amount', 'product_uom_id'], ['product_uom_id', 'so_line'], lazy=False
+            ['so_line', 'unit_amount', 'product_uom_id', 'move_line_id:count_distinct'], ['product_uom_id', 'so_line'], lazy=False
         )
 
         # convert uom and sum all unit_amount of analytic lines to get the delivered qty of SO lines
@@ -740,10 +742,13 @@ class SaleOrderLine(models.Model):
             so_line = lines_map[so_line_id]
             result.setdefault(so_line_id, 0.0)
             uom = product_uom_map.get(item['product_uom_id'][0])
-            if so_line.product_uom.category_id == uom.category_id:
-                qty = uom._compute_quantity(item['unit_amount'], so_line.product_uom, rounding_method='HALF-UP')
+            # avoid counting unit_amount twice when dealing with multiple analytic lines on the same move line
+            if item['move_line_id'] == 1 and item['__count'] > 1:
+                qty = item['unit_amount'] / item['__count']
             else:
                 qty = item['unit_amount']
+            if so_line.product_uom.category_id == uom.category_id:
+                qty = uom._compute_quantity(qty, so_line.product_uom, rounding_method='HALF-UP')
             result[so_line_id] += qty
 
         return result
@@ -894,7 +899,7 @@ class SaleOrderLine(models.Model):
     @api.depends('order_id.partner_id', 'product_id')
     def _compute_analytic_distribution(self):
         for line in self:
-            if not line.display_type and line.state == 'draft':
+            if not line.display_type:
                 distribution = line.env['account.analytic.distribution.model']._get_distribution({
                     "product_id": line.product_id.id,
                     "product_categ_id": line.product_id.categ_id.id,

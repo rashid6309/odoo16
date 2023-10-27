@@ -37,6 +37,8 @@
 # Konsta Aavaranta, 2023
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2023
 # Martin Trigaux, 2023
+# Tuomas Suutari <tuomas.suutari@anders.fi>, 2023
+# Atte Isopuro <atte.isopuro@web-veistamo.fi>, 2023
 # Ossi Mantylahti <ossi.mantylahti@obs-solutions.fi>, 2023
 # 
 msgid ""
@@ -6971,7 +6973,7 @@ msgstr "\"%s\" ei näyttäisi olevan kenttään \"%%(field)s\" tarkoitettu numer
 #: code:addons/base/models/ir_fields.py:0
 #, python-format
 msgid "'%s' does not seem to be a valid JSON for field '%%(field)s'"
-msgstr "'%s' ei näytä olevan kelvollinen JSON kentälle '%%(kenttä)s'"
+msgstr "'%s' ei näytä olevan kelvollinen JSON kentälle '%%(field)s'"
 
 #. module: base
 #. odoo-python
@@ -13352,6 +13354,19 @@ msgstr "Virheilmoitus, joka palautetaan, kun rajoitusta rikotaan."
 
 #. module: base
 #. odoo-python
+#: code:addons/translate.py:0
+#, python-format
+msgid ""
+"Error while parsing view:\n"
+"\n"
+"%s"
+msgstr ""
+"Virhe näkymää jäsentäessä:\n"
+"\n"
+"%s"
+
+#. module: base
+#. odoo-python
 #: code:addons/base/models/ir_ui_view.py:0
 #, python-format
 msgid ""
@@ -14427,7 +14442,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Found multiple matches for value '%s' in field '%%(field)s' (%d matches)"
-msgstr "Löytyi useita osumia arvolle '%s' kentässä '%%(kenttä)s' (%d osumaa)"
+msgstr "Löytyi useita osumia arvolle '%s' kentässä '%%(field)s' (%d osumaa)"
 
 #. module: base
 #: model:res.country,name:base.fr
@@ -16235,7 +16250,18 @@ msgid "Invalid 'group by' parameter"
 msgstr "Virheellinen 'group by' -parametri"
 
 #. module: base
-#. odoo-python
+#: code:addons/template_inheritance.py:0
+#, python-format
+msgid "Invalid Expression while parsing xpath %r"
+msgstr "Virheellinen lauseke xpathin jäsentämisen aikana %r"
+
+#. module: base
+#: code:addons/base/models/ir_default.py:0
+#, python-format
+msgid "Invalid JSON format in Default Value field."
+msgstr "Oletusarvo-kentän JSON-muoto on virheellinen."
+
+#. module: base
 #: code:addons/models.py:0
 #, python-format
 msgid "Invalid aggregation function %r."
@@ -25295,7 +25321,6 @@ msgstr "Aloita asetusten määrittäminen"
 #: model_terms:ir.ui.view,arch_db:base.view_company_form
 #: model_terms:ir.ui.view,arch_db:base.view_country_state_form
 #: model_terms:ir.ui.view,arch_db:base.view_country_state_tree
-#: model_terms:ir.ui.view,arch_db:base.view_module_filter
 #: model_terms:ir.ui.view,arch_db:base.view_partner_address_form
 #: model_terms:ir.ui.view,arch_db:base.view_partner_form
 #: model_terms:ir.ui.view,arch_db:base.view_res_bank_form
@@ -25338,6 +25363,7 @@ msgstr "Osavaltiot/Maakunnat"
 #: model:ir.model.fields,field_description:base.field_ir_module_module__state
 #: model:ir.model.fields,field_description:base.field_ir_module_module_dependency__state
 #: model:ir.model.fields,field_description:base.field_ir_module_module_exclusion__state
+#: model_terms:ir.ui.view,arch_db:base.view_module_filter
 #: model_terms:ir.ui.view,arch_db:base.view_users_form_simple_modif
 msgid "Status"
 msgstr "Tila"
@@ -27555,6 +27581,13 @@ msgstr ""
 
 #. module: base
 #. odoo-python
+#: code:addons/base/models/ir_fields.py:0
+#, python-format
+msgid "Unable to import field type '%s'  "
+msgstr "Kenttätyyppiä '%s' ei voida tuoda"
+
+#. module: base
+#. odoo-python
 #: code:addons/base/models/ir_module.py:0
 #, python-format
 msgid ""
@@ -28962,6 +28995,17 @@ msgid "You can not create recursive tags."
 msgstr "Itse itseään viittaavia tunnisteita ei voi luoda."
 
 #. module: base
+#. odoo-python
+#: code:addons/base/models/res_users.py:0
+#, python-format
+msgid ""
+"Deleting the template users is not allowed. Deleting this profile will "
+"compromise critical functionalities."
+msgstr ""
+"Mallikäyttäjien poistaminen ei ole sallittua. Tämän profiilin poistaminen "
+"vaarantaa kriittiset toiminnot."
+
+#. module: base
 #: model:ir.model.constraint,message:base.constraint_res_users_login_key
 msgid "You can not have two users with the same login !"
 msgstr "Kahdella eri käyttäjällä ei voi olla samaa käyttäjätunnusta!"
@@ -29127,6 +29171,13 @@ msgstr ""
 
 #. module: base
 #. odoo-python
+#: code:addons/base/models/ir_config_parameter.py:0
+#, python-format
+msgid "You cannot delete the %s record."
+msgstr "Et voi poistaa %s-tietuetta."
+
+#. module: base
+#. odoo-python
 #: code:addons/base/models/res_lang.py:0
 #, python-format
 msgid ""
@@ -29158,6 +29209,13 @@ msgid ""
 msgstr ""
 "Et voi vähentää kirjanpitokirjauksessa jo käytetyn valuutan desimaalien "
 "määrää."
+
+#. module: base
+#. odoo-python
+#: code:addons/base/models/ir_config_parameter.py:0
+#, python-format
+msgid "You cannot rename config parameters with keys %s"
+msgstr "Et voi nimetä uudelleen asetusparametrejä, joilla on avainarvoja %s"
 
 #. module: base
 #. odoo-python
