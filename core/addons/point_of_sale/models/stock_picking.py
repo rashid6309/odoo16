@@ -125,7 +125,7 @@ class StockPicking(models.Model):
             if rec.pos_order_id.to_ship and not rec.pos_order_id.to_invoice:
                 cost_per_account = defaultdict(lambda: 0.0)
                 for line in rec.pos_order_id.lines:
-                    if line.product_id.type != 'product':
+                    if line.product_id.type != 'product' or line.product_id.valuation != 'real_time':
                         continue
                     out = line.product_id.categ_id.property_stock_account_output_categ_id
                     exp = line.product_id._get_product_accounts()['expense']
@@ -135,7 +135,7 @@ class StockPicking(models.Model):
                     move_vals.append({
                         'journal_id': rec.pos_order_id.sale_journal.id,
                         'date': rec.pos_order_id.date_order,
-                        'ref': rec.pos_order_id.name,
+                        'ref': 'pos_order_'+str(rec.pos_order_id.id),
                         'line_ids': [
                             (0, 0, {
                                 'name': rec.pos_order_id.name,
@@ -152,7 +152,6 @@ class StockPicking(models.Model):
                         ],
                     })
                 move = self.env['account.move'].create(move_vals)
-                rec.pos_order_id.write({'account_move': move.id})
                 move.action_post()
         return res
 

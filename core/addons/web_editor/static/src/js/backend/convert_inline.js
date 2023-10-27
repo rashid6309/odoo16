@@ -734,7 +734,7 @@ async function toInline($editable, cssRules, $iframe) {
         for (const image of images) {
             if (image.style[attributeName] !== 'auto') {
                 const value = image.getAttribute(attributeName) ||
-                    (attributeName === 'height' && image.offsetHeight);
+                    (attributeName === 'height' && image.offsetHeight) ||
                     (attributeName === 'width' ? _getWidth(image) : _getHeight(image));
                 if (value) {
                     image.setAttribute(attributeName, value);
@@ -756,6 +756,14 @@ async function toInline($editable, cssRules, $iframe) {
     // Hide replaced cells on Outlook
     editable.querySelectorAll('.mso-hide').forEach(_hideForOutlook);
 
+    // Replace double quotes in font-family styles with simple quotes (and
+    // simply remove these styles from images).
+    editable.querySelectorAll('[style*=font-family]').forEach(n => (
+        n.nodeName === 'IMG'
+            ? n.style.removeProperty('font-family')
+            : n.setAttribute('style', n.getAttribute('style').replaceAll('"', '\''))
+    ));
+
     // Styles were applied inline, we don't need a style element anymore.
     $editable.find('style').remove();
 
@@ -768,7 +776,7 @@ async function toInline($editable, cssRules, $iframe) {
 }
 /**
  * Take all elements with a `background-image` style and convert them to `vml`
- * for Outlook.
+ * for Outlook. Also remove data-bg-src to avoid Gmail cutting the html.
  *
  * @param {Element} editable
  */
@@ -783,6 +791,12 @@ function flattenBackgroundImages(editable) {
             backgroundImage.after(_createMso(vml));
             // Hide the original element for Outlook.
             backgroundImage.classList.add('mso-hide');
+        }
+        if (backgroundImage.hasAttribute('data-bg-src')) {
+            // Remove data-bg-src as it is not needed for email rendering and
+            // can cause Gmail to cut the email prematurely if the attributes
+            // contain an image in the form of a long base64 string.
+            backgroundImage.removeAttribute('data-bg-src');
         }
     }
 }
@@ -1128,9 +1142,9 @@ function listGroupToTable(editable) {
 function normalizeColors($editable) {
     const editable = $editable.get(0);
     for (const node of editable.querySelectorAll('[style*="rgb"]')) {
-        const rgbMatch = node.getAttribute('style').match(/rgb?\(([\d\.]*,?\s?){3,4}\)/g);
-        for (const rgb of rgbMatch || []) {
-            node.setAttribute('style', node.getAttribute('style').replace(rgb, rgbToHex(rgb)));
+        const rgbaMatch = node.getAttribute('style').match(/rgba?\(([\d\.]+\s*,?\s*){3,4}\)/g);
+        for (const rgb of rgbaMatch || []) {
+            node.setAttribute('style', node.getAttribute('style').replace(rgb, rgbToHex(rgb, node)));
         }
     }
 }

@@ -2489,15 +2489,17 @@ QUnit.module("Views", (hooks) => {
                     name: "Partners Action 11",
                     res_model: "foo",
                     type: "ir.actions.act_window",
-                    views: [[3, "list"], [4, "form"]],
+                    views: [
+                        [3, "list"],
+                        [4, "form"],
+                    ],
                     search_view_id: [9, "search"],
-                }
+                },
             };
             serverData.views = {
                 "foo,3,list":
                     '<tree editable="top"><field name="display_name"/><field name="foo"/></tree>',
-                "foo,4,form":
-                    '<form><field name="display_name"/><field name="foo"/></form>',
+                "foo,4,form": '<form><field name="display_name"/><field name="foo"/></form>',
                 "foo,9,search": `
                     <search>
                         <filter string="candle" name="itsName" context="{'group_by': 'foo'}"/>
@@ -4986,11 +4988,12 @@ QUnit.module("Views", (hooks) => {
     });
 
     QUnit.test("custom delete confirmation dialog", async (assert) => {
-
         class CautiousController extends ListController {
             get deleteConfirmationDialogProps() {
                 const props = super.deleteConfirmationDialogProps;
-                props.body = markup(`<span class="text-danger">These are the consequences</span><br/>${props.body}`);
+                props.body = markup(
+                    `<span class="text-danger">These are the consequences</span><br/>${props.body}`
+                );
                 return props;
             }
         }
@@ -5024,7 +5027,12 @@ QUnit.module("Views", (hooks) => {
         );
 
         await click(document, "body .modal footer button.btn-secondary");
-        assert.containsN(target, "tbody td.o_list_record_selector", 4, "nothing deleted, 4 records remain");
+        assert.containsN(
+            target,
+            "tbody td.o_list_record_selector",
+            4,
+            "nothing deleted, 4 records remain"
+        );
     });
 
     QUnit.test(
@@ -5152,6 +5160,44 @@ QUnit.module("Views", (hooks) => {
         await click(document, "body .modal footer button.btn-primary");
 
         assert.verifySteps(["notify"]);
+    });
+
+    QUnit.test("delete all records matching the domain in groupBy", async function (assert) {
+        await makeView({
+            type: "list",
+            resModel: "foo",
+            serverData,
+            arch: '<tree ><field name="foo"/><field name="bar"/></tree>',
+            groupBy: ["bar"],
+            allowSelectors: true,
+            mockRPC(route, args) {
+                if (args.method === "unlink") {
+                    assert.step(`unlink:${args.args[0]}`);
+                }
+            },
+            actionMenus: {},
+        });
+
+        // unfolding the first group
+        await click(target.querySelector(".o_group_header"));
+
+        // selecting all displayed elements
+        await click(target.querySelector("thead .o_list_record_selector input"));
+
+        // selecting the domain now
+        assert.containsOnce(target, ".o_list_selection_box .o_list_select_domain");
+        await click(target.querySelector(".o_list_selection_box .o_list_select_domain"));
+
+        await toggleActionMenu(target);
+        await toggleMenuItem(target, "Delete");
+        assert.hasClass(
+            document.querySelector("body"),
+            "modal-open",
+            "body should have modal-open class"
+        );
+
+        await click(document, "body .modal footer button.btn-primary");
+        assert.verifySteps(["unlink:4", "unlink:1,2,3"]);
     });
 
     QUnit.test("archiving one record", async function (assert) {
@@ -7573,10 +7619,10 @@ QUnit.module("Views", (hooks) => {
             "the entire content should be selected on initial click"
         );
 
-        Object.assign(
-            target.querySelector("[name=text] textarea"),
-            { selectionStart: 0, selectionEnd: 1 }
-        );
+        Object.assign(target.querySelector("[name=text] textarea"), {
+            selectionStart: 0,
+            selectionEnd: 1,
+        });
 
         await click(target, "[name=text] textarea");
 
@@ -7600,7 +7646,7 @@ QUnit.module("Views", (hooks) => {
                 </tree>`,
         });
 
-        // Need to set the line in edition. 
+        // Need to set the line in edition.
         await click(target, "td[name=foo]");
         assert.strictEqual(window.getSelection().toString(), "bar");
 
@@ -11246,15 +11292,21 @@ QUnit.module("Views", (hooks) => {
     });
 
     QUnit.test("editable list view: multi edition server error handling", async function (assert) {
-        await makeView({
+        const list = await makeView({
             type: "list",
             resModel: "foo",
             serverData,
             arch: '<tree multi_edit="1"><field name="foo" required="1"/></tree>',
             mockRPC(route, args) {
                 if (args.method === "write") {
-                    return Promise.reject();
+                    return Promise.reject({ message: "Odoo Server Error" });
                 }
+            },
+        });
+        patchWithCleanup(list.env.services.notification, {
+            add: (message) => {
+                assert.equal(message, "Odoo Server Error");
+                assert.step("Error");
             },
         });
 
@@ -11267,7 +11319,9 @@ QUnit.module("Views", (hooks) => {
         await click(rows[0].querySelector(".o_data_cell"));
         await editInput(target, ".o_selected_row [name=foo] input", "abc");
         await click(target, ".o_list_view");
+        assert.verifySteps([]);
         await click(target, ".modal .btn-primary");
+        assert.verifySteps(["Error"]);
         // Server error: if there was a crash manager, there would be an open error at this point...
         assert.strictEqual(
             $(target).find(".o_data_row:eq(0) .o_data_cell").text(),
@@ -14793,6 +14847,55 @@ QUnit.module("Views", (hooks) => {
         }
     );
 
+    QUnit.test("optional fields is shown only if enabled", async function (assert) {
+        serverData.actions = {
+            1: {
+                id: 1,
+                name: "Currency Action 1",
+                res_model: "foo",
+                type: "ir.actions.act_window",
+                views: [[1, "list"]],
+            },
+        };
+
+        serverData.views = {
+            "foo,1,list": `
+                    <tree>
+                        <field name="currency_id" optional="show"/>
+                        <field name="company_currency_id" optional="show"/>
+                    </tree>`,
+            "foo,false,search": "<search/>",
+        };
+
+        const webClient = await createWebClient({ serverData });
+        await doAction(webClient, 1);
+
+        assert.containsN(
+            target,
+            "th",
+            4,
+            "should have 4 th, 1 for selector, 2 for columns, 1 for optional columns"
+        );
+
+        // disable optional field
+        await click(target, "table .o_optional_columns_dropdown .dropdown-toggle");
+        await click(target, "div.o_optional_columns_dropdown span.dropdown-item:first-child");
+        assert.containsN(
+            target,
+            "th",
+            3,
+            "should have 3 th, 1 for selector, 1 for columns, 1 for optional columns"
+        );
+
+        await doAction(webClient, 1);
+        assert.containsN(
+            target,
+            "th",
+            3,
+            "should have 3 th, 1 for selector, 1 for columns, 1 for optional columns ever after listview reload"
+        );
+    });
+
     QUnit.test("selection is kept when optional fields are toggled", async function (assert) {
         await makeView({
             type: "list",
@@ -15035,10 +15138,10 @@ QUnit.module("Views", (hooks) => {
             patchWithCleanup(browser.localStorage, {
                 getItem(key) {
                     assert.step("getItem " + key);
-                    return forceLocalStorage ? '["m2o"]' : this._super(arguments);
+                    return forceLocalStorage ? "m2o" : this._super(arguments);
                 },
                 setItem(key, value) {
-                    assert.step("setItem " + key + " to " + JSON.stringify(value));
+                    assert.step("setItem " + key + " to " + JSON.stringify(String(value)));
                     return this._super(arguments);
                 },
             });
@@ -15096,7 +15199,7 @@ QUnit.module("Views", (hooks) => {
 
             // Only a setItem since the list view maintains its own internal state of toggled
             // optional columns.
-            assert.verifySteps(["setItem " + localStorageKey + ' to ["m2o","reference"]']);
+            assert.verifySteps(["setItem " + localStorageKey + ' to "m2o,reference"']);
 
             // 5 th (1 for checkbox, 3 for columns, 1 for optional columns)
             assert.containsN(target, "th", 5, "should have 5 th");
@@ -17286,6 +17389,37 @@ QUnit.module("Views", (hooks) => {
         ]);
     });
 
+    QUnit.test(
+        "list view: prevent record selection when editable list in edit mode",
+        async function (assert) {
+            await makeView({
+                type: "list",
+                resModel: "foo",
+                serverData,
+                arch: `
+                <tree editable="top">
+                    <field name="foo" />
+                </tree>`,
+            });
+
+            //  When we try to select new record in edit mode
+            await click(target.querySelector(".o_list_buttons .o_list_button_add"));
+            await click(target.querySelector(".o_data_row .o_list_record_selector"));
+            assert.strictEqual(
+                target.querySelector('.o_data_row .o_list_record_selector input[type="checkbox"]')
+                    .checked,
+                false
+            );
+
+            //  When we try to select all records in edit mode
+            await click(target.querySelector("th.o_list_record_selector.o_list_controller"));
+            assert.strictEqual(
+                target.querySelector('.o_list_controller input[type="checkbox"]').checked,
+                false
+            );
+        }
+    );
+
     QUnit.test("context keys not passed down the stack and not to fields", async (assert) => {
         patchWithCleanup(AutoComplete, {
             timeout: 0,
@@ -17366,7 +17500,7 @@ QUnit.module("Views", (hooks) => {
             fields: {
                 foo: { string: "Foo", type: "one2many", relation: "foo" },
             },
-        },
+        };
         await makeView({
             type: "form",
             resModel: "parent",
@@ -17386,25 +17520,26 @@ QUnit.module("Views", (hooks) => {
             },
         });
 
-        await triggerEvent(document.querySelector('.o_field_x2many_list_row_add a'), null, "click");
+        await triggerEvent(document.querySelector(".o_field_x2many_list_row_add a"), null, "click");
 
         const input = document.activeElement;
-        input.value = 'alu';
-        triggerEvent(document.activeElement, null, "input"),
+        input.value = "alu";
+        triggerEvent(document.activeElement, null, "input");
         await nextTick();
 
-        input.value = 'alue';
-        triggerEvent(document.activeElement, null, "input"),
-        triggerHotkey("Enter"),
+        input.value = "alue";
+        triggerEvent(document.activeElement, null, "input");
+        triggerHotkey("Enter");
         await nextTick();
 
         deferred.resolve();
         await nextTick();
 
         assert.strictEqual(input, document.activeElement);
-        assert.strictEqual(input.value, 'Value 1');
+        assert.strictEqual(input.value, "Value 1");
     });
-    QUnit.test("monetary field display for rtl languages", async function (assert){
+
+    QUnit.test("monetary field display for rtl languages", async function (assert) {
         patchWithCleanup(localization, {
             direction: "rtl",
         });
@@ -17438,5 +17573,45 @@ QUnit.module("Views", (hooks) => {
             "ltr",
             "Monetary cells should have ltr direction"
         );
-    })
+    });
+
+    QUnit.test("edit record with onchange on x2many field (command 5)", async function (assert) {
+        assert.expect(3);
+
+        serverData.models.foo.onchanges = {
+            foo: (obj) => {
+                obj.m2m = [[5]];
+            },
+        };
+        await makeView({
+            type: "list",
+            resModel: "foo",
+            serverData,
+            arch: `
+                <tree editable="top">
+                    <field name="foo"/>
+                    <field name="m2m" widget="many2many_tags"/>
+                </tree>`,
+            mockRPC(route, args) {
+                if (args.method === "write") {
+                    assert.deepEqual(args.args[1], {
+                        foo: "new value",
+                        m2m: [
+                            [3, 1, false],
+                            [3, 2, false],
+                        ],
+                    });
+                }
+            },
+        });
+
+        assert.containsN(target.querySelector(".o_data_row"), ".o_tag", 2);
+
+        await click(target.querySelector(".o_data_cell"));
+        await editInput(target, ".o_field_widget[name=foo] input", "new value");
+
+        assert.containsNone(target.querySelector(".o_data_row"), ".o_tag");
+
+        await clickSave(target);
+    });
 });

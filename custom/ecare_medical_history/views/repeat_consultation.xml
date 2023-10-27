@@ -2,17 +2,6 @@
 <odoo>
     <data>
 
-        <!-- Explicit tree view -->
-        <!--        <record id="repeat_consultation_form_view" model="ir.ui.view">-->
-        <!--            <field name="name">repeat.consultation.form.view</field>-->
-        <!--            <field name="model">ec.repeat.consultation</field>-->
-        <!--            <field name="arch" type="xml">-->
-        <!--                <tree>-->
-
-        <!--                </tree>-->
-        <!--            </field>-->
-        <!--        </record>-->
-
         <!-- Explicit Kanban View -->
 
         <record id="view_ec_repeat_consultation_kanban" model="ir.ui.view">
@@ -23,138 +12,165 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban">
-                                <div class="row mr-0 ml-0 p-1">
-                                    <div class="col-12 text-center font-weight-bold p-0">
-                                        Consultation Date
-                                        <b> / </b>
-                                        <field name="repeat_date"/>
+                                <t t-set="rec_id" t-value="record.id.raw_value"/>
+                                <div>
+                                    <div class="d-flex" style="justify-content: space-between">
+                                        <div>
+                                            Consultation Date
+                                            <b> / </b>
+                                            <field name="repeat_date"/>
+                                        </div>
+                                        <div class="text-center font-weight-bold d-flex align-items-end">
+                                            <div>
+
+                                                <a data-bs-toggle="collapse"
+                                                   t-att-data-bs-target="'#family_history_section_' + rec_id" href="#">
+                                                    <i class="fa fa-bars fa-2x" aria-hidden="true"/></a>
+                                            </div>
+
+                                            <div>
+
+                                                <a name="action_set_working_consultation"
+                                                        type="object"
+                                                        string="Edit"
+                                                        class="repeat_kanban_button"
+                                                        onclick="scrollToRepeat()">
+                                                    <i class="fa fa-edit fa-2x" aria-hidden="true"/>
+                                                </a>
+
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="oe_kanban_title">
-                                    <field name="question_two_label"/>
-                                    <h5><field name="question_two_choice"/></h5>
-                                </div>
-                                <div class="oe_kanban_title">
-                                    <field name="question_three_label"/>
-                                    <h5><field name="question_three_choice"/></h5>
-                                </div>
-                                <div class="oe_kanban_title">
-                                    <field name="question_four_label"/>
-                                </div>
-                                <table t-attf-class="o_group m-0 table_spacing_style">
-                                    <tbody>
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="repeat_ultrasound_type" class="o_form_label">Ultrasound</label>
-                                            </td>
-                                            <td><field name="repeat_ultrasound_type"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_location_id" class="o_form_label">Location</label>
-                                            </td>
-                                            <td><field name="repeat_location_id"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="repeat_status" class="o_form_label">Status</label>
-                                            </td>
-                                            <td><field name="repeat_status"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_consultation_interaction" class="o_form_label">Interaction</label>
-                                            </td>
-                                            <td><field name="repeat_consultation_interaction"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="lmp_question_four" class="o_form_label">LMP</label>
-                                            </td>
-                                            <td><field name="lmp_question_four"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_cycle_day" class="o_form_label">Cycle Day</label>
-                                            </td>
-                                            <td><field name="repeat_cycle_day"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="repeat_date" class="o_form_label">Date</label>
-                                            </td>
-                                            <td><field name="repeat_date"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_seen_by" class="o_form_label">Seen by</label>
-                                            </td>
-                                            <td><field name="repeat_seen_by"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="repeat_cycle_day" class="o_form_label">Repeat cycle day</label>
-                                            </td>
-                                            <td><field name="repeat_cycle_day"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_date" class="o_form_label">Repeat Date</label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="repeat_seen_by" class="o_form_label">Seen by</label>
-                                            </td>
-                                            <td><field name="repeat_seen_by"/></td>
-<!--                                            <td class="o_td_label">-->
-<!--                                                <label for="repeat_other_doctors_present" class="o_form_label">Other Doctors Present</label>-->
-<!--                                            </td>-->
-<!--                                            <td><field name="repeat_other_doctors_present"/></td>-->
-                                        </tr>
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="repeat_consultation_with" class="o_form_label">Consultation with</label>
-                                            </td>
-                                            <td><field name="repeat_consultation_with"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_seen_with_other">Other Present</label>
-                                            </td>
-                                            <td><field name="repeat_seen_with_other"/></td>
-                                        </tr>
-                                        <tr>
-<!--                                            <td class="o_td_label">-->
-<!--                                                <label for="repeat_gpe_breast_abdominal_exam" class="o_form_label">GPE / Breast / Abdominal Exam</label>-->
-<!--                                            </td>-->
-<!--                                            <td><field name="repeat_gpe_breast_abdominal_exam"/></td>-->
-                                        </tr>
+                                    <hr/>
 
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="repeat_diagnosis" class="o_form_label">Diagnosis</label>
-                                            </td>
-                                            <td><field name="repeat_diagnosis"/></td>
-                                        </tr>
 
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="repeat_treatment_plan" class="o_form_label">Treatment Plan</label>
-                                            </td>
-                                            <td><field name="repeat_treatment_plan"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label for="repeat_investigations_ids" class="o_form_label">Investigations</label>
-                                            </td>
-                                            <td><field name="repeat_investigations_ids"/></td>
-                                            <td class="o_td_label">
-                                                <label for="repeat_treatment_advised_ids" class="o_form_label">Treatment Advised</label>
-                                            </td>
-                                            <td><field name="repeat_treatment_advised_ids"/></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                </div>
+                                <div class="card-block mb-5 pl-4 collapse" t-att-id="'family_history_section_' + rec_id">
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-12 family-history">
+                                                <div class="bd-example" data-example-id="">
+                                                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                                                        <div class="oe_kanban_title">
+                                                            <field name="question_two_label"/>
+                                                            <h5><field name="question_two_choice"/></h5>
+                                                        </div>
+                                                        <div class="oe_kanban_title">
+                                                            <field name="question_three_label"/>
+                                                            <h5><field name="question_three_choice"/></h5>
+                                                        </div>
+                                                        <div class="oe_kanban_title">
+                                                            <field name="question_four_label"/>
+                                                        </div>
+                                                        <table t-attf-class="o_group m-0 table_spacing_style">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_ultrasound_type" class="o_form_label">Ultrasound</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_ultrasound_type"/></td>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_location_id" class="o_form_label">Location</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_location_id"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_status" class="o_form_label">Status</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_status"/></td>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_consultation_interaction" class="o_form_label">Interaction</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_consultation_interaction"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="lmp_question_four" class="o_form_label">LMP</label>
+                                                                    </td>
+                                                                    <td><field name="lmp_question_four"/></td>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_cycle_day" class="o_form_label">Cycle Day</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_cycle_day"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_date" class="o_form_label">Date</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_date"/></td>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_seen_by" class="o_form_label">Seen by</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_seen_by"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_cycle_day" class="o_form_label">Repeat cycle day</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_cycle_day"/></td>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_date" class="o_form_label">Repeat Date</label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_seen_by" class="o_form_label">Seen by</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_seen_by"/></td>
+                                                                    <!--                                            <td class="o_td_label">-->
+                                                                    <!--                                                <label for="repeat_other_doctors_present" class="o_form_label">Other Doctors Present</label>-->
+                                                                    <!--                                            </td>-->
+                                                                    <!--                                            <td><field name="repeat_other_doctors_present"/></td>-->
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_consultation_with" class="o_form_label">Consultation with</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_consultation_with"/></td>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_seen_with_other">Other Present</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_seen_with_other"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <!--                                            <td class="o_td_label">-->
+                                                                    <!--                                                <label for="repeat_gpe_breast_abdominal_exam" class="o_form_label">GPE / Breast / Abdominal Exam</label>-->
+                                                                    <!--                                            </td>-->
+                                                                    <!--                                            <td><field name="repeat_gpe_breast_abdominal_exam"/></td>-->
+                                                                </tr>
 
-                                <button name="action_open_tvs_form"
-                                        type="object"
-                                        context="{'default_target': 'new','default_repeat_consultation': 1}"
-                                        string="TVS"
-                                        class="btn btn-primary repeat_kanban_button"/>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_diagnosis" class="o_form_label">Diagnosis</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_diagnosis"/></td>
+                                                                </tr>
 
-                                <button name="action_set_working_consultation"
-                                        type="object"
-                                        string="Edit"
-                                        class="btn btn-primary repeat_kanban_button"/>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_treatment_plan" class="o_form_label">Treatment Plan</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_treatment_plan"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_investigations_ids" class="o_form_label">Investigations</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_investigations_ids"/></td>
+                                                                    <td class="o_td_label">
+                                                                        <label for="repeat_treatment_advised_ids" class="o_form_label">Treatment Advised</label>
+                                                                    </td>
+                                                                    <td><field name="repeat_treatment_advised_ids"/></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
                         </t>
 

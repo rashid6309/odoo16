@@ -42,7 +42,7 @@
 
         # Repeat
         'views/repeat_consultation.xml',
-        # 'views/repeat_fiobrid.xml',
+
         # TVS
         'views/ec_medical_tvs.xml',
         # Timeline
@@ -58,7 +58,7 @@
     'assets': {
         'web.assets_backend': [
             '/ecare_medical_history/static/src/js/custom.js',
-            'ecare_medical_history/static/src/css/custom.css',
+            'ecare_medical_history/static/src/css/custom.css', # FIX: Issue in the header in the overall system
             'ecare_medical_history/static/src/css/scan_view.css',
             'ecare_medical_history/static/src/xml/summary.xml',
             'ecare_medical_history/static/src/xml/banner_template.xml'

@@ -301,7 +301,6 @@ export class View extends Component {
             fields,
             relatedModels,
             resModel,
-
             useSampleModel: false,
             className: `${props.className} o_view_controller o_${this.env.config.viewType}_view`,
         };

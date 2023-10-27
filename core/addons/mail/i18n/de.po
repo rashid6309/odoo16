@@ -5,7 +5,6 @@
 # Translators:
 # Wolfgang Taferner, 2022
 # Friederike Fasterling-Nesselbosch, 2022
-# Michael Hofer, 2022
 # Mr Tob, 2022
 # Thomas, 2023
 # Chris Egal <sodaswed@web.de>, 2023
@@ -43,7 +42,15 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"<p class=\"o_view_nocontent_smiling_face\">Hinzufügen von Adressen zur Berechtigungsliste</p><p>  Um Sie vor Spam und Antwortschleifen zu schützen, blockiert Odoo automatisch E-Mails E-Mails, die an Ihrem Gateway ankommen, ab einer bestimmten Anzahl von E-Mails %ipro Minuten%i. Wenn es Adressen gibt, von denen Sie sehr häufig Nachrichten erhalten möchten, können Sie diese unten hinzufügen, und Odoo wird sie dann weiterleiten.</p>"
+"            <p class=\"o_view_nocontent_smiling_face\">\n"
+"                Fügen Sie der Berechtigungsliste Adressen hinzu.\n"
+"            </p><p>\n"
+"                Um Sie vor Spam und Antwortschleifen zu schützen, blockiert Odoo automatisch E-Mails,\n"
+"                die mit einer Häufigkeit von <b>%i</b> E-Mails pro <b>%i</b>\n"
+"                Minuten an Ihrem Gateway ankommen. Wenn es Adressen gibt, von denen Sie sehr häufig Nachrichten erhalten müssen,\n"
+"                können Sie diese unten hinzufügen, und Odoo wird sie dann nicht blockieren.\n"
+"            </p>\n"
+"        "
 
 #. module: mail
 #. odoo-python
@@ -698,14 +705,14 @@ msgstr ""
 #: code:addons/mail/models/mail_channel.py:0
 #, python-format
 msgid "<div class=\"o_mail_notification\">joined the channel</div>"
-msgstr "<div class=\"o_mail_notification\">ist dem Channel beigetreten</div>"
+msgstr "<div class=\"o_mail_notification\">ist dem Kanal beigetreten</div>"
 
 #. module: mail
 #. odoo-python
 #: code:addons/mail/models/mail_channel.py:0
 #, python-format
 msgid "<div class=\"o_mail_notification\">left the channel</div>"
-msgstr "<div class=\"o_mail_notification\">hat den Channel verlassen</div>"
+msgstr "<div class=\"o_mail_notification\">hat den Kanal verlassen</div>"
 
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.view_document_file_kanban
@@ -814,7 +821,7 @@ msgstr "<span class=\"o_form_label\">Benutzerdefinierte ICE-Server-Liste</span>"
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.res_config_settings_view_form
 msgid "<span class=\"o_form_label\">Email Templates</span>"
-msgstr "<span class=\"o_form_label\">E-Mail Vorlagen</span>"
+msgstr "<span class=\"o_form_label\">E-Mail-Vorlagen</span>"
 
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.email_template_form
@@ -1022,7 +1029,7 @@ msgstr "Zugriffstoken"
 #: code:addons/mail/static/src/models/thread.js:0
 #, python-format
 msgid "Access restricted to group \"%(groupFullName)s\""
-msgstr "Zugang auf die Gruppe „%(groupFullName)s“ beschränkt"
+msgstr "Zugriff auf die Gruppe „%(groupFullName)s“ beschränkt"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_activity__activity_category
@@ -1059,7 +1066,7 @@ msgid ""
 "Actions may trigger specific behavior like opening calendar view or "
 "automatically mark as done when a document is uploaded"
 msgstr ""
-"Aktionen führen gegebenfalls zu weiteren Funktionen wie zur Öffnung der "
+"Aktionen führen gegebenenfalls zu weiteren Funktionen wie zur Öffnung der "
 "Kalenderansicht oder zur automatischen „Erledigt“-Markierung, wenn ein "
 "Dokument hochgeladen wurde."
 
@@ -1382,7 +1389,7 @@ msgstr "Alias-Modell"
 #: model:ir.actions.act_window,name:mail.action_view_mail_alias
 #: model:ir.ui.menu,name:mail.mail_alias_menu
 msgid "Aliases"
-msgstr "Aliase"
+msgstr "Aliasse"
 
 #. module: mail
 #. odoo-javascript
@@ -1667,7 +1674,7 @@ msgstr "Australien"
 #. module: mail
 #: model:ir.model.fields.selection,name:mail.selection__mail_alias__alias_contact__partners
 msgid "Authenticated Partners"
-msgstr "Authentifizierte Partner"
+msgstr "Authentifizierten Partnern"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_compose_message__author_id
@@ -1709,7 +1716,7 @@ msgstr "Automatisch löschen"
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.mail_channel_view_form
 msgid "Auto Subscribe Groups"
-msgstr "Automatisch abonnierte Gruppen"
+msgstr "Gruppen automatisch abonnieren"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_channel__group_ids
@@ -2451,7 +2458,7 @@ msgstr "Unternehmen"
 #: model_terms:ir.ui.view,arch_db:mail.email_compose_message_wizard_form
 #, python-format
 msgid "Compose Email"
-msgstr "E-Mail schreiben"
+msgstr "E-Mail verfassen"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_compose_message__composition_mode
@@ -2477,7 +2484,7 @@ msgstr "Konfigurieren Sie Ihre ICE-Serverliste für webRTC"
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.res_config_settings_view_form
 msgid "Configure your activity types"
-msgstr "Ihre Aktivitätstypen konfigurieren"
+msgstr "Konfigurieren Sie Ihre Aktivitätstypen"
 
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.res_config_settings_view_form
@@ -2679,7 +2686,7 @@ msgstr "%(document)s erstellen durch E-Mail an %(email_link)s"
 #: code:addons/mail/static/src/models/discuss.js:0
 #, python-format
 msgid "Create or search channel..."
-msgstr "Channel erstellen oder suchen ..."
+msgstr "Kanal erstellen oder suchen ..."
 
 #. module: mail
 #. odoo-javascript
@@ -2812,7 +2819,7 @@ msgstr "Kunde ist für Posteingang/E-Mail-Benachrichtigung erforderlich"
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.res_config_settings_view_form
 msgid "Customize the look and feel of automated emails"
-msgstr "Aussehen der automatisierten E-Mails anpassen"
+msgstr "Passen Sie das Aussehen der automatisierten E-Mails an"
 
 #. module: mail
 #. odoo-javascript
@@ -3280,7 +3287,7 @@ msgstr "Dateien hierher ziehen"
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.view_document_file_kanban
 msgid "Dropdown menu"
-msgstr "Dropdownmenu"
+msgstr "Drop-down-Menü"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_activity__date_deadline
@@ -3421,12 +3428,12 @@ msgstr "E-Mail-Adresse"
 #. module: mail
 #: model:ir.model,name:mail.model_mail_alias
 msgid "Email Aliases"
-msgstr "E-Mail-Aliases"
+msgstr "E-Mail-Aliasse"
 
 #. module: mail
 #: model:ir.model,name:mail.model_mail_alias_mixin
 msgid "Email Aliases Mixin"
-msgstr "E-Mail-Aliases-Mixin"
+msgstr "E-Mail-Aliasse-Mixin"
 
 #. module: mail
 #: model:ir.ui.menu,name:mail.mail_blacklist_menu
@@ -3685,7 +3692,7 @@ msgstr "Europäisch"
 #. module: mail
 #: model:ir.model.fields.selection,name:mail.selection__mail_alias__alias_contact__everyone
 msgid "Everyone"
-msgstr "Jeder"
+msgstr "Jedem"
 
 #. module: mail
 #: model:ir.model.fields.selection,name:mail.selection__mail_notification__notification_status__exception
@@ -3962,7 +3969,7 @@ msgstr "Follower von"
 #. module: mail
 #: model:ir.model.fields.selection,name:mail.selection__mail_alias__alias_contact__followers
 msgid "Followers only"
-msgstr "Nur Follower"
+msgstr "Nur von Followern"
 
 #. module: mail
 #. odoo-javascript
@@ -4119,7 +4126,7 @@ msgstr "Outlook-API-Anmeldedaten erhalten"
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.res_config_settings_view_form
 msgid "Gmail Credentials"
-msgstr "G-Mail Zugangsdaten"
+msgstr "Gmail-Anmeldedaten"
 
 #. module: mail
 #: model:ir.model.fields.selection,name:mail.selection__mail_channel__channel_type__group
@@ -4432,7 +4439,7 @@ msgid ""
 "ID of the parent record holding the alias (example: project holding the task"
 " creation alias)"
 msgstr ""
-"ID des übergeordneten Alias Datensatz (Beispiel: Projekt welches den Alias "
+"ID des übergeordneten Alias-Datensatz (Beispiel: Projekt welches den Alias "
 "für die Erstellung von Aufgaben beinhaltet)."
 
 #. module: mail
@@ -5208,7 +5215,7 @@ msgstr "Kanal beitreten"
 #: code:addons/mail/static/src/components/call_action_list/call_action_list.xml:0
 #, python-format
 msgid "Join Video Call"
-msgstr "Videoanruf beitreten"
+msgstr "An Videoanruf teilnehmen"
 
 #. module: mail
 #: model:ir.actions.act_window,name:mail.mail_channel_action_view
@@ -5520,7 +5527,7 @@ msgstr "Mehr laden"
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.email_compose_message_wizard_form
 msgid "Load template"
-msgstr "Vorlagen laden"
+msgstr "Vorlage laden"
 
 #. module: mail
 #. odoo-javascript
@@ -5842,7 +5849,7 @@ msgstr "Als gelesen markieren"
 #: code:addons/mail/static/src/models/message_action_view.js:0
 #, python-format
 msgid "Mark as Todo"
-msgstr "Als zu erledigen markieren"
+msgstr "Als To-do markieren"
 
 #. module: mail
 #. odoo-javascript
@@ -6706,8 +6713,8 @@ msgstr "Anzahl der Fehler"
 #: model:ir.model.fields,help:mail.field_mail_thread_cc__message_needaction_counter
 #: model:ir.model.fields,help:mail.field_res_partner__message_needaction_counter
 #: model:ir.model.fields,help:mail.field_res_users__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Anzahl der Nachrichten, die eine Aktion erfordern"
+msgid "Number of messages requiring action"
+msgstr "Anzahl der Meldungen, die eine Aktion erfordern"
 
 #. module: mail
 #: model:ir.model.fields,help:mail.field_mail_blacklist__message_has_error_counter
@@ -6718,7 +6725,7 @@ msgstr "Anzahl der Nachrichten, die eine Aktion erfordern"
 #: model:ir.model.fields,help:mail.field_res_partner__message_has_error_counter
 #: model:ir.model.fields,help:mail.field_res_users__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "Anzahl der Nachrichten mit Zustellungsfehler."
+msgstr "Anzahl der Nachrichten mit Zustellungsfehler"
 
 #. module: mail
 #. odoo-javascript
@@ -7073,7 +7080,7 @@ msgid ""
 "a placeholder expression that provides the appropriate language, e.g. {{ "
 "object.partner_id.lang }}."
 msgstr ""
-"Optionale Übersetzung (ISO-Code) zur Auswahl beim E-Mailversand. Falls es "
+"Optionale Übersetzung (ISO-Code) zur Auswahl beim E-Mail-Versand. Falls es "
 "keinen Eintrag gibt, wird die englische Version verwendet. Es sollte sich "
 "normalerweise um einen Platzhalterausdruck handeln, der die passende Sprache"
 " enthält, z. B. {{ object.partner_id.lang }}."
@@ -7400,7 +7407,8 @@ msgstr ""
 "Richtlinie zum Hinterlassen einer Mitteilung im Dokument über das E-Mail-Gateway.\n"
 "- Jeder: jeder kann eine Nachricht hinterlassen\n"
 "- Partner: nur bestätigte Partner\n"
-"- Follower: nur die Personen, die dem betreffenden Dokument folgen oder Mitglieder von Kanälen sind, die dem Dokument folgen\n"
+"- Follower: nur Follower des entsprechenden Dokuments\n"
+" oder Mitglieder der verfolgten Kanäle\n"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_fetchmail_server__port
@@ -7412,14 +7420,14 @@ msgstr "Port"
 #: code:addons/mail/models/res_users.py:0
 #, python-format
 msgid "Portal Access Granted"
-msgstr "Portalzugang gewährt"
+msgstr "Portalzugriff gewährt"
 
 #. module: mail
 #. odoo-python
 #: code:addons/mail/models/res_users.py:0
 #, python-format
 msgid "Portal Access Revoked"
-msgstr "Portalzugang verweigert"
+msgstr "Portalzugriff verweigert"
 
 #. module: mail
 #: model:ir.model.fields.selection,name:mail.selection__ir_actions_server__mail_post_method__comment
@@ -8603,7 +8611,7 @@ msgstr "Kurzbefehle"
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_shortcode__source
 msgid "Shortcut"
-msgstr "Tastenkürzel"
+msgstr "Abkürzung"
 
 #. module: mail
 #: model:ir.model.fields,help:mail.field_mail_shortcode__source
@@ -9047,7 +9055,7 @@ msgstr "Taoist"
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_template_preview__model_id
 msgid "Targeted model"
-msgstr "Ziel-Modell"
+msgstr "Zielmodell"
 
 #. module: mail
 #. odoo-javascript
@@ -9318,7 +9326,7 @@ msgid ""
 " email that does not reply to an existing record will cause the creation of "
 "a new record of this model (e.g. a Project Task)"
 msgstr ""
-"Das Model (Odoo-Dokumentart), auf das sich der Alias bezieht. Alle "
+"Das Modell (Odoo-Dokumentart), auf das sich der Alias bezieht. Alle "
 "eingehenden E-Mails ohne Bezug zu einer bereits vorhandenen E-Mail führen "
 "üblicherweise zur Erstellung eines neuen Datensatz dieses Modells (z. B. "
 "Projektaufgabe)."
@@ -9573,7 +9581,7 @@ msgstr "Zu löschen"
 #. module: mail
 #: model:mail.activity.type,name:mail.mail_activity_data_todo
 msgid "To Do"
-msgstr "Zu erledigen"
+msgstr "To-do"
 
 #. module: mail
 #. odoo-javascript
@@ -9875,14 +9883,14 @@ msgstr ""
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.mail_blacklist_view_form
 msgid "Unblacklist"
-msgstr "Aus schwarzen Liste entfernen"
+msgstr "Von schwarzer Liste entfernen"
 
 #. module: mail
 #. odoo-python
 #: code:addons/mail/models/mail_blacklist.py:0
 #, python-format
 msgid "Unblacklisting Reason: %s"
-msgstr "Grund für Entfernung aus Sperrliste: %s"
+msgstr "Grund für Entfernung von schwarzer Liste: %s"
 
 #. module: mail
 #. odoo-javascript
@@ -10172,6 +10180,16 @@ msgstr ""
 "und Empfangen von E-Mails Ihren eigenen E-Mail-Server zu verwenden. Online-"
 "Benutzer können bereits von einem einsatzbereiten E-Mail-Server "
 "(@mycompany.odoo.com) profitieren."
+
+#. module: mail
+#: code:addons/mail/models/mail_alias.py:0
+#, python-format
+msgid ""
+"Value for `mail.catchall.domain.allowed` cannot be validated.\n"
+"It should be a comma separated list of domains e.g. example.com,example.org."
+msgstr ""
+"Wert für `mail.catchall.domain.allowed` kann nicht validiert werden.\n"
+"Es sollte eine durch Kommata getrennte Liste von Domains sein, z. B. example.com,example.org."
 
 #. module: mail
 #. odoo-javascript
@@ -27396,7 +27414,7 @@ msgstr "Pilot"
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "pin"
-msgstr "Pinn"
+msgstr "Nadel"
 
 #. module: mail
 #. odoo-javascript

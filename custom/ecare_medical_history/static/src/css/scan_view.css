@@ -1,8 +1,9 @@
 .tvs_scan{
     background: #3db13b;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 8px;
 }
+
 .output_results{
     border: 0;
     outline: 0;

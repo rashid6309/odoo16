@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.tools.misc import get_lang
 
 
 class EcMedicalPatient(models.Model):
@@ -15,7 +16,10 @@ class EcMedicalPatient(models.Model):
             )
             visit = "Not Scheduled"
             if appointment_id:
-                visit = f'{appointment_id.date} {appointment_id.start}'
+                date_format = (self.env['res.lang']._lang_get(self.env.user.lang).date_format
+                               or get_lang(self.env).date_format)
+
+                visit = f'{appointment_id.date.strftime(date_format)} {appointment_id.start}'
 
             return visit
 
