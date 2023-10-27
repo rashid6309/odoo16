@@ -34,7 +34,7 @@
                                                         type="object"
                                                         string="Edit"
                                                         class="repeat_kanban_button"
-                                                        onclick="scrollToRepeat()">
+                                                        onclick="scrollToElement('repeat_consultation_section')">
                                                     <i class="fa fa-edit fa-2x" aria-hidden="true"/>
                                                 </a>
 

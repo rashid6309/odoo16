@@ -57,6 +57,7 @@
     ],
     'assets': {
         'web.assets_backend': [
+            '/ecare_medical_history/static/src/js/generic.js',
             '/ecare_medical_history/static/src/js/custom.js',
             'ecare_medical_history/static/src/css/custom.css', # FIX: Issue in the header in the overall system
             'ecare_medical_history/static/src/css/scan_view.css',

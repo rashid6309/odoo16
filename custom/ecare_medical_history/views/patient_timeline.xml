@@ -32,16 +32,6 @@
 			<field name="model">ec.patient.timeline</field>
 			<field name="arch" type="html">
 				<form string="Patient Timeline" create="0">
-					<script>
-						function scrollToRepeat(element_id){
-							setTimeout(function() {
-								var innerDiv = document.getElementById(element_id);
-								if (innerDiv) {
-									innerDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-								}
-							}, 1000);
-						}
-					</script>
 					<div style="margin-top: -2%;">
 						<field name="timeline_patient_id" style="display:block;" widget="banner_summary_widget"/>
 					</div>
@@ -97,13 +87,6 @@
 								</div>
 							</div>
 							<div class="col-md-8 timeline_content">
-								<script>
-									function showRepeatConsultationSection() {
-									var targetDiv = document.getElementById("repeat_consultation_section");
-									targetDiv.classList.add("show");
-									return false;
-									}
-								</script>
 								<div class="d-flex scroll-to card-header-custom first_consultation_container mt-2" id="repeat_consultation_section_link">
 									<div class="col-10">
 										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
