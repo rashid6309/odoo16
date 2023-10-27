@@ -12,18 +12,25 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban">
-                                <div class="row mr-0 ml-0 p-1">
-                                    <div class="col-6 text-center font-weight-bold p-0">
-                                        Consultation Date
-                                        <b> / </b>
-                                        <field name="repeat_date"/>
+                                <t t-set="rec_id" t-value="record.id.raw_value"/>
+                                <div class="row">
+                                    <div class="d-flex" style="justify-content: space-between">
+                                        <div>
+                                            Consultation Date
+                                            <b> / </b>
+                                            <field name="repeat_date"/>
+                                        </div>
+                                        <div class="text-center font-weight-bold">
+                                            <a data-bs-toggle="collapse"
+                                               t-att-data-bs-target="'#family_history_section_' + rec_id" href="#">
+                                                <i class="fa fa-bars fa-2x" aria-hidden="true"/></a>
+                                        </div>
                                     </div>
-                                    <div class="col-6 text-center font-weight-bold p-0">
-                                        <a data-bs-toggle="collapse" data-bs-target="#family_history_section" href="#"><i class="fa fa-bars large" aria-hidden="true"/></a>
-                                    </div>
+                                    <hr/>
+
+
                                 </div>
-                                <hr/>
-                                <div class="card-block mb-5 pl-4 collapse" id="family_history_section">
+                                <div class="card-block mb-5 pl-4 collapse" t-att-id="'family_history_section_' + rec_id">
                                     <section>
                                         <div class="row">
                                             <div class="col-12 family-history">
@@ -154,7 +161,13 @@
                                 <button name="action_set_working_consultation"
                                         type="object"
                                         string="Edit"
-                                        class="btn btn-primary repeat_kanban_button"/>
+                                        class="btn btn-primary repeat_kanban_button"
+                                        onclick="setTimeout(function() {
+                                          var innerDiv = document.getElementById('repeat_consultation_section');
+                                          if (innerDiv) {
+                                            innerDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                          }
+                                        }, 1000);"/>
                             </div>
                         </t>
 
