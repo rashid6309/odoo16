@@ -53,7 +53,7 @@
                                 <t t-set="current_service_id" t-value="-1"/>
                                 <t t-set="line_amount_index" t-value="7"/>
                                 <t t-set="product_name_index" t-value="4"/>
-                                <t t-set="product_index" t-value="9"/>
+                                <t t-set="product_index" t-value="8"/>
 
                                 <t t-foreach="widget.data" t-as="data">
                                     <t t-if="current_service_id != data[product_index]">
@@ -62,6 +62,9 @@
                                         <tr class="o_group_header">
                                             <td id="headingOne" colspan="7" style="color:#71639e;font-weight: bold;">
                                                 <t t-esc="service_name"/>
+                                                <span>(</span>
+                                                <t t-esc="widget.product_wise_summary_block[current_service_id][2]"/>
+                                                <span>)</span>
                                             </td>
 
                                             <td style="font-weight: bold;">

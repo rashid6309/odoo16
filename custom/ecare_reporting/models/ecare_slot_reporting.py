@@ -223,10 +223,10 @@ class EcareSlotsReporting(models.TransientModel):
         summary_block = defaultdict(float)
 
         for _, _, _, _, _, _, \
-                journal5, receivable_amt6, discount8, _, _ in data:
+                journal5, receivable_amt6, _, discount9, _ in data:
 
             summary_block['net_amount'] += receivable_amt6  # It'll (-) the refund amount which is added later on.
-            summary_block['discount'] += discount8
+            summary_block['discount'] += discount9
             summary_block['refund'] += receivable_amt6 if receivable_amt6 < 0 else 0
 
             ''' If change keys to this than remember to change in the xml as well '''
@@ -254,18 +254,24 @@ class EcareSlotsReporting(models.TransientModel):
     def calculate_product_wise_totals(cls, data):
         """
             It will calculate product wise totals to show in the services report.
+            1. Product name already available in the prebuild data,
+            the output dict will have following against product_key
+            0: total receiveable
+            1: Total discount
+            2: Total count
         :param data:
         :return:
         """
         product_wise_totals = dict()
 
         for _, _, _, _, _, _, \
-                journal5, receivable_amt6, discount8, product_id, _ in data:
+                journal5, receivable_amt6, product_id, discount9, _ in data:
 
-            product_total = product_wise_totals.get(product_id, [0, 0])
+            product_total = product_wise_totals.get(product_id, [0, 0, 0])
 
             product_total[0] += receivable_amt6
-            product_total[1] += discount8
+            product_total[1] += discount9
+            product_total[2] += 1
 
             product_wise_totals[product_id] = product_total
 
@@ -633,8 +639,8 @@ class EcareSlotsReporting(models.TransientModel):
                         invoice.name, 
                         aj."name",
                         -1 * invoice_line.balance::int,
-                        invoice_line .fixed_amount_discount,
                         pp.id,
+                        invoice_line .fixed_amount_discount,
                       	write_uid_partner.display_name
                     )
                 ) AS result
