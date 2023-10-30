@@ -448,7 +448,7 @@ class StaticMember:
         ('size', 'Size'),
         ('position', 'Position'),
         ('normal', 'Normal'),
-        ('fiobrid', 'Fiobrid'),
+        ('fibroid', 'Fibroid'),
     ]
 
     FORBID = [('smooth', 'Smooth'),
@@ -535,12 +535,6 @@ class StaticMember:
         ('online', 'Online Consultation'),
     ]
 
-    REPEAT_TREATMENT_PATHWAY = [
-        ('no', 'No'),
-        ('oi/ti', 'OI/TI'),
-        ('natural', 'Natural cycle IUI'),
-    ]
-
     SEEN_WITH = [
         ('husband', "Husband"),
         ('mother', "Mother"),
@@ -579,4 +573,9 @@ class StaticMember:
         ('solid', 'Solid'),
         ('provide1', 'Provide'),
         ('provide2', 'Provide'),
+    ]
+
+    OVARY_TYPE = [
+        ('left', 'Left'),
+        ('right', 'Right'),
     ]

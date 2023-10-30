@@ -87,13 +87,6 @@
 								</div>
 							</div>
 							<div class="col-md-8 timeline_content">
-								<script>
-									function showRepeatConsultationSection() {
-									var targetDiv = document.getElementById("repeat_consultation_section");
-									targetDiv.classList.add("show");
-									return false;
-									}
-								</script>
 								<div class="d-flex scroll-to card-header-custom first_consultation_container mt-2" id="repeat_consultation_section_link">
 									<div class="col-10">
 										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
@@ -138,7 +131,7 @@
 											</group>
 										</group>
 
-<!--										<field name="repeat_state" invisible="1"/>-->
+										<!--										<field name="repeat_state" invisible="1"/>-->
 										<field name="show_repeat_section_state" invisible="1"/>
 										<group>
 
@@ -216,15 +209,26 @@
 												   options="{'horizontal': True}"
 											/>
 										</group>
-										<label for="repeat_note" class="oe_left"/>
-										<field name="repeat_note"
-											   nolabel="1"
-											   placeholder="Add..."/>
 
-										<group>
-											<field name="repeat_examination_required"
-												   widget="radio"
-												   options="{'horizontal': True}"/>
+										<div class="d-flex flex-column">
+											<div>
+												<label class="oe_left" for="repeat_note"/>
+											</div>
+
+											<div>
+												<field name="repeat_note"
+													   nolabel="1"
+													   placeholder="Add..."/>
+
+											</div>
+										</div>
+
+
+										<label for="repeat_examination_required" class="oe_left"/>
+										<field name="repeat_examination_required"
+											   widget="radio"
+											   options="{'horizontal': True}"/>
+										<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
 											<field name="repeat_gpe"/>
 											<field name="repeat_thyroid"/>
 											<field name="repeat_abdominal"/>
@@ -235,18 +239,20 @@
 											/>
 										</group>
 
-										<div class="d-flex" attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
-											<field name="inspection_only"/>
+										<div class="d-flex" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
+										('repeat_pelvic_examination_state', '=', 'no')]}">
 											<label for="inspection_only"/>
+											<field name="inspection_only"/>
 
-											<field name="p_v_only"/>
 											<label for="p_v_only"/>
+											<field name="p_v_only"/>
 
-											<field name="p_s_only"/>
 											<label for="p_s_only"/>
+											<field name="p_s_only"/>
 										</div>
 
-										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+										<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
+										('repeat_pelvic_examination_state', '=', 'no')]}">
 
 											<field name="repeat_findings_on_inspection"
 												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
@@ -264,7 +270,8 @@
 												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 											/>
 										</group>
-										<div class="d-flex" attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+										<div class="d-flex" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
+										('repeat_pelvic_examination_state', '=', 'no')]}">
 											<label for="repeat_swab_taken"
 												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
 											/>
@@ -286,11 +293,13 @@
 											<field name="repeat_no_swab_taken"/>
 										</div>
 
-										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+										<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
+										('repeat_pelvic_examination_state', '=', 'no')]}">
 											<field name="repeat_method_of_hvs"/>
 										</group>
 
-										<div class="d-flex" attrs="{'invisible': ['|', ('repeat_pelvic_examination_state', '=', 'no'), ('p_s_only', '!=', True)]}">
+										<div class="d-flex" attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
+										('repeat_pelvic_examination_state', '=', 'no'), ('p_s_only', '!=', True)]}">
 											<label for="repeat_pap_smear_done"/>
 											<field name="repeat_pap_smear_done"
 											/>
@@ -310,14 +319,17 @@
 											<field name="scan_required"
 												   widget="radio"
 												   options="{'horizontal': True}"/>
+										</group>
+										<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+
 											<field name="repeat_ultrasound_type"
 												   widget="radio"
 												   options="{'horizontal': True}"/>
 										</group>
 
 										<!-- TVS Section -->
-										<div class="d-flex flex-column">
-											<div class="d-flex align-items-center  bg-light bg-gradient">
+										<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+											<div class="d-flex align-items-center bg-light bg-gradient">
 												<div class="col-md-1">
 													Uterus
 												</div>
@@ -355,16 +367,17 @@
 													</div>
 													<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
 														<div class="col-md-1">
-															Fiobrid
+															Fibroid
 														</div>
-														<field name="tvs_generic_sizes_ids">
-															<tree editable="bottom">
+														<div class="col-md-3">
+															<field name="tvs_generic_sizes_ids">
+																<tree editable="bottom">
+																	<field name="generic_size_x"/>
+																	<field name="generic_size_y"/>
 
-																<field name="generic_size_x"/>
-																<field name="generic_size_y"/>
-
-															</tree>
-														</field>
+																</tree>
+															</field>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -373,10 +386,60 @@
 												<div class="col-md-1">
 													Linining
 												</div>
-												<div class="d-flex">
-													<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
-													<field name="tvs_lining_size" placeholder="Size" class="oe_inline" nolabel="1"/>
-													<span>mm</span>
+												<div class="d-flex flex-column">
+													<div>
+														<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
+													</div>
+													<div>
+														<span>CET</span>
+														<field name="tvs_lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
+														<span>mm</span>
+													</div>
+												</div>
+											</div>
+
+											<div class="d-flex justify-content-start bg-light bg-gradient">
+												<div class="col-md-1">
+													ROV
+												</div>
+
+												<div class="col-md-5">
+													<div class="col-md-12">
+														<field name="tvs_rov"/>
+													</div>
+												</div>
+
+												<div class="col-md-6">
+
+													<button type="object"
+															class="btn-primary"
+															context="{'default_field': 'tvs_rov',
+															'default_display': tvs_rov
+															}"
+															name="action_open_tvs_scan"
+															string="Begin Scan"/>
+												</div>
+											</div>
+
+											<div class="d-flex justify-content-start">
+												<div class="col-md-1">
+													LOV
+												</div>
+												<div class="col-md-5">
+													<div class="col-md-12">
+														<field name="tvs_lov"/>
+													</div>
+												</div>
+
+												<div class="col-md-6">
+													<button type="object"
+															class="btn-primary"
+															context="{'default_field': 'tvs_lov',
+															'default_display': tvs_lov
+															}"
+															name="action_open_tvs_scan"
+															string="Begin Scan"/>
+
 												</div>
 											</div>
 
@@ -384,50 +447,15 @@
 												<div class="col-md-1">
 													Cyst
 												</div>
-												<div class="col-md-11 d-flex flex-column">
-													<div class="d-flex">
-														<span>Type</span>
-														<field name="cyst_type"/>
-													</div>
+												<div class="col-md-2 d-flex flex-column">
 													<div>
 														<field name="tvs_cyst_size_ids">
 															<tree editable="bottom">
-
+																<field name="type"/>
 																<field name="generic_size_x"/>
-																<field name="generic_size_y"/>
-
 															</tree>
 														</field>
 													</div>
-												</div>
-											</div>
-
-											<div class="d-flex">
-												<div class="col-md-1">
-													ROV
-												</div>
-												<div class="d-flex col-md-11">
-													<field name="tvs_rov"/>
-
-													<button type="object"
-															class="btn-primary"
-															context="{'default_field': 'tvs_rov'}"
-															name="action_open_tvs_scan"
-															string="Begin Scan"/>
-												</div>
-											</div>
-											<div class="d-flex bg-light bg-gradient">
-												<div class="col-md-1">
-													LOV
-												</div>
-												<div class="d-flex col-md-11">
-													<field name="tvs_lov"/>
-
-													<button type="object"
-															class="btn-primary"
-															context="{'default_field': 'tvs_lov'}"
-															name="action_open_tvs_scan"
-															string="Begin Scan"/>
 												</div>
 											</div>
 
@@ -447,7 +475,7 @@
 
 										<!-- TVS section ends -->
 
-										<group>
+										<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 											<field name="counseling_and_discussion"/>
 
 											<field name="repeat_diagnosis"/>
@@ -1868,11 +1896,7 @@
 										</page>
 
 										<page string="Conclusion" name="conclusion">
-											<!-- Remove if not required in coming days... -->
-											<!--											<group>-->
-											<!--												<label for="timeline_conclusion"/>-->
-											<!--											</group>-->
-											<field name="timeline_conclusion" placeholder="Add..."/>
+											<field name="timeline_conclusion" placeholder="Type..."/>
 										</page>
 
 									</notebook>
