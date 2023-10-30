@@ -271,15 +271,6 @@
                                                                     <td><field name="tvs_uterus_size_y"/></td>
                                                                 </tr>
 
-
-                                                                <tr>
-                                                                    <td class="o_td_label">
-                                                                        <label for="cyst_type" class="o_form_label">Cyst Type</label>
-                                                                    </td>
-                                                                    <td><field name="cyst_type"/></td>
-
-                                                                </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_rov" class="o_form_label">ROV</label>
