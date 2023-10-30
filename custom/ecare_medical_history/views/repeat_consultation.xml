@@ -8,12 +8,21 @@
             <field name="name">ec.repeat.consultation.kanban</field>
             <field name="model">ec.repeat.consultation</field>
             <field name="arch" type="xml">
-                <kanban create="0" class="oe_background_grey o_kanban_dashboard o_account_kanban">
+                <kanban create="0" class="oe_repeat_kanban_view">
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban">
                                 <t t-set="rec_id" t-value="record.id.raw_value"/>
                                 <div>
+                                    <script>
+                                        var elements = document.querySelectorAll('.oe_repeat_kanban_view');
+
+                                            for (var i = 0; i &lt;elements.length; i++) {
+                                                elements[i].classList.remove('d-flex');
+                                                elements[i].classList.remove('o_kanban_ungrouped');
+
+                                            }
+                                    </script>
                                     <div class="d-flex" style="justify-content: space-between">
                                         <div>
                                             Consultation Date
@@ -116,6 +125,8 @@
                                                                     </td>
                                                                     <td><field name="repeat_cycle_day"/></td>
                                                                 </tr>
+
+
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="is_couple_living_together" class="o_form_label">Is the couple living together?</label>
@@ -140,78 +151,66 @@
                                                                     </td>
                                                                     <td><field name="repeat_examination_required"/></td>
                                                                 </tr>
-
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_gpe" class="o_form_label">GPE</label>
                                                                     </td>
                                                                     <td><field name="repeat_gpe"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_thyroid" class="o_form_label">Thyroid</label>
                                                                     </td>
                                                                     <td><field name="repeat_thyroid"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_abdominal" class="o_form_label">Abdominal</label>
                                                                     </td>
                                                                     <td><field name="repeat_abdominal"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_breast" class="o_form_label">Breast</label>
                                                                     </td>
                                                                     <td><field name="repeat_breast"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_pelvic_examination_state" class="o_form_label">Pelvic Examination State</label>
                                                                     </td>
                                                                     <td><field name="repeat_pelvic_examination_state"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="inspection_only" class="o_form_label">Inspection Only</label>
                                                                     </td>
                                                                     <td><field name="inspection_only"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="p_s_only" class="o_form_label">P/S Only</label>
                                                                     </td>
                                                                     <td><field name="p_s_only"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="p_v_only" class="o_form_label">P/V Only</label>
                                                                     </td>
                                                                     <td><field name="p_v_only"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_findings_on_inspection" class="o_form_label">Findings on Inspection</label>
                                                                     </td>
                                                                     <td><field name="repeat_findings_on_inspection"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_valva_vaginal_exam" class="o_form_label">Valva/Vaginal Exam</label>
                                                                     </td>
                                                                     <td><field name="repeat_valva_vaginal_exam"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_cervix" class="o_form_label">Cervix</label>
@@ -230,98 +229,84 @@
                                                                     </td>
                                                                     <td><field name="repeat_swab_taken"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_hvs" class="o_form_label">HVS</label>
                                                                     </td>
                                                                     <td><field name="repeat_hvs"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_endocervical" class="o_form_label">Endocervical</label>
                                                                     </td>
                                                                     <td><field name="repeat_endocervical"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_no_swab_taken" class="o_form_label">No Swab Taken</label>
                                                                     </td>
                                                                     <td><field name="repeat_no_swab_taken"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_method_of_hvs" class="o_form_label">Method of HVS</label>
                                                                     </td>
                                                                     <td><field name="repeat_method_of_hvs"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_pap_smear_done" class="o_form_label">Pap Smear Done</label>
                                                                     </td>
                                                                     <td><field name="repeat_pap_smear_done"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_pipelle_sampling_done" class="o_form_label">Pipelle Sampling Done</label>
                                                                     </td>
                                                                     <td><field name="repeat_pipelle_sampling_done"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_other_findings" class="o_form_label">Other Findings</label>
                                                                     </td>
                                                                     <td><field name="repeat_other_findings"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="scan_required" class="o_form_label">Scan Required</label>
                                                                     </td>
                                                                     <td><field name="scan_required"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_ultrasound_type" class="o_form_label">Ultrasound Type</label>
                                                                     </td>
                                                                     <td><field name="repeat_ultrasound_type"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_uterus_tvs_size" class="o_form_label">Uterus TVS Size</label>
                                                                     </td>
                                                                     <td><field name="tvs_uterus_tvs_size"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_uterus_tvs_position" class="o_form_label">Uterus TVS Position</label>
                                                                     </td>
                                                                     <td><field name="tvs_uterus_tvs_position"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_uterus_tvs_normal" class="o_form_label">Uterus TVS Normal</label>
                                                                     </td>
                                                                     <td><field name="tvs_uterus_tvs_normal"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_uterus_tvs_fiobrid" class="o_form_label">Uterus TVS Fiobrid</label>
                                                                     </td>
                                                                     <td><field name="tvs_uterus_tvs_fiobrid"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_uterus_size_x" class="o_form_label">Uterus Size X</label>
@@ -332,7 +317,6 @@
                                                                     </td>
                                                                     <td><field name="tvs_uterus_size_y"/></td>
                                                                 </tr>
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_rov" class="o_form_label">ROV</label>
@@ -387,6 +371,7 @@
                                                                     </td>
                                                                     <td><field name="repeat_new_treatment_pathway"/></td>
                                                                 </tr>
+
                                                             </tbody>
                                                         </table>
                                                     </div>
