@@ -60,21 +60,7 @@
                                             <div class="col-12 family-history">
                                                 <div class="bd-example" data-example-id="">
                                                     <div id="accordion" role="tablist" aria-multiselectable="true">
-                                                        <div class="oe_kanban_title">
-                                                            <field name="question_one_label"/>
-                                                            <h5 style="display: inline-block;"><field name="question_one_choice"/></h5>
-                                                        </div>
-                                                        <div class="oe_kanban_title">
-                                                            <field name="question_two_label"/>
-                                                            <h5 style="display: inline-block;"><field name="question_two_choice"/></h5>
-                                                        </div>
-                                                        <div class="oe_kanban_title">
-                                                            <field name="question_three_label"/>
-                                                            <h5 style="display: inline-block;"><field name="question_three_choice"/></h5>
-                                                        </div>
-                                                        <div class="oe_kanban_title">
-                                                            <field name="question_four_label"/>
-                                                        </div>
+
                                                         <table t-attf-class="o_group m-0 table_spacing_style">
                                                             <tbody>
                                                                 <tr>
@@ -124,8 +110,23 @@
                                                                     <td><field name="repeat_cycle_day"/></td>
                                                                 </tr>
 
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="oe_kanban_title">
+                                                            <field name="question_one_label"/>
+                                                            <h5 style="display: inline-block;"><field name="question_one_choice"/></h5>
+                                                        </div>
+                                                        <div class="oe_kanban_title">
+                                                            <field name="question_two_label"/>
+                                                            <h5 style="display: inline-block;"><field name="question_two_choice"/></h5>
+                                                        </div>
+                                                        <div class="oe_kanban_title">
+                                                            <field name="question_three_label"/>
+                                                            <h5 style="display: inline-block;"><field name="question_three_choice"/></h5>
+                                                        </div>
 
-
+                                                        <table t-attf-class="o_group m-0 table_spacing_style">
+                                                            <tbody>
 
                                                                 <tr t-if="record.is_couple_living_together.raw_value">
                                                                     <td class="o_td_label">
