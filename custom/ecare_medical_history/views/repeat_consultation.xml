@@ -113,8 +113,6 @@
                                                                     </td>
                                                                     <td><field name="repeat_other_doctors_present"/></td>
                                                                 </tr>
-
-
                                                                 <tr>
                                                                     <td class="o_td_label">
                                                                         <label for="lmp_question_four" class="o_form_label">LMP</label>
@@ -127,181 +125,183 @@
                                                                 </tr>
 
 
-                                                                <tr>
+
+
+                                                                <tr t-if="record.is_couple_living_together.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="is_couple_living_together" class="o_form_label">Is the couple living together?</label>
                                                                     </td>
                                                                     <td><field name="is_couple_living_together"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.is_couple_using_contraception.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="is_couple_using_contraception" class="o_form_label">Is the couple using contraception?</label>
                                                                     </td>
                                                                     <td><field name="is_couple_using_contraception"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_note.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_note" class="o_form_label">Note</label>
                                                                     </td>
                                                                     <td><field name="repeat_note"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_examination_required.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_examination_required" class="o_form_label">Examination Required</label>
                                                                     </td>
                                                                     <td><field name="repeat_examination_required"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_gpe.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_gpe" class="o_form_label">GPE</label>
                                                                     </td>
                                                                     <td><field name="repeat_gpe"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_thyroid.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_thyroid" class="o_form_label">Thyroid</label>
                                                                     </td>
                                                                     <td><field name="repeat_thyroid"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_abdominal.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_abdominal" class="o_form_label">Abdominal</label>
                                                                     </td>
                                                                     <td><field name="repeat_abdominal"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_breast.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_breast" class="o_form_label">Breast</label>
                                                                     </td>
                                                                     <td><field name="repeat_breast"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_pelvic_examination_state.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_pelvic_examination_state" class="o_form_label">Pelvic Examination State</label>
                                                                     </td>
                                                                     <td><field name="repeat_pelvic_examination_state"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.inspection_only.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="inspection_only" class="o_form_label">Inspection Only</label>
                                                                     </td>
                                                                     <td><field name="inspection_only"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.p_s_only.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="p_s_only" class="o_form_label">P/S Only</label>
                                                                     </td>
                                                                     <td><field name="p_s_only"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.p_v_only.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="p_v_only" class="o_form_label">P/V Only</label>
                                                                     </td>
                                                                     <td><field name="p_v_only"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_findings_on_inspection.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_findings_on_inspection" class="o_form_label">Findings on Inspection</label>
                                                                     </td>
                                                                     <td><field name="repeat_findings_on_inspection"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_valva_vaginal_exam.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_valva_vaginal_exam" class="o_form_label">Valva/Vaginal Exam</label>
                                                                     </td>
                                                                     <td><field name="repeat_valva_vaginal_exam"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_cervix.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_cervix" class="o_form_label">Cervix</label>
                                                                     </td>
                                                                     <td><field name="repeat_cervix"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_uterus_and_adnexae.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_uterus_and_adnexae" class="o_form_label">Uterus and Adnexae</label>
                                                                     </td>
                                                                     <td><field name="repeat_uterus_and_adnexae"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_swab_taken.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_swab_taken" class="o_form_label">Swab Taken</label>
                                                                     </td>
                                                                     <td><field name="repeat_swab_taken"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_hvs.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_hvs" class="o_form_label">HVS</label>
                                                                     </td>
                                                                     <td><field name="repeat_hvs"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_endocervical.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_endocervical" class="o_form_label">Endocervical</label>
                                                                     </td>
                                                                     <td><field name="repeat_endocervical"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_no_swab_taken.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_no_swab_taken" class="o_form_label">No Swab Taken</label>
                                                                     </td>
                                                                     <td><field name="repeat_no_swab_taken"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_method_of_hvs.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_method_of_hvs" class="o_form_label">Method of HVS</label>
                                                                     </td>
                                                                     <td><field name="repeat_method_of_hvs"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_pap_smear_done.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_pap_smear_done" class="o_form_label">Pap Smear Done</label>
                                                                     </td>
                                                                     <td><field name="repeat_pap_smear_done"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_pipelle_sampling_done.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_pipelle_sampling_done" class="o_form_label">Pipelle Sampling Done</label>
                                                                     </td>
                                                                     <td><field name="repeat_pipelle_sampling_done"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_other_findings.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_other_findings" class="o_form_label">Other Findings</label>
                                                                     </td>
                                                                     <td><field name="repeat_other_findings"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.scan_required.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="scan_required" class="o_form_label">Scan Required</label>
                                                                     </td>
                                                                     <td><field name="scan_required"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_ultrasound_type.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_ultrasound_type" class="o_form_label">Ultrasound Type</label>
                                                                     </td>
                                                                     <td><field name="repeat_ultrasound_type"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.tvs_uterus_tvs_size.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_uterus_tvs_size" class="o_form_label">Uterus TVS Size</label>
                                                                     </td>
                                                                     <td><field name="tvs_uterus_tvs_size"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.tvs_uterus_tvs_position.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_uterus_tvs_position" class="o_form_label">Uterus TVS Position</label>
                                                                     </td>
                                                                     <td><field name="tvs_uterus_tvs_position"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.tvs_uterus_tvs_normal.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_uterus_tvs_normal" class="o_form_label">Uterus TVS Normal</label>
                                                                     </td>
                                                                     <td><field name="tvs_uterus_tvs_normal"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.tvs_uterus_tvs_fiobrid.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_uterus_tvs_fiobrid" class="o_form_label">Uterus TVS Fiobrid</label>
                                                                     </td>
@@ -317,55 +317,55 @@
                                                                     </td>
                                                                     <td><field name="tvs_uterus_size_y"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.tvs_rov.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_rov" class="o_form_label">ROV</label>
                                                                     </td>
                                                                     <td><field name="tvs_rov"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.tvs_lov.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_lov" class="o_form_label">LOV</label>
                                                                     </td>
                                                                     <td><field name="tvs_lov"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.tvs_other_text.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="tvs_other_text" class="o_form_label">Other Text</label>
                                                                     </td>
                                                                     <td><field name="tvs_other_text"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.counseling_and_discussion.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="counseling_and_discussion" class="o_form_label">Counseling and discussion done</label>
                                                                     </td>
                                                                     <td><field name="counseling_and_discussion"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_diagnosis.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_diagnosis" class="o_form_label">Diagnosis</label>
                                                                     </td>
                                                                     <td><field name="repeat_diagnosis"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_investigations_ids.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_investigations_ids" class="o_form_label">Investigations</label>
                                                                     </td>
                                                                     <td><field name="repeat_investigations_ids"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_treatment_plan.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_treatment_plan" class="o_form_label">Treatment Plan</label>
                                                                     </td>
                                                                     <td><field name="repeat_treatment_plan"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_treatment_advised_ids.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_treatment_advised_ids" class="o_form_label">Treatment Advised</label>
                                                                     </td>
                                                                     <td><field name="repeat_treatment_advised_ids"/></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr t-if="record.repeat_new_treatment_pathway.raw_value">
                                                                     <td class="o_td_label">
                                                                         <label for="repeat_new_treatment_pathway" class="o_form_label">Repeat New Treatment Pathway</label>
                                                                     </td>
