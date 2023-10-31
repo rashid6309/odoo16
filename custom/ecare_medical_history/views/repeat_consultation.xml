@@ -14,15 +14,6 @@
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban">
                                 <t t-set="rec_id" t-value="record.id.raw_value"/>
                                 <div>
-                                    <script>
-                                        var elements = document.querySelectorAll('.oe_repeat_kanban_view');
-
-                                            for (var i = 0; i &lt;elements.length; i++) {
-                                                elements[i].classList.remove('d-flex');
-                                                elements[i].classList.remove('o_kanban_ungrouped');
-
-                                            }
-                                    </script>
                                     <div class="d-flex" style="justify-content: space-between">
                                         <div>
                                             Consultation Date
