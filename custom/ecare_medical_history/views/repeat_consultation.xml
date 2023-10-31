@@ -478,12 +478,12 @@
 
 
 
-                                                                <!--                                                                <tr>-->
-                                                                <!--                                                                    <td class="o_td_label">-->
-                                                                <!--                                                                        <label for="lining_ids" class="o_form_label">Linining</label>-->
-                                                                <!--                                                                    </td>-->
-                                                                <!--                                                                    <td><field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/></td>-->
-                                                                <!--                                                                </tr>-->
+    <!--                                                                <tr>-->
+    <!--                                                                    <td class="o_td_label">-->
+    <!--                                                                        <label for="lining_ids" class="o_form_label">Linining</label>-->
+    <!--                                                                    </td>-->
+    <!--                                                                    <td><field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/></td>-->
+    <!--                                                                </tr>-->
 
 
 
