@@ -144,7 +144,6 @@
                                                         </div>
 
                                                         <div class="o_group row align-items-start">
-
                                                             <div class="o_inner_group grid col-lg-12 text-900">
                                                                 <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
@@ -218,29 +217,33 @@
                                                                         <field name="repeat_pelvic_examination_state"/>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                        </div>
 
-                                                                <div class="d-flex d-sm-contents">
-                                                                    <div>
-                                                                        <span class="o_form_label">Inspection Only</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="inspection_only"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">P/S Only</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="p_s_only"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">P/V Only</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="p_v_only"/>
-                                                                    </div>
-                                                                </div>
+                                                        <div class=" text-900">
+                                                            <div class="d-inline-block">
+                                                                <span>Inspection Only</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="inspection_only"/>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <span>P/S Only</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="p_s_only"/>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <span>P/V Only</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="p_v_only"/>
+                                                            </div>
+                                                        </div>
 
-                                                                <div class="d-flex d-sm-contents flex-column oe_left">
+                                                        <div class="o_group row align-items-start">
+                                                            <div class="o_inner_group grid col-lg-12 text-900">
+                                                                <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
                                                                         <span class="o_form_label">Findings on Inspection</span>
                                                                     </div>
@@ -272,33 +275,38 @@
                                                                         <field name="repeat_uterus_and_adnexae" />
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                        </div>
 
-                                                                <div class="d-flex d-sm-contents flex-column">
-                                                                    <div>
-                                                                        <span class="o_form_label">Swab Taken</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_swab_taken"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">HVS</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_hvs"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">Endocervical</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_endocervical"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">No Swab Taken</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_no_swab_taken"/>
-                                                                    </div>
-                                                                </div>
+                                                        <div class=" text-900">
+                                                            <div class="d-inline-block">
+                                                                <span >Swab Taken</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="repeat_swab_taken"/>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <span >HVS</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="repeat_hvs"/>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <span >Endocervical</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="repeat_endocervical"/>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <span >No Swab Taken</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="repeat_no_swab_taken"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="o_group row align-items-start">
+                                                            <div class="o_inner_group grid col-lg-12 text-900">
 
                                                                 <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
@@ -308,21 +316,27 @@
                                                                         <field name="repeat_method_of_hvs"/>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                        </div>
 
-                                                                <div class="d-flex d-sm-contents flex-column">
-                                                                    <div>
-                                                                        <span class="o_form_label">Pap Smear Done</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_pap_smear_done"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">Pipelle Sampling Done</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_pipelle_sampling_done"/>
-                                                                    </div>
-                                                                </div>
+                                                        <div class="text-900">
+                                                            <div class="d-inline-block">
+                                                                <span>Pap Smear Done</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="repeat_pap_smear_done"/>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <span>Pipelle Sampling Done</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="repeat_pipelle_sampling_done"/>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="o_group row align-items-start">
+                                                            <div class="o_inner_group grid col-lg-12 text-900">
 
                                                                 <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
@@ -348,50 +362,54 @@
                                                                         <field name="repeat_ultrasound_type"/>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                        </div>
 
-                                                                <div class="d-flex d-sm-contents flex-column">
-                                                                    <div>
-                                                                        <span class="o_form_label">Uterus TVS Size</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="tvs_uterus_tvs_size"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">Uterus TVS Position</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="tvs_uterus_tvs_position"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">Uterus TVS Normal</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="tvs_uterus_tvs_normal"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">Uterus TVS Fiobrid</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="tvs_uterus_tvs_fiobrid"/>
-                                                                    </div>
-                                                                </div>
+                                                        <div class="text-900">
+                                                            <div class="d-inline-block">
+                                                                <span>Uterus TVS Size</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="tvs_uterus_tvs_size"/>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <span>Uterus TVS Position</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="tvs_uterus_tvs_position"/>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <span>Uterus TVS Normal</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="tvs_uterus_tvs_normal"/>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <span>Uterus TVS Fiobrid</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="tvs_uterus_tvs_fiobrid"/>
+                                                            </div>
+                                                        </div>
 
-                                                                <div class="d-flex d-sm-contents flex-column">
-                                                                    <div>
-                                                                        <span class="o_form_label">Uterus Size X</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="tvs_uterus_size_x"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <span class="o_form_label">Uterus Size Y</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="tvs_uterus_size_y"/>
-                                                                    </div>
-                                                                </div>
+                                                        <div  class="text-900">
+                                                            <div class="d-inline-block m-3">
+                                                                <span >Uterus Size X</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="tvs_uterus_size_x"/>
+                                                            </div>
+                                                            <div class="d-inline-block m-3">
+                                                                <span>Uterus Size Y</span>
+                                                            </div>
+                                                            <div class="d-inline-block">
+                                                                <field name="tvs_uterus_size_y"/>
+                                                            </div>
+                                                        </div>
 
 
+                                                        <div class="o_group row align-items-start">
+                                                            <div class="o_inner_group grid col-lg-12 text-900">
                                                                 <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
                                                                         <span class="o_form_label">ROV</span>
@@ -467,37 +485,21 @@
                                                             </div>
 
                                                         </div>
-
-
-                                                        <table t-attf-class="o_group m-0 table_spacing_style">
-                                                            <tbody>
-
-
-
-
-
-
-
-    <!--                                                                <tr>-->
-    <!--                                                                    <td class="o_td_label">-->
-    <!--                                                                        <label for="lining_ids" class="o_form_label">Linining</label>-->
-    <!--                                                                    </td>-->
-    <!--                                                                    <td><field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/></td>-->
-    <!--                                                                </tr>-->
+                                                                <!--                                                                <tr>-->
+                                                                <!--                                                                    <td class="o_td_label">-->
+                                                                <!--                                                                        <label for="lining_ids" class="o_form_label">Linining</label>-->
+                                                                <!--                                                                    </td>-->
+                                                                <!--                                                                    <td><field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/></td>-->
+                                                                <!--                                                                </tr>-->
 
 
 
-                                                                <tr t-if="record.tvs_rov.raw_value">
-                                                                    <td class="o_td_label">
-                                                                        <label for="tvs_rov" class="o_form_label">ROV</label>
-                                                                    </td>
-                                                                    <td><field name="tvs_rov"/></td>
-                                                                </tr>
-
-
-                                                            </tbody>
-                                                        </table>
-
+<!--                                                                <tr t-if="record.tvs_rov.raw_value">-->
+<!--                                                                    <td class="o_td_label">-->
+<!--                                                                        <label for="tvs_rov" class="o_form_label">ROV</label>-->
+<!--                                                                    </td>-->
+<!--                                                                    <td><field name="tvs_rov"/></td>-->
+<!--                                                                </tr>-->
 
                                                     </div>
                                                 </div>
