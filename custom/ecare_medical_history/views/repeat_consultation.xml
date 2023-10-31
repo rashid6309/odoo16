@@ -8,7 +8,7 @@
             <field name="name">ec.repeat.consultation.kanban</field>
             <field name="model">ec.repeat.consultation</field>
             <field name="arch" type="xml">
-                <kanban create="0" class="oe_background_grey o_kanban_dashboard o_account_kanban">
+                <kanban create="0" class="oe_background_grey max_width_kanban">
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban">
@@ -21,12 +21,6 @@
                                             <field name="repeat_date"/>
                                         </div>
                                         <div class="text-center font-weight-bold d-flex align-items-end">
-                                            <div>
-
-                                                <a data-bs-toggle="collapse"
-                                                   t-att-data-bs-target="'#family_history_section_' + rec_id" href="#">
-                                                    <i class="fa fa-bars fa-2x" aria-hidden="true"/></a>
-                                            </div>
 
                                             <div>
 
@@ -39,6 +33,13 @@
                                                 </a>
 
                                             </div>
+
+                                            <div>
+                                                <a data-bs-toggle="collapse"
+                                                   t-att-data-bs-target="'#family_history_section_' + rec_id" href="#">
+                                                    <i class="fa fa-bars fa-2x" aria-hidden="true"/></a>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <hr/>
