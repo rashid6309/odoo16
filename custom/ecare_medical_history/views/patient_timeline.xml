@@ -96,11 +96,8 @@
 										<button name="action_create_repeat_consultation"
 												type="object"
 												class="btn btn-primary"
-												onclick="showRepeatConsultationSection()"
-												string="Add New">
+												onclick="showRepeatConsultationSection('repeat_consultation_section')">
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
-											Add New
-
 										</button>
 									</div>
 								</div>
