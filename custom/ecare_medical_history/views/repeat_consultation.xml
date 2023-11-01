@@ -145,7 +145,7 @@
 
                                                         <div class="o_group row align-items-start">
                                                             <div class="o_inner_group grid col-lg-12 text-900">
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.is_couple_living_together.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Is the couple living together?</span>
                                                                     </div>
@@ -153,7 +153,7 @@
                                                                         <field name="is_couple_living_together"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.is_couple_using_contraception.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Is the couple using contraception?</span>
                                                                     </div>
@@ -161,7 +161,7 @@
                                                                         <field name="is_couple_using_contraception" />
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_note.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Note</span>
                                                                     </div>
@@ -169,7 +169,7 @@
                                                                         <field name="repeat_note"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_examination_required.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Examination Required</span>
                                                                     </div>
@@ -177,7 +177,7 @@
                                                                         <field name="repeat_examination_required"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_gpe.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">GPE</span>
                                                                     </div>
@@ -185,7 +185,7 @@
                                                                         <field name="repeat_gpe"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_thyroid.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Thyroid</span>
                                                                     </div>
@@ -193,7 +193,7 @@
                                                                         <field name="repeat_thyroid" />
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_abdominal.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Abdominal</span>
                                                                     </div>
@@ -201,7 +201,7 @@
                                                                         <field name="repeat_abdominal"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_breast.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Breast</span>
                                                                     </div>
@@ -209,7 +209,7 @@
                                                                         <field name="repeat_breast"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pelvic_examination_state.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Pelvic Examination State</span>
                                                                     </div>
@@ -243,7 +243,7 @@
 
                                                         <div class="o_group row align-items-start">
                                                             <div class="o_inner_group grid col-lg-12 text-900">
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_findings_on_inspection.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Findings on Inspection</span>
                                                                     </div>
@@ -251,7 +251,7 @@
                                                                         <field name="repeat_findings_on_inspection"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_valva_vaginal_exam.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Valva/Vaginal Exam</span>
                                                                     </div>
@@ -259,7 +259,7 @@
                                                                         <field name="repeat_valva_vaginal_exam"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_cervix.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Cervix</span>
                                                                     </div>
@@ -267,7 +267,7 @@
                                                                         <field name="repeat_cervix"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_uterus_and_adnexae.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Uterus and Adnexae</span>
                                                                     </div>
@@ -308,7 +308,7 @@
                                                         <div class="o_group row align-items-start">
                                                             <div class="o_inner_group grid col-lg-12 text-900">
 
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_method_of_hvs.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Method of HVS</span>
                                                                     </div>
@@ -316,6 +316,7 @@
                                                                         <field name="repeat_method_of_hvs"/>
                                                                     </div>
                                                                 </div>
+
                                                             </div>
                                                         </div>
 
@@ -338,7 +339,7 @@
                                                         <div class="o_group row align-items-start">
                                                             <div class="o_inner_group grid col-lg-12 text-900">
 
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_other_findings.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Other Findings</span>
                                                                     </div>
@@ -346,7 +347,7 @@
                                                                         <field name="repeat_other_findings"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.scan_required.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Scan Required</span>
                                                                     </div>
@@ -354,7 +355,7 @@
                                                                         <field name="scan_required"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_ultrasound_type.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Ultrasound Type</span>
                                                                     </div>
@@ -410,7 +411,7 @@
 
                                                         <div class="o_group row align-items-start">
                                                             <div class="o_inner_group grid col-lg-12 text-900">
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_rov.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">ROV</span>
                                                                     </div>
@@ -418,7 +419,7 @@
                                                                         <field name="tvs_rov"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_lov.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">LOV</span>
                                                                     </div>
@@ -426,7 +427,7 @@
                                                                         <field name="tvs_lov"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_other_text.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Other Text</span>
                                                                     </div>
@@ -434,7 +435,7 @@
                                                                         <field name="tvs_other_text"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.counseling_and_discussion.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Counseling and Discussion done</span>
                                                                     </div>
@@ -442,7 +443,7 @@
                                                                         <field name="counseling_and_discussion"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_diagnosis.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Diagnosis</span>
                                                                     </div>
@@ -450,7 +451,7 @@
                                                                         <field name="repeat_diagnosis"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_investigations_ids.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Investigations</span>
                                                                     </div>
@@ -458,7 +459,7 @@
                                                                         <field name="repeat_investigations_ids"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_treatment_plan.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Treatment Plan</span>
                                                                     </div>
@@ -466,7 +467,7 @@
                                                                         <field name="repeat_treatment_plan"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_treatment_advised_ids.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Treatment Advised</span>
                                                                     </div>
@@ -474,7 +475,7 @@
                                                                         <field name="repeat_treatment_advised_ids"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_new_treatment_pathway.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Repeat New Treatment Pathway</span>
                                                                     </div>
