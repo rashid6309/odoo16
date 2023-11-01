@@ -170,13 +170,13 @@ class ServicesXlsx(models.AbstractModel):
 
         curr_service_id = -1
         for sr, date, patient, payment_ref, service, invoice_number, \
-                journal5, receivable_amt6, discount8, service_id, last_updated_by in records:
+                journal5, receivable_amt6,  service_id, discount8, last_updated_by in records:
             row += 1
             col = 0
 
             if curr_service_id != service_id:
-                total_amount, total_discount = product_wise_total[str(service_id)]
-                worksheet.merge_range(row, col +1, row, col + 5, service, total_row_heading)
+                total_amount, total_discount, service_record_count = product_wise_total[str(service_id)]
+                worksheet.merge_range(row, col +1, row, col + 5, f'{service} ( {service_record_count} )', total_row_heading)
                 col += 7  # Skip the columns for sr, date, patient, payment_ref, service, invoice_number, journal5
                 worksheet.write(row, col, total_amount, total_row_heading)
                 col += 1
