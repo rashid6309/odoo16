@@ -396,7 +396,7 @@ button{
 }
 
 .repeat_kanban_button {
-    margin-left: 30%;
+    padding-right: 0.20rem;
 }
 
 .repeat_kanban
@@ -420,7 +420,10 @@ button{
     margin-bottom: 0;
     background-color: #B4C7E7;
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    margin-bottom: 5px;
+}
+
+.max_width_kanban.o_kanban_renderer.o_kanban_ungrouped .o_kanban_record{
+    width: 100%;
 }
 
 .notebook-headers-custom {

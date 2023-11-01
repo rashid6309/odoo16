@@ -13,8 +13,11 @@ function scrollToElement(element_id){
 
 }
 
-function showRepeatConsultationSection() {
-    var targetDiv = document.getElementById("repeat_consultation_section");
+//This is generic function which is taking element ID as parameter and showing the complete div
+//which is intitially collapsed to show state
+
+function showRepeatConsultationSection(element_id) {
+    var targetDiv = document.getElementById(element_id);
     targetDiv.classList.add("show");
     return false;
 }
