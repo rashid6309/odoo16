@@ -274,10 +274,6 @@
 											</div>
 											<div class="d-flex">
 
-												<field name="repeat_swab_taken"
-													   attrs="{'invisible': [('inspection_only', '!=', True)]}"
-												/>
-
 												<label for="repeat_hvs"/>
 												<field name="repeat_hvs"/>
 
@@ -288,7 +284,7 @@
 													   attrs="{'invisible': [('p_s_only', '!=', True)]}"
 												/>
 
-												<label for="repeat_no_swab_taken"/>
+												<label for="repeat_no_swab_taken">No</label>
 												<field name="repeat_no_swab_taken"/>
 
 											</div>
