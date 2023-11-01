@@ -192,6 +192,7 @@ class RepeatConsultation(models.Model):
     repeat_cervix = fields.Text(string="Cervix")
     repeat_uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
 
+    # FIX: Remove this one only .
     repeat_swab_taken = fields.Boolean(string="Swab taken",
                                        default=False)
 
@@ -225,7 +226,8 @@ class RepeatConsultation(models.Model):
     scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                      string="Scan required?")
 
-    repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO)
+    repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                    string="Start new treatment pathway")
 
     counseling_and_discussion = fields.Html(string="Counseling and discussion done")
 

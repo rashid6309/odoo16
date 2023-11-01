@@ -291,30 +291,32 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class=" text-900">
+                                                        <div class="d-flex flex-column text-900">
                                                             <div class="d-inline-block">
-                                                                <span >Swab Taken</span>
+                                                                <h5> Swab Taken</h5>
                                                             </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="repeat_swab_taken"/>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <span >HVS</span>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="repeat_hvs"/>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <span >Endocervical</span>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="repeat_endocervical"/>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <span >No Swab Taken</span>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="repeat_no_swab_taken"/>
+                                                            <div class="d-flex">
+
+
+                                                                <div class="d-inline-block">
+                                                                    <span >HVS</span>
+                                                                </div>
+                                                                <div class="d-inline-block">
+                                                                    <field name="repeat_hvs"/>
+                                                                </div>
+                                                                <div class="d-inline-block">
+                                                                    <span >Endocervical</span>
+                                                                </div>
+                                                                <div class="d-inline-block">
+                                                                    <field name="repeat_endocervical"/>
+                                                                </div>
+                                                                <div class="d-inline-block">
+                                                                    <span >No Swab Taken</span>
+                                                                </div>
+                                                                <div class="d-inline-block">
+                                                                    <field name="repeat_no_swab_taken"/>
+                                                                </div>
+
                                                             </div>
                                                         </div>
 
@@ -490,7 +492,7 @@
                                                                 </div>
                                                                 <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_new_treatment_pathway.raw_value">
                                                                     <div>
-                                                                        <span class="o_form_label">Repeat New Treatment Pathway</span>
+                                                                        <span class="o_form_label">Start new treatment pathway</span>
                                                                     </div>
                                                                     <div>
                                                                         <field name="repeat_new_treatment_pathway"/>

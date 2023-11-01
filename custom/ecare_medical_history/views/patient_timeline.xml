@@ -267,27 +267,31 @@
 												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 											/>
 										</group>
-										<div class="d-flex" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
+										<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-											<label for="repeat_swab_taken"
-												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
-											/>
-											<field name="repeat_swab_taken"
-												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
-											/>
+											<div>
+												<h5> Swab Taken</h5>
+											</div>
+											<div class="d-flex">
 
-											<label for="repeat_hvs"/>
-											<field name="repeat_hvs"/>
+												<field name="repeat_swab_taken"
+													   attrs="{'invisible': [('inspection_only', '!=', True)]}"
+												/>
 
-											<label for="repeat_endocervical"
-												   attrs="{'invisible': [('p_s_only', '!=', True)]}"
-											/>
-											<field name="repeat_endocervical"
-												   attrs="{'invisible': [('p_s_only', '!=', True)]}"
-											/>
+												<label for="repeat_hvs"/>
+												<field name="repeat_hvs"/>
 
-											<label for="repeat_no_swab_taken"/>
-											<field name="repeat_no_swab_taken"/>
+												<label for="repeat_endocervical"
+													   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+												/>
+												<field name="repeat_endocervical"
+													   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+												/>
+
+												<label for="repeat_no_swab_taken"/>
+												<field name="repeat_no_swab_taken"/>
+
+											</div>
 										</div>
 
 										<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
@@ -304,7 +308,9 @@
 											<field name="repeat_pipelle_sampling_done"
 											/>
 										</div>
-										<group attrs="{'invisible': [('repeat_pelvic_examination_state', '=', 'no')]}">
+										<group attrs="{'invisible': ['|', ('repeat_pelvic_examination_state', '=', 'no'),
+																	('repeat_examination_required', '!=', 'yes')
+											 ]}">
 
 											<field name="repeat_other_findings"
 												   attrs="{'invisible': [('inspection_only', '=', True)]}"
