@@ -370,7 +370,7 @@
                                                                         <field name="scan_required"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_ultrasound_type.raw_value">
+                                                                <div class="d-flex d-sm-contents flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}" t-if="record.repeat_ultrasound_type.raw_value">
                                                                     <div>
                                                                         <span class="o_form_label">Ultrasound Type</span>
                                                                     </div>
@@ -380,127 +380,129 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        <div class="text-900">
-                                                            <div class="d-inline-block">
-                                                                <span>Uterus TVS Size</span>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="tvs_uterus_tvs_size"/>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <span>Uterus TVS Position</span>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="tvs_uterus_tvs_position"/>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <span>Uterus TVS Normal</span>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="tvs_uterus_tvs_normal"/>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <span>Uterus TVS Fiobrid</span>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="tvs_uterus_tvs_fiobrid"/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div  class="text-900">
-                                                            <div class="d-inline-block m-3">
-                                                                <span >Uterus Size X</span>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="tvs_uterus_size_x"/>
-                                                            </div>
-                                                            <div class="d-inline-block m-3">
-                                                                <span>Uterus Size Y</span>
-                                                            </div>
-                                                            <div class="d-inline-block">
-                                                                <field name="tvs_uterus_size_y"/>
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="o_group row align-items-start">
-                                                            <div class="o_inner_group grid col-lg-12 text-900">
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_rov.raw_value">
-                                                                    <div>
-                                                                        <span class="o_form_label">ROV</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="tvs_rov"/>
-                                                                    </div>
+                                                        <span attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+                                                            <div class="text-900">
+                                                                <div class="d-inline-block">
+                                                                    <span>Uterus TVS Size</span>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_lov.raw_value">
-                                                                    <div>
-                                                                        <span class="o_form_label">LOV</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="tvs_lov"/>
-                                                                    </div>
+                                                                <div class="d-inline-block">
+                                                                    <field name="tvs_uterus_tvs_size"/>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_other_text.raw_value">
-                                                                    <div>
-                                                                        <span class="o_form_label">Other Text</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="tvs_other_text"/>
-                                                                    </div>
+                                                                <div class="d-inline-block">
+                                                                    <span>Uterus TVS Position</span>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.counseling_and_discussion.raw_value">
-                                                                    <div>
-                                                                        <span class="o_form_label">Counseling and Discussion done</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="counseling_and_discussion"/>
-                                                                    </div>
+                                                                <div class="d-inline-block">
+                                                                    <field name="tvs_uterus_tvs_position"/>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_diagnosis.raw_value">
-                                                                    <div>
-                                                                        <span class="o_form_label">Diagnosis</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_diagnosis"/>
-                                                                    </div>
+                                                                <div class="d-inline-block">
+                                                                    <span>Uterus TVS Normal</span>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_investigations_ids.raw_value">
-                                                                    <div>
-                                                                        <span class="o_form_label">Investigations</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_investigations_ids"/>
-                                                                    </div>
+                                                                <div class="d-inline-block">
+                                                                    <field name="tvs_uterus_tvs_normal"/>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_treatment_plan.raw_value">
-                                                                    <div>
-                                                                        <span class="o_form_label">Treatment Plan</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_treatment_plan"/>
-                                                                    </div>
+                                                                <div class="d-inline-block">
+                                                                    <span>Uterus TVS Fiobrid</span>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_treatment_advised_ids.raw_value">
-                                                                    <div>
-                                                                        <span class="o_form_label">Treatment Advised</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_treatment_advised_ids"/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_new_treatment_pathway.raw_value">
-                                                                    <div>
-                                                                        <span class="o_form_label">Start new treatment pathway</span>
-                                                                    </div>
-                                                                    <div>
-                                                                        <field name="repeat_new_treatment_pathway"/>
-                                                                    </div>
+                                                                <div class="d-inline-block">
+                                                                    <field name="tvs_uterus_tvs_fiobrid"/>
                                                                 </div>
                                                             </div>
 
-                                                        </div>
+                                                            <div  class="text-900">
+                                                                <div class="d-inline-block m-3">
+                                                                    <span >Uterus Size X</span>
+                                                                </div>
+                                                                <div class="d-inline-block">
+                                                                    <field name="tvs_uterus_size_x"/>
+                                                                </div>
+                                                                <div class="d-inline-block m-3">
+                                                                    <span>Uterus Size Y</span>
+                                                                </div>
+                                                                <div class="d-inline-block">
+                                                                    <field name="tvs_uterus_size_y"/>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="o_group row align-items-start">
+                                                                <div class="o_inner_group grid col-lg-12 text-900">
+                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_rov.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">ROV</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="tvs_rov"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_lov.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">LOV</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="tvs_lov"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_other_text.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Other Text</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="tvs_other_text"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.counseling_and_discussion.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Counseling and Discussion done</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="counseling_and_discussion"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_diagnosis.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Diagnosis</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_diagnosis"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_investigations_ids.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Investigations</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_investigations_ids"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_treatment_plan.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Treatment Plan</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_treatment_plan"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_treatment_advised_ids.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Treatment Advised</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_treatment_advised_ids"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_new_treatment_pathway.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Start new treatment pathway</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_new_treatment_pathway"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </span>
+
 
                                                         <!--                                                                <tr>-->
                                                         <!--                                                                    <td class="o_td_label">-->
