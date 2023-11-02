@@ -37,7 +37,7 @@
                                             <div>
                                                 <a data-bs-toggle="collapse"
                                                    t-att-data-bs-target="'#family_history_section_' + rec_id" href="#">
-                                                    <i class="fa fa-expand fa-2x" aria-hidden="true"/></a>
+                                                    <i class="fa fa-angle-down fa-2x" aria-hidden="true"/></a>
                                             </div>
 
                                         </div>
