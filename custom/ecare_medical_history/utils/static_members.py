@@ -536,11 +536,10 @@ class StaticMember:
     ]
 
     SEEN_WITH = [
+        ('couple', "Couple"),
+        ('wife', "Wife"),
         ('husband', "Husband"),
-        ('mother', "Mother"),
-        ('mother_in_law', "Mother-in-Law"),
-        ('sister', "Sister"),
-        ('other', "Other")
+        ('others', "Others")
     ]
 
     MULTI_SELECTION_FIELD = [

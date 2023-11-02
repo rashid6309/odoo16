@@ -4,6 +4,17 @@
     max-height: 71vh;
 }
 
+#repeat_consultation_section .o_form_label
+{
+   width: 100px ;
+   text-align : right !important;
+}
+
+#repeat_consultation_section .form-check-label{
+    width: max-content !important;
+}
+
+
 body {
   font-family: Inter;
   margin: 0;

@@ -105,7 +105,7 @@
 										>In Edit</h5>
 									</div>
 								</div>
-								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
+								<div class="card-block mb-5 pl-4 collapse asa" id="repeat_consultation_section">
 									<field name="show_repeat_consultation_history_section"
 										   invisible="1"
 										   force_save="1"
@@ -488,7 +488,7 @@
 											</div>
 
 											<div class="d-flex">
-												<div class="col-md-1">
+												<div class="col-md-1 o_form_label">
 													Other
 												</div>
 												<div class="col-md-11">
