@@ -413,6 +413,7 @@ button{
 .repeat_kanban
 {
     background: #FFE8F1 !important;
+    padding-bottom: 0px !important;
 }
 
 .o_input
@@ -428,7 +429,7 @@ button{
 .card-header-custom {
     height: 45px;
     padding: 5px 5px;
-    margin-bottom: 0;
+    margin-bottom: 0.20%;
     background-color: #B4C7E7;
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
@@ -465,4 +466,9 @@ button{
     position: sticky !important;
     top: 0 !important;
     z-index: 999 !important;
+}
+
+.custom_line{
+    margin-top: revert;
+    margin-bottom: revert;
 }
