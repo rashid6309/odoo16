@@ -36,18 +36,20 @@
 
                                             <div>
                                                 <a data-bs-toggle="collapse"
+                                                   onclick="toggle_element_icon_class(this, 'fa-angle-down', 'fa-angle-up')"
                                                    t-att-data-bs-target="'#family_history_section_' + rec_id" href="#">
                                                     <i class="fa fa-angle-down fa-2x" aria-hidden="true"/></a>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <hr class="custom_line"/>
 
 
                                 </div>
                                 <div class="card-block mb-5 pl-4 collapse" t-att-id="'family_history_section_' + rec_id">
+                                    <hr class="custom_line"/>
                                     <section>
+
                                         <div class="row">
                                             <div class="col-12 family-history">
                                                 <div class="bd-example" data-example-id="">
