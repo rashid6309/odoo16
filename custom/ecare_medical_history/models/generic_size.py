@@ -8,7 +8,7 @@ class GenericSizes(models.Model):
     _description = "Generic Sizes "
     _rec_name = "type"
 
-    type = fields.Selection(selection=StaticMember.OVARY_TYPE)
+    type = fields.Selection(selection=StaticMember.OVARY_TYPE, string="Location")
 
     generic_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                       string='Size (cm)')

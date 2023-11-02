@@ -92,13 +92,17 @@
 										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
 											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
 									</div>
-									<div class="col-2 text-right" style="text-align: right" attrs="{'invisible':[('show_repeat_section_state', '=', True)]}">
+									<div class="col-2 text-right" style="text-align: right">
 										<button name="action_create_repeat_consultation"
 												type="object"
 												class="btn btn-primary"
+												attrs="{'invisible':[('show_repeat_section_state', '=', True)]}"
 												onclick="showRepeatConsultationSection('repeat_consultation_section')">
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
+										<h5 class="mt-2 mb-0"
+											attrs="{'invisible':[('show_repeat_section_state', '!=', True)]}"
+										>In Edit</h5>
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse" id="repeat_consultation_section">
@@ -269,13 +273,25 @@
 										</group>
 										<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-											<div>
+											<div
+												attrs="{'invisible': [('inspection_only', '!=', True),
+												   ('p_v_only', '!=', True),
+												   ('p_s_only', '!=', True)]}"
+											>
 												<h5> Swab Taken</h5>
 											</div>
 											<div class="d-flex">
 
-												<label for="repeat_hvs"/>
-												<field name="repeat_hvs"/>
+												<label for="repeat_hvs"
+													   attrs="{'invisible': [('inspection_only', '!=', True),
+													   ('p_v_only', '!=', True),
+													   ('p_s_only', '!=', True)]}"
+												/>
+												<field name="repeat_hvs"
+													   attrs="{'invisible': [('inspection_only', '!=', True),
+													   ('p_v_only', '!=', True),
+													   ('p_s_only', '!=', True)]}"
+												/>
 
 												<label for="repeat_endocervical"
 													   attrs="{'invisible': [('p_s_only', '!=', True)]}"
@@ -284,15 +300,27 @@
 													   attrs="{'invisible': [('p_s_only', '!=', True)]}"
 												/>
 
-												<label for="repeat_no_swab_taken">No</label>
-												<field name="repeat_no_swab_taken"/>
+												<label for="repeat_no_swab_taken"
+													   attrs="{'invisible': [('inspection_only', '!=', True),
+													   ('p_v_only', '!=', True),
+													   ('p_s_only', '!=', True)]}"
+												>No</label>
+												<field
+														attrs="{'invisible': [('inspection_only', '!=', True),
+																			  ('p_v_only', '!=', True),
+																			  ('p_s_only', '!=', True)]}"
+														name="repeat_no_swab_taken"/>
 
 											</div>
 										</div>
 
 										<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-											<field name="repeat_method_of_hvs"/>
+											<field
+													attrs="{'invisible': [('inspection_only', '!=', True),
+													   ('p_v_only', '!=', True),
+													   ('p_s_only', '!=', True)]}"
+													name="repeat_method_of_hvs"/>
 										</group>
 
 										<div class="d-flex" attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
@@ -309,7 +337,8 @@
 											 ]}">
 
 											<field name="repeat_other_findings"
-												   attrs="{'invisible': [('inspection_only', '=', True)]}"
+												   attrs="{'invisible': [('p_v_only', '!=', True),
+													   ('p_s_only', '!=', True)]}"
 											/>
 
 										</group>
@@ -504,19 +533,19 @@
 									<section>
 										<script>
 											document.getElementById("toggleButton").addEventListener("click", function() {
-											var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
+												var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
 
-											repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
-											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
+												repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
+													var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
-											collapseDivs.forEach(function(collapseDiv) {
-											if (collapseDiv.classList.contains("show")) {
-											collapseDiv.classList.remove("show");
-											} else {
-											collapseDiv.classList.add("show");
-											}
-											});
-											});
+													collapseDivs.forEach(function(collapseDiv) {
+														if (collapseDiv.classList.contains("show")) {
+															collapseDiv.classList.remove("show");
+														} else {
+															collapseDiv.classList.add("show");
+														}
+													});
+												});
 											});
 										</script>
 										<a style="float:right" class="m-2" id="toggleButton" href="#">
