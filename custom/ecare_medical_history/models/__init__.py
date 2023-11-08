@@ -47,6 +47,9 @@ from . import repeat_consultation
 from . import patient_timeline
 from . import patient_timeline_wizard
 
+# Semen Analysis
+from . import semen_analysis
+
 # Patient
 
 from . import patient

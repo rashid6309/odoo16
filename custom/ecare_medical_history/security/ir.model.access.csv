@@ -39,3 +39,7 @@ access_ec_medical_treatment_list_all,access_ec_medical_treatment_list_all,model_
 access_ec_medical_multi_selection_all,access_ec_medical_multi_selection_all,model_ec_medical_multi_selection,,1,1,1,1
 
 access_ec_generic_size_all,access_ec_generic_size_all,model_ec_generic_size,,1,1,1,1
+
+
+access_ec_semen_analysis_all,access_ec_semen_analysis_all,model_ec_semen_analysis,,1,1,1,1
+

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <report
+                id="ec_semen_analysis_report"
+                model="ec.semen.analysis"
+                string="Report"
+                report_type="qweb-pdf"
+                name="ecare_medical_history.ec_semen_analysis_doc"
+                file="Semen Analysis Report"/>
+
+        <template id="ec_semen_analysis_doc">
+            <t t-call="web.html_container">
+                <table style="width: 100%;">
+                    <tr>
+                        <td><b>Date:</b></td>
+                        <td>01 Nov 2023</td>
+                        <td><b>Lab No.:</b></td>
+                        <td>21312321</td>
+                    </tr>
+                    <tr>
+                        <td><b>Preparation:</b></td>
+                        <td colspan="2">24hrs Prep.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Sample Produced at Lab:</b></td>
+                        <td colspan="2">NO</td>
+                    </tr>
+                    <tr>
+                        <td><b>Repeat Semen Analysis:</b></td>
+                        <td colspan="2">YES</td>
+                    </tr>
+                    <tr>
+                        <td><b>Freezing:</b></td>
+                        <td colspan="2">NO</td>
+                    </tr>
+                    <tr>
+                        <td><b>Abstinence:</b></td>
+                        <td>23 days (Range: 3-5)</td>
+                        <td><b>Liquefaction Time:</b></td>
+                        <td>07:10 PM (Within 60 minutes)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Color:</b></td>
+                        <td>Creamy White</td>
+                        <td><b>pH:</b></td>
+                        <td>8 (Range: 7.2 - 8.2)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Viscosity:</b></td>
+                        <td>Normal Volume: 2 ml (Range: 1.5 - 5)</td>
+                        <td><b>Total Count:</b></td>
+                        <td>22 million/ml (Range: 20 million/ml)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Motility:</b></td>
+                        <td>14 % (Range: 40)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Microscopic</b></td>
+                    </tr>
+                    <tr>
+                        <td><b>WBCs:</b></td>
+                        <td>8 /HPF</td>
+                        <td><b>Agglutination:</b></td>
+                        <td>+</td>
+                    </tr>
+                    <tr>
+                        <td><b>Debris:</b></td>
+                        <td>++</td>
+                        <td><b>Bacteria:</b></td>
+                        <td>+++</td>
+                    </tr>
+                    <tr>
+                        <td><b>EPI Cells/Immature Cells:</b></td>
+                        <td>12 /HPF</td>
+                    </tr>
+                    <tr>
+                        <td><b>Other Observation:</b></td>
+                        <td>Other observation is here</td>
+                    </tr>
+                    <tr>
+                        <td><b>PREPARATION METHOD:</b></td>
+                        <td>Swim up</td>
+                    </tr>
+                    <tr>
+                        <td><b>Prep Conc:</b></td>
+                        <td colspan="2">1231 million/ejaculate (Normal 20 x 10^6/Ejaculate)</td>
+                    </tr>
+                    <tr>
+                        <td><b>% Motility:</b></td>
+                        <td colspan="2">17 % (75%) * Progression: 123</td>
+                    </tr>
+                    <tr>
+                        <td><b>After 24hrs % Motility:</b></td>
+                        <td colspan="2">15 % (50%) * Progression: 123</td>
+                    </tr>
+                    <tr>
+                        <td><b>Comments:</b></td>
+                        <td>123</td>
+                    </tr>
+                    <tr>
+                        <td><b>Suitable for:</b></td>
+                        <td>123</td>
+                    </tr>
+                    <tr>
+                        <td  style="width:30%"><b>Sperm Cryopreservation:</b></td>
+                        <td>123</td>
+                    </tr>
+                    <tr>
+                        <td><b>Semenologist:</b></td>
+                        <td>123</td>
+                    </tr>
+                </table>
+                <div>
+                    <h3 style=" margin-bottom: -2%; ">Detail Sperm Assessment</h3>
+                    <p style="font-size: 11px;">Note: This detailed description is intended for specialist in IVF only</p>
+                </div>
+
+                <p style=" margin-bottom: 0%;font-size: 11px;">* ICSI reference</p>
+                <table style="width: 100%; border-collapse: collapse; border: 1pt solid #000000;">
+                    <tr style="background-color: #cccccc;">
+                        <td style="border: 1pt solid #000000; padding: 5px;">Sperm Progression</td>
+                        <td style="border: 1pt solid #000000; padding: 5px;">Sperm Morphology</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1pt solid #000000; padding: 5px;">ABC</td>
+                        <td style="border: 1pt solid #000000; padding: 5px;">ABC</td>
+                    </tr>
+                </table>
+
+            </t>
+        </template>
+
+
+
+
+    </data>
+</odoo>

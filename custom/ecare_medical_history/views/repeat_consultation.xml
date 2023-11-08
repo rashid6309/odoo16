@@ -9,6 +9,7 @@
             <field name="model">ec.repeat.consultation</field>
             <field name="arch" type="xml">
                 <kanban create="0" class="oe_background_grey max_width_kanban">
+<!--                    <field name="tvs_cyst_size_ids"/>-->
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban">
@@ -442,6 +443,11 @@
                                                                             <field name="tvs_lov"/>
                                                                         </div>
                                                                     </div>
+<!--                                                                    <div class="d-flex d-sm-contents flex-column">-->
+<!--                                                                        <t t-foreach="record.tvs_cyst_size_ids" t-as="o">-->
+<!--                                                                            <t t-out="o.type" />-->
+<!--                                                                        </t>-->
+<!--                                                                    </div>-->
                                                                     <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_other_text.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Other Text</span>

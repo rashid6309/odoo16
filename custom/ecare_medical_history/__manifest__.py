@@ -29,7 +29,7 @@
         'views/factors.xml',
         'views/treatment_list.xml',
         'data/ec_medical_multi_selection_data.xml',
-
+        
         # Views
         'views/female_obstetrics_history.xml',
         'views/previous_treatment.xml',
@@ -51,8 +51,15 @@
         # Timeline Wizard
         'views/ec_patient_timeline_wizard.xml',
 
+        # Semen Anlysis
+        'views/semen_analysis.xml',
+
+        # Reports
+        'reports/semen_analysis_report.xml',
+
         # This should be called at the end
         'data/view_menus.xml',
+
 
     ],
     'assets': {

@@ -108,5 +108,71 @@
             <field name="type">linining</field>
         </record>
 
+
+        <record model="ec.medical.multi.selection" id="24hrs_prep">
+            <field name="name">24hrs Prep</field>
+            <field name="type">preparation</field>
+        </record>
+
+
+        <record model="ec.medical.multi.selection" id="iui_prep">
+            <field name="name">IUI Prep</field>
+            <field name="type">preparation</field>
+        </record>
+
+
+        <record model="ec.medical.multi.selection" id="sperm_freezing">
+            <field name="name">Sperm Freezing</field>
+            <field name="type">preparation</field>
+        </record>
+
+
+        <record model="ec.medical.multi.selection" id="preparation_other">
+            <field name="name">Other</field>
+            <field name="type">preparation</field>
+        </record>
+
+
+
+
+        <record model="ec.medical.multi.selection" id="suitable_natural_conception">
+            <field name="name">Natural Conception</field>
+            <field name="type">suitable_for</field>
+        </record>
+
+
+        <record model="ec.medical.multi.selection" id="suitable_icsi">
+            <field name="name">ICSI</field>
+            <field name="type">suitable_for</field>
+        </record>
+
+
+        <record model="ec.medical.multi.selection" id="suitable_iui">
+            <field name="name">IUI</field>
+            <field name="type">suitable_for</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="testicular_biospy">
+            <field name="name">Testicular Biospy</field>
+            <field name="type">suitable_for</field>
+        </record>
+
+
+        <record model="ec.medical.multi.selection" id="suitable_semen_analysis">
+            <field name="name">Semen Analysis</field>
+            <field name="type">suitable_for</field>
+        </record>
+
+
+        <record model="ec.medical.multi.selection" id="suitable_for_other">
+            <field name="name">Other</field>
+            <field name="type">suitable_for</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="suitable_for_recommended">
+            <field name="name">Recommended</field>
+            <field name="type">suitable_for</field>
+        </record>
+
     </data>
 </odoo>

@@ -101,8 +101,11 @@
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
 										<h5 class="mt-2 mb-0"
-											attrs="{'invisible':[('show_repeat_section_state', '!=', True)]}"
-										>In Edit</h5>
+											attrs="{'invisible':[('show_repeat_section_state', '!=', True)]}">
+											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
+<!--											<span for="file">In progress</span>-->
+<!--											<progress id="file" value="32" max="90"> 32% </progress>-->
+										</h5>
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse asa" id="repeat_consultation_section">
