@@ -58,14 +58,14 @@
                             <td>Total Count:</td>
                             <td>
                                 <span t-field="o.total_count"/>
-                                <span>(Range: 20 million/ml)</span>
+                                <span>(Range:≥ 20 million/ml)</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Motility:</td>
                             <td>
                                 <span t-field="o.mobility"/>
-                                <span>%  (Range: &#x2265;  40)</span>
+                                <span>%  (Range: ≥  40)</span>
                             </td>
                         </tr>
                         <tr>
