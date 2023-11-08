@@ -93,7 +93,10 @@
                         </tr>
                         <tr>
                             <td><b>PREPARATION METHOD:</b></td>
-                            <td><span t-field="o.method"/></td>
+                            <td>
+                                <span t-field="o.method"/>
+                                <span>million/ejaculate (Normal 20 x 106 /Ejaculate)</span>
+                            </td>
                         </tr>
                         <tr>
                             <td><b>Prep Conc:</b></td>
@@ -101,7 +104,10 @@
                         </tr>
                         <tr>
                             <td>% Motility:</td>
-                            <td><span t-field="o.mobility_percentage"/></td>
+                            <td>
+                                <span t-field="o.mobility_percentage"/>
+                                <span>% ( 75%)* </span>
+                            </td>
                             <td>Progression</td>
                             <td><span t-field="o.progression"/></td>
                         </tr>
@@ -112,7 +118,10 @@
                         </tr>
                         <tr>
                             <td>% Motility:</td>
-                            <td><span t-field="o.after_24_hrs_mobility_percentage"/></td>
+                            <td>
+                                <span t-field="o.after_24_hrs_mobility_percentage"/>
+                                <span>% ( 50%)* </span>
+                            </td>
                             <td>Progression</td>
                             <td><span t-field="o.after_24_hrs_progression"/></td>
                         </tr>
