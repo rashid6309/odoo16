@@ -11,127 +11,186 @@
                 file="Semen Analysis Report"/>
 
         <template id="ec_semen_analysis_doc">
-            <t t-call="web.html_container">
-                <table style="width: 100%;">
-                    <tr>
-                        <td><b>Date:</b></td>
-                        <td>01 Nov 2023</td>
-                        <td><b>Lab No.:</b></td>
-                        <td>21312321</td>
-                    </tr>
-                    <tr>
-                        <td><b>Preparation:</b></td>
-                        <td colspan="2">24hrs Prep.</td>
-                    </tr>
-                    <tr>
-                        <td><b>Sample Produced at Lab:</b></td>
-                        <td colspan="2">NO</td>
-                    </tr>
-                    <tr>
-                        <td><b>Repeat Semen Analysis:</b></td>
-                        <td colspan="2">YES</td>
-                    </tr>
-                    <tr>
-                        <td><b>Freezing:</b></td>
-                        <td colspan="2">NO</td>
-                    </tr>
-                    <tr>
-                        <td><b>Abstinence:</b></td>
-                        <td>23 days (Range: 3-5)</td>
-                        <td><b>Liquefaction Time:</b></td>
-                        <td>07:10 PM (Within 60 minutes)</td>
-                    </tr>
-                    <tr>
-                        <td><b>Color:</b></td>
-                        <td>Creamy White</td>
-                        <td><b>pH:</b></td>
-                        <td>8 (Range: 7.2 - 8.2)</td>
-                    </tr>
-                    <tr>
-                        <td><b>Viscosity:</b></td>
-                        <td>Normal Volume: 2 ml (Range: 1.5 - 5)</td>
-                        <td><b>Total Count:</b></td>
-                        <td>22 million/ml (Range: 20 million/ml)</td>
-                    </tr>
-                    <tr>
-                        <td><b>Motility:</b></td>
-                        <td>14 % (Range: 40)</td>
-                    </tr>
-                    <tr>
-                        <td><b>Microscopic</b></td>
-                    </tr>
-                    <tr>
-                        <td><b>WBCs:</b></td>
-                        <td>8 /HPF</td>
-                        <td><b>Agglutination:</b></td>
-                        <td>+</td>
-                    </tr>
-                    <tr>
-                        <td><b>Debris:</b></td>
-                        <td>++</td>
-                        <td><b>Bacteria:</b></td>
-                        <td>+++</td>
-                    </tr>
-                    <tr>
-                        <td><b>EPI Cells/Immature Cells:</b></td>
-                        <td>12 /HPF</td>
-                    </tr>
-                    <tr>
-                        <td><b>Other Observation:</b></td>
-                        <td>Other observation is here</td>
-                    </tr>
-                    <tr>
-                        <td><b>PREPARATION METHOD:</b></td>
-                        <td>Swim up</td>
-                    </tr>
-                    <tr>
-                        <td><b>Prep Conc:</b></td>
-                        <td colspan="2">1231 million/ejaculate (Normal 20 x 10^6/Ejaculate)</td>
-                    </tr>
-                    <tr>
-                        <td><b>% Motility:</b></td>
-                        <td colspan="2">17 % (75%) * Progression: 123</td>
-                    </tr>
-                    <tr>
-                        <td><b>After 24hrs % Motility:</b></td>
-                        <td colspan="2">15 % (50%) * Progression: 123</td>
-                    </tr>
-                    <tr>
-                        <td><b>Comments:</b></td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td><b>Suitable for:</b></td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td  style="width:30%"><b>Sperm Cryopreservation:</b></td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td><b>Semenologist:</b></td>
-                        <td>123</td>
-                    </tr>
-                </table>
-                <div>
-                    <h3 style=" margin-bottom: -2%; ">Detail Sperm Assessment</h3>
-                    <p style="font-size: 11px;">Note: This detailed description is intended for specialist in IVF only</p>
-                </div>
-
-                <p style=" margin-bottom: 0%;font-size: 11px;">* ICSI reference</p>
-                <table style="width: 100%; border-collapse: collapse; border: 1pt solid #000000;">
-                    <tr style="background-color: #cccccc;">
-                        <td style="border: 1pt solid #000000; padding: 5px;">Sperm Progression</td>
-                        <td style="border: 1pt solid #000000; padding: 5px;">Sperm Morphology</td>
-                    </tr>
-                    <tr>
-                        <td style="border: 1pt solid #000000; padding: 5px;">ABC</td>
-                        <td style="border: 1pt solid #000000; padding: 5px;">ABC</td>
-                    </tr>
-                </table>
-
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.html_container">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td><b>Date:</b></td>
+                            <td><span t-field="o.date"/></td>
+                            <td><b>Lab No.:</b></td>
+                            <td><span t-field="o.lab_number"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Preparation:</b></td>
+                            <td colspan="2"><span t-field="o.preparation_ids.name"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Sample Produced at Lab:</b></td>
+                            <td colspan="2"><span t-field="o.sample_produced_at_lab"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Repeat Semen Analysis:</b></td>
+                            <td colspan="2"><span t-field="o.repeat_semen_analysis"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Freezing:</b></td>
+                            <td colspan="2"><span t-field="o.freezing"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Abstinence:</b></td>
+                            <td><span t-field="o.abstinence"/></td>
+                            <td><b>Liquefaction Time:</b></td>
+                            <td><span t-field="o.liquifaction_time"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Color:</b></td>
+                            <td><span t-field="o.color"/></td>
+                            <td><b>pH:</b></td>
+                            <td><span t-field="o.ph"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Viscosity:</b></td>
+                            <td><span t-field="o.viscosity"/></td>
+                            <td><b>Total Count:</b></td>
+                            <td><span t-field="o.total_count"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Motility:</b></td>
+                            <td><span t-field="o.mobility"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Microscopic</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>WBCs:</b></td>
+                            <td><span t-field="o.wbcs"/></td>
+                            <td><b>Agglutination:</b></td>
+                            <td><span t-field="o.agglutination"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Debris:</b></td>
+                            <td><span t-field="o.debris"/></td>
+                            <td><b>Bacteria:</b></td>
+                            <td><span t-field="o.bacteria"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>EPI Cells/Immature Cells:</b></td>
+                            <td><span t-field="o.epi_cells_immature_cells"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Other Observation:</b></td>
+                            <td><span t-field="o.other_observation"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>PREPARATION METHOD:</b></td>
+                            <td><span t-field="o.method"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Prep Conc:</b></td>
+                            <td colspan="2"><span t-field="o.prep_conc"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>% Motility:</b></td>
+                            <td colspan="2"><span t-field="o.mobility_percentage"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>After 24hrs % Motility:</b></td>
+                            <td colspan="2"><span t-field="o.after_24_hrs_mobility_percentage"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Comments:</b></td>
+                            <td><span t-field="o.comments"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Suitable For:</b></td>
+                            <td><span t-field="o.suitable_for_ids.name"/></td>
+                        </tr>
+                        <tr>
+                            <td style="width:30%"><b>Sperm Cryopreservation:</b></td>
+                            <td>
+<!--                                <span t-field="o.sperm_cryopreservation"/>-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Semenologist:</b></td>
+                            <td><span t-field="o.seminologist"/></td>
+                        </tr>
+                    </table>
+                    <div>
+                        <h3 style=" margin-bottom: -2%; ">Detail Sperm Assessment</h3>
+                        <p style="font-size: 11px;">Note: This detailed description is intended for a specialist in IVF only</p>
+                    </div>
+                    <p style=" margin-bottom: 0%;font-size: 11px;">* ICSI reference</p>
+                    <table style="width: 100%; border-collapse: collapse; border: 1pt solid #000000;">
+                        <tr style="background-color: #cccccc;">
+                            <td style="border: 1pt solid #000000; padding: 5px;">Sperm Progression</td>
+                            <td style="border: 1pt solid #000000; padding: 5px;">Sperm Morphology</td>
+                        </tr>
+                        <tr>
+                            <td style="border-right: 1pt solid #000000; padding: 5px;">
+                                <div style="float: left; width: 50%;">F Forward:</div>
+                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_f_forward"/></div>
+                            </td>
+                            <td style=" padding: 5px;">
+                                <div style="float: left; width: 50%;">Date</div>
+                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.date"/></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-right: 1pt solid #000000; padding: 5px;">
+                                <div style="float: left; width: 50%;">S Forward:</div>
+                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_s_forward"/></div>
+                            </td>
+                            <td style=" padding: 5px;">
+                                <div style="float: left; width: 50%;">Normal:</div>
+                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.normal"/></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-right: 1pt solid #000000; padding: 5px;">
+                                <div style="float: left; width: 50%;">Lateral:</div>
+                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_lateral"/></div>
+                            </td>
+                            <td style=" padding: 5px;">
+                                <div style="float: left; width: 50%;">Abnormal:</div>
+                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.abnormal"/></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-right: 1pt solid #000000; padding: 5px;">
+                                <div style="float: left; width: 50%;">Non Progressive:</div>
+                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_non_progressive"/></div>
+                            </td>
+                            <td style=" padding: 5px;">
+                                <div style="float: left; width: 50%;">Defects:</div>
+                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.vacoules"/></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-right: 1pt solid #000000;padding: 5px;width: 50%;">
+                                <div style="float: left; width: 50%;">Dead:</div>
+                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_dead"/></div>
+                            </td>
+                            <td style=" padding: 5px;width: 50%;">
+                                <div style="float: left; width: 50%;margin-left:10%;">Cephalic:</div>
+                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.cephalic"/></div>
+                                <div style="float: left; width: 50%;margin-left:10%;">Mid Piece:</div>
+                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.mid_piece"/></div>
+                                <div style="float: left; width: 50%;margin-left:10%;">Tail:</div>
+                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.tail"/></div>
+                                <div style="float: left; width: 50%;margin-left:10%;">Acrosomal Caps:</div>
+                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.acrosomal_cap"/></div>
+                                <div style="float: left; width: 50%;margin-left:10%;">Vacuoles:</div>
+                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.vacoules"/></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div><h3>SPECIAL NOTES:</h3></div>
+                    <div><span t-field="o.special_notes"/></div>
+                </t>
             </t>
         </template>
+
 
 
 
