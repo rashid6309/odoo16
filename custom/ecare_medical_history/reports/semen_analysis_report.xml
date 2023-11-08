@@ -21,56 +21,66 @@
                             <td><span t-field="o.lab_number"/></td>
                         </tr>
                         <tr>
-                            <td><b>Preparation:</b></td>
+                            <td>Preparation:</td>
                             <td colspan="2"><span t-field="o.preparation_ids.name"/></td>
                         </tr>
                         <tr>
-                            <td><b>Sample Produced at Lab:</b></td>
+                            <td>Sample Produced at Lab:</td>
                             <td colspan="2"><span t-field="o.sample_produced_at_lab"/></td>
                         </tr>
                         <tr>
-                            <td><b>Repeat Semen Analysis:</b></td>
+                            <td>Repeat Semen Analysis:</td>
                             <td colspan="2"><span t-field="o.repeat_semen_analysis"/></td>
                         </tr>
                         <tr>
-                            <td><b>Freezing:</b></td>
+                            <td>Freezing:</td>
                             <td colspan="2"><span t-field="o.freezing"/></td>
                         </tr>
                         <tr>
-                            <td><b>Abstinence:</b></td>
+                            <td>Abstinence:</td>
                             <td><span t-field="o.abstinence"/></td>
-                            <td><b>Liquefaction Time:</b></td>
+                            <td>Liquefaction Time:</td>
                             <td><span t-field="o.liquifaction_time"/></td>
                         </tr>
                         <tr>
-                            <td><b>Color:</b></td>
+                            <td>Color:</td>
                             <td><span t-field="o.color"/></td>
-                            <td><b>pH:</b></td>
+                            <td>pH:</td>
                             <td><span t-field="o.ph"/></td>
                         </tr>
                         <tr>
-                            <td><b>Viscosity:</b></td>
+                            <td>Viscosity:</td>
                             <td><span t-field="o.viscosity"/></td>
-                            <td><b>Total Count:</b></td>
-                            <td><span t-field="o.total_count"/></td>
+                            <td>Volume:</td>
+                            <td><span t-field="o.volume"/></td>
                         </tr>
                         <tr>
-                            <td><b>Motility:</b></td>
-                            <td><span t-field="o.mobility"/></td>
+                            <td>Total Count:</td>
+                            <td>
+                                <span t-field="o.total_count"/>
+                                <span>(Range: 20 million/ml)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Motility:</td>
+                            <td>
+                                <span t-field="o.mobility"/>
+                                <span>%  (Range: &#x2265;  40)</span>
+                            </td>
                         </tr>
                         <tr>
                             <td><b>Microscopic</b></td>
                         </tr>
                         <tr>
-                            <td><b>WBCs:</b></td>
+                            <td>WBCs:</td>
                             <td><span t-field="o.wbcs"/></td>
-                            <td><b>Agglutination:</b></td>
+                            <td>Agglutination:</td>
                             <td><span t-field="o.agglutination"/></td>
                         </tr>
                         <tr>
-                            <td><b>Debris:</b></td>
+                            <td>Debris:</td>
                             <td><span t-field="o.debris"/></td>
-                            <td><b>Bacteria:</b></td>
+                            <td>Bacteria:</td>
                             <td><span t-field="o.bacteria"/></td>
                         </tr>
                         <tr>
@@ -90,12 +100,21 @@
                             <td colspan="2"><span t-field="o.prep_conc"/></td>
                         </tr>
                         <tr>
-                            <td><b>% Motility:</b></td>
-                            <td colspan="2"><span t-field="o.mobility_percentage"/></td>
+                            <td>% Motility:</td>
+                            <td><span t-field="o.mobility_percentage"/></td>
+                            <td>Progression</td>
+                            <td><span t-field="o.progression"/></td>
                         </tr>
                         <tr>
-                            <td><b>After 24hrs % Motility:</b></td>
-                            <td colspan="2"><span t-field="o.after_24_hrs_mobility_percentage"/></td>
+                            <td>
+                                <b>After 24hrs</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>% Motility:</td>
+                            <td><span t-field="o.after_24_hrs_mobility_percentage"/></td>
+                            <td>Progression</td>
+                            <td><span t-field="o.after_24_hrs_progression"/></td>
                         </tr>
                         <tr>
                             <td><b>Comments:</b></td>
@@ -108,7 +127,7 @@
                         <tr>
                             <td style="width:30%"><b>Sperm Cryopreservation:</b></td>
                             <td>
-<!--                                <span t-field="o.sperm_cryopreservation"/>-->
+                                <!--                                <span t-field="o.sperm_cryopreservation"/>-->
                             </td>
                         </tr>
                         <tr>
@@ -123,8 +142,8 @@
                     <p style=" margin-bottom: 0%;font-size: 11px;">* ICSI reference</p>
                     <table style="width: 100%; border-collapse: collapse; border: 1pt solid #000000;">
                         <tr style="background-color: #cccccc;">
-                            <td style="border: 1pt solid #000000; padding: 5px;">Sperm Progression</td>
-                            <td style="border: 1pt solid #000000; padding: 5px;">Sperm Morphology</td>
+                            <td style="border: 1pt solid #000000; padding: 5px;"><h3 style="margin-bottom:0;">Sperm Progression</h3></td>
+                            <td style="border: 1pt solid #000000; padding: 5px;"><h3 style="margin-bottom:0;">Sperm Morphology</h3></td>
                         </tr>
                         <tr>
                             <td style="border-right: 1pt solid #000000; padding: 5px;">
