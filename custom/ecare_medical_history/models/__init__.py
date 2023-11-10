@@ -50,6 +50,9 @@ from . import patient_timeline_wizard
 # Semen Analysis
 from . import semen_analysis
 
+# Pregnancy
+from . import ec_medical_pregnancy
+
 # Patient
 
 from . import patient
