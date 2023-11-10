@@ -263,11 +263,23 @@
             </field>
         </record>
 
+        <record id="ec_semen_analysis_tree_view" model="ir.ui.view">
+            <field name="name">ec.semen.analysis.tree.view</field>
+            <field name="model">ec.semen.analysis</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date"/>
+                    <field name="lab_number"/>
+                    <field name="lab_name"/>
+                </tree>
+            </field>
+        </record>
+
         <!-- Explicit action -->
         <record id="ec_semen_analysis_action" model="ir.actions.act_window">
             <field name="name">Semen Analysis</field>
             <field name="res_model">ec.semen.analysis</field>
-            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
             <field name="target">current</field>
         </record>
 
