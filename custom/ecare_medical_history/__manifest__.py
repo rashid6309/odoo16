@@ -59,7 +59,6 @@
 
         # Reports
         'reports/semen_analysis_report.xml',
-        'reports/patient_report.xml',
 
         # This should be called at the end
         'data/view_menus.xml',
@@ -75,7 +74,7 @@
             'ecare_medical_history/static/src/xml/summary.xml',
             'ecare_medical_history/static/src/xml/banner_template.xml'
         ],
-
+        
 
     },
     'installable': True,
