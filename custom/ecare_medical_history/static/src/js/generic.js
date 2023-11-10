@@ -13,6 +13,10 @@ function scrollToElement(element_id){
 
 }
 
+function toggle_element_icon_class(element, icon_first, icon_second){
+    $(element).find('i').toggleClass(icon_first).toggleClass(icon_second);
+}
+
 //This is generic function which is taking element ID as parameter and showing the complete div
 //which is intitially collapsed to show state
 
