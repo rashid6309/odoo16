@@ -53,6 +53,9 @@
 
         # Semen Anlysis
         'views/semen_analysis.xml',
+        
+        # Pregnancy
+        'views/ec_medical_pregnancy.xml',
 
         # Reports
         'reports/semen_analysis_report.xml',
