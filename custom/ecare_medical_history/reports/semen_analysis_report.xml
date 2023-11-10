@@ -15,132 +15,147 @@
                 <t t-call="web.html_container">
                     <table style="width: 100%;">
                         <tr>
-                            <td><b>Date:</b></td>
-                            <td><span t-field="o.date"/></td>
-                            <td><b>Lab No.:</b></td>
+                            <td style="padding-top:1%;"><b>Date:</b></td>
+                            <td style="width:30%;"><span t-field="o.date"/></td>
+                            <td style="padding-top:1%;"><b>Lab No.:</b></td>
                             <td><span t-field="o.lab_number"/></td>
                         </tr>
                         <tr>
-                            <td>Preparation:</td>
-                            <td colspan="2"><span t-field="o.preparation_ids.name"/></td>
-                        </tr>
-                        <tr>
-                            <td>Sample Produced at Lab:</td>
-                            <td colspan="2"><span t-field="o.sample_produced_at_lab"/></td>
-                        </tr>
-                        <tr>
-                            <td>Repeat Semen Analysis:</td>
-                            <td colspan="2"><span t-field="o.repeat_semen_analysis"/></td>
-                        </tr>
-                        <tr>
-                            <td>Freezing:</td>
-                            <td colspan="2"><span t-field="o.freezing"/></td>
-                        </tr>
-                        <tr>
-                            <td>Abstinence:</td>
-                            <td><span t-field="o.abstinence"/></td>
-                            <td>Liquefaction Time:</td>
-                            <td><span t-field="o.liquifaction_time"/></td>
-                        </tr>
-                        <tr>
-                            <td>Color:</td>
-                            <td><span t-field="o.color"/></td>
-                            <td>pH:</td>
-                            <td><span t-field="o.ph"/></td>
-                        </tr>
-                        <tr>
-                            <td>Viscosity:</td>
-                            <td><span t-field="o.viscosity"/></td>
-                            <td>Volume:</td>
-                            <td><span t-field="o.volume"/></td>
-                        </tr>
-                        <tr>
-                            <td>Total Count:</td>
-                            <td>
-                                <span t-field="o.total_count"/>
-                                <span>(Range:≥ 20 million/ml)</span>
+                            <td style="padding-top:1%;"><b>Preparation:</b></td>
+                            <td colspan="2">
+                                <t t-foreach="o.preparation_ids" t-as="item">
+                                    <span style="margin-right:5%;"><t t-esc="item.name"/></span>
+                                </t>
+<!--                                <span t-field="o.preparation_ids.name" widget="many2many_checkboxes"/>-->
                             </td>
                         </tr>
                         <tr>
-                            <td>Motility:</td>
+                            <td style="padding-top:1%;"><b>Sample Produced at Lab:</b></td>
+                            <td colspan="2"><span t-field="o.sample_produced_at_lab"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top:1%;"><b>Repeat Semen Analysis:</b></td>
+                            <td colspan="2"><span t-field="o.repeat_semen_analysis"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top:1%;"><b>Freezing:</b></td>
+                            <td colspan="2"><span t-field="o.freezing"/></td>
+                        </tr>
+                        <tr>
+                             <td style="padding-top:2%;">Abstinence:</td>
+                            <td><span t-field="o.abstinence"/></td>
+                             <td style="padding-top:2%;">Liquefaction Time:</td>
+                            <td><span t-field="o.liquifaction_time"/></td>
+                        </tr>
+                        <tr>
+                             <td style="padding-top:1%;">Color:</td>
+                            <td><span t-field="o.color"/></td>
+                             <td style="padding-top:1%;">pH:</td>
+                            <td>
+                                <span t-field="o.ph"/>
+                                <span>(Range: 7.2 - 8.2)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                             <td style="padding-top:1%;">Viscosity:</td>
+                            <td><span t-field="o.viscosity"/></td>
+                             <td style="padding-top:1%;">Volume:</td>
+                            <td>
+                                <span t-field="o.volume"/>
+                                <span> ml (Range: 1.5 - 5)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                             <td style="padding-top:1%;">Total Count:</td>
+                            <td>
+                                <span t-field="o.total_count"/>
+                                <span>(Range: ≥ 20 million/ml)</span>
+<!--                                <span>&#x2265;</span>-->
+                            </td>
+                        </tr>
+                        <tr>
+                             <td style="padding-top:1%;">Motility:</td>
                             <td>
                                 <span t-field="o.mobility"/>
                                 <span>%  (Range: ≥  40)</span>
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Microscopic</b></td>
+                             <td style="padding-top:2%;"><b>Microscopic</b></td>
                         </tr>
                         <tr>
-                            <td>WBCs:</td>
+                             <td style="padding-top:1%;">WBCs:</td>
                             <td><span t-field="o.wbcs"/></td>
-                            <td>Agglutination:</td>
+                             <td style="padding-top:1%;">Agglutination:</td>
                             <td><span t-field="o.agglutination"/></td>
                         </tr>
                         <tr>
-                            <td>Debris:</td>
+                             <td style="padding-top:1%;">Debris:</td>
                             <td><span t-field="o.debris"/></td>
-                            <td>Bacteria:</td>
+                             <td style="padding-top:1%;">Bacteria:</td>
                             <td><span t-field="o.bacteria"/></td>
                         </tr>
                         <tr>
-                            <td><b>EPI Cells/Immature Cells:</b></td>
-                            <td><span t-field="o.epi_cells_immature_cells"/></td>
+                             <td style="padding-top:1%;"><b>EPI Cells/Immature Cells:</b></td>
+                            <td>
+                                <span t-field="o.epi_cells_immature_cells"/>
+                                <span> /HPF</span>
+                            </td>
                         </tr>
                         <tr>
-                            <td><b>Other Observation:</b></td>
+                             <td style="padding-top:1%;"><b>Other Observation:</b></td>
                             <td><span t-field="o.other_observation"/></td>
                         </tr>
                         <tr>
-                            <td><b>PREPARATION METHOD:</b></td>
-                            <td>
+                             <td style="padding-top:2%;"><b>PREPARATION METHOD:</b></td>
+                            <td style="padding-top:2%;" colspan="2">
                                 <span t-field="o.method"/>
                                 <span>million/ejaculate (Normal 20 x 106 /Ejaculate)</span>
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Prep Conc:</b></td>
+                             <td style="padding-top:1%;"><b>Prep Conc:</b></td>
                             <td colspan="2"><span t-field="o.prep_conc"/></td>
                         </tr>
                         <tr>
-                            <td>% Motility:</td>
+                             <td style="padding-top:1%;">% Motility:</td>
                             <td>
                                 <span t-field="o.mobility_percentage"/>
                                 <span>% ( 75%)* </span>
                             </td>
-                            <td>Progression</td>
+                             <td style="padding-top:1%;">Progression</td>
                             <td><span t-field="o.progression"/></td>
                         </tr>
                         <tr>
-                            <td>
+                             <td style="padding-top:1%;">
                                 <b>After 24hrs</b>
                             </td>
                         </tr>
                         <tr>
-                            <td>% Motility:</td>
+                             <td style="padding-top:1%;">% Motility:</td>
                             <td>
                                 <span t-field="o.after_24_hrs_mobility_percentage"/>
                                 <span>% ( 50%)* </span>
                             </td>
-                            <td>Progression</td>
+                             <td style="padding-top:1%;">Progression</td>
                             <td><span t-field="o.after_24_hrs_progression"/></td>
                         </tr>
                         <tr>
-                            <td><b>Comments:</b></td>
+                             <td style="padding-top:1%;"><b>Comments:</b></td>
                             <td><span t-field="o.comments"/></td>
                         </tr>
                         <tr>
-                            <td><b>Suitable For:</b></td>
+                             <td style="padding-top:1%;"><b>Suitable For:</b></td>
                             <td><span t-field="o.suitable_for_ids.name"/></td>
                         </tr>
                         <tr>
-                            <td style="width:30%"><b>Sperm Cryopreservation:</b></td>
+                             <td style="padding-top:1%;width:30%"><b>Sperm Cryopreservation:</b></td>
                             <td>
                                 <!--                                <span t-field="o.sperm_cryopreservation"/>-->
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Semenologist:</b></td>
+                             <td style="padding-top:1%;"><b>Semenologist:</b></td>
                             <td><span t-field="o.seminologist"/></td>
                         </tr>
                     </table>
@@ -149,7 +164,8 @@
                         <p style="font-size: 11px;">Note: This detailed description is intended for a specialist in IVF only</p>
                     </div>
                     <p style=" margin-bottom: 0%;font-size: 11px;">* ICSI reference</p>
-                    <table style="width: 100%; border-collapse: collapse; border: 1pt solid #000000;">
+                    <table style="width: 80%; border-collapse: collapse; font-weight:700;
+                    border: 1pt solid #000000;">
                         <tr style="background-color: #cccccc;">
                             <td style="border: 1pt solid #000000; padding: 5px;"><h3 style="margin-bottom:0;">Sperm Progression</h3></td>
                             <td style="border: 1pt solid #000000; padding: 5px;"><h3 style="margin-bottom:0;">Sperm Morphology</h3></td>
@@ -160,8 +176,8 @@
                                 <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_f_forward"/></div>
                             </td>
                             <td style=" padding: 5px;">
-                                <div style="float: left; width: 50%;">Date</div>
-                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.date"/></div>
+                                <div style="float: left; width: 100%; font-weight:100;">(*Strict Kruger's Criteria) 3%</div>
+                                <!--                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.date"/></div>-->
                             </td>
                         </tr>
                         <tr>
