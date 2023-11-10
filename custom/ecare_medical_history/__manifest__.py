@@ -59,6 +59,7 @@
 
         # Reports
         'reports/semen_analysis_report.xml',
+        'reports/patient_report.xml',
 
         # This should be called at the end
         'data/view_menus.xml',
