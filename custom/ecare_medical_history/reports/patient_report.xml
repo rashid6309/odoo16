@@ -3,9 +3,9 @@
 
     <data>
         <report
-                id="ec_semen_analysis_report"
+                id="ec_semen_analysis_report_patient_report"
                 model="ec.semen.analysis"
-                string="Semen Analysis - Hospital Record Report"
+                string="Semen Analysis - Patient Report"
                 report_type="qweb-pdf"
                 name="ecare_medical_history.ec_semen_analysis_doc"
                 file="Semen Analysis Report"/>
