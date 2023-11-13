@@ -3,8 +3,12 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
 class PregnancyForm(models.Model):
-    _name = 'ec.pregnancy.data'
+    _name = 'ec.medical.pregnancy.data'
     _description = 'Pregnancy Data'
+
+    pregnancy_repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
+                                                       readonly=True,
+                                                       string='Repeat Consultation')
 
     repeat_pregnancy_lmp = fields.Date(string='LMP')
     repeat_pregnancy_gestational_age = fields.Integer(string="Gestational Age")

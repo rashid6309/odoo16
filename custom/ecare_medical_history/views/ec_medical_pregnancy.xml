@@ -2,8 +2,8 @@
 <odoo>
     <data>
         <record id="view_patient_pregnancy_form" model="ir.ui.view">
-            <field name="name">ec.pregnancy.data.form</field>
-            <field name="model">ec.pregnancy.data</field>
+            <field name="name">ec.medical.pregnancy.data.form</field>
+            <field name="model">ec.medical.pregnancy.data</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet class="container">
@@ -37,7 +37,7 @@
 
         <record id="view_patient_pregnancy_tree" model="ir.ui.view">
             <field name="name">patient.pregnancy.tree</field>
-            <field name="model">ec.pregnancy.data</field>
+            <field name="model">ec.medical.pregnancy.data</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="repeat_pregnancy_lmp"/>
@@ -50,7 +50,7 @@
         <record id="action_pregnancy_form" model="ir.actions.act_window">
             <field name="name">Pregnancy Form</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">ec.pregnancy.data</field>
+            <field name="res_model">ec.medical.pregnancy.data</field>
             <field name="view_mode">tree,form</field>
         </record>
 

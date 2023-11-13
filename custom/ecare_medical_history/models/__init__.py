@@ -28,6 +28,7 @@ from . import female_family_history
 from . import gynaecological_examination
 from . import female_physical_examination
 from . import female_systemic_examination
+from . import ec_medical_pregnancy
 
 # Male models here
 
@@ -36,6 +37,7 @@ from . import male_physical_examination
 from . import male_systematic_exam
 from . import male_medical_history
 from . import male_family_history
+from . import semen_analysis
 
 # First consultation
 from . import first_consultation
@@ -47,11 +49,6 @@ from . import repeat_consultation
 from . import patient_timeline
 from . import patient_timeline_wizard
 
-# Semen Analysis
-from . import semen_analysis
-
-# Pregnancy
-from . import ec_medical_pregnancy
 
 # Patient
 

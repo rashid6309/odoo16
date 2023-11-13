@@ -103,8 +103,8 @@
 										<h5 class="mt-2 mb-0"
 											attrs="{'invisible':[('show_repeat_section_state', '!=', True)]}">
 											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
-<!--											<span for="file">In progress</span>-->
-<!--											<progress id="file" value="32" max="90"> 32% </progress>-->
+											<!--											<span for="file">In progress</span>-->
+											<!--											<progress id="file" value="32" max="90"> 32% </progress>-->
 										</h5>
 									</div>
 								</div>
@@ -150,405 +150,425 @@
 													<field name="repeat_lmp"/>
 													<field name="repeat_lmp_embryo"/>
 												</group>
-
-												<!-- TODO -->
+											</group>
+											<div attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
 												<group>
-													<i attrs="{'invisible': [('question_one_choice', '=', 'no')]}"> Pregnancy Form details are pending.</i>
+													<field name="repeat_pregnancy_lmp"/>
+													<field name="repeat_pregnancy_gestational_age"/>
+													<field name="repeat_pregnancy_conception"/>
+												</group>
+												<group string="Pregnancy Status:">
+													<field name="repeat_pregnancy_gestation_type"/>
+													<field name="repeat_pregnancy_other_info"
+														   attrs="{'invisible': [('repeat_pregnancy_gestation_type','!=','other')],
+                                            'required':[('repeat_pregnancy_gestation_type','=','other')]}"/>
+													<field name="repeat_pregnancy_viability_potential"/>
+													<field name="repeat_pregnancy_details"/>
+												</group>
+												<group string="Diagnosis:">
+													<field name="repeat_pregnancy_diagnosis"/>
+													<field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
+													<field name="repeat_pregnancy_notes"/>
+													<field name="repeat_pregnancy_scanned" widget="radio"/>
+													<field name="repeat_pregnancy_significant_findings"/>
+												</group>
+											</div>
+
+										</group>
+										<span attrs="{'invisible': [('question_one_choice', '=', 'yes')]}">
+
+											<group>
+												<field name="question_two_label"/>
+												<field name="question_two_choice"
+													   widget="radio"/>
+											</group>
+											<div>
+												<tree editable="top" attrs="{'invisible': [('question_two_choice', '=', 'no')]}">
+													<field name="repeat_obs_history_ids"
+														   context="{'default_patient_id': timeline_patient_id,
+													   'default_timeline_id' : id,
+													   }"
+														   nolabel="1" editable="top">
+													</field>
+												</tree>
+
+											</div>
+											<group>
+												<field name="question_three_label"/>
+												<field name="question_three_choice"
+													   widget="radio"/>
+											</group>
+											<div>
+												<tree editable="top" attrs="{'invisible': [('question_three_choice', '=', 'no')]}">
+													<field name="timeline_previous_treatment_ids"
+														   context="{'default_patient_id': timeline_patient_id,
+													   'default_timeline_id' : id,
+													   }"
+														   nolabel="1" editable="top">
+													</field>
+												</tree>
+
+											</div>
+											<!--										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">-->
+											<!--											<field name="question_four_label"/>-->
+											<!--										</group>-->
+
+											<group>
+												<group>
+													<field name="lmp_question_four"/>
+												</group>
+												<group>
+													<field name="repeat_cycle_day"/>
 												</group>
 											</group>
 
-										</group>
-										<group>
-											<field name="question_two_label"/>
-											<field name="question_two_choice"
-												   widget="radio"/>
-										</group>
-										<div>
-											<tree editable="top" attrs="{'invisible': [('question_two_choice', '=', 'no')]}">
-												<field name="repeat_obs_history_ids"
-													   context="{'default_patient_id': timeline_patient_id,
-													   'default_timeline_id' : id,
-													   }"
-													   nolabel="1" editable="top">
-												</field>
-											</tree>
-
-										</div>
-										<group>
-											<field name="question_three_label"/>
-											<field name="question_three_choice"
-												   widget="radio"/>
-										</group>
-										<div>
-											<tree editable="top" attrs="{'invisible': [('question_three_choice', '=', 'no')]}">
-												<field name="timeline_previous_treatment_ids"
-													   context="{'default_patient_id': timeline_patient_id,
-													   'default_timeline_id' : id,
-													   }"
-													   nolabel="1" editable="top">
-												</field>
-											</tree>
-
-										</div>
-										<!--										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">-->
-										<!--											<field name="question_four_label"/>-->
-										<!--										</group>-->
-
-										<group>
 											<group>
-												<field name="lmp_question_four"/>
+												<field name="is_couple_living_together"
+													   widget="radio"
+													   options="{'horizontal': True}"
+												/>
+												<field name="is_couple_using_contraception"
+													   widget="radio"
+													   options="{'horizontal': True}"
+												/>
 											</group>
-											<group>
-												<field name="repeat_cycle_day"/>
-											</group>
-										</group>
 
-										<group>
-											<field name="is_couple_living_together"
-												   widget="radio"
-												   options="{'horizontal': True}"
-											/>
-											<field name="is_couple_using_contraception"
-												   widget="radio"
-												   options="{'horizontal': True}"
-											/>
-										</group>
+											<div class="d-flex flex-column">
+												<div>
+													<label class="oe_left" for="repeat_note"/>
+												</div>
 
-										<div class="d-flex flex-column">
-											<div>
-												<label class="oe_left" for="repeat_note"/>
+												<div>
+													<field name="repeat_note"
+														   nolabel="1"
+														   placeholder="Add..."/>
+
+												</div>
 											</div>
 
-											<div>
-												<field name="repeat_note"
-													   nolabel="1"
-													   placeholder="Add..."/>
 
-											</div>
-										</div>
-
-
-										<label for="repeat_examination_required" class="oe_left"/>
-										<field name="repeat_examination_required"
-											   widget="radio"
-											   options="{'horizontal': True}"/>
-										<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
-											<field name="repeat_gpe"/>
-											<field name="repeat_thyroid"/>
-											<field name="repeat_abdominal"/>
-											<field name="repeat_breast"/>
-											<field name="repeat_pelvic_examination_state"
+											<label for="repeat_examination_required" class="oe_left"/>
+											<field name="repeat_examination_required"
 												   widget="radio"
-												   options="{'horizontal': True}"
-											/>
-										</group>
+												   options="{'horizontal': True}"/>
+											<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
+												<field name="repeat_gpe"/>
+												<field name="repeat_thyroid"/>
+												<field name="repeat_abdominal"/>
+												<field name="repeat_breast"/>
+												<field name="repeat_pelvic_examination_state"
+													   widget="radio"
+													   options="{'horizontal': True}"
+												/>
+											</group>
 
-										<div class="d-flex" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
+											<div class="d-flex" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-											<label for="inspection_only"/>
-											<field name="inspection_only"/>
+												<label for="inspection_only"/>
+												<field name="inspection_only"/>
 
-											<label for="p_v_only"/>
-											<field name="p_v_only"/>
+												<label for="p_v_only"/>
+												<field name="p_v_only"/>
 
-											<label for="p_s_only"/>
-											<field name="p_s_only"/>
-										</div>
+												<label for="p_s_only"/>
+												<field name="p_s_only"/>
+											</div>
 
-										<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
+											<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
 
-											<field name="repeat_findings_on_inspection"
-												   attrs="{'invisible': [('inspection_only', '!=', True)]}"
-											/>
+												<field name="repeat_findings_on_inspection"
+													   attrs="{'invisible': [('inspection_only', '!=', True)]}"
+												/>
 
-											<field name="repeat_valva_vaginal_exam"
-												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
-											/>
+												<field name="repeat_valva_vaginal_exam"
+													   attrs="{'invisible': [('p_v_only', '!=', True)]}"
+												/>
 
-											<field name="repeat_cervix"
-												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
-											/>
+												<field name="repeat_cervix"
+													   attrs="{'invisible': [('p_v_only', '!=', True)]}"
+												/>
 
-											<field name="repeat_uterus_and_adnexae"
-												   attrs="{'invisible': [('p_v_only', '!=', True)]}"
-											/>
-										</group>
-										<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
+												<field name="repeat_uterus_and_adnexae"
+													   attrs="{'invisible': [('p_v_only', '!=', True)]}"
+												/>
+											</group>
+											<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-											<div
-												attrs="{'invisible': [('inspection_only', '!=', True),
+												<div
+														attrs="{'invisible': [('inspection_only', '!=', True),
 												   ('p_v_only', '!=', True),
 												   ('p_s_only', '!=', True)]}"
-											>
-												<h5> Swab Taken</h5>
-											</div>
-											<div class="d-flex">
+												>
+													<h5> Swab Taken</h5>
+												</div>
+												<div class="d-flex">
 
-												<label for="repeat_hvs"
-													   attrs="{'invisible': [('inspection_only', '!=', True),
+													<label for="repeat_hvs"
+														   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)]}"
-												/>
-												<field name="repeat_hvs"
-													   attrs="{'invisible': [('inspection_only', '!=', True),
+													/>
+													<field name="repeat_hvs"
+														   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)]}"
-												/>
+													/>
 
-												<label for="repeat_endocervical"
-													   attrs="{'invisible': [('p_s_only', '!=', True)]}"
-												/>
-												<field name="repeat_endocervical"
-													   attrs="{'invisible': [('p_s_only', '!=', True)]}"
-												/>
+													<label for="repeat_endocervical"
+														   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+													/>
+													<field name="repeat_endocervical"
+														   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+													/>
 
-												<label for="repeat_no_swab_taken"
-													   attrs="{'invisible': [('inspection_only', '!=', True),
+													<label for="repeat_no_swab_taken"
+														   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)]}"
-												>No</label>
-												<field
-														attrs="{'invisible': [('inspection_only', '!=', True),
+													>No</label>
+													<field
+															attrs="{'invisible': [('inspection_only', '!=', True),
 																			  ('p_v_only', '!=', True),
 																			  ('p_s_only', '!=', True)]}"
-														name="repeat_no_swab_taken"/>
+															name="repeat_no_swab_taken"/>
 
+												</div>
 											</div>
-										</div>
 
-										<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
+											<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-											<field
-													attrs="{'invisible': [('inspection_only', '!=', True),
+												<field
+														attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)]}"
-													name="repeat_method_of_hvs"/>
-										</group>
+														name="repeat_method_of_hvs"/>
+											</group>
 
-										<div class="d-flex" attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
+											<div class="d-flex" attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no'), ('p_s_only', '!=', True)]}">
-											<label for="repeat_pap_smear_done"/>
-											<field name="repeat_pap_smear_done"
-											/>
-											<label for="repeat_pipelle_sampling_done"/>
-											<field name="repeat_pipelle_sampling_done"
-											/>
-										</div>
-										<group attrs="{'invisible': ['|', ('repeat_pelvic_examination_state', '=', 'no'),
+												<label for="repeat_pap_smear_done"/>
+												<field name="repeat_pap_smear_done"
+												/>
+												<label for="repeat_pipelle_sampling_done"/>
+												<field name="repeat_pipelle_sampling_done"
+												/>
+											</div>
+											<group attrs="{'invisible': ['|', ('repeat_pelvic_examination_state', '=', 'no'),
 																	('repeat_examination_required', '!=', 'yes')
 											 ]}">
 
-											<field name="repeat_other_findings"
-												   attrs="{'invisible': [('p_v_only', '!=', True),
+												<field name="repeat_other_findings"
+													   attrs="{'invisible': [('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)]}"
-											/>
+												/>
 
-										</group>
+											</group>
 
-										<group>
-											<field name="scan_required"
-												   widget="radio"
-												   options="{'horizontal': True}"/>
-										</group>
-										<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+											<group>
+												<field name="scan_required"
+													   widget="radio"
+													   options="{'horizontal': True}"/>
+											</group>
+											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 
-											<field name="repeat_ultrasound_type"
-												   widget="radio"
-												   options="{'horizontal': True}"/>
-										</group>
+												<field name="repeat_ultrasound_type"
+													   widget="radio"
+													   options="{'horizontal': True}"/>
+											</group>
 
-										<!-- TVS Section -->
-										<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
-											<div class="d-flex align-items-center bg-light bg-gradient">
-												<div class="col-md-1">
-													Uterus
-												</div>
-												<div class="col-md-11 ">
-													<div class="d-flex">
-														<label for="tvs_uterus_tvs_size"/>
-														<field name="tvs_uterus_tvs_size"/>
-
-														<label for="tvs_uterus_tvs_position"/>
-														<field name="tvs_uterus_tvs_position"/>
-
-														<label for="tvs_uterus_tvs_normal"/>
-														<field name="tvs_uterus_tvs_normal"/>
-
-														<label for="tvs_uterus_tvs_fiobrid"/>
-														<field name="tvs_uterus_tvs_fiobrid"/>
-
+											<!-- TVS Section -->
+											<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+												<div class="d-flex align-items-center bg-light bg-gradient">
+													<div class="col-md-1">
+														Uterus
 													</div>
-													<div class="d-flex"
-														 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
-														<span>Size</span>
-														<field name="tvs_uterus_size_x"/>
-														<span class="m-2">x</span>
-
-														<field name="tvs_uterus_size_y"/>
-														<span>cm</span>
-													</div>
-													<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
-														<div class="col-md-1">
-															Position
-														</div>
+													<div class="col-md-11 ">
 														<div class="d-flex">
-															<field name="tvs_uterus_position_ids" widget="many2many_checkboxes"/>
+															<label for="tvs_uterus_tvs_size"/>
+															<field name="tvs_uterus_tvs_size"/>
+
+															<label for="tvs_uterus_tvs_position"/>
+															<field name="tvs_uterus_tvs_position"/>
+
+															<label for="tvs_uterus_tvs_normal"/>
+															<field name="tvs_uterus_tvs_normal"/>
+
+															<label for="tvs_uterus_tvs_fiobrid"/>
+															<field name="tvs_uterus_tvs_fiobrid"/>
+
+														</div>
+														<div class="d-flex"
+															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
+															<span>Size</span>
+															<field name="tvs_uterus_size_x"/>
+															<span class="m-2">x</span>
+
+															<field name="tvs_uterus_size_y"/>
+															<span>cm</span>
+														</div>
+														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+															<div class="col-md-1">
+																Position
+															</div>
+															<div class="d-flex">
+																<field name="tvs_uterus_position_ids" widget="many2many_checkboxes"/>
+															</div>
+														</div>
+														<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
+															<div class="col-md-1">
+																Fibroid
+															</div>
+															<div class="col-md-3">
+																<field name="tvs_generic_sizes_ids">
+																	<tree editable="bottom">
+																		<field name="generic_size_x"/>
+																		<field name="generic_size_y"/>
+
+																	</tree>
+																</field>
+															</div>
 														</div>
 													</div>
-													<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
-														<div class="col-md-1">
-															Fibroid
-														</div>
-														<div class="col-md-3">
-															<field name="tvs_generic_sizes_ids">
-																<tree editable="bottom">
-																	<field name="generic_size_x"/>
-																	<field name="generic_size_y"/>
+												</div>
+												<div class="d-flex ">
 
+													<div class="col-md-1">
+														Linining
+													</div>
+													<div class="d-flex flex-column">
+														<div>
+															<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
+														</div>
+														<div>
+															<span>CET</span>
+															<field name="tvs_lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
+															<span>mm</span>
+														</div>
+													</div>
+												</div>
+
+												<div class="d-flex justify-content-start bg-light bg-gradient">
+													<div class="col-md-1">
+														ROV
+													</div>
+
+													<div class="col-md-5">
+														<div class="col-md-12">
+															<field name="tvs_rov"/>
+														</div>
+													</div>
+
+													<div class="col-md-6">
+
+														<button type="object"
+																class="btn-primary"
+																context="{'default_field': 'tvs_rov',
+															'default_display': tvs_rov
+															}"
+																name="action_open_tvs_scan"
+																string="Begin Scan"/>
+													</div>
+												</div>
+
+												<div class="d-flex justify-content-start">
+													<div class="col-md-1">
+														LOV
+													</div>
+													<div class="col-md-5">
+														<div class="col-md-12">
+															<field name="tvs_lov"/>
+														</div>
+													</div>
+
+													<div class="col-md-6">
+														<button type="object"
+																class="btn-primary"
+																context="{'default_field': 'tvs_lov',
+															'default_display': tvs_lov
+															}"
+																name="action_open_tvs_scan"
+																string="Begin Scan"/>
+
+													</div>
+												</div>
+
+												<div class="d-flex align-items-center bg-light bg-gradient">
+													<div class="col-md-1">
+														Cyst
+													</div>
+													<div class="col-md-2 d-flex flex-column">
+														<div>
+															<field name="tvs_cyst_size_ids">
+																<tree editable="bottom">
+																	<field name="type"/>
+																	<field name="generic_size_x"/>
 																</tree>
 															</field>
 														</div>
 													</div>
 												</div>
-											</div>
-											<div class="d-flex ">
 
-												<div class="col-md-1">
-													Linining
-												</div>
-												<div class="d-flex flex-column">
-													<div>
-														<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
+												<div class="d-flex">
+													<div class="col-md-1 o_form_label">
+														Other
 													</div>
-													<div>
-														<span>CET</span>
-														<field name="tvs_lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
-														<span>mm</span>
+													<div class="col-md-11">
+
+														<field name="tvs_other_text"/>
 													</div>
-												</div>
-											</div>
 
-											<div class="d-flex justify-content-start bg-light bg-gradient">
-												<div class="col-md-1">
-													ROV
-												</div>
-
-												<div class="col-md-5">
-													<div class="col-md-12">
-														<field name="tvs_rov"/>
-													</div>
-												</div>
-
-												<div class="col-md-6">
-
-													<button type="object"
-															class="btn-primary"
-															context="{'default_field': 'tvs_rov',
-															'default_display': tvs_rov
-															}"
-															name="action_open_tvs_scan"
-															string="Begin Scan"/>
-												</div>
-											</div>
-
-											<div class="d-flex justify-content-start">
-												<div class="col-md-1">
-													LOV
-												</div>
-												<div class="col-md-5">
-													<div class="col-md-12">
-														<field name="tvs_lov"/>
-													</div>
-												</div>
-
-												<div class="col-md-6">
-													<button type="object"
-															class="btn-primary"
-															context="{'default_field': 'tvs_lov',
-															'default_display': tvs_lov
-															}"
-															name="action_open_tvs_scan"
-															string="Begin Scan"/>
 
 												</div>
-											</div>
-
-											<div class="d-flex align-items-center bg-light bg-gradient">
-												<div class="col-md-1">
-													Cyst
-												</div>
-												<div class="col-md-2 d-flex flex-column">
-													<div>
-														<field name="tvs_cyst_size_ids">
-															<tree editable="bottom">
-																<field name="type"/>
-																<field name="generic_size_x"/>
-															</tree>
-														</field>
-													</div>
-												</div>
-											</div>
-
-											<div class="d-flex">
-												<div class="col-md-1 o_form_label">
-													Other
-												</div>
-												<div class="col-md-11">
-
-													<field name="tvs_other_text"/>
-												</div>
-
 
 											</div>
 
-										</div>
+											<!-- TVS section ends -->
 
-										<!-- TVS section ends -->
+											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+												<field name="counseling_and_discussion"/>
 
-										<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
-											<field name="counseling_and_discussion"/>
+												<field name="repeat_diagnosis"/>
+												<field name="repeat_investigations_ids" widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
 
-											<field name="repeat_diagnosis"/>
-											<field name="repeat_investigations_ids" widget="many2many_tags"
-												   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="repeat_treatment_plan"/>
 
-											<field name="repeat_treatment_plan"/>
+												<field name="repeat_treatment_advised_ids" widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
 
-											<field name="repeat_treatment_advised_ids" widget="many2many_tags"
-												   options="{'no_create_edit': True, 'no_create': True}"/>
-
-											<field name="repeat_new_treatment_pathway"
-												   widget="radio"
-												   options="{'horizontal': True}"
-											/>
-										</group>
+												<field name="repeat_new_treatment_pathway"
+													   widget="radio"
+													   options="{'horizontal': True}"
+												/>
+											</group>
 
 
-										<div style="text-align-last: right;background: #adb5bd;">
-											<button name="action_save_repeat_consultation_section"
-													type="object"
-													class="btn btn-primary"
-													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
-													string="Close Consultation"/>
-										</div>
+											<div style="text-align-last: right;background: #adb5bd;">
+												<button name="action_save_repeat_consultation_section"
+														type="object"
+														class="btn btn-primary"
+														attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+														string="Close Consultation"/>
+											</div>
+										</span>
 									</div>
 									<section>
 										<script>
 											document.getElementById("toggleButton").addEventListener("click", function() {
-												var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
+											var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
 
-												repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
-													var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
+											repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
+											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
-													collapseDivs.forEach(function(collapseDiv) {
-														if (collapseDiv.classList.contains("show")) {
-															collapseDiv.classList.remove("show");
-														} else {
-															collapseDiv.classList.add("show");
-														}
-													});
-												});
+											collapseDivs.forEach(function(collapseDiv) {
+											if (collapseDiv.classList.contains("show")) {
+											collapseDiv.classList.remove("show");
+											} else {
+											collapseDiv.classList.add("show");
+											}
+											});
+											});
 											});
 										</script>
 										<a style="float:right" class="m-2" id="toggleButton" href="#">
@@ -904,11 +924,11 @@
 														<!-- BUG -->
 														<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
 														<!--
-														Solution:
-															1. We can make some field required on the first consultation, i.e., name so that user creates the record first
-															2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
-															3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
-															-->
+                                                        Solution:
+                                                            1. We can make some field required on the first consultation, i.e., name so that user creates the record first
+                                                            2. if somehow a client doesn't want to do that, we can pass some unique default context and then override the create and write method
+                                                            3. Or instead of making it type "action" we can make it "object" in this way call will goto the backend and record will be created automatically.
+                                                            -->
 
 														<button type="action" style="float:right;"
 																class="btn-primary mt--5"
