@@ -53,6 +53,7 @@
             <field name="res_model">ec.pregnancy.data</field>
             <field name="view_mode">tree,form</field>
         </record>
+
         <menuitem id="menu_pregnancy_forms"
                   name="Pregnancy Forms"
                   parent="ecare_medical_history.ec_medical_history_andrology"
