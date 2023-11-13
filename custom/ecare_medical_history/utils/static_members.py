@@ -810,5 +810,34 @@ class StaticMember:
         ('2', '2'),
         ('3', '3')
     ]
+    CONCEPTION_TYPE = [('natural', 'Natural'),
+                       ("oi", "OI"),
+                       ("natural iui", "Natural IUI"),
+                       ("oi/ui", "OI/UI"),
+                       ("fresh et", "Fresh ET"),
+                       ("fer", "FER")]
 
+    GESTATION_TYPE = [('singleton', 'Singleton'),
+                      ('dcda_twins', 'DCDA Twins'),
+                      ('mcda_twins', 'MCDA Twins'),
+                      ('momo_twins', 'MoMo Twins'),
+                      ('triplets', 'Triplets'),
+                      ('quadruplets', 'Quadruplets'),
+                      ('pentaplets', 'Pentaplets (5)'),
+                      ('sextuplets', 'Sextuplets (6)'),
+                      ('septuplets', 'Septuplets (7)'),
+                      ('octuplets', 'Octuplets (8)'),
+                      ("other", "Other")]
 
+    VIABILITY_POTENTIAL = [("all_fetus_alive", "All fetus(es) alive"),
+                           ("iud", "IUD"),
+                           ("atleat_1_alive", "Atleast 1 alive fetus")]
+
+    VISIT_REASON = [('early_pregnancy_assessment', 'Early pregnancy assessment'),
+                    ('genetic_testing', 'Genetic Testing')]
+
+    FETAL_HEART = [("positive", "Positive"),
+                   ("negative", "Negative")]
+
+    HR_TYPE = [('regular', 'Regular'),
+               ('irregular', 'Irregular')]

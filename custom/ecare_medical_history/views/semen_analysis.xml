@@ -11,13 +11,6 @@
             <field name="model">ec.semen.analysis</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                        <button type="object" style="float:right;"
-                                class="btn-primary"
-                                name="print_semen_analysis_report"
-                                string="Report"
-                                target="current"/>
-                    </header>
                     <div style="margin-top: -2%;">
                         <field name="semen_patient_id" style="display:block;" widget="banner_summary_widget"/>
                     </div>
@@ -37,7 +30,7 @@
 
 
                     <div class="d-flex ">
-                        <div class="col-md-1">
+                        <div class="col-md-1" style=" width: 13%;">
                             <label for="abstinence"/>
                         </div>
                         <div class="d-flex">
@@ -60,7 +53,7 @@
                     </group>
 
                     <div class="d-flex ">
-                        <div class="col-md-1">
+                        <div class="col-md-1" style=" width: 13%;">
                             <label for="ph"/>
                         </div>
                         <div class="d-flex">
@@ -73,14 +66,19 @@
                         </div>
                     </div>
 
-                    <group>
-                        <group>
-                            <field name="viscosity"/>
-                        </group>
-                    </group>
+                    <div class="d-flex ">
+                        <div class="col-md-1" style=" width: 13%;">
+                            <label for="viscosity"/>
+                        </div>
+                        <div class="d-flex">
+                            <div>
+                                <field name="viscosity"/>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="d-flex ">
-                        <div class="col-md-1">
+                        <div class="col-md-1" style=" width: 13%;">
                             <label for="volume"/>
                         </div>
                         <div class="d-flex">
@@ -94,7 +92,7 @@
                     </div>
 
                     <div class="d-flex ">
-                        <div class="col-md-1">
+                        <div class="col-md-1" style=" width: 13%;">
                             <label for="total_count"/>
                         </div>
                         <div class="d-flex">
@@ -109,7 +107,7 @@
 
 
                     <div class="d-flex ">
-                        <div class="col-md-1">
+                        <div class="col-md-1" style=" width: 13%;">
                             <label for="mobility"/>
                         </div>
                         <div class="d-flex">
@@ -123,9 +121,9 @@
                     </div>
 
                     <!--    progression-->
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column col-lg-7">
                         <div class="d-flex align-items-center bg-light bg-gradient">
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 Progression
                             </div>
                             <div class="col-md-11 ">
@@ -155,7 +153,7 @@
                     </div>
 
                     <div class="d-flex ">
-                        <div class="col-md-1">
+                        <div class="col-md-1" style=" width: 13%;">
                             <label for="wbcs"/>
                         </div>
                         <div class="d-flex">
@@ -174,6 +172,7 @@
                             <field name="agglutination" widget="radio" options="{'horizontal': True}"/>
                             <field name="debris" widget="radio" options="{'horizontal': True}"/>
                             <field name="bacteria" widget="radio" options="{'horizontal': True}"/>
+                            <!--                            Unit is missing for below field will add later-->
                             <field name="epi_cells_immature_cells"/>
                             <field name="other_observation"/>
                         </group>
@@ -186,10 +185,10 @@
                         <!--    Defects-->
                         <div class="d-flex flex-column col-lg-7">
                             <div class="d-flex align-items-center bg-light bg-gradient">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     Defects
                                 </div>
-                                <div class="col-md-11 ">
+                                <div class="col-md-9">
                                     <div class="d-flex">
                                         <label for="cephalic"/>
                                         <field name="cephalic"/>
@@ -227,7 +226,27 @@
                             <fied name="suitable_for_ids" widget="many2many_checkboxes"/>
                         </group>
                     </group>
-                    <group string="Additional Info">
+
+                    <div class="d-flex flex-column col-lg-8">
+                        <div class="d-flex align-items-center bg-light bg-gradient">
+                            <div class="col-md-2">
+                                Sperm Cryopreservation
+                            </div>
+                            <div class="col-md-11 ">
+                                <div class="d-flex">
+                                    <label for="sperm_cryopreservation_consented" string="Consented"/>
+                                    <field name="sperm_cryopreservation_consented"/>
+                                    <label for="sperm_cryopreservation_strawe" string="No. Strawe"/>
+                                    <field name="sperm_cryopreservation_strawe"/>
+                                    <label for="sperm_cryopreservation_code" string="Storage Code"/>
+                                    <field name="sperm_cryopreservation_code"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <group string="Additional Info" class="semen_analysis_div">
                         <group>
                             <field name="seminologist"/>
                             <field name="special_notes"/>
@@ -237,14 +256,48 @@
             </field>
         </record>
 
+        <record id="ec_semen_analysis_tree_view" model="ir.ui.view">
+            <field name="name">ec.semen.analysis.tree.view</field>
+            <field name="model">ec.semen.analysis</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date"/>
+                    <field name="lab_number"/>
+                    <field name="lab_name"/>
+                </tree>
+            </field>
+        </record>
+
         <!-- Explicit action -->
-        <record id="ec_semen_analysis_action" model="ir.actions.act_window">
+        <record id="ec_semen_analysis_create_action" model="ir.actions.act_window">
             <field name="name">Semen Analysis</field>
             <field name="res_model">ec.semen.analysis</field>
             <field name="view_mode">form</field>
             <field name="target">current</field>
         </record>
+        <record id="ec_semen_analysis_action" model="ir.actions.act_window">
+            <field name="name">Semen Analysis</field>
+            <field name="res_model">ec.semen.analysis</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
 
+
+        <menuitem id="ec_medical_history_semen_analysis"
+                  name="Semen Analysis"
+                  parent="ec_medical_history_andrology"
+                  sequence="100"/>
+
+            <menuitem id="ec_medical_history_create_semen_analysis"
+                      name="Create"
+                      parent="ec_medical_history_semen_analysis"
+                      action="ecare_medical_history.ec_semen_analysis_create_action"
+                      sequence="100"/>
+            <menuitem id="ec_medical_history_semen_analysis_all"
+                      name="Semen Analysis"
+                      parent="ec_medical_history_semen_analysis"
+                      action="ecare_medical_history.ec_semen_analysis_action"
+                      sequence="110"/>
 
     </data>
 </odoo>

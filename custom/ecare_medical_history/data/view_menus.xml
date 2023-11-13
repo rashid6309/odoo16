@@ -22,20 +22,6 @@
                   sequence="60"
                   action="ecare_medical_history.ec_patient_timeline_wizard_action"/>
 
-        <menuitem id="ec_medical_history_configuration"
-                  name="Configuration"
-                  parent="ec_medical_root"
-                  sequence="100"/>
-        <menuitem id="ec_medical_history_andrology"
-                  name="Andrology"
-                  parent="ec_medical_root"
-                  sequence="110"/>
-
-            <menuitem id="ec_medical_history_semen_analysis"
-                      name="Semen Analysis"
-                      parent="ec_medical_history_andrology"
-                      action="ecare_medical_history.ec_semen_analysis_action"
-                      sequence="100"/>
 
 
     </data>

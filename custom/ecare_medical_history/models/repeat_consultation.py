@@ -13,6 +13,7 @@ class RepeatConsultation(models.Model):
     _order = "create_date desc"
     _inherits = {
         'ec.medical.tvs': 'repeat_tvs_id',
+        'ec.medical.pregnancy.data': 'repeat_pregnancy_id',
     }
 
     ''' Foreign Keys '''
@@ -21,6 +22,7 @@ class RepeatConsultation(models.Model):
     repeat_timeline_id = fields.Many2one(comodel_name="ec.patient.timeline", ondelete="restrict")
 
     repeat_tvs_id = fields.Many2one(comodel_name="ec.medical.tvs")
+    repeat_pregnancy_id = fields.Many2one(comodel_name="ec.medical.pregnancy.data")
 
     ''' Data attributes '''
     #

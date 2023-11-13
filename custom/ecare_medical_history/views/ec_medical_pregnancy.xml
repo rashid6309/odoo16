@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_patient_pregnancy_form" model="ir.ui.view">
+            <field name="name">ec.medical.pregnancy.data.form</field>
+            <field name="model">ec.medical.pregnancy.data</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet class="container">
+                        <group>
+                            <field name="repeat_pregnancy_lmp"/>
+                            <field name="repeat_pregnancy_gestational_age"/>
+                            <field name="repeat_pregnancy_conception"/>
+                        </group>
+                        <group string="Pregnancy Status:">
+                            <field name="repeat_pregnancy_gestation_type"/>
+                            <field name="repeat_pregnancy_other_info"
+                                   attrs="{'invisible': [('repeat_pregnancy_gestation_type','!=','other')],
+                                            'required':[('repeat_pregnancy_gestation_type','=','other')]}"/>
+                            <field name="repeat_pregnancy_viability_potential"/>
+                            <field name="repeat_pregnancy_details"/>
+                        </group>
+                        <group string="Diagnosis:">
+                            <field name="repeat_pregnancy_diagnosis"/>
+                            <field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
+                            <field name="repeat_pregnancy_notes"/>
+                            <field name="repeat_pregnancy_scanned" widget="radio"/>
+                            <field name="repeat_pregnancy_significant_findings"/>
+                        </group>
+                        <!--                    <group string="Examination:">-->
+
+                        <!--                    </group>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_patient_pregnancy_tree" model="ir.ui.view">
+            <field name="name">patient.pregnancy.tree</field>
+            <field name="model">ec.medical.pregnancy.data</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="repeat_pregnancy_lmp"/>
+                    <field name="repeat_pregnancy_gestational_age"/>
+                    <field name="repeat_pregnancy_conception"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_pregnancy_form" model="ir.actions.act_window">
+            <field name="name">Pregnancy Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ec.medical.pregnancy.data</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
