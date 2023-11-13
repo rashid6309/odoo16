@@ -30,6 +30,7 @@
                             <div style="flex:2;"><b>Sample Produced at Lab:</b></div>
                             <div style="flex:6;"><span t-field="o.sample_produced_at_lab"/></div>
                         </div>
+
                         <div style="display:flex; margin-bottom:15px;">
                             <div style="flex:2;"><b>Repeat Semen Analysis:</b></div>
                             <div style="flex:6;"><span t-field="o.repeat_semen_analysis"/></div>
