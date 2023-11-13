@@ -11,13 +11,6 @@
             <field name="model">ec.semen.analysis</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                        <button type="object" style="float:right;"
-                                class="btn-primary"
-                                name="print_semen_analysis_report"
-                                string="Report"
-                                target="current"/>
-                    </header>
                     <div style="margin-top: -2%;">
                         <field name="semen_patient_id" style="display:block;" widget="banner_summary_widget"/>
                     </div>

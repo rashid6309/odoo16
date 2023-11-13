@@ -9,8 +9,7 @@ class SemenAnalysis(models.Model):
     _description = 'Semen Analysis'
 
     semen_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
-                                       string="Patient",
-                                       readonly=True)
+                                       string="Patient")
 
     date = fields.Date(string='Date')
     lab_number = fields.Char(string='Lab Number')
