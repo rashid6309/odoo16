@@ -1,5 +1,4 @@
 from odoo import api, models, fields, _
-from odoo.exceptions import UserError
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
@@ -7,6 +6,7 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 class SemenAnalysis(models.Model):
     _name = 'ec.semen.analysis'
     _description = 'Semen Analysis'
+    _rec_id = "semen_patient_id"
 
     semen_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                        string="Patient",
@@ -97,6 +97,9 @@ class SemenAnalysis(models.Model):
                                         string='Suitable For', domain="[('type', '=', 'suitable_for')]")
 
     # sperm_cryopreservation = fields.Char()
+    sperm_cryopreservation_consented = fields.Boolean('Cryopreservation Consented')
+    sperm_cryopreservation_strawe = fields.Char('Cryopreservation Strawe')
+    sperm_cryopreservation_code = fields.Char('Cryopreservation Code')
 
     seminologist = fields.Char("Seminologist")
     special_notes = fields.Char("Special Notes")

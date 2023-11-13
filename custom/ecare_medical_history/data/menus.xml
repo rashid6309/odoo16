@@ -13,6 +13,11 @@
                   parent="ec_medical_root"
                   sequence="100"/>
 
+       <menuitem id="ec_medical_history_andrology"
+                  name="Andrology"
+                  parent="ec_medical_root"
+                  sequence="110"/>
+
 
     </data>
 </odoo>

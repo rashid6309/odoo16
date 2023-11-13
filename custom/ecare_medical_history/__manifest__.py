@@ -53,6 +53,9 @@
 
         # Semen Anlysis
         'views/semen_analysis.xml',
+        
+        # Pregnancy
+        'views/ec_medical_pregnancy.xml',
 
         # Reports
         'reports/semen_analysis_report.xml',
@@ -72,7 +75,7 @@
             'ecare_medical_history/static/src/xml/summary.xml',
             'ecare_medical_history/static/src/xml/banner_template.xml',
         ],
-
+        
 
     },
     'installable': True,
