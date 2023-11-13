@@ -260,7 +260,7 @@
             <field name="name">ec.semen.analysis.tree.view</field>
             <field name="model">ec.semen.analysis</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="0">
                     <field name="date"/>
                     <field name="lab_number"/>
                     <field name="lab_name"/>
