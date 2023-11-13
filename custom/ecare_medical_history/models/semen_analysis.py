@@ -1,5 +1,4 @@
 from odoo import api, models, fields, _
-from odoo.exceptions import UserError
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
@@ -7,6 +6,7 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 class SemenAnalysis(models.Model):
     _name = 'ec.semen.analysis'
     _description = 'Semen Analysis'
+    _rec_id = "semen_patient_id"
 
     semen_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                        string="Patient")
