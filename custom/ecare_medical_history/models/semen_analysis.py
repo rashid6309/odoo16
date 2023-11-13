@@ -105,3 +105,6 @@ class SemenAnalysis(models.Model):
 
     def print_semen_analysis_report(self):
         return self.env.ref('ecare_medical_history.ec_semen_analysis_report').report_action(self)
+
+    def print_patient_report(self):
+        return self.env.ref('ecare_medical_history.ec_patient_report').report_action(self)
