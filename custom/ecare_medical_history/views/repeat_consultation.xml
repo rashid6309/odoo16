@@ -131,8 +131,6 @@
                                                         </div>
 
 
-
-
                                                         <div class="oe_kanban_title">
                                                             <field name="question_one_label"/>
                                                             <h5 style="display: inline-block;"><field name="question_one_choice"/></h5>
