@@ -50,7 +50,7 @@ class GeneralExamination(models.Model):
                                                         string='Complaints Duration Month')
 
     # years_of_marriage
-    female_age_at_marriage = fields.Char(string='Age at Marriage')
+    female_age_at_marriage = fields.Integer(string='Age at Marriage')
 
     ''' Male Fields '''
 

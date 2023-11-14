@@ -3,129 +3,129 @@
 
     <data>
         <report
-                id="ec_semen_analysis_report"
+                id="ec_semen_analysis_report_patient_report"
                 model="ec.semen.analysis"
-                string="Semen Analysis - Hospital Record Report"
+                string="Semen Analysis - Patient Report"
                 report_type="qweb-pdf"
-                name="ecare_medical_history.ec_semen_analysis_doc"
+                name="ecare_medical_history.ec_semen_analysis_patient_report_doc"
                 file="Semen Analysis Report"/>
 
-        <template id="ec_semen_analysis_doc">
-            <t t-foreach="docs" t-as="o">
-                <t t-call="web.html_container">
+        <template id="ec_semen_analysis_patient_report_doc">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="ecare_medical_history.custom_header_footer"/>
                     <div style="display:flex;">
-                    <div style="display:flex; flex-direction:column; justify-content:center; width:80%;">
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Date:</b></div>
-                            <div style="flex:2;"><span t-field="o.date"/></div>
-                            <div style="flex:2;"><b>Lab No.:</b></div>
-                            <div style="flex:2;"><span t-field="o.lab_number"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Preparation:</b></div>
-                            <div t-foreach="o.preparation_ids" t-as="l" style="flex:1;">
-                                <span t-field="l.name"/></div>
-                        </div>
-                         <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Sample Produced at Lab:</b></div>
-                            <div style="flex:6;"><span t-field="o.sample_produced_at_lab"/></div>
-                        </div>
+                        <div style="display:flex; flex-direction:column; justify-content:center; width:80%;">
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b>Date:</b></div>
+                                <div style="flex:2;"><span t-field="o.date"/></div>
+                                <div style="flex:2;"><b>Lab No.:</b></div>
+                                <div style="flex:2;"><span t-field="o.lab_number"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b>Preparation:</b></div>
+                                <div t-foreach="o.preparation_ids" t-as="l" style="flex:1;">
+                                    <span t-field="l.name"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b>Sample Produced at Lab:</b></div>
+                                <div style="flex:6;"><span t-field="o.sample_produced_at_lab"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b>Repeat Semen Analysis:</b></div>
+                                <div style="flex:6;"><span t-field="o.repeat_semen_analysis"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:35px;">
+                                <div style="flex:2;"><b>Freezing:</b></div>
+                                <div style="flex:6;"><span t-field="o.freezing"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">Abstinence:</div>
+                                <div style="flex:2;"><span t-field="o.abstinence"/><span> days (Range:3-5)</span></div>
+                                <div style="flex:2;">Liquefaction Time:</div>
+                                <div style="flex:2;"><span t-field="o.liquifaction_time"/></div>
+                            </div>
 
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Repeat Semen Analysis:</b></div>
-                            <div style="flex:6;"><span t-field="o.repeat_semen_analysis"/></div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">Color:</div>
+                                <div style="flex:2;"><span t-field="o.color"/><span> days (Range:3-5)</span></div>
+                                <div style="flex:2;">PH:</div>
+                                <div style="flex:2;"><span t-field="o.ph"/><span> (Range:7.2-8.2)</span></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">Viscosity:</div>
+                                <div style="flex:2;"><span t-field="o.viscosity"/></div>
+                                <div style="flex:2;">Volume:</div>
+                                <div style="flex:2;"><span t-field="o.volume"/><span> (Range:1.5-5)</span></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">Total Count:</div>
+                                <div style="flex:6;"><span t-field="o.total_count"/><span> million/ml (Range: >20)</span></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">Mobility:</div>
+                                <div style="flex:6;"><span t-field="o.mobility"/><span> % (Range: >40)</span></div>
+                            </div>
+                            <div style="margin-bottom:15px;"><h3>Microscopic</h3></div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">WBCs:</div>
+                                <div style="flex:2;"><span t-field="o.wbcs"/><span> /HPF</span></div>
+                                <div style="flex:2;">Agglutination:</div>
+                                <div style="flex:2;"><span t-field="o.agglutination"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">Debris:</div>
+                                <div style="flex:2;"><span t-field="o.debris"/></div>
+                                <div style="flex:2;">Bacteria:</div>
+                                <div style="flex:2;"><span t-field="o.bacteria"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">EPI Cells/Immature Cells:</div>
+                                <div style="flex:6"><span t-field="o.epi_cells_immature_cells"/><span> /HPF</span></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:35px;">
+                                <div style="flex:2;">Other Observation:</div>
+                                <div style="flex:6;"><span t-field="o.other_observation"/><span> /HPF</span></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:3;"><h3>Preparation Method:</h3></div>
+                                <div style="flex:5;"><h3><span t-field="o.method"/></h3></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b>Prep Con:</b></div>
+                                <div style="flex:6;"><span t-field="o.prep_conc"/><span> million/ejaculate    (Normal 20 x 10<sup>6</sup>/Ejaculate)</span></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">% Mobility:</div>
+                                <div style="flex:2;"><span t-field="o.mobility_percentage"/><span> % (>75%)</span></div>
+                                <div style="flex:2;">Progression:</div>
+                                <div style="flex:2;"><span t-field="o.progression"/></div>
+                            </div>
+                            <div style="margin-bottom:15px;"><b>After 24hrs</b></div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;">% Mobility:</div>
+                                <div style="flex:2;"><span t-field="o.after_24_hrs_mobility_percentage"/><span> % (>50%)</span></div>
+                                <div style="flex:2;">Progression:</div>
+                                <div style="flex:2;"><span t-field="o.after_24_hrs_progression"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b>Comments:</b></div>
+                                <div style="flex:6;"><span t-field="o.comments"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b>Suitable for:</b></div>
+                                <div t-foreach="o.suitable_for_ids" t-as="l" style="flex:1;">
+                                    <span t-field="l.name"/></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b>Sperm Cryopreservation:</b></div>
+                                <div style="flex:6;"><span>Value not available</span></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b>Semenologist:</b></div>
+                                <div style="flex:6;"><span>Value not available</span></div>
+                            </div>
                         </div>
-                        <div style="display:flex; margin-bottom:35px;">
-                            <div style="flex:2;"><b>Freezing:</b></div>
-                            <div style="flex:6;"><span t-field="o.freezing"/></div>
-                        </div>
-                       <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Abstinence:</div>
-                            <div style="flex:2;"><span t-field="o.abstinence"/><span> days (Range:3-5)</span></div>
-                            <div style="flex:2;">Liquefaction Time:</div>
-                            <div style="flex:2;"><span t-field="o.liquifaction_time"/></div>
-                        </div>
-
-                       <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Color:</div>
-                            <div style="flex:2;"><span t-field="o.color"/><span> days (Range:3-5)</span></div>
-                            <div style="flex:2;">PH:</div>
-                            <div style="flex:2;"><span t-field="o.ph"/><span> (Range:7.2-8.2)</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Viscosity:</div>
-                            <div style="flex:2;"><span t-field="o.viscosity"/></div>
-                            <div style="flex:2;">Volume:</div>
-                            <div style="flex:2;"><span t-field="o.volume"/><span> (Range:1.5-5)</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Total Count:</div>
-                            <div style="flex:6;"><span t-field="o.total_count"/><span> million/ml (Range: >20)</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Mobility:</div>
-                            <div style="flex:6;"><span t-field="o.mobility"/><span> % (Range: >40)</span></div>
-                        </div>
-                        <div style="margin-bottom:15px;"><h3>Microscopic</h3></div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">WBCs:</div>
-                            <div style="flex:2;"><span t-field="o.wbcs"/><span> /HPF</span></div>
-                            <div style="flex:2;">Agglutination:</div>
-                            <div style="flex:2;"><span t-field="o.agglutination"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Debris:</div>
-                            <div style="flex:2;"><span t-field="o.debris"/></div>
-                            <div style="flex:2;">Bacteria:</div>
-                            <div style="flex:2;"><span t-field="o.bacteria"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">EPI Cells/Immature Cells:</div>
-                            <div style="flex:6"><span t-field="o.epi_cells_immature_cells"/><span> /HPF</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:35px;">
-                            <div style="flex:2;">Other Observation:</div>
-                            <div style="flex:6;"><span t-field="o.other_observation"/><span> /HPF</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:3;"><h3>Preparation Method:</h3></div>
-                            <div style="flex:5;"><h3><span t-field="o.method"/></h3></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Prep Con:</b></div>
-                            <div style="flex:6;"><span t-field="o.prep_conc"/><span> million/ejaculate    (Normal 20 x 10<sup>6</sup>/Ejaculate)</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">% Mobility:</div>
-                            <div style="flex:2;"><span t-field="o.mobility_percentage"/><span> % (>75%)</span></div>
-                            <div style="flex:2;">Progression:</div>
-                            <div style="flex:2;"><span t-field="o.progression"/></div>
-                        </div>
-                        <div style="margin-bottom:15px;"><b>After 24hrs</b></div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">% Mobility:</div>
-                            <div style="flex:2;"><span t-field="o.after_24_hrs_mobility_percentage"/><span> % (>50%)</span></div>
-                            <div style="flex:2;">Progression:</div>
-                            <div style="flex:2;"><span t-field="o.after_24_hrs_progression"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Comments:</b></div>
-                            <div style="flex:6;"><span t-field="o.comments"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Suitable for:</b></div>
-                            <div t-foreach="o.suitable_for_ids" t-as="l" style="flex:1;">
-                                <span t-field="l.name"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Sperm Cryopreservation:</b></div>
-                            <div style="flex:6;"><span>Value not available</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Semenologist:</b></div>
-                            <div style="flex:6;"><span>Value not available</span></div>
-                        </div>
-                    </div>
                     </div>
                 </t>
             </t>

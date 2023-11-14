@@ -20,7 +20,7 @@
                     <field name="duration_of_pregnancy" string="Dur. of Preg"/>
                     <field name="mode_of_delivery"/>
                     <field name="other_indications"/>
-                    <field name="complications"/>
+<!--                    <field name="complications"/>-->
                     <field name="complication_delivery"/>
                     <field name="complication_post_partum"/>
                     <field name="complication_pregnancy"/>
