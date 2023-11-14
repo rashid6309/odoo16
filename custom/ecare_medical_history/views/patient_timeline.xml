@@ -799,7 +799,7 @@
 												<group>
 
 													<field name="cn_type" widget="radio" options="{'horizontal': True}"/>
-													<field name="other_comments"/>
+													<field name="other_comments" string="Other"/>
 												</group>
 											</div>
 

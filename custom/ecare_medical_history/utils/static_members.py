@@ -137,11 +137,10 @@ class StaticMember:
     ]
 
 
-
     MARRIAGE = [('first', '1st'),
                 ('second', '2nd'),
                 ('third', '3rd'),
-                ('fourth', '4rth')]
+                ('fourth', '4th')]
 
     DoP = [('<6', '<6'),
            ('6', '6'),

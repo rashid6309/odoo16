@@ -22,7 +22,7 @@ class FemaleObstetricsHistory(models.Model):
     baby_name = fields.Char(string='Baby Name')
     birth_place = fields.Char(string="Birth Place",
                       required=False, )
-    date_of_birth = fields.Date(string='Date of Birth')
+    date_of_birth = fields.Date(string='Date of Birth', required=True)
     age = fields.Char(string='Age', compute='_get_age')
     baby_notes = fields.Text(string='Baby Notes')
     duration_of_pregnancy = fields.Selection(string='Duration of Pregnancy', selection=StaticMember.DoP)
@@ -39,7 +39,6 @@ class FemaleObstetricsHistory(models.Model):
     health = fields.Selection(string='Child Health', selection=StaticMember.HEALTH)
     alive = fields.Selection(string='Child Alive', selection=StaticMember.ALIVE)
     feed = fields.Selection(string='Child Feed', selection=StaticMember.FEED)
-    state = fields.Boolean(string='', default=True)
 
     labour_history = fields.Selection(selection=StaticMember.LABOUR_HISTORY,
                                       string='Labour')

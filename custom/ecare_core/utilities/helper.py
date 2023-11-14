@@ -37,6 +37,12 @@ class TimeValidation:
         else:
             return str(int(years)) + ' Years'
 
+    @staticmethod
+    def _check_tet_value(self):
+        if self.tetanus_vacc_date1st:
+            if self.tetanus_vacc_date2nd < self.tetanus_vacc_date1st:
+                raise UserError('First Tetanus Date is greater than Second')
+
 
 class CustomNotification:
     @staticmethod

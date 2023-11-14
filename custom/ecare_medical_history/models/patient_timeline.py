@@ -4,7 +4,7 @@ from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 
 from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
-
+from odoo.addons.ecare_medical_history.utils.date_validation import DateValidation
 
 
 class PatientTimeline(models.Model):
@@ -387,3 +387,12 @@ class PatientTimeline(models.Model):
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
 
+    @api.onchange('female_lmp')
+    def _check_female_lmp_date(self):
+        if self.female_lmp:
+            return (DateValidation._date_validation(self.female_lmp))
+
+    @api.onchange('biological_female_dob')
+    def _check_biological_female_dob_date(self):
+        if self.biological_female_dob:
+            return (DateValidation._date_validation(self.biological_female_dob))

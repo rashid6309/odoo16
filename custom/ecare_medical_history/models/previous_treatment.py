@@ -11,7 +11,7 @@ class MedicalPreviousHistory(models.Model):
     patient_id = fields.Many2one(comodel_name="ec.medical.patient", string="Patient")
 
     type = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_TYPE, default='ovulation_induction_intercourse',
-                            string='Type')
+                            string='Type', required=True)
     consultant = fields.Char(string='Consultant')
     oral_drugs = fields.Char(string='Oral Drugs')
     down_regulation = fields.Char(string='Down Regulation')
