@@ -28,7 +28,7 @@ class FemaleObstetricsHistory(models.Model):
     duration_of_pregnancy = fields.Selection(string='Duration of Pregnancy', selection=StaticMember.DoP)
     mode_of_delivery = fields.Selection(string='Mode Of delivery', selection=StaticMember.MoD)
     other_indications = fields.Char('Other Indications')
-    complications = fields.Text(string='Complications in Pregnancy')
+    # complications = fields.Text(string='Complications in Pregnancy')
     complication_delivery = fields.Text(string='Complications in Delivery')
 
     complication_post_partum = fields.Text(string='Complications in Post-partum')

@@ -7,13 +7,13 @@ class MedicalPhysicalExamination(models.Model):
     _name = "ec.physical.examination"
     _description = "Patient (Female) Physical Examination"
 
-    female_weight = fields.Char('Weight')
-    female_height = fields.Char('Height')
-    female_bmi = fields.Char('BMI')
-    female_bp_upper = fields.Char('B.P')
-    female_bp_lower = fields.Char('B.P')
-    female_pulse = fields.Char('Pulse')
-    female_temperature = fields.Char('Temperature')
+    female_weight = fields.Integer('Weight')
+    female_height = fields.Integer('Height')
+    female_bmi = fields.Integer('BMI')
+    female_bp_upper = fields.Integer('B.P')
+    female_bp_lower = fields.Integer('B.P')
+    female_pulse = fields.Integer('Pulse')
+    female_temperature = fields.Integer('Temperature')
     female_thyroid = fields.Selection(selection=StaticMember.THYROID, string='Thyroid')
     female_thyroid_goitear_length = fields.Selection(selection=StaticMember.GOITEAR_LENGTH, string='Goitear')
     female_thyroid_goitear_width = fields.Selection(selection=StaticMember.GOITEAR_WIDTH, string='Goitear Width')
