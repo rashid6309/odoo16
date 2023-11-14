@@ -78,11 +78,13 @@ table {
 .first_consultation_sub_container_female{
     background: #FFE8F0;
     border-radius: 4px;
+    margin-bottom: 0.20rem;
 }
 
 .first_consultation_sub_container_male{
     background: #CAECFF;
     border-radius: 4px;
+    margin-bottom: 0.20rem;
 }
 
 .card-custom1
@@ -412,8 +414,17 @@ button{
 
 .repeat_kanban
 {
-    background: #FFE8F1 !important;
     padding-bottom: 0px !important;
+}
+
+.repeat_kanban_section_header
+{
+    background: #FFE8F1 !important;
+}
+
+.repeat_kanban_section_content
+{
+    background: #FFFAFC !important;
 }
 
 .o_input

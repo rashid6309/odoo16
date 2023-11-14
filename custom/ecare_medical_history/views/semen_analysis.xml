@@ -260,7 +260,7 @@
             <field name="name">ec.semen.analysis.tree.view</field>
             <field name="model">ec.semen.analysis</field>
             <field name="arch" type="xml">
-                <tree create="0">
+                <tree create="1">
                     <field name="date"/>
                     <field name="lab_number"/>
                     <field name="lab_name"/>
@@ -288,16 +288,11 @@
                   parent="ec_medical_history_andrology"
                   sequence="100"/>
 
-            <menuitem id="ec_medical_history_create_semen_analysis"
-                      name="Create"
-                      parent="ec_medical_history_semen_analysis"
-                      action="ecare_medical_history.ec_semen_analysis_create_action"
-                      sequence="100"/>
-            <menuitem id="ec_medical_history_semen_analysis_all"
-                      name="Semen Analysis"
-                      parent="ec_medical_history_semen_analysis"
-                      action="ecare_medical_history.ec_semen_analysis_action"
-                      sequence="110"/>
+        <menuitem id="ec_medical_history_semen_analysis_all"
+                  name="Semen Analysis"
+                  parent="ec_medical_history_semen_analysis"
+                  action="ecare_medical_history.ec_semen_analysis_action"
+                  sequence="110"/>
 
     </data>
 </odoo>
