@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api
+from odoo.addons.ecare_medical_history.utils.date_validation import DateValidation
 
 
 class LabHistory(models.Model):
@@ -22,3 +23,8 @@ class LabHistory(models.Model):
     #                                   relation="lab_history_attachment_id",
     #                                   string="Attachments",
     #                                   help="If you want to upload any attachment.")
+    
+    @api.onchange('date')
+    def _check_lab_date(self):
+        if self.date:
+            return DateValidation._date_validation(self.date)
