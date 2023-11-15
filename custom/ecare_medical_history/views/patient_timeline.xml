@@ -614,8 +614,8 @@
 													<field name="female_age" attrs="{'invisible': [('biological_female_age', '!=', False)]}"/>
 													<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_family_system" widget="radio" options="{'horizontal': True}"/>
-													<label for="female_living_togather">Living Together</label>
-													<div>
+													<label style="display:flex; align-items:center;" for="female_living_togather">Living Together</label>
+													<div class="d-flex">
 														<field name="female_living_togather" widget="radio" options="{'horizontal': True}" class="oe_inline"/>
 														<field name="female_living_togather_reason" nolabel="1" placeholder="Reason..." class="oe_inline"/>
 													</div>

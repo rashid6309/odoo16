@@ -10,6 +10,7 @@ class EcMedicalPatient(models.Model):
         for rec in self:
             appointment_id = self.env['ec.booked.slot.record'].search(
                 domain=[('partner_id', '=', rec.id),
+                        ('state', '=', 'Booked'),
                         ('date', '>=', date.today())],
                 order="date asc",
                 limit=1
