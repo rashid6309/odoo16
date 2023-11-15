@@ -11,6 +11,7 @@ REVIEW FULL FILE
 
 '''
 
+
 class FemaleObstetricsHistory(models.Model):
     _name = 'ec.obstetrics.history'
     _description = "Female Obstetrics History"
@@ -22,11 +23,11 @@ class FemaleObstetricsHistory(models.Model):
     baby_name = fields.Char(string='Baby Name')
     birth_place = fields.Char(string="Birth Place",
                       required=False, )
-    date_of_birth = fields.Date(string='Date of Birth', required=True)
+    date_of_birth = fields.Date(string='Date of Birth')
     age = fields.Char(string='Age', compute='_get_age')
     baby_notes = fields.Text(string='Baby Notes')
     duration_of_pregnancy = fields.Selection(string='Duration of Pregnancy', selection=StaticMember.DoP)
-    mode_of_delivery = fields.Selection(string='Mode Of delivery', selection=StaticMember.MoD)
+    mode_of_delivery = fields.Selection(string='Mode Of delivery', selection=StaticMember.MoD, required=True)
     other_indications = fields.Char('Other Indications')
     complications = fields.Text(string='Complications in Pregnancy')
     complication_delivery = fields.Text(string='Complications in Delivery')
@@ -37,6 +38,7 @@ class FemaleObstetricsHistory(models.Model):
     gender = fields.Selection(string='Child Gender', selection=StaticMember.GENDER)
     weight = fields.Selection(string='Child Weight', selection=StaticMember.WEIGHT)
     health = fields.Selection(string='Child Health', selection=StaticMember.HEALTH)
+    child_health_issues = fields.Text(string='Child Health Issues')
     alive = fields.Selection(string='Child Alive', selection=StaticMember.ALIVE)
     feed = fields.Selection(string='Child Feed', selection=StaticMember.FEED)
 

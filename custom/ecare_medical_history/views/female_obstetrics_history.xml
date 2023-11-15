@@ -27,6 +27,7 @@
                     <field name="gender"/>
                     <field name="weight"/>
                     <field name="health"/>
+                    <field name="child_health_issues"/>
                     <field name="alive"/>
                     <field name="feed"/>
                     <field name="labour_history"/>

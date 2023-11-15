@@ -13,8 +13,15 @@ class EcContraception(models.Model):
 
     sx_comments = fields.Text(string="Comments")
 
-    cn_type = fields.Selection(selection=StaticMember.CN_TYPES,
-                               string="Type")
+    # cn_type = fields.Selection(selection=StaticMember.CN_TYPES,
+    #                            string="Type")
+
+    cn_type = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                               relation='contraception_multi_selection_cn_type',
+                               column1='contraception_id',
+                               column2='multi_selection_id',
+                               string='Type',
+                               domain="[('type', '=', 'cn_type')]")
 
     other_comments = fields.Text(string="Comments")
 

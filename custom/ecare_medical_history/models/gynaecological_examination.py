@@ -31,21 +31,15 @@ class MedicalGynaecologicalExamination(models.Model):
 
     left_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary')
     left_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Type')
+    gynaecological_left_size_ids = fields.One2many(comodel_name="ec.generic.size",
+                                                   inverse_name="gynaecological_left_size_id",
+                                                   string="Left Ovary")
+
     left_ovary_nos = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Nos')
     '''
         FIXME: What is length and width?
         Need to move to One2Many relation based on the left and right ovary. this is not required
     '''
-    left_ovary_length_1 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Length 1')
-    left_ovary_width_1 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Width 1')
-    left_ovary_length_2 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Length 2')
-    left_ovary_width_2 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Width 2')
-    left_ovary_length_3 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Length 3')
-    left_ovary_width_3 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Width 3')
-    left_ovary_length_4 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Length 4')
-    left_ovary_width_4 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Width 4')
-    left_ovary_length_5 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Length 5')
-    left_ovary_width_5 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Width 5')
 
     # Right OVARY FIELDS
 
@@ -55,46 +49,36 @@ class MedicalGynaecologicalExamination(models.Model):
     '''
     right_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary')
     right_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Type')
-    right_ovary_nos = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Nos')
-    right_ovary_length_1 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Length 1')
-    right_ovary_width_1 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Width 1')
-    right_ovary_length_2 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Length 2')
-    right_ovary_width_2 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Width 2')
-    right_ovary_length_3 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Length 3')
-    right_ovary_width_3 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Width 3')
-    right_ovary_length_4 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Length 4')
-    right_ovary_width_4 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Width 4')
-    right_ovary_length_5 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Length 5')
-    right_ovary_width_5 = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Width 5')
+    gynaecological_right_size_ids = fields.One2many(comodel_name="ec.generic.size",
+                                                    inverse_name="gynaecological_right_size_id",
+                                                    string="Right Ovary")
+
 
     uterus = fields.Selection(selection=StaticMember.UTERUS_TYPE_SIZE, string='Uterus')
-    uterus_size_length = fields.Selection(selection=StaticMember.UTERUS_TYPE_SIZE, string='Uterus Length')
-    uterus_size_width = fields.Selection(selection=StaticMember.UTERUS_TYPE_SIZE, string='Uterus Width')
+
+    gynaecological_uterus_size = fields.Boolean(default=False, string="Size")
+    gynaecological_uterus_position = fields.Boolean(default=False, string="Position")
+    gynaecological_uterus_normal = fields.Boolean(default=False, string="Normal")
+    gynaecological_uterus_fiobrid = fields.Boolean(default=False, string="Fibroid")
+
+    uterus_size_length = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Uterus Length')
+    uterus_size_width = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Uterus Width')
 
     uterus_size_position = fields.Selection(selection=StaticMember.UTERUS_SIZE_POSITION, string='Uterus Position')
+
+    gynaecological_uterus_position_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                                          relation='gynaecological_uterus_multi_selection_repeat_position',
+                                                          column1='gynaecological_id',
+                                                          column2='multi_selection_id',
+                                                          string='Position',
+                                                          domain="[('type', '=', 'position')]")
+
     uterus_nos = fields.Selection(selection=StaticMember.UTERUS_NOS, string='Nos')
 
-    forbid_size_length_1 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 1')
-    forbid_size_width_1 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 1')
+    gynaecological_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",
+                                                       inverse_name="gynaecological_fiobrid_id",
+                                                       string="Sizes")
 
-    forbid_size_length_2 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 2')
-    forbid_size_width_2 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 2')
-    forbid_size_length_3 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 3')
-    forbid_size_width_3 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 3')
-    forbid_size_length_4 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 4')
-    forbid_size_width_4 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 4')
-    forbid_size_length_5 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 5')
-    forbid_size_width_5 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 5')
-    forbid_size_length_6 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 6')
-    forbid_size_width_6 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 6')
-    forbid_size_length_7 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 7')
-    forbid_size_width_7 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 7')
-    forbid_size_length_8 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 8')
-    forbid_size_width_8 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 8')
-    forbid_size_length_9 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 9')
-    forbid_size_width_9 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 9')
-    forbid_size_length_10 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Length 10')
-    forbid_size_width_10 = fields.Selection(selection=StaticMember.FORBID, string='Forbid Width 10')
 
     lining_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                   relation='gynaecological_examination_multi_selection_lining',

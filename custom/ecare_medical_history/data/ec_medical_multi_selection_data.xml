@@ -174,5 +174,41 @@
             <field name="type">suitable_for</field>
         </record>
 
+<!--        Contraception-->
+
+        <record model="ec.medical.multi.selection" id="cn_type_none">
+            <field name="name">None</field>
+            <field name="type">cn_type</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="cn_type_withdrawal">
+            <field name="name">Withdrawal</field>
+            <field name="type">cn_type</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="cn_type_condom">
+            <field name="name">Condom</field>
+            <field name="type">cn_type</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="cn_type_foam">
+            <field name="name">Foam</field>
+            <field name="type">cn_type</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="cn_type_ocp">
+            <field name="name">OCP</field>
+            <field name="type">cn_type</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="cn_type_injectable">
+            <field name="name">Injectable</field>
+            <field name="type">cn_type</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="cn_type_iucd">
+            <field name="name">IUCD</field>
+            <field name="type">cn_type</field>
+        </record>
+
     </data>
 </odoo>
