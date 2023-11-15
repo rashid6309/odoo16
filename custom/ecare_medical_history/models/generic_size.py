@@ -17,4 +17,8 @@ class GenericSizes(models.Model):
                                       string='Size (cm)')
 
     tvs_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")
+    gynaecological_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")
     tvs_cyst_size_id = fields.Many2one(comodel_name="ec.medical.tvs")
+    
+    gynaecological_left_size_id = fields.Many2one(comodel_name="ec.medical.gynaecological.examination")
+    gynaecological_right_size_id = fields.Many2one(comodel_name="ec.medical.gynaecological.examination")

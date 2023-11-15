@@ -479,7 +479,7 @@ class StaticMember:
         ('ocp', 'OCP'),
         ('injectable', 'Injectable'),
         ('iucd', 'IUCD'),
-    ]
+    ] 
 
     SX_PERFORMANCE = [
         ('adequate', 'Adequate'),
@@ -549,6 +549,7 @@ class StaticMember:
         ('position', 'Position'),
         ('preparation', 'Preparation'),
         ('suitable_for', 'Suitable For'),
+        ('cn_type', 'Contraception'),
     ]
 
     CHOICE_YES_NO_NA = [

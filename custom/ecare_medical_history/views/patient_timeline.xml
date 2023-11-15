@@ -787,7 +787,7 @@
 												</div>
 												<!--											 -->
 												<group>
-													<field name="sx_frequency"/>
+													<field name="sx_frequency" string="Frequency (per month)"/>
 													<field name="sx_issues" widget="radio" options="{'horizontal': True}"/>
 													<field name="sx_comments"/>
 												</group>
@@ -798,7 +798,8 @@
 												<!--											 -->
 												<group>
 
-													<field name="cn_type" widget="radio" options="{'horizontal': True}"/>
+													<!--													<field name="cn_type" widget="radio" options="{'horizontal': True}"/>-->
+													<field name="cn_type" widget="many2many_checkboxes"/>
 													<field name="other_comments" string="Other"/>
 												</group>
 											</div>
@@ -1344,11 +1345,6 @@
 															<field name="respiratory" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
 															<field name="respiratory_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
-														<label for="abdomen_comment"/>
-														<div>
-															<field name="breast_right" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="breast_right_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
-														</div>
 														<label for="abdomen"/>
 														<div>
 															<field name="abdomen" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
@@ -1369,6 +1365,7 @@
 												</div>
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="gynecological_examination_section">
+												<h4>P/V</h4>
 												<group>
 													<label for="vulva_vagina"/>
 													<div>
@@ -1383,20 +1380,90 @@
 
 													<field name="uterus_position" widget="radio" options="{'horizontal': True}"/>
 													<field name="uterus_mobility" widget="radio" options="{'horizontal': True}"/>
-
+													<h4>P/S</h4>
+													<div/>
 													<label for="gynaecological_examination_ps_selection"/>
 													<div>
 														<field name="gynaecological_examination_ps_selection" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
 														<field name="gynaecological_examination_ps_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
 													</div>
-
+													<h4 style="width:200%;">USG (Abd/Vag)</h4>
+													<div/>
 													<field name="gynaecological_examination_date"/>
 													<field name="gynaecological_examination_lmp"/>
-
-
 													<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
+													<!-- Left Ovary Section -->
+													<field name="gynaecological_left_size_ids" string=" ">
+														<tree editable="bottom" class="col-4">
+															<field name="generic_size_x"/>
+															<field name="generic_size_y"/>
 
+														</tree>
+													</field>
+													<!-- Right Ovary Section -->
 													<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
+													<field name="gynaecological_right_size_ids" string=" ">
+														<tree editable="bottom" class="col-4">
+															<field name="generic_size_x"/>
+															<field name="generic_size_y"/>
+
+														</tree>
+													</field>
+
+													<div/>
+													<div class="d-flex">
+														<div class="d-flex align-items-center bg-light bg-gradient">
+															<div class="col-md-1">
+																Uterus
+															</div>
+															<div class="col-md-11 ">
+																<div class="d-flex">
+																	<label for="gynaecological_uterus_size"/>
+																	<field name="gynaecological_uterus_size"/>
+
+																	<label for="gynaecological_uterus_position"/>
+																	<field name="gynaecological_uterus_position"/>
+
+																	<label for="gynaecological_uterus_normal"/>
+																	<field name="gynaecological_uterus_normal"/>
+
+																	<label for="gynaecological_uterus_fiobrid"/>
+																	<field name="gynaecological_uterus_fiobrid"/>
+
+																</div>
+																<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
+																	<span>Size</span>
+																	<field name="uterus_size_length"/>
+																	<span class="m-2">x</span>
+
+																	<field name="uterus_size_width"/>
+																	<span>cm</span>
+																</div>
+																<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
+																	<div class="col-md-1">
+																		Position
+																	</div>
+																	<div class="d-flex">
+																		<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>
+																	</div>
+																</div>
+																<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
+																	<div class="col-md-1">
+																		Fibroid
+																	</div>
+																	<div class="col-md-3">
+																		<field name="gynaecological_generic_sizes_ids">
+																			<tree editable="bottom">
+																				<field name="generic_size_x"/>
+																				<field name="generic_size_y"/>
+
+																			</tree>
+																		</field>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
 
 
 													<field name="uterus" widget="radio" options="{'horizontal': True}"/>
