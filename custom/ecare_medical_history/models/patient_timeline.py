@@ -217,6 +217,7 @@ class PatientTimeline(models.Model):
             'male_malignancies_ids': ('Malignancies', 'male_other_malignancies'),
             'male_hypertension_ids': ('Hypertension', 'male_other_hypertension'),
             'male_mental_illness_ids': ('Mental Illness', 'male_other_mental_illness'),
+            'male_twins_ids': ('Twins', 'male_other_twins'),
             'male_tuberculosis_ids': ('Tuberculosis', 'male_other_tuberculosis'),
             'male_abnormalities_ids': ('Abnormalities', 'male_other_abnormalities'),
             'male_family_history_other': ('Other History', 'male_family_history_other')
