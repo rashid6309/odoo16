@@ -390,9 +390,21 @@ class PatientTimeline(models.Model):
     @api.onchange('female_lmp')
     def _check_female_lmp_date(self):
         if self.female_lmp:
-            return (DateValidation._date_validation(self.female_lmp))
+            return DateValidation._date_validation(self.female_lmp)
 
     @api.onchange('biological_female_dob')
     def _check_biological_female_dob_date(self):
         if self.biological_female_dob:
-            return (DateValidation._date_validation(self.biological_female_dob))
+            return DateValidation._date_validation(self.biological_female_dob)
+
+    @api.onchange('gynaecological_examination_lmp')
+    def _check_gynaecological_examination_lmp_date(self):
+        if self.gynaecological_examination_lmp:
+            return DateValidation._date_validation(self.gynaecological_examination_lmp)
+
+    @api.onchange('gynaecological_examination_date')
+    def _check_gynaecological_examination_date_date(self):
+        if self.gynaecological_examination_date:
+            return DateValidation._date_validation(self.gynaecological_examination_date)
+
+
