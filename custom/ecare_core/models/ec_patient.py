@@ -249,7 +249,7 @@ class EcarePatient(models.Model):
             today = datetime.date.today()
             mdate = datetime.datetime.strptime(str(patient.married_since), "%Y-%m-%d").date()
             if mdate > today:
-                patient.dob = today
+                patient.married_since = today
                 return {
 
                     'warning': {

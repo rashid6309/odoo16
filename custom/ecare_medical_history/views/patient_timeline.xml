@@ -383,7 +383,7 @@
 													<div class="col-md-1">
 														Uterus
 													</div>
-													<div class="col-md-11 ">
+													<div class="col-md-10 ">
 														<div class="d-flex">
 															<label for="tvs_uterus_tvs_size"/>
 															<field name="tvs_uterus_tvs_size"/>
@@ -513,7 +513,7 @@
 													<div class="col-md-1 o_form_label">
 														Other
 													</div>
-													<div class="col-md-11">
+													<div class="col-md-10">
 
 														<field name="tvs_other_text"/>
 													</div>
@@ -1416,7 +1416,7 @@
 															<div class="col-md-1">
 																Uterus
 															</div>
-															<div class="col-md-11 ">
+															<div class="col-md-10">
 																<div class="d-flex">
 																	<label for="gynaecological_uterus_size"/>
 																	<field name="gynaecological_uterus_size"/>
