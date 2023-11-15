@@ -7,13 +7,13 @@ class MaleMedicalPhysicalExamination(models.Model):
     _name = "ec.male.physical.examination"
     _description = "Patient (Male) Physical Examination"
 
-    male_weight = fields.Integer('Weight')
-    male_height = fields.Integer('Height')
-    male_bmi = fields.Integer('BMI')
-    male_bp_upper = fields.Integer('B.P')
-    male_bp_lower = fields.Integer('B.P')
-    male_pulse = fields.Integer('Pulse')
-    male_temperature = fields.Integer(string='Temperature')
+    male_weight = fields.Float('Weight')
+    male_height = fields.Float('Height')
+    male_bmi = fields.Float('BMI')
+    male_bp_upper = fields.Float('B.P')
+    male_bp_lower = fields.Float('B.P')
+    male_pulse = fields.Float('Pulse')
+    male_temperature = fields.Float(string='Temperature')
     male_thyroid_physical = fields.Selection(selection=StaticMember.THYROID,
                                     string='Thyroid')
     male_thyroid_goitear_length = fields.Selection(selection=StaticMember.GOITEAR_LENGTH,
