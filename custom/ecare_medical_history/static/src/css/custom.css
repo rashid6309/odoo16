@@ -487,3 +487,8 @@ button{
 #previous_treatment_tree_section{
 padding-right:16px;
 }
+
+#genital_examination_section div[aria-atomic="true"]{
+display:flex;
+gap:20px;
+}

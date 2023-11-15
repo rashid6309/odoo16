@@ -174,5 +174,74 @@
             <field name="type">suitable_for</field>
         </record>
 
+        <record model="ec.medical.multi.selection" id="hernia_left">
+            <field name="name">Left</field>
+            <field name="type">hernia</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="hernia_right">
+            <field name="name">Right</field>
+            <field name="type">hernia</field>
+        </record>
+
+         <record model="ec.medical.multi.selection" id="vericocele_left">
+            <field name="name">Left</field>
+            <field name="type">vericocele</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="vericocele_right">
+            <field name="name">Right</field>
+            <field name="type">vericocele</field>
+        </record>
+
+         <record model="ec.medical.multi.selection" id="hydrocele_left">
+            <field name="name">Left</field>
+            <field name="type">hydrocele</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="hydrocele_right">
+            <field name="name">Right</field>
+            <field name="type">hydrocele</field>
+        </record>
+
+         <record model="ec.medical.multi.selection" id="undescended_testis_left">
+            <field name="name">Left</field>
+            <field name="type">undescended_testis</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="undescended_testis_right">
+            <field name="name">Right</field>
+            <field name="type">undescended_testis</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="supermatic_cord_normal_left">
+            <field name="name">Left</field>
+            <field name="type">supermatic_cord_normal</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="supermatic_cord_normal_right">
+            <field name="name">Right</field>
+            <field name="type">supermatic_cord_normal</field>
+        </record>
+
+         <record model="ec.medical.multi.selection" id="supermatic_cord_thick_left">
+            <field name="name">Left</field>
+            <field name="type">supermatic_cord_thick</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="supermatic_cord_thick_right">
+            <field name="name">Right</field>
+            <field name="type">supermatic_cord_thick</field>
+        </record>
+
+         <record model="ec.medical.multi.selection" id="supermatic_cord_tender_left">
+            <field name="name">Left</field>
+            <field name="type">supermatic_cord_tender</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="supermatic_cord_tender_right">
+            <field name="name">Right</field>
+            <field name="type">supermatic_cord_tender</field>
+        </record>
     </data>
 </odoo>
