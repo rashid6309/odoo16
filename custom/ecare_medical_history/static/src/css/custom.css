@@ -483,3 +483,7 @@ button{
     margin-top: revert;
     margin-bottom: revert;
 }
+
+#previous_treatment_tree_section{
+padding-right:16px;
+}
