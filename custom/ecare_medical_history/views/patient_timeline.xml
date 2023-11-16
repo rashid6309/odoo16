@@ -525,7 +525,7 @@
 
 											<!-- TVS section ends -->
 
-											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+											<group>
 												<field name="counseling_and_discussion"/>
 
 												<field name="repeat_diagnosis"/>

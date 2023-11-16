@@ -408,4 +408,7 @@ class PatientTimeline(models.Model):
         if self.gynaecological_examination_date:
             return DateValidation._date_validation(self.gynaecological_examination_date)
 
-
+    @api.onchange('repeat_pregnancy_lmp')
+    def _check_repeat_pregnancy_lmp_date(self):
+        if self.repeat_pregnancy_lmp:
+            return DateValidation._date_validation(self.repeat_pregnancy_lmp)

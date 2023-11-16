@@ -479,7 +479,7 @@ class StaticMember:
         ('ocp', 'OCP'),
         ('injectable', 'Injectable'),
         ('iucd', 'IUCD'),
-    ] 
+    ]
 
     SX_PERFORMANCE = [
         ('adequate', 'Adequate'),
@@ -841,3 +841,47 @@ class StaticMember:
 
     HR_TYPE = [('regular', 'Regular'),
                ('irregular', 'Irregular')]
+
+    AGE_WEEKS = [
+        ('1', '01 week'),
+        ('2', '02 weeks'),
+        ('3', '03 weeks'),
+        ('4', '04 weeks'),
+        ('5', '05 weeks'),
+        ('6', '06 weeks'),
+        ('7', '07 weeks'),
+        ('8', '08 weeks'),
+        ('9', '09 weeks'),
+        ('10', '10 weeks'),
+        ('11', '11 weeks'),
+        ('12', '12 weeks'),
+        ('13', '13 weeks'),
+        ('14', '14 weeks'),
+        ('15', '15 weeks'),
+        ('16', '16 weeks'),
+        ('17', '17 weeks'),
+        ('18', '18 weeks'),
+        ('19', '19 weeks'),
+        ('20', '20 weeks'),
+        ('21', '21 weeks'),
+        ('22', '22 weeks'),
+        ('23', '23 weeks'),
+        ('24', '24 weeks'),
+        ('25', '25 weeks'),
+        ('26', '26 weeks'),
+        ('27', '27 weeks'),
+        ('28', '28 weeks'),
+        ('29', '29 weeks'),
+        ('30', '30 weeks'),
+        ('31', '31 weeks'),
+        ('32', '32 weeks'),
+        ('33', '33 weeks'),
+        ('34', '34 weeks'),
+        ('35', '35 weeks'),
+        ('36', '36 weeks'),
+        ('37', '37 weeks'),
+        ('38', '38 weeks'),
+        ('39', '39 weeks'),
+        ('40', '40 weeks'),
+        ('>40', '>40 weeks'),
+    ]
