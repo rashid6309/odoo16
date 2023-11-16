@@ -561,11 +561,7 @@
 											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
 											collapseDivs.forEach(function(collapseDiv) {
-											if (collapseDiv.classList.contains("show")) {
-											collapseDiv.classList.remove("show");
-											} else {
-											collapseDiv.classList.add("show");
-											}
+											  collapseDiv.classList.add("show");
 											});
 											});
 											});
