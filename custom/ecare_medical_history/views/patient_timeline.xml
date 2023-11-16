@@ -1392,6 +1392,7 @@
 													<field name="gynaecological_examination_date"/>
 													<field name="gynaecological_examination_lmp"/>
 													<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
+													<field name="left_ovary_type" string="Type"/>
 													<!-- Left Ovary Section -->
 													<field name="gynaecological_left_size_ids" string=" ">
 														<tree editable="bottom" class="col-4">
@@ -1402,6 +1403,7 @@
 													</field>
 													<!-- Right Ovary Section -->
 													<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
+													<field name="right_ovary_type"  string="Type"/>
 													<field name="gynaecological_right_size_ids" string=" ">
 														<tree editable="bottom" class="col-4">
 															<field name="generic_size_x"/>
@@ -1411,8 +1413,8 @@
 													</field>
 
 													<div/>
-													<div class="d-flex">
-														<div class="d-flex align-items-center bg-light bg-gradient">
+													<div>
+														<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;">
 															<div class="col-md-1">
 																Uterus
 															</div>
