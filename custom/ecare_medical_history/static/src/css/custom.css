@@ -73,6 +73,7 @@ table {
 .first_consultation_container{
     background: #B4C7E7;
     border-radius: 4px;
+    width: 100%;
 }
 
 .first_consultation_sub_container_female{
@@ -249,6 +250,7 @@ table {
         width: 100%;
     }
 
+
 .divider
 {
     width: 100%;
@@ -404,9 +406,6 @@ color: #2F5597;
     display: inline-table;
 }
 
-button{
-    margin: 1%;
-}
 
 .repeat_kanban_button {
     padding-right: 0.20rem;
@@ -500,3 +499,7 @@ gap:20px;
 .custom_gap {
 gap:20px;
 }
+
+.btn.card-custom-right-button-btn:hover,
+.btn.card-custom-right-button:hover{
+color:#f1f1f1;}
