@@ -543,15 +543,14 @@
 												/>
 											</group>
 
-
-											<div style="text-align-last: right;background: #adb5bd;">
-												<button name="action_save_repeat_consultation_section"
-														type="object"
-														class="btn btn-primary"
-														attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
-														string="Close Consultation"/>
-											</div>
 										</span>
+										<div style="text-align-last: right;background: #adb5bd;">
+											<button name="action_save_repeat_consultation_section"
+													type="object"
+													class="btn btn-primary"
+													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+													string="Close Consultation"/>
+										</div>
 									</div>
 									<section>
 										<script>
