@@ -11,13 +11,13 @@ class MedicalPreviousHistory(models.Model):
     patient_id = fields.Many2one(comodel_name="ec.medical.patient", string="Patient")
 
     type = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_TYPE, default='ovulation_induction_intercourse',
-                            string='Type', required=True)
+                            string='Type')
     consultant = fields.Char(string='Consultant')
     oral_drugs = fields.Char(string='Oral Drugs')
     down_regulation = fields.Char(string='Down Regulation')
     superovulation = fields.Char(string='Superovulation')
     ovarian_response = fields.Char(string='Ovarian Response')
-    outcome = fields.Char(string='Outcome')
+    outcome = fields.Char(string='Outcome', required=True)
 
     def action_open_form_view(self, patient_id, timeline_id=None):
         context = {

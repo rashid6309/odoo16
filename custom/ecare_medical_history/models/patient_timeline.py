@@ -398,6 +398,11 @@ class PatientTimeline(models.Model):
         if self.biological_female_dob:
             return DateValidation._date_validation(self.biological_female_dob)
 
+    @api.onchange('biological_male_dob')
+    def _check_biological_male_dob_date(self):
+        if self.biological_male_dob:
+            return DateValidation._date_validation(self.biological_male_dob)
+
     @api.onchange('gynaecological_examination_lmp')
     def _check_gynaecological_examination_lmp_date(self):
         if self.gynaecological_examination_lmp:
