@@ -246,27 +246,27 @@
                                                         </span>
 
                                                         <span t-if="record.question_one_choice.raw_value == 'no'">
-                                                            <div class="oe_kanban_title d-inline-block">
+                                                            <div class="oe_kanban_title">
                                                                 <field name="question_two_label"/>
                                                                 <h5 style="display: inline-block;"><field name="question_two_choice"/></h5>
                                                             </div>
-                                                            <span  t-if="record.question_two_choice.raw_value == 'yes'">
-                                                                <button name="action_repeat_consultation_open_obstetrics_history"
-                                                                        type="object"
-                                                                        class="btn btn-primary"
-                                                                        string="Obstetrics History"/>
-                                                            </span>
+<!--                                                            <span  t-if="record.question_two_choice.raw_value == 'yes'">-->
+<!--                                                                <button name="action_repeat_consultation_open_obstetrics_history"-->
+<!--                                                                        type="object"-->
+<!--                                                                        class="btn btn-primary"-->
+<!--                                                                        string="Obstetrics History"/>-->
+<!--                                                            </span>-->
 
                                                             <div class="oe_kanban_title d-inline-block">
                                                                 <field name="question_three_label"/>
                                                                 <h5 style="display: inline-block;"><field name="question_three_choice"/></h5>
                                                             </div>
-                                                            <span  t-if="record.question_three_choice.raw_value == 'yes'">
-                                                                <button name="action_repeat_consultation_open_previous_treatment"
-                                                                        type="object"
-                                                                        class="btn btn-primary"
-                                                                        string="Previous treatment"/>
-                                                            </span>
+<!--                                                            <span  t-if="record.question_three_choice.raw_value == 'yes'">-->
+<!--                                                                <button name="action_repeat_consultation_open_previous_treatment"-->
+<!--                                                                        type="object"-->
+<!--                                                                        class="btn btn-primary"-->
+<!--                                                                        string="Previous treatment"/>-->
+<!--                                                            </span>-->
 
                                                             <div class="o_group row align-items-start">
                                                                 <div class="o_inner_group grid col-lg-12 text-900">
