@@ -391,16 +391,16 @@
                                                        options="{'horizontal': True}"/>
                                             </group>
 
-											<!-- TVS Section -->
-											<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
-												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1">
-														Uterus
-													</div>
-													<div class="col-md-10 ">
-														<div class="d-flex">
-															<label for="tvs_uterus_tvs_size"/>
-															<field name="tvs_uterus_tvs_size"/>
+                                            <!-- TVS Section -->
+                                            <div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+                                                <div class="d-flex align-items-center bg-light bg-gradient">
+                                                    <div class="col-md-1">
+                                                        Uterus
+                                                    </div>
+                                                    <div class="col-md-10 ">
+                                                        <div class="d-flex">
+                                                            <label for="tvs_uterus_tvs_size"/>
+                                                            <field name="tvs_uterus_tvs_size"/>
 
                                                             <label for="tvs_uterus_tvs_position"/>
                                                             <field name="tvs_uterus_tvs_position"/>
@@ -528,11 +528,11 @@
                                                     </div>
                                                 </div>
 
-												<div class="d-flex">
-													<div class="col-md-1 o_form_label">
-														Other
-													</div>
-													<div class="col-md-10">
+                                                <div class="d-flex">
+                                                    <div class="col-md-1 o_form_label">
+                                                        Other
+                                                    </div>
+                                                    <div class="col-md-10">
 
                                                         <field name="tvs_other_text"/>
                                                     </div>
@@ -544,8 +544,8 @@
 
                                             <!-- TVS section ends -->
 
-											<group>
-												<field name="counseling_and_discussion"/>
+                                            <group>
+                                                <field name="counseling_and_discussion"/>
 
                                                 <field name="repeat_diagnosis"/>
                                                 <field name="repeat_investigations_ids" widget="many2many_tags"
@@ -563,14 +563,16 @@
                                             </group>
 
 
-                                            <div style="text-align-last: right;background: #adb5bd;">
-                                                <button name="action_save_repeat_consultation_section"
-                                                        type="object"
-                                                        class="btn btn-primary"
-                                                        attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
-                                                        string="Close Consultation"/>
-                                            </div>
                                         </span>
+
+                                        <div style="text-align-last: right;background: #adb5bd;">
+                                            <button name="action_save_repeat_consultation_section"
+                                                    type="object"
+                                                    class="btn btn-primary"
+                                                    attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+                                                    string="Close Consultation"/>
+                                        </div>
+
                                     </div>
                                     <section>
                                         <script>
@@ -1728,16 +1730,16 @@
                                                         </tree>
                                                     </field>
 
-													<div/>
-													<div class="d-flex">
-														<div class="d-flex align-items-center bg-light bg-gradient">
-															<div class="col-md-1">
-																Uterus
-															</div>
-															<div class="col-md-10">
-																<div class="d-flex">
-																	<label for="gynaecological_uterus_size"/>
-																	<field name="gynaecological_uterus_size"/>
+                                                    <div/>
+                                                    <div class="d-flex">
+                                                        <div class="d-flex align-items-center bg-light bg-gradient">
+                                                            <div class="col-md-1">
+                                                                Uterus
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <div class="d-flex">
+                                                                    <label for="gynaecological_uterus_size"/>
+                                                                    <field name="gynaecological_uterus_size"/>
 
                                                                     <label for="gynaecological_uterus_position"/>
                                                                     <field name="gynaecological_uterus_position"/>
@@ -2057,105 +2059,105 @@
                                                 </div>
                                             </div>
 
-											<div class="card-block mb-5 pl-4 collapse" id="male_family_history_section">
-												<section>
-													<div class="row">
-														<div class="col-12 family-history">
-															<div class="bd-example" data-example-id="">
-																<div id="accordion" role="tablist" aria-multiselectable="true">
-																	<div class="card">
-																		<div class="card-header" role="tab" id="male_diabetesOne">
-																			<div class="mb-0 row">
-																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseDiabetes" id="male_diabetes" aria-expanded="false"
-																				   aria-controls="male_collapseDiabetes" class="collapsed colla mb-0 col-11">
-																					<h3>Diabetes</h3>
-																				</a>
-																			</div>
-																		</div>
-																		<div style="margin-left:17px; margin-top:10px"
-																			 id="male_collapseDiabetes"
-																			 class="collapse"
-																			 role="tabpanel"
-																			 aria-labelledby="male_diabetesOne"
-																			 aria-expanded="false">
-																			<div class="card-block">
-																				<field name="male_diabetes_ids" widget="many2many_checkboxes"/>
-																				<field name="male_other_diabetes" placeholder="Other..."/>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="card">
-																		<div class="card-header" role="tab" id="male_malignanciesOne">
-																			<div class="mb-0 row">
-																				<a data-bs-toggle="collapse" role="button" data-bs-parent="#accordion" href="#male_collapseMalignancies" id="male_malignancies" aria-expanded="false"
-																				   aria-controls="male_collapseMalignancies" class="collapsed colla mb-0 col-11">
-																					<h3>
-																						Malignancies
-																					</h3>
-																				</a>
-																			</div>
-																		</div>
-																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
-																			<div class="card-block">
-																				<field name="male_malignancies_ids"  widget="many2many_checkboxes" />
-																				<field name="male_other_malignancies" placeholder="Other..."/>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="card">
-																		<div class="card-header" role="tab" id="hypertensionOne">
-																			<div class="mb-0 row">
-																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseHypertension" id="male_hypertension" aria-expanded="false"
-																				   aria-controls="male_collapseHypertension" class="collapsed colla mb-0 col-11">
-																					<h3>
-																						Hypertension
-																					</h3>
-																				</a>
-																			</div>
-																		</div>
-																		<div style="margin-left:17px; margin-top:10px" id="male_collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
-																			<div class="card-block">
-																				<field name="male_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_hypertension" placeholder="Other..."/>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="card">
-																		<div class="card-header" role="tab" id="male_mental_illnessOne">
-																			<div class="mb-0 row">
-																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseMental_illness" id="male_mental_illness" aria-expanded="false"
-																				   aria-controls="male_collapseMental_illness" class="collapsed colla mb-0 col-11">
-																					<h3>
-																						Mental Illnesses
-																					</h3>
-																				</a>
-																			</div>
-																		</div>
-																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
-																			<div class="card-block">
-																				<field name="male_mental_illness_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_mental_illness" placeholder="Other..."/>
-																			</div>
-																		</div>
-																	</div>
+                                            <div class="card-block mb-5 pl-4 collapse" id="male_family_history_section">
+                                                <section>
+                                                    <div class="row">
+                                                        <div class="col-12 family-history">
+                                                            <div class="bd-example" data-example-id="">
+                                                                <div id="accordion" role="tablist" aria-multiselectable="true">
+                                                                    <div class="card">
+                                                                        <div class="card-header" role="tab" id="male_diabetesOne">
+                                                                            <div class="mb-0 row">
+                                                                                <a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseDiabetes" id="male_diabetes" aria-expanded="false"
+                                                                                   aria-controls="male_collapseDiabetes" class="collapsed colla mb-0 col-11">
+                                                                                    <h3>Diabetes</h3>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div style="margin-left:17px; margin-top:10px"
+                                                                             id="male_collapseDiabetes"
+                                                                             class="collapse"
+                                                                             role="tabpanel"
+                                                                             aria-labelledby="male_diabetesOne"
+                                                                             aria-expanded="false">
+                                                                            <div class="card-block">
+                                                                                <field name="male_diabetes_ids" widget="many2many_checkboxes"/>
+                                                                                <field name="male_other_diabetes" placeholder="Other..."/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card">
+                                                                        <div class="card-header" role="tab" id="male_malignanciesOne">
+                                                                            <div class="mb-0 row">
+                                                                                <a data-bs-toggle="collapse" role="button" data-bs-parent="#accordion" href="#male_collapseMalignancies" id="male_malignancies" aria-expanded="false"
+                                                                                   aria-controls="male_collapseMalignancies" class="collapsed colla mb-0 col-11">
+                                                                                    <h3>
+                                                                                        Malignancies
+                                                                                    </h3>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div style="margin-left:17px; margin-top:10px" id="male_collapseMalignancies" class="collapse" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
+                                                                            <div class="card-block">
+                                                                                <field name="male_malignancies_ids"  widget="many2many_checkboxes" />
+                                                                                <field name="male_other_malignancies" placeholder="Other..."/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card">
+                                                                        <div class="card-header" role="tab" id="hypertensionOne">
+                                                                            <div class="mb-0 row">
+                                                                                <a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseHypertension" id="male_hypertension" aria-expanded="false"
+                                                                                   aria-controls="male_collapseHypertension" class="collapsed colla mb-0 col-11">
+                                                                                    <h3>
+                                                                                        Hypertension
+                                                                                    </h3>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div style="margin-left:17px; margin-top:10px" id="male_collapseHypertension" class="collapse" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
+                                                                            <div class="card-block">
+                                                                                <field name="male_hypertension_ids" widget="many2many_checkboxes" />
+                                                                                <field name="male_other_hypertension" placeholder="Other..."/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card">
+                                                                        <div class="card-header" role="tab" id="male_mental_illnessOne">
+                                                                            <div class="mb-0 row">
+                                                                                <a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseMental_illness" id="male_mental_illness" aria-expanded="false"
+                                                                                   aria-controls="male_collapseMental_illness" class="collapsed colla mb-0 col-11">
+                                                                                    <h3>
+                                                                                        Mental Illnesses
+                                                                                    </h3>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div style="margin-left:17px; margin-top:10px" id="male_collapseMental_illness" class="collapse" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
+                                                                            <div class="card-block">
+                                                                                <field name="male_mental_illness_ids" widget="many2many_checkboxes" />
+                                                                                <field name="male_other_mental_illness" placeholder="Other..."/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-																	<div class="card">
-																		<div class="card-header" role="tab" id="male_twinsOne">
-																			<div class="mb-0 row">
-																				<a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseTwins" id="twins" aria-expanded="false" aria-controls="male_collapseTwins" class="collapsed colla mb-0 col-11">
-																					<h3>
-																						Twins
-																					</h3>
-																				</a>
-																			</div>
-																		</div>
-																		<div style="margin-left:17px; margin-top:10px" id="male_collapseTwins" class="collapse" role="tabpanel" aria-labelledby="male_twinsOne" aria-expanded="false">
-																			<div class="card-block">
-																				<field name="male_twins_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_twins" placeholder="Other..."/>
-																			</div>
-																		</div>
-																	</div>
+                                                                    <div class="card">
+                                                                        <div class="card-header" role="tab" id="male_twinsOne">
+                                                                            <div class="mb-0 row">
+                                                                                <a data-bs-toggle="collapse"  role="button" data-bs-parent="#accordion" href="#male_collapseTwins" id="twins" aria-expanded="false" aria-controls="male_collapseTwins" class="collapsed colla mb-0 col-11">
+                                                                                    <h3>
+                                                                                        Twins
+                                                                                    </h3>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div style="margin-left:17px; margin-top:10px" id="male_collapseTwins" class="collapse" role="tabpanel" aria-labelledby="male_twinsOne" aria-expanded="false">
+                                                                            <div class="card-block">
+                                                                                <field name="male_twins_ids" widget="many2many_checkboxes" />
+                                                                                <field name="male_other_twins" placeholder="Other..."/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
                                                                     <div class="card">
                                                                         <div class="card-header" role="tab"
