@@ -11,6 +11,7 @@
                             <field name="repeat_pregnancy_lmp"/>
                             <field name="repeat_pregnancy_gestational_age"/>
                             <field name="repeat_pregnancy_conception"/>
+                            <field name="repeat_pregnancy_embryos_replaced"/>
                         </group>
                         <group string="Pregnancy Status:">
                             <field name="repeat_pregnancy_gestation_type"/>

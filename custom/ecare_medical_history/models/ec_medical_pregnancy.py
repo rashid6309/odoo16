@@ -17,6 +17,7 @@ class PregnancyForm(models.Model):
 
     repeat_pregnancy_conception = fields.Selection(selection=StaticMember.CONCEPTION_TYPE,
                                                    string='Conception')
+    repeat_pregnancy_embryos_replaced = fields.Integer(string="In case of IVF/ICSI; number of embryos replaced: ")
 
     repeat_pregnancy_gestation_type = fields.Selection(StaticMember.GESTATION_TYPE, string="Type of Gestation")
     repeat_pregnancy_other_info = fields.Char(string="Other")
