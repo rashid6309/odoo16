@@ -73,6 +73,7 @@ table {
 .first_consultation_container{
     background: #B4C7E7;
     border-radius: 4px;
+    width: 100%;
 }
 
 .first_consultation_sub_container_female{
@@ -404,9 +405,6 @@ color: #2F5597;
     display: inline-table;
 }
 
-button{
-    margin: 1%;
-}
 
 .repeat_kanban_button {
     padding-right: 0.20rem;
@@ -462,8 +460,7 @@ button{
 }
 
 .table-responsive > table > thead > tr > th{
-    width: 11.88% !important;
-    max-width:fit-content !important;
+    max-width:100% !important;
     max-height: auto !important;
     height: auto !important;
 }
@@ -485,10 +482,24 @@ button{
 }
 
 #previous_treatment_tree_section{
-padding-right:16px;
+    padding-right:16px;
 }
 
 #genital_examination_section div[aria-atomic="true"]{
-display:flex;
-gap:20px;
+    display:flex;
+    gap:20px;
+}
+
+.custom_gap div[aria-atomic="true"]{
+    display:flex;
+    gap:20px;
+}
+
+.custom_gap {
+    gap:20px;
+}
+
+.btn.card-custom-right-button-btn:hover,
+.btn.card-custom-right-button:hover{
+    color:#f1f1f1;
 }
