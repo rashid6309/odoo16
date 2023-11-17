@@ -394,7 +394,7 @@ class StaticMember:
                    ('other', 'Other'),
                    ]
 
-    UTERUS_MOBILITY = [('mobile', 'Mobile'),
+    UTERUS_MOTILITY = [('mobile', 'Mobile'),
                        ('Restricted', 'Restricted'),
                        ]
 
@@ -582,7 +582,7 @@ class StaticMember:
         ('normal', 'Normal'),
     ]
 
-    SEMEN_MOBILITY = [
+    SEMEN_MOTILITY = [
         ('01', '01'),
         ('02', '02'),
         ('03', '03'),
