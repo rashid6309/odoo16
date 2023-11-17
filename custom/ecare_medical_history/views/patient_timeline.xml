@@ -1912,7 +1912,7 @@
 													<field name="supermatic_cord_tender_ids" widget="many2many_checkboxes" options="{'horizontal': True}"/>
 													<field name="testicular_size_right" widget="radio" options="{'horizontal': True}"/>
 													<field name="testicular_size_left" widget="radio" options="{'horizontal': True}"/>
-													<field name="testicular_size_mobility" widget="radio" options="{'horizontal': True}"/>
+													<field name="testicular_size_motility" widget="radio" options="{'horizontal': True}"/>
 													<field name="ec_genital_examination_comment"/>
 												</group>
 											</div>
