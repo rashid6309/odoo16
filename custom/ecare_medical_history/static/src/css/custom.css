@@ -7,7 +7,7 @@
 #repeat_consultation_section .o_form_label
 {
    width: 100px ;
-   text-align : right !important;
+   text-align : right;
 }
 
 #repeat_consultation_section .form-check-label{
@@ -403,6 +403,7 @@ color: #2F5597;
 
 .o_field_many2many_checkboxes div {
     display: inline-table;
+    margin-right: 0.5em;
 }
 
 
@@ -503,3 +504,13 @@ color: #2F5597;
 .btn.card-custom-right-button:hover{
     color:#f1f1f1;
 }
+
+/* aligns label on radio button when wanting to add checkbox to right side*/
+label.custom-text-align{
+    text-align: left !important;
+}
+
+label[for="cn_type"]{
+    font-weight: bold !important;
+}
+

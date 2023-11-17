@@ -46,13 +46,13 @@ class SemenAnalysis(models.Model):
     viscosity = fields.Selection(selection=StaticMember.SEMEN_VISCOSITY, string='Viscosity')
     volume = fields.Char(string='Volume')
     total_count = fields.Char(string='Total Count')
-    mobility = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Mobility')
+    motility = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Motility')
 
-    progression_f_forward = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='F Forward')
-    progression_s_forward = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='S Forward')
-    progression_lateral = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Lateral')
-    progression_non_progressive = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Non Progressive')
-    progression_dead = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Dead')
+    progression_f_forward = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='F Forward')
+    progression_s_forward = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='S Forward')
+    progression_lateral = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Lateral')
+    progression_non_progressive = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Non Progressive')
+    progression_dead = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Dead')
 
     # progression = fields.Selection([
     #     ('no_progression', 'No Progression'),
@@ -71,20 +71,20 @@ class SemenAnalysis(models.Model):
     abnormal = fields.Selection(selection=StaticMember.SEMEN_MORPHOLOGY, string="Abnormal")
 
     # Defects
-    cephalic = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Cephalic')
-    mid_piece = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Mid Piece')
-    tail = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Tail')
-    acrosomal_cap = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Acrosomal Cap')
-    vacoules = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Vacoules')
+    cephalic = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Cephalic')
+    mid_piece = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Mid Piece')
+    tail = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Tail')
+    acrosomal_cap = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Acrosomal Cap')
+    vacoules = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Vacoules')
 
     method = fields.Selection(selection=StaticMember.SEMEN_METHOD, string="Method")
     prep_conc = fields.Char(string='Prep Conc')
 
-    mobility_percentage = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='%Mobility')
+    motility_percentage = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='%Motility')
     progression = fields.Char(string='Progression')
 
-    after_24_hrs_mobility_percentage = fields.Selection(selection=StaticMember.SEMEN_MOBILITY,
-                                                        string='After 24hrs %Mobility')
+    after_24_hrs_motility_percentage = fields.Selection(selection=StaticMember.SEMEN_MOTILITY,
+                                                        string='After 24hrs %Motility')
     after_24_hrs_progression = fields.Char(string='After 24hrs Progression')
 
     comments = fields.Text(string='Comments')

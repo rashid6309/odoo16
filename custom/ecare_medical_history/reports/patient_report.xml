@@ -63,8 +63,8 @@
                                 <div style="flex:6;"><span t-field="o.total_count"/><span> million/ml (Range: >20)</span></div>
                             </div>
                             <div style="display:flex; margin-bottom:15px;">
-                                <div style="flex:2;">Mobility:</div>
-                                <div style="flex:6;"><span t-field="o.mobility"/><span> % (Range: >40)</span></div>
+                                <div style="flex:2;">Motility:</div>
+                                <div style="flex:6;"><span t-field="o.motility"/><span> % (Range: >40)</span></div>
                             </div>
                             <div style="margin-bottom:15px;"><h3>Microscopic</h3></div>
                             <div style="display:flex; margin-bottom:15px;">
@@ -96,15 +96,15 @@
                                 <div style="flex:6;"><span t-field="o.prep_conc"/><span> million/ejaculate    (Normal 20 x 10<sup>6</sup>/Ejaculate)</span></div>
                             </div>
                             <div style="display:flex; margin-bottom:15px;">
-                                <div style="flex:2;">% Mobility:</div>
-                                <div style="flex:2;"><span t-field="o.mobility_percentage"/><span> % (>75%)</span></div>
+                                <div style="flex:2;">% Motility:</div>
+                                <div style="flex:2;"><span t-field="o.motility_percentage"/><span> % (>75%)</span></div>
                                 <div style="flex:2;">Progression:</div>
                                 <div style="flex:2;"><span t-field="o.progression"/></div>
                             </div>
                             <div style="margin-bottom:15px;"><b>After 24hrs</b></div>
                             <div style="display:flex; margin-bottom:15px;">
-                                <div style="flex:2;">% Mobility:</div>
-                                <div style="flex:2;"><span t-field="o.after_24_hrs_mobility_percentage"/><span> % (>50%)</span></div>
+                                <div style="flex:2;">% Motility:</div>
+                                <div style="flex:2;"><span t-field="o.after_24_hrs_motility_percentage"/><span> % (>50%)</span></div>
                                 <div style="flex:2;">Progression:</div>
                                 <div style="flex:2;"><span t-field="o.after_24_hrs_progression"/></div>
                             </div>
@@ -117,13 +117,24 @@
                                 <div t-foreach="o.suitable_for_ids" t-as="l" style="flex:1;">
                                     <span t-field="l.name"/></div>
                             </div>
-                            <div style="display:flex; margin-bottom:15px;">
+                            <div style="display:flex;">
                                 <div style="flex:2;"><b>Sperm Cryopreservation:</b></div>
-                                <div style="flex:6;"><span>Value not available</span></div>
+                                <div style="flex:2;"><span>Consented:</span></div>
+                                <div style="flex:2;"><span t-field="o.sperm_cryopreservation_consented"/></div>
+                            </div>
+                              <div style="display:flex;">
+                                <div style="flex:2;"></div>
+                                <div style="flex:2;"><span>No. straws:</span></div>
+                                <div style="flex:2;"><span t-field="o.sperm_cryopreservation_strawe"/></div>
+                            </div>
+                              <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"></div>
+                                <div style="flex:2;"><span>Storage Code:</span></div>
+                                <div style="flex:2;"><span t-field="o.sperm_cryopreservation_code"/></div>
                             </div>
                             <div style="display:flex; margin-bottom:15px;">
                                 <div style="flex:2;"><b>Semenologist:</b></div>
-                                <div style="flex:6;"><span>Value not available</span></div>
+                                <div style="flex:6;"><span t-field="o.seminologist"/></div>
                             </div>
                         </div>
                     </div>

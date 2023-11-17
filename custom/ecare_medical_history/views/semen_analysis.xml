@@ -108,11 +108,11 @@
 
                     <div class="d-flex ">
                         <div class="col-md-1" style=" width: 13%;">
-                            <label for="mobility"/>
+                            <label for="motility"/>
                         </div>
                         <div class="d-flex">
                             <div>
-                                <field name="mobility"/>
+                                <field name="motility"/>
                             </div>
                             <div>
                                 <div>% Range: >40</div>
@@ -263,11 +263,11 @@
 
                     <div class="d-flex ">
                         <div class="col-md-2">
-                            <label for="mobility_percentage"/>
+                            <label for="motility_percentage"/>
                         </div>
                         <div class="d-flex">
                             <div>
-                                <field name="mobility_percentage"/>
+                                <field name="motility_percentage"/>
                             </div>
                             <div>
                                 <div>%</div>
@@ -288,11 +288,11 @@
 
                     <div class="d-flex ">
                         <div class="col-md-2">
-                            <label for="after_24_hrs_mobility_percentage"/>
+                            <label for="after_24_hrs_motility_percentage"/>
                         </div>
                         <div class="d-flex">
                             <div>
-                                <field name="after_24_hrs_mobility_percentage"/>
+                                <field name="after_24_hrs_motility_percentage"/>
                             </div>
                             <div>
                                 <div>%</div>
@@ -325,16 +325,15 @@
                         <field name="suitable_for_ids" widget="many2many_checkboxes"/>
                     </group>
 
-
                     <div class="d-flex flex-column col-lg-8">
                         <div class="d-flex align-items-center bg-light bg-gradient">
                             <div class="col-md-2">
                                 Sperm Cryopreservation
                             </div>
                             <div class="col-md-11 ">
-                                <div class="d-flex">
+                                <div class="d-flex align-items-center">
+                                    <field class="mb-0" name="sperm_cryopreservation_consented"/>
                                     <label for="sperm_cryopreservation_consented" string="Consented"/>
-                                    <field name="sperm_cryopreservation_consented"/>
                                     <label for="sperm_cryopreservation_strawe" string="No. Strawe"/>
                                     <field name="sperm_cryopreservation_strawe"/>
                                     <label for="sperm_cryopreservation_code" string="Storage Code"/>
