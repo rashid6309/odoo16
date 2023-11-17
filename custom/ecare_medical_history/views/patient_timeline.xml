@@ -383,19 +383,19 @@
 													<div class="col-md-1">
 														Uterus
 													</div>
-													<div class="col-md-10 ">
-														<div class="d-flex">
-															<label for="tvs_uterus_tvs_size"/>
+													<div class="col-md-10">
+														<div class="d-flex custom-checkbox-alignment-boolean">
 															<field name="tvs_uterus_tvs_size"/>
+															<label class="custom-text-align" for="tvs_uterus_tvs_size"/>
 
-															<label for="tvs_uterus_tvs_position"/>
 															<field name="tvs_uterus_tvs_position"/>
+															<label class="custom-text-align" for="tvs_uterus_tvs_position"/>
 
-															<label for="tvs_uterus_tvs_normal"/>
 															<field name="tvs_uterus_tvs_normal"/>
+															<label class="custom-text-align" for="tvs_uterus_tvs_normal"/>
 
-															<label for="tvs_uterus_tvs_fiobrid"/>
 															<field name="tvs_uterus_tvs_fiobrid"/>
+															<label class="custom-text-align" for="tvs_uterus_tvs_fiobrid"/>
 
 														</div>
 														<div class="d-flex"
@@ -408,7 +408,7 @@
 															<span>cm</span>
 														</div>
 														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
-															<div class="col-md-1">
+															<div class="col-md-1" style="font-weight:bold;">
 																Position
 															</div>
 															<div class="d-flex">
