@@ -208,7 +208,11 @@
                         </tr>
                         <tr>
                             <td style="padding-top:1%;"><b>Suitable For:</b></td>
-                            <td><span t-field="o.suitable_for_ids.name"/></td>
+                            <td>
+                                <t t-foreach="o.suitable_for_ids" t-as="item">
+                                    <span style="margin-right:5%;"><t t-esc="item.name"/></span>
+                                </t>
+                            </td>
                         </tr>
                         <tr>
                             <td style="padding-top:1%;width:30%;vertical-align: text-top;"><b>Sperm Cryopreservation:</b></td>

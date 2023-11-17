@@ -1,6 +1,7 @@
 # Independent modules
 from . import ec_medical_multi_selection
 from . import ec_medical_health_centers
+from . import ec_medical_lab
 from . import investigation
 from . import treatment_list
 from . import factors

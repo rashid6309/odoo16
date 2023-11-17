@@ -19,7 +19,7 @@
                             <field name="semen_patient_id"/>
                             <field name="date"/>
                             <field name="lab_number"/>
-                            <field name="lab_name"/>
+                            <field name="lab_name" options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
                             <field name="preparation_ids"  widget="many2many_checkboxes"/>
                             <field name="sample_produced_at_lab" widget="radio" options="{'horizontal': True}"/>
                             <field name="repeat_semen_analysis" widget="radio" options="{'horizontal': True}"/>
@@ -130,22 +130,27 @@
                                 <div class="d-flex">
                                     <label for="progression_f_forward"/>
                                     <field name="progression_f_forward"/>
+                                    <span>%</span>
                                 </div>
                                 <div class="d-flex">
                                     <label for="progression_s_forward"/>
                                     <field name="progression_s_forward"/>
+                                    <span>%</span>
                                 </div>
                                 <div class="d-flex">
                                     <label for="progression_lateral"/>
                                     <field name="progression_lateral"/>
+                                    <span>%</span>
                                 </div>
                                 <div class="d-flex">
                                     <label for="progression_non_progressive"/>
                                     <field name="progression_non_progressive"/>
+                                    <span>%</span>
                                 </div>
                                 <div class="d-flex">
                                     <label for="progression_dead"/>
                                     <field name="progression_dead"/>
+                                    <span>%</span>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +178,24 @@
                             <field name="debris" widget="radio" options="{'horizontal': True}"/>
                             <field name="bacteria" widget="radio" options="{'horizontal': True}"/>
                             <!--                            Unit is missing for below field will add later-->
-                            <field name="epi_cells_immature_cells"/>
+                        </group>
+                    </group>
+                    <div class="d-flex ">
+                        <div class="col-md-1">
+                            <label for="epi_cells_immature_cells"/>
+                        </div>
+                        <div class="d-flex">
+                            <div>
+                                <field name="epi_cells_immature_cells"/>
+                            </div>
+                            <div>
+                                <div>/HPF</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <group>
+                        <group>
                             <field name="other_observation"/>
                         </group>
                     </group>
@@ -192,22 +214,27 @@
                                     <div class="d-flex">
                                         <label for="cephalic"/>
                                         <field name="cephalic"/>
+                                        <span>%</span>
                                     </div>
                                     <div class="d-flex">
                                         <label for="mid_piece"/>
                                         <field name="mid_piece"/>
+                                        <span>%</span>
                                     </div>
                                     <div class="d-flex">
                                         <label for="tail"/>
                                         <field name="tail"/>
+                                        <span>%</span>
                                     </div>
                                     <div class="d-flex">
                                         <label for="acrosomal_cap"/>
                                         <field name="acrosomal_cap"/>
+                                        <span>%</span>
                                     </div>
                                     <div class="d-flex">
                                         <label for="vacoules"/>
                                         <field name="vacoules"/>
+                                        <span>%</span>
                                     </div>
                                 </div>
                             </div>
@@ -217,15 +244,87 @@
                     <group string="Preparation Method">
                         <group>
                             <field name="method"/>
-                            <field name="prep_conc"/>
-                            <field name="mobility_percentage"/>
-                            <field name="progression"/>
-                            <field name="after_24_hrs_mobility_percentage"/>
-                            <field name="after_24_hrs_progression"/>
-                            <field name="comments"/>
-                            <fied name="suitable_for_ids" widget="many2many_checkboxes"/>
                         </group>
                     </group>
+
+                    <div class="d-flex ">
+                        <div class="col-md-2">
+                            <label for="prep_conc"/>
+                        </div>
+                        <div class="d-flex">
+                            <div>
+                                <field name="prep_conc"/>
+                            </div>
+                            <div>
+                                <div>million/ejaculate </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex ">
+                        <div class="col-md-2">
+                            <label for="mobility_percentage"/>
+                        </div>
+                        <div class="d-flex">
+                            <div>
+                                <field name="mobility_percentage"/>
+                            </div>
+                            <div>
+                                <div>%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex ">
+                        <div class="col-md-2">
+                            <label for="progression"/>
+                        </div>
+                        <div class="d-progression">
+                            <div>
+                                <field name="progression"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex ">
+                        <div class="col-md-2">
+                            <label for="after_24_hrs_mobility_percentage"/>
+                        </div>
+                        <div class="d-flex">
+                            <div>
+                                <field name="after_24_hrs_mobility_percentage"/>
+                            </div>
+                            <div>
+                                <div>%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex ">
+                        <div class="col-md-2">
+                            <label for="after_24_hrs_progression"/>
+                        </div>
+                        <div class="d-flex">
+                            <div>
+                                <field name="after_24_hrs_progression"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex ">
+                        <div class="col-md-2">
+                            <label for="comments"/>
+                        </div>
+                        <div class="d-flex">
+                            <div>
+                                <field name="comments"/>
+                            </div>
+                        </div>
+                    </div>
+                    <group>
+                        <field name="suitable_for_ids" widget="many2many_checkboxes"/>
+                    </group>
+
 
                     <div class="d-flex flex-column col-lg-8">
                         <div class="d-flex align-items-center bg-light bg-gradient">

@@ -542,17 +542,6 @@ class StaticMember:
         ('others', "Others")
     ]
 
-    MULTI_SELECTION_FIELD = [
-        ('lining', 'Lining'),
-        ('complications', 'Complications'),
-        ('complains', 'Complains'),
-        ('dysmenorrhoea', 'Dysmenorrhoea'),
-        ('position', 'Position'),
-        ('preparation', 'Preparation'),
-        ('suitable_for', 'Suitable For'),
-        ('cn_type', 'Contraception'),
-    ]
-
     CHOICE_YES_NO_NA = [
         ('yes', 'Yes'),
         ('no', 'No'),

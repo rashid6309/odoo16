@@ -2,7 +2,6 @@ from odoo import api, fields, models
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
-
 class PregnancyForm(models.Model):
     _name = 'ec.medical.pregnancy.data'
     _description = 'Pregnancy Data'

@@ -1,12 +1,13 @@
 from odoo import api, models, fields, _
 
+from odoo.addons.ecare_medical_history.utils.date_validation import DateValidation
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
 class SemenAnalysis(models.Model):
     _name = 'ec.semen.analysis'
     _description = 'Semen Analysis'
-    _rec_id = "semen_patient_id"
+    _rec_name = "semen_patient_id"
 
     semen_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                        required=True,
@@ -14,7 +15,7 @@ class SemenAnalysis(models.Model):
 
     date = fields.Date(string='Date')
     lab_number = fields.Char(string='Lab Number')
-    lab_name = fields.Char(string='Lab Name')
+    lab_name = fields.Many2one(comodel_name="ec.medical.labs", string='Lab Name')
 
     preparation_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                        relation='semen_analysis_multi_selection_complains',
@@ -91,7 +92,7 @@ class SemenAnalysis(models.Model):
     # suitable_for
 
     suitable_for_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
-                                        relation='semen_analysis_multi_selection_suitable_for',
+                                        relation='semen_analysis_multi_selection_suitable_for_rel',
                                         column1='semen_id',
                                         column2='multi_selection_id',
                                         string='Suitable For', domain="[('type', '=', 'suitable_for')]")
@@ -109,3 +110,8 @@ class SemenAnalysis(models.Model):
 
     def print_patient_report(self):
         return self.env.ref('ecare_medical_history.ec_patient_report').report_action(self)
+
+    @api.onchange('date')
+    def _check_semen_date(self):
+        if self.date:
+            return DateValidation._date_validation(self.date)

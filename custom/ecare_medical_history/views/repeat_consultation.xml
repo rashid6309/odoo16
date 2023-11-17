@@ -29,7 +29,7 @@
                                                    type="object"
                                                    string="Edit"
                                                    class="repeat_kanban_button"
-                                                   onclick="scrollToElement('repeat_consultation_section')">
+                                                   onclick="scrollToElement('repeat_consultation_section_link')">
                                                     <i class="fa fa-edit fa-2x" aria-hidden="true"/>
                                                 </a>
 

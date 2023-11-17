@@ -25,6 +25,7 @@
 
         # Views - Independent
         'views/health_center.xml',
+        'views/medical_labs.xml',
         'views/investigation.xml',
         'views/factors.xml',
         'views/treatment_list.xml',
