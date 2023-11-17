@@ -510,3 +510,7 @@ label.custom-text-align{
     text-align: left !important;
 }
 
+label[for="cn_type"]{
+    font-weight: bold !important;
+}
+

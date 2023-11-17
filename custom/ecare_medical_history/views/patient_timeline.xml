@@ -264,14 +264,14 @@
 
 											<div class="d-flex" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-												<label for="inspection_only"/>
 												<field name="inspection_only"/>
+												<label class="custom-text-align" for="inspection_only"/>
 
-												<label for="p_v_only"/>
 												<field name="p_v_only"/>
+												<label class="custom-text-align" for="p_v_only"/>
 
-												<label for="p_s_only"/>
 												<field name="p_s_only"/>
+												<label class="custom-text-align" for="p_s_only"/>
 											</div>
 
 											<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
@@ -304,34 +304,36 @@
 												</div>
 												<div class="d-flex">
 
-													<label for="repeat_hvs"
-														   attrs="{'invisible': [('inspection_only', '!=', True),
-													   ('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)]}"
-													/>
 													<field name="repeat_hvs"
 														   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)]}"
 													/>
-
-													<label for="repeat_endocervical"
-														   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+													<label class="custom-text-align" for="repeat_hvs"
+														   attrs="{'invisible': [('inspection_only', '!=', True),
+													   ('p_v_only', '!=', True),
+													   ('p_s_only', '!=', True)]}"
 													/>
+
+
 													<field name="repeat_endocervical"
 														   attrs="{'invisible': [('p_s_only', '!=', True)]}"
 													/>
+													<label class="custom-text-align" for="repeat_endocervical"
+														   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+													/>
 
-													<label for="repeat_no_swab_taken"
+
+													<field attrs="{'invisible': [('inspection_only', '!=', True),
+																			  ('p_v_only', '!=', True),
+																			  ('p_s_only', '!=', True)]}"
+															name="repeat_no_swab_taken"/>
+													<label class="custom-text-align" for="repeat_no_swab_taken"
 														   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)]}"
 													>No</label>
-													<field
-															attrs="{'invisible': [('inspection_only', '!=', True),
-																			  ('p_v_only', '!=', True),
-																			  ('p_s_only', '!=', True)]}"
-															name="repeat_no_swab_taken"/>
+
 
 												</div>
 											</div>
@@ -347,12 +349,14 @@
 
 											<div class="d-flex" attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no'), ('p_s_only', '!=', True)]}">
-												<label for="repeat_pap_smear_done"/>
 												<field name="repeat_pap_smear_done"
 												/>
-												<label for="repeat_pipelle_sampling_done"/>
+												<label class="custom-text-align" for="repeat_pap_smear_done"/>
+
 												<field name="repeat_pipelle_sampling_done"
 												/>
+												<label class="custom-text-align" for="repeat_pipelle_sampling_done"/>
+
 											</div>
 											<group attrs="{'invisible': ['|', ('repeat_pelvic_examination_state', '=', 'no'),
 																	('repeat_examination_required', '!=', 'yes')
@@ -448,7 +452,7 @@
 													</div>
 												</div>
 
-												<div class="d-flex justify-content-start bg-light bg-gradient">
+												<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
 													<div class="col-md-1">
 														ROV
 													</div>
@@ -1374,7 +1378,7 @@
 													</div>
 
 													<field name="uterus_position" widget="radio" options="{'horizontal': True}"/>
-													<field name="uterus_mobility" widget="radio" options="{'horizontal': True}"/>
+													<field name="uterus_motility" widget="radio" options="{'horizontal': True}"/>
 													<h4>P/S</h4>
 													<div/>
 													<label for="gynaecological_examination_ps_selection"/>
@@ -1415,17 +1419,17 @@
 															</div>
 															<div class="col-md-10">
 																<div class="d-flex">
-																	<label for="gynaecological_uterus_size"/>
 																	<field name="gynaecological_uterus_size"/>
+																	<label for="gynaecological_uterus_size"/>
 
-																	<label for="gynaecological_uterus_position"/>
 																	<field name="gynaecological_uterus_position"/>
+																	<label for="gynaecological_uterus_position"/>
 
-																	<label for="gynaecological_uterus_normal"/>
 																	<field name="gynaecological_uterus_normal"/>
+																	<label for="gynaecological_uterus_normal"/>
 
-																	<label for="gynaecological_uterus_fiobrid"/>
 																	<field name="gynaecological_uterus_fiobrid"/>
+																	<label for="gynaecological_uterus_fiobrid"/>
 
 																</div>
 																<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
@@ -1437,7 +1441,7 @@
 																	<span>cm</span>
 																</div>
 																<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
-																	<div class="col-md-1">
+																	<div class="col-md-1 fw-bolder">
 																		Position
 																	</div>
 																	<div class="d-flex">
@@ -1908,7 +1912,7 @@
 													<field name="supermatic_cord_tender_ids" widget="many2many_checkboxes" options="{'horizontal': True}"/>
 													<field name="testicular_size_right" widget="radio" options="{'horizontal': True}"/>
 													<field name="testicular_size_left" widget="radio" options="{'horizontal': True}"/>
-													<field name="testicular_size_mobility" widget="radio" options="{'horizontal': True}"/>
+													<field name="testicular_size_motility" widget="radio" options="{'horizontal': True}"/>
 													<field name="ec_genital_examination_comment"/>
 												</group>
 											</div>
