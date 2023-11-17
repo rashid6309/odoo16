@@ -27,6 +27,8 @@ class PregnancyForm(models.Model):
 
     repeat_pregnancy_reason_to_visit = fields.Selection(StaticMember.VISIT_REASON, string="Reason to visit - ")
     repeat_pregnancy_notes = fields.Char(string="Notes")
+    genetic_testing = fields.Char(string="Genetic Testing")
+    early_pregnancy_assessment = fields.Char(string="Early Pregnancy Assessment")
 
     repeat_pregnancy_scanned = fields.Selection(StaticMember.CHOICE_YES_NO, string="Documented Medicsi Scan Reviewd?")
     repeat_pregnancy_significant_findings = fields.Char(string="Mention any SIGNIFICANT findings")

@@ -146,10 +146,10 @@
 											</group>
 
 											<group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
-												<group>
-													<field name="repeat_lmp"/>
-													<field name="repeat_lmp_embryo"/>
-												</group>
+<!--												<group>-->
+<!--													<field name="repeat_lmp"/>-->
+<!--													<field name="repeat_lmp_embryo"/>-->
+<!--												</group>-->
 											</group>
 											<div attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
 												<group>
@@ -164,6 +164,14 @@
                                             'required':[('repeat_pregnancy_gestation_type','=','other')]}"/>
 													<field name="repeat_pregnancy_viability_potential"/>
 													<field name="repeat_pregnancy_details"/>
+												</group>
+												<group>
+													<field name="repeat_pregnancy_hr"/>
+													<field name="repeat_pregnancy_fetal_heart"/>
+													<field name="repeat_pregnancy_signs_of_ohss"/>
+												</group>
+												<group string="Reason for visit">
+													<field name="early_pregnancy_assessment"/>
 												</group>
 												<group string="Diagnosis:">
 													<field name="repeat_pregnancy_diagnosis"/>
