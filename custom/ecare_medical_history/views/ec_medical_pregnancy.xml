@@ -48,11 +48,37 @@
             </field>
         </record>
 
+        <record id="view_patient_pregnancy_procedure_tree" model="ir.ui.view">
+            <field name="name">ec.medical.pregnancy.procedure.tree</field>
+            <field name="model">ec.medical.pregnancy.procedure</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+
         <record id="action_pregnancy_form" model="ir.actions.act_window">
             <field name="name">Pregnancy Form</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">ec.medical.pregnancy.data</field>
             <field name="view_mode">tree,form</field>
         </record>
+
+        <record id="ec_medical_pregnancy_procedures_action" model="ir.actions.act_window">
+            <field name="name">Pregnancy Procedures</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ec.medical.pregnancy.procedure</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="ec_medical_pregnancy_procedures_menu"
+            name="Pregnancy Procedures"
+            action="ec_medical_pregnancy_procedures_action"
+            parent="ec_medical_history_configuration"
+            sequence="5000"/>
+
     </data>
 </odoo>

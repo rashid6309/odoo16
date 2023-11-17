@@ -25,6 +25,10 @@ class PregnancyForm(models.Model):
     repeat_pregnancy_details = fields.Char(string="Details")
     repeat_pregnancy_diagnosis = fields.Char(string="Any significant pregnancy diagnosis?")
 
+    procedure_performed = fields.Many2one(comodel_name='ec.medical.pregnancy.procedure',
+                                          string="Procedure Performed")
+    procedure_performed_text = fields.Text(string="Procedure Performed")
+
     repeat_pregnancy_reason_to_visit = fields.Selection(StaticMember.VISIT_REASON, string="Reason to visit - ")
     repeat_pregnancy_notes = fields.Char(string="Notes")
     genetic_testing = fields.Char(string="Genetic Testing")
@@ -57,3 +61,11 @@ class PregnancyForm(models.Model):
                         rec.repeat_pregnancy_gestational_age = str(int(weeks))
                 else:
                     rec.repeat_pregnancy_gestational_age = '>40'
+
+
+class PregnancyProcedures(models.Model):
+    _name = 'ec.medical.pregnancy.procedure'
+    _description = 'Pregnancy Procedures'
+
+    name = fields.Char("Name", required=True)
+    value = fields.Text("Value")
