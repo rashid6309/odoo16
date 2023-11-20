@@ -172,6 +172,29 @@
 													<field name="repeat_pregnancy_scanned" widget="radio"/>
 													<field name="repeat_pregnancy_significant_findings"/>
 												</group>
+												<group string="Examination:" class="d-flex flex-column custom_width">
+													<div class="d-flex" style="width:200%;">
+														<label for="repeat_pregnancy_hr"/>
+														<field name="repeat_pregnancy_hr"/>
+														<span class="me-1">Rhythm </span>
+														<label for="repeat_pregnancy_bp"/>
+														<field name="repeat_pregnancy_bp"/>
+														<label for="repeat_pregnancy_temp"/>
+														<field name="repeat_pregnancy_temp"/>
+														<label for="repeat_pregnancy_rr"/>
+														<field name="repeat_pregnancy_rr"/>
+													</div>
+													<div class="d-flex flex-column" style="width:100%;">
+														<div class="d-flex">
+															<label class="ms-4 me-3" for="repeat_pregnancy_fetal_heart"/>
+															<field name="repeat_pregnancy_fetal_heart"/>
+														</div>
+														<div class="d-flex">
+															<label class="ms-4 me-3" for="repeat_pregnancy_signs_of_ohss"/>
+															<field name="repeat_pregnancy_signs_of_ohss"/>
+														</div>
+													</div>
+												</group>
 											</div>
 
 										</group>

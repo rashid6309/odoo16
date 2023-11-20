@@ -347,27 +347,29 @@
 
                                                             <div class=" text-900">
                                                                 <div class="d-inline-block">
-                                                                    <span>Inspection Only</span>
+                                                                    <field name="inspection_only"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
-                                                                    <field name="inspection_only"/>
+                                                                    <span>Inspection Only</span>
+                                                                </div>
+
+                                                                <div class="d-inline-block ms-2">
+                                                                    <field name="p_s_only"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
                                                                     <span>P/S Only</span>
                                                                 </div>
-                                                                <div class="d-inline-block">
-                                                                    <field name="p_s_only"/>
+
+                                                                <div class="d-inline-block ms-2">
+                                                                    <field name="p_v_only"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
                                                                     <span>P/V Only</span>
                                                                 </div>
-                                                                <div class="d-inline-block">
-                                                                    <field name="p_v_only"/>
-                                                                </div>
                                                             </div>
 
                                                             <div class="o_group row align-items-start">
-                                                                <div class="o_inner_group grid col-lg-12 text-900">
+                                                                <div class="o_inner_group grid col-lg-12 text-900 mt-1">
                                                                     <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_findings_on_inspection.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Findings on Inspection</span>
@@ -409,29 +411,29 @@
                                                                 </div>
                                                                 <div class="d-flex">
                                                                     <div class="d-inline-block">
-                                                                        <span >HVS</span>
+                                                                        <field name="repeat_hvs"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
-                                                                        <field name="repeat_hvs"/>
+                                                                        <span >HVS</span>
+                                                                    </div>
+                                                                    <div class="d-inline-block ms-2">
+                                                                        <field name="repeat_endocervical"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
                                                                         <span >Endocervical</span>
                                                                     </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="repeat_endocervical"/>
+                                                                    <div class="d-inline-block ms-2">
+                                                                        <field name="repeat_no_swab_taken"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
                                                                         <span >No Swab Taken</span>
-                                                                    </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="repeat_no_swab_taken"/>
                                                                     </div>
 
                                                                 </div>
                                                             </div>
 
                                                             <div class="o_group row align-items-start">
-                                                                <div class="o_inner_group grid col-lg-12 text-900">
+                                                                <div class="o_inner_group grid col-lg-12 text-900 mt-1">
 
                                                                     <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_method_of_hvs.raw_value">
                                                                         <div>
@@ -446,23 +448,24 @@
                                                             </div>
 
                                                             <div class="text-900">
-                                                                <div class="d-inline-block">
-                                                                    <span>Pap Smear Done</span>
-                                                                </div>
+
                                                                 <div class="d-inline-block">
                                                                     <field name="repeat_pap_smear_done"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
-                                                                    <span>Pipelle Sampling Done</span>
+                                                                    <span>Pap Smear Done</span>
+                                                                </div>
+                                                                <div class="d-inline-block ms-2">
+                                                                    <field name="repeat_pipelle_sampling_done"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
-                                                                    <field name="repeat_pipelle_sampling_done"/>
+                                                                    <span>Pipelle Sampling Done</span>
                                                                 </div>
                                                             </div>
 
 
                                                             <div class="o_group row align-items-start">
-                                                                <div class="o_inner_group grid col-lg-12 text-900">
+                                                                <div class="o_inner_group grid col-lg-12 text-900 mt-1">
 
                                                                     <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_other_findings.raw_value">
                                                                         <div>
@@ -493,28 +496,28 @@
                                                             <span attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
                                                                 <div class="text-900">
                                                                     <div class="d-inline-block">
-                                                                        <span>Uterus TVS Size</span>
+                                                                        <field name="tvs_uterus_tvs_size"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_tvs_size"/>
+                                                                        <span>Uterus TVS Size</span>
+                                                                    </div>
+                                                                    <div class="d-inline-block ms-2">
+                                                                        <field name="tvs_uterus_tvs_position"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
                                                                         <span>Uterus TVS Position</span>
                                                                     </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_tvs_position"/>
+                                                                    <div class="d-inline-block ms-2">
+                                                                        <field name="tvs_uterus_tvs_normal"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
                                                                         <span>Uterus TVS Normal</span>
                                                                     </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_tvs_normal"/>
+                                                                    <div class="d-inline-block ms-2">
+                                                                        <field name="tvs_uterus_tvs_fiobrid"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
                                                                         <span>Uterus TVS Fiobrid</span>
-                                                                    </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_tvs_fiobrid"/>
                                                                     </div>
                                                                 </div>
 
