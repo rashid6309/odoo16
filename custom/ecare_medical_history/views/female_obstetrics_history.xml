@@ -11,7 +11,7 @@
                            invisible="1"
                            readonly="1"
                            force_save="1"/>
-
+                    <field name="create_date"/>
                     <field name="baby_name"/>
                     <field name="birth_place"/>
                     <field name="date_of_birth"/>
@@ -31,7 +31,6 @@
                     <field name="alive"/>
                     <field name="feed"/>
                     <field name="labour_history"/>
-                    <field name="create_date"/>
 <!--                    <field name="legacy_system_ID"/>-->
                 </tree>
             </field>
