@@ -25,9 +25,24 @@ class PregnancyForm(models.Model):
     repeat_pregnancy_details = fields.Char(string="Details")
     repeat_pregnancy_diagnosis = fields.Char(string="Any significant pregnancy diagnosis?")
 
-    procedure_performed = fields.Many2one(comodel_name='ec.medical.pregnancy.procedure',
-                                          string="Procedure Performed")
-    procedure_performed_text = fields.Text(string="Procedure Performed")
+    repeat_pregnancy_procedure_performed = fields.Many2one(comodel_name='ec.medical.pregnancy.procedure',
+                                                           string="Procedure Performed")
+    repeat_pregnancy_procedure_performed_text = fields.Text(string="Procedure Performed")
+
+    repeat_pregnancy_diagnosis_ids = fields.Many2many(comodel_name='ec.medical.diagnosis',
+                                                      relation="ec_medical_pregnancy_diagnosis_rel",
+                                                      column1="medical_pregnancy_id",
+                                                      column2="diagnosis_id",
+                                                      string="Diagnosis")
+
+    repeat_pregnancy_investigation_ids = fields.Many2many(comodel_name='ec.medical.investigation',
+                                                          relation="ec_medical_pregnancy_investigation_rel",
+                                                          column1="medical_pregnancy_id",
+                                                          column2="investigation_id",
+                                                          string="Investigation")
+    repeat_pregnancy_investigation = fields.Char(string="Any significant pregnancy investigations?")
+
+    repeat_pregnancy_type_sample_obtained = fields.Char(string="Type of Sample Obtained")
 
     repeat_pregnancy_reason_to_visit = fields.Selection(StaticMember.VISIT_REASON, string="Reason to visit - ")
     repeat_pregnancy_notes = fields.Char(string="Notes")
@@ -45,6 +60,9 @@ class PregnancyForm(models.Model):
     repeat_pregnancy_fetal_heart = fields.Selection(StaticMember.FETAL_HEART, string="Fetal Heart ")
 
     repeat_pregnancy_signs_of_ohss= fields.Selection(StaticMember.CHOICE_YES_NO_NA, string="Any signs of OHSS?  ")
+
+    repeat_pregnancy_name_receiving_geneticist = fields.Char(string="Name of Receiving Geneticist")
+    repeat_pregnancy_plan = fields.Char(string="Plan")
 
     def _compute_gestational_age(self):
         for rec in self:

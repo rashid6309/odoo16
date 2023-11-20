@@ -418,10 +418,10 @@ class PatientTimeline(models.Model):
         if self.repeat_pregnancy_lmp:
             return DateValidation._date_validation(self.repeat_pregnancy_lmp)
 
-    @api.onchange('procedure_performed')
+    @api.onchange('repeat_pregnancy_procedure_performed')
     def _computed_procedure_performed_text(self):
-        if self.procedure_performed:
-            self.procedure_performed_text = ''
-            self.procedure_performed_text = self.procedure_performed.value
+        if self.repeat_pregnancy_procedure_performed:
+            self.repeat_pregnancy_procedure_performed_text = ''
+            self.repeat_pregnancy_procedure_performed_text = self.repeat_pregnancy_procedure_performed.value
         else:
-            self.procedure_performed_text = ''
+            self.repeat_pregnancy_procedure_performed_text = ''

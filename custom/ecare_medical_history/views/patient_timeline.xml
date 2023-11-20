@@ -173,17 +173,11 @@
 												<group string="Reason for visit">
 													<field name="early_pregnancy_assessment"/>
 												</group>
-												<group string="Diagnosis:">
-													<field name="repeat_pregnancy_diagnosis"/>
-													<field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
-													<field name="repeat_pregnancy_notes"/>
-													<field name="repeat_pregnancy_scanned" widget="radio"/>
-													<field name="repeat_pregnancy_significant_findings"/>
-												</group>
+
 												<group>
-													<field name="procedure_performed"
+													<field name="repeat_pregnancy_procedure_performed"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
-													<field name="procedure_performed_text"/>
+													<field name="repeat_pregnancy_procedure_performed_text"/>
 												</group>
 												<group string="Examination:" class="d-flex flex-column custom_width">
 													<div class="d-flex" style="width:200%;">
@@ -207,6 +201,27 @@
 															<field name="repeat_pregnancy_signs_of_ohss"/>
 														</div>
 													</div>
+												</group>
+												<group string="Diagnosis">
+													<field name="repeat_pregnancy_diagnosis_ids"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   widget="many2many_tags"/>
+													<field name="repeat_pregnancy_diagnosis"/>
+													<field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
+													<field name="repeat_pregnancy_notes"/>
+													<field name="repeat_pregnancy_scanned" widget="radio"/>
+													<field name="repeat_pregnancy_significant_findings"/>
+												</group>
+												<group string="Investigations">
+													<field name="repeat_pregnancy_investigation_ids"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   widget="many2many_tags"/>
+													<field name="repeat_pregnancy_investigation"/>
+												</group>
+												<group>
+													<field name="repeat_pregnancy_type_sample_obtained"/>
+													<field name="repeat_pregnancy_name_receiving_geneticist"/>
+													<field name="repeat_pregnancy_plan"/>
 												</group>
 											</div>
 

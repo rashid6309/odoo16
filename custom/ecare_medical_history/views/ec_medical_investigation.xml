@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_ec_medical_investigation_tree" model="ir.ui.view">
+            <field name="name">ec.medical.investigation.tree</field>
+            <field name="model">ec.medical.investigation</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ec_medical_investigation_action" model="ir.actions.act_window">
+            <field name="name">Medical Investigations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ec.medical.investigation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="ec_medical_investigation_menu"
+            name="Medical Investigations"
+            action="ec_medical_investigation_action"
+            parent="ec_medical_history_configuration"
+            sequence="5200"/>
+
+    </data>
+</odoo>
