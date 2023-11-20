@@ -18,7 +18,7 @@
                                     <div class="d-flex" style="justify-content: space-between">
                                         <div>
                                             Consultation Date
-                                            <b> - </b>
+                                            <b>-</b>
                                             <field name="repeat_date"/>
                                         </div>
                                         <div class="text-center font-weight-bold d-flex align-items-end">
@@ -39,7 +39,8 @@
                                                 <a data-bs-toggle="collapse"
                                                    onclick="toggle_element_icon_class(this, 'fa-angle-down', 'fa-angle-up')"
                                                    t-att-data-bs-target="'#family_history_section_' + rec_id" href="#">
-                                                    <i class="fa fa-angle-down fa-2x" aria-hidden="true"/></a>
+                                                    <i class="fa fa-angle-down fa-2x" aria-hidden="true"/>
+                                                </a>
                                             </div>
 
                                         </div>
@@ -47,7 +48,8 @@
 
 
                                 </div>
-                                <div class="card-block mb-5 pl-4 collapse repeat_kanban_section_content" t-att-id="'family_history_section_' + rec_id">
+                                <div class="card-block mb-5 pl-4 collapse repeat_kanban_section_content"
+                                     t-att-id="'family_history_section_' + rec_id">
                                     <hr class="custom_line"/>
                                     <section>
 
@@ -60,7 +62,8 @@
                                                             <div class="o_inner_group grid col-lg-6 text-900">
                                                                 <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
-                                                                        <span class="o_form_label">Consultation Date</span>
+                                                                        <span class="o_form_label">Consultation Date
+                                                                        </span>
                                                                     </div>
                                                                     <div>
                                                                         <field name="repeat_date"/>
@@ -72,12 +75,13 @@
                                                                         <span class="o_form_label">Interaction</span>
                                                                     </div>
                                                                     <div>
-                                                                        <field name="repeat_consultation_interaction" />
+                                                                        <field name="repeat_consultation_interaction"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
-                                                                        <span class="o_form_label">Consultation with</span>
+                                                                        <span class="o_form_label">Consultation with
+                                                                        </span>
                                                                     </div>
                                                                     <div>
                                                                         <field name="repeat_consultation_with"/>
@@ -120,7 +124,9 @@
                                                                 </div>
                                                                 <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
-                                                                        <span class="o_form_label">Other Doctors Present</span>
+                                                                        <span class="o_form_label">Other Doctors
+                                                                            Present
+                                                                        </span>
                                                                     </div>
                                                                     <div>
                                                                         <field name="repeat_other_doctors_present"/>
@@ -133,14 +139,17 @@
 
                                                         <div class="oe_kanban_title">
                                                             <field name="question_one_label"/>
-                                                            <h5 style="display: inline-block;"><field name="question_one_choice"/></h5>
+                                                            <h5 style="display: inline-block;">
+                                                                <field name="question_one_choice"/>
+                                                            </h5>
                                                         </div>
 
                                                         <span t-if="record.question_one_choice.raw_value == 'yes'">
 
                                                             <div class="o_group row align-items-start">
                                                                 <div class="o_inner_group grid col-lg-12 text-900">
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_lmp.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_lmp.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">LMP</span>
                                                                         </div>
@@ -148,15 +157,18 @@
                                                                             <field name="repeat_pregnancy_lmp"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_gestational_age.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_gestational_age.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Gestational Age</span>
+                                                                            <span class="o_form_label">Gestational Age
+                                                                            </span>
                                                                         </div>
                                                                         <div>
-                                                                            <field name="repeat_pregnancy_gestational_age" />
+                                                                            <field name="repeat_pregnancy_gestational_age"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_conception.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_conception.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Conception</span>
                                                                         </div>
@@ -169,24 +181,31 @@
                                                                             <h5>PREGNANCY STATUS:</h5>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_gestation_type.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_gestation_type.raw_value">
                                                                         <div class="d-inline-block"/>
                                                                         <div>
-                                                                            <span class="o_form_label">Type of Gestation</span>
+                                                                            <span class="o_form_label">Type of
+                                                                                Gestation
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_gestation_type"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_viability_potential.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_viability_potential.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Viability Potential</span>
+                                                                            <span class="o_form_label">Viability
+                                                                                Potential
+                                                                            </span>
                                                                         </div>
                                                                         <div>
-                                                                            <field name="repeat_pregnancy_viability_potential" />
+                                                                            <field name="repeat_pregnancy_viability_potential"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_details.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_details.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Details</span>
                                                                         </div>
@@ -199,24 +218,30 @@
                                                                             <h5>Diagnosis:</h5>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_diagnosis.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_diagnosis.raw_value">
                                                                         <div class="d-inline-block"/>
                                                                         <div>
-                                                                            <span class="o_form_label">Any significant pregnancy diagnosis?</span>
+                                                                            <span class="o_form_label">Any significant
+                                                                                pregnancy diagnosis?
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_diagnosis"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_reason_to_visit.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_reason_to_visit.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Reason to visit</span>
+                                                                            <span class="o_form_label">Reason to visit
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_reason_to_visit"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_notes.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_notes.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Notes</span>
                                                                         </div>
@@ -224,21 +249,97 @@
                                                                             <field name="repeat_pregnancy_notes"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_scanned.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_scanned.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Documented Medicsi Scan Reviewd</span>
+                                                                            <span class="o_form_label">Documented
+                                                                                Medicsi Scan Reviewd
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_scanned"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pregnancy_significant_findings.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_significant_findings.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Mention any SIGNIFICANT findings</span>
+                                                                            <span class="o_form_label">Mention any
+                                                                                SIGNIFICANT findings
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_significant_findings"/>
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column text-900">
+                                                                        <div class="d-inline-block">
+                                                                            <h5>Examination:</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_hr.raw_value">
+                                                                        <div class="d-inline-block"/>
+                                                                        <div>
+                                                                            <span class="o_form_label">HR</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_hr"/>
+                                                                            <span>Rhythm</span>
+                                                                        </div>
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_pregnancy_bp.raw_value">
+
+                                                                            <div>
+                                                                                <span class="o_form_label">BP</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="repeat_pregnancy_bp"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_pregnancy_temp.raw_value">
+
+                                                                            <div>
+                                                                                <span class="o_form_label">Temp</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="repeat_pregnancy_temp"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_pregnancy_rr.raw_value">
+
+                                                                            <div>
+                                                                                <span class="o_form_label">RR</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="repeat_pregnancy_rr"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_pregnancy_fetal_heart.raw_value">
+
+                                                                            <div>
+                                                                                <span class="o_form_label">Fetal
+                                                                                    heart:
+                                                                                </span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="repeat_pregnancy_fetal_heart"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_pregnancy_signs_of_ohss.raw_value">
+                                                                            <div>
+                                                                                <span class="o_form_label">Any signs of
+                                                                                    OHSS?
+                                                                                </span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="repeat_pregnancy_signs_of_ohss"/>
+                                                                            </div>
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -248,61 +349,78 @@
                                                         <span t-if="record.question_one_choice.raw_value == 'no'">
                                                             <div class="oe_kanban_title">
                                                                 <field name="question_two_label"/>
-                                                                <h5 style="display: inline-block;"><field name="question_two_choice"/></h5>
+                                                                <h5 style="display: inline-block;">
+                                                                    <field name="question_two_choice"/>
+                                                                </h5>
                                                             </div>
-<!--                                                            <span  t-if="record.question_two_choice.raw_value == 'yes'">-->
-<!--                                                                <button name="action_repeat_consultation_open_obstetrics_history"-->
-<!--                                                                        type="object"-->
-<!--                                                                        class="btn btn-primary"-->
-<!--                                                                        string="Obstetrics History"/>-->
-<!--                                                            </span>-->
+                                                            <!--                                                            <span  t-if="record.question_two_choice.raw_value == 'yes'">-->
+                                                            <!--                                                                <button name="action_repeat_consultation_open_obstetrics_history"-->
+                                                            <!--                                                                        type="object"-->
+                                                            <!--                                                                        class="btn btn-primary"-->
+                                                            <!--                                                                        string="Obstetrics History"/>-->
+                                                            <!--                                                            </span>-->
 
                                                             <div class="oe_kanban_title d-inline-block">
                                                                 <field name="question_three_label"/>
-                                                                <h5 style="display: inline-block;"><field name="question_three_choice"/></h5>
+                                                                <h5 style="display: inline-block;">
+                                                                    <field name="question_three_choice"/>
+                                                                </h5>
                                                             </div>
-<!--                                                            <span  t-if="record.question_three_choice.raw_value == 'yes'">-->
-<!--                                                                <button name="action_repeat_consultation_open_previous_treatment"-->
-<!--                                                                        type="object"-->
-<!--                                                                        class="btn btn-primary"-->
-<!--                                                                        string="Previous treatment"/>-->
-<!--                                                            </span>-->
+                                                            <!--                                                            <span  t-if="record.question_three_choice.raw_value == 'yes'">-->
+                                                            <!--                                                                <button name="action_repeat_consultation_open_previous_treatment"-->
+                                                            <!--                                                                        type="object"-->
+                                                            <!--                                                                        class="btn btn-primary"-->
+                                                            <!--                                                                        string="Previous treatment"/>-->
+                                                            <!--                                                            </span>-->
 
                                                             <div class="o_group row align-items-start">
                                                                 <div class="o_inner_group grid col-lg-12 text-900">
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.is_couple_living_together.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.is_couple_living_together.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Is the couple living together?</span>
+                                                                            <span class="o_form_label">Is the couple
+                                                                                living together?
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="is_couple_living_together"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.is_couple_using_contraception.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.is_couple_using_contraception.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Is the couple using contraception?</span>
+                                                                            <span class="o_form_label">Is the couple
+                                                                                using contraception?
+                                                                            </span>
                                                                         </div>
                                                                         <div>
-                                                                            <field name="is_couple_using_contraception" />
+                                                                            <field name="is_couple_using_contraception"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_note.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_note.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Reason for visit</span>
+                                                                            <span class="o_form_label">Reason for
+                                                                                visit
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_note"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_examination_required.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_examination_required.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Examination Required</span>
+                                                                            <span class="o_form_label">Examination
+                                                                                Required
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_examination_required"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_gpe.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_gpe.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">GPE</span>
                                                                         </div>
@@ -310,15 +428,17 @@
                                                                             <field name="repeat_gpe"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_thyroid.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_thyroid.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Thyroid</span>
                                                                         </div>
                                                                         <div>
-                                                                            <field name="repeat_thyroid" />
+                                                                            <field name="repeat_thyroid"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_abdominal.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_abdominal.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Abdominal</span>
                                                                         </div>
@@ -326,7 +446,8 @@
                                                                             <field name="repeat_abdominal"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_breast.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_breast.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Breast</span>
                                                                         </div>
@@ -334,9 +455,12 @@
                                                                             <field name="repeat_breast"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_pelvic_examination_state.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pelvic_examination_state.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Pelvic Examination State</span>
+                                                                            <span class="o_form_label">Pelvic
+                                                                                Examination State
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_pelvic_examination_state"/>
@@ -347,44 +471,53 @@
 
                                                             <div class=" text-900">
                                                                 <div class="d-inline-block">
-                                                                    <span>Inspection Only</span>
+                                                                    <field name="inspection_only"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
-                                                                    <field name="inspection_only"/>
+                                                                    <span>Inspection Only</span>
+                                                                </div>
+
+                                                                <div class="d-inline-block ms-2">
+                                                                    <field name="p_s_only"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
                                                                     <span>P/S Only</span>
                                                                 </div>
-                                                                <div class="d-inline-block">
-                                                                    <field name="p_s_only"/>
+
+                                                                <div class="d-inline-block ms-2">
+                                                                    <field name="p_v_only"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
                                                                     <span>P/V Only</span>
                                                                 </div>
-                                                                <div class="d-inline-block">
-                                                                    <field name="p_v_only"/>
-                                                                </div>
                                                             </div>
 
                                                             <div class="o_group row align-items-start">
-                                                                <div class="o_inner_group grid col-lg-12 text-900">
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_findings_on_inspection.raw_value">
+                                                                <div class="o_inner_group grid col-lg-12 text-900 mt-1">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_findings_on_inspection.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Findings on Inspection</span>
+                                                                            <span class="o_form_label">Findings on
+                                                                                Inspection
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_findings_on_inspection"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_valva_vaginal_exam.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_valva_vaginal_exam.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Valva/Vaginal Exam</span>
+                                                                            <span class="o_form_label">Valva/Vaginal
+                                                                                Exam
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_valva_vaginal_exam"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_cervix.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_cervix.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Cervix</span>
                                                                         </div>
@@ -392,12 +525,15 @@
                                                                             <field name="repeat_cervix"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_uterus_and_adnexae.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_uterus_and_adnexae.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Uterus and Adnexae</span>
+                                                                            <span class="o_form_label">Uterus and
+                                                                                Adnexae
+                                                                            </span>
                                                                         </div>
                                                                         <div>
-                                                                            <field name="repeat_uterus_and_adnexae" />
+                                                                            <field name="repeat_uterus_and_adnexae"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -405,37 +541,39 @@
 
                                                             <div class="d-flex flex-column text-900">
                                                                 <div class="d-inline-block">
-                                                                    <h5> Swab Taken</h5>
+                                                                    <h5>Swab Taken</h5>
                                                                 </div>
                                                                 <div class="d-flex">
-                                                                    <div class="d-inline-block">
-                                                                        <span >HVS</span>
-                                                                    </div>
                                                                     <div class="d-inline-block">
                                                                         <field name="repeat_hvs"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
-                                                                        <span >Endocervical</span>
+                                                                        <span>HVS</span>
                                                                     </div>
-                                                                    <div class="d-inline-block">
+                                                                    <div class="d-inline-block ms-2">
                                                                         <field name="repeat_endocervical"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
-                                                                        <span >No Swab Taken</span>
+                                                                        <span>Endocervical</span>
+                                                                    </div>
+                                                                    <div class="d-inline-block ms-2">
+                                                                        <field name="repeat_no_swab_taken"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
-                                                                        <field name="repeat_no_swab_taken"/>
+                                                                        <span>No Swab Taken</span>
                                                                     </div>
 
                                                                 </div>
                                                             </div>
 
                                                             <div class="o_group row align-items-start">
-                                                                <div class="o_inner_group grid col-lg-12 text-900">
+                                                                <div class="o_inner_group grid col-lg-12 text-900 mt-1">
 
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_method_of_hvs.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_method_of_hvs.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Method of HVS</span>
+                                                                            <span class="o_form_label">Method of HVS
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_method_of_hvs"/>
@@ -446,43 +584,51 @@
                                                             </div>
 
                                                             <div class="text-900">
-                                                                <div class="d-inline-block">
-                                                                    <span>Pap Smear Done</span>
-                                                                </div>
+
                                                                 <div class="d-inline-block">
                                                                     <field name="repeat_pap_smear_done"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
-                                                                    <span>Pipelle Sampling Done</span>
+                                                                    <span>Pap Smear Done</span>
+                                                                </div>
+                                                                <div class="d-inline-block ms-2">
+                                                                    <field name="repeat_pipelle_sampling_done"/>
                                                                 </div>
                                                                 <div class="d-inline-block">
-                                                                    <field name="repeat_pipelle_sampling_done"/>
+                                                                    <span>Pipelle Sampling Done</span>
                                                                 </div>
                                                             </div>
 
 
                                                             <div class="o_group row align-items-start">
-                                                                <div class="o_inner_group grid col-lg-12 text-900">
+                                                                <div class="o_inner_group grid col-lg-12 text-900 mt-1">
 
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_other_findings.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_other_findings.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Other Findings</span>
+                                                                            <span class="o_form_label">Other Findings
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_other_findings"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" t-if="record.scan_required.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.scan_required.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Scan Required</span>
+                                                                            <span class="o_form_label">Scan Required
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="scan_required"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}" t-if="record.repeat_ultrasound_type.raw_value">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         attrs="{'invisible': [('scan_required', '!=', 'yes')]}"
+                                                                         t-if="record.repeat_ultrasound_type.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Ultrasound Type</span>
+                                                                            <span class="o_form_label">Ultrasound Type
+                                                                            </span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_ultrasound_type"/>
@@ -493,34 +639,34 @@
                                                             <span attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
                                                                 <div class="text-900">
                                                                     <div class="d-inline-block">
-                                                                        <span>Uterus TVS Size</span>
+                                                                        <field name="tvs_uterus_tvs_size"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_tvs_size"/>
+                                                                        <span>Uterus TVS Size</span>
+                                                                    </div>
+                                                                    <div class="d-inline-block ms-2">
+                                                                        <field name="tvs_uterus_tvs_position"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
                                                                         <span>Uterus TVS Position</span>
                                                                     </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_tvs_position"/>
+                                                                    <div class="d-inline-block ms-2">
+                                                                        <field name="tvs_uterus_tvs_normal"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
                                                                         <span>Uterus TVS Normal</span>
                                                                     </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_tvs_normal"/>
+                                                                    <div class="d-inline-block ms-2">
+                                                                        <field name="tvs_uterus_tvs_fiobrid"/>
                                                                     </div>
                                                                     <div class="d-inline-block">
                                                                         <span>Uterus TVS Fiobrid</span>
                                                                     </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_tvs_fiobrid"/>
-                                                                    </div>
                                                                 </div>
 
-                                                                <div  class="text-900">
+                                                                <div class="text-900">
                                                                     <div class="d-inline-block m-3">
-                                                                        <span >Uterus Size X</span>
+                                                                        <span>Uterus Size X</span>
                                                                     </div>
                                                                     <div class="d-inline-block">
                                                                         <field name="tvs_uterus_size_x"/>
@@ -536,7 +682,8 @@
 
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_rov.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.tvs_rov.raw_value">
                                                                             <div>
                                                                                 <span class="o_form_label">ROV</span>
                                                                             </div>
@@ -544,7 +691,8 @@
                                                                                 <field name="tvs_rov"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_lov.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.tvs_lov.raw_value">
                                                                             <div>
                                                                                 <span class="o_form_label">LOV</span>
                                                                             </div>
@@ -557,57 +705,76 @@
                                                                         <!--                                                                            <t t-out="o.type" />-->
                                                                         <!--                                                                        </t>-->
                                                                         <!--                                                                    </div>-->
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_other_text.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.tvs_other_text.raw_value">
                                                                             <div>
-                                                                                <span class="o_form_label">Other Text</span>
+                                                                                <span class="o_form_label">Other Text
+                                                                                </span>
                                                                             </div>
                                                                             <div>
                                                                                 <field name="tvs_other_text"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.counseling_and_discussion.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.counseling_and_discussion.raw_value">
                                                                             <div>
-                                                                                <span class="o_form_label">Counseling and Discussion done</span>
+                                                                                <span class="o_form_label">Counseling
+                                                                                    and Discussion done
+                                                                                </span>
                                                                             </div>
                                                                             <div>
                                                                                 <field name="counseling_and_discussion"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_diagnosis.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_diagnosis.raw_value">
                                                                             <div>
-                                                                                <span class="o_form_label">Diagnosis</span>
+                                                                                <span class="o_form_label">Diagnosis
+                                                                                </span>
                                                                             </div>
                                                                             <div>
                                                                                 <field name="repeat_diagnosis"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_investigations_ids.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_investigations_ids.raw_value">
                                                                             <div>
-                                                                                <span class="o_form_label">Investigations</span>
+                                                                                <span class="o_form_label">
+                                                                                    Investigations
+                                                                                </span>
                                                                             </div>
                                                                             <div>
                                                                                 <field name="repeat_investigations_ids"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_treatment_plan.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_treatment_plan.raw_value">
                                                                             <div>
-                                                                                <span class="o_form_label">Treatment Plan</span>
+                                                                                <span class="o_form_label">Treatment
+                                                                                    Plan
+                                                                                </span>
                                                                             </div>
                                                                             <div>
                                                                                 <field name="repeat_treatment_plan"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_treatment_advised_ids.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_treatment_advised_ids.raw_value">
                                                                             <div>
-                                                                                <span class="o_form_label">Treatment Advised</span>
+                                                                                <span class="o_form_label">Treatment
+                                                                                    Advised
+                                                                                </span>
                                                                             </div>
                                                                             <div>
                                                                                 <field name="repeat_treatment_advised_ids"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.repeat_new_treatment_pathway.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column"
+                                                                             t-if="record.repeat_new_treatment_pathway.raw_value">
                                                                             <div>
-                                                                                <span class="o_form_label">Start new treatment pathway</span>
+                                                                                <span class="o_form_label">Start new
+                                                                                    treatment pathway
+                                                                                </span>
                                                                             </div>
                                                                             <div>
                                                                                 <field name="repeat_new_treatment_pathway"/>
@@ -625,7 +792,6 @@
                                                         <!--                                                                    </td>-->
                                                         <!--                                                                    <td><field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/></td>-->
                                                         <!--                                                                </tr>-->
-
 
 
                                                         <!--                                                                <tr t-if="record.tvs_rov.raw_value">-->

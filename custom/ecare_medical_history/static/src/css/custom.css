@@ -514,3 +514,8 @@ label[for="cn_type"]{
     font-weight: bold !important;
 }
 
+div.repeat_kanban_section_content section{
+    margin: 1.5em 0 0 1.5em;
+}
+
+

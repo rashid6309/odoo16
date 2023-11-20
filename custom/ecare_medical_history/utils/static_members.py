@@ -875,3 +875,4 @@ class StaticMember:
         ('40', '40 weeks'),
         ('>40', '>40 weeks'),
     ]
+
