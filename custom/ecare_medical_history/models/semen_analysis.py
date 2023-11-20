@@ -13,8 +13,8 @@ class SemenAnalysis(models.Model):
                                        required=True,
                                        string="Patient")
 
-    date = fields.Date(string='Date')
-    lab_number = fields.Char(string='Lab Number')
+    date = fields.Date(string='Date', required=True,)
+    lab_number = fields.Char(string='Lab Number', required=True,)
     lab_name = fields.Many2one(comodel_name="ec.medical.labs", string='Lab Name')
 
     preparation_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
