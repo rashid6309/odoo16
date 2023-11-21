@@ -17,6 +17,9 @@
                     <div style="display:flex;">
                         <div style="display:flex; flex-direction:column; justify-content:center; width:80%;">
                             <div style="display:flex; margin-bottom:15px;">
+                                <div style="flex:2;"><b><span t-field="o.semen_patient_id"/></b></div>
+                            </div>
+                            <div style="display:flex; margin-bottom:15px;">
                                 <div style="flex:2;"><b>Date:</b></div>
                                 <div style="flex:2;"><span t-field="o.date"/></div>
                                 <div style="flex:2;"><b>Lab No.:</b></div>
