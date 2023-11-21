@@ -310,6 +310,7 @@
                                                                             <field name="repeat_pregnancy_diagnosis"/>
                                                                         </div>
                                                                     </div>
+
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_reason_to_visit.raw_value">
                                                                         <div>
@@ -419,6 +420,32 @@
                                                                                 <field name="repeat_pregnancy_signs_of_ohss"/>
                                                                             </div>
                                                                         </div>
+                                                                                                                                            <div class="d-flex flex-column text-900">
+                                                                        <div class="d-inline-block">
+                                                                            <h5>Investigations</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column text-900"/>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_investigation_ids.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Investigations</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_investigation_ids" widget="many2many_tags"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_investigation.raw_value">
+                                                                        <div class="d-inline-block"/>
+                                                                        <div>
+                                                                            <span class="o_form_label">Any significant pregnancy investigations?
+                                                                            </span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_investigation"/>
+                                                                        </div>
+                                                                    </div>
 
                                                                     </div>
                                                                 </div>
