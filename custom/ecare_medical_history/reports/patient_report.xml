@@ -120,7 +120,7 @@
                             <div style="display:flex;">
                                 <div style="flex:2;"><b>Sperm Cryopreservation:</b></div>
                                 <div style="flex:2;"><span>Consented:</span></div>
-                                <div style="flex:2;"><span t-field="o.sperm_cryopreservation_consented"/></div>
+                                <div style="flex:2;"><span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span></div>
                             </div>
                               <div style="display:flex;">
                                 <div style="flex:2;"></div>
