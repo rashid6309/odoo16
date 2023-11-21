@@ -196,8 +196,7 @@
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_viability_potential.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Viability
-                                                                                Potential
+                                                                            <span class="o_form_label">Viability Potential
                                                                             </span>
                                                                         </div>
                                                                         <div>
@@ -213,9 +212,90 @@
                                                                             <field name="repeat_pregnancy_details"/>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_hr.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">HR</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_hr"/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_fetal_heart.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Fetal Heart</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_fetal_heart"/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_signs_of_ohss.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Any signs of OHSS?</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_signs_of_ohss"/>
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="d-flex flex-column text-900">
                                                                         <div class="d-inline-block">
-                                                                            <h5>Diagnosis:</h5>
+                                                                            <h5>REASON FOR VISIT</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column text-900"/>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.early_pregnancy_assessment.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Early Pregnancy Assessment</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="early_pregnancy_assessment"/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="d-flex flex-column text-900">
+                                                                        <div class="d-inline-block">
+                                                                            <h5>Procedures</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column text-900"/>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_procedure_performed.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Procedure</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_procedure_performed"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_procedure_performed_text.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label"/>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_procedure_performed_text"/>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="d-flex flex-column text-900">
+                                                                        <div class="d-inline-block">
+                                                                            <h5>Diagnosis</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column text-900"/>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_diagnosis_ids.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Diagnosis</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_diagnosis_ids" widget="many2many_tags"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
