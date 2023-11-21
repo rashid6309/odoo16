@@ -796,9 +796,10 @@ class StaticMember:
     ]
 
     SEMEN_METHOD = [
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3')
+        ('none', 'None'),
+        ('swim_up', 'Swim Up'),
+        ('single_gradient', 'Single Gradient'),
+        ('double_gradient', 'Double Gradient')
     ]
     CONCEPTION_TYPE = [('natural', 'Natural'),
                        ("oi", "OI"),

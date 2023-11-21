@@ -21,9 +21,9 @@
                     <field name="mode_of_delivery"/>
                     <field name="other_indications"/>
 <!--                    <field name="complications"/>-->
+                    <field name="complication_pregnancy"/>
                     <field name="complication_delivery"/>
                     <field name="complication_post_partum"/>
-                    <field name="complication_pregnancy"/>
                     <field name="gender"/>
                     <field name="weight"/>
                     <field name="health"/>
