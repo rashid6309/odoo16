@@ -98,10 +98,6 @@
             <field name="type">linining</field>
         </record>
 
-        <record model="ec.medical.multi.selection" id="lining_solid_or_lesion">
-            <field name="name">Solid or Suspected Cavity Lesion</field>
-            <field name="type">linining</field>
-        </record>
 
         <record model="ec.medical.multi.selection" id="lining_triple_echo">
             <field name="name">Triple Echo</field>

@@ -1,7 +1,11 @@
+from datetime import datetime
+
 from odoo import api, models, fields, _
 import re
 from odoo.addons.ecare_medical_history.utils.date_validation import DateValidation
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
+from odoo.addons.ecare_core.utilities.helper import TimeValidation, CustomNotification
+
 
 from odoo.exceptions import UserError
 
@@ -37,9 +41,9 @@ class SemenAnalysis(models.Model):
                                 string='Freezing')
 
     abstinence = fields.Char(string='Abstinence')
-    production_time = fields.Float(string='Production Time')
-    analysis_time = fields.Float(string='Analysis Time')
-    liquifaction_time = fields.Float(string='Liquifaction Time')
+    production_time = fields.Char(string='Production Time')
+    analysis_time = fields.Char(string='Analysis Time')
+    liquifaction_time = fields.Char(string='Liquifaction Time')
     color = fields.Selection(selection=StaticMember.SEMEN_COLOR,
                              default='a',
                              string="Color")
@@ -171,3 +175,43 @@ class SemenAnalysis(models.Model):
         for record in self:
              if record.progression and not re.match('^[0-9\.]*$', record.progression):
                 raise UserError("Please enter a numeric value progression.")
+
+    @api.onchange('production_time', "analysis_time","liquifaction_time")
+    def _onchange_time(self):
+
+        if self.production_time:
+            time = TimeValidation.validate_time(self.production_time)
+
+            if not time:
+                return CustomNotification.notification_time_validation()
+            try:
+                parsed_time = datetime.strptime(time, '%H:%M')
+                if not 0 <= parsed_time.hour <= 23:
+                    raise ValueError()
+            except ValueError:
+                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
+            self.production_time = time
+
+        if self.analysis_time:
+            time = TimeValidation.validate_time(self.analysis_time)
+            if not time:
+                return CustomNotification.notification_time_validation()
+            try:
+                parsed_time = datetime.strptime(time, '%H:%M')
+                if not 0 <= parsed_time.hour <= 23:
+                    raise ValueError()
+            except ValueError:
+                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
+            self.analysis_time = time
+
+        if self.liquifaction_time:
+            time = TimeValidation.validate_time(self.liquifaction_time)
+            if not time:
+                return CustomNotification.notification_time_validation()
+            try:
+                parsed_time = datetime.strptime(time, '%H:%M')
+                if not 0 <= parsed_time.hour <= 23:
+                    raise ValueError()
+            except ValueError:
+                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
+            self.liquifaction_time = time
