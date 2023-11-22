@@ -175,7 +175,8 @@
 												<group>
 													<field name="repeat_pregnancy_procedure_performed"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
-													<field name="repeat_pregnancy_procedure_performed_text"/>
+													<label/>
+													<field name="repeat_pregnancy_procedure_performed_text" nolabel="1"/>
 												</group>
 												<group string="Examination:" class="d-flex flex-column custom_width">
 													<div class="d-flex" style="width:200%;">
