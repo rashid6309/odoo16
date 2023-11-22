@@ -53,8 +53,9 @@ class PregnancyForm(models.Model):
     repeat_pregnancy_significant_findings = fields.Char(string="Mention any SIGNIFICANT findings")
 
     repeat_pregnancy_hr = fields.Selection(StaticMember.HR_TYPE, string="HR")
-    repeat_pregnancy_bp = fields.Integer(string="BP")
-    repeat_pregnancy_temp = fields.Integer(string="Temp")
+    repeat_pregnancy_bp_upper = fields.Integer(string="BP")
+    repeat_pregnancy_bp_lower = fields.Integer(string="BP")
+    repeat_pregnancy_temp = fields.Float(string="Temp")
     repeat_pregnancy_rr = fields.Integer(string="RR")
 
     repeat_pregnancy_fetal_heart = fields.Selection(StaticMember.FETAL_HEART, string="Fetal Heart ")

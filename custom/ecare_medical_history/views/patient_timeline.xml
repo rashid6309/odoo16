@@ -167,8 +167,6 @@
 												</group>
 												<group>
 													<field name="repeat_pregnancy_hr"/>
-													<field name="repeat_pregnancy_fetal_heart"/>
-													<field name="repeat_pregnancy_signs_of_ohss"/>
 												</group>
 												<group string="Reason for visit">
 													<field name="early_pregnancy_assessment"/>
@@ -184,8 +182,11 @@
 														<label for="repeat_pregnancy_hr"/>
 														<field name="repeat_pregnancy_hr"/>
 														<span class="me-1">Rhythm </span>
-														<label for="repeat_pregnancy_bp"/>
-														<field name="repeat_pregnancy_bp"/>
+														<label style=" margin-left: 2%;" for="repeat_pregnancy_bp_upper"/>
+														<field name="repeat_pregnancy_bp_upper"/>
+														<span class="me-1">/</span>
+														<field name="repeat_pregnancy_bp_lower"/>
+														<span class="me-1">mmHg</span>
 														<label for="repeat_pregnancy_temp"/>
 														<field name="repeat_pregnancy_temp"/>
 														<label for="repeat_pregnancy_rr"/>
