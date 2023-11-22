@@ -111,8 +111,11 @@
                         <tr>
                             <td style="padding-top:2%;">Abstinence:</td>
                             <td><span t-field="o.abstinence"/></td>
-                            <td style="padding-top:2%;">Liquefaction Time:</td>
-                            <td><span t-field="o.liquifaction_time"/></td>
+                            <td style="padding-top:1%;">Liquefaction Time:</td>
+                            <td>
+                                <span t-field="o.liquifaction_time"/>
+                                <span>(within 60 minutes)</span>
+                            </td>
                         </tr>
                         <tr>
                             <td style="padding-top:1%;">Color:</td>
