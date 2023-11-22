@@ -139,7 +139,7 @@
 
                                                         <div class="oe_kanban_title">
                                                             <field name="question_one_label"/>
-                                                            <h5 style="display: inline-block;">
+                                                            <h5 style="display: inline-block;margin-left: 5%;">
                                                                 <field name="question_one_choice"/>
                                                             </h5>
                                                         </div>
@@ -440,7 +440,7 @@
                                                         <span t-if="record.question_one_choice.raw_value == 'no'">
                                                             <div class="oe_kanban_title">
                                                                 <field name="question_two_label"/>
-                                                                <h5 style="display: inline-block;">
+                                                                <h5 style="display: inline-block;margin-left: 5%;">
                                                                     <field name="question_two_choice"/>
                                                                 </h5>
                                                             </div>
@@ -451,9 +451,9 @@
                                                             <!--                                                                        string="Obstetrics History"/>-->
                                                             <!--                                                            </span>-->
 
-                                                            <div class="oe_kanban_title d-inline-block">
+                                                            <div class="oe_kanban_title d-inline-block col-9">
                                                                 <field name="question_three_label"/>
-                                                                <h5 style="display: inline-block;">
+                                                                <h5 style="display: inline-block;margin-left: 5%;">
                                                                     <field name="question_three_choice"/>
                                                                 </h5>
                                                             </div>
