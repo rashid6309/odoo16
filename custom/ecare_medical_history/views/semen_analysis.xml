@@ -199,48 +199,70 @@
                             <field name="other_observation"/>
                         </group>
                     </group>
-                    <group string="Sperm Morphology">
-                        <group>
-                            <field name="normal"/>
-                            <field name="abnormal"/>
-                        </group>
-                        <!--    Defects-->
-                        <div class="d-flex flex-column col-lg-7">
-                            <div class="d-flex align-items-center bg-light bg-gradient">
-                                <div class="col-md-2">
-                                    Defects
+                    <group string="Sperm Morphology"/>
+                    <div class="d-flex ">
+                        <div class="col-md-1">
+                            <label for="normal"/>
+                        </div>
+                        <div class="d-flex">
+                            <div>
+                                <field name="normal"/>
+                            </div>
+                            <div>
+                                <span>%</span>
+                                <span>  Range>5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex ">
+                        <div class="col-md-1">
+                            <label for="abnormal"/>
+                        </div>
+                        <div class="d-flex">
+                            <div>
+                                <field name="abnormal"/>
+                            </div>
+                            <div>
+                                <span>%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--    Defects-->
+                    <div class="d-flex flex-column col-lg-7">
+                        <div class="d-flex align-items-center bg-light bg-gradient">
+                            <div class="col-md-2">
+                                Defects
+                            </div>
+                            <div class="col-md-9">
+                                <div class="d-flex">
+                                    <label for="cephalic"/>
+                                    <field name="cephalic"/>
+                                    <span>%</span>
                                 </div>
-                                <div class="col-md-9">
-                                    <div class="d-flex">
-                                        <label for="cephalic"/>
-                                        <field name="cephalic"/>
-                                        <span>%</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <label for="mid_piece"/>
-                                        <field name="mid_piece"/>
-                                        <span>%</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <label for="tail"/>
-                                        <field name="tail"/>
-                                        <span>%</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <label for="acrosomal_cap"/>
-                                        <field name="acrosomal_cap"/>
-                                        <span>%</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <label for="vacoules"/>
-                                        <field name="vacoules"/>
-                                        <span>%</span>
-                                    </div>
+                                <div class="d-flex">
+                                    <label for="mid_piece"/>
+                                    <field name="mid_piece"/>
+                                    <span>%</span>
+                                </div>
+                                <div class="d-flex">
+                                    <label for="tail"/>
+                                    <field name="tail"/>
+                                    <span>%</span>
+                                </div>
+                                <div class="d-flex">
+                                    <label for="acrosomal_cap"/>
+                                    <field name="acrosomal_cap"/>
+                                    <span>%</span>
+                                </div>
+                                <div class="d-flex">
+                                    <label for="vacoules"/>
+                                    <field name="vacoules"/>
+                                    <span>%</span>
                                 </div>
                             </div>
-
                         </div>
-                    </group>
+
+                    </div>
                     <group string="Preparation Method">
                         <group>
                             <field name="method"/>
