@@ -3,6 +3,7 @@ from odoo.exceptions import ValidationError
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
+from odoo.addons.ecare_medical_history.utils.date_validation import DateValidation
 from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 '''
 
@@ -82,3 +83,8 @@ class FemaleObstetricsHistory(models.Model):
             'flags': {'initial_mode': 'create'},
             'domain': domain,
         }
+
+    @api.onchange('date_of_birth')
+    def _check_date_of_birth_date(self):
+        if self.date_of_birth:
+            return DateValidation._date_validation(self.date_of_birth)
