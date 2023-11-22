@@ -85,5 +85,5 @@ class MedicalGynaecologicalExamination(models.Model):
                                   column1='gynaecological_id',
                                   column2='multi_selection_id',
                                   string='Lining', domain="[('type', '=', 'linining')]")
-    lining_size = fields.Selection(selection=StaticMember.LINING_SIZE, string='Lining Size')
+    lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Lining Size')
 
