@@ -146,10 +146,10 @@
 											</group>
 
 											<group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
-<!--												<group>-->
-<!--													<field name="repeat_lmp"/>-->
-<!--													<field name="repeat_lmp_embryo"/>-->
-<!--												</group>-->
+												<!--												<group>-->
+												<!--													<field name="repeat_lmp"/>-->
+												<!--													<field name="repeat_lmp_embryo"/>-->
+												<!--												</group>-->
 											</group>
 											<div attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
 												<group>
@@ -380,7 +380,7 @@
 													<field attrs="{'invisible': [('inspection_only', '!=', True),
 																			  ('p_v_only', '!=', True),
 																			  ('p_s_only', '!=', True)]}"
-															name="repeat_no_swab_taken"/>
+														   name="repeat_no_swab_taken"/>
 													<label class="custom-text-align" for="repeat_no_swab_taken"
 														   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
@@ -618,7 +618,7 @@
 											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
 											collapseDivs.forEach(function(collapseDiv) {
-											  collapseDiv.classList.add("show");
+											collapseDiv.classList.add("show");
 											});
 											});
 											});
@@ -1446,84 +1446,116 @@
 													<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
 													<field name="left_ovary_type" string="Type"/>
 													<!-- Left Ovary Section -->
-													<field name="gynaecological_left_size_ids" string=" ">
-														<tree editable="bottom" class="col-4">
-															<field name="generic_size_x"/>
-															<field name="generic_size_y"/>
-
-														</tree>
-													</field>
-													<!-- Right Ovary Section -->
-													<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
-													<field name="right_ovary_type"  string="Type"/>
-													<field name="gynaecological_right_size_ids" string=" ">
-														<tree editable="bottom" class="col-4">
-															<field name="generic_size_x"/>
-															<field name="generic_size_y"/>
-
-														</tree>
-													</field>
-
 													<div/>
-													<div>
-														<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;">
-															<div class="col-md-1">
-																Uterus
+													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -39%;">
+														<div class="col-md-2">
+															<b>Left Ovary</b>
+														</div>
+														<div class="col-md-10">
+															<div class="d-flex">
+																<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
+
 															</div>
-															<div class="col-md-10">
-																<div class="d-flex">
-																	<field name="gynaecological_uterus_size"/>
-																	<label for="gynaecological_uterus_size"/>
+															<div class="d-flex">
+																<span>Type</span>
+																<field name="left_ovary_type"/>
+															</div>
+															<div class="d-flex align-items-center bg-light bg-gradient">
+																<div class="col-md-5">
+																	<field name="gynaecological_left_size_ids">
+																		<tree editable="bottom">
+																			<field name="generic_size_x"/>
+																			<field name="generic_size_y"/>
 
-																	<field name="gynaecological_uterus_position"/>
-																	<label for="gynaecological_uterus_position"/>
-
-																	<field name="gynaecological_uterus_normal"/>
-																	<label for="gynaecological_uterus_normal"/>
-
-																	<field name="gynaecological_uterus_fiobrid"/>
-																	<label for="gynaecological_uterus_fiobrid"/>
-
-																</div>
-																<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
-																	<span>Size</span>
-																	<field name="uterus_size_length"/>
-																	<span class="m-2">x</span>
-
-																	<field name="uterus_size_width"/>
-																	<span>cm</span>
-																</div>
-																<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
-																	<div class="col-md-1 fw-bolder">
-																		Position
-																	</div>
-																	<div class="d-flex">
-																		<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
-																	<div class="col-md-1">
-																		Fibroid
-																	</div>
-																	<div class="col-md-3">
-																		<field name="gynaecological_generic_sizes_ids">
-																			<tree editable="bottom">
-																				<field name="generic_size_x"/>
-																				<field name="generic_size_y"/>
-
-																			</tree>
-																		</field>
-																	</div>
+																		</tree>
+																	</field>
 																</div>
 															</div>
 														</div>
 													</div>
 
+													<!-- Right Ovary Section -->
+													<div/>
+													<div class="d-flex align-items-center" style="width: 190%;position: relative;left: -39%;">
+														<div class="col-md-2">
+															<b>Right Ovary</b>
+														</div>
+														<div class="col-md-10">
+															<div class="d-flex">
+																<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
 
-													<field name="uterus" widget="radio" options="{'horizontal': True}"/>
-													<field name="uterus_size_length"/>
-													<field name="uterus_size_width"/>
-													<field name="uterus_size_position"/>
+															</div>
+															<div class="d-flex">
+																<span>Type</span>
+																<field name="right_ovary_type"/>
+															</div>
+															<div class="d-flex align-items-center">
+																<div class="col-md-5">
+																	<field name="gynaecological_right_size_ids">
+																		<tree editable="bottom">
+																			<field name="generic_size_x"/>
+																			<field name="generic_size_y"/>
+
+																		</tree>
+																	</field>
+																</div>
+															</div>
+														</div>
+													</div>
+
+													<div/>
+													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -39%;">
+														<div class="col-md-1">
+															Uterus
+														</div>
+														<div class="col-md-10">
+															<div class="d-flex">
+																<field name="gynaecological_uterus_size"/>
+																<label for="gynaecological_uterus_size"/>
+
+																<field name="gynaecological_uterus_position"/>
+																<label for="gynaecological_uterus_position"/>
+
+																<field name="gynaecological_uterus_normal"/>
+																<label for="gynaecological_uterus_normal"/>
+
+																<field name="gynaecological_uterus_fiobrid"/>
+																<label for="gynaecological_uterus_fiobrid"/>
+
+															</div>
+															<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
+																<span>Size</span>
+																<field name="uterus_size_length"/>
+																<span class="m-2">x</span>
+
+																<field name="uterus_size_width"/>
+																<span>cm</span>
+															</div>
+															<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
+																<div class="col-md-1 fw-bolder" style="margin-right: 4%;">
+																	Position
+																</div>
+																<div class="d-flex">
+																	<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>
+																</div>
+															</div>
+															<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
+																<div class="col-md-1">
+																	Fibroid
+																</div>
+																<div class="col-md-5">
+																	<field name="gynaecological_generic_sizes_ids">
+																		<tree editable="bottom">
+																			<field name="generic_size_x"/>
+																			<field name="generic_size_y"/>
+
+																		</tree>
+																	</field>
+																</div>
+															</div>
+														</div>
+													</div>
+
 
 													<label for="lining_ids"/>
 													<div>

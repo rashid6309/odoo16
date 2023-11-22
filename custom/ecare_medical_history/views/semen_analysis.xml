@@ -381,6 +381,7 @@
             <field name="model">ec.semen.analysis</field>
             <field name="arch" type="xml">
                 <tree create="1">
+                    <field name="semen_patient_id"/>
                     <field name="date"/>
                     <field name="lab_number"/>
                     <field name="lab_name"/>
