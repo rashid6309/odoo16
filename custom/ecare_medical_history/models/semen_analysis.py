@@ -122,55 +122,55 @@ class SemenAnalysis(models.Model):
         if self.date:
             return DateValidation._date_validation(self.date)
 
-    @api.constrains('abstinence')
+    @api.onchange('abstinence')
     def _check_abstinence_input(self):
         for record in self:
             if record.abstinence and not re.match('^[0-9\.]*$', record.abstinence):
                 raise UserError("Please enter a numeric value in abstinence.")
             
-    @api.constrains('volume')
+    @api.onchange('volume')
     def _check_volume_input(self):
         for record in self:
              if record.volume and not re.match('^[0-9\.]*$', record.volume):
                 raise UserError("Please enter a numeric value in volume.")
 
-    @api.constrains('total_count')
+    @api.onchange('total_count')
     def _check_total_count_input(self):
         for record in self:
              if record.total_count and not re.match('^[0-9\.]*$', record.total_count):
                 raise UserError("Please enter a numeric value in total count.")
 
-    @api.constrains('wbcs')
+    @api.onchange('wbcs')
     def _check_wbcs_input(self):
         for record in self:
              if record.wbcs and not re.match('^[0-9\.]*$', record.wbcs):
                 raise UserError("Please enter a numeric value in WBCs.")
 
-    @api.constrains('epi_cells_immature_cells')
+    @api.onchange('epi_cells_immature_cells')
     def _check_epi_cells_immature_cells_input(self):
         for record in self:
              if record.epi_cells_immature_cells and not re.match('^[0-9\.]*$', record.epi_cells_immature_cells):
                 raise UserError("Please enter a numeric value in EPI Cells/Immature Cells.")
 
-    @api.constrains('prep_conc')
+    @api.onchange('prep_conc')
     def _check_prep_conc_input(self):
         for record in self:
              if record.prep_conc and not re.match('^[0-9\.]*$', record.prep_conc):
                 raise UserError("Please enter a numeric value in Prep Conc")
 
-    @api.constrains('sperm_cryopreservation_strawe')
+    @api.onchange('sperm_cryopreservation_strawe')
     def _check_sperm_cryopreservation_strawe_input(self):
         for record in self:
              if record.sperm_cryopreservation_strawe and not re.match('^[0-9\.]*$', record.sperm_cryopreservation_strawe):
                 raise UserError("Please enter a numeric value in No. of Strawe.")
 
-    @api.constrains('ph')
+    @api.onchange('ph')
     def _check_ph_input(self):
         for record in self:
              if record.ph and not re.match('^[0-9\.]*$', record.ph):
                 raise UserError("Please enter a numeric value PH.")
 
-    @api.constrains('progression')
+    @api.onchange('progression')
     def _check_progression_input(self):
         for record in self:
              if record.progression and not re.match('^[0-9\.]*$', record.progression):
