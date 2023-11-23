@@ -20,7 +20,7 @@ class SemenAnalysis(models.Model):
                                        string="Patient")
 
     date = fields.Date(string='Date', required=True,)
-    lab_number = fields.Char(string='Lab Number', required=True,)
+    lab_number = fields.Char(string='Lab Number', required=True, default=lambda self: self._get_default_lab_number())
     lab_name = fields.Many2one(comodel_name="ec.medical.labs", string='Lab Name')
 
     preparation_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
@@ -110,6 +110,21 @@ class SemenAnalysis(models.Model):
 
     seminologist = fields.Char("Seminologist")
     special_notes = fields.Char("Special Notes")
+
+    @api.model
+    def _get_default_lab_number(self):
+        # Get the current year
+        current_year = fields.Date.today().year
+
+        last_lab_number = self.search([('lab_number', 'like', f'LAB-{current_year}-')], order='lab_number desc', limit=1)
+
+        if last_lab_number:
+            sequence_number = int(last_lab_number.lab_number.split('-')[-1])
+            next_sequence_number = sequence_number + 1
+        else:
+            next_sequence_number = 1
+
+        return f'LAB-{current_year}-{next_sequence_number:04d}'
 
     def print_semen_analysis_report(self):
         return self.env.ref('ecare_medical_history.ec_semen_analysis_report').report_action(self)
