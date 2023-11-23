@@ -251,7 +251,7 @@
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_scanned.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Documented Medicsi Scan Reviewed?</span>
+                                                                            <span class="o_form_label">Documented Medicsi Scan Reviewed</span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_scanned"/>
