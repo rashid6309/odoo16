@@ -1447,11 +1447,10 @@
 													<div/>
 													<field name="gynaecological_examination_date"/>
 													<field name="gynaecological_examination_lmp"/>
-													<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
-													<field name="left_ovary_type" string="Type"/>
+
 													<!-- Left Ovary Section -->
 													<div/>
-													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -39%;">
+													<div class="d-flex align-items-center bg-light bg-gradient">
 														<div class="col-md-2">
 															<b>Left Ovary</b>
 														</div>
@@ -1480,7 +1479,7 @@
 
 													<!-- Right Ovary Section -->
 													<div/>
-													<div class="d-flex align-items-center" style="width: 190%;position: relative;left: -39%;">
+													<div class="d-flex align-items-center">
 														<div class="col-md-2">
 															<b>Right Ovary</b>
 														</div>
