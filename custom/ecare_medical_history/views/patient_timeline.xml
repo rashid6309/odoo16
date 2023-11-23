@@ -218,8 +218,7 @@
 												<group>
 													<field name="repeat_pregnancy_procedure_performed"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
-													<label for="repeat_pregnancy_procedure_performed_text" string=""/>
-													<field name="repeat_pregnancy_procedure_performed_text" nolabel="1"/>
+													<field name="repeat_pregnancy_procedure_performed_text"/>
 												</group>
 												<group>
 													<field name="repeat_pregnancy_type_sample_obtained"/>

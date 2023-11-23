@@ -27,7 +27,7 @@ class PregnancyForm(models.Model):
 
     repeat_pregnancy_procedure_performed = fields.Many2one(comodel_name='ec.medical.pregnancy.procedure',
                                                            string="Procedure Performed")
-    repeat_pregnancy_procedure_performed_text = fields.Text(string="Procedure Performed")
+    repeat_pregnancy_procedure_performed_text = fields.Text(string="Procedure Notes")
 
     repeat_pregnancy_diagnosis_ids = fields.Many2many(comodel_name='ec.medical.diagnosis',
                                                       relation="ec_medical_pregnancy_diagnosis_rel",
