@@ -18,7 +18,7 @@
                         <group>
                             <field name="semen_patient_id"/>
                             <field name="date"/>
-                            <field name="lab_number" readonly="1"/>
+                            <field name="lab_number" readonly="1" force_save="1"/>
                             <field name="lab_name" options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
                             <field name="preparation_ids"  widget="many2many_checkboxes"/>
                             <field name="sample_produced_at_lab" widget="radio" options="{'horizontal': True}"/>
