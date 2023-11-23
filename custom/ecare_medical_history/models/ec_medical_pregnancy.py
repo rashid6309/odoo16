@@ -40,7 +40,6 @@ class PregnancyForm(models.Model):
                                                           column1="medical_pregnancy_id",
                                                           column2="investigation_id",
                                                           string="Investigation")
-    repeat_pregnancy_investigation = fields.Char(string="Any significant pregnancy investigations?")
 
     repeat_pregnancy_type_sample_obtained = fields.Char(string="Type of Sample Obtained")
 
@@ -60,10 +59,18 @@ class PregnancyForm(models.Model):
 
     repeat_pregnancy_fetal_heart = fields.Selection(StaticMember.FETAL_HEART, string="Fetal Heart ")
 
-    repeat_pregnancy_signs_of_ohss= fields.Selection(StaticMember.CHOICE_YES_NO_NA, string="Any signs of OHSS?  ")
+    repeat_pregnancy_signs_of_ohss = fields.Selection(StaticMember.CHOICE_YES_NO_NA, string="Any signs of OHSS?  ")
 
-    repeat_pregnancy_name_receiving_geneticist = fields.Char(string="Name of Receiving Geneticist")
+    repeat_pregnancy_icsi_ultrasound = fields.Char(string="ICSI Ultrasound")
+
+    repeat_pregnancy_name_receiving_geneticist = fields.Many2one(comodel_name='res.consultant',
+                                                                 string="Name of Receiving Geneticist")
     repeat_pregnancy_plan = fields.Char(string="Plan")
+    repeat_pregnancy_doctors = fields.Many2many(comodel_name='res.consultant',
+                                                column1='pregnancy_id',
+                                                column2='doctor_id',
+                                                relation='ec_medical_pregnancy_doctors_rel',
+                                                string="Doctors")
 
     @api.onchange('repeat_pregnancy_lmp')
     def _compute_gestational_age(self):

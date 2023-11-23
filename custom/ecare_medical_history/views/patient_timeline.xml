@@ -164,20 +164,18 @@
                                             'required':[('repeat_pregnancy_gestation_type','=','other')]}"/>
 													<field name="repeat_pregnancy_viability_potential"/>
 													<field name="repeat_pregnancy_details"/>
-												</group>
-												<group>
-													<field name="repeat_pregnancy_hr"/>
-												</group>
-												<group string="Reason for visit">
-													<field name="early_pregnancy_assessment"/>
+													<field name="repeat_pregnancy_diagnosis"/>
 												</group>
 
-												<group>
-													<field name="repeat_pregnancy_procedure_performed"
-														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
-													<label for="repeat_pregnancy_procedure_performed_text" string=""/>
-													<field name="repeat_pregnancy_procedure_performed_text" nolabel="1"/>
+												<group string="Reason for visit">
+													<field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
 												</group>
+												<group>
+													<field name="repeat_pregnancy_notes"/>
+													<field name="repeat_pregnancy_scanned" widget="radio"/>
+													<field name="repeat_pregnancy_significant_findings"/>
+												</group>
+
 												<group string="Examination:" class="d-flex flex-column custom_width">
 													<div class="d-flex" style="width:200%;">
 														<label for="repeat_pregnancy_hr"/>
@@ -204,26 +202,33 @@
 														</div>
 													</div>
 												</group>
+												<group>
+													<field name="repeat_pregnancy_icsi_ultrasound"/>
+												</group>
 												<group string="Diagnosis">
 													<field name="repeat_pregnancy_diagnosis_ids"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
-													<field name="repeat_pregnancy_diagnosis"/>
-													<field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
-													<field name="repeat_pregnancy_notes"/>
-													<field name="repeat_pregnancy_scanned" widget="radio"/>
-													<field name="repeat_pregnancy_significant_findings"/>
 												</group>
 												<group string="Investigations">
 													<field name="repeat_pregnancy_investigation_ids"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
-													<field name="repeat_pregnancy_investigation"/>
+												</group>
+												<group>
+													<field name="repeat_pregnancy_procedure_performed"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
+													<label for="repeat_pregnancy_procedure_performed_text" string=""/>
+													<field name="repeat_pregnancy_procedure_performed_text" nolabel="1"/>
 												</group>
 												<group>
 													<field name="repeat_pregnancy_type_sample_obtained"/>
-													<field name="repeat_pregnancy_name_receiving_geneticist"/>
+													<field name="repeat_pregnancy_name_receiving_geneticist"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_plan"/>
+													<field name="repeat_pregnancy_doctors"
+														   widget="many2many_tags"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 												</group>
 											</div>
 
