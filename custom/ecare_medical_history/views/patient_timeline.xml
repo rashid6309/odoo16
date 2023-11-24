@@ -567,6 +567,7 @@
 																<tree editable="bottom">
 																	<field name="type"/>
 																	<field name="generic_size_x"/>
+																	<field name="generic_size_y"/>
 																</tree>
 															</field>
 														</div>
