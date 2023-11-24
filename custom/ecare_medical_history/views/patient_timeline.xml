@@ -181,7 +181,7 @@
 													<div class="d-flex" style="width:200%;">
 														<label for="repeat_pregnancy_hr"/>
 														<field name="repeat_pregnancy_hr"/>
-														<span class="me-1">Rhythm </span>
+														<span style=" margin-right: 2%;">Rhythm </span>
 														<label style=" margin-left: 2%;" for="repeat_pregnancy_bp_upper"/>
 														<field name="repeat_pregnancy_bp_upper"/>
 														<span class="me-1">/</span>
