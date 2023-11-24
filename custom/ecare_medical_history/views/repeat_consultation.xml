@@ -18,7 +18,7 @@
                                     <div class="d-flex" style="justify-content: space-between">
                                         <div>
                                             Consultation Date
-                                            <b>-</b>
+                                            <b>- </b>
                                             <field name="repeat_date"/>
                                         </div>
                                         <div class="text-center font-weight-bold d-flex align-items-end">
