@@ -505,7 +505,7 @@
 															<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
 														</div>
 														<div>
-															<span>CET</span>
+															<span>Size</span>
 															<field name="tvs_lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
 															<span>mm</span>
 														</div>
