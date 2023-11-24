@@ -1451,8 +1451,8 @@
 
 													<!-- Left Ovary Section -->
 													<div/>
-													<div class="d-flex align-items-center bg-light bg-gradient">
-														<div class="col-md-2">
+													<div class="d-flex align-items-center bg-light bg-gradient" style=" position: relative; left: -24%;">
+														<div class="col-md-3">
 															<b>Left Ovary</b>
 														</div>
 														<div class="col-md-10">
@@ -1465,7 +1465,7 @@
 																<field name="left_ovary_type"/>
 															</div>
 															<div class="d-flex align-items-center bg-light bg-gradient">
-																<div class="col-md-7">
+																<div class="col-md-10">
 																	<field name="gynaecological_left_size_ids">
 																		<tree editable="bottom">
 																			<field name="generic_size_x"/>
@@ -1480,8 +1480,8 @@
 
 													<!-- Right Ovary Section -->
 													<div/>
-													<div class="d-flex align-items-center">
-														<div class="col-md-2">
+													<div class="d-flex align-items-center" style=" position: relative; left: -24%; ">
+														<div class="col-md-3">
 															<b>Right Ovary</b>
 														</div>
 														<div class="col-md-10">
@@ -1494,7 +1494,7 @@
 																<field name="right_ovary_type"/>
 															</div>
 															<div class="d-flex align-items-center">
-																<div class="col-md-7">
+																<div class="col-md-10">
 																	<field name="gynaecological_right_size_ids">
 																		<tree editable="bottom">
 																			<field name="generic_size_x"/>
