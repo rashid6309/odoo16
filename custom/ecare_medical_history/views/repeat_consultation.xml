@@ -22,7 +22,8 @@
                                             <field name="repeat_date"/>
                                         </div>
                                         <div class="text-center font-weight-bold d-flex align-items-end">
-
+<!--                                            <field name="repeat_timeline_id"/>-->
+<!--                                            <span t-if="record.repeat_timeline_id.show_repeat_section_state.raw_value == True" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>-->
                                             <div>
 
                                                 <a name="action_set_working_consultation"

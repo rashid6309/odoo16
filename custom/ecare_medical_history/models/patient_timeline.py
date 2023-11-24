@@ -153,16 +153,17 @@ class PatientTimeline(models.Model):
         Formula: (Consultation Date - LMP) + 1
         :return: cycle day
         """
-        if CustomDateTime.greater_than_today(self.lmp_question_four):
-            self.lmp_question_four = None
-            raise ValidationError(_(
-                "Date can't be greater than current date!"))
+        if self.lmp_question_four:
+            if CustomDateTime.greater_than_today(self.lmp_question_four):
+                self.lmp_question_four = None
+                raise ValidationError(_(
+                    "Date can't be greater than current date!"))
 
-        cycle_day = (self.repeat_date.date() - self.lmp_question_four).days
-        cycle_day += 1
+            cycle_day = (self.repeat_date.date() - self.lmp_question_four).days
+            cycle_day += 1
 
-        self.repeat_cycle_day = cycle_day
-        self.tvs_cycle_day = cycle_day
+            self.repeat_cycle_day = cycle_day
+            self.tvs_cycle_day = cycle_day
 
     def _compute_female_values(self):
         """

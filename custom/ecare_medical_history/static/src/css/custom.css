@@ -10,6 +10,17 @@
    text-align : right;
 }
 
+#semen_analysis_form_id .o_form_label
+{
+   width: 100px ;
+   text-align : right;
+}
+
+.timeline_content .o_form_label
+{
+   float : right;
+}
+
 #repeat_consultation_section .form-check-label{
     width: max-content !important;
 }
