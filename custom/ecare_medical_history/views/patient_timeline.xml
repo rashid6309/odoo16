@@ -210,11 +210,13 @@
 													<field name="repeat_pregnancy_diagnosis_ids"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
+													<field name="repeat_pregnancy_diagnosis_id_text"/>
 												</group>
 												<group string="Investigations">
 													<field name="repeat_pregnancy_investigation_ids"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
+													<field name="repeat_pregnancy_investigation_id_text"/>
 												</group>
 												<group>
 													<field name="repeat_pregnancy_procedure_performed"

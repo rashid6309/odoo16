@@ -35,11 +35,14 @@ class PregnancyForm(models.Model):
                                                       column2="diagnosis_id",
                                                       string="Diagnosis")
 
+    repeat_pregnancy_diagnosis_id_text = fields.Char(string="Diagnosis")
+
     repeat_pregnancy_investigation_ids = fields.Many2many(comodel_name='ec.medical.investigation',
                                                           relation="ec_medical_pregnancy_investigation_rel",
                                                           column1="medical_pregnancy_id",
                                                           column2="investigation_id",
                                                           string="Investigation")
+    repeat_pregnancy_investigation_id_text = fields.Char(string="Investigation")
 
     repeat_pregnancy_type_sample_obtained = fields.Char(string="Type of Sample Obtained")
 
