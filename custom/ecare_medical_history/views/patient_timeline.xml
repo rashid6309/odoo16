@@ -1455,7 +1455,7 @@
 														<div class="col-md-3">
 															<b>Left Ovary</b>
 														</div>
-														<div class="col-md-10">
+														<div class="col-md-9">
 															<div class="d-flex">
 																<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
 
@@ -1484,7 +1484,7 @@
 														<div class="col-md-3">
 															<b>Right Ovary</b>
 														</div>
-														<div class="col-md-10">
+														<div class="col-md-9">
 															<div class="d-flex">
 																<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
 
