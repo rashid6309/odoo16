@@ -519,7 +519,7 @@
 
 													<div class="col-md-5">
 														<div class="col-md-12">
-															<field name="tvs_rov"/>
+															<field name="tvs_rov" readonly="1"/>
 														</div>
 													</div>
 
@@ -541,7 +541,7 @@
 													</div>
 													<div class="col-md-5">
 														<div class="col-md-12">
-															<field name="tvs_lov"/>
+															<field name="tvs_lov" readonly="1"/>
 														</div>
 													</div>
 
