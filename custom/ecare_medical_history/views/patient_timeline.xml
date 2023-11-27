@@ -483,7 +483,7 @@
 															<div class="col-md-1">
 																Fibroid
 															</div>
-															<div class="col-md-3">
+															<div class="col-md-5">
 																<field name="tvs_generic_sizes_ids">
 																	<tree editable="bottom">
 																		<field name="generic_size_x"/>
@@ -561,7 +561,7 @@
 													<div class="col-md-1">
 														Cyst
 													</div>
-													<div class="col-md-3 d-flex flex-column">
+													<div class="col-md-5 d-flex flex-column">
 														<div>
 															<field name="tvs_cyst_size_ids">
 																<tree editable="bottom">

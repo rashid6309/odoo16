@@ -572,7 +572,7 @@ class StaticMember:
     ]
 
     SEMEN_COLOR = [
-        ('a', 'A'),
+        ('creamy_white', 'Creamy White'),
     ]
 
     SEMEN_VISCOSITY = [
