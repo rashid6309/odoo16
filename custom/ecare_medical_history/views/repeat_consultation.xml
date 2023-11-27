@@ -792,19 +792,16 @@
                                                                         <span>Uterus TVS Fiobrid</span>
                                                                     </div>
                                                                 </div>
-
-                                                                <div class="text-900">
-                                                                    <div class="d-inline-block m-3">
-                                                                        <span>Uterus Size X</span>
-                                                                    </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_size_x"/>
-                                                                    </div>
-                                                                    <div class="d-inline-block m-3">
-                                                                        <span>Uterus Size Y</span>
-                                                                    </div>
-                                                                    <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_size_y"/>
+                                                                <div class="o_group row align-items-start">
+                                                                    <div class="o_inner_group grid col-lg-12 text-900">
+                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                            <div>
+                                                                                <span class="o_form_label">Fibroid</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="repeat_uterus_fibroid_computed"/>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
 
@@ -827,6 +824,14 @@
                                                                             </div>
                                                                             <div>
                                                                                 <field name="tvs_lov"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                            <div>
+                                                                                <span class="o_form_label">Cyst</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="repeat_cyst_computed"/>
                                                                             </div>
                                                                         </div>
                                                                         <!--                                                                    <div class="d-flex d-sm-contents flex-column">-->

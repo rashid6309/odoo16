@@ -237,6 +237,11 @@ class RepeatConsultation(models.Model):
 
     counseling_and_discussion = fields.Html(string="Counseling and discussion done")
 
+    '''Repeat Computed'''
+
+    repeat_cyst_computed = fields.Html(string='Cyst', compute='repeat_values_compute')
+    repeat_uterus_fibroid_computed = fields.Html(string='Uterus Fibroid', compute='repeat_values_compute')
+
     ''' Override methods '''
 
     def name_get(self):
@@ -247,6 +252,34 @@ class RepeatConsultation(models.Model):
         return result
 
     ''' Data methods '''
+
+    def repeat_values_compute(self):
+        if self:
+            for repeat in self:
+                if repeat.repeat_timeline_id.tvs_cyst_size_ids:
+                    table_rows = []
+                    for record in repeat.repeat_timeline_id.tvs_cyst_size_ids:
+                        type_value = record.type or '-'
+                        size_x_value = str(record.generic_size_x) if record.generic_size_x is not None else '-'
+                        size_y_value = str(record.generic_size_y) if record.generic_size_y is not None else '-'
+                        table_row = f"<tr><td>{type_value}</td><td>{size_x_value},</td><td>{size_y_value}</td></tr>"
+                        table_rows.append(table_row)
+                    dynamic_table = f"<table>{''.join(table_rows)}</table>"
+                    repeat.repeat_cyst_computed = dynamic_table
+                else:
+                    repeat.repeat_cyst_computed = ''
+                if repeat.repeat_timeline_id.tvs_generic_sizes_ids:
+                    table_rows = []
+                    for record in repeat.repeat_timeline_id.tvs_generic_sizes_ids:
+                        size_x_value = str(record.generic_size_x) if record.generic_size_x is not None else '-'
+                        size_y_value = str(record.generic_size_y) if record.generic_size_y is not None else '-'
+                        table_row = f"<tr><td>{size_x_value},</td><td>{size_y_value}</td></tr>"
+                        table_rows.append(table_row)
+                    dynamic_table = f"<table>{''.join(table_rows)}</table>"
+                    repeat.repeat_uterus_fibroid_computed = dynamic_table
+                else:
+                    repeat.repeat_uterus_fibroid_computed = ''
+
 
     def move_next(self):
         value = int(self.state)
