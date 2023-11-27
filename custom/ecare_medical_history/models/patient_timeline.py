@@ -33,6 +33,13 @@ class PatientTimeline(models.Model):
 
     ''' FK's related-attributes '''
 
+    ec_first_consultation_create_date = fields.Datetime("Create Date",
+                                                        related='ec_first_consultation_id.create_date')
+
+    ec_first_consultation_create_uid = fields.Many2one(string="Create User",
+                                                       comodel_name='res.users',
+                                                       related='ec_first_consultation_id.create_uid')
+
     ''' Patient attributes '''
 
     # Related Fields which are used for kanban view
@@ -355,7 +362,7 @@ class PatientTimeline(models.Model):
                                                                        None)
     def action_open_seminology(self):
         raise UserError("Module is under development phase.")
-    
+
     def action_open_tvs_scan(self):
         return self.ec_repeat_consultation_id.repeat_tvs_id.action_open_tvs_scan()
 
