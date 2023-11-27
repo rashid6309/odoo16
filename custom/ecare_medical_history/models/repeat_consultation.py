@@ -145,7 +145,11 @@ class RepeatConsultation(models.Model):
     # Define TVS field as per your TVS form structure
     # TVS = fields.Many2one('tvs.form', string='TVS Form')
 
-    repeat_diagnosis = fields.Text(string='Diagnosis')
+    repeat_diagnosis = fields.Many2many(comodel_name='ec.medical.diagnosis',
+                                        relation="ec_medical_repeat_diagnosis_rel",
+                                        column1="repeat_id",
+                                        column2="diagnosis_id",
+                                        string="Diagnosis")
 
     repeat_treatment_plan = fields.Html(string='Plan')
 

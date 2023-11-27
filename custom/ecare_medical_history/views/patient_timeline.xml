@@ -593,7 +593,9 @@
 											<group>
 												<field name="counseling_and_discussion"/>
 
-												<field name="repeat_diagnosis"/>
+												<field name="repeat_diagnosis"
+													   widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_investigations_ids" widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
