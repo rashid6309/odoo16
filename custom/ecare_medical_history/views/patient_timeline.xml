@@ -278,7 +278,7 @@
 													<field name="lmp_question_four"/>
 												</group>
 												<group>
-													<field name="repeat_cycle_day"/>
+													<field name="repeat_cycle_day" force_save="1"/>
 												</group>
 											</group>
 
