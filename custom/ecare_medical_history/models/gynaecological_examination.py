@@ -16,7 +16,7 @@ class MedicalGynaecologicalExamination(models.Model):
     uterus_size_comment = fields.Char(string='Uterus Size Comment')
 
     uterus_position = fields.Selection(selection=StaticMember.UTERUS_POSITION, string='Uterus Position')
-    uterus_mobility = fields.Selection(selection=StaticMember.UTERUS_MOBILITY, string='Uterus Mobility')
+    uterus_motility = fields.Selection(selection=StaticMember.UTERUS_MOTILITY, string='Uterus Motility')
 
     gynaecological_examination_ps_selection = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='P/S')
     gynaecological_examination_ps_comment = fields.Char('P/S Comment')
@@ -85,5 +85,5 @@ class MedicalGynaecologicalExamination(models.Model):
                                   column1='gynaecological_id',
                                   column2='multi_selection_id',
                                   string='Lining', domain="[('type', '=', 'linining')]")
-    lining_size = fields.Selection(selection=StaticMember.LINING_SIZE, string='Lining Size')
+    lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Lining Size')
 

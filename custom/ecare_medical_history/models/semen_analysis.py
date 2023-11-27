@@ -1,20 +1,27 @@
-from odoo import api, models, fields, _
+from datetime import datetime
 
+from odoo import api, models, fields, _
+import re
+from odoo.addons.ecare_medical_history.utils.date_validation import DateValidation
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
+from odoo.addons.ecare_core.utilities.helper import TimeValidation, CustomNotification
+
+
+from odoo.exceptions import UserError
 
 
 class SemenAnalysis(models.Model):
     _name = 'ec.semen.analysis'
     _description = 'Semen Analysis'
-    _rec_id = "semen_patient_id"
+    _rec_name = "semen_patient_id"
 
     semen_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                        required=True,
                                        string="Patient")
 
-    date = fields.Date(string='Date')
-    lab_number = fields.Char(string='Lab Number')
-    lab_name = fields.Char(string='Lab Name')
+    date = fields.Date(string='Date', required=True,)
+    lab_number = fields.Char(string='Lab Number', required=True, default=lambda self: self._get_default_lab_number())
+    lab_name = fields.Many2one(comodel_name="ec.medical.labs", string='Lab Name')
 
     preparation_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                        relation='semen_analysis_multi_selection_complains',
@@ -34,9 +41,9 @@ class SemenAnalysis(models.Model):
                                 string='Freezing')
 
     abstinence = fields.Char(string='Abstinence')
-    production_time = fields.Float(string='Production Time')
-    analysis_time = fields.Float(string='Analysis Time')
-    liquifaction_time = fields.Char(string='Liquifaction Time')
+    production_time = fields.Char(string='Production Time')
+    analysis_time = fields.Char(string='Analysis Time')
+    liquifaction_time = fields.Char(string='Liquefaction Time')
     color = fields.Selection(selection=StaticMember.SEMEN_COLOR,
                              default='a',
                              string="Color")
@@ -45,13 +52,13 @@ class SemenAnalysis(models.Model):
     viscosity = fields.Selection(selection=StaticMember.SEMEN_VISCOSITY, string='Viscosity')
     volume = fields.Char(string='Volume')
     total_count = fields.Char(string='Total Count')
-    mobility = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Mobility')
+    motility = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Motility')
 
-    progression_f_forward = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='F Forward')
-    progression_s_forward = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='S Forward')
-    progression_lateral = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Lateral')
-    progression_non_progressive = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Non Progressive')
-    progression_dead = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Dead')
+    progression_f_forward = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='F Forward')
+    progression_s_forward = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='S Forward')
+    progression_lateral = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Lateral')
+    progression_non_progressive = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Non Progressive')
+    progression_dead = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Dead')
 
     # progression = fields.Selection([
     #     ('no_progression', 'No Progression'),
@@ -70,20 +77,20 @@ class SemenAnalysis(models.Model):
     abnormal = fields.Selection(selection=StaticMember.SEMEN_MORPHOLOGY, string="Abnormal")
 
     # Defects
-    cephalic = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Cephalic')
-    mid_piece = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Mid Piece')
-    tail = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Tail')
-    acrosomal_cap = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Acrosomal Cap')
-    vacoules = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='Vacoules')
+    cephalic = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Cephalic')
+    mid_piece = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Mid Piece')
+    tail = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Tail')
+    acrosomal_cap = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Acrosomal Cap')
+    vacoules = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Vacoules')
 
     method = fields.Selection(selection=StaticMember.SEMEN_METHOD, string="Method")
     prep_conc = fields.Char(string='Prep Conc')
 
-    mobility_percentage = fields.Selection(selection=StaticMember.SEMEN_MOBILITY, string='%Mobility')
+    motility_percentage = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='%Motility')
     progression = fields.Char(string='Progression')
 
-    after_24_hrs_mobility_percentage = fields.Selection(selection=StaticMember.SEMEN_MOBILITY,
-                                                        string='After 24hrs %Mobility')
+    after_24_hrs_motility_percentage = fields.Selection(selection=StaticMember.SEMEN_MOTILITY,
+                                                        string='After 24hrs %Motility')
     after_24_hrs_progression = fields.Char(string='After 24hrs Progression')
 
     comments = fields.Text(string='Comments')
@@ -91,7 +98,7 @@ class SemenAnalysis(models.Model):
     # suitable_for
 
     suitable_for_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
-                                        relation='semen_analysis_multi_selection_suitable_for',
+                                        relation='semen_analysis_multi_selection_suitable_for_rel',
                                         column1='semen_id',
                                         column2='multi_selection_id',
                                         string='Suitable For', domain="[('type', '=', 'suitable_for')]")
@@ -104,8 +111,135 @@ class SemenAnalysis(models.Model):
     seminologist = fields.Char("Seminologist")
     special_notes = fields.Char("Special Notes")
 
+    @api.model
+    def _get_default_lab_number(self):
+        # Get the current year
+        current_year = fields.Date.today().year
+
+        last_lab_number = self.search([('lab_number', 'like', f'LAB-{current_year}-')], order='lab_number desc', limit=1)
+
+        if last_lab_number:
+            sequence_number = int(last_lab_number.lab_number.split('-')[-1])
+            next_sequence_number = sequence_number + 1
+        else:
+            next_sequence_number = 1
+
+        return f'LAB-{current_year}-{next_sequence_number:04d}'
+
     def print_semen_analysis_report(self):
         return self.env.ref('ecare_medical_history.ec_semen_analysis_report').report_action(self)
 
     def print_patient_report(self):
         return self.env.ref('ecare_medical_history.ec_patient_report').report_action(self)
+
+    @api.onchange('date')
+    def _check_semen_date(self):
+        if self.date:
+            return DateValidation._date_validation(self.date)
+
+    @api.onchange('abstinence')
+    def _check_abstinence_input(self):
+        for record in self:
+            if record.abstinence and not re.match('^[0-9\.]*$', record.abstinence):
+                raise UserError("Please enter a numeric value in abstinence.")
+
+    @api.onchange('volume')
+    def _check_volume_input(self):
+        for record in self:
+            if record.volume and not re.match('^[0-9\.]*$', record.volume):
+                raise UserError("Please enter a numeric value in volume.")
+
+    @api.onchange('total_count')
+    def _check_total_count_input(self):
+        for record in self:
+            if record.total_count and not re.match('^[0-9\.]*$', record.total_count):
+                raise UserError("Please enter a numeric value in total count.")
+
+    @api.onchange('wbcs')
+    def _check_wbcs_input(self):
+        for record in self:
+            if record.wbcs and not re.match('^[0-9\.]*$', record.wbcs):
+                raise UserError("Please enter a numeric value in WBCs.")
+
+    @api.onchange('epi_cells_immature_cells')
+    def _check_epi_cells_immature_cells_input(self):
+        for record in self:
+            if record.epi_cells_immature_cells and not re.match('^[0-9\.]*$', record.epi_cells_immature_cells):
+                raise UserError("Please enter a numeric value in EPI Cells/Immature Cells.")
+
+    @api.onchange('prep_conc')
+    def _check_prep_conc_input(self):
+        for record in self:
+            if record.prep_conc and not re.match('^[0-9\.]*$', record.prep_conc):
+                raise UserError("Please enter a numeric value in Prep Conc")
+
+    @api.onchange('sperm_cryopreservation_strawe')
+    def _check_sperm_cryopreservation_strawe_input(self):
+        for record in self:
+            if record.sperm_cryopreservation_strawe and not re.match('^[0-9\.]*$', record.sperm_cryopreservation_strawe):
+                raise UserError("Please enter a numeric value in No. of Strawe.")
+
+    @api.onchange('ph')
+    def _check_ph_input(self):
+        for record in self:
+            if record.ph and not re.match('^[0-9\.]*$', record.ph):
+                raise UserError("Please enter a numeric value PH.")
+
+
+    @api.onchange('ph')
+    def _check_ph_input(self):
+        for record in self:
+            if record.ph and not re.match('^[0-9\.]*$', record.ph):
+                raise UserError("Please enter a numeric value PH.")
+
+    @api.onchange('after_24_hrs_progression')
+    def _check_after_24_hrs_progression_input(self):
+        for record in self:
+            if record.after_24_hrs_progression and not re.match('^[0-9\.]*$', record.after_24_hrs_progression):
+                raise UserError("Please enter a numeric value After 24hrs Progression'.")
+
+    @api.onchange('progression')
+    def _check_progression_input(self):
+        for record in self:
+            if record.progression and not re.match('^[0-9\.]*$', record.progression):
+                raise UserError("Please enter a numeric value progression.")
+
+    @api.onchange('production_time', "analysis_time","liquifaction_time")
+    def _onchange_time(self):
+
+        if self.production_time:
+            time = TimeValidation.validate_time(self.production_time)
+
+            if not time:
+                return CustomNotification.notification_time_validation()
+            try:
+                parsed_time = datetime.strptime(time, '%H:%M')
+                if not 0 <= parsed_time.hour <= 23:
+                    raise ValueError()
+            except ValueError:
+                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
+            self.production_time = time
+
+        if self.analysis_time:
+            time = TimeValidation.validate_time(self.analysis_time)
+            if not time:
+                return CustomNotification.notification_time_validation()
+            try:
+                parsed_time = datetime.strptime(time, '%H:%M')
+                if not 0 <= parsed_time.hour <= 23:
+                    raise ValueError()
+            except ValueError:
+                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
+            self.analysis_time = time
+
+        if self.liquifaction_time:
+            time = TimeValidation.validate_time(self.liquifaction_time)
+            if not time:
+                return CustomNotification.notification_time_validation()
+            try:
+                parsed_time = datetime.strptime(time, '%H:%M')
+                if not 0 <= parsed_time.hour <= 23:
+                    raise ValueError()
+            except ValueError:
+                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
+            self.liquifaction_time = time

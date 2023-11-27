@@ -11,10 +11,10 @@ class GenericSizes(models.Model):
     type = fields.Selection(selection=StaticMember.OVARY_TYPE, string="Location")
 
     generic_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
-                                      string='Size (cm)')
+                                      string='Size (cm)', required=True)
 
     generic_size_y = fields.Selection(selection=StaticMember.SIZE_INTEGER,
-                                      string='Size (cm)')
+                                      string='Size (cm)', required=True)
 
     tvs_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")
     gynaecological_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")

@@ -25,9 +25,12 @@
 
         # Views - Independent
         'views/health_center.xml',
+        'views/medical_labs.xml',
         'views/investigation.xml',
         'views/factors.xml',
         'views/treatment_list.xml',
+        'views/ec_medical_dianosis.xml',
+        'views/ec_medical_investigation.xml',
         'data/ec_medical_multi_selection_data.xml',
         
         # Views

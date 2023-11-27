@@ -4,7 +4,7 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 class FemaleGynaecologicalHistory(models.Model):
     _name = 'ec.gynaecological.history'
-    _description = "Female Gynaecological History"
+    _description = "Female Gynecological History"
 
     female_age_at_menarche = fields.Selection(selection=StaticMember.AGE_AT_MENARCHE, string='Age at Menarche')
     female_menarche_type = fields.Selection(selection=StaticMember.MENARCHE_TYPE, string='Age at Menarche')

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_ec_medical_diagnosis_tree" model="ir.ui.view">
+            <field name="name">ec.medical.diagnosis.tree</field>
+            <field name="model">ec.medical.diagnosis</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ec_medical_diagnosis_action" model="ir.actions.act_window">
+            <field name="name">Medical Diagnosis</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ec.medical.diagnosis</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="ec_medical_diagnosis_menu"
+            name="Medical Diagnosis"
+            action="ec_medical_diagnosis_action"
+            parent="ec_medical_history_configuration"
+            sequence="5100"/>
+
+    </data>
+</odoo>

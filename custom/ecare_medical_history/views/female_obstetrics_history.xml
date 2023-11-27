@@ -11,7 +11,7 @@
                            invisible="1"
                            readonly="1"
                            force_save="1"/>
-
+                    <field name="create_date"/>
                     <field name="baby_name"/>
                     <field name="birth_place"/>
                     <field name="date_of_birth"/>
@@ -21,9 +21,9 @@
                     <field name="mode_of_delivery"/>
                     <field name="other_indications"/>
 <!--                    <field name="complications"/>-->
+                    <field name="complication_pregnancy"/>
                     <field name="complication_delivery"/>
                     <field name="complication_post_partum"/>
-                    <field name="complication_pregnancy"/>
                     <field name="gender"/>
                     <field name="weight"/>
                     <field name="health"/>
@@ -31,7 +31,6 @@
                     <field name="alive"/>
                     <field name="feed"/>
                     <field name="labour_history"/>
-                    <field name="create_date"/>
 <!--                    <field name="legacy_system_ID"/>-->
                 </tree>
             </field>

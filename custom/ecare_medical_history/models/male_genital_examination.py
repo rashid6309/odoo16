@@ -22,7 +22,7 @@ class GenitalExamination(models.Model):
     testicular_size_right = fields.Selection(selection=StaticMember.SIZE, )
     testicular_size_left = fields.Selection(selection=StaticMember.SIZE, )
 
-    testicular_size_mobility = fields.Selection(selection=StaticMember.CHOICE_YES_NO, )
+    testicular_size_motility = fields.Selection(selection=StaticMember.CHOICE_YES_NO, )
 
     ec_genital_examination_comment = fields.Char(string="Comment")
 

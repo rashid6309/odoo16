@@ -394,7 +394,7 @@ class StaticMember:
                    ('other', 'Other'),
                    ]
 
-    UTERUS_MOBILITY = [('mobile', 'Mobile'),
+    UTERUS_MOTILITY = [('mobile', 'Mobile'),
                        ('Restricted', 'Restricted'),
                        ]
 
@@ -542,17 +542,6 @@ class StaticMember:
         ('others', "Others")
     ]
 
-    MULTI_SELECTION_FIELD = [
-        ('lining', 'Lining'),
-        ('complications', 'Complications'),
-        ('complains', 'Complains'),
-        ('dysmenorrhoea', 'Dysmenorrhoea'),
-        ('position', 'Position'),
-        ('preparation', 'Preparation'),
-        ('suitable_for', 'Suitable For'),
-        ('cn_type', 'Contraception'),
-    ]
-
     CHOICE_YES_NO_NA = [
         ('yes', 'Yes'),
         ('no', 'No'),
@@ -583,7 +572,7 @@ class StaticMember:
     ]
 
     SEMEN_COLOR = [
-        ('a', 'A'),
+        ('creamy_white', 'Creamy White'),
     ]
 
     SEMEN_VISCOSITY = [
@@ -593,7 +582,7 @@ class StaticMember:
         ('normal', 'Normal'),
     ]
 
-    SEMEN_MOBILITY = [
+    SEMEN_MOTILITY = [
         ('01', '01'),
         ('02', '02'),
         ('03', '03'),
@@ -807,9 +796,10 @@ class StaticMember:
     ]
 
     SEMEN_METHOD = [
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3')
+        ('none', 'None'),
+        ('swim_up', 'Swim Up'),
+        ('single_gradient', 'Single Gradient'),
+        ('double_gradient', 'Double Gradient')
     ]
     CONCEPTION_TYPE = [('natural', 'Natural'),
                        ("oi", "OI"),
@@ -886,3 +876,4 @@ class StaticMember:
         ('40', '40 weeks'),
         ('>40', '>40 weeks'),
     ]
+

@@ -1,10 +1,13 @@
 # Independent modules
 from . import ec_medical_multi_selection
 from . import ec_medical_health_centers
+from . import ec_medical_lab
 from . import investigation
 from . import treatment_list
 from . import factors
 from . import generic_size
+from . import ec_medical_dianosis
+from . import ec_medical_investigation
 
 from . import patient
 from . import individual_patient

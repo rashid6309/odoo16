@@ -146,16 +146,17 @@
 											</group>
 
 											<group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
-												<group>
-													<field name="repeat_lmp"/>
-													<field name="repeat_lmp_embryo"/>
-												</group>
+												<!--												<group>-->
+												<!--													<field name="repeat_lmp"/>-->
+												<!--													<field name="repeat_lmp_embryo"/>-->
+												<!--												</group>-->
 											</group>
 											<div attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
 												<group>
 													<field name="repeat_pregnancy_lmp"/>
 													<field name="repeat_pregnancy_gestational_age"/>
 													<field name="repeat_pregnancy_conception"/>
+													<field name="repeat_pregnancy_embryos_replaced"/>
 												</group>
 												<group string="Pregnancy Status:">
 													<field name="repeat_pregnancy_gestation_type"/>
@@ -164,13 +165,72 @@
                                             'required':[('repeat_pregnancy_gestation_type','=','other')]}"/>
 													<field name="repeat_pregnancy_viability_potential"/>
 													<field name="repeat_pregnancy_details"/>
-												</group>
-												<group string="Diagnosis:">
 													<field name="repeat_pregnancy_diagnosis"/>
+												</group>
+
+												<group string="Reason for visit">
 													<field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
+												</group>
+												<group>
 													<field name="repeat_pregnancy_notes"/>
 													<field name="repeat_pregnancy_scanned" widget="radio"/>
 													<field name="repeat_pregnancy_significant_findings"/>
+												</group>
+
+												<group string="Examination:" class="d-flex flex-column custom_width">
+													<div class="d-flex" style="width:200%;">
+														<label for="repeat_pregnancy_hr"/>
+														<field name="repeat_pregnancy_hr"/>
+														<span style=" margin-right: 2%;">Rhythm </span>
+														<label style=" margin-left: 2%;" for="repeat_pregnancy_bp_upper"/>
+														<field name="repeat_pregnancy_bp_upper"/>
+														<span class="me-1">/</span>
+														<field name="repeat_pregnancy_bp_lower"/>
+														<span class="me-1">mmHg</span>
+														<label for="repeat_pregnancy_temp"/>
+														<field name="repeat_pregnancy_temp"/>
+														<label for="repeat_pregnancy_rr"/>
+														<field name="repeat_pregnancy_rr"/>
+													</div>
+													<div class="d-flex flex-column" style="width:100%;">
+														<div class="d-flex">
+															<label class="ms-4 me-3" for="repeat_pregnancy_fetal_heart"/>
+															<field name="repeat_pregnancy_fetal_heart"/>
+														</div>
+														<div class="d-flex">
+															<label class="ms-4 me-3" for="repeat_pregnancy_signs_of_ohss"/>
+															<field name="repeat_pregnancy_signs_of_ohss"/>
+														</div>
+													</div>
+												</group>
+												<group>
+													<field name="repeat_pregnancy_icsi_ultrasound"/>
+												</group>
+												<group string="Diagnosis">
+													<field name="repeat_pregnancy_diagnosis_ids"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   widget="many2many_tags"/>
+													<field name="repeat_pregnancy_diagnosis_id_text"/>
+												</group>
+												<group string="Investigations">
+													<field name="repeat_pregnancy_investigation_ids"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   widget="many2many_tags"/>
+													<field name="repeat_pregnancy_investigation_id_text"/>
+												</group>
+												<group>
+													<field name="repeat_pregnancy_procedure_performed"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
+													<field name="repeat_pregnancy_procedure_performed_text"/>
+												</group>
+												<group>
+													<field name="repeat_pregnancy_type_sample_obtained"/>
+													<field name="repeat_pregnancy_name_receiving_geneticist"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
+													<field name="repeat_pregnancy_plan"/>
+													<field name="repeat_pregnancy_doctors"
+														   widget="many2many_tags"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 												</group>
 											</div>
 
@@ -218,7 +278,7 @@
 													<field name="lmp_question_four"/>
 												</group>
 												<group>
-													<field name="repeat_cycle_day"/>
+													<field name="repeat_cycle_day" force_save="1"/>
 												</group>
 											</group>
 
@@ -264,14 +324,14 @@
 
 											<div class="d-flex" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-												<label for="inspection_only"/>
 												<field name="inspection_only"/>
+												<label class="custom-text-align" for="inspection_only"/>
 
-												<label for="p_v_only"/>
 												<field name="p_v_only"/>
+												<label class="custom-text-align" for="p_v_only"/>
 
-												<label for="p_s_only"/>
 												<field name="p_s_only"/>
+												<label class="custom-text-align" for="p_s_only"/>
 											</div>
 
 											<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
@@ -304,34 +364,36 @@
 												</div>
 												<div class="d-flex">
 
-													<label for="repeat_hvs"
-														   attrs="{'invisible': [('inspection_only', '!=', True),
-													   ('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)]}"
-													/>
 													<field name="repeat_hvs"
 														   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)]}"
 													/>
-
-													<label for="repeat_endocervical"
-														   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+													<label class="custom-text-align" for="repeat_hvs"
+														   attrs="{'invisible': [('inspection_only', '!=', True),
+													   ('p_v_only', '!=', True),
+													   ('p_s_only', '!=', True)]}"
 													/>
+
+
 													<field name="repeat_endocervical"
 														   attrs="{'invisible': [('p_s_only', '!=', True)]}"
 													/>
+													<label class="custom-text-align" for="repeat_endocervical"
+														   attrs="{'invisible': [('p_s_only', '!=', True)]}"
+													/>
 
-													<label for="repeat_no_swab_taken"
+
+													<field attrs="{'invisible': [('inspection_only', '!=', True),
+																			  ('p_v_only', '!=', True),
+																			  ('p_s_only', '!=', True)]}"
+														   name="repeat_no_swab_taken"/>
+													<label class="custom-text-align" for="repeat_no_swab_taken"
 														   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)]}"
 													>No</label>
-													<field
-															attrs="{'invisible': [('inspection_only', '!=', True),
-																			  ('p_v_only', '!=', True),
-																			  ('p_s_only', '!=', True)]}"
-															name="repeat_no_swab_taken"/>
+
 
 												</div>
 											</div>
@@ -347,12 +409,14 @@
 
 											<div class="d-flex" attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no'), ('p_s_only', '!=', True)]}">
-												<label for="repeat_pap_smear_done"/>
 												<field name="repeat_pap_smear_done"
 												/>
-												<label for="repeat_pipelle_sampling_done"/>
+												<label class="custom-text-align" for="repeat_pap_smear_done"/>
+
 												<field name="repeat_pipelle_sampling_done"
 												/>
+												<label class="custom-text-align" for="repeat_pipelle_sampling_done"/>
+
 											</div>
 											<group attrs="{'invisible': ['|', ('repeat_pelvic_examination_state', '=', 'no'),
 																	('repeat_examination_required', '!=', 'yes')
@@ -383,19 +447,19 @@
 													<div class="col-md-1">
 														Uterus
 													</div>
-													<div class="col-md-10 ">
-														<div class="d-flex">
-															<label for="tvs_uterus_tvs_size"/>
+													<div class="col-md-10">
+														<div class="d-flex custom-checkbox-alignment-boolean">
 															<field name="tvs_uterus_tvs_size"/>
+															<label class="custom-text-align" for="tvs_uterus_tvs_size"/>
 
-															<label for="tvs_uterus_tvs_position"/>
 															<field name="tvs_uterus_tvs_position"/>
+															<label class="custom-text-align" for="tvs_uterus_tvs_position"/>
 
-															<label for="tvs_uterus_tvs_normal"/>
 															<field name="tvs_uterus_tvs_normal"/>
+															<label class="custom-text-align" for="tvs_uterus_tvs_normal"/>
 
-															<label for="tvs_uterus_tvs_fiobrid"/>
 															<field name="tvs_uterus_tvs_fiobrid"/>
+															<label class="custom-text-align" for="tvs_uterus_tvs_fiobrid"/>
 
 														</div>
 														<div class="d-flex"
@@ -408,7 +472,7 @@
 															<span>cm</span>
 														</div>
 														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
-															<div class="col-md-1">
+															<div class="col-md-1" style="font-weight:bold;">
 																Position
 															</div>
 															<div class="d-flex">
@@ -419,7 +483,7 @@
 															<div class="col-md-1">
 																Fibroid
 															</div>
-															<div class="col-md-3">
+															<div class="col-md-5">
 																<field name="tvs_generic_sizes_ids">
 																	<tree editable="bottom">
 																		<field name="generic_size_x"/>
@@ -441,14 +505,14 @@
 															<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
 														</div>
 														<div>
-															<span>CET</span>
+															<span>Size</span>
 															<field name="tvs_lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
 															<span>mm</span>
 														</div>
 													</div>
 												</div>
 
-												<div class="d-flex justify-content-start bg-light bg-gradient">
+												<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
 													<div class="col-md-1">
 														ROV
 													</div>
@@ -497,12 +561,13 @@
 													<div class="col-md-1">
 														Cyst
 													</div>
-													<div class="col-md-2 d-flex flex-column">
+													<div class="col-md-5 d-flex flex-column">
 														<div>
 															<field name="tvs_cyst_size_ids">
 																<tree editable="bottom">
 																	<field name="type"/>
 																	<field name="generic_size_x"/>
+																	<field name="generic_size_y"/>
 																</tree>
 															</field>
 														</div>
@@ -528,7 +593,9 @@
 											<group>
 												<field name="counseling_and_discussion"/>
 
-												<field name="repeat_diagnosis"/>
+												<field name="repeat_diagnosis"
+													   widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_investigations_ids" widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
@@ -543,15 +610,14 @@
 												/>
 											</group>
 
-
-											<div style="text-align-last: right;background: #adb5bd;">
-												<button name="action_save_repeat_consultation_section"
-														type="object"
-														class="btn btn-primary"
-														attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
-														string="Close Consultation"/>
-											</div>
 										</span>
+										<div style="text-align-last: right;background: #adb5bd;">
+											<button name="action_save_repeat_consultation_section"
+													type="object"
+													class="btn btn-primary"
+													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+													string="Close Consultation"/>
+										</div>
 									</div>
 									<section>
 										<script>
@@ -562,11 +628,7 @@
 											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
 											collapseDivs.forEach(function(collapseDiv) {
-											if (collapseDiv.classList.contains("show")) {
-											collapseDiv.classList.remove("show");
-											} else {
 											collapseDiv.classList.add("show");
-											}
 											});
 											});
 											});
@@ -586,9 +648,16 @@
 								<div class="d-flex scroll-to card-header-custom first_consultation_container" id="first_consultation_section_link">
 									<div class="col-6">
 										<a data-bs-toggle="collapse" data-bs-target="#first_consultation_section" href="#">
-											<h4 class="mt-2 mb-0">First Consultation</h4></a>
+											<h4 class="mt-2 mb-0">First Consultation
+												<field style="font-size: 0.9rem; margin-left: 3%;"
+													   name="ec_first_consultation_create_date"/></h4></a>
 									</div>
-									<div class="col-6 text-right" style="margin-top:9px">
+									<div class="col-6 text-right" style="margin-top:9px;text-align: right;">
+										<h4>
+											<field style="font-size: 0.9rem;"
+												   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+												   name="ec_first_consultation_create_uid"/>
+										</h4>
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse " id="first_consultation_section">
@@ -1359,7 +1428,7 @@
 
 											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="gynecological_examination_section_link">
 												<div class="col-6">
-													<a data-bs-toggle="collapse" data-bs-target="#gynecological_examination_section" href="#"><h4 class="mt-2 mb-0">Gynaecological Examination</h4></a>
+													<a data-bs-toggle="collapse" data-bs-target="#gynecological_examination_section" href="#"><h4 class="mt-2 mb-0">Gynecological Examination</h4></a>
 												</div>
 												<div class="col-6 text-right" style="margin-top:9px">
 												</div>
@@ -1379,7 +1448,7 @@
 													</div>
 
 													<field name="uterus_position" widget="radio" options="{'horizontal': True}"/>
-													<field name="uterus_mobility" widget="radio" options="{'horizontal': True}"/>
+													<field name="uterus_motility" widget="radio" options="{'horizontal': True}"/>
 													<h4>P/S</h4>
 													<div/>
 													<label for="gynaecological_examination_ps_selection"/>
@@ -1391,87 +1460,118 @@
 													<div/>
 													<field name="gynaecological_examination_date"/>
 													<field name="gynaecological_examination_lmp"/>
-													<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
-													<field name="left_ovary_type" string="Type"/>
+
 													<!-- Left Ovary Section -->
-													<field name="gynaecological_left_size_ids" string=" ">
-														<tree editable="bottom" class="col-4">
-															<field name="generic_size_x"/>
-															<field name="generic_size_y"/>
-
-														</tree>
-													</field>
-													<!-- Right Ovary Section -->
-													<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
-													<field name="right_ovary_type"  string="Type"/>
-													<field name="gynaecological_right_size_ids" string=" ">
-														<tree editable="bottom" class="col-4">
-															<field name="generic_size_x"/>
-															<field name="generic_size_y"/>
-
-														</tree>
-													</field>
-
 													<div/>
-													<div>
-														<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;">
-															<div class="col-md-1">
-																Uterus
+													<div class="d-flex align-items-center bg-light bg-gradient" style=" position: relative; left: -24%;">
+														<div class="col-md-3">
+															<b>Left Ovary</b>
+														</div>
+														<div class="col-md-9">
+															<div class="d-flex">
+																<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
+
 															</div>
-															<div class="col-md-10">
-																<div class="d-flex">
-																	<label for="gynaecological_uterus_size"/>
-																	<field name="gynaecological_uterus_size"/>
+															<div class="d-flex">
+																<span>Type</span>
+																<field name="left_ovary_type"/>
+															</div>
+															<div class="d-flex align-items-center bg-light bg-gradient">
+																<div class="col-md-10">
+																	<field name="gynaecological_left_size_ids">
+																		<tree editable="bottom">
+																			<field name="generic_size_x"/>
+																			<field name="generic_size_y"/>
 
-																	<label for="gynaecological_uterus_position"/>
-																	<field name="gynaecological_uterus_position"/>
-
-																	<label for="gynaecological_uterus_normal"/>
-																	<field name="gynaecological_uterus_normal"/>
-
-																	<label for="gynaecological_uterus_fiobrid"/>
-																	<field name="gynaecological_uterus_fiobrid"/>
-
-																</div>
-																<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
-																	<span>Size</span>
-																	<field name="uterus_size_length"/>
-																	<span class="m-2">x</span>
-
-																	<field name="uterus_size_width"/>
-																	<span>cm</span>
-																</div>
-																<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
-																	<div class="col-md-1">
-																		Position
-																	</div>
-																	<div class="d-flex">
-																		<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
-																	<div class="col-md-1">
-																		Fibroid
-																	</div>
-																	<div class="col-md-3">
-																		<field name="gynaecological_generic_sizes_ids">
-																			<tree editable="bottom">
-																				<field name="generic_size_x"/>
-																				<field name="generic_size_y"/>
-
-																			</tree>
-																		</field>
-																	</div>
+																		</tree>
+																	</field>
 																</div>
 															</div>
 														</div>
 													</div>
 
+													<!-- Right Ovary Section -->
+													<div/>
+													<div class="d-flex align-items-center" style=" position: relative; left: -24%; ">
+														<div class="col-md-3">
+															<b>Right Ovary</b>
+														</div>
+														<div class="col-md-9">
+															<div class="d-flex">
+																<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
 
-													<field name="uterus" widget="radio" options="{'horizontal': True}"/>
-													<field name="uterus_size_length"/>
-													<field name="uterus_size_width"/>
-													<field name="uterus_size_position"/>
+															</div>
+															<div class="d-flex">
+																<span>Type</span>
+																<field name="right_ovary_type"/>
+															</div>
+															<div class="d-flex align-items-center">
+																<div class="col-md-10">
+																	<field name="gynaecological_right_size_ids">
+																		<tree editable="bottom">
+																			<field name="generic_size_x"/>
+																			<field name="generic_size_y"/>
+
+																		</tree>
+																	</field>
+																</div>
+															</div>
+														</div>
+													</div>
+
+													<div/>
+													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -39%;">
+														<div class="col-md-1">
+															Uterus
+														</div>
+														<div class="col-md-10">
+															<div class="d-flex">
+																<field name="gynaecological_uterus_size"/>
+																<label for="gynaecological_uterus_size"/>
+
+																<field name="gynaecological_uterus_position"/>
+																<label for="gynaecological_uterus_position"/>
+
+																<field name="gynaecological_uterus_normal"/>
+																<label for="gynaecological_uterus_normal"/>
+
+																<field name="gynaecological_uterus_fiobrid"/>
+																<label for="gynaecological_uterus_fiobrid"/>
+
+															</div>
+															<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
+																<span>Size</span>
+																<field name="uterus_size_length"/>
+																<span class="m-2">x</span>
+
+																<field name="uterus_size_width"/>
+																<span>cm</span>
+															</div>
+															<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
+																<div class="col-md-1 fw-bolder" style="margin-right: 4%;">
+																	Position
+																</div>
+																<div class="d-flex">
+																	<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>
+																</div>
+															</div>
+															<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
+																<div class="col-md-1">
+																	Fibroid
+																</div>
+																<div class="col-md-5">
+																	<field name="gynaecological_generic_sizes_ids">
+																		<tree editable="bottom">
+																			<field name="generic_size_x"/>
+																			<field name="generic_size_y"/>
+
+																		</tree>
+																	</field>
+																</div>
+															</div>
+														</div>
+													</div>
+
 
 													<label for="lining_ids"/>
 													<div>
@@ -1913,7 +2013,7 @@
 													<field name="supermatic_cord_tender_ids" widget="many2many_checkboxes" options="{'horizontal': True}"/>
 													<field name="testicular_size_right" widget="radio" options="{'horizontal': True}"/>
 													<field name="testicular_size_left" widget="radio" options="{'horizontal': True}"/>
-													<field name="testicular_size_mobility" widget="radio" options="{'horizontal': True}"/>
+													<field name="testicular_size_motility" widget="radio" options="{'horizontal': True}"/>
 													<field name="ec_genital_examination_comment"/>
 												</group>
 											</div>

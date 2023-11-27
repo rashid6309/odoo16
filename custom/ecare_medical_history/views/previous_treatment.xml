@@ -7,6 +7,7 @@
             <field name="model">ec.medical.previous.treatment</field>
             <field name="arch" type="xml">
                 <tree editable="top">
+                    <field name="create_date"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="type"/>
                     <field name="consultant"/>
@@ -15,7 +16,6 @@
                     <field name="superovulation"/>
                     <field name="ovarian_response"/>
                     <field name="outcome"/>
-                    <field name="create_date"/>
                 </tree>
             </field>
         </record>

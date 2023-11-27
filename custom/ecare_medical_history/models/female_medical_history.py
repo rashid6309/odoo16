@@ -31,8 +31,8 @@ class FemaleMedicalHistory(models.Model):
     female_gastric = fields.Char('Gastric')
     female_gastric_date = fields.Date('Gastric Date')
 
-    female_gynaecology = fields.Char('Gynaecological')
-    female_gynaecology_date = fields.Date('Gynaecological Date')
+    female_gynaecology = fields.Char('Gynecological')
+    female_gynaecology_date = fields.Date('Gynecological Date')
 
     female_haematology = fields.Char('Haematological')
     female_haematology_date = fields.Date('Haematological Date')

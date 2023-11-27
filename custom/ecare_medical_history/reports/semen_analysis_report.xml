@@ -77,6 +77,11 @@
                     <t t-call="ecare_medical_history.custom_header_footer"/>
                     <table style="width: 100%;">
                         <tr>
+                            <td style="padding-top:1%;" colspan="2">
+                                <span t-field="o.semen_patient_id"/>
+                            </td>
+                        </tr>
+                        <tr>
                             <td style="padding-top:1%;"><b>Date:</b></td>
                             <td style="width:30%;"><span t-field="o.date"/></td>
                             <td style="padding-top:1%;"><b>Lab No.:</b></td>
@@ -106,8 +111,11 @@
                         <tr>
                             <td style="padding-top:2%;">Abstinence:</td>
                             <td><span t-field="o.abstinence"/></td>
-                            <td style="padding-top:2%;">Liquefaction Time:</td>
-                            <td><span t-field="o.liquifaction_time"/></td>
+                            <td style="padding-top:1%;">Liquefaction Time:</td>
+                            <td>
+                                <span t-field="o.liquifaction_time"/>
+                                <span>(within 60 minutes)</span>
+                            </td>
                         </tr>
                         <tr>
                             <td style="padding-top:1%;">Color:</td>
@@ -131,6 +139,7 @@
                             <td style="padding-top:1%;">Total Count:</td>
                             <td>
                                 <span t-field="o.total_count"/>
+                                <span>million/ml</span>
                                 <span>(Range: <img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/> 20 million/ml)</span>
                                 <!--                                <span>&#x2265;</span>-->
                             </td>
@@ -138,7 +147,7 @@
                         <tr>
                             <td style="padding-top:1%;">Motility:</td>
                             <td>
-                                <span t-field="o.mobility"/>
+                                <span t-field="o.motility"/>
                                 <span>%  (Range: <img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/>  40)</span>
                             </td>
                         </tr>
@@ -172,17 +181,19 @@
                             <td style="padding-top:2%;"><b>PREPARATION METHOD:</b></td>
                             <td style="padding-top:2%;" colspan="2">
                                 <span t-field="o.method"/>
-                                <span>million/ejaculate (Normal <img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/> 20 x 106 /Ejaculate)</span>
                             </td>
                         </tr>
                         <tr>
                             <td style="padding-top:1%;"><b>Prep Conc:</b></td>
-                            <td colspan="2"><span t-field="o.prep_conc"/></td>
+                            <td colspan="2">
+                                <span t-field="o.prep_conc"/>
+                                <span>million/ejaculate (Normal <img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/> 20 x 106 /Ejaculate)</span>
+                            </td>
                         </tr>
                         <tr>
                             <td style="padding-top:1%;">% Motility:</td>
                             <td>
-                                <span t-field="o.mobility_percentage"/>
+                                <span t-field="o.motility_percentage"/>
                                 <span>% (<img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/> 75%)* </span>
                             </td>
                             <td style="padding-top:1%;">Progression</td>
@@ -196,7 +207,7 @@
                         <tr>
                             <td style="padding-top:1%;">% Motility:</td>
                             <td>
-                                <span t-field="o.after_24_hrs_mobility_percentage"/>
+                                <span t-field="o.after_24_hrs_motility_percentage"/>
                                 <span>% (<img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/> 50%)* </span>
                             </td>
                             <td style="padding-top:1%;">Progression</td>
@@ -208,13 +219,17 @@
                         </tr>
                         <tr>
                             <td style="padding-top:1%;"><b>Suitable For:</b></td>
-                            <td><span t-field="o.suitable_for_ids.name"/></td>
+                            <td>
+                                <t t-foreach="o.suitable_for_ids" t-as="item">
+                                    <span style="margin-right:5%;"><t t-esc="item.name"/></span>
+                                </t>
+                            </td>
                         </tr>
                         <tr>
                             <td style="padding-top:1%;width:30%;vertical-align: text-top;"><b>Sperm Cryopreservation:</b></td>
                             <td>
                                 <div>
-                                    Recommended Consented: <span t-field="o.sperm_cryopreservation_consented"/>
+                                    Recommended Consented: <span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span>
                                 </div>
                                 <div>
                                     No. straws: <span t-field="o.sperm_cryopreservation_strawe"/>
@@ -231,7 +246,7 @@
                     </table>
                     <div>
                         <h3 style=" margin-bottom: -2%; ">Detail Sperm Assessment</h3>
-                        <p style="font-size: 11px;">Note: This detailed description is intended for a specialist in IVF only</p>
+                        <p style="font-size: 12px;margin-top: 2%; margin-left: 0.1%;">Note: This detailed description is intended for a specialist in IVF only</p>
                     </div>
                     <p style=" margin-bottom: 0%;font-size: 11px;">* ICSI reference</p>
                     <table style="width: 80%; border-collapse: collapse; font-weight:700;
@@ -287,15 +302,15 @@
                             </td>
                             <td style=" padding: 5px;width: 50%;">
                                 <div style="float: left; width: 50%;margin-left:10%;">Cephalic:</div>
-                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.cephalic"/></div>
+                                <div t-if="o.cephalic"  style="float: right; width: 40%; text-align: right;"><span t-field="o.cephalic"/>%</div>
                                 <div style="float: left; width: 50%;margin-left:10%;">Mid Piece:</div>
-                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.mid_piece"/></div>
+                                <div t-if="o.mid_piece"  style="float: right; width: 40%; text-align: right;"><span t-field="o.mid_piece"/>%</div>
                                 <div style="float: left; width: 50%;margin-left:10%;">Tail:</div>
-                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.tail"/></div>
+                                <div t-if="o.tail"  style="float: right; width: 40%; text-align: right;"><span t-field="o.tail"/>%</div>
                                 <div style="float: left; width: 50%;margin-left:10%;">Acrosomal Caps:</div>
-                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.acrosomal_cap"/></div>
+                                <div t-if="o.acrosomal_cap"  style="float: right; width: 40%; text-align: right;"><span t-field="o.acrosomal_cap"/>%</div>
                                 <div style="float: left; width: 50%;margin-left:10%;">Vacuoles:</div>
-                                <div style="float: right; width: 40%; text-align: right;"><span t-field="o.vacoules"/></div>
+                                <div t-if="o.vacoules" style="float: right; width: 40%; text-align: right;"><span t-field="o.vacoules"/>%</div>
                             </td>
                         </tr>
                     </table>
