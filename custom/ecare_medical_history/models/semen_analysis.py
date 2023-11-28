@@ -45,7 +45,7 @@ class SemenAnalysis(models.Model):
     analysis_time = fields.Char(string='Analysis Time')
     liquifaction_time = fields.Char(string='Liquefaction Time')
     color = fields.Selection(selection=StaticMember.SEMEN_COLOR,
-                             default='a',
+                             default='creamy_white',
                              string="Color")
 
     ph = fields.Char(string='PH')
