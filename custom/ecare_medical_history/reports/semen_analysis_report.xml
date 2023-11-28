@@ -318,21 +318,6 @@
                     <div><h3>SPECIAL NOTES:</h3></div>
                     <div><span t-field="o.special_notes"/></div>
                 </t>
-                <footer>
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="float: left;">
-                                    <b>Printing Date:</b>
-                                </td>
-                                <td style="text-align: center;">
-                                    <b>Page:</b> <span class="page"/>
-                                </td>
-                                <td style="float: right;">
-                                    <b>Printed By:</b> <span t-esc="user.name"/>
-                                </td>
-                            </tr>
-                        </table>
-                    </footer>
             </t>
         </template>
 
