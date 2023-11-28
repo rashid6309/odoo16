@@ -4,19 +4,19 @@
     max-height: 71vh;
 }
 
-#repeat_consultation_section .o_form_label
+#repeat_consultation_section .o_form_label:not(.form-check-label)
 {
    width: 100px ;
    text-align : right;
 }
 
-#semen_analysis_form_id .o_form_label
+#semen_analysis_form_id .o_form_label:not(.form-check-label)
 {
    width: 100px ;
    text-align : right;
 }
 
-.timeline_content .o_form_label
+.timeline_content .o_form_label:not(.form-check-label)
 {
    float : right;
 }
