@@ -78,7 +78,8 @@
                     <table style="width: 100%;">
                         <tr>
                             <td style="padding-top:1%;text-align: right;" colspan="4">
-                                <b><span t-field="o.semen_patient_id"/></b>
+                                <b style="display: list-item;"><span t-field="o.semen_patient_id.mr_num"/></b>
+                                <span t-field="o.semen_patient_id.name"/>
                             </td>
                         </tr>
                         <tr>
