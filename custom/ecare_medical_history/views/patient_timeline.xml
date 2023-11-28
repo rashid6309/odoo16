@@ -1539,7 +1539,7 @@
 																<label for="gynaecological_uterus_fiobrid"/>
 
 															</div>
-															<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
+															<div class="d-flex" style="width: 15%;" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
 																<span>Size</span>
 																<field name="uterus_size_length"/>
 																<span class="m-2">x</span>

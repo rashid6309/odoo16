@@ -171,6 +171,9 @@ class PatientTimeline(models.Model):
 
             self.repeat_cycle_day = cycle_day
             self.tvs_cycle_day = cycle_day
+        else:
+            self.repeat_cycle_day = 0
+            self.tvs_cycle_day = 0
 
     def _compute_female_values(self):
         """
