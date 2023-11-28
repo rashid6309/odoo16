@@ -77,8 +77,8 @@
                     <t t-call="ecare_medical_history.custom_header_footer"/>
                     <table style="width: 100%;">
                         <tr>
-                            <td style="padding-top:1%;" colspan="2">
-                                <span t-field="o.semen_patient_id"/>
+                            <td style="padding-top:1%;text-align: right;" colspan="4">
+                                <b><span t-field="o.semen_patient_id"/></b>
                             </td>
                         </tr>
                         <tr>

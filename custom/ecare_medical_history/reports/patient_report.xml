@@ -15,134 +15,256 @@
                 <t t-call="ecare_medical_history.custom_header_footer"/>
 
                 <t t-foreach="docs" t-as="o">
-                    <div class="d-flex justify-content-start" style="width:100%">
-                        <div class="col-md-12" style="margin-bottom:15px;">
-                            <div style="flex:2;"><b><span t-field="o.semen_patient_id"/></b></div>
-                        </div>
-                    </div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="padding-top:1%;text-align: right;" colspan="4">
+                                <b><span t-field="o.semen_patient_id"/></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <b>Date:</b> <span t-field="o.date"/>
+                            </td>
+                            <td colspan="2">
+                                <b>Lab No.:</b> <span t-field="o.lab_number"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <b>Preparation:</b>
+                                <t t-foreach="o.preparation_ids" t-as="item">
+                                    <span style="margin-right:5%;"><t t-esc="item.name"/></span>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <b>Sample Produced at Lab:</b> <span t-field="o.sample_produced_at_lab"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <b>Repeat Semen Analysis:</b> <span t-field="o.repeat_semen_analysis"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <b>Freezing:</b> <span t-field="o.freezing"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Abstinence:
+                            </td>
+                            <td>
+                                <span t-field="o.abstinence"/><span> days (Range:3-5)</span>
+                            </td>
+                            <td>
+                                Liquefaction Time:
+                            </td>
+                            <td>
+                                <span t-field="o.liquifaction_time"/>
+                            </td>
+                        </tr>
 
-                    <div class="d-flex flex-column justify-content-start" style="margin-bottom:15px;">
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div class="col-md-2"><b>Date:</b></div>
-                            <div class="col-md-2"><span t-field="o.date"/></div>
-                            <div class="col-md-2"><b>Lab No.:</b></div>
-                            <div class="col-md-2" ><span t-field="o.lab_number"/></div>
-                        </div>
-                        <div style="margin-bottom:15px;">
-                            <div class="col-md-2"><b>Preparation:</b></div>
-                            <div t-foreach="o.preparation_ids" t-as="l" class="col-md-1">
-                                <span t-field="l.name"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Sample Produced at Lab:</b></div>
-                            <div style="flex:6;"><span t-field="o.sample_produced_at_lab"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Repeat Semen Analysis:</b></div>
-                            <div style="flex:6;"><span t-field="o.repeat_semen_analysis"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:35px;">
-                            <div style="flex:2;"><b>Freezing:</b></div>
-                            <div style="flex:6;"><span t-field="o.freezing"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Abstinence:</div>
-                            <div style="flex:2;"><span t-field="o.abstinence"/><span> days (Range:3-5)</span></div>
-                            <div style="flex:2;">Liquefaction Time:</div>
-                            <div style="flex:2;"><span t-field="o.liquifaction_time"/></div>
-                        </div>
-
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Color:</div>
-                            <div style="flex:2;"><span t-field="o.color"/><span> days (Range:3-5)</span></div>
-                            <div style="flex:2;">PH:</div>
-                            <div style="flex:2;"><span t-field="o.ph"/><span> (Range:7.2-8.2)</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Viscosity:</div>
-                            <div style="flex:2;"><span t-field="o.viscosity"/></div>
-                            <div style="flex:2;">Volume:</div>
-                            <div style="flex:2;"><span t-field="o.volume"/><span> (Range:1.5-5)</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Total Count:</div>
-                            <div style="flex:6;"><span t-field="o.total_count"/><span> million/ml (Range: >20)</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Motility:</div>
-                            <div style="flex:6;"><span t-field="o.motility"/><span> % (Range: >40)</span></div>
-                        </div>
-                        <div style="margin-bottom:15px;"><h3>Microscopic</h3></div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">WBCs:</div>
-                            <div style="flex:2;"><span t-field="o.wbcs"/><span> /HPF</span></div>
-                            <div style="flex:2;">Agglutination:</div>
-                            <div style="flex:2;"><span t-field="o.agglutination"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">Debris:</div>
-                            <div style="flex:2;"><span t-field="o.debris"/></div>
-                            <div style="flex:2;">Bacteria:</div>
-                            <div style="flex:2;"><span t-field="o.bacteria"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">EPI Cells/Immature Cells:</div>
-                            <div style="flex:6"><span t-field="o.epi_cells_immature_cells"/><span> /HPF</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:35px;">
-                            <div style="flex:2;">Other Observation:</div>
-                            <div style="flex:6;"><span t-field="o.other_observation"/><span> /HPF</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:3;"><h3>Preparation Method:</h3></div>
-                            <div style="flex:5;"><h3><span t-field="o.method"/></h3></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Prep Con:</b></div>
-                            <div style="flex:6;"><span t-field="o.prep_conc"/><span> million/ejaculate    (Normal 20 x 10<sup>6</sup>/Ejaculate)</span></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">% Motility:</div>
-                            <div style="flex:2;"><span t-field="o.motility_percentage"/><span> % (>75%)</span></div>
-                            <div style="flex:2;">Progression:</div>
-                            <div style="flex:2;"><span t-field="o.progression"/></div>
-                        </div>
-                        <div style="margin-bottom:15px;"><b>After 24hrs</b></div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;">% Motility:</div>
-                            <div style="flex:2;"><span t-field="o.after_24_hrs_motility_percentage"/><span> % (>50%)</span></div>
-                            <div style="flex:2;">Progression:</div>
-                            <div style="flex:2;"><span t-field="o.after_24_hrs_progression"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Comments:</b></div>
-                            <div style="flex:6;"><span t-field="o.comments"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Suitable for:</b></div>
-                            <div t-foreach="o.suitable_for_ids" t-as="l" style="flex:1;">
-                                <span t-field="l.name"/></div>
-                        </div>
-                        <div style="display:flex;">
-                            <div style="flex:2;"><b>Sperm Cryopreservation:</b></div>
-                            <div style="flex:2;"><span>Consented:</span></div>
-                            <div style="flex:2;"><span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span></div>
-                        </div>
-                        <div style="display:flex;">
-                            <div style="flex:2;"></div>
-                            <div style="flex:2;"><span>No. straws:</span></div>
-                            <div style="flex:2;"><span t-field="o.sperm_cryopreservation_strawe"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"></div>
-                            <div style="flex:2;"><span>Storage Code:</span></div>
-                            <div style="flex:2;"><span t-field="o.sperm_cryopreservation_code"/></div>
-                        </div>
-                        <div style="display:flex; margin-bottom:15px;">
-                            <div style="flex:2;"><b>Semenologist:</b></div>
-                            <div style="flex:6;"><span t-field="o.seminologist"/></div>
-                        </div>
-                    </div>
+                        <tr>
+                            <td>
+                                Color:
+                            </td>
+                            <td>
+                                <span t-field="o.color"/><span> days (Range:3-5)</span>
+                            </td>
+                            <td>
+                                PH:
+                            </td>
+                            <td>
+                                <span t-field="o.ph"/><span> (Range:7.2-8.2)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Viscosity:
+                            </td>
+                            <td>
+                                <span t-field="o.viscosity"/>
+                            </td>
+                            <td>
+                                Volume:
+                            </td>
+                            <td>
+                                <span t-field="o.volume"/><span> (Range:1.5-5)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Total Count:
+                            </td>
+                            <td colspan="3">
+                                <span t-field="o.total_count"/><span> million/ml (Range: <img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/> 20)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Motility:
+                            </td>
+                            <td colspan="3">
+                                <span t-field="o.motility"/><span> % (Range: <img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/> 40)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <h3>Microscopic</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                WBCs:
+                            </td>
+                            <td>
+                                <span t-field="o.wbcs"/><span> /HPF</span>
+                            </td>
+                            <td>
+                                Agglutination:
+                            </td>
+                            <td>
+                                <span t-field="o.agglutination"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Debris:
+                            </td>
+                            <td>
+                                <span t-field="o.debris"/>
+                            </td>
+                            <td>
+                                Bacteria:
+                            </td>
+                            <td>
+                                <span t-field="o.bacteria"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                EPI Cells/Immature Cells:
+                            </td>
+                            <td colspan="3">
+                                <span t-field="o.epi_cells_immature_cells"/><span> /HPF</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Other Observation:
+                            </td>
+                            <td colspan="3">
+                                <span t-field="o.other_observation"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h3>Preparation Method:</h3>
+                            </td>
+                            <td colspan="2">
+                                <h3><span t-field="o.method"/></h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Prep Con:</b>
+                            </td>
+                            <td colspan="3">
+                                <span t-field="o.prep_conc"/><span> million/ejaculate (Normal 20 x 10<sup>6</sup>/Ejaculate)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                % Motility:
+                            </td>
+                            <td>
+                                <span t-field="o.motility_percentage"/><span> % (<img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/> 75%)</span>
+                            </td>
+                            <td>
+                                Progression:
+                            </td>
+                            <td>
+                                <span t-field="o.progression"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <b>After 24hrs</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                % Motility:
+                            </td>
+                            <td>
+                                <span t-field="o.after_24_hrs_motility_percentage"/><span> % (<img width="13" height="23" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAXAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9MrjxZotjrKaRcanBDqckZljtpHCsUHUjP1FbUB3RqQdwIyDXyx+17q2oahqul+H4/BV1q1pj7W2sRaVLfrCV6IEjZSGOeuccdK9r+BUizfDfTWDauw5GNbgME6+2w8hR2z2pQ2Jlud5iTIwAAepqRVwKKKI6Ib1P/9kA"/>50%)</span>
+                            </td>
+                            <td>
+                                Progression:
+                            </td>
+                            <td>
+                                <span t-field="o.after_24_hrs_progression"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Comments:</b>
+                            </td>
+                            <td colspan="3">
+                                <span t-field="o.comments"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Suitable for:</b>
+                            </td>
+                            <td colspan="3">
+                                <t t-foreach="o.suitable_for_ids" t-as="item">
+                                    <span t-field="item.name"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Sperm Cryopreservation:</b>
+                            </td>
+                            <td>
+                                Consented:
+                            </td>
+                            <td>
+                                <span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                No. straws:
+                            </td>
+                            <td>
+                                <span t-field="o.sperm_cryopreservation_strawe"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                Storage Code:
+                            </td>
+                            <td>
+                                <span t-field="o.sperm_cryopreservation_code"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Semenologist:</b>
+                            </td>
+                            <td colspan="3">
+                                <span t-field="o.seminologist"/>
+                            </td>
+                        </tr>
+                    </table>
                 </t>
             </t>
         </template>
