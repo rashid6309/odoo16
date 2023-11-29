@@ -181,7 +181,7 @@
 												</group>
 
 												<group string="Examination:" class="d-flex flex-column custom_width">
-													<div class="d-flex" style="width:200%;">
+													<div class="d-flex" style="width:290%;">
 														<label for="repeat_pregnancy_hr"/>
 														<field name="repeat_pregnancy_hr"/>
 														<span style=" margin-right: 2%;">Rhythm </span>
@@ -198,7 +198,7 @@
 													<div class="d-flex flex-column" style="width:100%;">
 														<div class="d-flex">
 															<label class="ms-4 me-3" for="repeat_pregnancy_fetal_heart"/>
-															<field name="repeat_pregnancy_fetal_heart"/>
+															<field name="repeat_pregnancy_fetal_heart" widget="radio" options="{'horizontal': True}"/>
 														</div>
 														<div class="d-flex">
 															<label class="ms-4 me-3" for="repeat_pregnancy_signs_of_ohss"/>

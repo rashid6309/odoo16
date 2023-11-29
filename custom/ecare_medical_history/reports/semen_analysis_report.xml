@@ -297,7 +297,6 @@
                             </td>
                             <td style=" padding: 5px;">
                                 <div style="float: left; width: 50%;">Defects:</div>
-                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.vacoules"/></div>
                             </td>
                         </tr>
                         <tr>
