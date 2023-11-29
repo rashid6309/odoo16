@@ -231,7 +231,7 @@
                                                                             <field name="repeat_pregnancy_diagnosis"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex flex-column text-900"/>
+
                                                                     <div class="d-flex flex-column text-900">
                                                                         <div class="d-inline-block">
                                                                             <h5>REASON FOR VISIT</h5>
@@ -367,6 +367,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex flex-column text-900"/>
+
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_diagnosis_ids.raw_value">
                                                                         <div>
@@ -385,12 +386,14 @@
                                                                         <div class="d-inline-block"/>
                                                                     </div>
 
+                                                                    <div class="d-flex flex-column text-900"/>
                                                                     <div class="d-flex flex-column text-900">
                                                                         <div class="d-inline-block">
                                                                             <h5>Investigations</h5>
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex flex-column text-900"/>
+
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_investigation_ids.raw_value">
                                                                         <div>
