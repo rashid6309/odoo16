@@ -162,7 +162,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td colspan="1">
                                 <h3>Preparation Method:</h3>
                             </td>
                             <td colspan="2">
@@ -233,10 +233,7 @@
                                 <b>Sperm Cryopreservation:</b>
                             </td>
                             <td>
-                                Consented:
-                            </td>
-                            <td>
-                                <span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span>
+                                Consented: <span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span>
                             </td>
                         </tr>
                         <tr>
