@@ -166,6 +166,7 @@
 													<field name="repeat_pregnancy_viability_potential"/>
 													<field name="repeat_pregnancy_details"/>
 													<field name="repeat_pregnancy_diagnosis"/>
+													<field name="repeat_pregnancy_diagnosis_text" string=""/>
 												</group>
 
 												<group string="Reason for visit">
