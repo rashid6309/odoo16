@@ -165,7 +165,9 @@
                                             'required':[('repeat_pregnancy_gestation_type','=','other')]}"/>
 													<field name="repeat_pregnancy_viability_potential"/>
 													<field name="repeat_pregnancy_details"/>
-													<field name="repeat_pregnancy_diagnosis"/>
+													<field name="repeat_pregnancy_diagnosis"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   widget="many2many_tags"/>
 													<field name="repeat_pregnancy_diagnosis_text" string=""/>
 												</group>
 
