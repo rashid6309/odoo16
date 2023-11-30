@@ -21,7 +21,7 @@
                 <div style="width:100%">
                     <div style="float: left;">
                         <img t-if="user.company_id.logo" t-att-src="image_data_uri(user.company_id.logo)"
-                             style="max-height:120pt;max-width:100%" alt="Company Logo"/>
+                             style="max-height:100pt;max-width:100%" alt="Company Logo"/>
                     </div>
                 </div>
                 <div style="float: right; width:80%; margin-top:5%;">
