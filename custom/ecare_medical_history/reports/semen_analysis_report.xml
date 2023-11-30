@@ -12,6 +12,12 @@
 
         <template id="custom_header_footer">
             <div class="header">
+                <div style="text-align: center;">
+                    <h4><b style="padding-bottom: 2px;
+                    border-bottom-style: solid;
+                    border-bottom-width: 2.1px;
+                    width: fit-content;">Semen Analysis</b></h4>
+                </div>
                 <div style="width:100%">
                     <div style="float: left;">
                         <img t-if="user.company_id.logo" t-att-src="image_data_uri(user.company_id.logo)"
@@ -78,8 +84,9 @@
                     <table style="width: 100%;">
                         <tr>
                             <td style="padding-top:1%;text-align: right;" colspan="4">
+                                <t t-set="display_name" t-value="o.semen_patient_id.wife_name + ' W/O ' + o.semen_patient_id.husband_name"/>
                                 <b style="display: list-item;"><span t-field="o.semen_patient_id.mr_num"/></b>
-                                <span t-field="o.semen_patient_id.name"/>
+                                <span t-out="display_name"/>
                             </td>
                         </tr>
                         <tr>
