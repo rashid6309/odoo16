@@ -191,9 +191,10 @@
                                                                             <h5>PREGNANCY STATUS:</h5>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="d-flex flex-column text-900"/>
+
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_gestation_type.raw_value">
-                                                                        <div class="d-inline-block"/>
                                                                         <div>
                                                                             <span class="o_form_label">Type of
                                                                                 Gestation
@@ -238,6 +239,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex flex-column text-900"/>
+
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_reason_to_visit.raw_value">
                                                                         <div>
@@ -282,9 +284,9 @@
                                                                             <h5>Examination:</h5>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="d-flex flex-column text-900"/>
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_hr.raw_value">
-                                                                        <div class="d-inline-block"/>
                                                                         <div>
                                                                             <span class="o_form_label">HR</span>
                                                                         </div>
@@ -360,13 +362,14 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="d-flex flex-column text-900"/>
+
                                                                     <div class="d-flex flex-column text-900">
                                                                         <div class="d-inline-block">
                                                                             <h5>Diagnosis</h5>
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex flex-column text-900"/>
+
 
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_diagnosis_ids.raw_value">
@@ -383,16 +386,16 @@
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_diagnosis.raw_value">
-                                                                        <div class="d-inline-block"/>
                                                                     </div>
 
-                                                                    <div class="d-flex flex-column text-900"/>
+
                                                                     <div class="d-flex flex-column text-900">
                                                                         <div class="d-inline-block">
                                                                             <h5>Investigations</h5>
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex flex-column text-900"/>
+
 
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_investigation_ids.raw_value">
@@ -407,12 +410,14 @@
                                                                             <field name="repeat_pregnancy_investigation_id_text"/>
                                                                         </div>
                                                                     </div>
+
                                                                     <div class="d-flex flex-column text-900">
                                                                         <div class="d-inline-block">
                                                                             <h5>Procedures</h5>
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex flex-column text-900"/>
+
 
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_procedure_performed.raw_value">
