@@ -307,10 +307,12 @@
 											</div>
 
 
-											<label for="repeat_examination_required" class="oe_left"/>
-											<field name="repeat_examination_required"
+											<group>
+												<field name="repeat_examination_required"
 												   widget="radio"
 												   options="{'horizontal': True}"/>
+											</group>
+
 											<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
 												<field name="repeat_gpe"/>
 												<field name="repeat_thyroid"/>
