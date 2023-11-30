@@ -81,7 +81,7 @@
             <t t-call="web.html_container">
                 <t t-set="header_printed" t-value="False"/>
                 <t t-foreach="docs" t-as="o">
-                    <t t-set="header_printed" t-value="True"/>
+                    <t t-call="ecare_medical_history.custom_header_footer"/>
                     <table style="width: 100%;">
                         <tr>
                             <td style="padding-top:1%;text-align: right;" colspan="4">
