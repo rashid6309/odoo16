@@ -199,7 +199,7 @@
 														</div>
 														<div class="d-flex">
 															<label class="ms-4 me-3" for="repeat_pregnancy_signs_of_ohss"/>
-															<field name="repeat_pregnancy_signs_of_ohss"/>
+															<field name="repeat_pregnancy_signs_of_ohss" widget="radio" options="{'horizontal': True}"/>
 														</div>
 													</div>
 												</group>
