@@ -871,7 +871,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.repeat_diagnosis.raw_value">
+                                                                         t-if="repeat_diagnosis.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Diagnosis
                                                                             </span>

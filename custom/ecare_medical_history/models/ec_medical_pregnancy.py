@@ -23,12 +23,7 @@ class PregnancyForm(models.Model):
 
     repeat_pregnancy_viability_potential = fields.Selection(StaticMember.VIABILITY_POTENTIAL, string="Viability Potential")
     repeat_pregnancy_details = fields.Char(string="Details")
-    repeat_pregnancy_diagnosis = fields.Many2many(comodel_name='ec.medical.diagnosis',
-                                                  relation="ec_medical_significant_pregnancy_diagnosis_rel",
-                                                  column1="medical_significant_pregnancy_id",
-                                                  column2="diagnosis_id",
-                                                  string="Any significant pregnancy diagnosis?")
-    repeat_pregnancy_diagnosis_text = fields.Char(string="Any significant pregnancy diagnosis?")
+    repeat_pregnancy_diagnosis = fields.Text(string="Any significant pregnancy diagnosis?")
 
     repeat_pregnancy_procedure_performed = fields.Many2one(comodel_name='ec.medical.pregnancy.procedure',
                                                            string="Procedure Performed")

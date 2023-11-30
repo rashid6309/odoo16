@@ -21,6 +21,11 @@
    float : right;
 }
 
+.timeline_examination
+{
+    font-weight: 700 !important;
+}
+
 #repeat_consultation_section .form-check-label{
     width: max-content !important;
 }

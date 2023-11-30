@@ -165,10 +165,7 @@
                                             'required':[('repeat_pregnancy_gestation_type','=','other')]}"/>
 													<field name="repeat_pregnancy_viability_potential"/>
 													<field name="repeat_pregnancy_details"/>
-													<field name="repeat_pregnancy_diagnosis"
-														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   widget="many2many_tags"/>
-													<field name="repeat_pregnancy_diagnosis_text" string=""/>
+													<field name="repeat_pregnancy_diagnosis"/>
 												</group>
 
 												<group string="Reason for visit">
@@ -181,21 +178,21 @@
 												</group>
 
 												<group string="Examination:" class="d-flex flex-column custom_width">
-													<div class="d-flex" style="width:290%;">
-														<label for="repeat_pregnancy_hr"/>
+													<div class="d-flex" style="width:295%;margin-left: 30%;">
+														<label  class="timeline_examination" for="repeat_pregnancy_hr"/>
 														<field name="repeat_pregnancy_hr"/>
-														<span style=" margin-right: 2%;">Rhythm </span>
-														<label style=" margin-left: 2%;" for="repeat_pregnancy_bp_upper"/>
+														<span style=" margin-right: 4%;">Rhythm </span>
+														<label  class="timeline_examination" style=" margin-left: 2%;" for="repeat_pregnancy_bp_upper"/>
 														<field name="repeat_pregnancy_bp_upper"/>
 														<span class="me-1">/</span>
 														<field name="repeat_pregnancy_bp_lower"/>
-														<span class="me-1">mmHg</span>
-														<label for="repeat_pregnancy_temp"/>
+														<span class="me-1" style="margin-right:4% !important;">mmHg</span>
+														<label class="timeline_examination" for="repeat_pregnancy_temp"/>
 														<field name="repeat_pregnancy_temp"/>
-														<label for="repeat_pregnancy_rr"/>
+														<label class="timeline_examination" for="repeat_pregnancy_rr"/>
 														<field name="repeat_pregnancy_rr"/>
 													</div>
-													<div class="d-flex flex-column" style="width:100%;">
+													<div class="d-flex flex-column" style="width:100%;margin-left: 15%;">
 														<div class="d-flex">
 															<label class="ms-4 me-3" for="repeat_pregnancy_fetal_heart"/>
 															<field name="repeat_pregnancy_fetal_heart" widget="radio" options="{'horizontal': True}"/>
