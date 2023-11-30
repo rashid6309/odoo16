@@ -291,7 +291,7 @@
                             </td>
                             <td style=" padding: 5px;">
                                 <div style="float: left; width: 50%;">Normal:</div>
-                                <div t-if="o.normal" style="float: right; width: 50%; text-align: right;"><span t-field="o.normal"/></div>
+                                <div t-if="o.normal" style="float: right; width: 50%; text-align: right;"><span t-field="o.normal"/>%</div>
                             </td>
                         </tr>
                         <tr>
