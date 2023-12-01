@@ -276,7 +276,7 @@
                         <tr>
                             <td style="border-right: 1pt solid #000000; padding: 5px;">
                                 <div style="float: left; width: 50%;">F Forward:</div>
-                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_f_forward"/></div>
+                                <div t-if="o.progression_f_forward"  style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_f_forward"/>%</div>
                             </td>
                             <td style=" padding: 5px;">
                                 <div style="float: left; width: 100%; font-weight:100;">(*Strict Kruger's Criteria) <img width="13" height="13"
@@ -287,7 +287,7 @@
                         <tr>
                             <td style="border-right: 1pt solid #000000; padding: 5px;">
                                 <div style="float: left; width: 50%;">S Forward:</div>
-                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_s_forward"/></div>
+                                <div t-if="o.progression_s_forward" style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_s_forward"/>%</div>
                             </td>
                             <td style=" padding: 5px;">
                                 <div style="float: left; width: 50%;">Normal:</div>
@@ -297,7 +297,7 @@
                         <tr>
                             <td style="border-right: 1pt solid #000000; padding: 5px;">
                                 <div style="float: left; width: 50%;">Lateral:</div>
-                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_lateral"/></div>
+                                <div t-if="o.progression_lateral"  style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_lateral"/>%</div>
                             </td>
                             <td style=" padding: 5px;">
                                 <div style="float: left; width: 50%;">Abnormal:</div>
@@ -307,7 +307,7 @@
                         <tr>
                             <td style="border-right: 1pt solid #000000; padding: 5px;">
                                 <div style="float: left; width: 50%;">Non Progressive:</div>
-                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_non_progressive"/></div>
+                                <div t-if="o.progression_non_progressive" style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_non_progressive"/>%</div>
                             </td>
                             <td style=" padding: 5px;">
                                 <div style="float: left; width: 50%;">Defects:</div>
@@ -316,7 +316,7 @@
                         <tr>
                             <td style="border-right: 1pt solid #000000;padding: 5px;width: 50%;vertical-align: text-top;">
                                 <div style="float: left; width: 50%;">Dead:</div>
-                                <div style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_dead"/></div>
+                                <div t-if="o.progression_dead" style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_dead"/>%</div>
                             </td>
                             <td style=" padding: 5px;width: 50%;">
                                 <div style="float: left; width: 50%;margin-left:10%;">Cephalic:</div>

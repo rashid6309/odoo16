@@ -178,7 +178,7 @@
 												</group>
 
 												<group string="Examination:" class="d-flex flex-column custom_width">
-													<div class="d-flex" style="width:295%;margin-left: 30%;">
+													<div class="d-flex" style="width:286%;margin-left: 30%;">
 														<label  class="timeline_examination" for="repeat_pregnancy_hr"/>
 														<field name="repeat_pregnancy_hr"/>
 														<span style=" margin-right: 4%;">Rhythm </span>
