@@ -1,6 +1,7 @@
 from odoo import api, models, fields, _
 
-
+import re
+from odoo.exceptions import UserError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 
@@ -142,3 +143,8 @@ class EcMedicalTVSScan(models.TransientModel):
                         'tvs_lov': display,
                     })
 
+    @api.onchange('display')
+    def _check_display_input(self):
+        for record in self:
+            if record.display and not re.match('^[0-9\.,]*$', record.display):
+                raise UserError("Please enter a valid value.")
