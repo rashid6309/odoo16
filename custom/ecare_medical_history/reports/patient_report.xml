@@ -73,6 +73,7 @@
                             </td>
                             <td>
                                 <span t-field="o.liquifaction_time"/>
+                                <span>(within 60 minutes)</span>
                             </td>
                         </tr>
 

@@ -351,6 +351,8 @@ class PatientTimeline(models.Model):
 
     def action_create_timeline_from_patient(self, patient):
         values = self.action_mandatory_patient_timeline(patient)
+        if not patient.mr_num:
+            raise UserError("Patient MR No. is not  generated yet, please generate MR No. for this patient first.")
         patient_timeline_id = self.env['ec.patient.timeline'].create(values)
         return patient_timeline_id
 

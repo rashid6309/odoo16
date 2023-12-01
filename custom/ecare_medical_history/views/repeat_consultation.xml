@@ -379,7 +379,7 @@
                                                                         <div>
                                                                             <field name="repeat_pregnancy_diagnosis_ids" widget="many2many_tags"/>
                                                                         </div>
-                                                                        <label for="repeat_pregnancy_diagnosis_id_text"/>
+                                                                        <label for="repeat_pregnancy_diagnosis_id_text" string="Other Diagnosis"/>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_diagnosis_id_text"/>
                                                                         </div>
@@ -405,7 +405,7 @@
                                                                         <div>
                                                                             <field name="repeat_pregnancy_investigation_ids" widget="many2many_tags"/>
                                                                         </div>
-                                                                        <label for="repeat_pregnancy_investigation_id_text"/>
+                                                                        <label for="repeat_pregnancy_investigation_id_text" string="Investigation Notes"/>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_investigation_id_text"/>
                                                                         </div>
@@ -431,7 +431,7 @@
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_procedure_performed_text.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label"/>
+                                                                            <span class="o_form_label">Procedure Notes</span>
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_procedure_performed_text"/>
@@ -459,6 +459,16 @@
                                                                     </div>
 
                                                                     <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_plan.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Plan</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_plan"/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_doctors.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Doctors</span>
@@ -468,15 +478,6 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.repeat_pregnancy_plan.raw_value">
-                                                                        <div>
-                                                                            <span class="o_form_label">Plan</span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <field name="repeat_pregnancy_plan"/>
-                                                                        </div>
-                                                                    </div>
 
                                                                 </div>
                                                             </div>
