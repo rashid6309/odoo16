@@ -66,7 +66,8 @@
                                 Abstinence:
                             </td>
                             <td>
-                                <span t-field="o.abstinence"/><span> days (Range:3-5)</span>
+                                <span t-field="o.abstinence"/>
+                                <span> days (Range:3-5)</span>
                             </td>
                             <td>
                                 Liquefaction Time:
