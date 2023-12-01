@@ -520,7 +520,7 @@
 													</div>
 
 													<div class="col-md-5">
-														<div class="col-md-12">
+														<div class="col-md-12" style="pointer-events: none;">
 															<field name="tvs_rov"/>
 														</div>
 													</div>
@@ -542,7 +542,7 @@
 														LOV
 													</div>
 													<div class="col-md-5">
-														<div class="col-md-12">
+														<div class="col-md-12" style="pointer-events: none;">
 															<field name="tvs_lov"/>
 														</div>
 													</div>
