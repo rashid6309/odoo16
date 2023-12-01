@@ -92,7 +92,7 @@
                         </tr>
                         <tr>
                             <td style="padding-top:1%;"><b>Date:</b></td>
-                            <td style="width:30%;"><span t-field="o.date"/></td>
+                            <td style="width:30%;"><span t-esc="o.date.strftime('%d %b %Y')"/></td>
                             <td style="padding-top:1%;"><b>Lab No.:</b></td>
                             <td><span t-field="o.lab_number"/></td>
                         </tr>
