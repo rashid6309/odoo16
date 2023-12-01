@@ -119,7 +119,10 @@
                         </tr>
                         <tr>
                             <td style="padding-top:2%;">Abstinence:</td>
-                            <td><span t-field="o.abstinence"/></td>
+                            <td>
+                                <span t-field="o.abstinence"/>
+                                <span>days (Range:3-5)</span>
+                            </td>
                             <td style="padding-top:1%;">Liquefaction Time:</td>
                             <td>
                                 <span t-field="o.liquifaction_time"/>
