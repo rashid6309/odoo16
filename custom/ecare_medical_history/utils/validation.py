@@ -2,8 +2,10 @@ from odoo.exceptions import AccessError, UserError
 from odoo import fields
 
 
-class DateValidation:
-    
+class Validation:
+
+    REGEX_FLOAT_2_DP = '^[0-9]+(\.[0-9]{1,2})?$'
+
     @staticmethod
     def _date_validation(date):
         if date:

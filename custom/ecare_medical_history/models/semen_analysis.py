@@ -2,7 +2,7 @@ from datetime import datetime
 
 from odoo import api, models, fields, _
 import re
-from odoo.addons.ecare_medical_history.utils.date_validation import DateValidation
+from odoo.addons.ecare_medical_history.utils.validation import Validation
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from odoo.addons.ecare_core.utilities.helper import TimeValidation, CustomNotification
 
@@ -135,74 +135,51 @@ class SemenAnalysis(models.Model):
     @api.onchange('date')
     def _check_semen_date(self):
         if self.date:
-            return DateValidation._date_validation(self.date)
+            return Validation._date_validation(self.date)
+
+    def _check_numeric_input(self, field_name, value):
+        if value and not re.match(Validation.REGEX_FLOAT_2_DP, value):
+            raise UserError(f"Please enter a numeric value in {field_name} with up to 2 decimal points.")
 
     @api.onchange('abstinence')
     def _check_abstinence_input(self):
-        for record in self:
-            if record.abstinence and not re.match('^[0-9\.]*$', record.abstinence):
-                raise UserError("Please enter a numeric value in abstinence.")
+        self._check_numeric_input('abstinence', self.abstinence)
 
     @api.onchange('volume')
     def _check_volume_input(self):
-        for record in self:
-            if record.volume and not re.match('^[0-9\.]*$', record.volume):
-                raise UserError("Please enter a numeric value in volume.")
+        self._check_numeric_input('volume', self.volume)
 
     @api.onchange('total_count')
     def _check_total_count_input(self):
-        for record in self:
-            if record.total_count and not re.match('^[0-9\.]*$', record.total_count):
-                raise UserError("Please enter a numeric value in total count.")
+        self._check_numeric_input('total count', self.total_count)
 
     @api.onchange('wbcs')
     def _check_wbcs_input(self):
-        for record in self:
-            if record.wbcs and not re.match('^[0-9\.]*$', record.wbcs):
-                raise UserError("Please enter a numeric value in WBCs.")
+        self._check_numeric_input('WBCs', self.wbcs)
 
     @api.onchange('epi_cells_immature_cells')
     def _check_epi_cells_immature_cells_input(self):
-        for record in self:
-            if record.epi_cells_immature_cells and not re.match('^[0-9\.]*$', record.epi_cells_immature_cells):
-                raise UserError("Please enter a numeric value in EPI Cells/Immature Cells.")
+        self._check_numeric_input('EPI Cells/Immature Cells', self.epi_cells_immature_cells)
 
     @api.onchange('prep_conc')
     def _check_prep_conc_input(self):
-        for record in self:
-            if record.prep_conc and not re.match('^[0-9\.]*$', record.prep_conc):
-                raise UserError("Please enter a numeric value in Prep Conc")
+        self._check_numeric_input('Prep Conc', self.prep_conc)
 
     @api.onchange('sperm_cryopreservation_strawe')
     def _check_sperm_cryopreservation_strawe_input(self):
-        for record in self:
-            if record.sperm_cryopreservation_strawe and not re.match('^[0-9\.]*$', record.sperm_cryopreservation_strawe):
-                raise UserError("Please enter a numeric value in No. of Strawe.")
+        self._check_numeric_input('No. of Strawe', self.sperm_cryopreservation_strawe)
 
     @api.onchange('ph')
     def _check_ph_input(self):
-        for record in self:
-            if record.ph and not re.match('^[0-9\.]*$', record.ph):
-                raise UserError("Please enter a numeric value PH.")
-
-
-    @api.onchange('ph')
-    def _check_ph_input(self):
-        for record in self:
-            if record.ph and not re.match('^[0-9\.]*$', record.ph):
-                raise UserError("Please enter a numeric value PH.")
+        self._check_numeric_input('PH', self.ph)
 
     @api.onchange('after_24_hrs_progression')
     def _check_after_24_hrs_progression_input(self):
-        for record in self:
-            if record.after_24_hrs_progression and not re.match('^[0-9\.]*$', record.after_24_hrs_progression):
-                raise UserError("Please enter a numeric value After 24hrs Progression'.")
+        self._check_numeric_input('After 24hrs Progression', self.after_24_hrs_progression)
 
     @api.onchange('progression')
     def _check_progression_input(self):
-        for record in self:
-            if record.progression and not re.match('^[0-9\.]*$', record.progression):
-                raise UserError("Please enter a numeric value progression.")
+        self._check_numeric_input('progression', self.progression)
 
     @api.onchange('production_time', "analysis_time","liquifaction_time")
     def _onchange_time(self):

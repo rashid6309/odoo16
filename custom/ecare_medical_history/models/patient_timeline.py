@@ -4,7 +4,7 @@ from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 
 from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
-from odoo.addons.ecare_medical_history.utils.date_validation import DateValidation
+from odoo.addons.ecare_medical_history.utils.validation import Validation
 
 
 class PatientTimeline(models.Model):
@@ -404,32 +404,32 @@ class PatientTimeline(models.Model):
     @api.onchange('female_lmp')
     def _check_female_lmp_date(self):
         if self.female_lmp:
-            return DateValidation._date_validation(self.female_lmp)
+            return Validation._date_validation(self.female_lmp)
 
     @api.onchange('biological_female_dob')
     def _check_biological_female_dob_date(self):
         if self.biological_female_dob:
-            return DateValidation._date_validation(self.biological_female_dob)
+            return Validation._date_validation(self.biological_female_dob)
 
     @api.onchange('biological_male_dob')
     def _check_biological_male_dob_date(self):
         if self.biological_male_dob:
-            return DateValidation._date_validation(self.biological_male_dob)
+            return Validation._date_validation(self.biological_male_dob)
 
     @api.onchange('gynaecological_examination_lmp')
     def _check_gynaecological_examination_lmp_date(self):
         if self.gynaecological_examination_lmp:
-            return DateValidation._date_validation(self.gynaecological_examination_lmp)
+            return Validation._date_validation(self.gynaecological_examination_lmp)
 
     @api.onchange('gynaecological_examination_date')
     def _check_gynaecological_examination_date_date(self):
         if self.gynaecological_examination_date:
-            return DateValidation._date_validation(self.gynaecological_examination_date)
+            return Validation._date_validation(self.gynaecological_examination_date)
 
     @api.onchange('repeat_pregnancy_lmp')
     def _check_repeat_pregnancy_lmp_date(self):
         if self.repeat_pregnancy_lmp:
-            return DateValidation._date_validation(self.repeat_pregnancy_lmp)
+            return Validation._date_validation(self.repeat_pregnancy_lmp)
 
     @api.onchange('repeat_pregnancy_procedure_performed')
     def _computed_procedure_performed_text(self):
@@ -442,269 +442,269 @@ class PatientTimeline(models.Model):
     @api.onchange('female_adrenal_date')
     def _check_female_adrenal_date(self):
         if self.female_adrenal_date:
-            return DateValidation._date_validation(self.female_adrenal_date)
+            return Validation._date_validation(self.female_adrenal_date)
 
     @api.onchange('female_anti_phospholipid_syndrome_date')
     def _check_female_anti_phospholipid_syndrome_date(self):
         if self.female_anti_phospholipid_syndrome_date:
-            return DateValidation._date_validation(self.female_anti_phospholipid_syndrome_date)
+            return Validation._date_validation(self.female_anti_phospholipid_syndrome_date)
 
     @api.onchange('female_autoimmune_disease_date')
     def _check_female_autoimmune_disease_date(self):
         if self.female_autoimmune_disease_date:
-            return DateValidation._date_validation(self.female_autoimmune_disease_date)
+            return Validation._date_validation(self.female_autoimmune_disease_date)
 
     @api.onchange('female_blood_transfusion_date')
     def _check_female_blood_transfusion_date(self):
         if self.female_blood_transfusion_date:
-            return DateValidation._date_validation(self.female_blood_transfusion_date)
+            return Validation._date_validation(self.female_blood_transfusion_date)
 
     @api.onchange('female_cardiac_date')
     def _check_female_cardiac_date(self):
         if self.female_cardiac_date:
-            return DateValidation._date_validation(self.female_cardiac_date)
+            return Validation._date_validation(self.female_cardiac_date)
 
     @api.onchange('female_gall_bladder_date')
     def _check_female_gall_bladder_date(self):
         if self.female_gall_bladder_date:
-            return DateValidation._date_validation(self.female_gall_bladder_date)
+            return Validation._date_validation(self.female_gall_bladder_date)
 
     @api.onchange('female_gastric_date')
     def _check_female_gastric_date(self):
         if self.female_gastric_date:
-            return DateValidation._date_validation(self.female_gastric_date)
+            return Validation._date_validation(self.female_gastric_date)
 
     @api.onchange('female_gynaecology_date')
     def _check_female_gynaecology_date(self):
         if self.female_gynaecology_date:
-            return DateValidation._date_validation(self.female_gynaecology_date)
+            return Validation._date_validation(self.female_gynaecology_date)
 
     @api.onchange('female_haematology_date')
     def _check_female_haematology_date(self):
         if self.female_haematology_date:
-            return DateValidation._date_validation(self.female_haematology_date)
+            return Validation._date_validation(self.female_haematology_date)
 
     @api.onchange('female_intestinal_date')
     def _check_female_intestinal_date(self):
         if self.female_intestinal_date:
-            return DateValidation._date_validation(self.female_intestinal_date)
+            return Validation._date_validation(self.female_intestinal_date)
 
     @api.onchange('female_liver_date')
     def _check_female_liver_date(self):
         if self.female_liver_date:
-            return DateValidation._date_validation(self.female_liver_date)
+            return Validation._date_validation(self.female_liver_date)
 
     @api.onchange('female_low_urinary_tract_date')
     def _check_female_low_urinary_tract_date(self):
         if self.female_low_urinary_tract_date:
-            return DateValidation._date_validation(self.female_low_urinary_tract_date)
+            return Validation._date_validation(self.female_low_urinary_tract_date)
 
     @api.onchange('female_malignancy_date')
     def _check_female_malignancy_date(self):
         if self.female_malignancy_date:
-            return DateValidation._date_validation(self.female_malignancy_date)
+            return Validation._date_validation(self.female_malignancy_date)
 
     @api.onchange('female_neurological_date')
     def _check_female_neurological_date(self):
         if self.female_neurological_date:
-            return DateValidation._date_validation(self.female_neurological_date)
+            return Validation._date_validation(self.female_neurological_date)
 
     @api.onchange('female_renal_date')
     def _check_female_renal_date(self):
         if self.female_renal_date:
-            return DateValidation._date_validation(self.female_renal_date)
+            return Validation._date_validation(self.female_renal_date)
 
     @api.onchange('female_respiratory_date')
     def _check_female_respiratory_date(self):
         if self.female_respiratory_date:
-            return DateValidation._date_validation(self.female_respiratory_date)
+            return Validation._date_validation(self.female_respiratory_date)
 
     @api.onchange('female_skeletal_date')
     def _check_female_skeletal_date(self):
         if self.female_skeletal_date:
-            return DateValidation._date_validation(self.female_skeletal_date)
+            return Validation._date_validation(self.female_skeletal_date)
 
     @api.onchange('female_thyroid_date')
     def _check_female_thyroid_date(self):
         if self.female_thyroid_date:
-            return DateValidation._date_validation(self.female_thyroid_date)
+            return Validation._date_validation(self.female_thyroid_date)
 
     @api.onchange('female_heart_disease_date')
     def _check_female_heart_disease_date(self):
         if self.female_heart_disease_date:
-            return DateValidation._date_validation(self.female_heart_disease_date)
+            return Validation._date_validation(self.female_heart_disease_date)
 
     @api.onchange('female_urinary_infection_date')
     def _check_female_urinary_infection_date(self):
         if self.female_urinary_infection_date:
-            return DateValidation._date_validation(self.female_urinary_infection_date)
+            return Validation._date_validation(self.female_urinary_infection_date)
 
     @api.onchange('female_hyper_tension_date')
     def _check_female_hyper_tension_date(self):
         if self.female_hyper_tension_date:
-            return DateValidation._date_validation(self.female_hyper_tension_date)
+            return Validation._date_validation(self.female_hyper_tension_date)
 
     @api.onchange('female_janduice_date')
     def _check_female_janduice_date(self):
         if self.female_janduice_date:
-            return DateValidation._date_validation(self.female_janduice_date)
+            return Validation._date_validation(self.female_janduice_date)
 
     @api.onchange('female_diabetes_date')
     def _check_female_diabetes_date(self):
         if self.female_diabetes_date:
-            return DateValidation._date_validation(self.female_diabetes_date)
+            return Validation._date_validation(self.female_diabetes_date)
 
     @api.onchange('female_dvt_date')
     def _check_female_dvt_date(self):
         if self.female_dvt_date:
-            return DateValidation._date_validation(self.female_dvt_date)
+            return Validation._date_validation(self.female_dvt_date)
 
     @api.onchange('female_smoking_date')
     def _check_female_smoking_date(self):
         if self.female_smoking_date:
-            return DateValidation._date_validation(self.female_smoking_date)
+            return Validation._date_validation(self.female_smoking_date)
 
     @api.onchange('female_alcohol_date')
     def _check_female_alcohol_date(self):
         if self.female_alcohol_date:
-            return DateValidation._date_validation(self.female_alcohol_date)
+            return Validation._date_validation(self.female_alcohol_date)
 
     @api.onchange('female_medical_history_others_date')
     def _check_female_medical_history_others_date(self):
         if self.female_medical_history_others_date:
-            return DateValidation._date_validation(self.female_medical_history_others_date)
+            return Validation._date_validation(self.female_medical_history_others_date)
 
     @api.onchange('male_adrenal_date')
     def _check_male_adrenal_date(self):
         if self.male_adrenal_date:
-            return DateValidation._date_validation(self.male_adrenal_date)
+            return Validation._date_validation(self.male_adrenal_date)
 
     @api.onchange('male_anti_phospholipid_syndrome_date')
     def _check_male_anti_phospholipid_syndrome_date(self):
         if self.male_anti_phospholipid_syndrome_date:
-            return DateValidation._date_validation(self.male_anti_phospholipid_syndrome_date)
+            return Validation._date_validation(self.male_anti_phospholipid_syndrome_date)
 
     @api.onchange('male_autoimmune_disease_date')
     def _check_male_autoimmune_disease_date(self):
         if self.male_autoimmune_disease_date:
-            return DateValidation._date_validation(self.male_autoimmune_disease_date)
+            return Validation._date_validation(self.male_autoimmune_disease_date)
 
     @api.onchange('male_blood_transfusion_date')
     def _check_male_blood_transfusion_date(self):
         if self.male_blood_transfusion_date:
-            return DateValidation._date_validation(self.male_blood_transfusion_date)
+            return Validation._date_validation(self.male_blood_transfusion_date)
 
     @api.onchange('male_cardiac_date')
     def _check_male_cardiac_date(self):
         if self.male_cardiac_date:
-            return DateValidation._date_validation(self.male_cardiac_date)
+            return Validation._date_validation(self.male_cardiac_date)
 
     @api.onchange('male_gall_bladder_date')
     def _check_male_gall_bladder_date(self):
         if self.male_gall_bladder_date:
-            return DateValidation._date_validation(self.male_gall_bladder_date)
+            return Validation._date_validation(self.male_gall_bladder_date)
 
     @api.onchange('male_gastric_date')
     def _check_male_gastric_date(self):
         if self.male_gastric_date:
-            return DateValidation._date_validation(self.male_gastric_date)
+            return Validation._date_validation(self.male_gastric_date)
 
     @api.onchange('male_gynaecology_date')
     def _check_male_gynaecology_date(self):
         if self.male_gynaecology_date:
-            return DateValidation._date_validation(self.male_gynaecology_date)
+            return Validation._date_validation(self.male_gynaecology_date)
 
     @api.onchange('male_haematology_date')
     def _check_male_haematology_date(self):
         if self.male_haematology_date:
-            return DateValidation._date_validation(self.male_haematology_date)
+            return Validation._date_validation(self.male_haematology_date)
 
     @api.onchange('male_intestinal_date')
     def _check_male_intestinal_date(self):
         if self.male_intestinal_date:
-            return DateValidation._date_validation(self.male_intestinal_date)
+            return Validation._date_validation(self.male_intestinal_date)
 
     @api.onchange('male_liver_date')
     def _check_male_liver_date(self):
         if self.male_liver_date:
-            return DateValidation._date_validation(self.male_liver_date)
+            return Validation._date_validation(self.male_liver_date)
 
     @api.onchange('male_low_urinary_tract_date')
     def _check_male_low_urinary_tract_date(self):
         if self.male_low_urinary_tract_date:
-            return DateValidation._date_validation(self.male_low_urinary_tract_date)
+            return Validation._date_validation(self.male_low_urinary_tract_date)
 
     @api.onchange('male_malignancy_date')
     def _check_male_malignancy_date(self):
         if self.male_malignancy_date:
-            return DateValidation._date_validation(self.male_malignancy_date)
+            return Validation._date_validation(self.male_malignancy_date)
 
     @api.onchange('male_neurological_date')
     def _check_male_neurological_date(self):
         if self.male_neurological_date:
-            return DateValidation._date_validation(self.male_neurological_date)
+            return Validation._date_validation(self.male_neurological_date)
 
     @api.onchange('male_renal_date')
     def _check_male_renal_date(self):
         if self.male_renal_date:
-            return DateValidation._date_validation(self.male_renal_date)
+            return Validation._date_validation(self.male_renal_date)
 
     @api.onchange('male_respiratory_date')
     def _check_male_respiratory_date(self):
         if self.male_respiratory_date:
-            return DateValidation._date_validation(self.male_respiratory_date)
+            return Validation._date_validation(self.male_respiratory_date)
 
     @api.onchange('male_skeletal_date')
     def _check_male_skeletal_date(self):
         if self.male_skeletal_date:
-            return DateValidation._date_validation(self.male_skeletal_date)
+            return Validation._date_validation(self.male_skeletal_date)
 
     @api.onchange('male_thyroid_date')
     def _check_male_thyroid_date(self):
         if self.male_thyroid_date:
-            return DateValidation._date_validation(self.male_thyroid_date)
+            return Validation._date_validation(self.male_thyroid_date)
 
     @api.onchange('male_heart_disease_date')
     def _check_male_heart_disease_date(self):
         if self.male_heart_disease_date:
-            return DateValidation._date_validation(self.male_heart_disease_date)
+            return Validation._date_validation(self.male_heart_disease_date)
 
     @api.onchange('male_urinary_infection_date')
     def _check_male_urinary_infection_date(self):
         if self.male_urinary_infection_date:
-            return DateValidation._date_validation(self.male_urinary_infection_date)
+            return Validation._date_validation(self.male_urinary_infection_date)
 
     @api.onchange('male_hyper_tension_date')
     def _check_male_hyper_tension_date(self):
         if self.male_hyper_tension_date:
-            return DateValidation._date_validation(self.male_hyper_tension_date)
+            return Validation._date_validation(self.male_hyper_tension_date)
 
     @api.onchange('male_janduice_date')
     def _check_male_janduice_date(self):
         if self.male_janduice_date:
-            return DateValidation._date_validation(self.male_janduice_date)
+            return Validation._date_validation(self.male_janduice_date)
 
     @api.onchange('male_diabetes_date')
     def _check_male_diabetes_date(self):
         if self.male_diabetes_date:
-            return DateValidation._date_validation(self.male_diabetes_date)
+            return Validation._date_validation(self.male_diabetes_date)
 
     @api.onchange('male_dvt_date')
     def _check_male_dvt_date(self):
         if self.male_dvt_date:
-            return DateValidation._date_validation(self.male_dvt_date)
+            return Validation._date_validation(self.male_dvt_date)
 
     @api.onchange('male_smoking_date')
     def _check_male_smoking_date(self):
         if self.male_smoking_date:
-            return DateValidation._date_validation(self.male_smoking_date)
+            return Validation._date_validation(self.male_smoking_date)
 
     @api.onchange('male_alcohol_date')
     def _check_male_alcohol_date(self):
         if self.male_alcohol_date:
-            return DateValidation._date_validation(self.male_alcohol_date)
+            return Validation._date_validation(self.male_alcohol_date)
 
     @api.onchange('male_medical_history_others_date')
     def _check_male_medical_history_others_date(self):
         if self.male_medical_history_others_date:
-            return DateValidation._date_validation(self.male_medical_history_others_date)
+            return Validation._date_validation(self.male_medical_history_others_date)

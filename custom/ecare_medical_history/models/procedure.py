@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from odoo.addons.ecare_medical_history.utils.date_validation import DateValidation
+from odoo.addons.ecare_medical_history.utils.validation import Validation
 
 class PatientProcedures(models.Model):
     _name = 'ec.patient.procedures'
@@ -14,4 +14,4 @@ class PatientProcedures(models.Model):
     @api.onchange('date_on')
     def _check_date_on_date(self):
         if self.date_on:
-            return DateValidation._date_validation(self.date_on)
+            return Validation._date_validation(self.date_on)
