@@ -146,5 +146,5 @@ class EcMedicalTVSScan(models.TransientModel):
     @api.onchange('display')
     def _check_display_input(self):
         for record in self:
-            if record.display and not re.match('^[0-9\.,]*$', record.display):
+            if record.display and not re.match('^[0-9\.,+>]*$', record.display):
                 raise UserError("Please enter a valid value.")
