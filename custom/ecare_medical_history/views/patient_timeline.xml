@@ -162,7 +162,7 @@
 													<field name="repeat_pregnancy_gestation_type"/>
 													<field name="repeat_pregnancy_other_info"
 														   attrs="{'invisible': [('repeat_pregnancy_gestation_type','!=','other')],
-                                            'required':[('repeat_pregnancy_gestation_type','=','other')]}"/>
+                                            'required':[('repeat_pregnancy_gestation_type','=','other'),('question_one_choice','=','yes')]}"/>
 													<field name="repeat_pregnancy_viability_potential"/>
 													<field name="repeat_pregnancy_details"/>
 													<field name="repeat_pregnancy_diagnosis"/>
