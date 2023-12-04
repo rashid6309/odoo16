@@ -15,8 +15,10 @@
                     <templates>
                         <t t-name="kanban-box" style="width:40mm; height:70mm;">
                             <div t-attf-class="oe_kanban_global_click">
+                                <span>Name:</span>
                                 <field name="name"/>
                                 <br/>
+                                <span>Date:</span>
                                 <field name="date"/>
                             </div>
                         </t>
