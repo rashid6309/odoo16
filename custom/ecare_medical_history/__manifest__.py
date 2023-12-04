@@ -20,6 +20,7 @@
         # Menu
         'data/family_history_data.xml',
         'data/menus.xml',
+        'data/semen_analysis_sequence.xml',
 
         # Reports here
 

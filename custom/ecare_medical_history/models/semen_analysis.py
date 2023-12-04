@@ -113,18 +113,8 @@ class SemenAnalysis(models.Model):
 
     @api.model
     def _get_default_lab_number(self):
-        # Get the current year
-        current_year = fields.Date.today().year
-
-        last_lab_number = self.search([('lab_number', 'like', f'LAB-{current_year}-')], order='lab_number desc', limit=1)
-
-        if last_lab_number:
-            sequence_number = int(last_lab_number.lab_number.split('-')[-1])
-            next_sequence_number = sequence_number + 1
-        else:
-            next_sequence_number = 1
-
-        return f'LAB-{current_year}-{next_sequence_number:04d}'
+        lab_sequence = self.env['ir.sequence'].next_by_code('ecare_history.semen.sequence.lab.no') or '/'
+        return lab_sequence
 
     def print_semen_analysis_report(self):
         return self.env.ref('ecare_medical_history.ec_semen_analysis_report').report_action(self)
