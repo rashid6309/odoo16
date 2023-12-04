@@ -29,8 +29,7 @@
                                                 <a name="action_set_working_consultation"
                                                    type="object"
                                                    string="Edit"
-                                                   class="repeat_kanban_button"
-                                                   onclick="scrollToElement('repeat_consultation_section_link')">
+                                                   class="repeat_kanban_button">
                                                     <i class="fa fa-edit fa-2x" aria-hidden="true"/>
                                                 </a>
 
