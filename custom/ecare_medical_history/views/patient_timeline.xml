@@ -466,7 +466,7 @@
 														</div>
 														<div class="d-flex"
 															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
-															<span>Size</span>
+															<span style="font-weight:bold;">Size</span>
 															<field name="tvs_uterus_size_x"/>
 															<span class="m-2">x</span>
 
@@ -482,7 +482,7 @@
 															</div>
 														</div>
 														<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
-															<div class="col-md-1">
+															<div class="col-md-1" style="font-weight:bold;">
 																Fibroid
 															</div>
 															<div class="col-md-5">
@@ -1542,7 +1542,7 @@
 
 															</div>
 															<div class="d-flex" style="width: 15%;" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
-																<span>Size</span>
+																<span style="font-weight:bold;">Size</span>
 																<field name="uterus_size_length"/>
 																<span class="m-2">x</span>
 
@@ -1550,7 +1550,7 @@
 																<span>cm</span>
 															</div>
 															<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
-																<div class="col-md-1 fw-bolder" style="margin-right: 4%;">
+																<div class="col-md-1 fw-bolder" style="margin-right: 4%;font-weight:bold;">
 																	Position
 																</div>
 																<div class="d-flex">
@@ -1558,7 +1558,7 @@
 																</div>
 															</div>
 															<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
-																<div class="col-md-1">
+																<div class="col-md-1" style="font-weight:bold;">
 																	Fibroid
 																</div>
 																<div class="col-md-5">

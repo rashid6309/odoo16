@@ -379,7 +379,9 @@
                                                                         <div>
                                                                             <field name="repeat_pregnancy_diagnosis_ids" widget="many2many_tags"/>
                                                                         </div>
-                                                                        <label for="repeat_pregnancy_diagnosis_id_text" string="Other Diagnosis"/>
+                                                                        <div>
+                                                                            <span class="o_form_label">Other Diagnosis</span>
+                                                                        </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_diagnosis_id_text"/>
                                                                         </div>
@@ -405,7 +407,9 @@
                                                                         <div>
                                                                             <field name="repeat_pregnancy_investigation_ids" widget="many2many_tags"/>
                                                                         </div>
-                                                                        <label for="repeat_pregnancy_investigation_id_text" string="Investigation Notes"/>
+                                                                        <div>
+                                                                            <span class="o_form_label">Investigation Notes</span>
+                                                                        </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_investigation_id_text"/>
                                                                         </div>
