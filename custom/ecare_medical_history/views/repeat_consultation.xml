@@ -824,6 +824,25 @@
                                                                     </div>
                                                                 </div>
 
+                                                                <div class="o_group row align-items-start">
+                                                                    <div class="o_inner_group grid col-lg-12 text-900">
+                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                            <div>
+                                                                                <span class="o_form_label">Linining</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="tvs_linining_ids"/>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="o_form_label">Size</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="tvs_lining_size"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
 
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
