@@ -5,7 +5,7 @@ from odoo.addons.ecare_medical_history.utils.validation import Validation
 class LabHistory(models.Model):
     _name = "ec.lab.history"
     _description = "Patient Lab History"
-
+    _order = 'date desc'
 
     female_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete="restrict")
     male_first_consultation_id = fields.Many2one(comodel_name="ec.first.consultation", ondelete="restrict")

@@ -309,8 +309,8 @@
 
 											<group>
 												<field name="repeat_examination_required"
-												   widget="radio"
-												   options="{'horizontal': True}"/>
+													   widget="radio"
+													   options="{'horizontal': True}"/>
 											</group>
 
 											<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
@@ -1280,7 +1280,7 @@
 												</div>
 											</div>
 
-											<div class="card-block mb-5 pl-4 collapse col-6" id="female_lab_history_section">
+											<div class="card-block mb-5 pl-4 collapse col-12" id="female_lab_history_section">
 												<!--											<br></br>-->
 												<group class="mt-0" col="6" colspan="6">
 													<div style="margin-top: -7%;">
@@ -1291,10 +1291,10 @@
 																context="{'default_female_first_consultation_id':id}"
 																string="Add" target="new"/>
 													</div>
-													<field class="custom-scrollbar opd-notes-height" name="female_lab_history_ids" mode="kanban" nolabel="1"
-														   string="Lab History" create="false"/>
 
 												</group>
+												<field class="custom-scrollbar opd-notes-height" name="female_lab_history_ids" mode="tree" nolabel="1"
+													   string="Lab History" create="false"/>
 											</div>
 
 
@@ -1977,7 +1977,7 @@
 												</div>
 											</div>
 
-											<div class="card-block mb-5 pl-4 collapse col-6" id="male_lab_history_section">
+											<div class="card-block mb-5 pl-4 collapse col-12" id="male_lab_history_section">
 												<group class="mt-0" col="6" colspan="6">
 													<div style="margin-top: -7%;">
 														<button type="action"
@@ -1987,9 +1987,9 @@
 																context="{'default_male_first_consultation_id':id}"
 																string="Add" target="new"/>
 													</div>
-													<field class="custom-scrollbar opd-notes-height" name="male_lab_history_ids" mode="kanban" nolabel="1"
-														   string="Lab History" create="false"/>
 												</group>
+												<field class="custom-scrollbar opd-notes-height" name="male_lab_history_ids" mode="tree" nolabel="1"
+													   string="Lab History" create="false"/>
 											</div>
 
 											<!-- Genital Examination -->

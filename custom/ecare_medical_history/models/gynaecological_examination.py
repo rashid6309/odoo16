@@ -16,7 +16,8 @@ class MedicalGynaecologicalExamination(models.Model):
     uterus_size_comment = fields.Char(string='Uterus Size Comment')
 
     uterus_position = fields.Selection(selection=StaticMember.UTERUS_POSITION, string='Uterus Position')
-    uterus_motility = fields.Selection(selection=StaticMember.UTERUS_MOTILITY, string='Uterus Motility')
+    # TODO Field name needed to be refactored as well
+    uterus_motility = fields.Selection(selection=StaticMember.UTERUS_MOTILITY, string='Uterus Mobility')
 
     gynaecological_examination_ps_selection = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='P/S')
     gynaecological_examination_ps_comment = fields.Char('P/S Comment')

@@ -136,13 +136,13 @@ class PatientTimeline(models.Model):
             if field_name in ('male_family_history_other', 'female_family_history_other'):
                 family_members_list = field_records
                 if family_members_list:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{family_members_list}'
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{family_members_list}'
                     family_history_text.append(field_text)
             elif field_records or (custom_field and custom_field.strip()):
                 custom_text = f' ({custom_field.strip()})' if custom_field else ''
                 family_members_list = [rec.name for rec in field_records]
                 if family_members_list:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}:</strong><br>{", ".join(family_members_list)}{custom_text}'
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{", ".join(family_members_list)}{custom_text}'
                     family_history_text.append(field_text)
 
         if family_history_text:
