@@ -189,7 +189,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="padding-top:1%;"><b>Other Observation:</b></td>
+                            <td style="padding-top:1%;vertical-align: top;"><b>Other Observation:</b></td>
                             <td><span t-field="o.other_observation"/></td>
                         </tr>
                         <tr>
@@ -232,11 +232,11 @@
                             <td><span t-field="o.after_24_hrs_progression"/></td>
                         </tr>
                         <tr>
-                            <td style="padding-top:1%;"><b>Comments:</b></td>
+                            <td style="padding-top:1%;vertical-align: top;"><b>Comments:</b></td>
                             <td><span t-field="o.comments"/></td>
                         </tr>
                         <tr>
-                            <td style="padding-top:1%;"><b>Suitable For:</b></td>
+                            <td style="padding-top:1%;vertical-align: top;"><b>Suitable For:</b></td>
                             <td>
                                 <t t-foreach="o.suitable_for_ids" t-as="item">
                                     <span style="margin-right:5%;"><t t-esc="item.name"/>

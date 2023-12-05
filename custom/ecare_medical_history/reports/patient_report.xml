@@ -172,7 +172,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style="vertical-align: top;">
                                 Other Observation:
                             </td>
                             <td colspan="2">
@@ -232,7 +232,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style="vertical-align: top;">
                                 <b>Comments:</b>
                             </td>
                             <td colspan="2">
@@ -240,7 +240,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style="vertical-align: top;">
                                 <b>Suitable for:</b>
                             </td>
                             <td>
