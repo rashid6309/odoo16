@@ -111,15 +111,10 @@ class SemenAnalysis(models.Model):
     seminologist = fields.Char("Seminologist")
     special_notes = fields.Char("Special Notes")
 
-    # @api.model
-    # def create(self, vals):
-    #     lab_sequence = self.env['ir.sequence'].next_by_code('ecare_history.semen.sequence.lab.no') or '/'
-    #     return lab_sequence
-    #
     @api.model_create_multi
     def create(self, vals):
         if vals[0].get('lab_number') in [False, '']:
-            vals[0]['lab_number'] =  self.env['ir.sequence'].next_by_code('ecare_history.semen.sequence.lab.no') or '/'
+            vals[0]['lab_number'] = self.env['ir.sequence'].next_by_code('ecare_history.semen.sequence.lab.no') or '/'
         return super(SemenAnalysis, self).create(vals)
 
     def print_semen_analysis_report(self):
