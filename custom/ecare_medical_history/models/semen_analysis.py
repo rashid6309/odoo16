@@ -20,7 +20,7 @@ class SemenAnalysis(models.Model):
                                        string="Patient")
 
     date = fields.Date(string='Date', required=True,)
-    lab_number = fields.Char(string='Lab Number', required=True, default=lambda self: self._get_default_lab_number())
+    lab_number = fields.Char(string='Lab Number')
     lab_name = fields.Many2one(comodel_name="ec.medical.labs", string='Lab Name')
 
     preparation_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
@@ -111,10 +111,16 @@ class SemenAnalysis(models.Model):
     seminologist = fields.Char("Seminologist")
     special_notes = fields.Char("Special Notes")
 
-    @api.model
-    def _get_default_lab_number(self):
-        lab_sequence = self.env['ir.sequence'].next_by_code('ecare_history.semen.sequence.lab.no') or '/'
-        return lab_sequence
+    # @api.model
+    # def create(self, vals):
+    #     lab_sequence = self.env['ir.sequence'].next_by_code('ecare_history.semen.sequence.lab.no') or '/'
+    #     return lab_sequence
+    #
+    @api.model_create_multi
+    def create(self, vals):
+        if vals[0].get('lab_number') in [False, '']:
+            vals[0]['lab_number'] =  self.env['ir.sequence'].next_by_code('ecare_history.semen.sequence.lab.no') or '/'
+        return super(SemenAnalysis, self).create(vals)
 
     def print_semen_analysis_report(self):
         return self.env.ref('ecare_medical_history.ec_semen_analysis_report').report_action(self)
