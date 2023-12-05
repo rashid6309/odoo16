@@ -430,6 +430,10 @@ class StaticMember:
                   ('not_visualized', 'Not Visualized'),
                   ]
 
+    OVARY_SIZE_TYPE = [('hypo', 'Hypo'),
+                       ('hyper', 'Hyper'),
+                       ]
+
     UTERUS_TYPE_SIZE = [('size', 'Size'),
                         ('position', 'Position'),
                         ('cyst', 'Cyst'),

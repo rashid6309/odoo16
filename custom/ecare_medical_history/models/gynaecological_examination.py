@@ -30,7 +30,7 @@ class MedicalGynaecologicalExamination(models.Model):
     # LEFT OVARY FIELDS
 
     left_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary')
-    left_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Type')
+    left_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE_TYPE, string='Left Ovary Type')
     gynaecological_left_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                                    inverse_name="gynaecological_left_size_id",
                                                    string="Left Ovary")
@@ -48,7 +48,7 @@ class MedicalGynaecologicalExamination(models.Model):
 
     '''
     right_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary')
-    right_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary Type')
+    right_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE_TYPE, string='Right Ovary Type')
     gynaecological_right_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                                     inverse_name="gynaecological_right_size_id",
                                                     string="Right Ovary")
