@@ -909,7 +909,7 @@
 
 													<field name="female_diabetes_type" placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
-													<field name="female_diabetes" placeholder="" string="" />
+													<field name="female_diabetes" placeholder="Add Details" string="" />
 													<field name="female_diabetes_date" string="" placeholder="Since" />
 
 													<field name="female_dvt" placeholder="Add Details" />
@@ -1651,7 +1651,7 @@
 
 													<field name="male_diabetes_type" placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
-													<field name="male_diabetes" placeholder="" string="" />
+													<field name="male_diabetes" placeholder="Add Details" string="" />
 													<field name="male_diabetes_date" string="" placeholder="Since" />
 
 													<field name="male_dvt" placeholder="Add Details" />
