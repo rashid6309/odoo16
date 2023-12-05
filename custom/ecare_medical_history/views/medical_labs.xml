@@ -22,7 +22,7 @@
         <!-- Menu-item for Configuration -->
 
         <menuitem
-            id="ec_medical_centers_menu"
+            id="ec_medical_labs_menu"
             name="Labs"
             action="ec_medical_labs_action"
             parent="ec_medical_history_configuration"
