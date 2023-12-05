@@ -230,7 +230,7 @@ class PatientTimeline(models.Model):
             'male_mental_illness_ids': ('Mental Illness', 'male_other_mental_illness'),
             'male_twins_ids': ('Twins', 'male_other_twins'),
             'male_tuberculosis_ids': ('Tuberculosis', 'male_other_tuberculosis'),
-            'male_abnormalities_ids': ('Abnormalities', 'male_other_abnormalities'),
+            'male_abnormalities_ids': ('Congenital Abnormalities', 'male_other_abnormalities'),
             'male_family_history_other': ('Other History', 'male_family_history_other')
         }
 
@@ -247,7 +247,7 @@ class PatientTimeline(models.Model):
             'female_hypertension_ids': ('Hypertension', 'female_other_hypertension'),
             'female_mental_illness_ids': ('Mental Illness', 'female_other_mental_illness'),
             'female_tuberculosis_ids': ('Tuberculosis', 'female_other_tuberculosis'),
-            'female_abnormalities_ids': ('Abnormalities', 'female_other_abnormalities'),
+            'female_abnormalities_ids': ('Congenital Abnormalities', 'female_other_abnormalities'),
             'female_twins_ids': ('Twins', 'female_other_twins'),
             'female_pregnancy_induced_hypertension_ids': (
                 'Pregnancy Induced Hypertension', 'female_other_pregnancy_induced_hypertension'),
