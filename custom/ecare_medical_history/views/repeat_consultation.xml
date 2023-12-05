@@ -494,7 +494,7 @@
 
                                                         </span>
 
-                                                        <span t-if="record.question_one_choice.raw_value == 'no'">
+                                                        <span t-if="record.question_one_choice.raw_value == 'no' and record.scan_required.raw_value == 'yes'">
                                                             <div class="oe_kanban_title">
                                                                 <field name="question_two_label"/>
                                                                 <h5 style="display: inline-block;margin-left: 5%;">
