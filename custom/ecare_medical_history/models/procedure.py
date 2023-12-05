@@ -1,9 +1,11 @@
 from odoo import models, fields, api
 from odoo.addons.ecare_medical_history.utils.validation import Validation
 
+
 class PatientProcedures(models.Model):
     _name = 'ec.patient.procedures'
     _description = 'Patient (Common) Procedures'
+    _order = 'date_on desc'
 
     female_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', ondelete='restrict')
     male_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', ondelete="restrict")
