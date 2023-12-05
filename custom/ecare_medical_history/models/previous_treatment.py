@@ -16,8 +16,10 @@ class MedicalPreviousHistory(models.Model):
     oral_drugs = fields.Char(string='Oral Drugs')
     down_regulation = fields.Char(string='Down Regulation')
     superovulation = fields.Char(string='Superovulation')
-    ovarian_response = fields.Char(string='Ovarian Response')
-    outcome = fields.Char(string='Outcome', required=True)
+    ovarian_response = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_RESPONSE,
+                                        string='Ovarian Response')
+    outcome = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_OUTCOME,
+                               string='Outcome', required=True)
 
     def action_open_form_view(self, patient_id, timeline_id=None):
         context = {

@@ -512,6 +512,17 @@ class StaticMember:
         ('in_vitro_fertilization', 'In - Vitro Fertilization'),
     ]
 
+    PREVIOUS_TREATMENT_OUTCOME = [
+        ('pregnancy', 'Pregnancy'),
+        ('no_pregnancy', 'No Pregnancy'),
+    ]
+
+    PREVIOUS_TREATMENT_RESPONSE = [
+        ('poor', 'Poor'),
+        ('good', 'Good'),
+        ('ver_good', 'Very Good'),
+    ]
+
     ULTRASOUND_TYPE = [
         ('abdominal', "Abdominal"),
         ("tvs", "TVS"),
