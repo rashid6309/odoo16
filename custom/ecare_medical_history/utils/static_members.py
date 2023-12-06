@@ -532,6 +532,7 @@ class StaticMember:
     LABOUR_HISTORY = [
         ('spontaneous', 'Spontaneous'),
         ('induced', 'Induced'),
+        ('na', 'N/A'),
     ]
 
     LOCATION = [

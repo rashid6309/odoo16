@@ -22,7 +22,7 @@ class FemaleObstetricsHistory(models.Model):
     timeline_id = fields.Many2one(comodel_name='ec.patient.timeline', string='Patient Timeline')
 
     baby_name = fields.Char(string='Baby Name')
-    birth_place = fields.Char(string="Birth Place",
+    birth_place = fields.Char(string="Place of Delivery",
                       required=False, )
     date_of_birth = fields.Date(string='Date of Birth')
     age = fields.Char(string='Age', compute='_get_age')
