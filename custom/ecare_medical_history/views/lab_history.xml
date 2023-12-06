@@ -52,7 +52,7 @@
             <field name="name">lab.history.tree.view</field>
             <field name="model">ec.lab.history</field>
             <field name="arch" type="xml">
-                <tree create="0">
+                <tree create="0" editable="bottom">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="attachment_id" widget="binary" readonly="1" filename="filename"/>
