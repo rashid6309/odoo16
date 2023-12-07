@@ -16,5 +16,5 @@ class PatientTimelineWizard(models.TransientModel):
                 'res_id': patient_timeline_id.id,
                 'name': patient_timeline_id.timeline_patient_name,
                 'view_mode': 'form',
-                "target": "current",
+                "target": "main",
             }

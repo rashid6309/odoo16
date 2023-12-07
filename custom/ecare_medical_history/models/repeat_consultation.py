@@ -47,8 +47,7 @@ class RepeatConsultation(models.Model):
                                      readonly=1,
                                      )
     question_one_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                           string="Choice",
-                                           default='no')
+                                           string="Choice")
 
     repeat_lmp = fields.Date(string="LMP",
                              readonly=True,
@@ -67,7 +66,6 @@ class RepeatConsultation(models.Model):
                                      readonly=True)
     question_two_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                            string="Choice",
-                                           default='no',
                                            )
 
     """ Question Three
@@ -81,7 +79,6 @@ class RepeatConsultation(models.Model):
                                        readonly=1)
     question_three_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                              string="Choice",
-                                             default='no',
                                              )
 
     """ Question Four
@@ -114,8 +111,7 @@ class RepeatConsultation(models.Model):
                                          string='Location')
 
     repeat_status = fields.Selection(selection=StaticMember.REPEAT_STATUS,
-                                     string='Status',
-                                     default='walkin')
+                                     string='Status')
 
     repeat_consultation_interaction = fields.Selection(selection=StaticMember.REPEAT_CONSULTATION_TYPE,
                                                        string='Interaction')
@@ -176,7 +172,6 @@ class RepeatConsultation(models.Model):
     repeat_breast = fields.Text(string="Breast")
 
     repeat_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                                       default='yes',
                                                        string="Pelvic examination done?")
 
     repeat_examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,

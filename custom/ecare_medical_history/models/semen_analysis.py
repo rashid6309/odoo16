@@ -30,14 +30,11 @@ class SemenAnalysis(models.Model):
                                        string='Preparation', domain="[('type', '=', 'preparation')]")
 
     sample_produced_at_lab = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                              default='no',
                                               string='Sample Produced at Lab')
 
     repeat_semen_analysis = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                             default='no',
                                              string='Repeat Semen Analysis')
     freezing = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                default='no',
                                 string='Freezing')
 
     abstinence = fields.Char(string='Abstinence')
@@ -45,7 +42,6 @@ class SemenAnalysis(models.Model):
     analysis_time = fields.Char(string='Analysis Time')
     liquifaction_time = fields.Char(string='Liquefaction Time')
     color = fields.Selection(selection=StaticMember.SEMEN_COLOR,
-                             default='creamy_white',
                              string="Color")
 
     ph = fields.Char(string='PH')
