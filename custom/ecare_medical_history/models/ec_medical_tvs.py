@@ -134,6 +134,26 @@ class EcMedicalTVSScan(models.TransientModel):
             if context and record:
                 field = context.get('default_field')
                 display = self.display or None
+                if display:
+                    # Convert the string to a list of elements
+                    data_list = display.split(',')
+
+                    # Separate the '+' and '>22' elements
+                    plus_elements = [element for element in data_list if element == '+']
+                    greater_than_22_elements = [element for element in data_list if element == '>22']
+
+                    # Remove '+' and '>22' elements from the original list
+                    data_list = [element for element in data_list if element not in ['+', '>22']]
+
+                    # Sort the remaining elements in ascending order
+                    sorted_data = sorted(data_list, key=lambda x: int(x) if x.isdigit() else float('inf'))
+
+                    # Concatenate the '+' elements, sorted elements, and '>22' elements
+                    result_list = plus_elements + sorted_data + greater_than_22_elements
+
+                    # Filter out empty strings and join the list back to a string
+                    result_str = ','.join(filter(None, result_list))
+                    display = result_str
                 if field and field == 'tvs_rov':
                     return record.write({
                         'tvs_rov': display,

@@ -12,6 +12,11 @@ class PatientProcedures(models.Model):
 
     details = fields.Char('Details')
     date_on = fields.Date('Date On', required=True)
+    surgical_year = fields.Selection(
+        selection=[(str(year), str(year)) for year in range(1980, 2061)],
+        string='Year',
+        help='Select a year from the list',
+    )
 
     @api.onchange('date_on')
     def _check_date_on_date(self):

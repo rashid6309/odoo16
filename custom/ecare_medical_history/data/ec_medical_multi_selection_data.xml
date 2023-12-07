@@ -84,7 +84,7 @@
         </record>
 
         <record model="ec.medical.multi.selection" id="position_5">
-            <field name="name">M/V</field>
+            <field name="name">Mid-Position</field>
             <field name="type">position</field>
         </record>
 

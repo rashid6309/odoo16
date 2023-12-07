@@ -84,6 +84,12 @@ class PatientTimeline(models.Model):
                                                     string='Previous Treatment',
                                                     )
 
+    ''' Related Fields'''
+    patient_female_dob = fields.Date(string='CNIC DOB', store=True,
+                                     related="timeline_patient_id.wife_dob")
+    patient_male_dob = fields.Date(string='CNIC DOB', store=True,
+                                   related="timeline_patient_id.husband_dob")
+
     ''' One2Many'''
 
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",

@@ -222,15 +222,18 @@
 													<field name="repeat_pregnancy_procedure_performed"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_procedure_performed_text"/>
+													<field name="repeat_pregnancy_doctors"
+														   widget="many2many_tags"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
+													<field name="repeat_pregnancy_assistants"
+														   widget="many2many_tags"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 												</group>
 												<group>
 													<field name="repeat_pregnancy_type_sample_obtained"/>
 													<field name="repeat_pregnancy_name_receiving_geneticist"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_plan"/>
-													<field name="repeat_pregnancy_doctors"
-														   widget="many2many_tags"
-														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 												</group>
 											</div>
 
@@ -569,7 +572,7 @@
 																<tree editable="bottom">
 																	<field name="type"/>
 																	<field name="generic_size_x"/>
-																	<field name="generic_size_y"/>
+<!--																	<field name="generic_size_y"/>-->
 																</tree>
 															</field>
 														</div>
@@ -679,6 +682,7 @@
 													<field name="female_marriage" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_comment" placeholder="Details..."/>
 
+													<field name="patient_female_dob"/>
 													<field name="biological_female_dob"/>
 													<field name="biological_female_age" attrs="{'invisible': [('biological_female_dob', '=', False)]}" force_save="1"/>
 
@@ -1008,9 +1012,9 @@
 																context="{'default_female_consultation_id': id}"
 																string="Add" target="current"/>
 													</div>
-													<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="kanban" nolabel="1"
-														   string="Patient Procedures" create="false"/>
 												</group>
+													<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="tree" nolabel="1"
+														   string="Patient Procedures" edit="false" create="false"/>
 											</div>
 
 											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="female_social_history_section_link">
@@ -1460,6 +1464,7 @@
 													</div>
 													<h4 style="width:200%;">USG (Abd/Vag)</h4>
 													<div/>
+													<field name="gynaecological_ultrasound_type"/>
 													<field name="gynaecological_examination_date"/>
 													<field name="gynaecological_examination_lmp"/>
 
@@ -1610,6 +1615,7 @@
 													<field name="male_marriage" widget="radio" options="{'horizontal': True}"/>
 													<field name="male_comment"/>
 
+													<field name="patient_male_dob"/>
 													<field name="biological_male_dob"/>
 													<field name="biological_male_age" attrs="{'invisible': [('biological_male_dob', '=', False)]}" force_save="1"/>
 
@@ -1750,9 +1756,9 @@
 																context="{'default_male_consultation_id':id}"
 																string="Add" target="current"/>
 													</div>
-													<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="kanban" nolabel="1"
-														   string="Patient Procedures" create="false"/>
 												</group>
+													<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="tree" nolabel="1"
+														   string="Patient Procedures" create="false"/>
 											</div>
 
 

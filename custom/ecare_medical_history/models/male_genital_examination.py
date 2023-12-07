@@ -55,16 +55,16 @@ class GenitalExamination(models.Model):
                                                   relation='genital_examination_multi_selection_supermatic_cord_normal',
                                                   column1='genital_examination_id',
                                                   column2='multi_selection_id',
-                                                  string='Supermatic Cord Normal', domain="[('type', '=', 'supermatic_cord_normal')]")
+                                                  string='Spermatic Cord Normal', domain="[('type', '=', 'supermatic_cord_normal')]")
 
     supermatic_cord_thick_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                                  relation='genital_examination_multi_selection_supermatic_cord_thick',
                                                  column1='genital_examination_id',
                                                  column2='multi_selection_id',
-                                                 string='Supermatic Cord Thick', domain="[('type', '=', 'supermatic_cord_thick')]")
+                                                 string='Spermatic Cord Thick', domain="[('type', '=', 'supermatic_cord_thick')]")
 
     supermatic_cord_tender_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                                   relation='genital_examination_multi_selection_supermatic_cord_tender',
                                                   column1='genital_examination_id',
                                                   column2='multi_selection_id',
-                                                  string='Supermatic Cord Tender', domain="[('type', '=', 'supermatic_cord_tender')]")
+                                                  string='Spermatic Cord Tender', domain="[('type', '=', 'supermatic_cord_tender')]")

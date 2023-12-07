@@ -23,6 +23,8 @@ class MedicalGynaecologicalExamination(models.Model):
     gynaecological_examination_ps_comment = fields.Char('P/S Comment')
 
     gynaecological_examination_date = fields.Date(string='Date')
+    gynaecological_ultrasound_type = fields.Selection(selection=StaticMember.ULTRASOUND_TYPE,
+                                                      string="Ultrasound")
 
     gynaecological_examination_lmp = fields.Date(string='LMP')
 

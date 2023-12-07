@@ -449,6 +449,26 @@
                                                                     </div>
 
                                                                     <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_doctors.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Doctors</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_doctors" widget="many2many_tags"/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_pregnancy_assistants.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Assistants</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_pregnancy_assistants" widget="many2many_tags"/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_pregnancy_type_sample_obtained.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Type of Sample Obtained</span>
@@ -475,16 +495,6 @@
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_pregnancy_plan"/>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.repeat_pregnancy_doctors.raw_value">
-                                                                        <div>
-                                                                            <span class="o_form_label">Doctors</span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <field name="repeat_pregnancy_doctors" widget="many2many_tags"/>
                                                                         </div>
                                                                     </div>
 
@@ -786,30 +796,7 @@
                                                             </div>
                                                             <span attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
                                                                 <div class="text-900">
-                                                                    <div class="d-inline-block">
-                                                                        <field name="tvs_uterus_tvs_size"/>
-                                                                    </div>
-                                                                    <div class="d-inline-block">
-                                                                        <span>Uterus TVS Size</span>
-                                                                    </div>
-                                                                    <div class="d-inline-block ms-2">
-                                                                        <field name="tvs_uterus_tvs_position"/>
-                                                                    </div>
-                                                                    <div class="d-inline-block">
-                                                                        <span>Uterus TVS Position</span>
-                                                                    </div>
-                                                                    <div class="d-inline-block ms-2">
-                                                                        <field name="tvs_uterus_tvs_normal"/>
-                                                                    </div>
-                                                                    <div class="d-inline-block">
-                                                                        <span>Uterus TVS Normal</span>
-                                                                    </div>
-                                                                    <div class="d-inline-block ms-2">
-                                                                        <field name="tvs_uterus_tvs_fiobrid"/>
-                                                                    </div>
-                                                                    <div class="d-inline-block">
-                                                                        <span>Uterus TVS Fiobrid</span>
-                                                                    </div>
+                                                                  <h5>Uterus</h5>
                                                                 </div>
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">

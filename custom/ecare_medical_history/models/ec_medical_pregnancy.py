@@ -73,7 +73,12 @@ class PregnancyForm(models.Model):
                                                 column1='pregnancy_id',
                                                 column2='doctor_id',
                                                 relation='ec_medical_pregnancy_doctors_rel',
-                                                string="Doctors")
+                                                string="Performed By")
+    repeat_pregnancy_assistants = fields.Many2many(comodel_name='res.consultant',
+                                                   column1='pregnancy_id',
+                                                   column2='assistant_id',
+                                                   relation='ec_medical_pregnancy_assistants_rel',
+                                                   string="Assistants")
 
     @api.onchange('repeat_pregnancy_lmp')
     def _compute_gestational_age(self):
