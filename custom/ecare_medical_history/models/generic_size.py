@@ -14,7 +14,7 @@ class GenericSizes(models.Model):
                                       string='Size (cm)', required=True)
 
     generic_size_y = fields.Selection(selection=StaticMember.SIZE_INTEGER,
-                                      string='Size (cm)', required=True)
+                                      string='Size (cm)')
 
     tvs_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")
     gynaecological_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")
