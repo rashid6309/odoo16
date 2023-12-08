@@ -15,6 +15,9 @@ class MedicalGynaecologicalExamination(models.Model):
     uterus_size = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='Uterus Size')
     uterus_size_comment = fields.Char(string='Uterus Size Comment')
 
+    uterus_flexion = fields.Selection(selection=StaticMember.UTERUS_FLEXION,
+                                      string="Uterus Flexion")
+
     uterus_position = fields.Selection(selection=StaticMember.UTERUS_POSITION, string='Uterus Position')
     # TODO Field name needed to be refactored as well
     uterus_motility = fields.Selection(selection=StaticMember.UTERUS_MOTILITY, string='Uterus Mobility')
@@ -55,7 +58,6 @@ class MedicalGynaecologicalExamination(models.Model):
     gynaecological_right_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                                     inverse_name="gynaecological_right_size_id",
                                                     string="Right Ovary")
-
 
     uterus = fields.Selection(selection=StaticMember.UTERUS_TYPE_SIZE, string='Uterus')
 

@@ -38,6 +38,6 @@ class FemaleGynaecologicalHistory(models.Model):
                                             relation='gynaecological_history_multi_selection_complains',
                                             column1='gynaecological_id',
                                             column2='multi_selection_id',
-                                            string='Complains', domain="[('type', '=', 'complains')]")
+                                            string='Complaints', domain="[('type', '=', 'complains')]")
 
 

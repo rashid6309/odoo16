@@ -17,6 +17,8 @@ class LabHistory(models.Model):
     attachment_id = fields.Binary(string="Attachments",
                                   help="If you want to upload any attachment.")
 
+    results = fields.Text('Results')
+
     # attachment_ids = fields.Many2many(comodel_name="ir.attachment",
     #                                   column1="lab_id",
     #                                   column2="attachment_id",

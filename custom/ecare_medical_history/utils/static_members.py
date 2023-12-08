@@ -65,6 +65,11 @@ class StaticMember:
         ('32', '32'),
     ]
 
+    UTERUS_FLEXION = [
+        ('A/V', 'A/V'),
+        ('R/V', 'R/V'),
+    ]
+
     YEARS = [
         ('1', '1'),
         ('2', '2'),
@@ -398,9 +403,10 @@ class StaticMember:
                        ('Restricted', 'Restricted'),
                        ]
 
-    UTERUS_POSITION = [('a/v', 'A/V'),
-                       ('r/v', 'R/V'),
-                       ('mid_position', 'Mid-Position'),
+    UTERUS_POSITION = [
+                       ('mid_position', 'Mid Position'),
+                       ('deviated_to_right', 'Deviated to RIGHT'),
+                       ('deviated_to_left', 'Deviated to LEFT'),
                        ]
 
     UTERUS_SIZE_POSITION = [
@@ -515,6 +521,12 @@ class StaticMember:
     PREVIOUS_TREATMENT_OUTCOME = [
         ('pregnancy', 'Pregnancy'),
         ('no_pregnancy', 'No Pregnancy'),
+    ]
+
+    PREVIOUS_TREATMENT_OF = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('couple', 'Couple'),
     ]
 
     PREVIOUS_TREATMENT_RESPONSE = [

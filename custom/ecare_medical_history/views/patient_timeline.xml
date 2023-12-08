@@ -1327,7 +1327,7 @@
 															</span>
 														</div>
 														<label for="female_bmi"/>
-														<div>
+														<div style="pointer-events: none;">
 															<field name="female_bmi" class="oe_inline" nolabel="1"/>
 															<span>
 																Kg/sqm
@@ -1453,6 +1453,7 @@
 														<field name="uterus_size_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
 													</div>
 
+													<field name="uterus_flexion" widget="radio" options="{'horizontal': True}"/>
 													<field name="uterus_position" widget="radio" options="{'horizontal': True}"/>
 													<field name="uterus_motility" widget="radio" options="{'horizontal': True}"/>
 													<h4>P/S</h4>

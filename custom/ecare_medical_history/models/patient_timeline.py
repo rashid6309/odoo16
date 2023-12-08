@@ -714,3 +714,14 @@ class PatientTimeline(models.Model):
     def _check_male_medical_history_others_date(self):
         if self.male_medical_history_others_date:
             return Validation._date_validation(self.male_medical_history_others_date)
+
+    @api.onchange('female_weight', 'female_height')
+    def _calculate_physical_exam_bmi(self):
+        if self.female_weight and self.female_height:
+            height_in_meters = self.female_height / 100
+            self.female_bmi = self.female_weight / (height_in_meters ** 2)
+        else:
+            self.female_bmi = None
+
+
+

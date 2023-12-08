@@ -21,6 +21,9 @@ class MedicalPreviousHistory(models.Model):
     outcome = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_OUTCOME,
                                string='Outcome', required=True)
 
+    treatment_of = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_OF,
+                                    string='Treatment of', required=True)
+
     def action_open_form_view(self, patient_id, timeline_id=None):
         context = {
             'default_patient_id': patient_id.id,

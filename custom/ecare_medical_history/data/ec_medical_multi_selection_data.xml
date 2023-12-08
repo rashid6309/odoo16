@@ -4,7 +4,7 @@
 
 <!--        Complications-->
         <record model="ec.medical.multi.selection" id="viginal_discharge">
-            <field name="name">Viginal Discharge</field>
+            <field name="name">Vaginal Discharge</field>
             <field name="type">complications</field>
         </record>
         <record model="ec.medical.multi.selection" id="endometriosis">
