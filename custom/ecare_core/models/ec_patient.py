@@ -150,8 +150,7 @@ class EcarePatient(models.Model):
                                   help="This field holds an attachment.")
 
     _sql_constraints = [
-        ('wife_cnic_uniq', 'unique(wife_nic)', 'The wife cnic must be unique !'),
-        ('husband_cnic_uniq', 'unique(husband_nic)', 'The husband must be unique !'),
+        ('couple_cnic_uniq', 'unique(wife_nic,husband_nic)', 'The couple cnic\'s must be unique !'),
     ]
 
     ''' Override methods '''
