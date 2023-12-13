@@ -57,6 +57,10 @@
 											<span class="word-title">Sperm Straws Stored:</span>
 											<span class="counter-word">0</span>
 										</div>
+										<button name="action_timeline_open_treatment_history"
+												type="object"
+												class="card-custom-right-button-btn"
+												string="Treatment History"/>
 									</div>
 								</div>
 								<div class="card-custom2">
@@ -1465,7 +1469,9 @@
 													</div>
 													<h4 style="width:200%;">USG (Abd/Vag)</h4>
 													<div/>
-													<field name="gynaecological_ultrasound_type"/>
+													<field name="gynaecological_ultrasound_type"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
 													<field name="gynaecological_examination_date"/>
 													<field name="gynaecological_examination_lmp"/>
 

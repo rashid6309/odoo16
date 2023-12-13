@@ -333,6 +333,10 @@ class PatientTimeline(models.Model):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
                                                                        self)
 
+    def action_timeline_open_treatment_history(self):
+        return self.env['ec.medical.previous.treatment'].action_open_form_view(self.timeline_patient_id,
+                                                                       self)
+
     def action_create_repeat_consultation(self):
         self.show_repeat_section_state = True
         if self.show_repeat_consultation_history_section is False:

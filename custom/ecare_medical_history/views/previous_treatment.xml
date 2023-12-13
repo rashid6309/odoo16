@@ -5,8 +5,28 @@
         <record id="previous_treatment_tree_view" model="ir.ui.view">
             <field name="name">previous.treatment.tree.view</field>
             <field name="model">ec.medical.previous.treatment</field>
+            <field name="priority">15</field>
             <field name="arch" type="xml">
                 <tree editable="top">
+                    <field name="create_date"/>
+                    <field name="treatment_of"/>
+                    <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
+                    <field name="type"/>
+                    <field name="consultant"/>
+                    <field name="oral_drugs"/>
+                    <field name="down_regulation"/>
+                    <field name="superovulation"/>
+                    <field name="ovarian_response"/>
+                    <field name="outcome"/>
+                </tree>
+            </field>
+        </record>
+        <record id="previous_treatment_tree_read_only_view" model="ir.ui.view">
+            <field name="name">previous.treatment.tree.readonly.view</field>
+            <field name="model">ec.medical.previous.treatment</field>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <tree edit="0" create="0">
                     <field name="create_date"/>
                     <field name="treatment_of"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>

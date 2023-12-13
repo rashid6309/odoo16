@@ -38,10 +38,9 @@ class MedicalPreviousHistory(models.Model):
             "name": _("Previous Treatment"),
             "type": 'ir.actions.act_window',
             "res_model": 'ec.medical.previous.treatment',
-            'view_id': self.env.ref('ecare_medical_history.previous_treatment_tree_view').id,
+            'view_id': self.env.ref('ecare_medical_history.previous_treatment_tree_read_only_view').id,
             'view_mode': 'tree',
             "target": 'new',
-            'flags': {'initial_mode': 'edit'},
             'context': context,
             'domain': domain,
         }
