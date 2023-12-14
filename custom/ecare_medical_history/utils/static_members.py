@@ -404,10 +404,10 @@ class StaticMember:
                        ]
 
     UTERUS_POSITION = [
-                       ('mid_position', 'Mid Position'),
-                       ('deviated_to_right', 'Deviated to RIGHT'),
-                       ('deviated_to_left', 'Deviated to LEFT'),
-                       ]
+        ('mid_position', 'Mid Position'),
+        ('deviated_to_right', 'Deviated to RIGHT'),
+        ('deviated_to_left', 'Deviated to LEFT'),
+    ]
 
     UTERUS_SIZE_POSITION = [
         ('deviated_to_right', 'Deviated To Right'),
@@ -858,8 +858,8 @@ class StaticMember:
     FETAL_HEART = [("positive", "Positive"),
                    ("negative", "Negative")]
 
-    HR_TYPE = [('regular', 'Regular'),
-               ('irregular', 'Irregular')]
+    RHYTHM_TYPE = [('regular', 'Regular'),
+                   ('irregular', 'Irregular')]
 
     AGE_WEEKS = [
         ('1', '01 week'),
