@@ -216,6 +216,18 @@
             <field name="type">hernia</field>
         </record>
 
+        <record model="ec.medical.multi.selection" id="testicular_motility_left">
+            <field name="name">Left</field>
+            <field name="type">testicular_motility</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="testicular_motility_right">
+            <field name="name">Right</field>
+            <field name="type">testicular_motility</field>
+        </record>
+
+
+
          <record model="ec.medical.multi.selection" id="vericocele_left">
             <field name="name">Left</field>
             <field name="type">vericocele</field>
