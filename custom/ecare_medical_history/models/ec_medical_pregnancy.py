@@ -54,7 +54,8 @@ class PregnancyForm(models.Model):
     repeat_pregnancy_scanned = fields.Selection(StaticMember.CHOICE_YES_NO, string="Documented Medicsi Scan Reviewed?")
     repeat_pregnancy_significant_findings = fields.Char(string="Mention any SIGNIFICANT findings")
 
-    repeat_pregnancy_hr = fields.Selection(StaticMember.HR_TYPE, string="HR")
+    repeat_pregnancy_hr = fields.Integer(string="HR")
+    repeat_pregnancy_rhythm = fields.Selection(StaticMember.RHYTHM_TYPE, string="Rhythm")
     repeat_pregnancy_bp_upper = fields.Integer(string="BP")
     repeat_pregnancy_bp_lower = fields.Integer(string="BP")
     repeat_pregnancy_temp = fields.Float(string="Temp")
