@@ -521,6 +521,15 @@ class StaticMember:
     PREVIOUS_TREATMENT_OUTCOME = [
         ('pregnancy', 'Pregnancy'),
         ('no_pregnancy', 'No Pregnancy'),
+        ('ABORTION', 'ABORTION'),
+        ('SVD', 'SVD'),
+        ('VENTOUSE', 'VENTOUSE'),
+        ('FORCEPS', 'FORCEPS'),
+        ('CAESAREAN', 'CAESAREAN'),
+        ('MISCARRIAGE', 'MISCARRIAGE'),
+        ('TOP', 'TOP'),
+        ('Ectopic', 'ECTOPIC'),
+        ('VBAC', 'VBAC'),
     ]
 
     PREVIOUS_TREATMENT_OF = [
