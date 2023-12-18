@@ -43,6 +43,10 @@
             <field name="name">PCB</field>
             <field name="type">complains</field>
         </record>
+        <record model="ec.medical.multi.selection" id="complains_none">
+            <field name="name">None</field>
+            <field name="type">complains</field>
+        </record>
 
 <!--        Dysmenorrhoea-->
 
