@@ -4,6 +4,12 @@
     max-height: 71vh;
 }
 
+
+div[name='all_semen_analysis_ids'] {
+    width: auto !important;
+}
+
+
 #repeat_consultation_section .o_form_label:not(.form-check-label)
 {
    width: 100px ;

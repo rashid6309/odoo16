@@ -107,6 +107,44 @@ class SemenAnalysis(models.Model):
     seminologist = fields.Char("Seminologist")
     special_notes = fields.Char("Special Notes")
 
+    seme_analysis_id_dummy = fields.Many2one('ec.semen.analysis')
+    
+    all_semen_analysis_ids = fields.One2many('ec.semen.analysis', 'seme_analysis_id_dummy',
+                                             compute='get_patient_semen_analysis_records')
+
+    def edit_semen_analysis_record(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'ec.semen.analysis',
+            'res_id': self.id,
+            'view_mode': 'form',
+            "target": "current",
+        }
+
+    @api.onchange('semen_patient_id')
+    def get_patient_semen_analysis_records(self):
+        semen_patient_id = self.semen_patient_id
+        if semen_patient_id:
+            all_semen_analysis_records = self.env['ec.semen.analysis'].search(
+                [('semen_patient_id', '=', semen_patient_id.id)])
+
+            # Filter out self.id from the list of IDs
+            filtered_ids = [rec.id for rec in all_semen_analysis_records if rec.id != self.id]
+
+            if filtered_ids:
+                self.all_semen_analysis_ids = [(6, 0, filtered_ids)]
+            else:
+                self.all_semen_analysis_ids = None
+
+    def delete_semen_analysis_record(self):
+        # Unlink (delete) the records
+        self.unlink()
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
     @api.model_create_multi
     def create(self, vals):
         if vals[0].get('lab_number') in [False, '']:

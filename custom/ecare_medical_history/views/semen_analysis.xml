@@ -27,6 +27,27 @@
                                 <field name="repeat_semen_analysis" widget="radio" options="{'horizontal': True}"/>
                                 <field name="freezing" widget="radio" options="{'horizontal': True}"/>
                             </group>
+                            <group>
+                                <field name="all_semen_analysis_ids" nolabel="1">
+                                    <tree create="0" edit="0">
+                                        <field name="date"/>
+                                        <field name="lab_number"/>
+                                        <field name="lab_name"/>
+                                        <button name="print_semen_analysis_report"
+                                                type="object"
+                                                string="Print"
+                                                class="repeat_kanban_button"/>
+                                        <button name="edit_semen_analysis_record"
+                                                type="object"
+                                                string="Edit"
+                                                class="repeat_kanban_button"/>
+                                        <button name="delete_semen_analysis_record"
+                                                type="object"
+                                                string="Delete"
+                                                class="repeat_kanban_button"/>
+                                    </tree>
+                                </field>
+                            </group>
                         </group>
 
 
@@ -383,7 +404,7 @@
             <field name="name">ec.semen.analysis.tree.view</field>
             <field name="model">ec.semen.analysis</field>
             <field name="arch" type="xml">
-                <tree create="0">
+                <tree>
                     <field name="semen_patient_id"/>
                     <field name="date"/>
                     <field name="lab_number"/>
