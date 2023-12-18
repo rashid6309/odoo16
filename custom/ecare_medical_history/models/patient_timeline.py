@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
 from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
@@ -285,6 +287,7 @@ class PatientTimeline(models.Model):
         res.ec_repeat_consultation_id.update(
             res._get_repeat_consultation_mandatory_attribute()
         )
+        res.populate_dependent_patient_field()
 
         return res
 
@@ -727,5 +730,23 @@ class PatientTimeline(models.Model):
         else:
             self.female_bmi = None
 
+    @api.onchange('repeat_pregnancy_lmp')
+    def _compute_gestational_age(self):
+        for rec in self:
+            date_analysis = rec.create_date
+            lmp = rec.repeat_pregnancy_lmp
+            if date_analysis and lmp:
+                diff = date_analysis.date() - lmp
+                weeks = int(diff.days) // 7
+                weeks = abs(weeks)
+                if 1 < weeks <= 40:
+                    if 1 <= weeks <= 9:
+                        rec.repeat_pregnancy_gestational_age = str(int(weeks))
+                    else:
+                        rec.repeat_pregnancy_gestational_age = str(int(weeks))
+                else:
+                    rec.repeat_pregnancy_gestational_age = '>40'
+            else:
+                rec.repeat_pregnancy_gestational_age = None
 
 
