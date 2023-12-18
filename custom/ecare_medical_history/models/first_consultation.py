@@ -8,7 +8,7 @@ class FirstConsultation(models.Model):
 
     _sql_constraints = [
         ('first_consultation_patient_id_unique', 'unique (first_consultation_patient_id)',
-         'Multiple first consultations for a patient cant be created!'),
+         'Multiple patient timelines cant be created, rather open the existing one!'),
     ]
 
     _inherits = {'ec.general.history': 'ec_general_examination_id',
