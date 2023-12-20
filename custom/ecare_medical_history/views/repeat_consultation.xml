@@ -514,7 +514,7 @@
 
                                                         </span>
 
-                                                        <span t-if="record.question_one_choice.raw_value == 'no' and record.scan_required.raw_value == 'yes'">
+                                                        <span t-if="record.question_one_choice.raw_value == 'no'">
                                                             <div class="oe_kanban_title">
                                                                 <field name="question_two_label"/>
                                                                 <h5 style="display: inline-block;margin-left: 5%;">
@@ -543,6 +543,37 @@
 
                                                             <div class="o_group row align-items-start">
                                                                 <div class="o_inner_group grid col-lg-12 text-900">
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.lmp_question_four.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">LMP
+                                                                            </span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="lmp_question_four"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_cycle_day.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Cycle Day
+                                                                            </span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_cycle_day"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.is_couple_living_together.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Is the couple
+                                                                                living together?
+                                                                            </span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="is_couple_living_together"/>
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.is_couple_living_together.raw_value">
                                                                         <div>

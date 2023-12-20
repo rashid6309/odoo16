@@ -97,10 +97,12 @@
 											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
 									</div>
 									<div class="col-2 text-right" style="text-align: right">
+										<field name="first_consultation_state" invisible="1"/>
 										<button name="action_create_repeat_consultation"
 												type="object"
 												class="btn btn-primary"
-												attrs="{'invisible':[('show_repeat_section_state', '=', True)]}"
+												attrs="{'invisible': ['|', ('show_repeat_section_state', '=', True),
+												('first_consultation_state', '=', 'open')]}"
 												onclick="showRepeatConsultationSection('repeat_consultation_section')">
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
@@ -577,7 +579,7 @@
 																<tree editable="bottom">
 																	<field name="type"/>
 																	<field name="generic_size_x"/>
-<!--																	<field name="generic_size_y"/>-->
+																	<!--																	<field name="generic_size_y"/>-->
 																</tree>
 															</field>
 														</div>
@@ -808,14 +810,14 @@
 													<div style="width: 201%;">
 														<div>
 															<span style="font-weight:700;">
-																Gap
+																Cycle
 															</span>
 															<span>
-																Days
+																From
 															</span>
 															<field name="female_menstrual_gap_from" class="oe_inline" nolabel="1"/>
 															<span>
-																Month
+																To
 															</span>
 															<field name="female_menstrual_gap_to_month" class="oe_inline" nolabel="1"/>
 															<span>
@@ -1014,12 +1016,12 @@
 														<button type="action" style="float:right;"
 																class="btn-primary mt--5"
 																name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
-																context="{'default_female_consultation_id': id}"
+																context="{'default_female_consultation_id': ec_first_consultation_id}"
 																string="Add" target="current"/>
 													</div>
 												</group>
-													<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="tree" nolabel="1"
-														   string="Patient Procedures" edit="false" create="false"/>
+												<field class="custom-scrollbar opd-notes-height" name="female_procedures_ids" mode="tree" nolabel="1"
+													   string="Patient Procedures" edit="false" create="false"/>
 											</div>
 
 											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="female_social_history_section_link">
@@ -1297,7 +1299,7 @@
 																style="float:right;"
 																class="btn-primary mt--5"
 																name="%(ecare_medical_history.ec_lab_history_action)d"
-																context="{'default_female_first_consultation_id':id}"
+																context="{'default_female_first_consultation_id':ec_first_consultation_id}"
 																string="Add" target="new"/>
 													</div>
 
@@ -1761,12 +1763,12 @@
 														<button type="action" style="float:right;"
 																class="btn-primary mt--5"
 																name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
-																context="{'default_male_consultation_id':id}"
+																context="{'default_male_consultation_id':ec_first_consultation_id}"
 																string="Add" target="current"/>
 													</div>
 												</group>
-													<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="tree" nolabel="1"
-														   string="Patient Procedures" create="false"/>
+												<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="tree" nolabel="1"
+													   string="Patient Procedures" create="false"/>
 											</div>
 
 
@@ -1993,12 +1995,13 @@
 
 											<div class="card-block mb-5 pl-4 collapse col-12" id="male_lab_history_section">
 												<group class="mt-0" col="6" colspan="6">
+													<field name="ec_first_consultation_id" invisible="1" force_save="1"/>
 													<div style="margin-top: -7%;">
 														<button type="action"
 																style="float:right;"
 																class="btn-primary"
 																name="%(ecare_medical_history.ec_lab_history_action)d"
-																context="{'default_male_first_consultation_id':id}"
+																context="{'default_male_first_consultation_id':ec_first_consultation_id}"
 																string="Add" target="new"/>
 													</div>
 												</group>
@@ -2172,6 +2175,12 @@
 										</page>
 
 										<page string="Conclusion" name="conclusion">
+											<div style="text-align: right;">
+												<button name="action_close_first_consultation"
+														type="object"
+														class="card-custom-close-button-btn"
+														string="Close First Consultation"/>
+											</div>
 											<field name="timeline_conclusion" placeholder="Type..."/>
 										</page>
 
@@ -2202,7 +2211,8 @@
 									<div>
 										<div class="card-custom-right-heading">Female</div>
 										<div class="card-custom-right-heading-special">
-											G<sub><field name="gravida_w"/></sub>P<sub><field name="parity_x"/></sub>A<sub><field name="miscarriages_y"/></sub>L<sub><field name="alive_z"/></sub>
+											<!--											G<sub><field name="gravida_w"/></sub>-->
+											P<sub><field name="parity_x"/></sub>A<sub><field name="miscarriages_y"/></sub>L<sub><field name="alive_z"/></sub>
 										</div>
 
 									</div>

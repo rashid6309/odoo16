@@ -64,16 +64,20 @@ class FirstConsultation(models.Model):
     ''' Male One2Many'''
 
     male_procedures_ids = fields.One2many(comodel_name='ec.patient.procedures',
-                                            inverse_name='male_consultation_id',
-                                            string="Surgical",
-                                            )
+                                          inverse_name='male_consultation_id',
+                                          string="Surgical",
+                                          )
 
     male_lab_history_ids = fields.One2many(comodel_name="ec.lab.history", inverse_name="male_first_consultation_id")
 
     ''' Normal attributes '''
 
     first_consultation_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
-                                 required=True)
+                                                    required=True)
+
+    first_consultation_state = fields.Selection([('open', 'In Progress'), ('closed', 'Done')],
+                                                default='open',
+                                                string='State')
 
     ''' Related '''
 
@@ -95,6 +99,11 @@ class FirstConsultation(models.Model):
 
 
     ''' View methods '''
+
+    def action_close_first_consultation(self, first_consultation_id):
+        if first_consultation_id and first_consultation_id.first_consultation_state == 'open':
+            first_consultation_id.first_consultation_state = 'closed'
+
 
     @api.model
     def action_open_patient_first_consultation(self, patient_id: int):

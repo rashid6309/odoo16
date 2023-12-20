@@ -16,7 +16,7 @@ class FemaleGynaecologicalHistory(models.Model):
     female_menstrual_days_to = fields.Selection(selection=StaticMember.MENARCHE_CYCLE_DAYS, string='Menstrual Cycle Days to')
 
     female_menstrual_gap_from = fields.Selection(selection=StaticMember.MENARCHE_CYCLE_DAYS, string='Menstrual Cycle Gap From')
-    female_menstrual_gap_to_month = fields.Selection(selection=StaticMember.MENARCHE_CYCLE_MONTHS, string='Menstrual Cycle Gap to')
+    female_menstrual_gap_to_month = fields.Selection(selection=StaticMember.MENSTRUAL_CYCLE_TO, string='Menstrual Cycle Gap to')
     female_menstrual_gap_other = fields.Char(string='Menstrual Cycle Gap Other')
     female_menstrual_all_comments = fields.Char(string='Menstrual Cycle All Comments')
     female_menstrual_flow = fields.Selection(selection=StaticMember.MENSTRUAL_FLOW, string='Menstrual Flow')

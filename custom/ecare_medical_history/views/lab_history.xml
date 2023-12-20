@@ -41,6 +41,8 @@
                         <field name="filename" invisible="True" force_save="True"/>
                         <field name="attachment_id" filename="filename"/>
                         <field name="results" required="1"/>
+                        <field name="male_first_consultation_id" invisible="1" force_save="1"/>
+                        <field name="female_first_consultation_id" invisible="1" force_save="1"/>
                         <!--                        <field name="attachment_ids" widget="many2many_binary"/>-->
                     </group>
                 </form>

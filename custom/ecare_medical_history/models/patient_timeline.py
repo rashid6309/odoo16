@@ -92,6 +92,10 @@ class PatientTimeline(models.Model):
     patient_male_dob = fields.Date(string='CNIC DOB', store=True,
                                    related="timeline_patient_id.husband_dob")
 
+    first_consultation_state = fields.Selection([('open', 'In Progress'),
+                                                 ('closed', 'Done')],
+                                                string='State',
+                                                related="ec_first_consultation_id.first_consultation_state")
     ''' One2Many'''
 
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
@@ -338,7 +342,7 @@ class PatientTimeline(models.Model):
 
     def action_timeline_open_treatment_history(self):
         return self.env['ec.medical.previous.treatment'].action_open_form_view(self.timeline_patient_id,
-                                                                       self)
+                                                                               self)
 
     def action_create_repeat_consultation(self):
         self.show_repeat_section_state = True
@@ -374,6 +378,9 @@ class PatientTimeline(models.Model):
 
     def action_repeat_consultation_open_previous_treatment(self):
         return self.env['ec.medical.previous.treatment'].action_open_form_view(self)
+
+    def action_close_first_consultation(self):
+        return self.env['ec.first.consultation'].action_close_first_consultation(self.ec_first_consultation_id)
 
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,

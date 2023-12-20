@@ -9,6 +9,18 @@ div[name='all_semen_analysis_ids'] {
     width: auto !important;
 }
 
+.card-custom-close-button-btn
+{
+    padding: 1%;
+    background: #2F5597;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    font-family: Inter;
+    width: 10%;
+    height: 50px;
+}
+
 
 #repeat_consultation_section .o_form_label:not(.form-check-label)
 {
