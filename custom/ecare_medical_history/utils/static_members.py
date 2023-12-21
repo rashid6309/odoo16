@@ -1018,3 +1018,42 @@ class StaticMember:
         ('>40', '>40 weeks'),
     ]
 
+    UPT_NEGATIVE = [
+        ('yes', 'Yes'),
+        ('not_done', 'Not Done'),
+        ('no', 'No'),
+    ]
+
+    PRIMARY_INDICATION = [
+        ('no_plan', 'No current plan'),
+        ('erectile_dysfunction', 'Erectile dysfunction'),
+        ('premature_ejaculation', 'Premature ejaculation'),
+        ('female_sexual_dysfunction', 'Female sexual dysfunction'),
+        ('vaginismus', 'Vaginismus'),
+        ('cervical_hostility', 'Suspicion of cervical hostility'),
+        ('couple_request', 'Couple request'),
+        ('previous_iui', 'Previous successful IUI'),
+        ('husband_not_present', 'Husband not present'),
+    ]
+
+    IUI_DROPDOWN = [
+        ('not_tested', 'Not tested'),
+        ('both_patent', 'Both patent'),
+        ('r_only', 'R only (free spill)'),
+        ('l_only', 'L only (free spill)'),
+        ('both_blocked', 'Both blocked and restricted spill'),
+    ]
+
+    UTERINE_TUBAL_ANOMALIES = [
+        ('hsg', 'HSG'),
+        ('hycosy', 'HyCoSy'),
+        ('icsi_scan', 'ICSI Scan'),
+        ('radiology_scan', 'Radiology Scan'),
+        ('no_testing', 'No testing done for uterine anomalies'),
+    ]
+
+    FSH_LH_AMH_CHOICES = [
+        ('yes', 'Yes'),
+        ('no', 'No'),
+        ('awaiting_results', 'Updated results await'),
+    ]
