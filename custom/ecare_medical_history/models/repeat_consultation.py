@@ -14,6 +14,9 @@ class RepeatConsultation(models.Model):
     _inherits = {
         'ec.medical.tvs': 'repeat_tvs_id',
         'ec.medical.pregnancy.data': 'repeat_pregnancy_id',
+        'female.ot.ti.checklist': 'female_ot_ti_checklist_id',
+        'male.ot.ti.checklist': 'male_ot_ti_checklist_id',
+        'medical.consents.risk.assessment': 'medical_consents_risk_assessment_id',
     }
 
     ''' Foreign Keys '''
@@ -23,6 +26,13 @@ class RepeatConsultation(models.Model):
 
     repeat_tvs_id = fields.Many2one(comodel_name="ec.medical.tvs")
     repeat_pregnancy_id = fields.Many2one(comodel_name="ec.medical.pregnancy.data")
+    female_ot_ti_checklist_id = fields.Many2one(comodel_name="female.ot.ti.checklist",
+                                                ondelete='restrict')
+    male_ot_ti_checklist_id = fields.Many2one(comodel_name="male.ot.ti.checklist",
+                                              ondelete='restrict')
+    medical_consents_risk_assessment_id = fields.Many2one(comodel_name="medical.consents.risk.assessment",
+                                                          ondelete='restrict')
+
 
     ''' Data attributes '''
     #
