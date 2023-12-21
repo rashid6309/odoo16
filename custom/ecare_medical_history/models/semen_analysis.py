@@ -112,6 +112,25 @@ class SemenAnalysis(models.Model):
     all_semen_analysis_ids = fields.One2many('ec.semen.analysis', 'seme_analysis_id_dummy',
                                              compute='get_patient_semen_analysis_records')
 
+    def action_open_form_view(self, patient_id):
+        context = {
+            'default_semen_patient_id': patient_id.id,
+        }
+        domain = [
+            ('semen_patient_id', '=', patient_id.id),
+        ]
+        return {
+            "name": _("Semen Analysis"),
+            "type": 'ir.actions.act_window',
+            "res_model": 'ec.semen.analysis',
+            'view_id': self.env.ref('ecare_medical_history.ec_semen_analysis_tree_read_only_view').id,
+            'view_mode': 'tree',
+            "target": 'new',
+            'context': context,
+            'domain': domain,
+        }
+
+
     def edit_semen_analysis_record(self):
         return {
             'type': 'ir.actions.act_window',

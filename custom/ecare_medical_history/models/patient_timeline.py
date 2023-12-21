@@ -386,7 +386,7 @@ class PatientTimeline(models.Model):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
                                                                        None)
     def action_open_seminology(self):
-        raise UserError("Module is under development phase.")
+        return self.env['ec.semen.analysis'].action_open_form_view(self.timeline_patient_id)
 
     def action_open_tvs_scan(self):
         return self.ec_repeat_consultation_id.repeat_tvs_id.action_open_tvs_scan()
