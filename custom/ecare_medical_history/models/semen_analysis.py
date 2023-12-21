@@ -130,7 +130,6 @@ class SemenAnalysis(models.Model):
             'domain': domain,
         }
 
-
     def edit_semen_analysis_record(self):
         return {
             'type': 'ir.actions.act_window',
