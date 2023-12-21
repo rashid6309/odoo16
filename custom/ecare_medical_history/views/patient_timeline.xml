@@ -621,6 +621,67 @@
 													   options="{'horizontal': True}"
 												/>
 											</group>
+											<span attrs="{'invisible': [('repeat_new_treatment_pathway', '=', 'no')]}">
+												<group string="Female Pre OI/TI Checklist">
+													<field name="upt_negative"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="iui_plan"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="primary_indication" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<!--												<field name="husband_not_present_message" attrs="{'invisible': [('primary_indication', '!=', 'husband_not_present')]}"/>-->
+													<field name="iui_dropdown" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<field name="diagnosis_cervical_incompetence"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="uterine_tubal_anomalies"/>
+													<field name="fsh_lh_amh_acceptable"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="menopause_sign_suspicion"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="bmi"/>
+													<field name="tubal_patency_test"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="cervical_incompetence_diagnosis"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="uterine_tubal_anomalies_test"/>
+													<!--												<field name="results_await_label" string="Results-Awaits" attrs="{'invisible': [('fsh_lh_amh_acceptable', '!=', 'awaiting_results')]}"/>-->
+												</group>
+												<group string="Male Pre OI/TI Checklist">
+													<field name="male_semen_analysis"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="husband_availability_male"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="frozen_sample_available_male" attrs="{'invisible': [('husband_availability_male', '!=', 'yes')]}"/>
+													<field name="risk_inability_to_give_samples_male"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+												</group>
+												<group string="Consents and risk assessment"
+													   widget="radio"
+													   options="{'horizontal': True}">
+													<field name="counselling_multiple_birth"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="counselling_failure_treatment"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="counselling_lower_success_rate"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<field name="counselling_high_bmi"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+												</group>
+											</span>
+
 
 										</span>
 										<div style="text-align-last: right;background: #adb5bd;">
