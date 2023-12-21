@@ -33,6 +33,12 @@ from . import female_physical_examination
 from . import female_systemic_examination
 from . import ec_medical_pregnancy
 
+# female ot ti checklist
+from . import female_ot_ti_checklist
+from . import male_ot_ti_checklist
+
+from . import medical_consents_and_risk_assessment
+
 # Male models here
 
 from . import male_genital_examination
