@@ -14,6 +14,7 @@ class SemenAnalysis(models.Model):
     _name = 'ec.semen.analysis'
     _description = 'Semen Analysis'
     _rec_name = "semen_patient_id"
+    _order = "date desc"
 
     semen_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                        required=True,
