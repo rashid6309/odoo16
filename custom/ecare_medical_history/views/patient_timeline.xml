@@ -614,14 +614,15 @@
 												<field name="repeat_treatment_plan"/>
 
 												<field name="repeat_treatment_advised_ids" widget="many2many_tags"
-													   options="{'no_create_edit': True, 'no_create': True}"/>
+													   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
 
 												<field name="repeat_new_treatment_pathway"
 													   widget="radio"
-													   options="{'horizontal': True}"
-												/>
+													   options="{'horizontal': True}"/>
+												<field name="repeat_treatment_pathway"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
 											</group>
-											<span attrs="{'invisible': [('repeat_new_treatment_pathway', '=', 'no')]}">
+											<span attrs="{'invisible': [('repeat_new_treatment_pathway', '!=', 'yes')]}">
 												<group string="Female Pre OI/TI Checklist">
 													<field name="upt_negative"
 														   widget="radio"
@@ -630,7 +631,11 @@
 														   widget="radio"
 														   options="{'horizontal': True}"/>
 													<field name="primary_indication" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
-													<!--												<field name="husband_not_present_message" attrs="{'invisible': [('primary_indication', '!=', 'husband_not_present')]}"/>-->
+													<span class="o_form_label" attrs="{'invisible': [('primary_indication', '!=', 'husband_not_present')]}"/>
+													<span id="husband_not_present" attrs="{'invisible': [('primary_indication', '!=', 'husband_not_present')]}">
+														The andrology department needs to confirm the presence of a suitable sample for Frozen-Thawed IUI.
+														The request for approval will be sent upon saving this form.
+													</span>
 													<field name="iui_dropdown" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
 													<field name="diagnosis_cervical_incompetence"
 														   widget="radio"
@@ -680,6 +685,13 @@
 														   widget="radio"
 														   options="{'horizontal': True}"/>
 												</group>
+												<div class="m-3">
+													<button name="action_proceed_to_ui_ti"
+															type="object"
+															class="btn btn-primary"
+															attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+															string="Proceed"/>
+												</div>
 											</span>
 
 
