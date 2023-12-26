@@ -241,6 +241,9 @@ class RepeatConsultation(models.Model):
     repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                     string="Start new treatment pathway")
 
+    repeat_treatment_pathway = fields.Many2one(comodel_name='ec.medical.treatment.list',
+                                               string='Treatment Pathway')
+
     counseling_and_discussion = fields.Html(string="Counseling and discussion done")
 
     '''Repeat Computed'''
