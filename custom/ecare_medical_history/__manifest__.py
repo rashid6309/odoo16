@@ -55,6 +55,10 @@
         # Timeline Wizard
         'views/ec_patient_timeline_wizard.xml',
 
+
+        # Treatment Pathway Wizard
+        'views/treatment_pathway_wizard.xml',
+
         # Semen Anlysis
         'views/semen_analysis.xml',
         
