@@ -756,4 +756,49 @@ class PatientTimeline(models.Model):
             else:
                 rec.repeat_pregnancy_gestational_age = None
 
+    def check_field_values_as_red(self):
+        no_values = ['no']
+        iui_dropdown_red_values = ['not_tested', 'both_blocked']
+        uterine_tubal_anomalies_red_values = ['no_testing']
+
+        if self.counselling_multiple_birth in no_values:
+            return True
+        if self.counselling_failure_treatment in no_values:
+            return True
+        if self.counselling_lower_success_rate in no_values:
+            return True
+        if self.counselling_high_bmi in no_values:
+            return True
+        if self.male_semen_analysis in no_values:
+            return True
+        if self.iui_dropdown in iui_dropdown_red_values:
+            return True
+        if self.uterine_tubal_anomalies in uterine_tubal_anomalies_red_values:
+            return True
+
+        return False
+
+    def action_proceed_to_ui_ti(self):
+        check_red_values = self.check_field_values_as_red()
+        if check_red_values:
+            values = {
+                'message': "One or more contraindications to OI/TI have "
+                           "been identified and highlighted and therefore, "
+                           "you cannot authorise OI/TI treatment pathway for this couple. "
+                           "Proceeding to OI/TI will have either inappropriate or "
+                           "with poor prognosis and/or higher risk of complications. "
+                           "Please discuss it with your seniors."
+            }
+            wizard = self.env['ec.medical.treatment.pathway.wizard'].create(values)
+            if wizard:
+                return {
+                    'name': 'Message',
+                    'type': 'ir.actions.act_window',
+                    'view_mode': 'form',
+                    'views': [(False, 'form')],
+                    'res_model': 'ec.medical.treatment.pathway.wizard',
+                    'res_id': wizard.id,
+                    'target': 'new',
+                }
+        
 
