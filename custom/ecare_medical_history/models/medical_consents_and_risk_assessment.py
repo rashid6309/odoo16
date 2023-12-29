@@ -18,3 +18,17 @@ class ConsentsRiskAssessment(models.Model):
 
     counselling_high_bmi = fields.Selection(selection=StaticMember.CHOICE_YES_NO_NA,
                                             string='Counselling for pregnancies with high BMI?')
+
+    def check_field_values_as_red(self):
+        no_values = ['no']
+
+        if self.counselling_multiple_birth in no_values:
+            return True
+        if self.counselling_failure_treatment in no_values:
+            return True
+        if self.counselling_lower_success_rate in no_values:
+            return True
+        if self.counselling_high_bmi in no_values:
+            return True
+
+        return False
