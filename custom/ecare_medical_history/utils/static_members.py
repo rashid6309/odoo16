@@ -1041,7 +1041,8 @@ class StaticMember:
         ('both_patent', 'Both patent'),
         ('r_only', 'R only (free spill)'),
         ('l_only', 'L only (free spill)'),
-        ('both_blocked', 'Both blocked and restricted spill'),
+        ('both_blocked', 'Both blocked'),
+        ('restricted_spill', 'Restricted Spill'),
     ]
 
     UTERINE_TUBAL_ANOMALIES = [
