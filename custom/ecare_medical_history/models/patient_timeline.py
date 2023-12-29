@@ -92,10 +92,12 @@ class PatientTimeline(models.Model):
     patient_male_dob = fields.Date(string='CNIC DOB', store=True,
                                    related="timeline_patient_id.husband_dob")
 
-    first_consultation_state = fields.Selection([('open', 'In Progress'),
-                                                 ('closed', 'Done')],
-                                                string='State',
-                                                related="ec_first_consultation_id.first_consultation_state")
+    # first_consultation_state = fields.Selection([('open', 'In Progress'),
+    #                                              ('closed', 'Done'),
+    #                                              ('decision_pending', "Decision Pending"),
+    #                                              ],
+    #                                             string='State',
+    #                                             related="ec_first_consultation_id.first_consultation_state")
     ''' One2Many'''
 
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
@@ -420,6 +422,7 @@ class PatientTimeline(models.Model):
 
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
+        self.ec_repeat_consultation_id.first_consultation_state = 'closed'
 
     @api.onchange('female_lmp')
     def _check_female_lmp_date(self):
@@ -756,49 +759,46 @@ class PatientTimeline(models.Model):
             else:
                 rec.repeat_pregnancy_gestational_age = None
 
-    def check_field_values_as_red(self):
-        no_values = ['no']
-        iui_dropdown_red_values = ['not_tested', 'both_blocked']
-        uterine_tubal_anomalies_red_values = ['no_testing']
+    @api.depends('female_ot_ti_weight', 'female_ot_ti_height')
+    def _compute_female_ot_ti_bmi(self):
+        for record in self:
+            if record.female_ot_ti_height and record.female_ot_ti_weight:
+                height_in_meters = record.female_ot_ti_height / 100.0
+                bmi = record.female_ot_ti_weight / (height_in_meters * height_in_meters)
+                record.female_ot_ti_bmi = bmi
+            else:
+                record.female_ot_ti_bmi = 0.0
 
-        if self.counselling_multiple_birth in no_values:
+    def check_field_values_as_blue(self):
+        yes_values = ['yes']
+
+        if self.menopause_sign_suspicion in yes_values:
             return True
-        if self.counselling_failure_treatment in no_values:
-            return True
-        if self.counselling_lower_success_rate in no_values:
-            return True
-        if self.counselling_high_bmi in no_values:
-            return True
-        if self.male_semen_analysis in no_values:
-            return True
-        if self.iui_dropdown in iui_dropdown_red_values:
-            return True
-        if self.uterine_tubal_anomalies in uterine_tubal_anomalies_red_values:
+        if self.diagnosis_cervical_incompetence in yes_values:
             return True
 
         return False
 
     def action_proceed_to_ui_ti(self):
-        check_red_values = self.check_field_values_as_red()
+        check_red_values = self.ec_repeat_consultation_id.check_field_values_as_red()
         if check_red_values:
             values = {
-                'message': "One or more contraindications to OI/TI have "
-                           "been identified and highlighted and therefore, "
-                           "you cannot authorise OI/TI treatment pathway for this couple. "
-                           "Proceeding to OI/TI will have either inappropriate or "
-                           "with poor prognosis and/or higher risk of complications. "
-                           "Please discuss it with your seniors."
+                'default_message': "One or more contraindications to OI/TI have "
+                                   "been identified and highlighted and therefore, "
+                                   "you cannot authorise OI/TI treatment pathway for this couple. "
+                                   "Proceeding to OI/TI will have either inappropriate or "
+                                   "with poor prognosis and/or higher risk of complications. "
+                                   "Please discuss it with your seniors.",
+                'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
             }
-            wizard = self.env['ec.medical.treatment.pathway.wizard'].create(values)
-            if wizard:
-                return {
-                    'name': 'Message',
-                    'type': 'ir.actions.act_window',
-                    'view_mode': 'form',
-                    'views': [(False, 'form')],
-                    'res_model': 'ec.medical.treatment.pathway.wizard',
-                    'res_id': wizard.id,
-                    'target': 'new',
-                }
+            return {
+                'name': 'Message',
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'views': [(False, 'form')],
+                'res_model': 'ec.medical.treatment.pathway.wizard',
+                'context': values,
+                'target': 'new',
+            }
         
 
