@@ -18,7 +18,7 @@ class FemaleOtTiChecklist(models.Model):
     primary_indication = fields.Selection(selection=StaticMember.PRIMARY_INDICATION,
                                           string='Primary Indication')
 
-    iui_dropdown = fields.Selection(selection=StaticMember.IUI_DROPDOWN,
+    tubal_patency_test_dropdown = fields.Selection(selection=StaticMember.IUI_DROPDOWN,
                                     string='Tubal Patency Test')
 
     diagnosis_cervical_incompetence = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
@@ -33,7 +33,10 @@ class FemaleOtTiChecklist(models.Model):
     menopause_sign_suspicion = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                 string='Any signs or suspicion of menopause?')
 
-    bmi = fields.Float(string='BMI Calculation')
+    female_ot_ti_weight = fields.Float('Weight')
+    female_ot_ti_height = fields.Float('Height')
+
+    female_ot_ti_bmi = fields.Float(string='BMI Calculation')
 
     tubal_patency_test = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                           string='Tubal Patency Test Indicated?')
@@ -43,5 +46,18 @@ class FemaleOtTiChecklist(models.Model):
 
     uterine_tubal_anomalies_test = fields.Selection(selection=StaticMember.UTERINE_TUBAL_ANOMALIES,
                                                     string='Uterine and Tubal Anomalies Ruled Out?')
+
+    oi_ti_decisions = fields.Text('Decisions')
+
+    def check_field_values_as_red(self):
+        iui_dropdown_red_values = ['not_tested', 'both_blocked', 'restricted_spill']
+        uterine_tubal_anomalies_red_values = ['no_testing']
+
+        if self.tubal_patency_test_dropdown in iui_dropdown_red_values:
+            return True
+        if self.uterine_tubal_anomalies in uterine_tubal_anomalies_red_values:
+            return True
+
+        return False
 
 
