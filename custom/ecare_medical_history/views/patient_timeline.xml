@@ -693,6 +693,20 @@
 												<group class="m-3" string="Decisions"
 													   attrs="{'invisible':[('first_consultation_state', '!=', 'decision_pending')]}">
 													<field name="oi_ti_decisions"/>
+													<field name="oi_ti_treatment_state"/>
+													<label for="action_proceed_to_ui_ti"/>
+													<div id="action_proceed_buttons">
+														<button name="action_proceed_to_ui_ti"
+															type="object"
+															class="btn btn-success m-3"
+															attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+															string="Proceed to OI/TI"/>
+													<button name="action_proceed_to_ui_ti"
+															type="object"
+															class="btn btn-danger m-3"
+															attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+															string="Do Not Proceed"/>
+													</div>
 												</group>
 												<div class="m-3">
 													<button name="action_proceed_to_ui_ti"

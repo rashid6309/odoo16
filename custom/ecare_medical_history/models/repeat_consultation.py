@@ -368,6 +368,13 @@ class RepeatConsultation(models.Model):
         else:
             return False
 
+    def check_field_values_as_blue(self):
+        check_blue_values = (self.female_ot_ti_checklist_id.check_field_values_as_blue())
+        if check_blue_values:
+            return True
+        else:
+            return False
+
 
 # Fibroid
 class RepeatFiobrid(models.Model):

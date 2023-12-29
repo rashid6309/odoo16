@@ -33,8 +33,8 @@ class FemaleOtTiChecklist(models.Model):
     menopause_sign_suspicion = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                 string='Any signs or suspicion of menopause?')
 
-    female_ot_ti_weight = fields.Float('Weight')
-    female_ot_ti_height = fields.Float('Height')
+    female_ot_ti_weight = fields.Float('Weight (kg)')
+    female_ot_ti_height = fields.Float('Height (cm)')
 
     female_ot_ti_bmi = fields.Float(string='BMI Calculation')
 
@@ -48,6 +48,7 @@ class FemaleOtTiChecklist(models.Model):
                                                     string='Uterine and Tubal Anomalies Ruled Out?')
 
     oi_ti_decisions = fields.Text('Decisions')
+    oi_ti_treatment_state = fields.Char('Treatment State')
 
     def check_field_values_as_red(self):
         iui_dropdown_red_values = ['not_tested', 'both_blocked', 'restricted_spill']
@@ -56,6 +57,19 @@ class FemaleOtTiChecklist(models.Model):
         if self.tubal_patency_test_dropdown in iui_dropdown_red_values:
             return True
         if self.uterine_tubal_anomalies in uterine_tubal_anomalies_red_values:
+            return True
+
+        return False
+
+    def check_field_values_as_blue(self):
+        yes_values = ['yes']
+        female_ot_ti_bmi_value = 35
+
+        if self.diagnosis_cervical_incompetence in yes_values:
+            return True
+        if self.menopause_sign_suspicion in yes_values:
+            return True
+        if self.female_ot_ti_bmi >= female_ot_ti_bmi_value:
             return True
 
         return False

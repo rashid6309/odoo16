@@ -759,15 +759,14 @@ class PatientTimeline(models.Model):
             else:
                 rec.repeat_pregnancy_gestational_age = None
 
-    @api.depends('female_ot_ti_weight', 'female_ot_ti_height')
+    @api.onchange('female_ot_ti_weight', 'female_ot_ti_height')
     def _compute_female_ot_ti_bmi(self):
         for record in self:
-            if record.female_ot_ti_height and record.female_ot_ti_weight:
-                height_in_meters = record.female_ot_ti_height / 100.0
-                bmi = record.female_ot_ti_weight / (height_in_meters * height_in_meters)
-                record.female_ot_ti_bmi = bmi
+            if record.female_ot_ti_weight and record.female_ot_ti_height:
+                height_in_meters = record.female_ot_ti_height / 100
+                record.female_ot_ti_bmi = record.female_ot_ti_weight / (height_in_meters ** 2)
             else:
-                record.female_ot_ti_bmi = 0.0
+                record.female_ot_ti_bmi = None
 
     def check_field_values_as_blue(self):
         yes_values = ['yes']
@@ -789,6 +788,26 @@ class PatientTimeline(models.Model):
                                    "Proceeding to OI/TI will have either inappropriate or "
                                    "with poor prognosis and/or higher risk of complications. "
                                    "Please discuss it with your seniors.",
+                'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
+            }
+            return {
+                'name': 'Message',
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'views': [(False, 'form')],
+                'res_model': 'ec.medical.treatment.pathway.wizard',
+                'context': values,
+                'target': 'new',
+            }
+        check_blue_values = self.ec_repeat_consultation_id.check_field_values_as_blue()
+        if check_blue_values:
+            values = {
+                'default_message': "One or more factors have been identified that place "
+                                   "this couple at a slightly increased risk of "
+                                   "complications and/or failure of treatment. "
+                                   "These have been highlighted. Please discuss these "
+                                   "with the couple and if you and the couple are still "
+                                   "in agreement, proceed to OI/TI",
                 'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
             }
             return {
