@@ -42,7 +42,12 @@ class RepeatConsultation(models.Model):
     #                                            ('4', "Question 4")],
     #                                 default="1",
     #                                 required=True)
-
+    first_consultation_state = fields.Selection([('open', 'In Progress'),
+                                                 ('closed', 'Done'),
+                                                 ('decision_pending', "Decision Pending"),
+                                                 ],
+                                                default='open',
+                                                string='State')
 
     """ Question One
     Yes: Open the pregnancy assessment form
@@ -336,6 +341,7 @@ class RepeatConsultation(models.Model):
             return
 
         self.repeat_timeline_id.ec_repeat_consultation_id = self.id
+        self.repeat_timeline_id.first_consultation_state = 'open'
 
     """ Other actions opening place over here"""
 
@@ -348,6 +354,19 @@ class RepeatConsultation(models.Model):
 
     def action_open_tvs_form(self):
         return self.env['ec.medical.tvs'].action_open_form_view(self, target='new')
+
+    def action_state_to_decision_pending(self):
+        if self:
+            self.first_consultation_state = 'decision_pending'
+
+    def check_field_values_as_red(self):
+        check_red_values = (self.medical_consents_risk_assessment_id.check_field_values_as_red() or
+                            self.male_ot_ti_checklist_id.check_field_values_as_red() or
+                            self.female_ot_ti_checklist_id.check_field_values_as_red())
+        if check_red_values:
+            return True
+        else:
+            return False
 
 
 # Fibroid
