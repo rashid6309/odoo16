@@ -107,14 +107,16 @@
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
 										<h5 class="mt-2 mb-0"
-											attrs="{'invisible':[('show_repeat_section_state', '!=', True)]}">
+											attrs="{'invisible':[('first_consultation_state', '!=', 'open')]}">
 											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
-											<!--											<span for="file">In progress</span>-->
-											<!--											<progress id="file" value="32" max="90"> 32% </progress>-->
+										</h5>
+										<h5 class="mt-2 mb-0"
+											attrs="{'invisible':[('first_consultation_state', '!=', 'decision_pending')]}">
+											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>
 										</h5>
 									</div>
 								</div>
-								<div class="card-block mb-5 pl-4 collapse asa" id="repeat_consultation_section">
+								<div class="card-block mb-5 pl-4 collapse asa" id="repeat_consultation_section" attrs="{'readonly': [('first_consultation_state', '=', 'decision_pending')]}">
 									<field name="show_repeat_consultation_history_section"
 										   invisible="1"
 										   force_save="1"
@@ -636,7 +638,7 @@
 														The andrology department needs to confirm the presence of a suitable sample for Frozen-Thawed IUI.
 														The request for approval will be sent upon saving this form.
 													</span>
-													<field name="iui_dropdown" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<field name="tubal_patency_test" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
 													<field name="diagnosis_cervical_incompetence"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
@@ -647,10 +649,13 @@
 													<field name="menopause_sign_suspicion"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
-													<field name="bmi"/>
+													<field name="female_ot_ti_weight"/>
+													<field name="female_ot_ti_height"/>
+													<field name="female_ot_ti_bmi"/>
 													<field name="tubal_patency_test"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
+													<field name="tubal_patency_test_dropdown" attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
 													<field name="cervical_incompetence_diagnosis"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
@@ -684,6 +689,10 @@
 													<field name="counselling_high_bmi"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
+												</group>
+												<group class="m-3" string="Decisions"
+													   attrs="{'invisible':[('first_consultation_state', '!=', 'decision_pending')]}">
+													<field name="oi_ti_decisions"/>
 												</group>
 												<div class="m-3">
 													<button name="action_proceed_to_ui_ti"
