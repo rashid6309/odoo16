@@ -11,11 +11,12 @@
                 <form>
                     <sheet>
                         <group>
+                            <field name="ec_repeat_consultation_id" readonly="1"/>
                             <field name="message" readonly="1"/>
                         </group>
                     </sheet>
                     <footer>
-                        <button special="save"
+                        <button name="action_understand_wizard"
                                 string="I understand"
                                 type="object"
                                 class="btn-primary"/>
