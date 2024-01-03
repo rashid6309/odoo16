@@ -1035,7 +1035,11 @@
 
 											<div class="card-block mb-5 pl-4 collapse" id="female_social_history_section">
 												<group>
+													<field name="female_education_id"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="female_education"/>
+													<field name="female_profession_id"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="female_profession"/>
 													<field name="female_dependence"/>
 												</group>
@@ -1808,7 +1812,11 @@
 
 											<div class="card-block mb-5 pl-4 collapse" id="male_social_history_section">
 												<group>
+													<field name="male_education_id"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="male_education"/>
+													<field name="male_profession_id"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="male_profession"/>
 													<field name="male_dependence"/>
 												</group>
