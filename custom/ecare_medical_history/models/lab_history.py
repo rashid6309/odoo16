@@ -14,8 +14,9 @@ class LabHistory(models.Model):
     date = fields.Date(string="Date")
 
     filename = fields.Char(string="Filename")
-    attachment_id = fields.Binary(string="Attachments",
-                                  help="If you want to upload any attachment.")
+    attachment_id = fields.Many2many('ir.attachment', 'lab_history_document_rel',
+                                     'lab_id', 'doc_id', help="If you want to upload any attachment.",
+                                     string='Document')
 
     results = fields.Text('Results')
 
@@ -25,7 +26,7 @@ class LabHistory(models.Model):
     #                                   relation="lab_history_attachment_id",
     #                                   string="Attachments",
     #                                   help="If you want to upload any attachment.")
-    
+
     @api.onchange('date')
     def _check_lab_date(self):
         if self.date:
