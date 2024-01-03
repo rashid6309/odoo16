@@ -287,6 +287,10 @@ class PatientTimeline(models.Model):
 
     ''' Override methods '''
 
+    def write(self, vals_list):
+        record = super(PatientTimeline, self).write(vals_list)
+        return record
+
     @api.model
     def create(self, vals):
         res = super(PatientTimeline, self).create(vals)

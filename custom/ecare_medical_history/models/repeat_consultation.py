@@ -258,6 +258,13 @@ class RepeatConsultation(models.Model):
 
     ''' Override methods '''
 
+    def write(self, vals_list):
+        if (self.first_consultation_state == 'decision_pending' and not
+        self.env.user.has_group('ecare_medical_history.group_ec_medical_senior_doctor')):
+            raise UserError("Only senior doctor can edit this document now as this is in decision pending state.")
+        record = super(RepeatConsultation, self).write(vals_list)
+        return record
+
     def name_get(self):
         result = []
         for record in self:
