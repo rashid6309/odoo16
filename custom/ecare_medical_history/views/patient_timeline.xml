@@ -2031,10 +2031,10 @@
 													<field name="supermatic_cord_thick_ids" widget="many2many_checkboxes" options="{'horizontal': True}"/>
 													<field name="supermatic_cord_tender_ids" widget="many2many_checkboxes" options="{'horizontal': True}"/>
 													<field name="testicular_size_right" widget="radio" options="{'horizontal': True}"/>
-													<field name="testicular_motility_right_ids" widget="many2many_checkboxes" options="{'horizontal': True}"/>
+													<field name="testicular_motility_right"  widget="radio" options="{'horizontal': True}"/>
 													<field name="testicular_size_left" widget="radio" options="{'horizontal': True}"/>
-													<field name="testicular_motility_left_ids" widget="many2many_checkboxes" options="{'horizontal': True}"/>
-													<field name="testicular_size_motility" widget="radio" options="{'horizontal': True}"/>
+													<field name="testicular_motility_left"  widget="radio" options="{'horizontal': True}"/>
+<!--													<field name="testicular_size_motility" widget="radio" options="{'horizontal': True}"/>-->
 													<field name="ec_genital_examination_comment"/>
 												</group>
 											</div>
