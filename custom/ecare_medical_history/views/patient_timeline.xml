@@ -626,12 +626,17 @@
 											</group>
 											<span attrs="{'invisible': [('repeat_new_treatment_pathway', '!=', 'yes')]}">
 												<group string="Female Pre OI/TI Checklist">
-													<field name="upt_negative"
+													<field name="upt_result"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
 													<field name="iui_plan"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
+												</group>
+												<group string="Hormonal Profile">
+													<field name="fsh_level"/>
+													<field name="lh_level"/>
+													<field name="amh_level"/>
 													<field name="primary_indication" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
 													<span class="o_form_label" attrs="{'invisible': [('primary_indication', '!=', 'husband_not_present')]}"/>
 													<span id="husband_not_present" attrs="{'invisible': [('primary_indication', '!=', 'husband_not_present')]}">

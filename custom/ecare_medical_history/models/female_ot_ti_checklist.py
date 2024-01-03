@@ -9,11 +9,15 @@ class FemaleOtTiChecklist(models.Model):
     repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
                                              string='Repeat Consultation')
 
-    upt_negative = fields.Selection(selection=StaticMember.UPT_NEGATIVE,
-                                    string='UPT Negative?')
+    upt_result = fields.Selection(selection=StaticMember.UPT_RESULT,
+                                  string='UPT Result?')
 
     iui_plan = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                 string='IUI Currently in Plan?')
+
+    fsh_level = fields.Float(string='FSH', digits=(10, 2))
+    lh_level = fields.Float(string='LH', digits=(10, 2))
+    amh_level = fields.Float(string='AMH', digits=(10, 2))
 
     primary_indication = fields.Selection(selection=StaticMember.PRIMARY_INDICATION,
                                           string='Primary Indication')

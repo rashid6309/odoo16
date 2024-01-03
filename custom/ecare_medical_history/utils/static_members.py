@@ -1018,10 +1018,10 @@ class StaticMember:
         ('>40', '>40 weeks'),
     ]
 
-    UPT_NEGATIVE = [
-        ('yes', 'Yes'),
+    UPT_RESULT = [
+        ('negative', 'Negative'),
         ('not_done', 'Not Done'),
-        ('no', 'No'),
+        ('positive', 'Positive'),
     ]
 
     PRIMARY_INDICATION = [
