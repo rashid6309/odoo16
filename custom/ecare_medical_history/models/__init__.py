@@ -5,6 +5,7 @@ from . import ec_medical_lab
 from . import investigation
 from . import profession
 from . import education
+from . import ec_medical_years
 from . import treatment_list
 from . import factors
 from . import generic_size
