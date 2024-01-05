@@ -690,7 +690,8 @@
 													<field name="female_comment" placeholder="Details..."/>
 
 													<field name="patient_female_dob"/>
-													<field name="biological_female_dob"/>
+													<field name="biological_female_dob_check"/>
+													<field name="biological_female_dob"  attrs="{'invisible': [('biological_female_dob_check', '=', True)]}"/>
 													<field name="biological_female_age" attrs="{'invisible': [('biological_female_dob', '=', False)]}" force_save="1"/>
 
 													<field name="female_age" attrs="{'invisible': [('biological_female_age', '!=', False)]}"/>
@@ -1690,7 +1691,8 @@
 													<field name="male_comment"/>
 
 													<field name="patient_male_dob"/>
-													<field name="biological_male_dob"/>
+													<field name="biological_male_dob_check"/>
+													<field name="biological_male_dob"  attrs="{'invisible': [('biological_male_dob_check', '=', True)]}"/>
 													<field name="biological_male_age" attrs="{'invisible': [('biological_male_dob', '=', False)]}" force_save="1"/>
 
 													<field name="male_age" attrs="{'invisible': [('biological_male_age', '!=', False)]}"/>
