@@ -21,7 +21,7 @@
 
         <menuitem
             id="ec_medical_profession_menu"
-            name="Medical Professions"
+            name="Professions"
             action="ec_medical_profession_action"
             parent="ec_medical_history_configuration"
             sequence="5300"/>
