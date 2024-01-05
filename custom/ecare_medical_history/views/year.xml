@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_ec_medical_year_tree" model="ir.ui.view">
+            <field name="name">ec.medical.year.tree</field>
+            <field name="model">ec.medical.year</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="year"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ec_medical_year_action" model="ir.actions.act_window">
+            <field name="name">Years</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ec.medical.year</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="ec_medical_year_menu"
+            name="Years"
+            action="ec_medical_year_action"
+            parent="ec_medical_history_configuration"
+            sequence="5500"/>
+
+    </data>
+</odoo>

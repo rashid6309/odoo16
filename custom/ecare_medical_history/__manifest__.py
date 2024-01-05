@@ -22,6 +22,7 @@
         'data/family_history_data.xml',
         'data/menus.xml',
         'data/semen_analysis_sequence.xml',
+        'data/years_data.xml',
 
         # Reports here
 
@@ -29,6 +30,9 @@
         'views/health_center.xml',
         'views/medical_labs.xml',
         'views/investigation.xml',
+        'views/ec_medical_profession.xml',
+        'views/ec_medical_education.xml',
+        'views/year.xml',
         'views/factors.xml',
         'views/treatment_list.xml',
         'views/ec_medical_dianosis.xml',

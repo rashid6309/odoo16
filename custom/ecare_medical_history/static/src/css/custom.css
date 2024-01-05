@@ -37,6 +37,7 @@ div[name='all_semen_analysis_ids'] {
 .timeline_content .o_form_label:not(.form-check-label)
 {
    float : right;
+   text-align: -webkit-right;
 }
 
 .timeline_examination
