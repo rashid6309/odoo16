@@ -14,6 +14,19 @@
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban repeat_kanban_section_header">
                                 <t t-set="rec_id" t-value="record.id.raw_value"/>
+                                <!--                                <t t-set="first_consultation_state" t-esc="record.first_consultation_state.raw_value"/>-->
+                                <!--                                <t t-if="first_consultation_state == 'in_progress'">-->
+                                <!--                                 -->
+                                <!--                                </t>-->
+                                <div style="text-align: -webkit-right;">
+                                    <span class="bg-success" style="display: grid; width: 15%;
+                                    height: 50%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); color: #fff;
+                                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); text-transform: uppercase;
+                                    text-align: center; overflow: hidden; user-select: none;">
+                                        <field name="first_consultation_state"/>
+                                    </span>
+                                </div>
+
                                 <div>
                                     <div class="d-flex" style="justify-content: space-between">
                                         <div>
@@ -837,7 +850,7 @@
                                                             </div>
                                                             <span attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
                                                                 <div class="text-900">
-                                                                  <h5>Uterus</h5>
+                                                                    <h5>Uterus</h5>
                                                                 </div>
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">

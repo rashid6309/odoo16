@@ -101,13 +101,12 @@
 										<button name="action_create_repeat_consultation"
 												type="object"
 												class="btn btn-primary"
-												attrs="{'invisible': ['|', ('show_repeat_section_state', '=', True),
-												('first_consultation_state', '=', 'open')]}"
+												attrs="{'invisible': [('show_repeat_section_state', '=', True)]}"
 												onclick="showRepeatConsultationSection('repeat_consultation_section')">
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
 										<h5 class="mt-2 mb-0"
-											attrs="{'invisible':[('first_consultation_state', '!=', 'open')]}">
+											attrs="{'invisible':[('show_repeat_section_state', '=', False)]}">
 											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
 										</h5>
 										<h5 class="mt-2 mb-0"
