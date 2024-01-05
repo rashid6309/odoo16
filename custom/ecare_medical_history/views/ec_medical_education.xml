@@ -21,7 +21,7 @@
 
         <menuitem
             id="ec_medical_education_menu"
-            name="Medical Educations"
+            name="Educations"
             action="ec_medical_education_action"
             parent="ec_medical_history_configuration"
             sequence="5400"/>
