@@ -574,17 +574,17 @@
                                                                             <field name="is_couple_living_together"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.is_couple_living_together.raw_value">
-                                                                        <div>
-                                                                            <span class="o_form_label">Is the couple
-                                                                                living together?
-                                                                            </span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <field name="is_couple_living_together"/>
-                                                                        </div>
-                                                                    </div>
+                                                                    <!--                                                                    <div class="d-flex d-sm-contents flex-column"-->
+                                                                    <!--                                                                         t-if="record.is_couple_living_together.raw_value">-->
+                                                                    <!--                                                                        <div>-->
+                                                                    <!--                                                                            <span class="o_form_label">Is the couple-->
+                                                                    <!--                                                                                living together?-->
+                                                                    <!--                                                                            </span>-->
+                                                                    <!--                                                                        </div>-->
+                                                                    <!--                                                                        <div>-->
+                                                                    <!--                                                                            <field name="is_couple_living_together"/>-->
+                                                                    <!--                                                                        </div>-->
+                                                                    <!--                                                                    </div>-->
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.is_couple_using_contraception.raw_value">
                                                                         <div>
@@ -837,20 +837,20 @@
                                                             </div>
                                                             <span attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
                                                                 <div class="text-900">
-                                                                  <h5>Uterus</h5>
+                                                                    <h5>Uterus</h5>
                                                                 </div>
-                                                                <div class="o_group row align-items-start">
-                                                                    <div class="o_inner_group grid col-lg-12 text-900">
-                                                                        <div class="d-flex d-sm-contents flex-column">
-                                                                            <div>
-                                                                                <span class="o_form_label">Fibroid</span>
-                                                                            </div>
-                                                                            <div>
-                                                                                <field name="repeat_uterus_fibroid_computed"/>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                <!--                                                                <div class="o_group row align-items-start">-->
+                                                                <!--                                                                    <div class="o_inner_group grid col-lg-12 text-900">-->
+                                                                <!--                                                                        <div class="d-flex d-sm-contents flex-column">-->
+                                                                <!--                                                                            <div>-->
+                                                                <!--                                                                                <span class="o_form_label">Fibroid</span>-->
+                                                                <!--                                                                            </div>-->
+                                                                <!--                                                                            <div>-->
+                                                                <!--                                                                                <field name="repeat_uterus_fibroid_computed"/>-->
+                                                                <!--                                                                            </div>-->
+                                                                <!--                                                                        </div>-->
+                                                                <!--                                                                    </div>-->
+                                                                <!--                                                                </div>-->
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
                                                                         <div class="d-flex d-sm-contents flex-column">
@@ -883,7 +883,7 @@
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
                                                                         <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
-                                                                                <span class="o_form_label">Fibroid</span>
+                                                                                <span class="o_form_label">Fibroid (cm)</span>
                                                                             </div>
                                                                             <div>
                                                                                 <field name="repeat_uterus_fibroid_computed"/>

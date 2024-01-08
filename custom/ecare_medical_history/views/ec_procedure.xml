@@ -13,7 +13,9 @@
                                 <field name="male_consultation_id" invisible="1" force_save="1"/>
                                 <field name="details" placeholder="Details..."/>
                                 <field name="date_on" placeholder="Date On"/>
-                                <field name="surgical_year" placeholder="Year.."/>
+                                <field name="surgical_year_id"
+                                       options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+                                       placeholder="Year.."/>
                                 <!-- <field name="procedure_id" placeholder="Date ON"/>-->
                             </group>
                         </group>
@@ -31,7 +33,7 @@
                     <field name="male_consultation_id" invisible="1" force_save="1"/>
                     <field name="details" placeholder="Details..."/>
                     <field name="date_on" placeholder="Date On"/>
-                    <field name="surgical_year" placeholder="Year.."/>
+                    <field name="surgical_year_id" placeholder="Year.."/>
                 </tree>
             </field>
         </record>

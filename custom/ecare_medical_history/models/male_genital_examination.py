@@ -24,19 +24,9 @@ class GenitalExamination(models.Model):
     # supermatic_cord_tender = fields.Selection(selection=StaticMember.SIDE, )
 
     testicular_size_right = fields.Selection(selection=StaticMember.SIZE, )
-    testicular_motility_right_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
-                                                 relation='genital_multi_selection_testicular_motility_right',
-                                                 column1='genital_examination_id',
-                                                 column2='multi_selection_id',
-                                                 string='Testicular Motility Right',
-                                                 domain="[('type', '=', 'testicular_motility')]")
+    testicular_motility_right = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility')
     testicular_size_left = fields.Selection(selection=StaticMember.SIZE, )
-    testicular_motility_left_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
-                                                relation='genital_multi_selection_testicular_motility_left',
-                                                column1='genital_examination_id',
-                                                column2='multi_selection_id',
-                                                string='Testicular Motility Left',
-                                                domain="[('type', '=', 'testicular_motility')]")
+    testicular_motility_left = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility')
 
     testicular_size_motility = fields.Selection(selection=StaticMember.CHOICE_YES_NO, )
 

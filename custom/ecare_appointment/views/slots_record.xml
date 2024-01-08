@@ -190,12 +190,6 @@
                 <field name="name">Dashboard</field>
                 <field name="tag">ecare_appointment_dashboard</field>
             </record>
-
-            <menuitem id="menu_project_dashboard"
-                      name="Schedule Appointments"
-                      action="ec_appointment_action_dashboard"
-                      parent="ecare_appointment.slots_record_menu"
-                      sequence="100"/>
         </data>
         <data>
             <menuitem
@@ -205,6 +199,11 @@
                     parent="ec_main_menu"
                     sequence="100"
             />
+            <menuitem id="menu_project_dashboard"
+                      name="Schedule Appointments"
+                      action="ec_appointment_action_dashboard"
+                      parent="ecare_appointment.slots_record_menu"
+                      sequence="100"/>
             <menuitem
                     id="all_slots_record_menu"
                     name="All"
