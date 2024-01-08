@@ -6,6 +6,9 @@ class FemaleGynaecologicalHistory(models.Model):
     _name = 'ec.gynaecological.history'
     _description = "Female Gynecological History"
 
+    gynaecological_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                ondelete='restrict')
+
     female_age_at_menarche = fields.Selection(selection=StaticMember.AGE_AT_MENARCHE, string='Age at Menarche')
     female_menarche_type = fields.Selection(selection=StaticMember.MENARCHE_TYPE, string='Age at Menarche')
     female_menstrual_cycle = fields.Selection(selection=StaticMember.MENARCHE_CYCLE, string='Menstrual Cycle')

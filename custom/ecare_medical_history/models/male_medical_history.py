@@ -12,6 +12,11 @@ class MaleMedicalHistory(models.Model):
     _description = "Medical (Male) History"
 
     # Male-specific fields with the 'male_' prefix
+
+    ''' Common '''
+    male_medical_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                        ondelete='restrict')
+
     male_adrenal = fields.Char('Adrenal')
     male_adrenal_date = fields.Date('Adrenal Date')
 

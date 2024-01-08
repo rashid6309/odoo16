@@ -5,6 +5,9 @@ class SocialHistory(models.Model):
     _name = "ec.social.history"
     _description = "Social History"
 
+    social_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                ondelete='restrict')
+
     ''' Female '''
     female_education = fields.Text(string="Education")
     female_profession = fields.Text(string="Profession")

@@ -6,6 +6,10 @@ class MaleSystemicExam(models.Model):
     _name = 'ec.male.systemic.examination'
     _description = "Male Systemic Examination"
 
+
+    male_systemic_examination_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                           ondelete='restrict')
+
     male_cvs = fields.Selection(selection=StaticMember.ORGAN_SIZE, string="CVS")
     male_cvs_comment = fields.Char(string="Comment")
 

@@ -7,6 +7,9 @@ class MedicalSystemicExamination(models.Model):
     _name = "ec.female.systemic.examination"
     _description = "Patient (Female) Systemic Examination"
 
+    female_systemic_examination_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                             ondelete='restrict')
+
     breast_right = fields.Selection(selection=StaticMember.ORGAN_SIZE, string='Breast (Rt)')
     breast_right_comment = fields.Char(string='Breast (Rt)')
 

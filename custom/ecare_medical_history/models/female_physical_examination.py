@@ -7,6 +7,9 @@ class MedicalPhysicalExamination(models.Model):
     _name = "ec.physical.examination"
     _description = "Patient (Female) Physical Examination"
 
+    female_physical_examination_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                             ondelete='restrict')
+
     female_weight = fields.Float('Weight')
     female_height = fields.Float('Height')
     female_bmi = fields.Float('BMI')
