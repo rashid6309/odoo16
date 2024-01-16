@@ -91,6 +91,73 @@
 								</div>
 							</div>
 							<div class="col-md-8 timeline_content">
+								<field name="oi_ti_platform_enabled" invisible="1"/>
+								<div class="d-flex scroll-to card-header-custom first_consultation_container mt-2"
+									 attrs="{'invisible': [('oi_ti_platform_enabled', '=', False)]}"
+									 id="io_ti_platform_section_link">
+									<div class="col-10">
+										<a data-bs-toggle="collapse" data-bs-target="#io_ti_platform_section" href="#">
+											<h4 class="mt-2 mb-0">OI/TI Platform</h4></a>
+									</div>
+								</div>
+								<div class="card-block mb-5 pl-4 collapse asa"
+									 id="io_ti_platform_section"
+									 attrs="{'invisible': [('oi_ti_platform_enabled', '=', False)]}">
+									<table cellspacing="0" cellpadding="0" style="width: 100%;; border:0.75pt solid #cccccc; border-collapse:collapse;">
+										<tbody>
+											<tr style="height:15.75pt;">
+												<td style="border-right:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
+													<p class="oi_ti_action_btn">Add OPK</p>
+												</td>
+												<td style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
+													<p class="oi_ti_action_btn">Schedule</p>
+												</td>
+												<td colspan="2" style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
+													<p class="oi_ti_action_btn">Appointment</p>
+												</td>
+												<td style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
+													<p class="oi_ti_action_btn">Add intervention</p>
+												</td>
+												<td style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
+													<p style="margin-top:0pt; margin-bottom:0pt; line-height:115%; widows:0; orphans:0; font-size:10pt;">Ready to trigger &amp; inseminate</p>
+												</td>
+												<td style="border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff0000;">
+													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">ABANDON ATTEMPT</span></strong></p>
+												</td>
+											</tr>
+											<tr style="height:15.75pt;">
+												<td style="border-top:0.75pt solid #cccccc; border-right:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#3c78d8;">
+													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">Followup</span></strong></p>
+												</td>
+												<td style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top;">
+													<p style="margin-top:0pt; margin-bottom:0pt; line-height:115%; widows:0; orphans:0; font-size:10pt;"></p>
+												</td>
+												<td style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top;">
+													<p style="margin-top:0pt; margin-bottom:0pt; line-height:115%; widows:0; orphans:0; font-size:10pt;"></p>
+												</td>
+												<td colspan="2" style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff0000;">
+													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">CONVERT TO CSO/OPU</span></strong></p>
+												</td>
+												<td style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#00ff00;">
+													<p class="oi_ti_action_btn">
+														<button
+															name="action_create_oi_ti_platform"
+															class="oi_ti_transparent_btn"
+															type="object"
+															string="START NEW OI/TI ATTEMPT"/>
+													</p>
+												</td>
+												<td style="border-top:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#9900ff;">
+													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">COMPLETE ATTEMPT</span></strong></p>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<field name="oi_ti_platform_ids" mode="kanban"/>
+								</div>
+
+
+
 								<div class="d-flex scroll-to card-header-custom first_consultation_container mt-2" id="repeat_consultation_section_link">
 									<div class="col-10">
 										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
@@ -106,11 +173,11 @@
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
 										<h5 class="mt-2 mb-0"
-											attrs="{'invisible':[('show_repeat_section_state', '=', False)]}">
+											attrs="{'invisible':['|', ('first_consultation_state', '!=', 'open'),('show_repeat_section_state', '!=', True)]}">
 											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
 										</h5>
 										<h5 class="mt-2 mb-0"
-											attrs="{'invisible':[('first_consultation_state', '!=', 'decision_pending')]}">
+											attrs="{'invisible':['|', ('first_consultation_state', '!=', 'decision_pending'),('show_repeat_section_state', '!=', True)]}">
 											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>
 										</h5>
 									</div>
@@ -701,15 +768,15 @@
 													<label for="action_proceed_to_ui_ti"/>
 													<div id="action_proceed_buttons">
 														<button name="action_proceed_to_ui_ti"
-															type="object"
-															class="btn btn-success m-3"
-															attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
-															string="Proceed to OI/TI"/>
-													<button name="action_proceed_to_ui_ti"
-															type="object"
-															class="btn btn-danger m-3"
-															attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
-															string="Do Not Proceed"/>
+																type="object"
+																class="btn btn-success m-3"
+																attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+																string="Proceed to OI/TI"/>
+														<button name="action_proceed_to_ui_ti"
+																type="object"
+																class="btn btn-danger m-3"
+																attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+																string="Do Not Proceed"/>
 													</div>
 												</group>
 												<div class="m-3">
@@ -1003,24 +1070,24 @@
 													<field name="female_adrenal" placeholder="Add Details" />
 													<field name="female_adrenal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_anti_phospholipid_syndrome" placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_anti_phospholipid_syndrome_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_autoimmune_disease" placeholder="Add Details" />
 													<field name="female_autoimmune_disease_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_blood_transfusion" placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_blood_transfusion_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year" />
+														   string="Year" />
 
 													<field name="female_complications_pr" placeholder="Complications"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -1029,7 +1096,7 @@
 													<field name="female_cardiac" placeholder="Add Details" />
 													<field name="female_cardiac_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_diabetes_type" placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
@@ -1038,97 +1105,97 @@
 														   string="" />
 													<field name="female_diabetes_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_dvt" placeholder="Add Details" />
 													<field name="female_dvt_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_gall_bladder" placeholder="Add Details" />
 													<field name="female_gall_bladder_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_gastric" placeholder="Add Details" />
 													<field name="female_gastric_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_gynaecology" placeholder="Add Details" />
 													<field name="female_gynaecology_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_haematology" placeholder="Add Details" />
 													<field name="female_haematology_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_heart_disease" placeholder="Add Details" />
 													<field name="female_heart_disease_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_hyper_tension" placeholder="Add Details" />
 													<field name="female_hyper_tension_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_intestinal" placeholder="Add Details" />
 													<field name="female_intestinal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_janduice" placeholder="Add Details" />
 													<field name="female_janduice_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_liver" placeholder="Add Details" />
 													<field name="female_liver_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_low_urinary_tract" placeholder="Add Details" />
 													<field name="female_low_urinary_tract_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_malignancy" placeholder="Add Details" />
 													<field name="female_malignancy_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_neurological" placeholder="Add Details" />
 													<field name="female_neurological_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_renal" placeholder="Add Details" />
 													<field name="female_renal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_respiratory" placeholder="Add Details" />
 													<field name="female_respiratory_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_smoking" placeholder="Add Details" />
 													<field name="female_smoking_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_alcohol" placeholder="Add Details" />
 													<field name="female_alcohol_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_skeletal" placeholder="Add Details" />
 													<field name="female_skeletal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_thyroid_TYPE" placeholder="" string="Thyroid"
 														   widget="radio" options="{'horizontal': True}"/>
@@ -1137,17 +1204,17 @@
 														   string="" />
 													<field name="female_thyroid_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_urinary_infection" placeholder="Add Details" />
 													<field name="female_urinary_infection_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="female_medical_history_others" placeholder="Add Details" />
 													<field name="female_medical_history_others_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 												</group>
 											</div>
 
@@ -1815,145 +1882,145 @@
 													<field name="male_adrenal" placeholder="Add Details" />
 													<field name="male_adrenal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_anti_phospholipid_syndrome" placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_anti_phospholipid_syndrome_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_autoimmune_disease" placeholder="Add Details" />
 													<field name="male_autoimmune_disease_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_blood_transfusion" placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_blood_transfusion_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year" />
+														   string="Year" />
 
 													<field name="male_complications_pr" placeholder="Complications" string="" default=" " attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
 
 													<field name="male_cardiac" placeholder="Add Details" />
 													<field name="male_cardiac_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_diabetes_type" placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_diabetes" placeholder="Add Details" string="" />
 													<field name="male_diabetes_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_dvt" placeholder="Add Details" />
 													<field name="male_dvt_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_gall_bladder" placeholder="Add Details" />
 													<field name="male_gall_bladder_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_gastric" placeholder="Add Details" />
 													<field name="male_gastric_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_gynaecology" placeholder="Add Details" />
 													<field name="male_gynaecology_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_haematology" placeholder="Add Details" />
 													<field name="male_haematology_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_heart_disease" placeholder="Add Details" />
 													<field name="male_heart_disease_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_hyper_tension" placeholder="Add Details" />
 													<field name="male_hyper_tension_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_intestinal" placeholder="Add Details" />
 													<field name="male_intestinal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_janduice" placeholder="Add Details" />
 													<field name="male_janduice_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_liver" placeholder="Add Details" />
 													<field name="male_liver_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_low_urinary_tract" placeholder="Add Details" />
 													<field name="male_low_urinary_tract_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_malignancy" placeholder="Add Details" />
 													<field name="male_malignancy_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_neurological" placeholder="Add Details" />
 													<field name="male_neurological_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_renal" placeholder="Add Details" />
 													<field name="male_renal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_respiratory" placeholder="Add Details" />
 													<field name="male_respiratory_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_smoking" placeholder="Add Details" />
 													<field name="male_smoking_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_alcohol" placeholder="Add Details" />
 													<field name="male_alcohol_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_skeletal" placeholder="Add Details" />
 													<field name="male_skeletal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_thyroid_TYPE" placeholder="" string="Thyroid"
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_thyroid" placeholder="Add Details" string="" />
 													<field name="male_thyroid_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_urinary_infection" placeholder="Add Details" />
 													<field name="male_urinary_infection_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_medical_history_others" placeholder="Add Details" />
 													<field name="male_medical_history_others_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 												</group>
 											</div>
 
@@ -2258,7 +2325,7 @@
 													<field name="testicular_motility_right"  widget="radio" options="{'horizontal': True}"/>
 													<field name="testicular_size_left" widget="radio" options="{'horizontal': True}"/>
 													<field name="testicular_motility_left"  widget="radio" options="{'horizontal': True}"/>
-<!--													<field name="testicular_size_motility" widget="radio" options="{'horizontal': True}"/>-->
+													<!--													<field name="testicular_size_motility" widget="radio" options="{'horizontal': True}"/>-->
 													<field name="ec_genital_examination_comment"/>
 												</group>
 											</div>

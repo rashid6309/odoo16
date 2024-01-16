@@ -18,6 +18,7 @@ from . import family_relation_list
 from . import previous_treatment
 from . import ec_medical_tvs
 from . import treatment_pathway_wizard
+from . import ec_medical_oi_ti_platform
 
 # Common for both male and female
 from . import general_history

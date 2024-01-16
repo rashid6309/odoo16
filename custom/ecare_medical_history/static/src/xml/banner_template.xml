@@ -7,7 +7,7 @@
 					<h1>
 						<t t-esc="props.value[1]" />
 						<a href="#" t-on-click="_onEditPatientProfile" class="editPatientProfile">
-							<i class="fa fa-pencil-square-o" title="Edit Patient"
+							<i class="fa fa-pencil-square-o oe_edit_only" title="Edit Patient"
 							   style="font-size:24px; color: white;"/>
 						</a>
 					</h1>
