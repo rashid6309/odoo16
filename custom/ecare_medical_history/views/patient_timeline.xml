@@ -692,9 +692,9 @@
 													<field name="patient_female_dob"/>
 													<field name="biological_female_dob_check"/>
 													<field name="biological_female_dob"  attrs="{'invisible': [('biological_female_dob_check', '=', True)]}"/>
-													<field name="biological_female_age" attrs="{'invisible': [('biological_female_dob', '=', False)]}" force_save="1"/>
+													<field name="biological_female_age" attrs="{'invisible': ['|', ('biological_female_dob', '=', False), ('biological_female_dob_check', '=', True)]}" force_save="1"/>
 
-													<field name="female_age" attrs="{'invisible': [('biological_female_age', '!=', False)]}"/>
+													<field name="female_age" attrs="{'invisible': [('biological_female_dob_check', '!=', True)]}"/>
 													<field name="female_relation" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_family_system" widget="radio" options="{'horizontal': True}"/>
 													<label style="display:flex; align-items:center;" for="female_living_togather">Living Together</label>
@@ -1784,9 +1784,9 @@
 													<field name="patient_male_dob"/>
 													<field name="biological_male_dob_check"/>
 													<field name="biological_male_dob"  attrs="{'invisible': [('biological_male_dob_check', '=', True)]}"/>
-													<field name="biological_male_age" attrs="{'invisible': [('biological_male_dob', '=', False)]}" force_save="1"/>
+													<field name="biological_male_age" attrs="{'invisible': ['|', ('biological_male_dob', '=', False), ('biological_male_dob_check', '=', True)]}" force_save="1"/>
 
-													<field name="male_age" attrs="{'invisible': [('biological_male_age', '!=', False)]}"/>
+													<field name="male_age" attrs="{'invisible': [('biological_male_dob_check', '!=', True)]}"/>
 												</group>
 											</div>
 
