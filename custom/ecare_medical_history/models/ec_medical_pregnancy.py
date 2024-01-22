@@ -54,12 +54,12 @@ class PregnancyForm(models.Model):
     repeat_pregnancy_scanned = fields.Selection(StaticMember.CHOICE_YES_NO, string="Documented Medicsi Scan Reviewed?")
     repeat_pregnancy_significant_findings = fields.Char(string="Mention any SIGNIFICANT findings")
 
-    repeat_pregnancy_hr = fields.Integer(string="HR")
+    repeat_pregnancy_hr = fields.Char(string="HR")
     repeat_pregnancy_rhythm = fields.Selection(StaticMember.RHYTHM_TYPE, string="Rhythm")
-    repeat_pregnancy_bp_upper = fields.Integer(string="BP")
-    repeat_pregnancy_bp_lower = fields.Integer(string="BP")
-    repeat_pregnancy_temp = fields.Float(string="Temp")
-    repeat_pregnancy_rr = fields.Integer(string="RR")
+    repeat_pregnancy_bp_upper = fields.Char(string="BP")
+    repeat_pregnancy_bp_lower = fields.Char(string="BP")
+    repeat_pregnancy_temp = fields.Char(string="Temp")
+    repeat_pregnancy_rr = fields.Char(string="RR")
 
     repeat_pregnancy_fetal_heart = fields.Selection(StaticMember.FETAL_HEART, string="Fetal Heart ")
 
