@@ -752,7 +752,7 @@
 
 											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="gynaecological_history_section_link">
 												<div class="col-6">
-													<a data-bs-toggle="collapse" data-bs-target="#gynaecological_history_section" href="#"><h4 class="mt-2 mb-0">Gynecological History</h4></a>
+													<a data-bs-toggle="collapse" data-bs-target="#gynaecological_history_section" href="#"><h4 class="mt-2 mb-0">Gynaecological History</h4></a>
 												</div>
 												<div class="col-6 text-right" style="margin-top:9px">
 												</div>
@@ -1544,6 +1544,9 @@
 														</div>
 
 														<field name="female_pallor" widget="radio" options="{'horizontal': true}"/>
+														<field name="female_jaundice" widget="radio" options="{'horizontal': true}"/>
+														<field name="female_other_findings"/>
+
 													</group>
 
 												</section>
@@ -2414,7 +2417,9 @@
 															<field name="male_thyroid_goitear_nodule"/>
 															<span class="oe_inline">Nodule</span>
 														</div>
-														<field name="female_pallor" widget="radio" options="{'horizontal': true}"/>
+														<field name="male_pallor" widget="radio" options="{'horizontal': true}"/>
+														<field name="male_jaundice" widget="radio" options="{'horizontal': true}"/>
+														<field name="male_other_findings"/>
 													</group>
 
 												</section>

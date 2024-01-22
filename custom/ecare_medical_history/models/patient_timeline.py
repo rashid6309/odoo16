@@ -786,4 +786,77 @@ class PatientTimeline(models.Model):
         if self.repeat_pregnancy_rr and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_rr):
             raise UserError(f"Please enter a numeric value in pregnancy RR.")
 
+    @api.onchange('repeat_pregnancy_embryos_replaced')
+    def _check_input_repeat_pregnancy_embryos_replaced(self):
+        if self.repeat_pregnancy_embryos_replaced and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_embryos_replaced):
+            raise UserError(f"Please enter a numeric value in pregnancy embryos replaced!")
 
+    @api.onchange('female_weight')
+    def _check_input_female_weight(self):
+        if self.female_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_weight):
+            raise UserError(f"Please enter a numeric value in female weight!")
+
+    @api.onchange('female_height')
+    def _check_input_female_height(self):
+        if self.female_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_height):
+            raise UserError(f"Please enter a numeric value in female height!")
+
+    @api.onchange('female_bmi')
+    def _check_input_female_bmi(self):
+        if self.female_bmi and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_bmi):
+            raise UserError(f"Please enter a numeric value in female bmi!")
+
+    @api.onchange('female_bp_upper')
+    def _check_input_female_bp_upper(self):
+        if self.female_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_bp_upper):
+            raise UserError(f"Please enter a numeric value in female bp upper!")
+
+    @api.onchange('female_bp_lower')
+    def _check_input_female_bp_lower(self):
+        if self.female_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_bp_lower):
+            raise UserError(f"Please enter a numeric value in female bp lower!")
+
+    @api.onchange('female_pulse')
+    def _check_input_female_pulse(self):
+        if self.female_pulse and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_pulse):
+            raise UserError(f"Please enter a numeric value in female pulse!")
+
+    @api.onchange('female_temperature')
+    def _check_input_female_temperature(self):
+        if self.female_temperature and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_temperature):
+            raise UserError(f"Please enter a numeric value in female temperature!")
+
+    @api.onchange('male_weight')
+    def _check_input_male_weight(self):
+        if self.male_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_weight):
+            raise UserError(f"Please enter a numeric value in male weight!")
+
+    @api.onchange('male_height')
+    def _check_input_male_height(self):
+        if self.male_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_height):
+            raise UserError(f"Please enter a numeric value in male height!")
+
+    @api.onchange('male_bmi')
+    def _check_input_male_bmi(self):
+        if self.male_bmi and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bmi):
+            raise UserError(f"Please enter a numeric value in male bmi!")
+
+    @api.onchange('male_bp_upper')
+    def _check_input_male_bp_upper(self):
+        if self.male_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bp_upper):
+            raise UserError(f"Please enter a numeric value in male bp upper!")
+
+    @api.onchange('male_bp_lower')
+    def _check_input_male_bp_lower(self):
+        if self.male_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bp_lower):
+            raise UserError(f"Please enter a numeric value in male bp lower!")
+
+    @api.onchange('male_pulse')
+    def _check_input_male_pulse(self):
+        if self.male_pulse and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_pulse):
+            raise UserError(f"Please enter a numeric value in male pulse!")
+
+    @api.onchange('male_temperature')
+    def _check_input_male_temperature(self):
+        if self.male_temperature and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_temperature):
+            raise UserError(f"Please enter a numeric value in male temperature!")
