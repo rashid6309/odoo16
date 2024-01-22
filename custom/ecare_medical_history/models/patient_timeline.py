@@ -2,6 +2,7 @@ from datetime import datetime
 
 from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
+import re
 from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 
 from odoo.exceptions import AccessError, UserError, ValidationError
@@ -382,6 +383,9 @@ class PatientTimeline(models.Model):
     def action_close_first_consultation(self):
         return self.env['ec.first.consultation'].action_close_first_consultation(self.ec_first_consultation_id)
 
+    def action_open_first_consultation(self):
+        return self.env['ec.first.consultation'].action_open_first_consultation(self.ec_first_consultation_id)
+
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
                                                                        None)
@@ -755,5 +759,31 @@ class PatientTimeline(models.Model):
                     rec.repeat_pregnancy_gestational_age = '>40'
             else:
                 rec.repeat_pregnancy_gestational_age = None
+
+    @api.onchange('repeat_pregnancy_temp')
+    def _check_float_input_temp(self):
+        if self.repeat_pregnancy_temp and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_temp):
+            raise UserError(f"Please enter a numeric value in pregnancy temperature.")
+            # raise UserError(f"Please enter a numeric value in pregnancy temperature with up to 2 decimal points.")
+
+    @api.onchange('repeat_pregnancy_hr')
+    def _check_float_input_hr(self):
+        if self.repeat_pregnancy_hr and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_hr):
+            raise UserError(f"Please enter a numeric value in pregnancy HR.")
+
+    @api.onchange('repeat_pregnancy_bp_upper')
+    def _check_float_input_bp_upper(self):
+        if self.repeat_pregnancy_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_bp_upper):
+            raise UserError(f"Please enter a numeric value in pregnancy BP (Upper).")
+
+    @api.onchange('repeat_pregnancy_bp_lower')
+    def _check_float_input_bp_lower(self):
+        if self.repeat_pregnancy_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_bp_lower):
+            raise UserError(f"Please enter a numeric value in pregnancy BP (Lower).")
+
+    @api.onchange('repeat_pregnancy_rr')
+    def _check_float_input_rr(self):
+        if self.repeat_pregnancy_rr and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_rr):
+            raise UserError(f"Please enter a numeric value in pregnancy RR.")
 
 
