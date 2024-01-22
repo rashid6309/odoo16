@@ -6,6 +6,9 @@ class FemaleMedicalHistory(models.Model):
     _name = "ec.female.medical.history"
     _description = "Medical (Female) History"
 
+    female_medical_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                         ondelete='restrict')
+
     male_no_medical_history = fields.Boolean(string='No Medical History')
     female_no_medical_history = fields.Boolean(string='No Medical History')
     # Female-specific fields with the 'female_' prefix

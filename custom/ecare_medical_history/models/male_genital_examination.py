@@ -7,6 +7,10 @@ class GenitalExamination(models.Model):
     _description = "Genital Examination"
     _rec_name = 'skin_condition'
 
+    genital_examination_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                     ondelete='restrict')
+
+
     ''' Data-members '''
     skin_condition = fields.Char(string="Skin Condition")
 

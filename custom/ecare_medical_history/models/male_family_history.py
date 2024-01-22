@@ -1,15 +1,12 @@
 from odoo import models, fields
 
-"""
-
-    # For male:
-    # TODO: Change relation name with "ec_male_family_history_diabetes_rel"
-"""
-
 
 class MaleFamilyHistory(models.Model):
     _name = 'ec.male.family.history'
     _description = 'Family (Male) History'
+
+    male_family_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                     ondelete='restrict')
 
     # Male Family History Fields
     male_diabetes_ids = fields.Many2many(comodel_name='ec.family.relation.list',
