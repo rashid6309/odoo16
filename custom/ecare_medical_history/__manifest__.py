@@ -63,7 +63,8 @@
 
         # Treatment Pathway Wizard
         'views/treatment_pathway_wizard.xml',
-        'views/ec_medical_oi_ti_platform.xml',
+        'views/ec_medical_oi_ti_platform_cycle.xml',
+        'views/ec_medical_oi_ti_platform_attempt.xml',
 
         # Semen Anlysis
         'views/semen_analysis.xml',

@@ -345,6 +345,7 @@ class RepeatConsultation(models.Model):
             raise UserError("Consultation is already in progress, close the running consultation first.")
         self.repeat_timeline_id.show_repeat_section_state = True
         if self.repeat_timeline_id.ec_repeat_consultation_id.id == self.id:
+            self.repeat_timeline_id.first_consultation_state = 'open'
             return
 
         self.repeat_timeline_id.ec_repeat_consultation_id = self.id

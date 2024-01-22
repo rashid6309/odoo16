@@ -103,57 +103,57 @@
 								<div class="card-block mb-5 pl-4 collapse asa"
 									 id="io_ti_platform_section"
 									 attrs="{'invisible': [('oi_ti_platform_enabled', '=', False)]}">
-									<table cellspacing="0" cellpadding="0" style="width: 100%;; border:0.75pt solid #cccccc; border-collapse:collapse;">
-										<tbody>
-											<tr style="height:15.75pt;">
-												<td style="border-right:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
-													<p class="oi_ti_action_btn">Add OPK</p>
-												</td>
-												<td style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
-													<p class="oi_ti_action_btn">Schedule</p>
-												</td>
-												<td colspan="2" style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
-													<p class="oi_ti_action_btn">Appointment</p>
-												</td>
-												<td style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
-													<p class="oi_ti_action_btn">Add intervention</p>
-												</td>
-												<td style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">
-													<p style="margin-top:0pt; margin-bottom:0pt; line-height:115%; widows:0; orphans:0; font-size:10pt;">Ready to trigger &amp; inseminate</p>
-												</td>
-												<td style="border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff0000;">
-													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">ABANDON ATTEMPT</span></strong></p>
-												</td>
-											</tr>
-											<tr style="height:15.75pt;">
-												<td style="border-top:0.75pt solid #cccccc; border-right:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#3c78d8;">
-													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">Followup</span></strong></p>
-												</td>
-												<td style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top;">
-													<p style="margin-top:0pt; margin-bottom:0pt; line-height:115%; widows:0; orphans:0; font-size:10pt;"></p>
-												</td>
-												<td style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top;">
-													<p style="margin-top:0pt; margin-bottom:0pt; line-height:115%; widows:0; orphans:0; font-size:10pt;"></p>
-												</td>
-												<td colspan="2" style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff0000;">
-													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">CONVERT TO CSO/OPU</span></strong></p>
-												</td>
-												<td style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#00ff00;">
-													<p class="oi_ti_action_btn">
-														<button
-															name="action_create_oi_ti_platform"
-															class="oi_ti_transparent_btn"
-															type="object"
-															string="START NEW OI/TI ATTEMPT"/>
-													</p>
-												</td>
-												<td style="border-top:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#9900ff;">
-													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">COMPLETE ATTEMPT</span></strong></p>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-									<field name="oi_ti_platform_ids" mode="kanban"/>
+<!--									<table cellspacing="0" cellpadding="0" style="width: 100%;; border:0.75pt solid #cccccc; border-collapse:collapse;">-->
+<!--										<tbody>-->
+<!--											<tr style="height:15.75pt;">-->
+<!--												<td style="border-right:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">-->
+<!--													<p class="oi_ti_action_btn">Add OPK</p>-->
+<!--												</td>-->
+<!--												<td style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">-->
+<!--													<p class="oi_ti_action_btn">Schedule</p>-->
+<!--												</td>-->
+<!--												<td colspan="2" style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">-->
+<!--													<p class="oi_ti_action_btn">Appointment</p>-->
+<!--												</td>-->
+<!--												<td style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">-->
+<!--													<p class="oi_ti_action_btn">Add intervention</p>-->
+<!--												</td>-->
+<!--												<td style="border-right:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f6b26b;">-->
+<!--													<p style="margin-top:0pt; margin-bottom:0pt; line-height:115%; widows:0; orphans:0; font-size:10pt;">Ready to trigger &amp; inseminate</p>-->
+<!--												</td>-->
+<!--												<td style="border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff8282;">-->
+<!--													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">ABANDON ATTEMPT</span></strong></p>-->
+<!--												</td>-->
+<!--											</tr>-->
+<!--											<tr style="height:15.75pt;">-->
+<!--												<td style="border-top:0.75pt solid #cccccc; border-right:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#3c78d8;">-->
+<!--													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">Followup</span></strong></p>-->
+<!--												</td>-->
+<!--												<td style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top;">-->
+<!--													<p style="margin-top:0pt; margin-bottom:0pt; line-height:115%; widows:0; orphans:0; font-size:10pt;"></p>-->
+<!--												</td>-->
+<!--												<td style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top;">-->
+<!--													<p style="margin-top:0pt; margin-bottom:0pt; line-height:115%; widows:0; orphans:0; font-size:10pt;"></p>-->
+<!--												</td>-->
+<!--												<td colspan="2" style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff8282;">-->
+<!--													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">CONVERT TO CSO/OPU</span></strong></p>-->
+<!--												</td>-->
+<!--												<td style="border:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#a6fda6;">-->
+<!--													<p class="oi_ti_action_btn">-->
+<!--														<button-->
+<!--															name="action_create_oi_ti_platform_attempt"-->
+<!--															class="oi_ti_transparent_btn"-->
+<!--															type="object"-->
+<!--															string="START NEW OI/TI ATTEMPT"/>-->
+<!--													</p>-->
+<!--												</td>-->
+<!--												<td style="border-top:0.75pt solid #cccccc; border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#deb1fb;">-->
+<!--													<p class="oi_ti_action_btn"><strong><span style="color:#ffffff;">COMPLETE ATTEMPT</span></strong></p>-->
+<!--												</td>-->
+<!--											</tr>-->
+<!--										</tbody>-->
+<!--									</table>-->
+									<field name="oi_ti_platform_cycle_ids" mode="kanban"/>
 								</div>
 
 
@@ -782,6 +782,7 @@
 												<div class="m-3">
 													<button name="action_proceed_to_ui_ti"
 															type="object"
+															onclick="scrollToElement('io_ti_platform_section')"
 															class="btn btn-primary"
 															attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
 															string="Proceed"/>

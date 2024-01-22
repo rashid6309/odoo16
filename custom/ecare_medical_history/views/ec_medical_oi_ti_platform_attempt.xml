@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!-- Explicit Form View -->
+
+        <record id="view_ec_medical_oi_ti_platform_attempt_form" model="ir.ui.view">
+            <field name="name">ec.medical.oi.ti.platform.attempt.form</field>
+            <field name="model">ec.medical.oi.ti.platform.attempt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet class="container">
+                        <!--                        <group>-->
+                        <!--                            <field name="timeline_id" readonly="1" force_save="1"/>-->
+                        <!--                            <field name="oi_ti_cycle_day"/>-->
+                        <!--                            <field name="repeat_consultation_id" readonly="1" force_save="1"/>-->
+                        <!--                            <field name="oi_ti_diagnosis_ids"-->
+                        <!--                                   widget="many2many_tags"-->
+                        <!--                                   options="{'no_create': True, 'no_open': True}"/>-->
+                        <!--                            <field name="oi_ti_other_diagnosis"/>-->
+                        <!--                            <field name="oi_ti_follicle_left"/>-->
+                        <!--                            <field name="oi_ti_follicle_right"/>-->
+                        <!--                        </group>-->
+                        <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
+                            <tbody>
+                                <tr style="height:15.75pt;">
+                                    <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#cccccc;">
+                                        <p class="oi_ti_text_paragraph_td"/>
+                                    </td>
+                                </tr>
+
+                                <tr style="height:15.75pt;">
+                                    <td colspan="7" class="oi_ti_attempt_preparation_td" style="background-color:#f4cccc;">
+                                        <p class="oi_ti_text_paragraph_td">
+                                            <strong>
+                                                <span style="color:#1f1f1f;">
+                                                    <field name="preparation_method" placeholder="Cycle regime..."/>
+                                                </span>
+                                            </strong></p>
+                                    </td>
+
+                                </tr>
+                                <tr style="height:15.75pt;">
+                                    <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
+                                        <p class="oi_ti_text_paragraph_td">OI day: 3</p>
+                                    </td>
+                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                        <p class="oi_ti_action_btn"><strong>LEFT OVARY</strong></p>
+                                    </td>
+                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                        <p class="oi_ti_action_btn"><strong>RIGHT OVARY</strong></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                        <p class="oi_ti_action_btn"><strong>Signs of ovulation</strong></p>
+                                    </td>
+                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                        <p class="oi_ti_action_btn"><strong>Diagnosis</strong></p>
+                                    </td>
+                                </tr>
+                                <tr style="height:26.25pt;">
+                                    <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
+                                        <p class="oi_ti_text_paragraph_td">LMP</p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                        <p class="oi_ti_text_paragraph_td">Follicle(s)</p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_left"/></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                        <p class="oi_ti_text_paragraph_td">Follicle(s)</p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_right"/></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                        <p class="oi_ti_action_btn"><field name="oi_ti_sign_of_ovulation" placeholder="Sign Of Ovulation"/></p>
+                                    </td>
+                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_diagnosis_ids"
+                                                                                  options="{'no_open': True, 'no_create': True}"
+                                                                                  placeholder="Diagnosis..." widget="many2many_tags"/></p>
+                                    </td>
+                                </tr>
+                                <tr style="height:15.75pt;">
+                                    <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
+                                        <p class="oi_ti_text_paragraph_td"><strong>Cycle day:<field name="oi_ti_cycle_day"/></strong></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                        <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                        <p class="oi_ti_text_paragraph_td">None</p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                        <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                        <p class="oi_ti_text_paragraph_td">None</p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                        <p class="oi_ti_text_paragraph_td">CET: 11</p>
+                                    </td>
+                                    <td rowspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                        <p class="oi_ti_text_paragraph_td">Other diagnoses:<field name="oi_ti_other_diagnosis" placeholder="other diagnosis..."/></p>
+                                    </td>
+                                </tr>
+                                <tr style="height:26.25pt;">
+                                    <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
+                                        <p class="oi_ti_text_paragraph_td"><strong>AFC (R+L):</strong></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                        <p class="oi_ti_text_paragraph_td">Cyst(s)</p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                        <p class="oi_ti_text_paragraph_td">None</p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                        <p class="oi_ti_text_paragraph_td">Cyst(s)</p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                        <p class="oi_ti_text_paragraph_td">None</p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                        <p class="oi_ti_text_paragraph_td">Endometrial character: smooth, triple echo</p>
+                                    </td>
+                                </tr>
+                                <tr style="height:15.75pt;">
+                                    <td colspan="7" style="border-top:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f4cccc;">
+                                        <p class="oi_ti_text_paragraph_td">Comments: <field name="oi_ti_comments" placeholder="comments..."/></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+
+
+        <!-- Explicit Kanban View -->
+
+        <record id="view_ec_medical_oi_ti_platform_attempt_kanban" model="ir.ui.view">
+            <field name="name">ec.medical.oi.ti.platform.attempt.kanban</field>
+            <field name="model">ec.medical.oi.ti.platform.attempt</field>
+            <field name="arch" type="xml">
+                <kanban create="0" class="max_width_kanban">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
+                                    <tbody>
+                                        <tr style="height:15.75pt;">
+                                            <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#cccccc;">
+                                                <p class="oi_ti_text_paragraph_td"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr style="height:15.75pt;">
+                                            <td colspan="7" class="oi_ti_attempt_preparation_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td"><strong><span style="color:#1f1f1f;"><field name="preparation_method"/></span></strong></p>
+                                            </td>
+
+                                        </tr>
+                                        <tr style="height:15.75pt;">
+                                            <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td">OI day: 3</p>
+                                            </td>
+                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                                <p class="oi_ti_action_btn"><strong>LEFT OVARY</strong></p>
+                                            </td>
+                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                                <p class="oi_ti_action_btn"><strong>RIGHT OVARY</strong></p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                                <p class="oi_ti_action_btn"><strong>Signs of ovulation</strong></p>
+                                            </td>
+                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_action_btn"><strong>Diagnosis</strong></p>
+                                            </td>
+                                        </tr>
+                                        <tr style="height:26.25pt;">
+                                            <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td">LMP</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                                <p class="oi_ti_text_paragraph_td">Follicle(s)</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                                <p class="oi_ti_text_paragraph_td">(<field name="oi_ti_follicle_left"/>)</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                                <p class="oi_ti_text_paragraph_td">Follicle(s)</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                                <p class="oi_ti_text_paragraph_td">(<field name="oi_ti_follicle_right"/>)</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                                <p class="oi_ti_action_btn">Free fluid, loss of dominant follicle, corpus luteum</p>
+                                            </td>
+                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td"><field name="oi_ti_diagnosis_ids"/></p>
+                                            </td>
+                                        </tr>
+                                        <tr style="height:15.75pt;">
+                                            <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td"><strong>Cycle day:<field name="oi_ti_cycle_day"/></strong></p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                                <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                                <p class="oi_ti_text_paragraph_td">None</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                                <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                                <p class="oi_ti_text_paragraph_td">None</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                                <p class="oi_ti_text_paragraph_td">CET: 11</p>
+                                            </td>
+                                            <td rowspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td">Other diagnoses:<field name="oi_ti_other_diagnosis"/></p>
+                                            </td>
+                                        </tr>
+                                        <tr style="height:26.25pt;">
+                                            <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td"><strong>AFC (R+L):</strong></p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                                <p class="oi_ti_text_paragraph_td">Cyst(s)</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                                <p class="oi_ti_text_paragraph_td">None</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                                <p class="oi_ti_text_paragraph_td">Cyst(s)</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                                <p class="oi_ti_text_paragraph_td">None</p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                                <p class="oi_ti_text_paragraph_td">Endometrial character: smooth, triple echo</p>
+                                            </td>
+                                        </tr>
+                                        <tr style="height:15.75pt;">
+                                            <td colspan="7" style="border-top:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td">Comments: <field name="oi_ti_comments"/></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    </data>
+</odoo>

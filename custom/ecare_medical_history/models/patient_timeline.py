@@ -138,9 +138,9 @@ class PatientTimeline(models.Model):
 
     ''' OI/TI Fields '''
     oi_ti_platform_enabled = fields.Boolean(string="OI/TI Platform", default=False)
-    oi_ti_platform_ids = fields.One2many(comodel_name="ec.medical.oi.ti.platform",
-                                         inverse_name="timeline_id",
-                                         string="OI/TI Platform")
+    oi_ti_platform_cycle_ids = fields.One2many(comodel_name="ec.medical.oi.ti.platform.cycle",
+                                               inverse_name="cycle_timeline_id",
+                                               string="OI/TI Platform Cycle")
 
     ''' Static methods '''
     @staticmethod
@@ -788,9 +788,9 @@ class PatientTimeline(models.Model):
 
         return False
     
-    def action_create_oi_ti_platform(self):
-        oi_ti_platform_ref = self.env['ec.medical.oi.ti.platform']
-        oi_ti_platform_ref.create_oi_ti_platform(self, self.ec_repeat_consultation_id)
+    def action_create_oi_ti_platform_attempt(self):
+        oi_ti_platform_attempt_ref = self.env['ec.medical.oi.ti.platform.attempt']
+        oi_ti_platform_attempt_ref.create_oi_ti_platform_attempt(self, self.ec_repeat_consultation_id)
 
     def action_proceed_to_ui_ti(self):
         check_red_values = self.ec_repeat_consultation_id.check_field_values_as_red()
@@ -835,8 +835,9 @@ class PatientTimeline(models.Model):
             }
 
         self.oi_ti_platform_enabled = True
-        oi_ti_platform_ref = self.env['ec.medical.oi.ti.platform']
-        oi_ti_platform_ref.create_oi_ti_platform(self, self.ec_repeat_consultation_id)
+        self.action_save_repeat_consultation_section()
+        oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
+        oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
 
     @api.onchange('fsh_level', 'lh_level', 'amh_level')
     def _check_hormonal_profile_level(self):

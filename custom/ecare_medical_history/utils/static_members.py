@@ -1058,3 +1058,45 @@ class StaticMember:
         ('no', 'No'),
         ('awaiting_results', 'Updated results await'),
     ]
+
+    TRIGGER_REGIMEN = [
+        ('ivf_c_10', 'IVF-C 10,000IU S/C'),
+    ]
+
+    INSEMINATION = [
+        ('fresh_iui', 'Fresh IUI'),
+    ]
+
+    INDICATION_OF_IUI = [
+        ('erectile_dysfunction', 'Erectile dysfunction'),
+    ]
+
+    LUTEAL_PHASE_SUPPORT = [
+        ('c_d_2', 'C + D2'),
+    ]
+
+    PREPARATION_METHOD = [
+        ('iui_only', 'IUI only, no ovulation induction agents'),
+        ('ol_clomiphene_50mg', 'Ol with clomiphene citrate, 50mg OD, from cycle days 2 to 5'),
+        ('ol_clomiphene_100mg', 'Ol with clomiphene citrate, 100mg OD, from cycle days 2 to 5'),
+        ('ol_clomiphene_150mg', 'Ol with clomiphene citrate, 150mg OD, from cycle days 2 to 5'),
+        ('ol_clomiphene_200mg', 'Ol with clomiphene citrate, 200mg OD, from cycle days 2 to 5'),
+        ('ol_clomiphene_250mg', 'Ol with clomiphene citrate, 250mg OD, from cycle days 2 to 5'),
+        ('ol_letrozole_2.5mg', 'Ol with Letrozole, 2.5mg OD, from cycle days 2 to 5'),
+        ('ol_letrozole_5mg', 'Ol with Letrozole, 5mg OD, from cycle days 2 to 5'),
+    ]
+
+    SIGN_OF_OVULATION = [
+        ('free_fluid', 'Free fluid'),
+        ('loss_of_dominant_follicles', 'Loss of dominant follicle(s)'),
+        ('irregular_follicles', 'Irregular follicle(s)'),
+        ('corpus_luteum', 'Corpus luteum'),
+    ]
+
+    OI_TI_ATTEMPT_STATE = [
+        ('in_progress', 'Attempt in progress'),
+        ('completed', 'Attempt Completed'),
+        ('abandoned', 'Attempt Abandoned'),
+    ]
+
+

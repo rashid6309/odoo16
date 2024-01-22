@@ -568,5 +568,77 @@ div.repeat_kanban_section_content section{
 .oi_ti_transparent_btn
 {
     background: none;
-    color: #ffffff;
+    color: black !important;
+}
+
+.oi_ti_heading_td
+{
+    border:0.75pt solid #cccccc;
+    padding:2pt 1.62pt;
+    vertical-align:top;
+}
+
+.oi_ti_text_paragraph_td
+{
+    margin-top:0pt;
+    margin-bottom:0pt;
+    line-height:115%;
+    widows:0;
+    orphans:0;
+ }
+
+.oi_ti_computed_values_td
+{
+   border-top:0.75pt solid #cccccc;
+   border-right:0.75pt solid #cccccc;
+   border-bottom:0.75pt solid #cccccc;
+   padding:2pt 1.62pt;
+   vertical-align:top;
+}
+
+.oi_ti_attempt_table_style
+{
+  width: 100%;
+  border:0.75pt solid #cccccc;
+  border-collapse:collapse;
+}
+
+.oi_ti_attempt_diagnosis_td
+{
+  border-top:0.75pt solid #cccccc;
+  border-left:0.75pt solid #cccccc;
+  border-bottom:0.75pt solid #cccccc;
+  padding:2pt 1.62pt;
+  vertical-align:top;
+}
+
+
+.oi_ti_attempt_preparation_td
+{
+  border-top:0.75pt solid #cccccc;
+  border-right-style:solid;
+  border-right-width:0.75pt;
+  border-bottom:0.75pt solid #cccccc;
+  padding-top:2pt;
+  padding-bottom:2pt;
+  vertical-align:top;
+}
+
+#trigger_regimen
+{
+    color: black !important;
+}
+
+#insemination
+{
+    color: black !important;
+}
+
+#indication_of_iui
+{
+    color: black !important;
+}
+#luteal_phase_support
+{
+    color: black !important;
 }

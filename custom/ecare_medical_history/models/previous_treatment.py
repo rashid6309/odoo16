@@ -12,7 +12,7 @@ class MedicalPreviousHistory(models.Model):
 
     type = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_TYPE,
                             string='Type')
-    consultant = fields.Char(string='Consultant')
+    consultant = fields.Many2one(comodel_name='res.consultant', string='Consultant')
     oral_drugs = fields.Text(string='Oral Drugs')
     down_regulation = fields.Text(string='Down Regulation')
     superovulation = fields.Text(string='Superovulation')
