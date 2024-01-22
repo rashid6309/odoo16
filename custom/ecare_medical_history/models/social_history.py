@@ -11,18 +11,18 @@ class SocialHistory(models.Model):
     ''' Female '''
     female_education_id = fields.Many2one(comodel_name="ec.medical.education",
                                           string="Education")
-    female_education = fields.Text(string="Education")
+    female_education = fields.Text(string="Other")
     female_profession_id = fields.Many2one(comodel_name="ec.medical.profession",
                                            string="Profession")
-    female_profession = fields.Text(string="Profession")
+    female_profession = fields.Text(string="Other")
     female_dependence = fields.Text(string="Dependence")
 
     ''' Male '''
 
     male_education_id = fields.Many2one(comodel_name="ec.medical.education",
                                         string="Education")
-    male_education = fields.Text(string="Education")
+    male_education = fields.Text(string="Other")
     male_profession_id = fields.Many2one(comodel_name="ec.medical.profession",
                                          string="Profession")
-    male_profession = fields.Text(string="Profession")
+    male_profession = fields.Text(string="Other")
     male_dependence = fields.Text(string="Dependence")
