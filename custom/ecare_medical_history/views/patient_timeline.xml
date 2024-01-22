@@ -900,6 +900,8 @@
 											<div class="card-block mb-5 pl-4 collapse" id="female_medical_section">
 												<group class="mt-0">
 													<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
+
+													<field name="female_no_medical_history"/>
 													<field name="female_adrenal" placeholder="Add Details" />
 													<field name="female_adrenal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -1712,6 +1714,8 @@
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="male_medical_section">
 												<group class="mt-0">
+
+													<field name="male_no_medical_history"/>
 													<field name="male_adrenal" placeholder="Add Details" />
 													<field name="male_adrenal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -2302,8 +2306,14 @@
 											<div style="text-align: right;">
 												<button name="action_close_first_consultation"
 														type="object"
+														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"
 														class="card-custom-close-button-btn"
 														string="Close First Consultation"/>
+												<button name="action_open_first_consultation"
+														type="object"
+														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"
+														class="card-custom-close-button-btn"
+														string="Open First Consultation"/>
 											</div>
 											<field name="timeline_conclusion" placeholder="Type..."/>
 										</page>
