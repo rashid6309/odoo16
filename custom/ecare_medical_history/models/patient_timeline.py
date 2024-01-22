@@ -17,7 +17,7 @@ class PatientTimeline(models.Model):
 
     _sql_constraints = [
         ('timeline_patient_id_unique', 'unique (timeline_patient_id)',
-         'Multiple patient timelines cant be created, rather open the existing one!'),
+         "Multiple patient timelines can't be created, rather open the existing one!"),
     ]
 
     _inherits = {
