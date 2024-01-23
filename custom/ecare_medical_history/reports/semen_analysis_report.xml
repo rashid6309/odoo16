@@ -70,7 +70,7 @@
              <t t-call="web.html_container">
                 <t t-call="ecare_medical_history.custom_header_footer"/>
                 <t t-foreach="docs" t-as="o">
-<!--                    <t t-call="web.external_layout">-->
+                    <t t-call="web.external_layout">
                         <div class="page">
                             <table style="width: 100%;border-width : 0;border-style: hidden;font-size:16px;font-family: Arial, sans-serif;">
                                 <tr style="border-width : 0;border-style: hidden;list-style-type: none;">
@@ -322,7 +322,7 @@
                             <div><span t-field="o.special_notes"/></div>
 
                         </div>
-<!--                    </t>-->
+                    </t>
                 </t>
             </t>
         </template>
