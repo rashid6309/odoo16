@@ -5,10 +5,9 @@ class FemaleFamilyHistory(models.Model):
     _name = 'ec.female.family.history'
     _description = 'Family (Female) History'
 
-    '''
-    # TODO: Change relation name with "ec_female_family_history_diabetes_rel"
-    
-    '''
+    female_family_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                       ondelete='restrict')
+
     # Female Family History Fields
     female_diabetes_ids = fields.Many2many(comodel_name='ec.family.relation.list',
                                            relation='ec_female_family_history_diabetes_rel',

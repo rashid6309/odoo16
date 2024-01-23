@@ -1,5 +1,7 @@
 from odoo import api, models, fields, _
 from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError
+
 
 
 class FirstConsultation(models.Model):
@@ -8,7 +10,7 @@ class FirstConsultation(models.Model):
 
     _sql_constraints = [
         ('first_consultation_patient_id_unique', 'unique (first_consultation_patient_id)',
-         'Multiple patient timelines cant be created, rather open the existing one!'),
+         "Multiple patient timelines can't be created, rather open the existing one!"),
     ]
 
     _inherits = {'ec.general.history': 'ec_general_examination_id',
@@ -104,6 +106,10 @@ class FirstConsultation(models.Model):
         if first_consultation_id and first_consultation_id.first_consultation_state == 'open':
             first_consultation_id.first_consultation_state = 'closed'
 
+    def action_open_first_consultation(self, first_consultation_id):
+        if first_consultation_id and first_consultation_id.first_consultation_state == 'closed':
+            first_consultation_id.first_consultation_state = 'open'
+
 
     @api.model
     def action_open_patient_first_consultation(self, patient_id: int):
@@ -133,3 +139,12 @@ class FirstConsultation(models.Model):
 
         action.update(value)
         return action
+
+    # Override Methods
+    def write(self, vals):
+        if vals.get('first_consultation_state'):
+            return super(FirstConsultation, self).write(vals)
+        if self.first_consultation_state == 'closed':
+            raise UserError(_('First consultation has already been closed.'))
+        else:
+            return super(FirstConsultation, self).write(vals)

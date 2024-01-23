@@ -93,9 +93,7 @@ odoo.define('ecare_medical_history.patient_banner', function (require) {
         }
 
         async _onEditPatientProfile() {
-//            console.log(this);
-            await this.props.record.save();
-
+        await this.props.record.save();
             this.action.doActionButton({
                 type: "object",
                 resId: this.props.value[0],

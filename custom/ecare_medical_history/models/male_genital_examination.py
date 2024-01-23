@@ -7,6 +7,10 @@ class GenitalExamination(models.Model):
     _description = "Genital Examination"
     _rec_name = 'skin_condition'
 
+    genital_examination_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                     ondelete='restrict')
+
+
     ''' Data-members '''
     skin_condition = fields.Char(string="Skin Condition")
 
@@ -20,9 +24,9 @@ class GenitalExamination(models.Model):
     # supermatic_cord_tender = fields.Selection(selection=StaticMember.SIDE, )
 
     testicular_size_right = fields.Selection(selection=StaticMember.SIZE, )
-    testicular_motility_right = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility')
+    testicular_motility_right = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility Right')
     testicular_size_left = fields.Selection(selection=StaticMember.SIZE, )
-    testicular_motility_left = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility')
+    testicular_motility_left = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility Left')
 
     testicular_size_motility = fields.Selection(selection=StaticMember.CHOICE_YES_NO, )
 

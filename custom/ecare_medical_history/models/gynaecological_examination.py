@@ -7,6 +7,8 @@ class MedicalGynaecologicalExamination(models.Model):
     _name = "ec.medical.gynaecological.examination"
     _description = "Patient Gynaecological Examination"
 
+    gynaecological_examination_patient_id = fields.Many2one(comodel_name="ec.medical.patient", ondelete='restrict')
+
     consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
 
     vulva_vagina = fields.Selection(selection=StaticMember.UTERUS_SIZE, string='Vulva/Vagina')

@@ -2,6 +2,7 @@ from datetime import datetime
 
 from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
+import re
 from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 
 from odoo.exceptions import AccessError, UserError, ValidationError
@@ -16,7 +17,7 @@ class PatientTimeline(models.Model):
 
     _sql_constraints = [
         ('timeline_patient_id_unique', 'unique (timeline_patient_id)',
-         'Multiple patient timelines cant be created, rather open the existing one!'),
+         "Multiple patient timelines can't be created, rather open the existing one!"),
     ]
 
     _inherits = {
@@ -393,6 +394,9 @@ class PatientTimeline(models.Model):
 
     def action_close_first_consultation(self):
         return self.env['ec.first.consultation'].action_close_first_consultation(self.ec_first_consultation_id)
+
+    def action_open_first_consultation(self):
+        return self.env['ec.first.consultation'].action_open_first_consultation(self.ec_first_consultation_id)
 
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
@@ -787,7 +791,7 @@ class PatientTimeline(models.Model):
             return True
 
         return False
-    
+
     def action_create_oi_ti_platform_attempt(self):
         oi_ti_platform_attempt_ref = self.env['ec.medical.oi.ti.platform.attempt']
         oi_ti_platform_attempt_ref.create_oi_ti_platform_attempt(self, self.ec_repeat_consultation_id)
@@ -854,4 +858,110 @@ class PatientTimeline(models.Model):
                 record.first_consultation_state = 'decision_pending'
                 raise ValidationError(_("Hormonal Profile values are not in range. "
                                         "Please seek senior doctor's approval."))
+    @api.onchange('repeat_pregnancy_temp')
+    def _check_float_input_temp(self):
+        if self.repeat_pregnancy_temp and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_temp):
+            raise UserError(f"Please enter a numeric value in pregnancy temperature.")
+            # raise UserError(f"Please enter a numeric value in pregnancy temperature with up to 2 decimal points.")
 
+    @api.onchange('repeat_pregnancy_hr')
+    def _check_float_input_hr(self):
+        if self.repeat_pregnancy_hr and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_hr):
+            raise UserError(f"Please enter a numeric value in pregnancy HR.")
+
+    @api.onchange('repeat_pregnancy_bp_upper')
+    def _check_float_input_bp_upper(self):
+        if self.repeat_pregnancy_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_bp_upper):
+            raise UserError(f"Please enter a numeric value in pregnancy BP (Upper).")
+
+    @api.onchange('repeat_pregnancy_bp_lower')
+    def _check_float_input_bp_lower(self):
+        if self.repeat_pregnancy_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_bp_lower):
+            raise UserError(f"Please enter a numeric value in pregnancy BP (Lower).")
+
+    @api.onchange('repeat_pregnancy_rr')
+    def _check_float_input_rr(self):
+        if self.repeat_pregnancy_rr and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_rr):
+            raise UserError(f"Please enter a numeric value in pregnancy RR.")
+
+    @api.onchange('repeat_pregnancy_embryos_replaced')
+    def _check_input_repeat_pregnancy_embryos_replaced(self):
+        if self.repeat_pregnancy_embryos_replaced and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_embryos_replaced):
+            raise UserError(f"Please enter a numeric value in pregnancy embryos replaced!")
+
+    @api.onchange('female_weight')
+    def _check_input_female_weight(self):
+        if self.female_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_weight):
+            raise UserError(f"Please enter a numeric value in female weight!")
+
+    @api.onchange('female_height')
+    def _check_input_female_height(self):
+        if self.female_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_height):
+            raise UserError(f"Please enter a numeric value in female height!")
+
+    @api.onchange('female_bmi')
+    def _check_input_female_bmi(self):
+        if self.female_bmi and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_bmi):
+            raise UserError(f"Please enter a numeric value in female bmi!")
+
+    @api.onchange('female_bp_upper')
+    def _check_input_female_bp_upper(self):
+        if self.female_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_bp_upper):
+            raise UserError(f"Please enter a numeric value in female bp upper!")
+
+    @api.onchange('female_bp_lower')
+    def _check_input_female_bp_lower(self):
+        if self.female_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_bp_lower):
+            raise UserError(f"Please enter a numeric value in female bp lower!")
+
+    @api.onchange('female_pulse')
+    def _check_input_female_pulse(self):
+        if self.female_pulse and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_pulse):
+            raise UserError(f"Please enter a numeric value in female pulse!")
+
+    @api.onchange('female_temperature')
+    def _check_input_female_temperature(self):
+        if self.female_temperature and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_temperature):
+            raise UserError(f"Please enter a numeric value in female temperature!")
+
+    @api.onchange('male_weight')
+    def _check_input_male_weight(self):
+        if self.male_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_weight):
+            raise UserError(f"Please enter a numeric value in male weight!")
+
+    @api.onchange('male_height')
+    def _check_input_male_height(self):
+        if self.male_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_height):
+            raise UserError(f"Please enter a numeric value in male height!")
+
+    @api.onchange('male_bmi')
+    def _check_input_male_bmi(self):
+        if self.male_bmi and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bmi):
+            raise UserError(f"Please enter a numeric value in male bmi!")
+
+    @api.onchange('male_bp_upper')
+    def _check_input_male_bp_upper(self):
+        if self.male_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bp_upper):
+            raise UserError(f"Please enter a numeric value in male bp upper!")
+
+    @api.onchange('male_bp_lower')
+    def _check_input_male_bp_lower(self):
+        if self.male_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bp_lower):
+            raise UserError(f"Please enter a numeric value in male bp lower!")
+
+    @api.onchange('male_pulse')
+    def _check_input_male_pulse(self):
+        if self.male_pulse and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_pulse):
+            raise UserError(f"Please enter a numeric value in male pulse!")
+
+    @api.onchange('male_temperature')
+    def _check_input_male_temperature(self):
+        if self.male_temperature and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_temperature):
+            raise UserError(f"Please enter a numeric value in male temperature!")
+
+    @api.onchange('biological_female_dob_check', 'biological_male_dob_check')
+    def _check_same_as_above_functionality(self):
+        if self.biological_female_dob_check:
+            self.biological_female_dob = None
+        if self.biological_male_dob_check:
+            self.biological_male_dob = None
