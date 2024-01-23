@@ -860,3 +860,10 @@ class PatientTimeline(models.Model):
     def _check_input_male_temperature(self):
         if self.male_temperature and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_temperature):
             raise UserError(f"Please enter a numeric value in male temperature!")
+
+    @api.onchange('biological_female_dob_check', 'biological_male_dob_check')
+    def _check_same_as_above_functionality(self):
+        if self.biological_female_dob_check:
+            self.biological_female_dob = None
+        if self.biological_male_dob_check:
+            self.biological_male_dob = None
