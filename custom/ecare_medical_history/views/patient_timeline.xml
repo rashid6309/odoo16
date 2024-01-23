@@ -335,7 +335,7 @@
 											</group>
 
 											<div class="d-flex" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
-										('repeat_pelvic_examination_state', '=', 'no')]}">
+										('repeat_pelvic_examination_state', '!=', 'yes')]}">
 												<field name="inspection_only"/>
 												<label class="custom-text-align" for="inspection_only"/>
 
