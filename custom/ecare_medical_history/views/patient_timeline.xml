@@ -1626,7 +1626,7 @@
 														<field name="gynaecological_examination_ps_selection" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
 														<field name="gynaecological_examination_ps_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
 													</div>
-													<h4 style="width:200%;">USG (Abd/Vag)</h4>
+													<h4 style="width:200%;">Ultrasound</h4>
 													<div/>
 													<field name="gynaecological_ultrasound_type"
 														   widget="radio"
