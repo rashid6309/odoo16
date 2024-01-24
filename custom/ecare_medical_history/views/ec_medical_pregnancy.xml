@@ -24,7 +24,7 @@
                         <group string="Diagnosis:">
                             <field name="repeat_pregnancy_diagnosis"/>
                             <field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
-                            <field name="repeat_pregnancy_notes"/>
+                            <field name="repeat_pregnancy_notes" widget="html"/>
                             <field name="repeat_pregnancy_scanned" widget="radio"/>
                             <field name="repeat_pregnancy_significant_findings"/>
                         </group>

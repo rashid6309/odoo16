@@ -178,7 +178,7 @@
 													<field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
 												</group>
 												<group>
-													<field name="repeat_pregnancy_notes"/>
+													<field name="repeat_pregnancy_notes" widget="html"/>
 													<field name="repeat_pregnancy_scanned" widget="radio"/>
 													<field name="repeat_pregnancy_significant_findings"/>
 												</group>
