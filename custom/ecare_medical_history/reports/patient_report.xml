@@ -28,14 +28,14 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding:0% 0% 0% 0%; border-width : 0;border-style: hidden;"><b>Date:</b></td>
+                                    <td style="padding:0% 0% 0% 0%; border-width : 0;border-style: hidden;"><b>Date</b></td>
                                     <td style="padding:0% 0% 0% 0%; border-width : 0;border-style: hidden;width:30%;"><span t-esc="o.date.strftime('%d %b %Y')"/></td>
                                     <td style="padding:0% 0% 0% 0%; border-width : 0;border-style: hidden;"><b>Lab No.:</b></td>
                                     <td style="padding:0% 0% 0% 0%; border-width : 0;border-style: hidden;"><span t-field="o.lab_number"/></td>
                                 </tr>
                                 <tr>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; ;">
-                                        <b>Preparation:</b>
+                                        <b>Preparation</b>
                                     </td>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; " colspan="2">
                                         <t t-foreach="o.preparation_ids" t-as="item">
@@ -45,7 +45,7 @@
                                 </tr>
                                 <tr>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; " colspan="1">
-                                        <b>Sample Produced at Lab:</b>
+                                        <b>Sample Produced at Lab</b>
                                     </td>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; ">
                                         <span t-field="o.sample_produced_at_lab"/>
@@ -53,7 +53,7 @@
                                 </tr>
                                 <tr>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; " colspan="1">
-                                        <b>Repeat Semen Analysis:</b>
+                                        <b>Repeat Semen Analysis</b>
                                     </td>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; ">
                                         <span t-field="o.repeat_semen_analysis"/>
@@ -61,7 +61,7 @@
                                 </tr>
                                 <tr>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;" colspan="1">
-                                        <b>Freezing:</b>
+                                        <b>Freezing</b>
                                     </td>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; ">
                                         <span t-field="o.freezing"/>
@@ -108,7 +108,7 @@
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; ">
                                         Volume:
                                     </td>
-                                    <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; margin-left: 20px;width:30%;">
+                                    <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%; margin-left: 20px;width:25%;">
                                         <span t-field="o.volume"/>
                                         <span> ml (Range: 1.5 - 5)</span>
                                     </td>
@@ -181,7 +181,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%; width:30%;" colspan="1">
+                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%; width:25%;" colspan="1">
                                         <h3 style=" margin-bottom: -2%; color: black; font-family: Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 14pt;">Preparation Method:</h3>
                                     </td>
                                     <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;" colspan="2">
@@ -260,7 +260,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding:0% 0% 0% 0%;"/>
+                                    <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;"/>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;">
                                         No. straws: <span t-field="o.sperm_cryopreservation_strawe"/>
                                     </td>
