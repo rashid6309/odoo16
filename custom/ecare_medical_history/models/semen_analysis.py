@@ -101,6 +101,7 @@ class SemenAnalysis(models.Model):
                                         string='Suitable For', domain="[('type', '=', 'suitable_for')]")
 
     # sperm_cryopreservation = fields.Char()
+    sperm_cryopreservation_recommended = fields.Boolean('Recommended')
     sperm_cryopreservation_consented = fields.Boolean('Cryopreservation Consented')
     sperm_cryopreservation_strawe = fields.Char('Cryopreservation Strawe')
     sperm_cryopreservation_code = fields.Char('Cryopreservation Code')

@@ -235,6 +235,9 @@
                                     <td style="padding:0% 0% 0% 0%;width:30%;vertical-align: text-top;"><b>Sperm Cryopreservation:</b></td>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;">
                                         <div>
+                                            Recommended: <span t-if="o.sperm_cryopreservation_recommended">Yes</span><span t-if="not o.sperm_cryopreservation_recommended">No</span>
+                                        </div>
+                                        <div>
                                             Consented: <span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span>
                                         </div>
                                         <div>

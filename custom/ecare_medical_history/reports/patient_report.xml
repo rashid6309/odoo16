@@ -262,6 +262,12 @@
                                 <tr>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;"/>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;">
+                                        Recommended: <span t-if="o.sperm_cryopreservation_recommended">Yes</span><span t-if="not o.sperm_cryopreservation_recommended">No</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;"/>
+                                    <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;">
                                         No. straws: <span t-field="o.sperm_cryopreservation_strawe"/>
                                     </td>
                                 </tr>
