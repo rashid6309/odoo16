@@ -101,8 +101,7 @@
 										<button name="action_create_repeat_consultation"
 												type="object"
 												class="btn btn-primary"
-												attrs="{'invisible': ['|', ('show_repeat_section_state', '=', True),
-												('first_consultation_state', '=', 'open')]}"
+												attrs="{'invisible': [('show_repeat_section_state', '=', True)]}"
 												onclick="showRepeatConsultationSection('repeat_consultation_section')">
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
