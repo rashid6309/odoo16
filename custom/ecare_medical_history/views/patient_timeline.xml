@@ -1659,6 +1659,10 @@
 																	</field>
 																</div>
 															</div>
+															<div  class="d-flex">
+																<label for="left_ovary_not_visualised" string="Not Visualised"/>
+																<field name="left_ovary_not_visualised"/>
+															</div>
 														</div>
 													</div>
 
@@ -1687,6 +1691,10 @@
 																		</tree>
 																	</field>
 																</div>
+															</div>
+															<div  class="d-flex">
+																<label for="right_ovary_not_visualised" string="Not Visualised"/>
+																<field name="right_ovary_not_visualised"/>
 															</div>
 														</div>
 													</div>
@@ -1807,7 +1815,7 @@
 													<field name="male_adrenal" attrs="{'readonly': [('male_no_medical_history', '=', True)]}" placeholder="Add Details" />
 													<field name="male_adrenal_date" attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_anti_phospholipid_syndrome" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1815,7 +1823,7 @@
 													<field name="male_anti_phospholipid_syndrome_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_autoimmune_disease"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1823,7 +1831,7 @@
 													<field name="male_autoimmune_disease_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_blood_transfusion" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1831,7 +1839,7 @@
 													<field name="male_blood_transfusion_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year" />
+														   string="Year" />
 
 													<field name="male_complications_pr"
 														   placeholder="Complications" string="" default=" " attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
@@ -1842,7 +1850,7 @@
 													<field name="male_cardiac_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_diabetes_type" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1853,7 +1861,7 @@
 													<field name="male_diabetes_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_dvt"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1861,7 +1869,7 @@
 													<field name="male_dvt_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_gall_bladder"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1869,7 +1877,7 @@
 													<field name="male_gall_bladder_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_gastric"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1877,7 +1885,7 @@
 													<field name="male_gastric_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_gynaecology"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1885,7 +1893,7 @@
 													<field name="male_gynaecology_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_haematology"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1893,7 +1901,7 @@
 													<field name="male_haematology_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_heart_disease"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1901,7 +1909,7 @@
 													<field name="male_heart_disease_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_hyper_tension"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1909,7 +1917,7 @@
 													<field name="male_hyper_tension_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_intestinal"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1917,7 +1925,7 @@
 													<field name="male_intestinal_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_janduice"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1925,7 +1933,7 @@
 													<field name="male_janduice_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_liver"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1933,7 +1941,7 @@
 													<field name="male_liver_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_low_urinary_tract"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1941,7 +1949,7 @@
 													<field name="male_low_urinary_tract_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_malignancy"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1949,7 +1957,7 @@
 													<field name="male_malignancy_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_neurological"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1957,7 +1965,7 @@
 													<field name="male_neurological_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_renal"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1965,7 +1973,7 @@
 													<field name="male_renal_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_respiratory"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1973,7 +1981,7 @@
 													<field name="male_respiratory_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_smoking"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1981,7 +1989,7 @@
 													<field name="male_smoking_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_alcohol"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1989,7 +1997,7 @@
 													<field name="male_alcohol_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_skeletal"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -1997,7 +2005,7 @@
 													<field name="male_skeletal_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_thyroid_TYPE"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -2009,7 +2017,7 @@
 													<field name="male_thyroid_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_urinary_infection"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -2017,7 +2025,7 @@
 													<field name="male_urinary_infection_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 
 													<field name="male_medical_history_others"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
@@ -2025,7 +2033,7 @@
 													<field name="male_medical_history_others_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														    string="Year"  />
+														   string="Year"  />
 												</group>
 											</div>
 
@@ -2330,7 +2338,7 @@
 													<field name="testicular_motility_right"  widget="radio" options="{'horizontal': True}"/>
 													<field name="testicular_size_left" widget="radio" options="{'horizontal': True}"/>
 													<field name="testicular_motility_left"  widget="radio" options="{'horizontal': True}"/>
-<!--													<field name="testicular_size_motility" widget="radio" options="{'horizontal': True}"/>-->
+													<!--													<field name="testicular_size_motility" widget="radio" options="{'horizontal': True}"/>-->
 													<field name="ec_genital_examination_comment"/>
 												</group>
 											</div>
