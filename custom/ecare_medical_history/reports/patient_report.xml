@@ -181,7 +181,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%; width:25%;" colspan="1">
+                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%; width:28%;" colspan="1">
                                         <h3 style=" margin-bottom: -2%; color: black; font-family: Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 14pt;">Preparation Method:</h3>
                                     </td>
                                     <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;" colspan="2">
@@ -256,13 +256,13 @@
                                         <b>Sperm Cryopreservation:</b>
                                     </td>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;">
-                                        Consented: <span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span>
+                                        Recommended: <span t-if="o.sperm_cryopreservation_recommended">Yes</span><span t-if="not o.sperm_cryopreservation_recommended">No</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;"/>
                                     <td style="border-width : 0;border-style: hidden;padding:0% 0% 0% 0%;">
-                                        Recommended: <span t-if="o.sperm_cryopreservation_recommended">Yes</span><span t-if="not o.sperm_cryopreservation_recommended">No</span>
+                                        Consented: <span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span>
                                     </td>
                                 </tr>
                                 <tr>
