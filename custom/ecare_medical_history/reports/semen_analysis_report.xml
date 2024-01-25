@@ -263,7 +263,7 @@
                                     <td style="border: 1pt solid #000000; padding: 5px;"><h3 style="margin-bottom: 0%; color: black; font-family: Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 16pt;">Sperm Progression</h3></td>
                                     <td style="border: 1pt solid #000000; padding: 5px;"><h3 style="margin-bottom: 0%; color: black; font-family: Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 16pt;">Sperm Morphology</h3></td>
                                 </tr>
-                                <tr style="border-width : 0;border-style: hidden;border-left: 1px solid black;border-right: 1px solid black;">
+                                <tr style="border-width : 0;border-style: hidden;border-left: 1px solid black;border-right: 1px solid black;border-top: 1px solid black;">
                                     <td style="border-right: 1pt solid #000000; padding: 5px;">
                                         <div style="float: left; width: 50%;">F Forward:</div>
                                         <div t-if="o.progression_f_forward" style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_f_forward"/>%</div>
