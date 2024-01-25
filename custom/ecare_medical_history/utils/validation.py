@@ -7,6 +7,7 @@ from odoo import fields
 class Validation:
 
     REGEX_FLOAT_2_DP = '^[0-9]+(\.[0-9]{1,2})?$'
+    REGEX_INTEGER_SIMPLE = '^[0-9]+(\[0-9])?$'
 
     @staticmethod
     def _date_validation(date):
