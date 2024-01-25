@@ -19,6 +19,9 @@
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
                         <div class="page">
+                            <div class="row" style="margin-top: 3%;">
+                                <h3 style="padding-bottom: 0.2%; border-bottom-style: solid; border-bottom-width: 3.1px; width: auto;color: black; font-family: Arial, sans-serif; font-style: normal;font-weight: bold;margin-left:30%;">Semen Analysis</h3>
+                            </div>
                             <table style="width: 100%;border-width : 0;border-style: hidden;font-size:16px;font-family: Arial, sans-serif;">
                                 <tr style="border-width : 0;border-style: hidden;list-style-type: none;">
                                     <td style="border-width : 0;border-style: hidden;padding-top:1%;text-align: right;" colspan="4">
