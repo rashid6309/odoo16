@@ -632,19 +632,23 @@
 									</div>
 									<section>
 										<script>
-											document.getElementById("toggleButton").addEventListener("click", function() {
-											var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
+												var toggleButton = document.getElementById("toggleButton");
 
-											repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
-											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
+												if (toggleButton) {
+													toggleButton.addEventListener("click", function() {
+														var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
 
-											collapseDivs.forEach(function(collapseDiv) {
-											collapseDiv.classList.add("show");
-											});
-											});
-											});
+														repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
+															var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
+
+															collapseDivs.forEach(function(collapseDiv) {
+																collapseDiv.classList.add("show");
+															});
+														});
+													});
+												}
 										</script>
-										<a style="float:right" class="m-2" id="toggleButton" href="#">
+										<a style="float:right" class="m-2" id="toggleButton" attrs="{'invisible': [('show_repeat_consultation_history_section', '=', False)]}" href="#">
 											<i class="fa fa-expand fa-2x" aria-hidden="true"/>
 										</a>
 										<field name="repeat_consultation_ids"
