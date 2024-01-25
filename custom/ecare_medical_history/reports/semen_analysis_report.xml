@@ -310,11 +310,11 @@
                                     </td>
                                 </tr>
                                 <tr style="border-width : 0;border-style: hidden;border-left: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;">
-                                    <td style="border-right: 1pt solid #000000;padding: 5px;width: 50%;vertical-align:top;">
+                                    <td style="border-right: 1pt solid #000000;padding: 5px;width: 50%;vertical-align:top;border-bottom: 1px solid black;">
                                         <div style="float: left; width: 50%;">Dead:</div>
                                         <div t-if="o.progression_dead" style="float: right; width: 50%; text-align: right;"><span t-field="o.progression_dead"/>%</div>
                                     </td>
-                                    <td style=" padding: 5px;width: 50%;">
+                                    <td style=" padding: 5px;width: 50%;border-bottom: 1px solid black;">
                                         <div style="float: left; width: 50%;margin-left:10%;">Cephalic:</div>
                                         <div t-if="o.cephalic" style="float: right; width: 40%; text-align: right;"><span t-field="o.cephalic"/>%</div>
                                         <div style="float: left; width: 50%;margin-left:10%;margin-top:3%;">Mid Piece:</div>
