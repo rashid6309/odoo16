@@ -36,7 +36,7 @@ class FemaleObstetricsHistory(models.Model):
     complication_post_partum = fields.Text(string='Complications in Post-partum')
     complication_pregnancy = fields.Text(string='Complication In Pregnancy')
 
-    gender = fields.Selection(string='Child Gender', selection=StaticMember.GENDER, required=True)
+    gender = fields.Selection(string='Child Gender', selection=StaticMember.GENDER)
     weight = fields.Selection(string='Child Weight', selection=StaticMember.WEIGHT)
     health = fields.Selection(string='Child Health', selection=StaticMember.HEALTH)
     child_health_issues = fields.Text(string='Child Health Issues')

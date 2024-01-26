@@ -2501,6 +2501,18 @@
 
 								<!--								Previous Treatment -->
 
+								<div class="d-flex scroll-to card-header-custom patient_attachment_container mt-2" id="patient_attachment_section_link">
+									<div class="col-10">
+										<a data-bs-toggle="collapse" data-bs-target="#patient_attachment_section" href="#">
+											<h4 class="mt-2 mb-0">Patient Documents</h4></a>
+									</div>
+								</div>
+								<div class="card-block mb-5 pl-4 collapse asa" id="patient_attachment_section">
+									<field name="patient_attachment_ids" nolabel="1" mode="tree"/>
+								</div>
+
+
+
 							</div>
 							<div class="col-md-2">
 								<div class="card-custom1-right">

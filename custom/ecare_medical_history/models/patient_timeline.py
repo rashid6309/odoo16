@@ -137,6 +137,10 @@ class PatientTimeline(models.Model):
     ''' Data members '''
     timeline_conclusion = fields.Html(string="Conclusion")
 
+    patient_attachment_ids = fields.One2many(string='Attachments',
+                                         comodel_name='ec.medical.patient.attachment',
+                                         inverse_name='patient_attachment_timeline_id')
+
     ''' Static methods '''
     @staticmethod
     def _compute_patient_family_history(family_history, fields_to_process):

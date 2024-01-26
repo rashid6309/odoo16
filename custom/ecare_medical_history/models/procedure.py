@@ -10,8 +10,8 @@ class PatientProcedures(models.Model):
     female_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', ondelete='restrict')
     male_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', ondelete="restrict")
 
-    details = fields.Char('Details')
-    date_on = fields.Date('Date On', required=True)
+    details = fields.Char('Details', required=True)
+    date_on = fields.Date('Date On')
 
     surgical_year_id = fields.Many2one(
         comodel_name="ec.medical.year",
