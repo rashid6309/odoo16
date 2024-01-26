@@ -61,11 +61,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row" style="margin-top: 3%;">
-                        <h3 style="padding-bottom: 0.2%; border-bottom-style: solid; border-bottom-width: 3.1px; width: auto;color: black; font-family: Arial, sans-serif; font-style: normal; margin-left: 15%; font-weight: bold;">Semen Analysis</h3>
-                    </div>
-
                 </div>
             </div>
         </template>
@@ -187,7 +182,7 @@
                                     <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"><span t-field="o.other_observation"/></td>
                                 </tr>
                                 <tr style="border-width : 0;border-style: hidden;">
-                                    <td style="padding-top:2%;border-width : 0;border-style: hidden;"><b>PREPARATION METHOD:</b></td>
+                                    <td style="padding:1% 0% 0% 0%;border-width : 0;border-style: hidden;"><b>PREPARATION METHOD:</b></td>
                                     <td style="padding-top:2%;border-width : 0;border-style: hidden;" colspan="2">
                                         <b><span t-field="o.method"/></b>
                                     </td>
@@ -227,7 +222,7 @@
                                     <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"><span t-field="o.comments"/></td>
                                 </tr>
                                 <tr style="border-width : 0;border-style: hidden;">
-                                    <td style="padding:1% 0% 0% 0%;vertical-align: top;"><b>Suitable For</b></td>
+                                    <td style="padding:2% 0% 0% 0%;vertical-align: top;"><b>Suitable For</b></td>
                                     <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">
                                         <t t-foreach="o.suitable_for_ids" t-as="item">
                                             <span style="margin-right:5%;"><t t-esc="item.name"/>
@@ -260,8 +255,8 @@
                                     <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"><span t-field="o.seminologist"/></td>
                                 </tr>
                             </table>
-                            <div>
-                                <h3 style="margin-bottom: -2%; color: black; font-family: Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 16pt;">Detail Sperm Assessment</h3>
+                            <div style="padding:2% 0% 0% 0%;">
+                                <h3 style="margin-bottom: 2%; color: black; font-family: Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 16pt;">Detail Sperm Assessment</h3>
                                 <p style="font-size: 12px;margin-top: 2%; margin-left: 0.1%;">Note: This detailed description is intended for a specialist in IVF only</p>
                             </div>
                             <p style=" margin-bottom: 0%;font-size: 11px;">* ICSI reference</p>
@@ -328,7 +323,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div><h3 style="color: black; font-family: Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 16pt;">SPECIAL NOTES:</h3></div>
+                            <div style="padding:3% 0% 0% 0%;"><h3 style="color: black; font-family: Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 16pt;">SPECIAL NOTES:</h3></div>
                             <div><span t-field="o.special_notes"/></div>
 
                         </div>

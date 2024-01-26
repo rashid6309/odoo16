@@ -93,10 +93,12 @@ class PatientTimeline(models.Model):
     patient_male_dob = fields.Date(string='CNIC DOB', store=True,
                                    related="timeline_patient_id.husband_dob")
 
-    first_consultation_state = fields.Selection([('open', 'In Progress'),
-                                                 ('closed', 'Done')],
-                                                string='State',
-                                                related="ec_first_consultation_id.first_consultation_state")
+    # first_consultation_state = fields.Selection([('open', 'In Progress'),
+    #                                              ('closed', 'Done'),
+    #                                              ('decision_pending', "Decision Pending"),
+    #                                              ],
+    #                                             string='State',
+    #                                             related="ec_first_consultation_id.first_consultation_state")
     ''' One2Many'''
 
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
@@ -424,6 +426,7 @@ class PatientTimeline(models.Model):
 
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
+        self.ec_repeat_consultation_id.first_consultation_state = 'closed'
 
     @api.onchange('female_lmp')
     def _check_female_lmp_date(self):
@@ -843,17 +846,17 @@ class PatientTimeline(models.Model):
 
     @api.onchange('male_bp_upper')
     def _check_input_male_bp_upper(self):
-        if self.male_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bp_upper):
+        if self.male_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.male_bp_upper):
             raise UserError(f"Please enter a numeric value in male bp upper!")
 
     @api.onchange('male_bp_lower')
     def _check_input_male_bp_lower(self):
-        if self.male_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bp_lower):
+        if self.male_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.male_bp_lower):
             raise UserError(f"Please enter a numeric value in male bp lower!")
 
     @api.onchange('male_pulse')
     def _check_input_male_pulse(self):
-        if self.male_pulse and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_pulse):
+        if self.male_pulse and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.male_pulse):
             raise UserError(f"Please enter a numeric value in male pulse!")
 
     @api.onchange('male_temperature')
