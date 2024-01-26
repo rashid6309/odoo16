@@ -6,6 +6,8 @@ class PregnancyForm(models.Model):
     _name = 'ec.medical.pregnancy.data'
     _description = 'Pregnancy Data'
 
+    pregnancy_patient_id = fields.Many2one(comodel_name="ec.medical.patient")
+
     pregnancy_repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
                                                        readonly=True,
                                                        string='Repeat Consultation')
