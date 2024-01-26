@@ -843,17 +843,17 @@ class PatientTimeline(models.Model):
 
     @api.onchange('male_bp_upper')
     def _check_input_male_bp_upper(self):
-        if self.male_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bp_upper):
+        if self.male_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.male_bp_upper):
             raise UserError(f"Please enter a numeric value in male bp upper!")
 
     @api.onchange('male_bp_lower')
     def _check_input_male_bp_lower(self):
-        if self.male_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bp_lower):
+        if self.male_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.male_bp_lower):
             raise UserError(f"Please enter a numeric value in male bp lower!")
 
     @api.onchange('male_pulse')
     def _check_input_male_pulse(self):
-        if self.male_pulse and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_pulse):
+        if self.male_pulse and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.male_pulse):
             raise UserError(f"Please enter a numeric value in male pulse!")
 
     @api.onchange('male_temperature')
