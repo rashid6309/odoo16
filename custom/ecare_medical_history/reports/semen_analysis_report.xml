@@ -61,11 +61,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row" style="margin-top: 3%;">
-                        <h3 style="padding-bottom: 0.2%; border-bottom-style: solid; border-bottom-width: 3.1px; width: auto;color: black; font-family: Arial, sans-serif; font-style: normal; margin-left: 15%; font-weight: bold;">Semen Analysis</h3>
-                    </div>
-
                 </div>
             </div>
         </template>
