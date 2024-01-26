@@ -632,23 +632,19 @@
 									</div>
 									<section>
 										<script>
-												var toggleButton = document.getElementById("toggleButton");
+											document.getElementById("toggleButton").addEventListener("click", function() {
+											var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
 
-												if (toggleButton) {
-													toggleButton.addEventListener("click", function() {
-														var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
+											repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
+											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
-														repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
-															var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
-
-															collapseDivs.forEach(function(collapseDiv) {
-																collapseDiv.classList.add("show");
-															});
-														});
-													});
-												}
+											collapseDivs.forEach(function(collapseDiv) {
+											collapseDiv.classList.add("show");
+											});
+											});
+											});
 										</script>
-										<a style="float:right" class="m-2" id="toggleButton" attrs="{'invisible': [('show_repeat_consultation_history_section', '=', False)]}" href="#">
+										<a style="float:right" class="m-2" id="toggleButton" href="#">
 											<i class="fa fa-expand fa-2x" aria-hidden="true"/>
 										</a>
 										<field name="repeat_consultation_ids"
@@ -2485,18 +2481,18 @@
 										</page>
 
 										<page string="Conclusion" name="conclusion">
-											<div style="text-align: right;">
-												<button name="action_close_first_consultation"
-														type="object"
-														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"
-														class="card-custom-close-button-btn"
-														string="Close First Consultation"/>
-												<button name="action_open_first_consultation"
-														type="object"
-														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"
-														class="card-custom-close-button-btn"
-														string="Open First Consultation"/>
-											</div>
+<!--											<div style="text-align: right;">-->
+<!--												<button name="action_close_first_consultation"-->
+<!--														type="object"-->
+<!--														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"-->
+<!--														class="card-custom-close-button-btn"-->
+<!--														string="Close First Consultation"/>-->
+<!--												<button name="action_open_first_consultation"-->
+<!--														type="object"-->
+<!--														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"-->
+<!--														class="card-custom-close-button-btn"-->
+<!--														string="Open First Consultation"/>-->
+<!--											</div>-->
 											<field name="timeline_conclusion" placeholder="Type..."/>
 										</page>
 
