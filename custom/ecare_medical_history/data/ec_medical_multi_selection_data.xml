@@ -169,10 +169,10 @@
             <field name="type">suitable_for</field>
         </record>
 
-        <record model="ec.medical.multi.selection" id="suitable_for_recommended">
-            <field name="name">Recommended</field>
-            <field name="type">suitable_for</field>
-        </record>
+<!--        <record model="ec.medical.multi.selection" id="suitable_for_recommended">-->
+<!--            <field name="name">Recommended</field>-->
+<!--            <field name="type">suitable_for</field>-->
+<!--        </record>-->
 
 <!--        Contraception-->
 

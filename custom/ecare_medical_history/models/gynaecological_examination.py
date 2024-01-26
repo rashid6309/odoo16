@@ -42,6 +42,7 @@ class MedicalGynaecologicalExamination(models.Model):
     gynaecological_left_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                                    inverse_name="gynaecological_left_size_id",
                                                    string="Left Ovary")
+    left_ovary_not_visualised = fields.Boolean(string='Not Visualised', default=False)
 
     left_ovary_nos = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Nos')
     '''
@@ -60,6 +61,7 @@ class MedicalGynaecologicalExamination(models.Model):
     gynaecological_right_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                                     inverse_name="gynaecological_right_size_id",
                                                     string="Right Ovary")
+    right_ovary_not_visualised = fields.Boolean(string='Not Visualised', default=False)
 
     uterus = fields.Selection(selection=StaticMember.UTERUS_TYPE_SIZE, string='Uterus')
 

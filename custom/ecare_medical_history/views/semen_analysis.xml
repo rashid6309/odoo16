@@ -375,7 +375,11 @@
                                 <div class="col-md-2">
                                     Sperm Cryopreservation
                                 </div>
-                                <div class="col-md-11 ">
+                                <div class="col-md-12 ">
+                                    <div class="d-flex align-items-center">
+                                        <field class="mb-0" name="sperm_cryopreservation_recommended"/>
+                                        <label for="sperm_cryopreservation_recommended" string="Recommended"/>
+                                    </div>
                                     <div class="d-flex align-items-center">
                                         <field class="mb-0" name="sperm_cryopreservation_consented"/>
                                         <label for="sperm_cryopreservation_consented" string="Consented"/>

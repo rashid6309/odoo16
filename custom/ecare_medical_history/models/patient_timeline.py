@@ -17,7 +17,7 @@ class PatientTimeline(models.Model):
 
     _sql_constraints = [
         ('timeline_patient_id_unique', 'unique (timeline_patient_id)',
-         'Multiple patient timelines cant be created, rather open the existing one!'),
+         "Multiple patient timelines can't be created, rather open the existing one!"),
     ]
 
     _inherits = {
@@ -773,12 +773,12 @@ class PatientTimeline(models.Model):
 
     @api.onchange('repeat_pregnancy_bp_upper')
     def _check_float_input_bp_upper(self):
-        if self.repeat_pregnancy_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_bp_upper):
+        if self.repeat_pregnancy_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.repeat_pregnancy_bp_upper):
             raise UserError(f"Please enter a numeric value in pregnancy BP (Upper).")
 
     @api.onchange('repeat_pregnancy_bp_lower')
     def _check_float_input_bp_lower(self):
-        if self.repeat_pregnancy_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_bp_lower):
+        if self.repeat_pregnancy_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.repeat_pregnancy_bp_lower):
             raise UserError(f"Please enter a numeric value in pregnancy BP (Lower).")
 
     @api.onchange('repeat_pregnancy_rr')
@@ -808,17 +808,17 @@ class PatientTimeline(models.Model):
 
     @api.onchange('female_bp_upper')
     def _check_input_female_bp_upper(self):
-        if self.female_bp_upper and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_bp_upper):
+        if self.female_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.female_bp_upper):
             raise UserError(f"Please enter a numeric value in female bp upper!")
 
     @api.onchange('female_bp_lower')
     def _check_input_female_bp_lower(self):
-        if self.female_bp_lower and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_bp_lower):
+        if self.female_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.female_bp_lower):
             raise UserError(f"Please enter a numeric value in female bp lower!")
 
     @api.onchange('female_pulse')
     def _check_input_female_pulse(self):
-        if self.female_pulse and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_pulse):
+        if self.female_pulse and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.female_pulse):
             raise UserError(f"Please enter a numeric value in female pulse!")
 
     @api.onchange('female_temperature')
@@ -860,3 +860,10 @@ class PatientTimeline(models.Model):
     def _check_input_male_temperature(self):
         if self.male_temperature and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_temperature):
             raise UserError(f"Please enter a numeric value in male temperature!")
+
+    @api.onchange('biological_female_dob_check', 'biological_male_dob_check')
+    def _check_same_as_above_functionality(self):
+        if self.biological_female_dob_check:
+            self.biological_female_dob = None
+        if self.biological_male_dob_check:
+            self.biological_male_dob = None

@@ -24,9 +24,9 @@ class GenitalExamination(models.Model):
     # supermatic_cord_tender = fields.Selection(selection=StaticMember.SIDE, )
 
     testicular_size_right = fields.Selection(selection=StaticMember.SIZE, )
-    testicular_motility_right = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility')
+    testicular_motility_right = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility Right')
     testicular_size_left = fields.Selection(selection=StaticMember.SIZE, )
-    testicular_motility_left = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility')
+    testicular_motility_left = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility Left')
 
     testicular_size_motility = fields.Selection(selection=StaticMember.CHOICE_YES_NO, )
 

@@ -101,6 +101,7 @@ class SemenAnalysis(models.Model):
                                         string='Suitable For', domain="[('type', '=', 'suitable_for')]")
 
     # sperm_cryopreservation = fields.Char()
+    sperm_cryopreservation_recommended = fields.Boolean('Recommended')
     sperm_cryopreservation_consented = fields.Boolean('Cryopreservation Consented')
     sperm_cryopreservation_strawe = fields.Char('Cryopreservation Strawe')
     sperm_cryopreservation_code = fields.Char('Cryopreservation Code')
@@ -146,14 +147,18 @@ class SemenAnalysis(models.Model):
         if semen_patient_id:
             all_semen_analysis_records = self.env['ec.semen.analysis'].search(
                 [('semen_patient_id', '=', semen_patient_id.id)])
-
-            # Filter out self.id from the list of IDs
-            filtered_ids = [rec.id for rec in all_semen_analysis_records if rec.id != self.id]
-
-            if filtered_ids:
-                self.all_semen_analysis_ids = [(6, 0, filtered_ids)]
+            if all_semen_analysis_records:
+                self.all_semen_analysis_ids = all_semen_analysis_records
             else:
                 self.all_semen_analysis_ids = None
+
+            # Filter out self.id from the list of IDs
+            # filtered_ids = [rec.id for rec in all_semen_analysis_records if rec.id != self.id]
+            #
+            # if filtered_ids:
+            #     self.all_semen_analysis_ids = [(6, 0, filtered_ids)]
+            # else:
+            #     self.all_semen_analysis_ids = None
 
     def delete_semen_analysis_record(self):
         # Unlink (delete) the records
