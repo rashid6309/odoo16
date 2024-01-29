@@ -106,7 +106,7 @@ class SemenAnalysis(models.Model):
     sperm_cryopreservation_strawe = fields.Char('Cryopreservation Strawe')
     sperm_cryopreservation_code = fields.Char('Cryopreservation Code')
 
-    seminologist = fields.Char("Seminologist")
+    seminologist = fields.Many2one(comodel_name='res.users', string='Seminologist', default=lambda self: self.env.user)
     special_notes = fields.Char("Special Notes")
 
     seme_analysis_id_dummy = fields.Many2one('ec.semen.analysis')
@@ -127,7 +127,7 @@ class SemenAnalysis(models.Model):
             "res_model": 'ec.semen.analysis',
             'view_id': self.env.ref('ecare_medical_history.ec_semen_analysis_tree_read_only_view').id,
             'view_mode': 'tree',
-            "target": 'new',
+            "target": 'current',
             'context': context,
             'domain': domain,
         }

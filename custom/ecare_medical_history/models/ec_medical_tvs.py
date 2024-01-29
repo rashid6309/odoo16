@@ -47,11 +47,11 @@ class EcMedicalTVS(models.Model):
                                         relation='repeat_multi_selection_repeat_position',
                                         column1='tvs_id',
                                         column2='multi_selection_id',
-                                        string='Linining',
+                                        string='Endometrial Lining Character',
                                         domain="[('type', '=', 'linining')]")
 
     tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
-                                       string='Size')
+                                       string='CET')
 
     tvs_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                             inverse_name="tvs_fiobrid_id",

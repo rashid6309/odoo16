@@ -6,7 +6,7 @@
             <field name="name">ec.medical.year.tree</field>
             <field name="model">ec.medical.year</field>
             <field name="arch" type="xml">
-                <tree editable="bottom">
+                <tree editable="top">
                     <field name="year"/>
                 </tree>
             </field>

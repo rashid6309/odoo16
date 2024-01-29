@@ -88,11 +88,10 @@ class MedicalGynaecologicalExamination(models.Model):
                                                        inverse_name="gynaecological_fiobrid_id",
                                                        string="Sizes")
 
-
     lining_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                   relation='gynaecological_examination_multi_selection_lining',
                                   column1='gynaecological_id',
                                   column2='multi_selection_id',
-                                  string='Lining', domain="[('type', '=', 'linining')]")
-    lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Lining Size')
+                                  string='Endometrial Lining Character', domain="[('type', '=', 'linining')]")
+    lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='CET')
 

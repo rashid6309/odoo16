@@ -28,7 +28,7 @@
             <field name="name">ec.medical.patient.procedures.tree</field>
             <field name="model">ec.patient.procedures</field>
             <field name="arch" type="xml">
-                <tree string="Surgical Detail" edit="bottom" create="false">
+                <tree string="Surgical Detail" editable="top" create="false">
                     <field name="female_consultation_id" invisible="1" force_save="1"/>
                     <field name="male_consultation_id" invisible="1" force_save="1"/>
                     <field name="details" placeholder="Details..."/>

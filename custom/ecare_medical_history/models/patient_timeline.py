@@ -355,6 +355,8 @@ class PatientTimeline(models.Model):
         self.show_repeat_section_state = True
         if self.show_repeat_consultation_history_section is False:
             self.show_repeat_consultation_history_section = True
+            if self.ec_repeat_consultation_id:
+                self.repeat_consultation_ids.repeat_date = datetime.now()
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create(

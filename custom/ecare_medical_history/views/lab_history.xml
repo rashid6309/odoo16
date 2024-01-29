@@ -55,7 +55,7 @@
             <field name="name">lab.history.tree.view</field>
             <field name="model">ec.lab.history</field>
             <field name="arch" type="xml">
-                <tree create="0" editable="bottom">
+                <tree create="0" editable="top">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="attachment_id" widget="many2many_binary" readonly="1" filename="filename"/>
