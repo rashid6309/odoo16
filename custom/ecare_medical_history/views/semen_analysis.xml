@@ -429,6 +429,7 @@
                     <field name="lab_name"/>
                     <button name="edit_semen_analysis_record"
                             type="object"
+                            groups="ecare_medical_history.group_ec_medical_scientist"
                             string="Edit"
                             class="repeat_kanban_button"/>
                 </tree>

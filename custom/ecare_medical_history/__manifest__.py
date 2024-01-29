@@ -16,6 +16,7 @@
     'data': [
         # Security
         'security/ir.model.access.csv',
+        'security/ir_groups.xml',
 
         # Menu
         'data/family_history_data.xml',

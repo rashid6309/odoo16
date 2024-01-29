@@ -162,6 +162,12 @@ class StaticMember:
                 ('unmarried', 'Unmarried')
                 ]
 
+    SIGN_OVULATION = [('free_fluid', 'Free Fluid'),
+                ('loss_of_dominant_follicle', 'Loss of Dominant Follicle(s)'),
+                ('irregular_follicle', 'Irregular Follicle(s)'),
+                ('corpus_luteum', 'Corpus Luteum'),
+                ]
+
     DoP = [('<6', '<6'),
            ('6', '6'),
            ('7', '7'),

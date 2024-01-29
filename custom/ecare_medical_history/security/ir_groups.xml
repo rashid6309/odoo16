@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="module_ecare_medical_history_category" model="ir.module.category">
+            <field name="name">Medical History</field>
+            <field name="sequence">110</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <record id="module_ecare_medical_history_role" model="ir.module.category">
+            <field name="name">Medical History Role</field>
+            <field name="parent_id" ref="ecare_medical_history.module_ecare_medical_history_category"/>
+            <field name="sequence">100</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <record id="group_ec_medical_scientist" model="res.groups">
+            <field name="name">Hospital Scientist</field>
+            <field name="comment">Scientist Role</field>
+            <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_role"/>
+        </record>
+
+
+        <record id="group_ec_medical_normal_doctor" model="res.groups">
+            <field name="name">Hospital Doctor</field>
+            <field name="comment">Doctor Role</field>
+            <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_role"/>
+            <field name="implied_ids"
+                   eval="[(4,ref('ecare_medical_history.group_ec_medical_scientist'))]"/>
+        </record>
+
+
+    </data>
+</odoo>
