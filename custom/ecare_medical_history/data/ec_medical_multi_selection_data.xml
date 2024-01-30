@@ -108,11 +108,6 @@
             <field name="type">linining</field>
         </record>
 
-        <record model="ec.medical.multi.selection" id="lining_endometrial_lining_character">
-            <field name="name">Endometrial Lining Character</field>
-            <field name="type">linining</field>
-        </record>
-
         <record model="ec.medical.multi.selection" id="lining_hyperechoic_solid">
             <field name="name">Hyperechoic/Solid</field>
             <field name="type">linining</field>

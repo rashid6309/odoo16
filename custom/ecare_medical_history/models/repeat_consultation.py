@@ -153,6 +153,7 @@ class RepeatConsultation(models.Model):
                                         column2="diagnosis_id",
                                         string="Diagnosis")
 
+    repeat_procedure_recommended = fields.Html(string='Procedure Recommended')
     repeat_treatment_plan = fields.Html(string='Plan')
 
     repeat_note = fields.Html(string="Reason for visit / Couple concerns / History of presenting complaints")
@@ -167,7 +168,7 @@ class RepeatConsultation(models.Model):
                                                     relation="repeat_consultation_medical_treatment_list_rel",
                                                     column1="repeat_consultation_id",
                                                     column2="treatment_list_id",
-                                                    string='Treatment Advised')
+                                                    string='Treatment Pathway')
 
     repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                    string="Examination Required")

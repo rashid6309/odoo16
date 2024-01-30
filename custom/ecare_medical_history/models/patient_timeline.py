@@ -403,6 +403,9 @@ class PatientTimeline(models.Model):
     def action_open_tvs_scan(self):
         return self.ec_repeat_consultation_id.repeat_tvs_id.action_open_tvs_scan()
 
+    def action_open_gynae_scan(self):
+        return self.ec_first_consultation_id.ec_medical_gynaecological_examination_id.action_open_gynae_scan()
+
     ''' Data methods '''
 
     def _get_repeat_consultation_mandatory_attribute(self):
@@ -744,7 +747,7 @@ class PatientTimeline(models.Model):
 
     @api.onchange('female_weight', 'female_height')
     def _calculate_physical_exam_bmi(self):
-        if self.female_weight and self.female_height:
+        if isinstance(self.female_weight, float) and isinstance(self.female_height, float):
             height_in_meters = self.female_height / 100
             self.female_bmi = self.female_weight / (height_in_meters ** 2)
         else:

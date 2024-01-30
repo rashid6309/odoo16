@@ -1,7 +1,7 @@
 from odoo import api, models, fields, _
+from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from odoo.exceptions import ValidationError
 from odoo.exceptions import UserError
-
 
 
 class FirstConsultation(models.Model):
@@ -80,6 +80,34 @@ class FirstConsultation(models.Model):
     first_consultation_state = fields.Selection([('open', 'In Progress'), ('closed', 'Done')],
                                                 default='open',
                                                 string='State')
+    female_tubal_patency_testing = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='Tubal Patency Testing',
+    )
+
+    female_dai_handling = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='Dai Handling',
+    )
+
+    female_d_and_c = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='D&C',
+    )
+    male_tubal_patency_testing = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='Tubal Patency Testing',
+    )
+
+    male_dai_handling = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='Dai Handling',
+    )
+
+    male_d_and_c = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='D&C',
+    )
 
     ''' Related '''
 

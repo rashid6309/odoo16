@@ -50,7 +50,7 @@
 											<span class="counter-word">0</span>
 										</div>
 										<div>
-											<span class="word-title">Frozen Embroys Stored:</span>
+											<span class="word-title">Frozen Embryos Stored:</span>
 											<span class="counter-word">0</span>
 										</div>
 										<div>
@@ -353,11 +353,9 @@
 												/>
 
 												<field name="repeat_valva_vaginal_exam"
-													   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 												/>
 
 												<field name="repeat_cervix"
-													   attrs="{'invisible': [('p_v_only', '!=', True)]}"
 												/>
 
 												<field name="repeat_uterus_and_adnexae"
@@ -497,6 +495,8 @@
 															<div class="col-md-5">
 																<field name="tvs_generic_sizes_ids">
 																	<tree editable="top">
+																		<field name="location_or_features"/>
+																		<field name="distorting_endometrium"/>
 																		<field name="generic_size_x"/>
 																		<field name="generic_size_y"/>
 
@@ -508,7 +508,7 @@
 												</div>
 												<div class="d-flex ">
 
-													<div class="col-md-2">
+													<div class="col-md-1">
 														Endometrial Lining Character
 													</div>
 													<div class="d-flex flex-column">
@@ -622,6 +622,7 @@
 												<field name="repeat_investigations_ids" widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
+												<field name="repeat_procedure_recommended"/>
 												<field name="repeat_treatment_plan"/>
 
 												<field name="repeat_treatment_advised_ids" widget="many2many_tags"
@@ -913,6 +914,91 @@
 													<!-- <separator string="Dates if relevant" style="font-size:small" /> -->
 
 													<field name="female_no_medical_history"/>
+
+													<field name="female_acne"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="female_acne_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+
+													<field name="female_weight_gain"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="female_weight_gain_year"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+
+													<field name="female_weight_loss"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="female_weight_loss_year"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+
+													<field name="female_weight_at_marriage"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Weight at Marriage" />
+													<field name="female_weight_comments"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Comments" />
+
+													<field name="female_hirsuitism"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   widget="radio"/>
+													<field name="female_hirsuitism_treatment"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"/>
+
+													<field name="female_tuberculosis"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="female_tuberculosis_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="female_att_months"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"/>
+													<field name="female_syphilis"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="female_syphilis_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="female_herpes"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="female_herpes_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="female_gonorrhoea"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="female_gonorrhoea_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="female_hiv"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="female_hiv_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+
+													<field name="female_mumps"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="female_mumps_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+
+
 													<field name="female_adrenal"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details" />
@@ -1147,6 +1233,9 @@
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Year"  />
+													<field name="female_medical_current_medication"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Current Medications"/>
 												</group>
 											</div>
 
@@ -1163,6 +1252,9 @@
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="female_surgical_section">
 												<group>
+													<field name="female_tubal_patency_testing" widget="radio"  options="{'horizontal': True}"/>
+													<field name="female_dai_handling"  widget="radio"  options="{'horizontal': True}"/>
+													<field name="female_d_and_c"  widget="radio"  options="{'horizontal': True}"/>
 													<div>
 														<!-- BUG -->
 														<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
@@ -1645,71 +1737,71 @@
 													<field name="gynaecological_examination_date"/>
 													<field name="gynaecological_examination_lmp"/>
 
-													<!-- Left Ovary Section -->
-													<div/>
-													<div class="d-flex align-items-center bg-light bg-gradient" style=" position: relative; left: -24%;">
-														<div class="col-md-3">
-															<b>Left Ovary</b>
-														</div>
-														<div class="col-md-9">
-															<div class="d-flex">
-																<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>
+													<!--													&lt;!&ndash; Left Ovary Section &ndash;&gt;-->
+													<!--													<div/>-->
+													<!--													<div class="d-flex align-items-center bg-light bg-gradient" style=" position: relative; left: -24%;">-->
+													<!--														<div class="col-md-3">-->
+													<!--															<b>Left Ovary</b>-->
+													<!--														</div>-->
+													<!--														<div class="col-md-9">-->
+													<!--															<div class="d-flex">-->
+													<!--																<field name="left_ovary"  widget="radio" options="{'horizontal': True}"/>-->
 
-															</div>
-															<div class="d-flex">
-																<span>Type</span>
-																<field name="left_ovary_type"/>
-															</div>
-															<div class="d-flex align-items-center bg-light bg-gradient">
-																<div class="col-md-10">
-																	<field name="gynaecological_left_size_ids">
-																		<tree editable="top">
-																			<field name="generic_size_x"/>
-																			<field name="generic_size_y"/>
+													<!--															</div>-->
+													<!--															<div class="d-flex">-->
+													<!--																<span>Type</span>-->
+													<!--																<field name="left_ovary_type"/>-->
+													<!--															</div>-->
+													<!--															<div class="d-flex align-items-center bg-light bg-gradient">-->
+													<!--																<div class="col-md-10">-->
+													<!--																	<field name="gynaecological_left_size_ids">-->
+													<!--																		<tree editable="top">-->
+													<!--																			<field name="generic_size_x"/>-->
+													<!--																			<field name="generic_size_y"/>-->
 
-																		</tree>
-																	</field>
-																</div>
-															</div>
-															<div  class="d-flex">
-																<label for="left_ovary_not_visualised" string="Not Visualised"/>
-																<field name="left_ovary_not_visualised"/>
-															</div>
-														</div>
-													</div>
+													<!--																		</tree>-->
+													<!--																	</field>-->
+													<!--																</div>-->
+													<!--															</div>-->
+													<!--															<div  class="d-flex">-->
+													<!--																<label for="left_ovary_not_visualised" string="Not Visualised"/>-->
+													<!--																<field name="left_ovary_not_visualised"/>-->
+													<!--															</div>-->
+													<!--														</div>-->
+													<!--													</div>-->
 
-													<!-- Right Ovary Section -->
-													<div/>
-													<div class="d-flex align-items-center" style=" position: relative; left: -24%; ">
-														<div class="col-md-3">
-															<b>Right Ovary</b>
-														</div>
-														<div class="col-md-9">
-															<div class="d-flex">
-																<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>
+													<!--													&lt;!&ndash; Right Ovary Section &ndash;&gt;-->
+													<!--													<div/>-->
+													<!--													<div class="d-flex align-items-center" style=" position: relative; left: -24%; ">-->
+													<!--														<div class="col-md-3">-->
+													<!--															<b>Right Ovary</b>-->
+													<!--														</div>-->
+													<!--														<div class="col-md-9">-->
+													<!--															<div class="d-flex">-->
+													<!--																<field name="right_ovary"  widget="radio" options="{'horizontal': True}"/>-->
 
-															</div>
-															<div class="d-flex">
-																<span>Type</span>
-																<field name="right_ovary_type"/>
-															</div>
-															<div class="d-flex align-items-center">
-																<div class="col-md-10">
-																	<field name="gynaecological_right_size_ids">
-																		<tree editable="top">
-																			<field name="generic_size_x"/>
-																			<field name="generic_size_y"/>
+													<!--															</div>-->
+													<!--															<div class="d-flex">-->
+													<!--																<span>Type</span>-->
+													<!--																<field name="right_ovary_type"/>-->
+													<!--															</div>-->
+													<!--															<div class="d-flex align-items-center">-->
+													<!--																<div class="col-md-10">-->
+													<!--																	<field name="gynaecological_right_size_ids">-->
+													<!--																		<tree editable="top">-->
+													<!--																			<field name="generic_size_x"/>-->
+													<!--																			<field name="generic_size_y"/>-->
 
-																		</tree>
-																	</field>
-																</div>
-															</div>
-															<div  class="d-flex">
-																<label for="right_ovary_not_visualised" string="Not Visualised"/>
-																<field name="right_ovary_not_visualised"/>
-															</div>
-														</div>
-													</div>
+													<!--																		</tree>-->
+													<!--																	</field>-->
+													<!--																</div>-->
+													<!--															</div>-->
+													<!--															<div  class="d-flex">-->
+													<!--																<label for="right_ovary_not_visualised" string="Not Visualised"/>-->
+													<!--																<field name="right_ovary_not_visualised"/>-->
+													<!--															</div>-->
+													<!--														</div>-->
+													<!--													</div>-->
 
 													<div/>
 													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -30%;">
@@ -1754,6 +1846,8 @@
 																<div class="col-md-5">
 																	<field name="gynaecological_generic_sizes_ids">
 																		<tree editable="top">
+																			<field name="location_or_features"/>
+																			<field name="distorting_endometrium"/>
 																			<field name="generic_size_x"/>
 																			<field name="generic_size_y"/>
 
@@ -1775,6 +1869,48 @@
 														<span class="oe_inline">
 															mm
 														</span>
+													</div>
+													<label for="tvs_rov"/>
+													<div>
+														<field name="gynae_rov" class="oe_inline" nolabel="1"/>
+														<span class="oe_inline">
+															<button type="object"
+																	class="btn-primary"
+																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"
+																	name="action_open_gynae_scan"
+																	string="Begin Scan"/>
+														</span>
+													</div>
+
+
+													<label for="gynae_lov"/>
+													<div>
+														<field name="gynae_lov" class="oe_inline" nolabel="1"/>
+														<span class="oe_inline">
+															<button type="object"
+																	class="btn-primary"
+																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"
+																	name="action_open_gynae_scan"
+																	string="Begin Scan"/>
+														</span>
+													</div>
+
+													<!-- CYST Section -->
+													<div/>
+													<div class="d-flex align-items-center" style=" position: relative; left: -24%; ">
+														<div class="col-md-3">
+															<b>Cyst</b>
+														</div>
+														<div class="col-md-9">
+															<div class="col-md-12">
+																<field name="gynae_cyst_size_ids">
+																	<tree editable="top">
+																		<field name="type"/>
+																		<field name="generic_size_x"/>
+																	</tree>
+																</field>
+															</div>
+														</div>
 													</div>
 
 													<field name="gynaecological_examination_comment"/>
@@ -1824,6 +1960,88 @@
 												<group class="mt-0">
 
 													<field name="male_no_medical_history"/>
+													<field name="male_acne"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="male_acne_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+
+													<field name="male_weight_gain"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="male_weight_gain_year"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+
+													<field name="male_weight_loss"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="male_weight_loss_year"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+
+													<field name="male_weight_at_marriage"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Weight at Marriage" />
+													<field name="male_weight_comments"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Comments" />
+
+													<field name="male_hirsuitism"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   widget="radio"/>
+													<field name="male_hirsuitism_treatment"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"/>
+
+													<field name="male_tuberculosis"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="male_tuberculosis_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="male_att_months"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"/>
+													<field name="male_syphilis"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="male_syphilis_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="male_herpes"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="male_herpes_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="male_gonorrhoea"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="male_gonorrhoea_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="male_hiv"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="male_hiv_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+
+													<field name="male_mumps"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details" />
+													<field name="male_mumps_date"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
 													<field name="male_adrenal" attrs="{'readonly': [('male_no_medical_history', '=', True)]}" placeholder="Add Details" />
 													<field name="male_adrenal_date" attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -2046,6 +2264,9 @@
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
+													<field name="male_medical_current_medication"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Current Medications"/>
 												</group>
 											</div>
 
@@ -2062,6 +2283,9 @@
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="male_surgical_section">
 												<group>
+													<field name="male_tubal_patency_testing" widget="radio"  options="{'horizontal': True}"/>
+													<field name="male_dai_handling"  widget="radio"  options="{'horizontal': True}"/>
+													<field name="male_d_and_c"  widget="radio"  options="{'horizontal': True}"/>
 													<div>
 														<!-- BUG -->
 														<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
@@ -2493,18 +2717,18 @@
 										</page>
 
 										<page string="Conclusion" name="conclusion">
-<!--											<div style="text-align: right;">-->
-<!--												<button name="action_close_first_consultation"-->
-<!--														type="object"-->
-<!--														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"-->
-<!--														class="card-custom-close-button-btn"-->
-<!--														string="Close First Consultation"/>-->
-<!--												<button name="action_open_first_consultation"-->
-<!--														type="object"-->
-<!--														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"-->
-<!--														class="card-custom-close-button-btn"-->
-<!--														string="Open First Consultation"/>-->
-<!--											</div>-->
+											<!--											<div style="text-align: right;">-->
+											<!--												<button name="action_close_first_consultation"-->
+											<!--														type="object"-->
+											<!--														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"-->
+											<!--														class="card-custom-close-button-btn"-->
+											<!--														string="Close First Consultation"/>-->
+											<!--												<button name="action_open_first_consultation"-->
+											<!--														type="object"-->
+											<!--														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"-->
+											<!--														class="card-custom-close-button-btn"-->
+											<!--														string="Open First Consultation"/>-->
+											<!--											</div>-->
 											<field name="timeline_conclusion" placeholder="Type..."/>
 										</page>
 

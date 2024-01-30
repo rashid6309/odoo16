@@ -18,6 +18,35 @@ class MaleMedicalHistory(models.Model):
     male_medical_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                                         ondelete='restrict')
 
+    male_acne = fields.Char('Acne')
+    male_acne_date = fields.Many2one("ec.medical.year", 'Acne Date')
+    male_weight_gain = fields.Char('Weight gain')
+    male_weight_gain_year = fields.Many2one("ec.medical.year", 'Over period of (Years)')
+
+    male_weight_loss = fields.Char('Weight loss')
+    male_weight_loss_year = fields.Many2one("ec.medical.year", 'Over period of (Years)')
+
+    male_weight_at_marriage = fields.Char('Weight at marriage')
+    male_weight_comments = fields.Char('Comments')
+
+    male_hirsuitism = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                         string='Hirsuitism')
+    male_hirsuitism_treatment = fields.Char('Any treatment')
+
+    male_tuberculosis = fields.Char('Tuberculosis')
+    male_tuberculosis_date = fields.Many2one("ec.medical.year", 'Tuberculosis Date')
+    male_att_months = fields.Selection(selection=StaticMember.MONTHS_MEDICAL, string='ATT (Months)')
+    male_syphilis = fields.Char('Syphilis')
+    male_syphilis_date = fields.Many2one("ec.medical.year", 'Syphilis Date')
+    male_herpes = fields.Char('Herpes')
+    male_herpes_date = fields.Many2one("ec.medical.year", 'Herpes Date')
+    male_gonorrhoea = fields.Char('Gonorrhoea')
+    male_gonorrhoea_date = fields.Many2one("ec.medical.year", 'Gonorrhoea Date')
+    male_hiv = fields.Char('HIV')
+    male_hiv_date = fields.Many2one("ec.medical.year", 'HIV Date')
+    male_mumps = fields.Char('Mumps')
+    male_mumps_date = fields.Many2one("ec.medical.year", 'Mumps Date')
+
     male_adrenal = fields.Char('Adrenal')
     male_adrenal_date = fields.Many2one("ec.medical.year", 'Adrenal Date')
 
@@ -109,6 +138,7 @@ class MaleMedicalHistory(models.Model):
     male_operations_pr = fields.Text(string='Operations (if any)')
     male_medical_history_others = fields.Char(string='Others')
     male_medical_history_others_date = fields.Many2one("ec.medical.year", 'Others Date')
+    male_medical_current_medication = fields.Char(string='Current Medication')
 
     ''' not being used '''
     # male_allergies_pr = fields.Text(string='Allergies Pr')

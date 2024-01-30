@@ -56,6 +56,13 @@ class MedicalGynaecologicalExamination(models.Model):
         FIXME: What is length and width?
 
     '''
+
+    gynae_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
+                                          inverse_name="gynaecological_fiobrid_id",
+                                          string="Fibroid")
+    gynae_rov = fields.Char(string='ROV',)
+
+    gynae_lov = fields.Char(string='LOV',)
     right_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary')
     right_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE_TYPE, string='Right Ovary Type')
     gynaecological_right_size_ids = fields.One2many(comodel_name="ec.generic.size",
@@ -95,3 +102,20 @@ class MedicalGynaecologicalExamination(models.Model):
                                   string='Endometrial Lining Character', domain="[('type', '=', 'linining')]")
     lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='CET')
 
+    def action_open_gynae_scan(self):
+        context = self._context.copy()
+        if context:
+            field = context.get('default_field')
+            if field:
+                return {
+                    "name": _("TVS Scan"),
+                    "type": 'ir.actions.act_window',
+                    "res_model": 'ec.medical.tvs.scan',
+                    'view_id': self.env.ref('ecare_medical_history.view_ec_medical_tvs_scan_form').id,
+                    'view_mode': 'form',
+                    "target": 'new',
+                    "context": {
+                        'default_gynae_id': self.id,
+                        'default_field': field
+                    },
+                }
