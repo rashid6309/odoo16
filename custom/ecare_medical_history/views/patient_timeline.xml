@@ -648,19 +648,24 @@
 									<section>
 										<script>
 											document.getElementById("toggleButton").addEventListener("click", function() {
-											var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
+												var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
 
-											repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
-											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
+												repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
+													var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
-											collapseDivs.forEach(function(collapseDiv) {
-											collapseDiv.classList.add("show");
-											});
-											});
+													collapseDivs.forEach(function(collapseDiv) {
+														if (collapseDiv.classList.contains("show")) {
+															collapseDiv.classList.remove("show");
+														} else {
+															collapseDiv.classList.add("show");
+														}
+													});
+												});
 											});
 										</script>
-										<a style="float:right" class="m-2" id="toggleButton" href="#">
-											<i class="fa fa-expand fa-2x" aria-hidden="true"/>
+										<a style="float:right; display: inline-block; padding: 1% 1% 0.5% 1%; background-color: #3498db; color: #fff; text-align: center; text-decoration: none; border-radius: 5px; cursor: pointer;" class="m-2" id="toggleButton" href="#">
+											<p>Expand/Collapse</p>
+<!--											<i class="fa fa-expand fa-2x" aria-hidden="true"/>-->
 										</a>
 										<field name="repeat_consultation_ids"
 											   mode="kanban"
