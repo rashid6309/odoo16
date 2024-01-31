@@ -738,7 +738,7 @@
 													<label for="female_age_at_marriage" string="Age at Marriage"/>
 													<div>
 														<field name="female_age_at_marriage" class="oe_inline"/>
-														<span class="oe_inline">Years</span>
+														<span class="oe_inline">  Years</span>
 													</div>
 												</group>
 											</div>
