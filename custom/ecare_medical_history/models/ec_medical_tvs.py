@@ -65,8 +65,15 @@ class EcMedicalTVS(models.Model):
     tvs_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",
                                             inverse_name="tvs_cyst_size_id",
                                             string="Sizes")
-    tvs_signs_of_ovulation = fields.Selection(string='Signs of Ovulation',
-                                              selection=StaticMember.SIGN_OVULATION)
+
+    # tvs_signs_of_ovulation_ids = fields.Many2many(string='Signs of Ovulation',
+    #                                               selection=StaticMember.SIGN_OVULATION)
+    tvs_signs_of_ovulation_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                                  relation='repeat_multi_selection_repeat_ovulation',
+                                                  column1='tvs_ovulation_id',
+                                                  column2='multi_selection_id',
+                                                  string='Signs of Ovulation',
+                                                  domain="[('type', '=', 'ovulation')]")
 
     def action_open_tvs_scan(self):
         context = self._context.copy()

@@ -603,7 +603,9 @@
 													</div>
 													<div class="col-md-10">
 
-														<field name="tvs_signs_of_ovulation"/>
+														<field name="tvs_signs_of_ovulation_ids"
+															   widget="many2many_tags"
+															   options='{"no_open": True, "no_create": True}'/>
 													</div>
 
 

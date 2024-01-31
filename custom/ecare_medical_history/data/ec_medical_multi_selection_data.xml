@@ -301,5 +301,22 @@
             <field name="name">Right</field>
             <field name="type">supermatic_cord_tender</field>
         </record>
+
+        <record model="ec.medical.multi.selection" id="ovulation_free_fluid">
+            <field name="name">Free Fluid</field>
+            <field name="type">ovulation</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="ovulation_dominant_follicle">
+            <field name="name">Loss of Dominant Follicle(s)</field>
+            <field name="type">ovulation</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="ovulation_irregular_follicle">
+            <field name="name">Irregular Follicle(s)</field>
+            <field name="type">ovulation</field>
+        </record>
+        <record model="ec.medical.multi.selection" id="ovulation_corpus_luteum">
+            <field name="name">Corpus Luteum</field>
+            <field name="type">ovulation</field>
+        </record>
     </data>
 </odoo>
