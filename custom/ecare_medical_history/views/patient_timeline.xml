@@ -918,6 +918,7 @@
 													<field name="female_acne"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details" />
+
 													<field name="female_acne_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
@@ -2791,7 +2792,22 @@
 									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#femaleCollapseSection" href="#">
 										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
 									</a>
-									<div class="show" id="femaleCollapseSection"><field name="female_family_history" widget="html"/></div>
+
+									<div class="show" id="femaleCollapseSection">
+										<h5>Female Family History</h5>
+										<field name="female_family_history" widget="html"/>
+									</div>
+									<div class="show" id="femaleCollapseSection">
+										<div class="divider"/>
+										<h5>Female Medical History</h5>
+										<field name="female_medical_history" widget="html"/>
+									</div>
+
+									<div class="show" id="femaleCollapseSection">
+										<div class="divider"/>
+										<h5>Female Surgical History</h5>
+										<field name="female_surgical_history" widget="html"/>
+									</div>
 
 									<!--									<div class="show" id="femaleCollapseSection">(collapsible - expands to a limit) - default is expanded</div>-->
 								</div>
@@ -2811,7 +2827,23 @@
 									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
 										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
 									</a>
-									<div class="show" id="maleCollapseSection"><field name="male_family_history" widget="html"/></div>
+
+									<div class="show" id="maleCollapseSection">
+										<h5>Male Family History</h5>
+										<field name="male_family_history" widget="html"/>
+									</div>
+
+									<div class="show" id="maleCollapseSection">
+										<div class="divider"/>
+										<h5>Male Medical History</h5>
+										<field name="male_medical_history" widget="html"/>
+									</div>
+
+									<div class="show" id="maleCollapseSection">
+										<div class="divider"/>
+										<h5>Male Surgical History</h5>
+										<field name="male_surgical_history" widget="html"/>
+									</div>
 									<!--								<div class="show" id="maleCollapseSection">(collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded </div>-->
 								</div>
 							</div>

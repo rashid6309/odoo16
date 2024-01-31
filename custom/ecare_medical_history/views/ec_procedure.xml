@@ -11,7 +11,7 @@
                             <group>
                                 <field name="female_consultation_id" invisible="1" force_save="1"/>
                                 <field name="male_consultation_id" invisible="1" force_save="1"/>
-                                <field name="type_of_surgery"/>
+                                <field name="type_of_surgery" required="1"/>
                                 <field name="details" placeholder="Details..."/>
                                 <field name="date_on" placeholder="Date On"/>
                                 <field name="surgical_year_id"

@@ -140,3 +140,6 @@ class FemaleMedicalHistory(models.Model):
     # female_allergies_pr = fields.Text(string='Allergies Pr')
     # female_allergies_pr_d = fields.Date('Allergies Date')
     # female_operations_pr_d = fields.Date('Operations Date')
+
+    def write(self, vals):
+        return super(FemaleMedicalHistory, self).write(vals)

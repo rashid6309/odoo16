@@ -132,6 +132,12 @@ class PatientTimeline(models.Model):
     male_family_history = fields.Char(string='Male Family History', compute='_compute_family_history')
     female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
 
+    male_medical_history = fields.Char(string='Male Medical History', compute='_compute_medical_history')
+    female_medical_history = fields.Char(string='Female Medical History', compute='_compute_medical_history')
+
+    male_surgical_history = fields.Char(string='Male Surgical History', compute='_compute_surgical_history')
+    female_surgical_history = fields.Char(string='Female Surgical History', compute='_compute_surgical_history')
+
     infertility_type = fields.Char(readonly=True, compute="_compute_infertility_type")
 
     ''' Data members '''
@@ -167,6 +173,28 @@ class PatientTimeline(models.Model):
         if family_history_text:
             family_history_text = '<br>'.join(family_history_text)
             return family_history_text
+
+        return None
+
+    def _compute_patient_medical_history(medical_history, fields_to_process):
+        if not medical_history:
+            return None
+
+        medical_history_text = []
+
+        for field_name, (field_label, custom_field_name) in fields_to_process.items():
+            field_records = getattr(medical_history, field_name)
+            custom_field = getattr(medical_history, custom_field_name)
+            if field_records or (custom_field and custom_field.strip()):
+                custom_text = f' ({custom_field.strip()})' if custom_field else ''
+                medical_members_list = [str(rec.year) for rec in field_records]
+                if medical_members_list:
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{", ".join(medical_members_list)}{custom_text}'
+                    medical_history_text.append(field_text)
+
+        if medical_history_text:
+            medical_history_text = '<br>'.join(medical_history_text)
+            return medical_history_text
 
         return None
 
@@ -282,6 +310,138 @@ class PatientTimeline(models.Model):
             family_history=self.ec_first_consultation_id.ec_female_family_history_id,
             fields_to_process=fields_to_process
         )
+
+    def _compute_medical_history(self):
+        # Male Fields Processing
+
+        male_fields_to_process = {
+            'male_acne_date': ('Acne', 'male_acne'),
+            'male_weight_gain_year': ('Weight gain', 'male_weight_gain'),
+            'male_weight_loss_year': ('Weight loss', 'male_weight_loss'),
+            # 'male_weight_at_marriage': ('Weight at marriage', 'male_weight_at_marriage'),
+            # 'male_weight_comments': ('Comments', 'male_weight_comments'),
+            # 'male_hirsuitism': ('Hirsuitism', 'male_hirsuitism'),
+            # 'male_hirsuitism_treatment': ('Any treatment', 'male_hirsuitism_treatment'),
+            'male_tuberculosis_date': ('Tuberculosis', 'male_tuberculosis'),
+            'male_att_months': ('ATT (Months)', 'male_att_months'),
+            'male_syphilis_date': ('Syphilis', 'male_syphilis'),
+            'male_herpes_date': ('Herpes', 'male_herpes'),
+            'male_gonorrhoea_date': ('Gonorrhoea', 'male_gonorrhoea'),
+            'male_hiv_date': ('HIV', 'male_hiv'),
+            'male_mumps_date': ('Mumps', 'male_mumps'),
+            'male_adrenal_date': ('Adrenal', 'male_adrenal'),
+            'male_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 'male_anti_phospholipid_syndrome'),
+            'male_autoimmune_disease_date': ('Autoimmune Diseases', 'male_autoimmune_disease'),
+            'male_blood_transfusion_date': ('Blood Transfusion', 'male_blood_transfusion'),
+            'male_cardiac_date': ('Cardiac', 'male_cardiac'),
+            'male_gall_bladder_date': ('Gall Bladder', 'male_gall_bladder'),
+            'male_gastric_date': ('Gastric', 'male_gastric'),
+            'male_gynaecology_date': ('Gynecological', 'male_gynaecology'),
+            'male_haematology_date': ('Haematological', 'male_haematology'),
+            'male_intestinal_date': ('Intestinal', 'male_intestinal'),
+            'male_liver_date': ('Liver', 'male_liver'),
+            'male_low_urinary_tract_date': ('Lower Urinary Tract', 'male_low_urinary_tract'),
+            'male_malignancy_date': ('Malignancies', 'male_malignancy'),
+            'male_neurological_date': ('Neurological', 'male_neurological'),
+            'male_renal_date': ('Renal', 'male_renal'),
+            'male_respiratory_date': ('Respiratory', 'male_respiratory'),
+            'male_skeletal_date': ('Skeletal', 'male_skeletal'),
+            'male_thyroid_date': ('Thyroid', 'male_thyroid'),
+            'male_heart_disease_date': ('Heart Disease', 'male_heart_disease'),
+            'male_urinary_infection_date': ('Urinary Infections', 'male_urinary_infection'),
+            'male_hyper_tension_date': ('Hypertension Pr', 'male_hyper_tension'),
+            'male_janduice_date': ('Jaundice', 'male_janduice'),
+            'male_complications_pr': ('Complications', 'male_complications_pr'),
+            'male_diabetes_date': ('Diabetes', 'male_diabetes'),
+            'male_dvt_date': ('DVT', 'male_dvt'),
+            'male_smoking_date': ('Smoking', 'male_smoking'),
+            'male_alcohol_date': ('Alcohol', 'male_alcohol'),
+            'male_medical_history_others_date': ('Others', 'male_medical_history_others'),
+            # 'male_current_medication': ('Current Medication', 'male_medical_current_medication'),
+        }
+
+        self.male_medical_history = PatientTimeline._compute_patient_medical_history(
+            medical_history=self.ec_first_consultation_id.ec_male_medical_history_id,
+            fields_to_process=male_fields_to_process
+        )
+
+        # Female Fields Processing
+
+        female_fields_to_process = {
+            'female_acne_date': ('Acne', 'female_acne'),
+            'female_weight_gain_year': ('Weight gain', 'female_weight_gain'),
+            'female_weight_loss_year': ('Weight loss', 'female_weight_loss'),
+            # 'female_weight_at_marriage': ('Weight at marriage', 'female_weight_at_marriage'),
+            # 'female_weight_comments': ('Comments', 'female_weight_comments'),
+            # 'female_hirsuitism': ('Hirsuitism', 'female_hirsuitism'),
+            # 'female_hirsuitism_treatment': ('Any treatment', 'female_hirsuitism_treatment'),
+            'female_tuberculosis_date': ('Tuberculosis', 'female_tuberculosis'),
+            'female_att_months': ('ATT (Months)', 'female_att_months'),
+            'female_syphilis_date': ('Syphilis', 'female_syphilis'),
+            'female_herpes_date': ('Herpes', 'female_herpes'),
+            'female_gonorrhoea_date': ('Gonorrhoea', 'female_gonorrhoea'),
+            'female_hiv_date': ('HIV', 'female_hiv'),
+            'female_mumps_date': ('Mumps', 'female_mumps'),
+            'female_adrenal_date': ('Adrenal', 'female_adrenal'),
+            'female_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome'),
+            'female_autoimmune_disease_date': ('Autoimmune Diseases', 'female_autoimmune_disease'),
+            'female_blood_transfusion_date': ('Blood Transfusion', 'female_blood_transfusion'),
+            'female_cardiac_date': ('Cardiac', 'female_cardiac'),
+            'female_gall_bladder_date': ('Gall Bladder', 'female_gall_bladder'),
+            'female_gastric_date': ('Gastric', 'female_gastric'),
+            'female_gynaecology_date': ('Gynecological', 'female_gynaecology'),
+            'female_haematology_date': ('Haematological', 'female_haematology'),
+            'female_intestinal_date': ('Intestinal', 'female_intestinal'),
+            'female_liver_date': ('Liver', 'female_liver'),
+            'female_low_urinary_tract_date': ('Lower Urinary Tract', 'female_low_urinary_tract'),
+            'female_malignancy_date': ('Malignancies', 'female_malignancy'),
+            'female_neurological_date': ('Neurological', 'female_neurological'),
+            'female_renal_date': ('Renal', 'female_renal'),
+            'female_respiratory_date': ('Respiratory', 'female_respiratory'),
+            'female_skeletal_date': ('Skeletal', 'female_skeletal'),
+            'female_thyroid_date': ('Thyroid', 'female_thyroid'),
+            'female_heart_disease_date': ('Heart Disease', 'female_heart_disease'),
+            'female_urinary_infection_date': ('Urinary Infections', 'female_urinary_infection'),
+            'female_hyper_tension_date': ('Hypertension Pr', 'female_hyper_tension'),
+            'female_janduice_date': ('Jaundice', 'female_janduice'),
+            'female_complications_pr': ('Complications', 'female_complications_pr'),
+            'female_diabetes_date': ('Diabetes', 'female_diabetes'),
+            'female_dvt_date': ('DVT', 'female_dvt'),
+            'female_smoking_date': ('Smoking', 'female_smoking'),
+            'female_alcohol_date': ('Alcohol', 'female_alcohol'),
+            'female_medical_history_others_date': ('Others', 'female_medical_history_others'),
+            # 'female_current_medication': ('Current Medication', 'female_medical_current_medication'),
+        }
+
+        self.female_medical_history = PatientTimeline._compute_patient_medical_history(
+            medical_history=self.ec_first_consultation_id.ec_female_medical_history_id,
+            fields_to_process=female_fields_to_process
+        )
+
+    def _compute_surgical_history(self):
+        # Male Fields Processing
+        for record in self:
+            html_content = ""
+            for surgery in record.ec_first_consultation_id.male_procedures_ids:
+                type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
+                field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
+                             f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>' \
+                             f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
+                             f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
+                html_content += field_text
+            record.male_surgical_history = html_content
+        # Male Fields Processing
+
+        for record in self:
+            html_content = ""
+            for surgery in record.ec_first_consultation_id.female_procedures_ids:
+                type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
+                field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
+                             f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>' \
+                             f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
+                             f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
+                html_content += field_text
+            record.female_surgical_history = html_content
 
     def _compute_infertility_type(self):
         for record in self:
