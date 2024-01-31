@@ -127,7 +127,7 @@ class SemenAnalysis(models.Model):
             "res_model": 'ec.semen.analysis',
             'view_id': self.env.ref('ecare_medical_history.ec_semen_analysis_tree_read_only_view').id,
             'view_mode': 'tree',
-            "target": 'current',
+            "target": 'new',
             'context': context,
             'domain': domain,
         }
