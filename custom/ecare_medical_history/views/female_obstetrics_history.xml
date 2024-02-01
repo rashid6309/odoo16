@@ -13,6 +13,7 @@
                            force_save="1"/>
                     <field name="create_date"/>
                     <field name="baby_name"/>
+                    <field name="type_of_conception"/>
                     <field name="mode_of_delivery" required="1"/>
                     <field name="duration_of_pregnancy" string="Dur. of Preg"/>
                     <field name="year" options="{'no_open': True, 'no_create': True}"/>

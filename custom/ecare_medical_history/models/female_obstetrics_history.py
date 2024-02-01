@@ -31,7 +31,7 @@ class FemaleObstetricsHistory(models.Model):
     age = fields.Char(string='Age', compute='_get_age')
     # baby_notes = fields.Text(string='Baby Notes')
     duration_of_pregnancy = fields.Selection(string='Duration of Pregnancy', selection=StaticMember.DoP)
-    mode_of_delivery = fields.Selection(string='Mode Of delivery', selection=StaticMember.MoD, required=False)
+    mode_of_delivery = fields.Selection(string='Outcome', selection=StaticMember.MoD, required=False)
     other_indications = fields.Char('Other Notes')
     # complications = fields.Text(string='Complications in Pregnancy')
     complication_delivery = fields.Text(string='Complications in Delivery')

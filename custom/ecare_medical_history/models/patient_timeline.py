@@ -907,9 +907,15 @@ class PatientTimeline(models.Model):
 
     @api.onchange('female_weight', 'female_height')
     def _calculate_physical_exam_bmi(self):
-        if isinstance(self.female_weight, float) and isinstance(self.female_height, float):
-            height_in_meters = self.female_height / 100
-            self.female_bmi = self.female_weight / (height_in_meters ** 2)
+        if (self.female_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_weight) or
+                self.female_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_height)) :
+            raise UserError(f"Please enter a numeric value in female weight!")
+        if self.female_weight and self.female_height:
+            female_height = float(self.female_height)
+            female_weight = float(self.female_weight)
+            height_in_meters = (female_height / 100)
+            female_bmi = female_weight / (height_in_meters ** 2)
+            self.female_bmi = round(female_bmi, 2)
         else:
             self.female_bmi = None
 
@@ -962,11 +968,6 @@ class PatientTimeline(models.Model):
     def _check_input_repeat_pregnancy_embryos_replaced(self):
         if self.repeat_pregnancy_embryos_replaced and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_embryos_replaced):
             raise UserError(f"Please enter a numeric value in pregnancy embryos replaced!")
-
-    @api.onchange('female_weight')
-    def _check_input_female_weight(self):
-        if self.female_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_weight):
-            raise UserError(f"Please enter a numeric value in female weight!")
 
     @api.onchange('female_height')
     def _check_input_female_height(self):
