@@ -7,9 +7,13 @@ function scrollToElement(element_id){
     setTimeout(function() {
         var innerDiv = document.getElementById(element_id);
         if (innerDiv) {
-            innerDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            var repeatConsultationElement = document.getElementById('repeat_consultation_working_state');
+            if(!repeatConsultationElement)
+            {
+                innerDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
-    }, 1000);
+    }, 600);
 
 }
 
