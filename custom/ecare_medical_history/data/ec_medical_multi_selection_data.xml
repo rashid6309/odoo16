@@ -318,5 +318,9 @@
             <field name="name">Corpus Luteum</field>
             <field name="type">ovulation</field>
         </record>
+        <record model="ec.medical.multi.selection" id="ovulation_none">
+            <field name="name">None</field>
+            <field name="type">ovulation</field>
+        </record>
     </data>
 </odoo>
