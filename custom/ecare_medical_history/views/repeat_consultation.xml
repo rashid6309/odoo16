@@ -14,16 +14,16 @@
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban repeat_kanban_section_header">
                                 <t t-set="rec_id" t-value="record.id.raw_value"/>
-                                <!--                                <t t-set="first_consultation_state" t-esc="record.first_consultation_state.raw_value"/>-->
-                                <!--                                <t t-if="first_consultation_state == 'in_progress'">-->
+                                <!--                                <t t-set="repeat_consultation_state" t-esc="record.repeat_consultation_state.raw_value"/>-->
+                                <!--                                <t t-if="repeat_consultation_state == 'in_progress'">-->
                                 <!--                                 -->
                                 <!--                                </t>-->
-                                <div style="text-align: -webkit-right;">
+                                <div style="text-align: -webkit-right;" attrs="{'invisible': [('repeat_consultation_state','!=','open')]}">
                                     <span class="bg-success" style="display: grid; width: 15%;
                                     height: 50%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); color: #fff;
                                     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); text-transform: uppercase;
                                     text-align: center; overflow: hidden; user-select: none;">
-                                        <field name="first_consultation_state"/>
+                                        <field name="repeat_consultation_state"/>
                                     </span>
                                 </div>
 

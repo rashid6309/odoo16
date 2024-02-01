@@ -595,7 +595,7 @@ class PatientTimeline(models.Model):
 
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
-        self.ec_repeat_consultation_id.first_consultation_state = 'closed'
+        self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
 
     @api.onchange('female_lmp')
     def _check_female_lmp_date(self):

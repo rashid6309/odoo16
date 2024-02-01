@@ -32,7 +32,7 @@ class RepeatConsultation(models.Model):
     #                                            ('4', "Question 4")],
     #                                 default="1",
     #                                 required=True)
-    first_consultation_state = fields.Selection([('open', 'In Progress'),
+    repeat_consultation_state = fields.Selection([('open', 'In Progress'),
                                                  ('closed', 'Done'),
                                                  ('decision_pending', "Decision Pending"),
                                                  ],
@@ -327,10 +327,12 @@ class RepeatConsultation(models.Model):
         self.repeat_timeline_id.show_repeat_section_state = True
         if self.repeat_timeline_id.ec_repeat_consultation_id.id == self.id:
             self.repeat_timeline_id.first_consultation_state = 'open'
+            self.repeat_consultation_state = 'open'
             return
 
         self.repeat_timeline_id.ec_repeat_consultation_id = self.id
         self.repeat_timeline_id.first_consultation_state = 'open'
+        self.repeat_consultation_state = 'open'
 
     """ Other actions opening place over here"""
 
