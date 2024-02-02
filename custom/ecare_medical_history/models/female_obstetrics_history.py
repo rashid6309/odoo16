@@ -23,7 +23,7 @@ class FemaleObstetricsHistory(models.Model):
 
     baby_name = fields.Char(string='Baby Name')
     type_of_conception = fields.Selection(selection=StaticMember.TYPE_CONCEPTION,
-                                          string='Type of conception')
+                                          string='Type of Conception')
     birth_place = fields.Char(string="Place of Delivery",
                               required=False, )
     year = fields.Many2one("ec.medical.year", 'Year')
