@@ -395,7 +395,8 @@
 
                         <group string="Additional Info" class="semen_analysis_div">
                             <group>
-                                <field name="seminologist" readonly="1" force_save="1"/>
+                                <field name="seminologist_id" readonly="1" force_save="1"/>
+                                <field name="legacy_seminologist" readonly="1" force_save="1"/>
                                 <field name="special_notes"/>
                             </group>
                         </group>
