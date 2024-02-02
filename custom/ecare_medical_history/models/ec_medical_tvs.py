@@ -57,9 +57,9 @@ class EcMedicalTVS(models.Model):
                                         inverse_name="tvs_fiobrid_id",
                                         string="Fibroid")
 
-    tvs_rov = fields.Char(string='ROV',)
+    tvs_rov = fields.Char(string='ROV', readonly=True, )
 
-    tvs_lov = fields.Char(string='LOV',)
+    tvs_lov = fields.Char(string='LOV', readonly=True, )
 
     tvs_other_text = fields.Text(string='Other')
     tvs_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",
@@ -74,7 +74,10 @@ class EcMedicalTVS(models.Model):
                                                   column2='multi_selection_id',
                                                   string='Signs of Ovulation',
                                                   domain="[('type', '=', 'ovulation')]")
-
+    tv_diagnosis = fields.Selection(selection=StaticMember.TVS_DIAGNOSIS,
+                                    string='Diagnosis of Ultrasound')
+    tvs_left_ovary_not_visualised = fields.Boolean(string='Not Visualised', default=False)
+    tvs_right_ovary_not_visualised = fields.Boolean(string='Not Visualised', default=False)
     def action_open_tvs_scan(self):
         context = self._context.copy()
         if context:
@@ -140,7 +143,7 @@ class EcMedicalTVSScan(models.TransientModel):
     def action_tvs_output_process_text(self):
         if self.tvs_id:
             context = self._context.copy()
-            record = self.tvs_id.id
+            record = self.tvs_id
 
             if context and record:
                 field = context.get('default_field')

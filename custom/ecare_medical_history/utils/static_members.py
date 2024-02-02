@@ -207,6 +207,18 @@ class StaticMember:
                       ('corpus_luteum', 'Corpus Luteum'),
                       ]
 
+    TVS_DIAGNOSIS = [
+        ('early_mid_follicular', 'Early-Mid Follicular Phase'),
+        ('late_follicular', 'Late Follicular Phase'),
+        ('pre_ovulation', 'Pre-Ovulation'),
+        ('recent_ovulation', 'Recent Ovulation'),
+        ('late_luteal_pre_menstrual', 'Late Luteal Phase/Pre-Menstrual'),
+        ('luf', 'LUF'),
+        ('post_menopausal', 'Post-Menopausal'),
+        ('pre_menarche', 'Pre-Menarche'),
+        ('uncertain', 'Uncertain'),
+    ]
+
     TYPE_CONCEPTION = [('natural', 'Natural'),
                        ('assisted', 'Assisted'),
                        ]

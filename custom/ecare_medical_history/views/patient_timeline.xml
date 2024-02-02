@@ -125,18 +125,19 @@
 												<field name="repeat_date"/>
 												<field name="repeat_consultation_interaction"
 												/>
+												<field name="repeat_status"
+													   widget="radio" options="{'horizontal': True}"/>
 												<field name="repeat_consultation_with"/>
+												<field name="repeat_seen_with_other"
+													   attrs="{'required': [('repeat_consultation_with', '=', 'other')]}"/>
 												<field name="repeat_seen_by"/>
+												<field name="repeat_other_doctors_present" widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
 											</group>
 											<group>
 												<field name="repeat_location_id"
 													   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
-												<field name="repeat_status"
-													   widget="radio" options="{'horizontal': True}"/>
-												<field name="repeat_seen_with_other"
-													   attrs="{'required': [('repeat_consultation_with', '=', 'other')]}"/>
-												<field name="repeat_other_doctors_present" widget="many2many_tags"
-													   options="{'no_create_edit': True, 'no_create': True}"/>
+
 											</group>
 										</group>
 
@@ -545,6 +546,10 @@
 															}"
 																name="action_open_tvs_scan"
 																string="Begin Scan"/>
+														<div style="display: inline; margin-left: 2%;">
+															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
+															<field name="tvs_right_ovary_not_visualised"/>
+														</div>
 													</div>
 												</div>
 
@@ -566,6 +571,10 @@
 															}"
 																name="action_open_tvs_scan"
 																string="Begin Scan"/>
+														<div style="display: inline; margin-left: 2%;">
+															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
+															<field name="tvs_left_ovary_not_visualised"/>
+														</div>
 
 													</div>
 												</div>
@@ -607,6 +616,7 @@
 												<field name="tvs_signs_of_ovulation_ids"
 													   widget="many2many_tags"
 													   options='{"no_open": True, "no_create": True}'/>
+												<field name="tv_diagnosis"/>
 												<field name="counseling_and_discussion"/>
 
 												<field name="repeat_diagnosis"
@@ -1813,6 +1823,10 @@
 																	name="action_open_gynae_scan"
 																	string="Begin Scan"/>
 														</span>
+														<div style="display: inline; margin-left: 2%;">
+															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
+															<field name="right_ovary_not_visualised"/>
+														</div>
 													</div>
 
 
@@ -1826,6 +1840,10 @@
 																	name="action_open_gynae_scan"
 																	string="Begin Scan"/>
 														</span>
+														<div style="display: inline; margin-left: 2%;">
+															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
+															<field name="left_ovary_not_visualised"/>
+														</div>
 													</div>
 
 													<!-- CYST Section -->

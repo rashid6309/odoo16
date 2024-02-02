@@ -60,9 +60,9 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                           inverse_name="gynaecological_fiobrid_id",
                                           string="Fibroid")
-    gynae_rov = fields.Char(string='ROV',)
+    gynae_rov = fields.Char(string='ROV', readonly=True, )
 
-    gynae_lov = fields.Char(string='LOV',)
+    gynae_lov = fields.Char(string='LOV', readonly=True, )
     right_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary')
     right_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE_TYPE, string='Right Ovary Type')
     gynaecological_right_size_ids = fields.One2many(comodel_name="ec.generic.size",
