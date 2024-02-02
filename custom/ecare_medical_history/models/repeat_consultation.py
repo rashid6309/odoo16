@@ -10,7 +10,7 @@ _logger = getLogger(__name__)
 class RepeatConsultation(models.Model):
     _name = 'ec.repeat.consultation'
     _description = "Patient Repeat Consultation"
-    _order = "create_date desc"
+    _order = "repeat_date desc"
     _inherits = {
         'ec.medical.tvs': 'repeat_tvs_id',
         'ec.medical.pregnancy.data': 'repeat_pregnancy_id',
