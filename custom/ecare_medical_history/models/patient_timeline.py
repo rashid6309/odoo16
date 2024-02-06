@@ -919,6 +919,20 @@ class PatientTimeline(models.Model):
         else:
             self.female_bmi = None
 
+    @api.onchange('male_weight', 'male_height')
+    def _calculate_physical_exam_male_bmi(self):
+        if (self.male_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_weight) or
+                self.male_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_height)) :
+            raise UserError(f"Please enter a numeric value in male weight and height!")
+        if self.male_weight and self.male_height:
+            male_height = float(self.male_height)
+            male_weight = float(self.male_weight)
+            height_in_meters = (male_height / 100)
+            male_bmi = male_weight / (height_in_meters ** 2)
+            self.male_bmi = round(male_bmi, 2)
+        else:
+            self.male_bmi = None
+
     @api.onchange('repeat_pregnancy_lmp')
     def _compute_gestational_age(self):
         for rec in self:
