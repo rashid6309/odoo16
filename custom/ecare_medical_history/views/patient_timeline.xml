@@ -1244,7 +1244,7 @@
 														   string="Year"  />
 													<field name="female_medical_current_medication"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
-														   string="Current Medications"/>
+														   string="Current Medications and Allergies"/>
 												</group>
 											</div>
 
@@ -2217,7 +2217,7 @@
 														   string="Year"  />
 													<field name="male_medical_current_medication"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
-														   string="Current Medications"/>
+														   string="Current Medications and Allergies"/>
 												</group>
 											</div>
 
