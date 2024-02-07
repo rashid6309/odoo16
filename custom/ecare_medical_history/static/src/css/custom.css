@@ -557,3 +557,7 @@ div.repeat_kanban_section_content section{
 label[for="tvs_signs_of_ovulation_ids"] {
     font-weight: 700 !important;
 }
+
+label[for="lining_ids"] {
+    width: max-content !important;
+}

@@ -68,6 +68,7 @@ class StaticMember:
     UTERUS_FLEXION = [
         ('A/V', 'A/V'),
         ('R/V', 'R/V'),
+        ('unable_to_determine', 'Unable to Determine'),
     ]
 
     YEARS = [

@@ -31,8 +31,10 @@ class EcMedicalTVS(models.Model):
 
     tvs_uterus_tvs_size = fields.Boolean(default=False, string="Size")
     tvs_uterus_tvs_position = fields.Boolean(default=False, string="Position")
-    tvs_uterus_tvs_normal = fields.Boolean(default=False, string="Normal")
+    # tvs_uterus_tvs_normal = fields.Boolean(default=False, string="Normal")
     tvs_uterus_tvs_fiobrid = fields.Boolean(default=False, string="Fibroid")
+
+    tvs_uterus_flexion = fields.Selection(selection=StaticMember.UTERUS_FLEXION, string='Uterus Flexion')
 
     tvs_uterus_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                          string='Size X')
@@ -57,9 +59,9 @@ class EcMedicalTVS(models.Model):
                                         inverse_name="tvs_fiobrid_id",
                                         string="Fibroid")
 
-    tvs_rov = fields.Char(string='ROV', readonly=True, )
+    tvs_rov = fields.Char(string='ROV')
 
-    tvs_lov = fields.Char(string='LOV', readonly=True, )
+    tvs_lov = fields.Char(string='LOV')
 
     tvs_other_text = fields.Text(string='Other')
     tvs_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",

@@ -467,12 +467,20 @@
 															<field name="tvs_uterus_tvs_position"/>
 															<label class="custom-text-align" for="tvs_uterus_tvs_position"/>
 
-															<field name="tvs_uterus_tvs_normal"/>
-															<label class="custom-text-align" for="tvs_uterus_tvs_normal"/>
+															<!--															<field name="tvs_uterus_tvs_normal"/>-->
+															<!--															<label class="custom-text-align" for="tvs_uterus_tvs_normal"/>-->
 
 															<field name="tvs_uterus_tvs_fiobrid"/>
 															<label class="custom-text-align" for="tvs_uterus_tvs_fiobrid"/>
 
+														</div>
+														<div class="d-flex bg-light bg-gradient">
+															<div class="col-md-2">
+																Uterus Flexion
+															</div>
+															<div class="d-flex">
+																<field name="tvs_uterus_flexion"/>
+															</div>
 														</div>
 														<div class="d-flex"
 															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
@@ -511,7 +519,7 @@
 												</div>
 												<div class="d-flex ">
 
-													<div class="col-md-1">
+													<div class="col-md-3">
 														Endometrial Lining Character
 													</div>
 													<div class="d-flex flex-column">
@@ -612,11 +620,13 @@
 
 											<!-- TVS section ends -->
 
-											<group>
+											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 												<field name="tvs_signs_of_ovulation_ids"
 													   widget="many2many_tags"
 													   options='{"no_open": True, "no_create": True}'/>
 												<field name="tv_diagnosis"/>
+											</group>
+											<group>
 												<field name="counseling_and_discussion"/>
 
 												<field name="repeat_diagnosis"
@@ -1759,12 +1769,20 @@
 																<field name="gynaecological_uterus_position"/>
 																<label for="gynaecological_uterus_position"/>
 
-																<field name="gynaecological_uterus_normal"/>
-																<label for="gynaecological_uterus_normal"/>
+<!--																<field name="gynaecological_uterus_normal"/>-->
+<!--																<label for="gynaecological_uterus_normal"/>-->
 
 																<field name="gynaecological_uterus_fiobrid"/>
 																<label for="gynaecological_uterus_fiobrid"/>
 
+															</div>
+															<div class="d-flex bg-light bg-gradient">
+																<div class="col-md-3">
+																	Uterus Flexion
+																</div>
+																<div class="d-flex">
+																	<field name="gynae_uterus_flexion"/>
+																</div>
 															</div>
 															<div class="d-flex" style="width: 15%;" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
 																<span style="font-weight:bold;">Size</span>
@@ -1813,9 +1831,9 @@
 															mm
 														</span>
 													</div>
-													<label for="tvs_rov"/>
+													<label for="gynae_rov"/>
 													<div>
-														<field name="gynae_rov" class="oe_inline" nolabel="1"/>
+														<field name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;"/>
 														<span class="oe_inline">
 															<button type="object"
 																	class="btn-primary"
@@ -1832,7 +1850,7 @@
 
 													<label for="gynae_lov"/>
 													<div>
-														<field name="gynae_lov" class="oe_inline" nolabel="1"/>
+														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;"/>
 														<span class="oe_inline">
 															<button type="object"
 																	class="btn-primary"
@@ -2688,7 +2706,7 @@
 
 								<!--								Previous Treatment -->
 
-								<div class="d-flex scroll-to card-header-custom patient_attachment_container first_consultation_container mt-2" id="patient_attachment_section_link">
+								<div class="d-flex scroll-to card-header-custom patient_attachment_container first_consultation_container" id="patient_attachment_section_link">
 									<div class="col-10">
 										<a data-bs-toggle="collapse" data-bs-target="#patient_attachment_section" href="#">
 											<h4 class="mt-2 mb-0">Patient Documents</h4></a>

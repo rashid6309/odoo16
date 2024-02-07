@@ -43,7 +43,7 @@ class MedicalGynaecologicalExamination(models.Model):
                                                    inverse_name="gynaecological_left_size_id",
                                                    string="Left Ovary")
     left_ovary_not_visualised = fields.Boolean(string='Not Visualised', default=False)
-
+    gynae_uterus_flexion = fields.Selection(selection=StaticMember.UTERUS_FLEXION, string='Uterus Flexion')
     left_ovary_nos = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Nos')
     '''
         FIXME: What is length and width?
@@ -60,9 +60,9 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                           inverse_name="gynaecological_fiobrid_id",
                                           string="Fibroid")
-    gynae_rov = fields.Char(string='ROV', readonly=True, )
+    gynae_rov = fields.Char(string='ROV')
 
-    gynae_lov = fields.Char(string='LOV', readonly=True, )
+    gynae_lov = fields.Char(string='LOV')
     right_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary')
     right_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE_TYPE, string='Right Ovary Type')
     gynaecological_right_size_ids = fields.One2many(comodel_name="ec.generic.size",
@@ -74,7 +74,7 @@ class MedicalGynaecologicalExamination(models.Model):
 
     gynaecological_uterus_size = fields.Boolean(default=False, string="Size")
     gynaecological_uterus_position = fields.Boolean(default=False, string="Position")
-    gynaecological_uterus_normal = fields.Boolean(default=False, string="Normal")
+    # gynaecological_uterus_normal = fields.Boolean(default=False, string="Normal")
     gynaecological_uterus_fiobrid = fields.Boolean(default=False, string="Fibroid")
 
     uterus_size_length = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Uterus Length')

@@ -137,12 +137,12 @@ class RepeatConsultation(models.Model):
                                      default=lambda self: self.env.user)
 
     repeat_other_doctors_present = fields.Many2many(comodel_name='res.consultant',
-                                                    string='Other Present')
+                                                    string='Others Present')
     ''' Seen with list required '''
     repeat_consultation_with = fields.Selection(selection=StaticMember.SEEN_WITH,
                                                 string='Consultation with')
 
-    repeat_seen_with_other = fields.Text(string='Other Present')
+    repeat_seen_with_other = fields.Text(string='Others Present')
 
     # Define TVS field as per your TVS form structure
     # TVS = fields.Many2one('tvs.form', string='TVS Form')

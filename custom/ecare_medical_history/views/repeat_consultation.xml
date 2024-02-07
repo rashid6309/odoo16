@@ -111,7 +111,7 @@
                                                                 </div>
                                                                 <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
-                                                                        <span class="o_form_label">Other Present</span>
+                                                                        <span class="o_form_label">Others Present</span>
                                                                     </div>
                                                                     <div>
                                                                         <field name="repeat_seen_with_other"/>
@@ -127,7 +127,7 @@
                                                                 </div>
                                                                 <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
-                                                                        <span class="o_form_label">Other Present
+                                                                        <span class="o_form_label">Others Present
                                                                         </span>
                                                                     </div>
                                                                     <div>
