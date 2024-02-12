@@ -671,7 +671,7 @@
                                                                          t-if="record.repeat_pelvic_examination_state.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Pelvic
-                                                                                Examination State
+                                                                                Examination Done?
                                                                             </span>
                                                                         </div>
                                                                         <div>

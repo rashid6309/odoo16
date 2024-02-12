@@ -143,7 +143,7 @@ class PatientTimeline(models.Model):
     ''' Data members '''
     timeline_conclusion = fields.Html(string="Conclusion")
 
-    patient_attachment_ids = fields.One2many(string='Attachments',
+    patient_attachment_ids = fields.One2many(string='Attachments Details',
                                          comodel_name='ec.medical.patient.attachment',
                                          inverse_name='patient_attachment_timeline_id')
 

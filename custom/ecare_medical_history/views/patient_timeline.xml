@@ -503,13 +503,13 @@
 															<div class="col-md-2" style="font-weight:bold;">
 																Fibroid
 															</div>
-															<div class="col-md-5">
+															<div class="col-md-7">
 																<field name="tvs_generic_sizes_ids">
 																	<tree editable="top">
+																		<field name="generic_size_x"/>
 																		<field name="location_or_features"/>
 																		<field name="distorting_endometrium"/>
-																		<field name="generic_size_x"/>
-																		<field name="generic_size_y"/>
+<!--																		<field name="generic_size_y"/>-->
 
 																	</tree>
 																</field>
@@ -1725,29 +1725,137 @@
 												</div>
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="gynecological_examination_section">
-												<h4>P/V</h4>
 												<group>
-													<label for="vulva_vagina"/>
-													<div>
-														<field name="vulva_vagina" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-														<field name="vulva_vagina_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
-													</div>
-													<label for="uterus_size"/>
-													<div>
-														<field name="uterus_size" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-														<field name="uterus_size_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+													<!--													<div>-->
+													<!--														<label class="custom-text-align" for="gynae_exam_pelvic_examination_state"/>-->
+													<field name="gynae_exam_pelvic_examination_state"
+														   widget="radio"
+														   options="{'horizontal': True}"/>
+													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '!=', 'yes')]}"/>
+
+													<div class="d-flex" attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '!=', 'yes')]}">
+														<field name="gynae_exam_inspection_only"/>
+														<label class="custom-text-align" for="gynae_exam_inspection_only"/>
+
+														<field name="gynae_exam_p_v_only"/>
+														<label class="custom-text-align" for="gynae_exam_p_v_only"/>
+
+														<field name="gynae_exam_p_s_only"/>
+														<label class="custom-text-align" for="gynae_exam_p_s_only"/>
 													</div>
 
-													<field name="uterus_flexion" widget="radio" options="{'horizontal': True}"/>
-													<field name="uterus_position" widget="radio" options="{'horizontal': True}"/>
-													<field name="uterus_motility" widget="radio" options="{'horizontal': True}"/>
-													<h4>P/S</h4>
-													<div/>
-													<label for="gynaecological_examination_ps_selection"/>
-													<div>
-														<field name="gynaecological_examination_ps_selection" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-														<field name="gynaecological_examination_ps_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>
+													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
+														<label class="custom-text-align" attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True)]}"
+															   for="gynae_exam_findings_on_inspection"/>
+														<field name="gynae_exam_findings_on_inspection"
+															   attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True)]}"
+														/>
+
+														<label class="custom-text-align" attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}" for="gynae_exam_valva_vaginal_exam"/>
+														<field name="gynae_exam_valva_vaginal_exam"
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}"
+														/>
+
+														<label class="custom-text-align" attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}"
+															   for="gynae_exam_cervix"/>
+														<field name="gynae_exam_cervix"
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}"
+														/>
+
+														<label class="custom-text-align" attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True)]}"
+															   for="gynae_exam_uterus_and_adnexae"/>
+														<field name="gynae_exam_uterus_and_adnexae"
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True)]}"
+														/>
 													</div>
+
+													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>
+													<div class="d-flex flex-column" attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
+														<div
+																attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+												   ('gynae_exam_p_v_only', '!=', True),
+												   ('gynae_exam_p_s_only', '!=', True)]}"
+														>
+															<h5>Swab Taken</h5>
+														</div>
+														<div class="d-flex">
+
+															<field name="gynae_exam_hvs"
+																   attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+													   ('gynae_exam_p_v_only', '!=', True),
+													   ('gynae_exam_p_s_only', '!=', True)]}"
+															/>
+															<label class="custom-text-align" for="gynae_exam_hvs"
+																   attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+													   ('gynae_exam_p_v_only', '!=', True),
+													   ('gynae_exam_p_s_only', '!=', True)]}"
+															/>
+
+
+															<field name="gynae_exam_endocervical"
+																   attrs="{'invisible': [('gynae_exam_p_s_only', '!=', True)]}"
+															/>
+															<label class="custom-text-align" for="gynae_exam_endocervical"
+																   attrs="{'invisible': [('gynae_exam_p_s_only', '!=', True)]}"
+															/>
+
+
+															<field attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+																			  ('gynae_exam_p_v_only', '!=', True),
+																			  ('gynae_exam_p_s_only', '!=', True)]}"
+																   name="gynae_exam_no_swab_taken"/>
+															<label class="custom-text-align" for="gynae_exam_no_swab_taken"
+																   attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+													   ('gynae_exam_p_v_only', '!=', True),
+													   ('gynae_exam_p_s_only', '!=', True)]}"
+															>No</label>
+
+
+														</div>
+													</div>
+
+													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>
+													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
+														<label
+																attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+													   ('gynae_exam_p_v_only', '!=', True),
+													   ('gynae_exam_p_s_only', '!=', True)]}"
+																for="gynae_exam_method_of_hvs"/>
+														<field
+																attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+													   ('gynae_exam_p_v_only', '!=', True),
+													   ('gynae_exam_p_s_only', '!=', True)]}"
+																name="gynae_exam_method_of_hvs"/>
+													</div>
+
+													<div class="d-flex" attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
+													('gynae_exam_p_s_only', '!=', True)]}"/>
+													<div class="d-flex" attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
+													('gynae_exam_p_s_only', '!=', True)]}">
+														<field name="gynae_exam_pap_smear_done"
+														/>
+														<label class="custom-text-align" for="gynae_exam_pap_smear_done"/>
+
+														<field name="gynae_exam_pipelle_sampling_done"
+														/>
+														<label class="custom-text-align" for="gynae_exam_pipelle_sampling_done"/>
+
+													</div>
+													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>
+													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
+
+														<label for="gynae_exam_other_findings"
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
+													   ('gynae_exam_p_s_only', '!=', True)]}"
+														/>
+														<field name="gynae_exam_other_findings"
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
+													   ('gynae_exam_p_s_only', '!=', True)]}"
+														/>
+
+													</div>
+
 													<h4 style="width:200%;">Ultrasound</h4>
 													<div/>
 													<field name="gynaecological_ultrasound_type"
@@ -1769,8 +1877,8 @@
 																<field name="gynaecological_uterus_position"/>
 																<label for="gynaecological_uterus_position"/>
 
-<!--																<field name="gynaecological_uterus_normal"/>-->
-<!--																<label for="gynaecological_uterus_normal"/>-->
+																<!--																<field name="gynaecological_uterus_normal"/>-->
+																<!--																<label for="gynaecological_uterus_normal"/>-->
 
 																<field name="gynaecological_uterus_fiobrid"/>
 																<label for="gynaecological_uterus_fiobrid"/>
@@ -1804,13 +1912,13 @@
 																<div class="col-md-2" style="font-weight:bold;">
 																	Fibroid
 																</div>
-																<div class="col-md-5">
+																<div class="col-md-10">
 																	<field name="gynaecological_generic_sizes_ids">
 																		<tree editable="top">
+																			<field name="generic_size_x"/>
 																			<field name="location_or_features"/>
 																			<field name="distorting_endometrium"/>
-																			<field name="generic_size_x"/>
-																			<field name="generic_size_y"/>
+<!--																			<field name="generic_size_y"/>-->
 
 																		</tree>
 																	</field>
@@ -1823,6 +1931,7 @@
 													<label for="lining_ids"/>
 													<div>
 														<field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/>
+														<div/>
 														<span class="oe_inline">
 															CET
 														</span>
@@ -2252,9 +2361,9 @@
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="male_surgical_section">
 												<group>
-													<field name="male_tubal_patency_testing" widget="radio"  options="{'horizontal': True}"/>
-													<field name="male_dai_handling"  widget="radio"  options="{'horizontal': True}"/>
-													<field name="male_d_and_c"  widget="radio"  options="{'horizontal': True}"/>
+<!--													<field name="male_tubal_patency_testing" widget="radio"  options="{'horizontal': True}"/>-->
+<!--													<field name="male_dai_handling"  widget="radio"  options="{'horizontal': True}"/>-->
+<!--													<field name="male_d_and_c"  widget="radio"  options="{'horizontal': True}"/>-->
 													<div>
 														<!-- BUG -->
 														<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
@@ -2760,21 +2869,20 @@
 									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#femaleCollapseSection" href="#">
 										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
 									</a>
-
-									<div class="show" id="femaleCollapseSection">
-										<h5>Female Family History</h5>
-										<field name="female_family_history" widget="html"/>
-									</div>
 									<div class="show" id="femaleCollapseSection">
 										<div class="divider"/>
-										<h5>Female Medical History</h5>
+										<h5>Medical History</h5>
 										<field name="female_medical_history" widget="html"/>
 									</div>
 
 									<div class="show" id="femaleCollapseSection">
 										<div class="divider"/>
-										<h5>Female Surgical History</h5>
+										<h5>Surgical History</h5>
 										<field name="female_surgical_history" widget="html"/>
+									</div>
+									<div class="show" id="femaleCollapseSection">
+										<h5>Family History</h5>
+										<field name="female_family_history" widget="html"/>
 									</div>
 
 									<!--									<div class="show" id="femaleCollapseSection">(collapsible - expands to a limit) - default is expanded</div>-->
@@ -2795,23 +2903,23 @@
 									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
 										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
 									</a>
-
-									<div class="show" id="maleCollapseSection">
-										<h5>Male Family History</h5>
-										<field name="male_family_history" widget="html"/>
-									</div>
-
 									<div class="show" id="maleCollapseSection">
 										<div class="divider"/>
-										<h5>Male Medical History</h5>
+										<h5>Medical History</h5>
 										<field name="male_medical_history" widget="html"/>
 									</div>
 
 									<div class="show" id="maleCollapseSection">
 										<div class="divider"/>
-										<h5>Male Surgical History</h5>
+										<h5>Surgical History</h5>
 										<field name="male_surgical_history" widget="html"/>
 									</div>
+
+									<div class="show" id="maleCollapseSection">
+										<h5>Family History</h5>
+										<field name="male_family_history" widget="html"/>
+									</div>
+
 									<!--								<div class="show" id="maleCollapseSection">(collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded (collapsible - expands to a limit) - default is expanded </div>-->
 								</div>
 							</div>

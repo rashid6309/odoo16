@@ -40,6 +40,12 @@ div[name='all_semen_analysis_ids'] {
    text-align: -webkit-right;
 }
 
+#gynecological_examination_section .o_form_label:not(.form-check-label)
+{
+   float : left !important;
+   text-align: -webkit-right;
+}
+
 .timeline_examination
 {
     font-weight: 700 !important;
@@ -555,6 +561,9 @@ div.repeat_kanban_section_content section{
 
 
 label[for="tvs_signs_of_ovulation_ids"] {
+    font-weight: 700 !important;
+}
+label[for="tv_diagnosis"] {
     font-weight: 700 !important;
 }
 

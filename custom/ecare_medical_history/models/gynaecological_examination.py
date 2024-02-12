@@ -11,8 +11,8 @@ class MedicalGynaecologicalExamination(models.Model):
 
     consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
 
-    vulva_vagina = fields.Selection(selection=StaticMember.UTERUS_SIZE, string='Vulva/Vagina')
-    vulva_vagina_comment = fields.Char(string='Vulva/Vagina Comment')
+    vulva_vagina = fields.Selection(selection=StaticMember.UTERUS_SIZE, string='Valva/Vagina')
+    vulva_vagina_comment = fields.Char(string='Valva/Vagina Comment')
 
     uterus_size = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='Uterus Size')
     uterus_size_comment = fields.Char(string='Uterus Size Comment')
@@ -26,6 +26,29 @@ class MedicalGynaecologicalExamination(models.Model):
 
     gynaecological_examination_ps_selection = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='P/S')
     gynaecological_examination_ps_comment = fields.Char('P/S Comment')
+
+    # Fields for gynae_exam
+    gynae_exam_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                           string="Pelvic examination done?")
+    gynae_exam_inspection_only = fields.Boolean(string='Inspection Only')
+    gynae_exam_p_v_only = fields.Boolean(string='P/V Only')
+    gynae_exam_p_s_only = fields.Boolean(string='P/S Only')
+
+    gynae_exam_findings_on_inspection = fields.Text(string='Findings on Inspection')
+    gynae_exam_valva_vaginal_exam = fields.Text(string='Valva Vaginal Exam')
+    gynae_exam_cervix = fields.Text(string='Cervix')
+    gynae_exam_uterus_and_adnexae = fields.Text(string='Uterus and adnexae (bimanual)')
+
+    gynae_exam_hvs = fields.Boolean(string='HVS')
+    gynae_exam_endocervical = fields.Boolean(string='Endocervical')
+    gynae_exam_no_swab_taken = fields.Boolean(string="No swab taken")
+    gynae_exam_method_of_hvs = fields.Selection(string="Method of HVS",
+                                                selection=StaticMember.METHOD_OF_HVS)
+
+    gynae_exam_pap_smear_done = fields.Boolean(string='Pap Smear Done')
+    gynae_exam_pipelle_sampling_done = fields.Boolean(string='Pipelle Sampling Done')
+
+    gynae_exam_other_findings = fields.Text(string='Other Findings')
 
     gynaecological_examination_date = fields.Date(string='Date')
     gynaecological_ultrasound_type = fields.Selection(selection=StaticMember.ULTRASOUND_TYPE,

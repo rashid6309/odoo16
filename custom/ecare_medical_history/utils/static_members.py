@@ -1111,7 +1111,7 @@ class StaticMember:
 
     SURGERY_TYPES = [
         ('tubal_patency_testing', 'Tubal Patency Testing'),
-        ('endoscopic_surgery', 'Endoscopic Surgery'),
+        ('minimally_invasive_surgery', 'Minimally Invasive Surgery Other Than Tubal Testing'),
         ('laparotomy', 'Laparotomy'),
         ('cardiac_surgery', 'Cardiac Surgery'),
         ('neurosurgery', 'Neurosurgery'),
