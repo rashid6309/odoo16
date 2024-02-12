@@ -11,8 +11,8 @@ class MedicalGynaecologicalExamination(models.Model):
 
     consultation_id = fields.Many2one(comodel_name='ec.first.consultation', string='First Consultation')
 
-    vulva_vagina = fields.Selection(selection=StaticMember.UTERUS_SIZE, string='Valva/Vagina')
-    vulva_vagina_comment = fields.Char(string='Valva/Vagina Comment')
+    vulva_vagina = fields.Selection(selection=StaticMember.UTERUS_SIZE, string='Vulva/Vagina')
+    vulva_vagina_comment = fields.Char(string='Vulva/Vagina Comment')
 
     uterus_size = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='Uterus Size')
     uterus_size_comment = fields.Char(string='Uterus Size Comment')
@@ -35,7 +35,7 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_exam_p_s_only = fields.Boolean(string='P/S Only')
 
     gynae_exam_findings_on_inspection = fields.Text(string='Findings on Inspection')
-    gynae_exam_valva_vaginal_exam = fields.Text(string='Valva Vaginal Exam')
+    gynae_exam_valva_vaginal_exam = fields.Text(string='Vulva Vaginal Exam')
     gynae_exam_cervix = fields.Text(string='Cervix')
     gynae_exam_uterus_and_adnexae = fields.Text(string='Uterus and adnexae (bimanual)')
 

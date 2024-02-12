@@ -13,7 +13,7 @@ class MedicalPatientAttachment(models.Model):
 
     attachment_id = fields.Many2many('ir.attachment', 'patient_attachment_document_rel',
                                      'patient_attachment_id', 'doc_id', help="If you want to upload any attachment.",
-                                     string='Document')
+                                     string='Document', public=True)
 
     results = fields.Text('Results')
 

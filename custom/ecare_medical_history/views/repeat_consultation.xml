@@ -720,7 +720,7 @@
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_valva_vaginal_exam.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">Valva/Vaginal
+                                                                            <span class="o_form_label">Vulva/Vaginal
                                                                                 Exam
                                                                             </span>
                                                                         </div>

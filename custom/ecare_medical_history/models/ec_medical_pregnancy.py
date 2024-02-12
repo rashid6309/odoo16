@@ -86,7 +86,7 @@ class PregnancyForm(models.Model):
     @api.onchange('repeat_pregnancy_lmp')
     def _compute_gestational_age(self):
         for rec in self:
-            date_analysis = rec.create_date
+            date_analysis = rec.pregnancy_repeat_consultation_id.repeat_date
             lmp = rec.repeat_pregnancy_lmp
             if date_analysis and lmp:
                 diff = date_analysis.date() - lmp

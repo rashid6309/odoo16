@@ -196,7 +196,7 @@ class RepeatConsultation(models.Model):
     repeat_findings_on_inspection = fields.Text(string="Findings on inspection")
 
     repeat_vaginal_exam = fields.Text(string='Vaginal Exam')
-    repeat_valva_vaginal_exam = fields.Text(string='Valva and Vagina')
+    repeat_valva_vaginal_exam = fields.Text(string='Vulva and Vagina')
     repeat_cervix = fields.Text(string="Cervix")
     repeat_uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
 

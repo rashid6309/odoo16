@@ -509,7 +509,7 @@
 																		<field name="generic_size_x"/>
 																		<field name="location_or_features"/>
 																		<field name="distorting_endometrium"/>
-<!--																		<field name="generic_size_y"/>-->
+																		<!--																		<field name="generic_size_y"/>-->
 
 																	</tree>
 																</field>
@@ -1744,31 +1744,27 @@
 														<label class="custom-text-align" for="gynae_exam_p_s_only"/>
 													</div>
 
-													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>
-													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
-														<label class="custom-text-align" attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True)]}"
-															   for="gynae_exam_findings_on_inspection"/>
 														<field name="gynae_exam_findings_on_inspection"
-															   attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True)]}"
+															   attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
+														   ('gynae_exam_inspection_only', '!=', True)]}"
 														/>
-
-														<label class="custom-text-align" attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}" for="gynae_exam_valva_vaginal_exam"/>
 														<field name="gynae_exam_valva_vaginal_exam"
-															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}"
+															   attrs="{'invisible': ['|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
+															   ('gynae_exam_p_v_only', '!=', True),
+														   ('gynae_exam_p_s_only', '!=', True)]}"
 														/>
 
-														<label class="custom-text-align" attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}"
-															   for="gynae_exam_cervix"/>
 														<field name="gynae_exam_cervix"
-															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}"
+															   attrs="{'invisible': ['|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
+															   ('gynae_exam_p_v_only', '!=', True),
+															   ('gynae_exam_p_s_only', '!=', True)]}"
 														/>
 
-														<label class="custom-text-align" attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True)]}"
-															   for="gynae_exam_uterus_and_adnexae"/>
 														<field name="gynae_exam_uterus_and_adnexae"
-															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True)]}"
+															   attrs="{'invisible': ['|',('gynae_exam_pelvic_examination_state', '=', 'no'),
+															   ('gynae_exam_p_v_only', '!=', True)]}"
 														/>
-													</div>
+
 
 													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>
 													<div class="d-flex flex-column" attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
@@ -1918,7 +1914,7 @@
 																			<field name="generic_size_x"/>
 																			<field name="location_or_features"/>
 																			<field name="distorting_endometrium"/>
-<!--																			<field name="generic_size_y"/>-->
+																			<!--																			<field name="generic_size_y"/>-->
 
 																		</tree>
 																	</field>
@@ -2361,9 +2357,9 @@
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="male_surgical_section">
 												<group>
-<!--													<field name="male_tubal_patency_testing" widget="radio"  options="{'horizontal': True}"/>-->
-<!--													<field name="male_dai_handling"  widget="radio"  options="{'horizontal': True}"/>-->
-<!--													<field name="male_d_and_c"  widget="radio"  options="{'horizontal': True}"/>-->
+													<!--													<field name="male_tubal_patency_testing" widget="radio"  options="{'horizontal': True}"/>-->
+													<!--													<field name="male_dai_handling"  widget="radio"  options="{'horizontal': True}"/>-->
+													<!--													<field name="male_d_and_c"  widget="radio"  options="{'horizontal': True}"/>-->
 													<div>
 														<!-- BUG -->
 														<!-- If the user doesn't create the first consultation and creates the surgical record, it'll not work -->
