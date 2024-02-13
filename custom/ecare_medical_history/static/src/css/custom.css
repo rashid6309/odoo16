@@ -556,43 +556,43 @@ label[for="cn_type"]{
 }
 
 
-label[for="female_acne"]{
-    font-weight: bold !important;
-}
-label[for="female_weight_gain"]{
-    font-weight: bold !important;
-}
-label[for="female_weight_loss"]{
-    font-weight: bold !important;
-}
-label[for="female_weight_at_marriage"]{
-    font-weight: bold !important;
-}
-label[for="female_hirsuitism"]{
-    font-weight: bold !important;
-}
-label[for="female_tuberculosis"]{
+label[for="male_acne"],label[for="male_weight_gain"],label[for="male_weight_loss"],
+label[for="male_hirsuitism"],label[for="male_weight_at_marriage"],
+label[for="male_tuberculosis"], label[for="male_att_months"], label[for="male_syphilis"],
+label[for="male_herpes"], label[for="male_gonorrhoea"], label[for="male_hiv"],
+label[for="male_mumps"], label[for="male_adrenal"], label[for="male_anti_phospholipid_syndrome"],
+label[for="male_autoimmune_disease"], label[for="male_blood_transfusion"],
+label[for="male_cardiac"], label[for="male_gall_bladder"], label[for="male_gastric"],
+label[for="male_gynaecology"], label[for="male_haematology"], label[for="male_intestinal"],
+label[for="male_liver"], label[for="male_low_urinary_tract"], label[for="male_malignancy"],
+label[for="male_neurological"], label[for="male_renal"], label[for="male_respiratory"],
+label[for="male_skeletal"], label[for="male_thyroid_TYPE"], label[for="male_thyroid"],
+label[for="male_heart_disease"], label[for="male_urinary_infection"],
+label[for="male_hyper_tension"], label[for="male_janduice"],
+label[for="male_complications_pr"], label[for="male_diabetes_type"],
+label[for="male_dvt"], label[for="male_smoking"],
+label[for="male_alcohol"], label[for="male_operations_pr"] {
     font-weight: bold !important;
 }
 
 
-
-label[for="male_acne"]{
-    font-weight: bold !important;
-}
-label[for="male_weight_gain"]{
-    font-weight: bold !important;
-}
-label[for="male_weight_loss"]{
-    font-weight: bold !important;
-}
-label[for="male_weight_at_marriage"]{
-    font-weight: bold !important;
-}
-label[for="male_hirsuitism"]{
-    font-weight: bold !important;
-}
-label[for="male_tuberculosis"]{
+label[for="female_acne"],label[for="female_weight_gain"],
+label[for="female_weight_loss"],label[for="female_weight_at_marriage"],
+label[for="female_hirsuitism"],label[for="female_tuberculosis"],
+label[for="female_tuberculosis"], label[for="female_att_months"], label[for="female_syphilis"],
+label[for="female_herpes"], label[for="female_gonorrhoea"], label[for="female_hiv"],
+label[for="female_mumps"], label[for="female_adrenal"], label[for="female_anti_phospholipid_syndrome"],
+label[for="female_autoimmune_disease"], label[for="female_blood_transfusion"],
+label[for="female_cardiac"], label[for="female_gall_bladder"], label[for="female_gastric"],
+label[for="female_gynaecology"], label[for="female_haematology"], label[for="female_intestinal"],
+label[for="female_liver"], label[for="female_low_urinary_tract"], label[for="female_malignancy"],
+label[for="female_neurological"], label[for="female_renal"], label[for="female_respiratory"],
+label[for="female_skeletal"], label[for="female_thyroid_TYPE"], label[for="female_thyroid"],
+label[for="female_heart_disease"], label[for="female_urinary_infection"],
+label[for="female_hyper_tension"], label[for="female_janduice"],
+label[for="female_complications_pr"], label[for="female_diabetes_type"],
+label[for="female_dvt"], label[for="female_smoking"],
+label[for="female_alcohol"], label[for="female_operations_pr"] {
     font-weight: bold !important;
 }
 
