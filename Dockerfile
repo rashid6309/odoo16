@@ -14,8 +14,8 @@ RUN mkdir /opt/odoo16ce/custom_odoo_module
 RUN mkdir /etc/odoo
 
 COPY ./core /opt/odoo16ce/core
-COPY ./custom /opt/odoo16ce/custom
-COPY ./custom_odoo_module /opt/odoo16ce/custom_odoo_module
+# COPY ./custom /opt/odoo16ce/custom
+# COPY ./custom_odoo_module /opt/odoo16ce/custom_odoo_module
 
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
