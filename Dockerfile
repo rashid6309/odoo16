@@ -84,7 +84,8 @@ RUN chown odoo:odoo -R /etc/odoo \
     && mkdir -p /opt/odoo/logs \
     && chown -R odoo:odoo /opt/odoo/logs \
     && mkdir -p /opt/backups \
-    && chown -R odoo:odoo /opt/backups
+    && chown -R odoo:odoo /opt/backups \
+    && chown -R odoo:odoo /opt/odoo16ce
 
 #VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
