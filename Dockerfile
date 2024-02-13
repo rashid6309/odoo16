@@ -14,8 +14,8 @@ RUN mkdir /opt/odoo16ce/custom_odoo_module
 RUN mkdir /etc/odoo
 
 COPY ./core /opt/odoo16ce/core
-COPY ./custom /opt/odoo16ce/custom
-COPY ./custom_odoo_module /opt/odoo16ce/custom_odoo_module
+# COPY ./custom /opt/odoo16ce/custom
+# COPY ./custom_odoo_module /opt/odoo16ce/custom_odoo_module
 
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
@@ -74,7 +74,7 @@ RUN pip3 install -r /opt/odoo16ce/core/requirements.txt
 #RUN apt-get install -y libssl-dev libpq-dev
 
 
-# Set permissions and Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
+# Set permissions and Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons for all
 RUN chown odoo:odoo -R /etc/odoo \
     && mkdir -p /mnt/extra-addons \
     && chown -R odoo /mnt/extra-addons \
@@ -84,7 +84,8 @@ RUN chown odoo:odoo -R /etc/odoo \
     && mkdir -p /opt/odoo/logs \
     && chown -R odoo:odoo /opt/odoo/logs \
     && mkdir -p /opt/backups \
-    && chown -R odoo:odoo /opt/backups
+    && chown -R odoo:odoo /opt/backups \
+    && chown -R odoo:odoo /opt/odoo16ce
 
 #VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
