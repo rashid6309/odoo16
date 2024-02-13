@@ -85,8 +85,11 @@ RUN chown odoo:odoo -R /etc/odoo \
     && chown -R odoo:odoo /opt/odoo/logs \
     && mkdir -p /opt/backups \
     && chown -R odoo:odoo /opt/backups \
-    && chown -R odoo:odoo /opt/odoo16ce
+    && chown -R odoo:odoo /opt/odoo16ce \
+    && chown -R odoo:odoo /opt/odoo16ce/custom \
+    && chown -R odoo:odoo /opt/odoo16ce/custom_odoo_module
 
+# volumes are managed in composer file
 #VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
 # Expose Odoo services
