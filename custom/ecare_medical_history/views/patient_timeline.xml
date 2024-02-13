@@ -686,16 +686,18 @@
 											});
 											});
 										</script>
-										<a style="float: right; display: inline-block; background-color: #3498db; color: #fff; text-align: center; text-decoration: none; border-radius: 5px;
+										<a style="float: right; display: inline-block; background-color: #71639e; color: #fff; text-align: center; text-decoration: none; border-radius: 5px;
 										 cursor: pointer; width: 7%;
-										 FONT-SIZE: 12px; padding-top: 1%;" class="m-2" id="collapseButton" href="#">
+										 FONT-SIZE: 12px; padding-top: 1%;"
+										   class="m-2" id="collapseButton" href="#">
 											<p>Collapse</p>
 											<!--											<i class="fa fa-expand fa-2x" aria-hidden="true"/>-->
 										</a>
 										<a style="float: right; display: inline-block;
-										background-color: #3498db; color: #fff; text-align: center;
+										background-color: #71639e; color: #fff; text-align: center;
 										text-decoration: none; border-radius: 5px; cursor: pointer;
-										 width: 7%; FONT-SIZE: 12px; padding-top: 1%;" class="m-2" id="expandButton" href="#">
+										 width: 7%; FONT-SIZE: 12px; padding-top: 1%;" class="m-2"
+										   id="expandButton" href="#">
 											<p>Expand</p>
 											<!--											<i class="fa fa-expand fa-2x" aria-hidden="true"/>-->
 										</a>
@@ -1765,26 +1767,26 @@
 														<label class="custom-text-align" for="gynae_exam_p_s_only"/>
 													</div>
 
-														<field name="gynae_exam_findings_on_inspection"
-															   attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
+													<field name="gynae_exam_findings_on_inspection"
+														   attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
 														   ('gynae_exam_inspection_only', '!=', True)]}"
-														/>
-														<field name="gynae_exam_valva_vaginal_exam"
-															   attrs="{'invisible': ['|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
+													/>
+													<field name="gynae_exam_valva_vaginal_exam"
+														   attrs="{'invisible': ['|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
 															   ('gynae_exam_p_v_only', '!=', True),
 														   ('gynae_exam_p_s_only', '!=', True)]}"
-														/>
+													/>
 
-														<field name="gynae_exam_cervix"
-															   attrs="{'invisible': ['|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
+													<field name="gynae_exam_cervix"
+														   attrs="{'invisible': ['|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
 															   ('gynae_exam_p_v_only', '!=', True),
 															   ('gynae_exam_p_s_only', '!=', True)]}"
-														/>
+													/>
 
-														<field name="gynae_exam_uterus_and_adnexae"
-															   attrs="{'invisible': ['|',('gynae_exam_pelvic_examination_state', '=', 'no'),
+													<field name="gynae_exam_uterus_and_adnexae"
+														   attrs="{'invisible': ['|',('gynae_exam_pelvic_examination_state', '=', 'no'),
 															   ('gynae_exam_p_v_only', '!=', True)]}"
-														/>
+													/>
 
 
 													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>

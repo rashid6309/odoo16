@@ -232,13 +232,14 @@ class SemenAnalysis(models.Model):
     def _check_progression_input(self):
         self._check_numeric_input('progression', self.progression)
 
-    @api.onchange('production_time', "analysis_time","liquifaction_time")
+    @api.onchange('production_time', "analysis_time", "liquifaction_time")
     def _onchange_time(self):
 
         if self.production_time:
             time = TimeValidation.validate_time(self.production_time)
 
             if not time:
+                self.production_time = None
                 return CustomNotification.notification_time_validation()
             try:
                 parsed_time = datetime.strptime(time, '%H:%M')
@@ -251,6 +252,7 @@ class SemenAnalysis(models.Model):
         if self.analysis_time:
             time = TimeValidation.validate_time(self.analysis_time)
             if not time:
+                self.analysis_time = None
                 return CustomNotification.notification_time_validation()
             try:
                 parsed_time = datetime.strptime(time, '%H:%M')
@@ -261,6 +263,15 @@ class SemenAnalysis(models.Model):
             self.analysis_time = time
 
         if self.liquifaction_time:
-            if not re.match(Validation.REGEX_INTEGER_SIMPLE, self.liquifaction_time):
-                raise UserError(f"Please enter a numeric value in Liquefaction Time!")
+            time = TimeValidation.validate_time(self.liquifaction_time)
+            if not time:
+                self.liquifaction_time = None
+                return CustomNotification.notification_time_validation()
+            try:
+                parsed_time = datetime.strptime(time, '%H:%M')
+                if not 0 <= parsed_time.hour <= 23:
+                    raise ValueError()
+            except ValueError:
+                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
+            self.liquifaction_time = time
 
