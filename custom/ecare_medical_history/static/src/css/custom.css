@@ -555,6 +555,47 @@ label[for="cn_type"]{
     font-weight: bold !important;
 }
 
+
+label[for="female_acne"]{
+    font-weight: bold !important;
+}
+label[for="female_weight_gain"]{
+    font-weight: bold !important;
+}
+label[for="female_weight_loss"]{
+    font-weight: bold !important;
+}
+label[for="female_weight_at_marriage"]{
+    font-weight: bold !important;
+}
+label[for="female_hirsuitism"]{
+    font-weight: bold !important;
+}
+label[for="female_tuberculosis"]{
+    font-weight: bold !important;
+}
+
+
+
+label[for="male_acne"]{
+    font-weight: bold !important;
+}
+label[for="male_weight_gain"]{
+    font-weight: bold !important;
+}
+label[for="male_weight_loss"]{
+    font-weight: bold !important;
+}
+label[for="male_weight_at_marriage"]{
+    font-weight: bold !important;
+}
+label[for="male_hirsuitism"]{
+    font-weight: bold !important;
+}
+label[for="male_tuberculosis"]{
+    font-weight: bold !important;
+}
+
 div.repeat_kanban_section_content section{
     margin: 1.5em 0 0 1.5em;
 }

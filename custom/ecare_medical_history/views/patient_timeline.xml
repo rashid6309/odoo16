@@ -658,24 +658,45 @@
 									</div>
 									<section>
 										<script>
-											document.getElementById("toggleButton").addEventListener("click", function() {
+											document.getElementById("collapseButton").addEventListener("click", function() {
 											var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
 
 											repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
 											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
 											collapseDivs.forEach(function(collapseDiv) {
-											if (collapseDiv.classList.contains("show")) {
-											collapseDiv.classList.remove("show");
-											} else {
-											collapseDiv.classList.add("show");
-											}
+
+												collapseDiv.classList.remove("show");
+
+											});
+											});
+											});
+
+
+											document.getElementById("expandButton").addEventListener("click", function() {
+											var repeatKanbanDivs = document.querySelectorAll(".repeat_kanban");
+
+											repeatKanbanDivs.forEach(function(repeatKanbanDiv) {
+											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
+
+											collapseDivs.forEach(function(collapseDiv) {
+
+												collapseDiv.classList.add("show");
 											});
 											});
 											});
 										</script>
-										<a style="float:right; display: inline-block; padding: 1% 1% 0.5% 1%; background-color: #3498db; color: #fff; text-align: center; text-decoration: none; border-radius: 5px; cursor: pointer;" class="m-2" id="toggleButton" href="#">
-											<p>Expand/Collapse</p>
+										<a style="float: right; display: inline-block; background-color: #3498db; color: #fff; text-align: center; text-decoration: none; border-radius: 5px;
+										 cursor: pointer; width: 7%;
+										 FONT-SIZE: 12px; padding-top: 1%;" class="m-2" id="collapseButton" href="#">
+											<p>Collapse</p>
+											<!--											<i class="fa fa-expand fa-2x" aria-hidden="true"/>-->
+										</a>
+										<a style="float: right; display: inline-block;
+										background-color: #3498db; color: #fff; text-align: center;
+										text-decoration: none; border-radius: 5px; cursor: pointer;
+										 width: 7%; FONT-SIZE: 12px; padding-top: 1%;" class="m-2" id="expandButton" href="#">
+											<p>Expand</p>
 											<!--											<i class="fa fa-expand fa-2x" aria-hidden="true"/>-->
 										</a>
 										<field name="repeat_consultation_ids"
@@ -2877,6 +2898,7 @@
 										<field name="female_surgical_history" widget="html"/>
 									</div>
 									<div class="show" id="femaleCollapseSection">
+										<div class="divider"/>
 										<h5>Family History</h5>
 										<field name="female_family_history" widget="html"/>
 									</div>
@@ -2912,6 +2934,7 @@
 									</div>
 
 									<div class="show" id="maleCollapseSection">
+										<div class="divider"/>
 										<h5>Family History</h5>
 										<field name="male_family_history" widget="html"/>
 									</div>

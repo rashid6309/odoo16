@@ -186,10 +186,14 @@ class PatientTimeline(models.Model):
             field_records = getattr(medical_history, field_name)
             custom_field = getattr(medical_history, custom_field_name)
             if field_records or (custom_field and custom_field.strip()):
-                custom_text = f' ({custom_field.strip()})' if custom_field else ''
+                custom_text = f' {custom_field.strip()}' if custom_field else ''
                 medical_members_list = [str(rec.year) for rec in field_records]
                 if medical_members_list:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{", ".join(medical_members_list)}{custom_text}'
+                    year_in_bracket = f"({medical_members_list[0]})"
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
+                    medical_history_text.append(field_text)
+                else:
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}'
                     medical_history_text.append(field_text)
 
         if medical_history_text:
@@ -360,10 +364,13 @@ class PatientTimeline(models.Model):
             # 'male_current_medication': ('Current Medication', 'male_medical_current_medication'),
         }
 
-        self.male_medical_history = PatientTimeline._compute_patient_medical_history(
-            medical_history=self.ec_first_consultation_id.ec_male_medical_history_id,
-            fields_to_process=male_fields_to_process
-        )
+        if self.male_no_medical_history is False:
+            self.male_medical_history = PatientTimeline._compute_patient_medical_history(
+                medical_history=self.ec_first_consultation_id.ec_male_medical_history_id,
+                fields_to_process=male_fields_to_process
+            )
+        else:
+            self.male_medical_history = None
 
         # Female Fields Processing
 
@@ -412,11 +419,14 @@ class PatientTimeline(models.Model):
             'female_medical_history_others_date': ('Others', 'female_medical_history_others'),
             # 'female_current_medication': ('Current Medication', 'female_medical_current_medication'),
         }
+        if self.female_no_medical_history is False:
+            self.female_medical_history = PatientTimeline._compute_patient_medical_history(
+                medical_history=self.ec_first_consultation_id.ec_female_medical_history_id,
+                fields_to_process=female_fields_to_process
+            )
+        else:
+            self.female_medical_history = None
 
-        self.female_medical_history = PatientTimeline._compute_patient_medical_history(
-            medical_history=self.ec_first_consultation_id.ec_female_medical_history_id,
-            fields_to_process=female_fields_to_process
-        )
 
     def _compute_surgical_history(self):
         # Male Fields Processing
@@ -426,8 +436,8 @@ class PatientTimeline(models.Model):
                 type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
                 field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
                              f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>' \
-                             f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
-                             f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
+                             # f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
+                             # f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
                 html_content += field_text
             record.male_surgical_history = html_content
         # Male Fields Processing
@@ -438,8 +448,8 @@ class PatientTimeline(models.Model):
                 type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
                 field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
                              f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>' \
-                             f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
-                             f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
+                             # f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
+                             # f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
                 html_content += field_text
             record.female_surgical_history = html_content
 

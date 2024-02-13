@@ -140,7 +140,7 @@ class SemenAnalysis(models.Model):
             'res_model': 'ec.semen.analysis',
             'res_id': self.id,
             'view_mode': 'form',
-            "target": "current",
+            "target": "main",
         }
 
     @api.onchange('semen_patient_id')

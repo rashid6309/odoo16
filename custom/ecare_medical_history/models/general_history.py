@@ -63,8 +63,9 @@ class GeneralExamination(models.Model):
     @api.depends('general_history_patient_id.wife_dob', 'general_history_patient_id.married_since')
     def calculate_female_age_at_marriage(self):
         for record in self:
-            if record.biological_female_dob and record.general_history_patient_id.married_since:
-                dob = datetime.strptime(str(record.biological_female_dob), "%Y-%m-%d")
+            if (record.biological_female_dob or record.general_history_patient_id.wife_dob
+                    and record.general_history_patient_id.married_since):
+                dob = datetime.strptime(str(record.biological_female_dob or record.general_history_patient_id.wife_dob), "%Y-%m-%d")
                 marriage_date = datetime.strptime(str(record.general_history_patient_id.married_since), "%Y-%m-%d")
 
                 age_at_marriage = (marriage_date - dob).days // 365
