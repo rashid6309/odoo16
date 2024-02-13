@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from odoo.addons.ecare_medical_history.utils.validation import Validation
 
 
@@ -10,10 +11,15 @@ class PatientProcedures(models.Model):
     female_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', ondelete='restrict')
     male_consultation_id = fields.Many2one(comodel_name='ec.first.consultation', ondelete="restrict")
 
-    details = fields.Char('Details')
-    date_on = fields.Date('Date On', required=True)
-    surgical_year = fields.Selection(
-        selection=[(str(year), str(year)) for year in range(1980, 2061)],
+    type_of_surgery = fields.Selection(
+        selection=StaticMember.SURGERY_TYPES,
+        string='Type of Surgery',
+    )
+    details = fields.Char('Details', required=True)
+    date_on = fields.Date('Date On')
+
+    surgical_year_id = fields.Many2one(
+        comodel_name="ec.medical.year",
         string='Year',
         help='Select a year from the list',
     )

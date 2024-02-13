@@ -2,6 +2,7 @@ from datetime import datetime
 
 from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
+import re
 from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 
 from odoo.exceptions import AccessError, UserError, ValidationError
@@ -16,7 +17,7 @@ class PatientTimeline(models.Model):
 
     _sql_constraints = [
         ('timeline_patient_id_unique', 'unique (timeline_patient_id)',
-         'Multiple patient timelines cant be created, rather open the existing one!'),
+         "Multiple patient timelines can't be created, rather open the existing one!"),
     ]
 
     _inherits = {
@@ -92,6 +93,12 @@ class PatientTimeline(models.Model):
     patient_male_dob = fields.Date(string='CNIC DOB', store=True,
                                    related="timeline_patient_id.husband_dob")
 
+    # first_consultation_state = fields.Selection([('open', 'In Progress'),
+    #                                              ('closed', 'Done'),
+    #                                              ('decision_pending', "Decision Pending"),
+    #                                              ],
+    #                                             string='State',
+    #                                             related="ec_first_consultation_id.first_consultation_state")
     ''' One2Many'''
 
     repeat_consultation_ids = fields.One2many(comodel_name="ec.repeat.consultation",
@@ -125,10 +132,20 @@ class PatientTimeline(models.Model):
     male_family_history = fields.Char(string='Male Family History', compute='_compute_family_history')
     female_family_history = fields.Char(string='Female Family History', compute='_compute_family_history')
 
+    male_medical_history = fields.Char(string='Male Medical History', compute='_compute_medical_history')
+    female_medical_history = fields.Char(string='Female Medical History', compute='_compute_medical_history')
+
+    male_surgical_history = fields.Char(string='Male Surgical History', compute='_compute_surgical_history')
+    female_surgical_history = fields.Char(string='Female Surgical History', compute='_compute_surgical_history')
+
     infertility_type = fields.Char(readonly=True, compute="_compute_infertility_type")
 
     ''' Data members '''
     timeline_conclusion = fields.Html(string="Conclusion")
+
+    patient_attachment_ids = fields.One2many(string='Attachments Details',
+                                         comodel_name='ec.medical.patient.attachment',
+                                         inverse_name='patient_attachment_timeline_id')
 
     ''' Static methods '''
     @staticmethod
@@ -156,6 +173,32 @@ class PatientTimeline(models.Model):
         if family_history_text:
             family_history_text = '<br>'.join(family_history_text)
             return family_history_text
+
+        return None
+
+    def _compute_patient_medical_history(medical_history, fields_to_process):
+        if not medical_history:
+            return None
+
+        medical_history_text = []
+
+        for field_name, (field_label, custom_field_name) in fields_to_process.items():
+            field_records = getattr(medical_history, field_name)
+            custom_field = getattr(medical_history, custom_field_name)
+            if field_records or (custom_field and custom_field.strip()):
+                custom_text = f' {custom_field.strip()}' if custom_field else ''
+                medical_members_list = [str(rec.year) for rec in field_records]
+                if medical_members_list:
+                    year_in_bracket = f"({medical_members_list[0]})"
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
+                    medical_history_text.append(field_text)
+                else:
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}'
+                    medical_history_text.append(field_text)
+
+        if medical_history_text:
+            medical_history_text = '<br>'.join(medical_history_text)
+            return medical_history_text
 
         return None
 
@@ -272,6 +315,144 @@ class PatientTimeline(models.Model):
             fields_to_process=fields_to_process
         )
 
+    def _compute_medical_history(self):
+        # Male Fields Processing
+
+        male_fields_to_process = {
+            'male_acne_date': ('Acne', 'male_acne'),
+            'male_weight_gain_year': ('Weight gain', 'male_weight_gain'),
+            'male_weight_loss_year': ('Weight loss', 'male_weight_loss'),
+            # 'male_weight_at_marriage': ('Weight at marriage', 'male_weight_at_marriage'),
+            # 'male_weight_comments': ('Comments', 'male_weight_comments'),
+            # 'male_hirsuitism': ('Hirsuitism', 'male_hirsuitism'),
+            # 'male_hirsuitism_treatment': ('Any treatment', 'male_hirsuitism_treatment'),
+            'male_tuberculosis_date': ('Tuberculosis', 'male_tuberculosis'),
+            'male_att_months': ('ATT (Months)', 'male_att_months'),
+            'male_syphilis_date': ('Syphilis', 'male_syphilis'),
+            'male_herpes_date': ('Herpes', 'male_herpes'),
+            'male_gonorrhoea_date': ('Gonorrhoea', 'male_gonorrhoea'),
+            'male_hiv_date': ('HIV', 'male_hiv'),
+            'male_mumps_date': ('Mumps', 'male_mumps'),
+            'male_adrenal_date': ('Adrenal', 'male_adrenal'),
+            'male_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 'male_anti_phospholipid_syndrome'),
+            'male_autoimmune_disease_date': ('Autoimmune Diseases', 'male_autoimmune_disease'),
+            'male_blood_transfusion_date': ('Blood Transfusion', 'male_blood_transfusion'),
+            'male_cardiac_date': ('Cardiac', 'male_cardiac'),
+            'male_gall_bladder_date': ('Gall Bladder', 'male_gall_bladder'),
+            'male_gastric_date': ('Gastric', 'male_gastric'),
+            'male_gynaecology_date': ('Gynecological', 'male_gynaecology'),
+            'male_haematology_date': ('Haematological', 'male_haematology'),
+            'male_intestinal_date': ('Intestinal', 'male_intestinal'),
+            'male_liver_date': ('Liver', 'male_liver'),
+            'male_low_urinary_tract_date': ('Lower Urinary Tract', 'male_low_urinary_tract'),
+            'male_malignancy_date': ('Malignancies', 'male_malignancy'),
+            'male_neurological_date': ('Neurological', 'male_neurological'),
+            'male_renal_date': ('Renal', 'male_renal'),
+            'male_respiratory_date': ('Respiratory', 'male_respiratory'),
+            'male_skeletal_date': ('Skeletal', 'male_skeletal'),
+            'male_thyroid_date': ('Thyroid', 'male_thyroid'),
+            'male_heart_disease_date': ('Heart Disease', 'male_heart_disease'),
+            'male_urinary_infection_date': ('Urinary Infections', 'male_urinary_infection'),
+            'male_hyper_tension_date': ('Hypertension Pr', 'male_hyper_tension'),
+            'male_janduice_date': ('Jaundice', 'male_janduice'),
+            'male_complications_pr': ('Complications', 'male_complications_pr'),
+            'male_diabetes_date': ('Diabetes', 'male_diabetes'),
+            'male_dvt_date': ('DVT', 'male_dvt'),
+            'male_smoking_date': ('Smoking', 'male_smoking'),
+            'male_alcohol_date': ('Alcohol', 'male_alcohol'),
+            'male_medical_history_others_date': ('Others', 'male_medical_history_others'),
+            # 'male_current_medication': ('Current Medication', 'male_medical_current_medication'),
+        }
+
+        if self.male_no_medical_history is False:
+            self.male_medical_history = PatientTimeline._compute_patient_medical_history(
+                medical_history=self.ec_first_consultation_id.ec_male_medical_history_id,
+                fields_to_process=male_fields_to_process
+            )
+        else:
+            self.male_medical_history = None
+
+        # Female Fields Processing
+
+        female_fields_to_process = {
+            'female_acne_date': ('Acne', 'female_acne'),
+            'female_weight_gain_year': ('Weight gain', 'female_weight_gain'),
+            'female_weight_loss_year': ('Weight loss', 'female_weight_loss'),
+            # 'female_weight_at_marriage': ('Weight at marriage', 'female_weight_at_marriage'),
+            # 'female_weight_comments': ('Comments', 'female_weight_comments'),
+            # 'female_hirsuitism': ('Hirsuitism', 'female_hirsuitism'),
+            # 'female_hirsuitism_treatment': ('Any treatment', 'female_hirsuitism_treatment'),
+            'female_tuberculosis_date': ('Tuberculosis', 'female_tuberculosis'),
+            'female_att_months': ('ATT (Months)', 'female_att_months'),
+            'female_syphilis_date': ('Syphilis', 'female_syphilis'),
+            'female_herpes_date': ('Herpes', 'female_herpes'),
+            'female_gonorrhoea_date': ('Gonorrhoea', 'female_gonorrhoea'),
+            'female_hiv_date': ('HIV', 'female_hiv'),
+            'female_mumps_date': ('Mumps', 'female_mumps'),
+            'female_adrenal_date': ('Adrenal', 'female_adrenal'),
+            'female_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome'),
+            'female_autoimmune_disease_date': ('Autoimmune Diseases', 'female_autoimmune_disease'),
+            'female_blood_transfusion_date': ('Blood Transfusion', 'female_blood_transfusion'),
+            'female_cardiac_date': ('Cardiac', 'female_cardiac'),
+            'female_gall_bladder_date': ('Gall Bladder', 'female_gall_bladder'),
+            'female_gastric_date': ('Gastric', 'female_gastric'),
+            'female_gynaecology_date': ('Gynecological', 'female_gynaecology'),
+            'female_haematology_date': ('Haematological', 'female_haematology'),
+            'female_intestinal_date': ('Intestinal', 'female_intestinal'),
+            'female_liver_date': ('Liver', 'female_liver'),
+            'female_low_urinary_tract_date': ('Lower Urinary Tract', 'female_low_urinary_tract'),
+            'female_malignancy_date': ('Malignancies', 'female_malignancy'),
+            'female_neurological_date': ('Neurological', 'female_neurological'),
+            'female_renal_date': ('Renal', 'female_renal'),
+            'female_respiratory_date': ('Respiratory', 'female_respiratory'),
+            'female_skeletal_date': ('Skeletal', 'female_skeletal'),
+            'female_thyroid_date': ('Thyroid', 'female_thyroid'),
+            'female_heart_disease_date': ('Heart Disease', 'female_heart_disease'),
+            'female_urinary_infection_date': ('Urinary Infections', 'female_urinary_infection'),
+            'female_hyper_tension_date': ('Hypertension Pr', 'female_hyper_tension'),
+            'female_janduice_date': ('Jaundice', 'female_janduice'),
+            'female_complications_pr': ('Complications', 'female_complications_pr'),
+            'female_diabetes_date': ('Diabetes', 'female_diabetes'),
+            'female_dvt_date': ('DVT', 'female_dvt'),
+            'female_smoking_date': ('Smoking', 'female_smoking'),
+            'female_alcohol_date': ('Alcohol', 'female_alcohol'),
+            'female_medical_history_others_date': ('Others', 'female_medical_history_others'),
+            # 'female_current_medication': ('Current Medication', 'female_medical_current_medication'),
+        }
+        if self.female_no_medical_history is False:
+            self.female_medical_history = PatientTimeline._compute_patient_medical_history(
+                medical_history=self.ec_first_consultation_id.ec_female_medical_history_id,
+                fields_to_process=female_fields_to_process
+            )
+        else:
+            self.female_medical_history = None
+
+
+    def _compute_surgical_history(self):
+        # Male Fields Processing
+        for record in self:
+            html_content = ""
+            for surgery in record.ec_first_consultation_id.male_procedures_ids:
+                type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
+                field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
+                             f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>' \
+                             # f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
+                             # f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
+                html_content += field_text
+            record.male_surgical_history = html_content
+        # Male Fields Processing
+
+        for record in self:
+            html_content = ""
+            for surgery in record.ec_first_consultation_id.female_procedures_ids:
+                type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
+                field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
+                             f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>' \
+                             # f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
+                             # f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
+                html_content += field_text
+            record.female_surgical_history = html_content
+
     def _compute_infertility_type(self):
         for record in self:
             if len(record.first_obs_history_ids) > 0:
@@ -338,12 +519,14 @@ class PatientTimeline(models.Model):
 
     def action_timeline_open_treatment_history(self):
         return self.env['ec.medical.previous.treatment'].action_open_form_view(self.timeline_patient_id,
-                                                                       self)
+                                                                               self)
 
     def action_create_repeat_consultation(self):
         self.show_repeat_section_state = True
         if self.show_repeat_consultation_history_section is False:
             self.show_repeat_consultation_history_section = True
+            if self.ec_repeat_consultation_id:
+                self.repeat_consultation_ids.repeat_date = datetime.now()
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create(
@@ -375,14 +558,23 @@ class PatientTimeline(models.Model):
     def action_repeat_consultation_open_previous_treatment(self):
         return self.env['ec.medical.previous.treatment'].action_open_form_view(self)
 
+    def action_close_first_consultation(self):
+        return self.env['ec.first.consultation'].action_close_first_consultation(self.ec_first_consultation_id)
+
+    def action_open_first_consultation(self):
+        return self.env['ec.first.consultation'].action_open_first_consultation(self.ec_first_consultation_id)
+
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
                                                                        None)
     def action_open_seminology(self):
-        raise UserError("Module is under development phase.")
+        return self.env['ec.semen.analysis'].action_open_form_view(self.timeline_patient_id)
 
     def action_open_tvs_scan(self):
         return self.ec_repeat_consultation_id.repeat_tvs_id.action_open_tvs_scan()
+
+    def action_open_gynae_scan(self):
+        return self.ec_first_consultation_id.ec_medical_gynaecological_examination_id.action_open_gynae_scan()
 
     ''' Data methods '''
 
@@ -413,6 +605,7 @@ class PatientTimeline(models.Model):
 
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
+        self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
 
     @api.onchange('female_lmp')
     def _check_female_lmp_date(self):
@@ -455,280 +648,300 @@ class PatientTimeline(models.Model):
     @api.onchange('female_adrenal_date')
     def _check_female_adrenal_date(self):
         if self.female_adrenal_date:
-            return Validation._date_validation(self.female_adrenal_date)
+            return Validation._year_validation(self.female_adrenal_date)
 
     @api.onchange('female_anti_phospholipid_syndrome_date')
     def _check_female_anti_phospholipid_syndrome_date(self):
         if self.female_anti_phospholipid_syndrome_date:
-            return Validation._date_validation(self.female_anti_phospholipid_syndrome_date)
+            return Validation._year_validation(self.female_anti_phospholipid_syndrome_date)
 
     @api.onchange('female_autoimmune_disease_date')
     def _check_female_autoimmune_disease_date(self):
         if self.female_autoimmune_disease_date:
-            return Validation._date_validation(self.female_autoimmune_disease_date)
+            return Validation._year_validation(self.female_autoimmune_disease_date)
 
     @api.onchange('female_blood_transfusion_date')
     def _check_female_blood_transfusion_date(self):
         if self.female_blood_transfusion_date:
-            return Validation._date_validation(self.female_blood_transfusion_date)
+            return Validation._year_validation(self.female_blood_transfusion_date)
 
     @api.onchange('female_cardiac_date')
     def _check_female_cardiac_date(self):
         if self.female_cardiac_date:
-            return Validation._date_validation(self.female_cardiac_date)
+            return Validation._year_validation(self.female_cardiac_date)
 
     @api.onchange('female_gall_bladder_date')
     def _check_female_gall_bladder_date(self):
         if self.female_gall_bladder_date:
-            return Validation._date_validation(self.female_gall_bladder_date)
+            return Validation._year_validation(self.female_gall_bladder_date)
 
     @api.onchange('female_gastric_date')
     def _check_female_gastric_date(self):
         if self.female_gastric_date:
-            return Validation._date_validation(self.female_gastric_date)
+            return Validation._year_validation(self.female_gastric_date)
 
     @api.onchange('female_gynaecology_date')
     def _check_female_gynaecology_date(self):
         if self.female_gynaecology_date:
-            return Validation._date_validation(self.female_gynaecology_date)
+            return Validation._year_validation(self.female_gynaecology_date)
 
     @api.onchange('female_haematology_date')
     def _check_female_haematology_date(self):
         if self.female_haematology_date:
-            return Validation._date_validation(self.female_haematology_date)
+            return Validation._year_validation(self.female_haematology_date)
 
     @api.onchange('female_intestinal_date')
     def _check_female_intestinal_date(self):
         if self.female_intestinal_date:
-            return Validation._date_validation(self.female_intestinal_date)
+            return Validation._year_validation(self.female_intestinal_date)
 
     @api.onchange('female_liver_date')
     def _check_female_liver_date(self):
         if self.female_liver_date:
-            return Validation._date_validation(self.female_liver_date)
+            return Validation._year_validation(self.female_liver_date)
 
     @api.onchange('female_low_urinary_tract_date')
     def _check_female_low_urinary_tract_date(self):
         if self.female_low_urinary_tract_date:
-            return Validation._date_validation(self.female_low_urinary_tract_date)
+            return Validation._year_validation(self.female_low_urinary_tract_date)
 
     @api.onchange('female_malignancy_date')
     def _check_female_malignancy_date(self):
         if self.female_malignancy_date:
-            return Validation._date_validation(self.female_malignancy_date)
+            return Validation._year_validation(self.female_malignancy_date)
 
     @api.onchange('female_neurological_date')
     def _check_female_neurological_date(self):
         if self.female_neurological_date:
-            return Validation._date_validation(self.female_neurological_date)
+            return Validation._year_validation(self.female_neurological_date)
 
     @api.onchange('female_renal_date')
     def _check_female_renal_date(self):
         if self.female_renal_date:
-            return Validation._date_validation(self.female_renal_date)
+            return Validation._year_validation(self.female_renal_date)
 
     @api.onchange('female_respiratory_date')
     def _check_female_respiratory_date(self):
         if self.female_respiratory_date:
-            return Validation._date_validation(self.female_respiratory_date)
+            return Validation._year_validation(self.female_respiratory_date)
 
     @api.onchange('female_skeletal_date')
     def _check_female_skeletal_date(self):
         if self.female_skeletal_date:
-            return Validation._date_validation(self.female_skeletal_date)
+            return Validation._year_validation(self.female_skeletal_date)
 
     @api.onchange('female_thyroid_date')
     def _check_female_thyroid_date(self):
         if self.female_thyroid_date:
-            return Validation._date_validation(self.female_thyroid_date)
+            return Validation._year_validation(self.female_thyroid_date)
 
     @api.onchange('female_heart_disease_date')
     def _check_female_heart_disease_date(self):
         if self.female_heart_disease_date:
-            return Validation._date_validation(self.female_heart_disease_date)
+            return Validation._year_validation(self.female_heart_disease_date)
 
     @api.onchange('female_urinary_infection_date')
     def _check_female_urinary_infection_date(self):
         if self.female_urinary_infection_date:
-            return Validation._date_validation(self.female_urinary_infection_date)
+            return Validation._year_validation(self.female_urinary_infection_date)
 
     @api.onchange('female_hyper_tension_date')
     def _check_female_hyper_tension_date(self):
         if self.female_hyper_tension_date:
-            return Validation._date_validation(self.female_hyper_tension_date)
+            return Validation._year_validation(self.female_hyper_tension_date)
 
     @api.onchange('female_janduice_date')
     def _check_female_janduice_date(self):
         if self.female_janduice_date:
-            return Validation._date_validation(self.female_janduice_date)
+            return Validation._year_validation(self.female_janduice_date)
 
     @api.onchange('female_diabetes_date')
     def _check_female_diabetes_date(self):
         if self.female_diabetes_date:
-            return Validation._date_validation(self.female_diabetes_date)
+            return Validation._year_validation(self.female_diabetes_date)
 
     @api.onchange('female_dvt_date')
     def _check_female_dvt_date(self):
         if self.female_dvt_date:
-            return Validation._date_validation(self.female_dvt_date)
+            return Validation._year_validation(self.female_dvt_date)
 
     @api.onchange('female_smoking_date')
     def _check_female_smoking_date(self):
         if self.female_smoking_date:
-            return Validation._date_validation(self.female_smoking_date)
+            return Validation._year_validation(self.female_smoking_date)
 
     @api.onchange('female_alcohol_date')
     def _check_female_alcohol_date(self):
         if self.female_alcohol_date:
-            return Validation._date_validation(self.female_alcohol_date)
+            return Validation._year_validation(self.female_alcohol_date)
 
     @api.onchange('female_medical_history_others_date')
     def _check_female_medical_history_others_date(self):
         if self.female_medical_history_others_date:
-            return Validation._date_validation(self.female_medical_history_others_date)
+            return Validation._year_validation(self.female_medical_history_others_date)
 
     @api.onchange('male_adrenal_date')
     def _check_male_adrenal_date(self):
         if self.male_adrenal_date:
-            return Validation._date_validation(self.male_adrenal_date)
+            return Validation._year_validation(self.male_adrenal_date)
 
     @api.onchange('male_anti_phospholipid_syndrome_date')
     def _check_male_anti_phospholipid_syndrome_date(self):
         if self.male_anti_phospholipid_syndrome_date:
-            return Validation._date_validation(self.male_anti_phospholipid_syndrome_date)
+            return Validation._year_validation(self.male_anti_phospholipid_syndrome_date)
 
     @api.onchange('male_autoimmune_disease_date')
     def _check_male_autoimmune_disease_date(self):
         if self.male_autoimmune_disease_date:
-            return Validation._date_validation(self.male_autoimmune_disease_date)
+            return Validation._year_validation(self.male_autoimmune_disease_date)
 
     @api.onchange('male_blood_transfusion_date')
     def _check_male_blood_transfusion_date(self):
         if self.male_blood_transfusion_date:
-            return Validation._date_validation(self.male_blood_transfusion_date)
+            return Validation._year_validation(self.male_blood_transfusion_date)
 
     @api.onchange('male_cardiac_date')
     def _check_male_cardiac_date(self):
         if self.male_cardiac_date:
-            return Validation._date_validation(self.male_cardiac_date)
+            return Validation._year_validation(self.male_cardiac_date)
 
     @api.onchange('male_gall_bladder_date')
     def _check_male_gall_bladder_date(self):
         if self.male_gall_bladder_date:
-            return Validation._date_validation(self.male_gall_bladder_date)
+            return Validation._year_validation(self.male_gall_bladder_date)
 
     @api.onchange('male_gastric_date')
     def _check_male_gastric_date(self):
         if self.male_gastric_date:
-            return Validation._date_validation(self.male_gastric_date)
+            return Validation._year_validation(self.male_gastric_date)
 
     @api.onchange('male_gynaecology_date')
     def _check_male_gynaecology_date(self):
         if self.male_gynaecology_date:
-            return Validation._date_validation(self.male_gynaecology_date)
+            return Validation._year_validation(self.male_gynaecology_date)
 
     @api.onchange('male_haematology_date')
     def _check_male_haematology_date(self):
         if self.male_haematology_date:
-            return Validation._date_validation(self.male_haematology_date)
+            return Validation._year_validation(self.male_haematology_date)
 
     @api.onchange('male_intestinal_date')
     def _check_male_intestinal_date(self):
         if self.male_intestinal_date:
-            return Validation._date_validation(self.male_intestinal_date)
+            return Validation._year_validation(self.male_intestinal_date)
 
     @api.onchange('male_liver_date')
     def _check_male_liver_date(self):
         if self.male_liver_date:
-            return Validation._date_validation(self.male_liver_date)
+            return Validation._year_validation(self.male_liver_date)
 
     @api.onchange('male_low_urinary_tract_date')
     def _check_male_low_urinary_tract_date(self):
         if self.male_low_urinary_tract_date:
-            return Validation._date_validation(self.male_low_urinary_tract_date)
+            return Validation._year_validation(self.male_low_urinary_tract_date)
 
     @api.onchange('male_malignancy_date')
     def _check_male_malignancy_date(self):
         if self.male_malignancy_date:
-            return Validation._date_validation(self.male_malignancy_date)
+            return Validation._year_validation(self.male_malignancy_date)
 
     @api.onchange('male_neurological_date')
     def _check_male_neurological_date(self):
         if self.male_neurological_date:
-            return Validation._date_validation(self.male_neurological_date)
+            return Validation._year_validation(self.male_neurological_date)
 
     @api.onchange('male_renal_date')
     def _check_male_renal_date(self):
         if self.male_renal_date:
-            return Validation._date_validation(self.male_renal_date)
+            return Validation._year_validation(self.male_renal_date)
 
     @api.onchange('male_respiratory_date')
     def _check_male_respiratory_date(self):
         if self.male_respiratory_date:
-            return Validation._date_validation(self.male_respiratory_date)
+            return Validation._year_validation(self.male_respiratory_date)
 
     @api.onchange('male_skeletal_date')
     def _check_male_skeletal_date(self):
         if self.male_skeletal_date:
-            return Validation._date_validation(self.male_skeletal_date)
+            return Validation._year_validation(self.male_skeletal_date)
 
     @api.onchange('male_thyroid_date')
     def _check_male_thyroid_date(self):
         if self.male_thyroid_date:
-            return Validation._date_validation(self.male_thyroid_date)
+            return Validation._year_validation(self.male_thyroid_date)
 
     @api.onchange('male_heart_disease_date')
     def _check_male_heart_disease_date(self):
         if self.male_heart_disease_date:
-            return Validation._date_validation(self.male_heart_disease_date)
+            return Validation._year_validation(self.male_heart_disease_date)
 
     @api.onchange('male_urinary_infection_date')
     def _check_male_urinary_infection_date(self):
         if self.male_urinary_infection_date:
-            return Validation._date_validation(self.male_urinary_infection_date)
+            return Validation._year_validation(self.male_urinary_infection_date)
 
     @api.onchange('male_hyper_tension_date')
     def _check_male_hyper_tension_date(self):
         if self.male_hyper_tension_date:
-            return Validation._date_validation(self.male_hyper_tension_date)
+            return Validation._year_validation(self.male_hyper_tension_date)
 
     @api.onchange('male_janduice_date')
     def _check_male_janduice_date(self):
         if self.male_janduice_date:
-            return Validation._date_validation(self.male_janduice_date)
+            return Validation._year_validation(self.male_janduice_date)
 
     @api.onchange('male_diabetes_date')
     def _check_male_diabetes_date(self):
         if self.male_diabetes_date:
-            return Validation._date_validation(self.male_diabetes_date)
+            return Validation._year_validation(self.male_diabetes_date)
 
     @api.onchange('male_dvt_date')
     def _check_male_dvt_date(self):
         if self.male_dvt_date:
-            return Validation._date_validation(self.male_dvt_date)
+            return Validation._year_validation(self.male_dvt_date)
 
     @api.onchange('male_smoking_date')
     def _check_male_smoking_date(self):
         if self.male_smoking_date:
-            return Validation._date_validation(self.male_smoking_date)
+            return Validation._year_validation(self.male_smoking_date)
 
     @api.onchange('male_alcohol_date')
     def _check_male_alcohol_date(self):
         if self.male_alcohol_date:
-            return Validation._date_validation(self.male_alcohol_date)
+            return Validation._year_validation(self.male_alcohol_date)
 
     @api.onchange('male_medical_history_others_date')
     def _check_male_medical_history_others_date(self):
         if self.male_medical_history_others_date:
-            return Validation._date_validation(self.male_medical_history_others_date)
+            return Validation._year_validation(self.male_medical_history_others_date)
 
     @api.onchange('female_weight', 'female_height')
     def _calculate_physical_exam_bmi(self):
+        if (self.female_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_weight) or
+                self.female_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_height)) :
+            raise UserError(f"Please enter a numeric value in female weight!")
         if self.female_weight and self.female_height:
-            height_in_meters = self.female_height / 100
-            self.female_bmi = self.female_weight / (height_in_meters ** 2)
+            female_height = float(self.female_height)
+            female_weight = float(self.female_weight)
+            height_in_meters = (female_height / 100)
+            female_bmi = female_weight / (height_in_meters ** 2)
+            self.female_bmi = round(female_bmi, 2)
         else:
             self.female_bmi = None
+
+    @api.onchange('male_weight', 'male_height')
+    def _calculate_physical_exam_male_bmi(self):
+        if (self.male_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_weight) or
+                self.male_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_height)) :
+            raise UserError(f"Please enter a numeric value in male weight and height!")
+        if self.male_weight and self.male_height:
+            male_height = float(self.male_height)
+            male_weight = float(self.male_weight)
+            height_in_meters = (male_height / 100)
+            male_bmi = male_weight / (height_in_meters ** 2)
+            self.male_bmi = round(male_bmi, 2)
+        else:
+            self.male_bmi = None
 
     @api.onchange('repeat_pregnancy_lmp')
     def _compute_gestational_age(self):
@@ -749,4 +962,105 @@ class PatientTimeline(models.Model):
             else:
                 rec.repeat_pregnancy_gestational_age = None
 
+    @api.onchange('repeat_pregnancy_temp')
+    def _check_float_input_temp(self):
+        if self.repeat_pregnancy_temp and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_temp):
+            raise UserError(f"Please enter a numeric value in pregnancy temperature.")
+            # raise UserError(f"Please enter a numeric value in pregnancy temperature with up to 2 decimal points.")
 
+    @api.onchange('repeat_pregnancy_hr')
+    def _check_float_input_hr(self):
+        if self.repeat_pregnancy_hr and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_hr):
+            raise UserError(f"Please enter a numeric value in pregnancy HR.")
+
+    @api.onchange('repeat_pregnancy_bp_upper')
+    def _check_float_input_bp_upper(self):
+        if self.repeat_pregnancy_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.repeat_pregnancy_bp_upper):
+            raise UserError(f"Please enter a numeric value in pregnancy BP (Upper).")
+
+    @api.onchange('repeat_pregnancy_bp_lower')
+    def _check_float_input_bp_lower(self):
+        if self.repeat_pregnancy_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.repeat_pregnancy_bp_lower):
+            raise UserError(f"Please enter a numeric value in pregnancy BP (Lower).")
+
+    @api.onchange('repeat_pregnancy_rr')
+    def _check_float_input_rr(self):
+        if self.repeat_pregnancy_rr and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_rr):
+            raise UserError(f"Please enter a numeric value in pregnancy RR.")
+
+    @api.onchange('repeat_pregnancy_embryos_replaced')
+    def _check_input_repeat_pregnancy_embryos_replaced(self):
+        if self.repeat_pregnancy_embryos_replaced and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_embryos_replaced):
+            raise UserError(f"Please enter a numeric value in pregnancy embryos replaced!")
+
+    @api.onchange('female_height')
+    def _check_input_female_height(self):
+        if self.female_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_height):
+            raise UserError(f"Please enter a numeric value in female height!")
+
+    @api.onchange('female_bmi')
+    def _check_input_female_bmi(self):
+        if self.female_bmi and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_bmi):
+            raise UserError(f"Please enter a numeric value in female bmi!")
+
+    @api.onchange('female_bp_upper')
+    def _check_input_female_bp_upper(self):
+        if self.female_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.female_bp_upper):
+            raise UserError(f"Please enter a numeric value in female bp upper!")
+
+    @api.onchange('female_bp_lower')
+    def _check_input_female_bp_lower(self):
+        if self.female_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.female_bp_lower):
+            raise UserError(f"Please enter a numeric value in female bp lower!")
+
+    @api.onchange('female_pulse')
+    def _check_input_female_pulse(self):
+        if self.female_pulse and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.female_pulse):
+            raise UserError(f"Please enter a numeric value in female pulse!")
+
+    @api.onchange('female_temperature')
+    def _check_input_female_temperature(self):
+        if self.female_temperature and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_temperature):
+            raise UserError(f"Please enter a numeric value in female temperature!")
+
+    @api.onchange('male_weight')
+    def _check_input_male_weight(self):
+        if self.male_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_weight):
+            raise UserError(f"Please enter a numeric value in male weight!")
+
+    @api.onchange('male_height')
+    def _check_input_male_height(self):
+        if self.male_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_height):
+            raise UserError(f"Please enter a numeric value in male height!")
+
+    @api.onchange('male_bmi')
+    def _check_input_male_bmi(self):
+        if self.male_bmi and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_bmi):
+            raise UserError(f"Please enter a numeric value in male bmi!")
+
+    @api.onchange('male_bp_upper')
+    def _check_input_male_bp_upper(self):
+        if self.male_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.male_bp_upper):
+            raise UserError(f"Please enter a numeric value in male bp upper!")
+
+    @api.onchange('male_bp_lower')
+    def _check_input_male_bp_lower(self):
+        if self.male_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.male_bp_lower):
+            raise UserError(f"Please enter a numeric value in male bp lower!")
+
+    @api.onchange('male_pulse')
+    def _check_input_male_pulse(self):
+        if self.male_pulse and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.male_pulse):
+            raise UserError(f"Please enter a numeric value in male pulse!")
+
+    @api.onchange('male_temperature')
+    def _check_input_male_temperature(self):
+        if self.male_temperature and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_temperature):
+            raise UserError(f"Please enter a numeric value in male temperature!")
+
+    @api.onchange('biological_female_dob_check', 'biological_male_dob_check')
+    def _check_same_as_above_functionality(self):
+        if self.biological_female_dob_check:
+            self.biological_female_dob = None
+        if self.biological_male_dob_check:
+            self.biological_male_dob = None

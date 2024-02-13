@@ -10,7 +10,7 @@ _logger = getLogger(__name__)
 class RepeatConsultation(models.Model):
     _name = 'ec.repeat.consultation'
     _description = "Patient Repeat Consultation"
-    _order = "create_date desc"
+    _order = "repeat_date desc"
     _inherits = {
         'ec.medical.tvs': 'repeat_tvs_id',
         'ec.medical.pregnancy.data': 'repeat_pregnancy_id',
@@ -32,7 +32,12 @@ class RepeatConsultation(models.Model):
     #                                            ('4', "Question 4")],
     #                                 default="1",
     #                                 required=True)
-
+    repeat_consultation_state = fields.Selection([('open', 'In Progress'),
+                                                 ('closed', 'Done'),
+                                                 ('decision_pending', "Decision Pending"),
+                                                 ],
+                                                default='open',
+                                                string='State')
 
     """ Question One
     Yes: Open the pregnancy assessment form
@@ -132,12 +137,12 @@ class RepeatConsultation(models.Model):
                                      default=lambda self: self.env.user)
 
     repeat_other_doctors_present = fields.Many2many(comodel_name='res.consultant',
-                                                    string='Other Doctors Present')
+                                                    string='Others Present')
     ''' Seen with list required '''
     repeat_consultation_with = fields.Selection(selection=StaticMember.SEEN_WITH,
                                                 string='Consultation with')
 
-    repeat_seen_with_other = fields.Text(string='Other Present')
+    repeat_seen_with_other = fields.Text(string='Others Present')
 
     # Define TVS field as per your TVS form structure
     # TVS = fields.Many2one('tvs.form', string='TVS Form')
@@ -148,6 +153,7 @@ class RepeatConsultation(models.Model):
                                         column2="diagnosis_id",
                                         string="Diagnosis")
 
+    repeat_procedure_recommended = fields.Html(string='Procedure Recommended')
     repeat_treatment_plan = fields.Html(string='Plan')
 
     repeat_note = fields.Html(string="Reason for visit / Couple concerns / History of presenting complaints")
@@ -162,7 +168,7 @@ class RepeatConsultation(models.Model):
                                                     relation="repeat_consultation_medical_treatment_list_rel",
                                                     column1="repeat_consultation_id",
                                                     column2="treatment_list_id",
-                                                    string='Treatment Advised')
+                                                    string='Treatment Pathway')
 
     repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                    string="Examination Required")
@@ -190,7 +196,7 @@ class RepeatConsultation(models.Model):
     repeat_findings_on_inspection = fields.Text(string="Findings on inspection")
 
     repeat_vaginal_exam = fields.Text(string='Vaginal Exam')
-    repeat_valva_vaginal_exam = fields.Text(string='Valva and Vagina')
+    repeat_valva_vaginal_exam = fields.Text(string='Vulva and Vagina')
     repeat_cervix = fields.Text(string="Cervix")
     repeat_uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
 
@@ -320,9 +326,13 @@ class RepeatConsultation(models.Model):
             raise UserError("Consultation is already in progress, close the running consultation first.")
         self.repeat_timeline_id.show_repeat_section_state = True
         if self.repeat_timeline_id.ec_repeat_consultation_id.id == self.id:
+            self.repeat_timeline_id.first_consultation_state = 'open'
+            self.repeat_consultation_state = 'open'
             return
 
         self.repeat_timeline_id.ec_repeat_consultation_id = self.id
+        self.repeat_timeline_id.first_consultation_state = 'open'
+        self.repeat_consultation_state = 'open'
 
     """ Other actions opening place over here"""
 

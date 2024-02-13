@@ -7,8 +7,8 @@ class EcMedicalFactors(models.Model):
     _order = 'create_date desc'
 
     _sql_constraints = [
-        ('name_unique', 'unique (name)',
-         'Multiple factors with same name can not be created!'),
+        ('name_unique', 'unique (name,type)',
+         'Multiple factors with same name can not be created for each type!'),
     ]
 
 

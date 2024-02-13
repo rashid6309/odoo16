@@ -3,6 +3,9 @@ from . import ec_medical_multi_selection
 from . import ec_medical_health_centers
 from . import ec_medical_lab
 from . import investigation
+from . import profession
+from . import education
+from . import ec_medical_years
 from . import treatment_list
 from . import factors
 from . import generic_size
@@ -14,6 +17,7 @@ from . import individual_patient
 from . import family_relation_list
 from . import previous_treatment
 from . import ec_medical_tvs
+from . import ec_medical_patient_attachment
 
 # Common for both male and female
 from . import general_history

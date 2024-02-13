@@ -6,6 +6,9 @@ class FemaleGynaecologicalHistory(models.Model):
     _name = 'ec.gynaecological.history'
     _description = "Female Gynecological History"
 
+    gynaecological_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                                ondelete='restrict')
+
     female_age_at_menarche = fields.Selection(selection=StaticMember.AGE_AT_MENARCHE, string='Age at Menarche')
     female_menarche_type = fields.Selection(selection=StaticMember.MENARCHE_TYPE, string='Age at Menarche')
     female_menstrual_cycle = fields.Selection(selection=StaticMember.MENARCHE_CYCLE, string='Menstrual Cycle')
@@ -16,7 +19,7 @@ class FemaleGynaecologicalHistory(models.Model):
     female_menstrual_days_to = fields.Selection(selection=StaticMember.MENARCHE_CYCLE_DAYS, string='Menstrual Cycle Days to')
 
     female_menstrual_gap_from = fields.Selection(selection=StaticMember.MENARCHE_CYCLE_DAYS, string='Menstrual Cycle Gap From')
-    female_menstrual_gap_to_month = fields.Selection(selection=StaticMember.MENARCHE_CYCLE_MONTHS, string='Menstrual Cycle Gap to')
+    female_menstrual_gap_to_month = fields.Selection(selection=StaticMember.MENSTRUAL_CYCLE_TO, string='Menstrual Cycle Gap to')
     female_menstrual_gap_other = fields.Char(string='Menstrual Cycle Gap Other')
     female_menstrual_all_comments = fields.Char(string='Menstrual Cycle All Comments')
     female_menstrual_flow = fields.Selection(selection=StaticMember.MENSTRUAL_FLOW, string='Menstrual Flow')

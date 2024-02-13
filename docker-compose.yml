@@ -9,7 +9,7 @@ services:
           - POSTGRES_PASSWORD=odoo
           - POSTGRES_DB=postgres
         volumes:
-          - tt_prod_odoo16ce_db:/var/lib/postgresql/data
+          - odoo16ce_staging_odoo16ce_db:/var/lib/postgresql/data
 #          - tt_prod_odoo16ce_db:/etc/postgresql/14/main
 #          - /opt/tt-erp/volume/datadir_postgres:/etc/postgresql/14/main
         ports:
@@ -31,13 +31,13 @@ services:
          - db
        volumes:
          - odoo-config:/etc/odoo:rw
-         - tt_prod_odoo16ce_data_dir:/opt/odoo/data_dir
+         - odoo16ce_staging_odoo16ce_data_dir:/opt/odoo/data_dir
 #         - /opt/tt-erp/volume/odoo16ce_tt_prod/extra-addons:/mnt/extra-addons
 
 volumes:
-  tt_prod_odoo16ce_data_dir:
+  odoo16ce_staging_odoo16ce_data_dir:
     external: true
-  tt_prod_odoo16ce_db:
+  odoo16ce_staging_odoo16ce_db:
     external: true
   odoo-config:
     external: true

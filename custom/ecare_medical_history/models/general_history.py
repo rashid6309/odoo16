@@ -21,6 +21,7 @@ class GeneralExamination(models.Model):
 
     female_comment = fields.Text(string="Details")
 
+    biological_female_dob_check = fields.Boolean(string="Same as above (Biological DOB)", default=False)
     biological_female_dob = fields.Date(string='Biological DOB')
     biological_female_age = fields.Char(string='Female Age', compute='_get_biological_age_female', store=True)
 
@@ -55,14 +56,16 @@ class GeneralExamination(models.Model):
                                      )
     male_comment = fields.Char(string="Details")
 
+    biological_male_dob_check = fields.Boolean(string="Same as above (Biological DOB)", default=False)
     biological_male_dob = fields.Date(string='Biological DOB')
     biological_male_age = fields.Char(string='Male Age', compute='_get_biological_age_male', store=True)
 
     @api.depends('general_history_patient_id.wife_dob', 'general_history_patient_id.married_since')
     def calculate_female_age_at_marriage(self):
         for record in self:
-            if record.general_history_patient_id.wife_dob and record.general_history_patient_id.married_since:
-                dob = datetime.strptime(str(record.general_history_patient_id.wife_dob), "%Y-%m-%d")
+            if (record.biological_female_dob or record.general_history_patient_id.wife_dob
+                    and record.general_history_patient_id.married_since):
+                dob = datetime.strptime(str(record.biological_female_dob or record.general_history_patient_id.wife_dob), "%Y-%m-%d")
                 marriage_date = datetime.strptime(str(record.general_history_patient_id.married_since), "%Y-%m-%d")
 
                 age_at_marriage = (marriage_date - dob).days // 365

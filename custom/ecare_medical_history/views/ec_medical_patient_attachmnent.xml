@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!-- Kanban view -->
+
+        <!-- Explicit Form Action -->
+
+
+        <!-- Explicit Tree View -->
+
+        <record id="ec_medical_patient_attachment_tree_view" model="ir.ui.view">
+            <field name="name">ec.medical.patient.attachment.tree.view</field>
+            <field name="model">ec.medical.patient.attachment</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="patient_attachment_timeline_id" invisible="1" readonly="1" force_save="1"/>
+                    <field name="name"/>
+                    <field name="attachment_id" widget="many2many_binary" filename="filename"/>
+<!--                    <field name="results" string="Comments"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Explicit action -->
+
+
+    </data>
+</odoo>

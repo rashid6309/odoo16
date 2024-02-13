@@ -1,5 +1,7 @@
 from odoo import api, models, fields, _
+from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError
 
 
 class FirstConsultation(models.Model):
@@ -8,7 +10,7 @@ class FirstConsultation(models.Model):
 
     _sql_constraints = [
         ('first_consultation_patient_id_unique', 'unique (first_consultation_patient_id)',
-         'Multiple first consultations for a patient cant be created!'),
+         "Multiple patient timelines can't be created, rather open the existing one!"),
     ]
 
     _inherits = {'ec.general.history': 'ec_general_examination_id',
@@ -64,16 +66,48 @@ class FirstConsultation(models.Model):
     ''' Male One2Many'''
 
     male_procedures_ids = fields.One2many(comodel_name='ec.patient.procedures',
-                                            inverse_name='male_consultation_id',
-                                            string="Surgical",
-                                            )
+                                          inverse_name='male_consultation_id',
+                                          string="Surgical",
+                                          )
 
     male_lab_history_ids = fields.One2many(comodel_name="ec.lab.history", inverse_name="male_first_consultation_id")
 
     ''' Normal attributes '''
 
     first_consultation_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
-                                 required=True)
+                                                    required=True)
+
+    first_consultation_state = fields.Selection([('open', 'In Progress'), ('closed', 'Done')],
+                                                default='open',
+                                                string='State')
+    female_tubal_patency_testing = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='Tubal Patency Testing',
+    )
+
+    female_dai_handling = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='Dai Handling',
+    )
+
+    female_d_and_c = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='D&C',
+    )
+    male_tubal_patency_testing = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='Tubal Patency Testing',
+    )
+
+    male_dai_handling = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='Dai Handling',
+    )
+
+    male_d_and_c = fields.Selection(
+        selection=StaticMember.CHOICE_YES_NO,
+        string='D&C',
+    )
 
     ''' Related '''
 
@@ -95,6 +129,15 @@ class FirstConsultation(models.Model):
 
 
     ''' View methods '''
+
+    def action_close_first_consultation(self, first_consultation_id):
+        if first_consultation_id and first_consultation_id.first_consultation_state == 'open':
+            first_consultation_id.first_consultation_state = 'closed'
+
+    def action_open_first_consultation(self, first_consultation_id):
+        if first_consultation_id and first_consultation_id.first_consultation_state == 'closed':
+            first_consultation_id.first_consultation_state = 'open'
+
 
     @api.model
     def action_open_patient_first_consultation(self, patient_id: int):
@@ -124,3 +167,8 @@ class FirstConsultation(models.Model):
 
         action.update(value)
         return action
+
+    # Override Methods
+    def write(self, vals):
+        rec = super(FirstConsultation, self).write(vals)
+        return rec

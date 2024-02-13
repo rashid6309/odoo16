@@ -24,7 +24,7 @@
                         <group string="Diagnosis:">
                             <field name="repeat_pregnancy_diagnosis"/>
                             <field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
-                            <field name="repeat_pregnancy_notes"/>
+                            <field name="repeat_pregnancy_notes" widget="html"/>
                             <field name="repeat_pregnancy_scanned" widget="radio"/>
                             <field name="repeat_pregnancy_significant_findings"/>
                         </group>
@@ -40,7 +40,7 @@
             <field name="name">patient.pregnancy.tree</field>
             <field name="model">ec.medical.pregnancy.data</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree editable="top">
                     <field name="repeat_pregnancy_lmp"/>
                     <field name="repeat_pregnancy_gestational_age"/>
                     <field name="repeat_pregnancy_conception"/>
@@ -52,7 +52,7 @@
             <field name="name">ec.medical.pregnancy.procedure.tree</field>
             <field name="model">ec.medical.pregnancy.procedure</field>
             <field name="arch" type="xml">
-                <tree editable="bottom">
+                <tree editable="top">
                     <field name="name"/>
                     <field name="value"/>
                 </tree>

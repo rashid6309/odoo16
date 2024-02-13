@@ -9,6 +9,18 @@ div[name='all_semen_analysis_ids'] {
     width: auto !important;
 }
 
+.card-custom-close-button-btn
+{
+    padding: 1%;
+    background: #2F5597;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    font-family: Inter;
+    width: 10%;
+    height: 50px;
+}
+
 
 #repeat_consultation_section .o_form_label:not(.form-check-label)
 {
@@ -25,6 +37,13 @@ div[name='all_semen_analysis_ids'] {
 .timeline_content .o_form_label:not(.form-check-label)
 {
    float : right;
+   text-align: -webkit-right;
+}
+
+#gynecological_examination_section .o_form_label:not(.form-check-label)
+{
+   float : left !important;
+   text-align: -webkit-right;
 }
 
 .timeline_examination
@@ -536,8 +555,59 @@ label[for="cn_type"]{
     font-weight: bold !important;
 }
 
+
+label[for="female_acne"]{
+    font-weight: bold !important;
+}
+label[for="female_weight_gain"]{
+    font-weight: bold !important;
+}
+label[for="female_weight_loss"]{
+    font-weight: bold !important;
+}
+label[for="female_weight_at_marriage"]{
+    font-weight: bold !important;
+}
+label[for="female_hirsuitism"]{
+    font-weight: bold !important;
+}
+label[for="female_tuberculosis"]{
+    font-weight: bold !important;
+}
+
+
+
+label[for="male_acne"]{
+    font-weight: bold !important;
+}
+label[for="male_weight_gain"]{
+    font-weight: bold !important;
+}
+label[for="male_weight_loss"]{
+    font-weight: bold !important;
+}
+label[for="male_weight_at_marriage"]{
+    font-weight: bold !important;
+}
+label[for="male_hirsuitism"]{
+    font-weight: bold !important;
+}
+label[for="male_tuberculosis"]{
+    font-weight: bold !important;
+}
+
 div.repeat_kanban_section_content section{
     margin: 1.5em 0 0 1.5em;
 }
 
 
+label[for="tvs_signs_of_ovulation_ids"] {
+    font-weight: 700 !important;
+}
+label[for="tv_diagnosis"] {
+    font-weight: 700 !important;
+}
+
+label[for="lining_ids"] {
+    width: max-content !important;
+}

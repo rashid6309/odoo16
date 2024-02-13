@@ -8,6 +8,8 @@ class GenericSizes(models.Model):
     _description = "Generic Sizes "
     _rec_name = "type"
 
+    location_or_features = fields.Char(string='Location or features')
+    distorting_endometrium = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string="Distorting Endometrium")
     type = fields.Selection(selection=StaticMember.OVARY_TYPE, string="Location")
 
     generic_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
@@ -17,7 +19,7 @@ class GenericSizes(models.Model):
                                       string='Size (cm)')
 
     tvs_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")
-    gynaecological_fiobrid_id = fields.Many2one(comodel_name="ec.medical.tvs")
+    gynaecological_fiobrid_id = fields.Many2one(comodel_name="ec.medical.gynaecological.examination")
     tvs_cyst_size_id = fields.Many2one(comodel_name="ec.medical.tvs")
     
     gynaecological_left_size_id = fields.Many2one(comodel_name="ec.medical.gynaecological.examination")

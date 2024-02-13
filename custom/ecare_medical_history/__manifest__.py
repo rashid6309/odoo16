@@ -16,11 +16,13 @@
     'data': [
         # Security
         'security/ir.model.access.csv',
+        'security/ir_groups.xml',
 
         # Menu
         'data/family_history_data.xml',
         'data/menus.xml',
         'data/semen_analysis_sequence.xml',
+        'data/years_data.xml',
 
         # Reports here
 
@@ -28,6 +30,9 @@
         'views/health_center.xml',
         'views/medical_labs.xml',
         'views/investigation.xml',
+        'views/ec_medical_profession.xml',
+        'views/ec_medical_education.xml',
+        'views/year.xml',
         'views/factors.xml',
         'views/treatment_list.xml',
         'views/ec_medical_dianosis.xml',
@@ -41,6 +46,7 @@
         # 'views/ec_patient.xml', # not being used now.
         'views/ec_procedure.xml',
         'views/lab_history.xml',
+        'views/ec_medical_patient_attachmnent.xml',
 
         # This Views should be below after all of its views.
 

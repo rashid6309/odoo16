@@ -6,6 +6,8 @@ class PregnancyForm(models.Model):
     _name = 'ec.medical.pregnancy.data'
     _description = 'Pregnancy Data'
 
+    pregnancy_patient_id = fields.Many2one(comodel_name="ec.medical.patient")
+
     pregnancy_repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
                                                        readonly=True,
                                                        string='Repeat Consultation')
@@ -16,7 +18,7 @@ class PregnancyForm(models.Model):
 
     repeat_pregnancy_conception = fields.Selection(selection=StaticMember.CONCEPTION_TYPE,
                                                    string='Conception')
-    repeat_pregnancy_embryos_replaced = fields.Integer(string="In case of IVF/ICSI; number of embryos replaced: ")
+    repeat_pregnancy_embryos_replaced = fields.Char(string="In case of IVF/ICSI; number of embryos replaced: ")
 
     repeat_pregnancy_gestation_type = fields.Selection(StaticMember.GESTATION_TYPE, string="Type of Gestation")
     repeat_pregnancy_other_info = fields.Char(string="Other")
@@ -47,19 +49,19 @@ class PregnancyForm(models.Model):
     repeat_pregnancy_type_sample_obtained = fields.Char(string="Type of Sample Obtained")
 
     repeat_pregnancy_reason_to_visit = fields.Selection(StaticMember.VISIT_REASON, string="Reason for visit")
-    repeat_pregnancy_notes = fields.Char(string="Notes")
+    repeat_pregnancy_notes = fields.Text(string="Notes")
     genetic_testing = fields.Char(string="Genetic Testing")
     early_pregnancy_assessment = fields.Char(string="Early Pregnancy Assessment")
 
     repeat_pregnancy_scanned = fields.Selection(StaticMember.CHOICE_YES_NO, string="Documented Medicsi Scan Reviewed?")
     repeat_pregnancy_significant_findings = fields.Char(string="Mention any SIGNIFICANT findings")
 
-    repeat_pregnancy_hr = fields.Integer(string="HR")
+    repeat_pregnancy_hr = fields.Char(string="HR")
     repeat_pregnancy_rhythm = fields.Selection(StaticMember.RHYTHM_TYPE, string="Rhythm")
-    repeat_pregnancy_bp_upper = fields.Integer(string="BP")
-    repeat_pregnancy_bp_lower = fields.Integer(string="BP")
-    repeat_pregnancy_temp = fields.Float(string="Temp")
-    repeat_pregnancy_rr = fields.Integer(string="RR")
+    repeat_pregnancy_bp_upper = fields.Char(string="BP")
+    repeat_pregnancy_bp_lower = fields.Char(string="BP")
+    repeat_pregnancy_temp = fields.Char(string="Temp")
+    repeat_pregnancy_rr = fields.Char(string="RR")
 
     repeat_pregnancy_fetal_heart = fields.Selection(StaticMember.FETAL_HEART, string="Fetal Heart ")
 
@@ -84,7 +86,7 @@ class PregnancyForm(models.Model):
     @api.onchange('repeat_pregnancy_lmp')
     def _compute_gestational_age(self):
         for rec in self:
-            date_analysis = rec.create_date
+            date_analysis = rec.pregnancy_repeat_consultation_id.repeat_date
             lmp = rec.repeat_pregnancy_lmp
             if date_analysis and lmp:
                 diff = date_analysis.date() - lmp

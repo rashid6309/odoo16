@@ -14,6 +14,7 @@ class SemenAnalysis(models.Model):
     _name = 'ec.semen.analysis'
     _description = 'Semen Analysis'
     _rec_name = "semen_patient_id"
+    _order = "date desc"
 
     semen_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                        required=True,
@@ -100,11 +101,14 @@ class SemenAnalysis(models.Model):
                                         string='Suitable For', domain="[('type', '=', 'suitable_for')]")
 
     # sperm_cryopreservation = fields.Char()
+    sperm_cryopreservation_recommended = fields.Boolean('Recommended')
     sperm_cryopreservation_consented = fields.Boolean('Cryopreservation Consented')
     sperm_cryopreservation_strawe = fields.Char('Cryopreservation Strawe')
     sperm_cryopreservation_code = fields.Char('Cryopreservation Code')
 
-    seminologist = fields.Char("Seminologist")
+    seminologist_id = fields.Many2one(comodel_name='res.users', string='Seminologist', default=lambda self: self.env.user)
+    legacy_seminologist = fields.Char(string="Legacy System Seminologist", readonly=1)
+
     special_notes = fields.Char("Special Notes")
 
     seme_analysis_id_dummy = fields.Many2one('ec.semen.analysis')
@@ -112,13 +116,31 @@ class SemenAnalysis(models.Model):
     all_semen_analysis_ids = fields.One2many('ec.semen.analysis', 'seme_analysis_id_dummy',
                                              compute='get_patient_semen_analysis_records')
 
+    def action_open_form_view(self, patient_id):
+        context = {
+            'default_semen_patient_id': patient_id.id,
+        }
+        domain = [
+            ('semen_patient_id', '=', patient_id.id),
+        ]
+        return {
+            "name": _("Semen Analysis"),
+            "type": 'ir.actions.act_window',
+            "res_model": 'ec.semen.analysis',
+            'view_id': self.env.ref('ecare_medical_history.ec_semen_analysis_tree_read_only_view').id,
+            'view_mode': 'tree',
+            "target": 'new',
+            'context': context,
+            'domain': domain,
+        }
+
     def edit_semen_analysis_record(self):
         return {
             'type': 'ir.actions.act_window',
             'res_model': 'ec.semen.analysis',
             'res_id': self.id,
             'view_mode': 'form',
-            "target": "current",
+            "target": "main",
         }
 
     @api.onchange('semen_patient_id')
@@ -127,14 +149,18 @@ class SemenAnalysis(models.Model):
         if semen_patient_id:
             all_semen_analysis_records = self.env['ec.semen.analysis'].search(
                 [('semen_patient_id', '=', semen_patient_id.id)])
-
-            # Filter out self.id from the list of IDs
-            filtered_ids = [rec.id for rec in all_semen_analysis_records if rec.id != self.id]
-
-            if filtered_ids:
-                self.all_semen_analysis_ids = [(6, 0, filtered_ids)]
+            if all_semen_analysis_records:
+                self.all_semen_analysis_ids = all_semen_analysis_records
             else:
                 self.all_semen_analysis_ids = None
+
+            # Filter out self.id from the list of IDs
+            # filtered_ids = [rec.id for rec in all_semen_analysis_records if rec.id != self.id]
+            #
+            # if filtered_ids:
+            #     self.all_semen_analysis_ids = [(6, 0, filtered_ids)]
+            # else:
+            #     self.all_semen_analysis_ids = None
 
     def delete_semen_analysis_record(self):
         # Unlink (delete) the records
@@ -235,13 +261,6 @@ class SemenAnalysis(models.Model):
             self.analysis_time = time
 
         if self.liquifaction_time:
-            time = TimeValidation.validate_time(self.liquifaction_time)
-            if not time:
-                return CustomNotification.notification_time_validation()
-            try:
-                parsed_time = datetime.strptime(time, '%H:%M')
-                if not 0 <= parsed_time.hour <= 23:
-                    raise ValueError()
-            except ValueError:
-                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
-            self.liquifaction_time = time
+            if not re.match(Validation.REGEX_INTEGER_SIMPLE, self.liquifaction_time):
+                raise UserError(f"Please enter a numeric value in Liquefaction Time!")
+

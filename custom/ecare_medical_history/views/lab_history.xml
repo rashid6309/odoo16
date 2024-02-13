@@ -39,24 +39,26 @@
                         <field name="name"/>
                         <field name="date"/>
                         <field name="filename" invisible="True" force_save="True"/>
-                        <field name="attachment_id" filename="filename"/>
+                        <field name="attachment_id"  widget="many2many_binary" filename="filename"/>
                         <field name="results" required="1"/>
+                        <field name="male_first_consultation_id" invisible="1" force_save="1"/>
+                        <field name="female_first_consultation_id" invisible="1" force_save="1"/>
                         <!--                        <field name="attachment_ids" widget="many2many_binary"/>-->
                     </group>
                 </form>
             </field>
         </record>
 
-        <!-- Explicit Tree Action -->
+        <!-- Explicit Tree View -->
 
         <record id="ec_lab_history_tree_view" model="ir.ui.view">
             <field name="name">lab.history.tree.view</field>
             <field name="model">ec.lab.history</field>
             <field name="arch" type="xml">
-                <tree create="0" editable="bottom">
+                <tree create="0">
                     <field name="name"/>
                     <field name="date"/>
-                    <field name="attachment_id" widget="binary" readonly="1" filename="filename"/>
+                    <field name="attachment_id" widget="many2many_binary" readonly="1" filename="filename"/>
                     <field name="results"/>
                 </tree>
             </field>

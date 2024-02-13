@@ -12,10 +12,13 @@ class MedicalPreviousHistory(models.Model):
 
     type = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_TYPE,
                             string='Type')
-    consultant = fields.Char(string='Consultant')
-    oral_drugs = fields.Char(string='Oral Drugs')
-    down_regulation = fields.Char(string='Down Regulation')
-    superovulation = fields.Char(string='Superovulation')
+    consultant_id = fields.Many2one(comodel_name="res.consultant",
+                                 ondelete='restrict',
+                                 required=False,
+                                 string='Consultant')
+    oral_drugs = fields.Text(string='Oral Drugs')
+    down_regulation = fields.Text(string='Down Regulation')
+    superovulation = fields.Text(string='Superovulation')
     ovarian_response = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_RESPONSE,
                                         string='Ovarian Response')
     outcome = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_OUTCOME,

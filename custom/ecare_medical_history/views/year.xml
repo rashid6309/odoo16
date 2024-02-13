@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="ir_cron_create_medical_year" model="ir.cron">
+            <field name="name">Create Medical Year Record</field>
+            <field name="model_id" ref="model_ec_medical_year"/>
+            <field name="state">code</field>
+            <field name="code">model.create_medical_year_record()</field>
+            <field name="interval_number">12</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">1</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+
+    <data>
+
+        <record id="view_ec_medical_year_tree" model="ir.ui.view">
+            <field name="name">ec.medical.year.tree</field>
+            <field name="model">ec.medical.year</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="year"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ec_medical_year_action" model="ir.actions.act_window">
+            <field name="name">Years</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ec.medical.year</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+                id="ec_medical_year_menu"
+                name="Years"
+                action="ec_medical_year_action"
+                parent="ec_medical_history_configuration"
+                sequence="5500"/>
+
+    </data>
+</odoo>

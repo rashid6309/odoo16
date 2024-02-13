@@ -6,6 +6,9 @@ class EcContraception(models.Model):
     _name = 'ec.sx.contraception'
     _description = "Patient Contraception"
 
+    contraception_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
+                                               ondelete='restrict')
+
     sx_frequency = fields.Selection(selection=StaticMember.YEARS,
                                     string="Frequency")
     sx_issues = fields.Selection(selection=StaticMember.SX_ISSUES,

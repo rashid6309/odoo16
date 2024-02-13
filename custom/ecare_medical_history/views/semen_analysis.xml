@@ -375,7 +375,11 @@
                                 <div class="col-md-2">
                                     Sperm Cryopreservation
                                 </div>
-                                <div class="col-md-11 ">
+                                <div class="col-md-12 ">
+                                    <div class="d-flex align-items-center">
+                                        <field class="mb-0" name="sperm_cryopreservation_recommended"/>
+                                        <label for="sperm_cryopreservation_recommended" string="Recommended"/>
+                                    </div>
                                     <div class="d-flex align-items-center">
                                         <field class="mb-0" name="sperm_cryopreservation_consented"/>
                                         <label for="sperm_cryopreservation_consented" string="Consented"/>
@@ -391,7 +395,8 @@
 
                         <group string="Additional Info" class="semen_analysis_div">
                             <group>
-                                <field name="seminologist"/>
+                                <field name="seminologist_id" readonly="1" force_save="1"/>
+                                <field name="legacy_seminologist" readonly="1" force_save="1"/>
                                 <field name="special_notes"/>
                             </group>
                         </group>
@@ -409,6 +414,25 @@
                     <field name="date"/>
                     <field name="lab_number"/>
                     <field name="lab_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ec_semen_analysis_tree_read_only_view" model="ir.ui.view">
+            <field name="name">ec.semen.analysis.tree.readonly.view</field>
+            <field name="model">ec.semen.analysis</field>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <tree  edit="0" create="0">
+<!--                    <field name="semen_patient_id"/>-->
+                    <field name="date"/>
+                    <field name="lab_number"/>
+                    <field name="lab_name"/>
+                    <button name="edit_semen_analysis_record"
+                            type="object"
+                            groups="ecare_medical_history.group_ec_medical_scientist"
+                            string="View"
+                            class="repeat_kanban_button"/>
                 </tree>
             </field>
         </record>
