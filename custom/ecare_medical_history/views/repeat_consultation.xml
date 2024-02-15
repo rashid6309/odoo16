@@ -980,17 +980,6 @@
                                                             <div class="o_group row align-items-start">
                                                                 <div class="o_inner_group grid col-lg-12 text-900">
                                                                     <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.counseling_and_discussion.raw_value">
-                                                                        <div>
-                                                                            <span class="o_form_label">Counseling
-                                                                                and Discussion done
-                                                                            </span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <field name="counseling_and_discussion"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.tvs_signs_of_ovulation_ids.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">
@@ -1010,6 +999,17 @@
                                                                         </div>
                                                                         <div>
                                                                             <field name="tv_diagnosis"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.counseling_and_discussion.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Counseling
+                                                                                and Discussion done
+                                                                            </span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="counseling_and_discussion"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
