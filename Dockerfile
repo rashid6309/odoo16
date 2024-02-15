@@ -78,6 +78,7 @@ RUN pip3 install -r /opt/odoo16ce/core/requirements.txt
 RUN chown odoo:odoo -R /etc/odoo \
     && mkdir -p /mnt/extra-addons \
     && chown -R odoo /mnt/extra-addons \
+    && chown odoo:odoo /entrypoint.sh \
     && chmod +x /entrypoint.sh \
     && mkdir -p /opt/odoo/data_dir \
     && chown -R odoo:odoo /opt/odoo/data_dir \
