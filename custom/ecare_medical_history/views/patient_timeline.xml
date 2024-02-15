@@ -666,7 +666,7 @@
 
 											collapseDivs.forEach(function(collapseDiv) {
 
-												collapseDiv.classList.remove("show");
+											collapseDiv.classList.remove("show");
 
 											});
 											});
@@ -681,7 +681,7 @@
 
 											collapseDivs.forEach(function(collapseDiv) {
 
-												collapseDiv.classList.add("show");
+											collapseDiv.classList.add("show");
 											});
 											});
 											});
@@ -1834,19 +1834,12 @@
 														</div>
 													</div>
 
-													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>
-													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
-														<label
-																attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+													<field
+															attrs="{'invisible': ['|','|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
+															('gynae_exam_inspection_only', '!=', True),
 													   ('gynae_exam_p_v_only', '!=', True),
 													   ('gynae_exam_p_s_only', '!=', True)]}"
-																for="gynae_exam_method_of_hvs"/>
-														<field
-																attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
-													   ('gynae_exam_p_v_only', '!=', True),
-													   ('gynae_exam_p_s_only', '!=', True)]}"
-																name="gynae_exam_method_of_hvs"/>
-													</div>
+															name="gynae_exam_method_of_hvs"/>
 
 													<div class="d-flex" attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
 													('gynae_exam_p_s_only', '!=', True)]}"/>
@@ -1861,19 +1854,11 @@
 														<label class="custom-text-align" for="gynae_exam_pipelle_sampling_done"/>
 
 													</div>
-													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>
-													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
-
-														<label for="gynae_exam_other_findings"
-															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
+													<field name="gynae_exam_other_findings"
+														   attrs="{'invisible': ['|','|',('gynae_exam_pelvic_examination_state', '=', 'no'),
+														   ('gynae_exam_p_v_only', '!=', True),
 													   ('gynae_exam_p_s_only', '!=', True)]}"
-														/>
-														<field name="gynae_exam_other_findings"
-															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
-													   ('gynae_exam_p_s_only', '!=', True)]}"
-														/>
-
-													</div>
+													/>
 
 													<h4 style="width:200%;">Ultrasound</h4>
 													<div/>

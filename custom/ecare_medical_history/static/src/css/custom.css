@@ -611,3 +611,7 @@ label[for="tv_diagnosis"] {
 label[for="lining_ids"] {
     width: max-content !important;
 }
+
+.table_fixed_height {
+  height: 304px !important;
+}

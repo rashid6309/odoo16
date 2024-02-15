@@ -275,7 +275,11 @@ class RepeatConsultation(models.Model):
                     for record in repeat.repeat_timeline_id.tvs_generic_sizes_ids:
                         size_x_value = str(record.generic_size_x) if record.generic_size_x is not None else '-'
                         size_y_value = str(record.generic_size_y) if record.generic_size_y is not None else '-'
-                        table_row = f"<tr><td>{size_x_value},</td><td>{size_y_value}</td></tr>"
+                        distorting_endometrium = 'Yes' if record.distorting_endometrium == 'yes' else '-'
+                        if not distorting_endometrium:
+                            distorting_endometrium = 'No' if record.distorting_endometrium == 'no' else '-'
+                        location_or_features = str(record.location_or_features) if record.location_or_features is not False else '-'
+                        table_row = f"<tr><td>{size_x_value},</td><td>{location_or_features},</td><td>{distorting_endometrium}</td></tr>"
                         table_rows.append(table_row)
                     dynamic_table = f"<table>{''.join(table_rows)}</table>"
                     repeat.repeat_uterus_fibroid_computed = dynamic_table
