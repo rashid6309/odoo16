@@ -29,7 +29,7 @@
                             </group>
                             <group>
                                 <field name="all_semen_analysis_ids" nolabel="1">
-                                    <tree create="0" edit="0">
+                                    <tree create="0" edit="0" class="table_fixed_height">
                                         <field name="date"/>
                                         <field name="lab_number"/>
                                         <field name="lab_name"/>
