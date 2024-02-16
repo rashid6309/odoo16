@@ -32,8 +32,8 @@ services:
        volumes:
          - odoo-config:/etc/odoo:rw
          - odoo16ce_staging_odoo16ce_data_dir:/opt/odoo/data_dir
-         - /opt/docker/icsi-erp/custom:/opt/odoo16ce/custom
-         - /opt/docker/icsi-erp/custom_odoo_module:/opt/odoo16ce/custom_odoo_module
+#         - /opt/docker/icsi-erp/custom:/opt/odoo16ce/custom
+#         - /opt/docker/icsi-erp/custom_odoo_module:/opt/odoo16ce/custom_odoo_module
 #         - /opt/tt-erp/volume/odoo16ce_tt_prod/extra-addons:/mnt/extra-addons
 
 volumes:
