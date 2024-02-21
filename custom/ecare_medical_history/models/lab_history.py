@@ -16,7 +16,7 @@ class LabHistory(models.Model):
     filename = fields.Char(string="Filename")
     attachment_id = fields.Many2many('ir.attachment', 'lab_history_document_rel',
                                      'lab_id', 'doc_id', help="If you want to upload any attachment.",
-                                     string='Document', public=True)
+                                     string='Document')
 
     results = fields.Text('Results')
 
