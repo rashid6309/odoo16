@@ -147,8 +147,9 @@
 
 											<group>
 												<field name="question_one_label"/>
+												<label for="question_one_choice" string=""/>
 												<field name="question_one_choice"
-													   widget="radio"/>
+													   widget="radio" nolabel="1"/>
 											</group>
 
 											<group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
@@ -249,8 +250,9 @@
 
 											<group>
 												<field name="question_two_label"/>
+												<label for="question_two_choice" string=""/>
 												<field name="question_two_choice"
-													   widget="radio"/>
+													   widget="radio" nolabel="1"/>
 											</group>
 											<div>
 												<tree editable="top" attrs="{'invisible': [('question_two_choice', '=', 'no')]}">
@@ -265,8 +267,9 @@
 											</div>
 											<group>
 												<field name="question_three_label"/>
+												<label for="question_three_choice" string=""/>
 												<field name="question_three_choice"
-													   widget="radio"/>
+													   widget="radio" nolabel="1"/>
 											</group>
 											<div>
 												<tree editable="top" attrs="{'invisible': [('question_three_choice', '=', 'no')]}">
