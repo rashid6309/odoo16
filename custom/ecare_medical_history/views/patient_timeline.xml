@@ -131,7 +131,7 @@
 												<field name="repeat_seen_with_other"
 													   attrs="{'required': [('repeat_consultation_with', '=', 'other')]}"/>
 												<field name="repeat_seen_by"/>
-												<field name="repeat_other_doctors_present" required="1" widget="many2many_tags"
+												<field name="repeat_other_doctors_present" widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 											</group>
 											<group>
@@ -672,7 +672,7 @@
 												<field name="repeat_diagnosis"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
-												<field name="repeat_investigations_ids" required="1" widget="many2many_tags"
+												<field name="repeat_investigations_ids" widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
 												<field name="repeat_procedure_recommended_ids" widget="many2many_tags"
@@ -683,7 +683,6 @@
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
 												<field name="repeat_new_treatment_pathway"
-													   required="1"
 													   widget="radio"
 													   options="{'horizontal': True}"
 												/>
