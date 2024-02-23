@@ -307,6 +307,13 @@
 											</group>
 
 											<div class="d-flex flex-column">
+												<div/>
+
+												<div style="background: #cddbf3; padding: 0.3%;">
+													<h5>Reason for visit / Couple concerns / History of presenting complaints</h5>
+												</div>
+											</div>
+											<div class="d-flex flex-column">
 												<div>
 													<label class="oe_left" for="repeat_note"/>
 												</div>
@@ -318,8 +325,13 @@
 
 												</div>
 											</div>
+											<div class="d-flex flex-column">
+												<div/>
 
-
+												<div style="background: #cddbf3; padding: 0.3%;">
+													<h5>Examination Required</h5>
+												</div>
+											</div>
 											<group>
 												<field name="repeat_examination_required"
 													   widget="radio"
@@ -331,6 +343,15 @@
 												<field name="repeat_thyroid"/>
 												<field name="repeat_abdominal"/>
 												<field name="repeat_breast"/>
+											</group>
+											<div class="d-flex flex-column" attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
+												<div/>
+
+												<div style="background: #cddbf3; padding: 0.3%;">
+													<h5>Pelvic Examination Done?</h5>
+												</div>
+											</div>
+											<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
 												<field name="repeat_pelvic_examination_state"
 													   widget="radio"
 													   options="{'horizontal': True}"
@@ -444,6 +465,13 @@
 
 											</group>
 
+											<div class="d-flex flex-column">
+												<div/>
+
+												<div style="background: #cddbf3; padding: 0.3%;">
+													<h5>Scan Required</h5>
+												</div>
+											</div>
 											<group>
 												<field name="scan_required"
 													   widget="radio"
@@ -631,6 +659,15 @@
 											</group>
 											<group>
 												<field name="counseling_and_discussion"/>
+											</group>
+											<div class="d-flex flex-column">
+												<div/>
+
+												<div style="background: #cddbf3; padding: 0.3%;">
+													<h5>Post Assessment</h5>
+												</div>
+											</div>
+											<group>
 
 												<field name="repeat_diagnosis"
 													   widget="many2many_tags"
