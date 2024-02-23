@@ -106,7 +106,7 @@ class SemenAnalysis(models.Model):
     sperm_cryopreservation_strawe = fields.Char('Cryopreservation Strawe')
     sperm_cryopreservation_code = fields.Char('Cryopreservation Code')
 
-    seminologist_id = fields.Many2one(comodel_name='res.users', string='Seminologist', default=lambda self: self.env.user)
+    seminologist_ids = fields.Many2many(comodel_name='res.users', string='Seminologist', default=lambda self: self.env.user)
     legacy_seminologist = fields.Char(string="Legacy System Seminologist", readonly=1)
 
     special_notes = fields.Char("Special Notes")

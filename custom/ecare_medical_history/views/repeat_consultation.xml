@@ -1034,14 +1034,14 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.repeat_procedure_recommended.raw_value">
+                                                                         t-if="record.repeat_procedure_recommended_ids.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">
                                                                                 Procedure Recommended
                                                                             </span>
                                                                         </div>
                                                                         <div>
-                                                                            <field name="repeat_procedure_recommended"/>
+                                                                            <field name="repeat_procedure_recommended_ids"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"

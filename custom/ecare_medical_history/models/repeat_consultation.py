@@ -33,11 +33,11 @@ class RepeatConsultation(models.Model):
     #                                 default="1",
     #                                 required=True)
     repeat_consultation_state = fields.Selection([('open', 'In Progress'),
-                                                 ('closed', 'Done'),
-                                                 ('decision_pending', "Decision Pending"),
-                                                 ],
-                                                default='open',
-                                                string='State')
+                                                  ('closed', 'Done'),
+                                                  ('decision_pending', "Decision Pending"),
+                                                  ],
+                                                 default='open',
+                                                 string='State')
 
     """ Question One
     Yes: Open the pregnancy assessment form
@@ -154,6 +154,11 @@ class RepeatConsultation(models.Model):
                                         string="Diagnosis")
 
     repeat_procedure_recommended = fields.Html(string='Procedure Recommended')
+    repeat_procedure_recommended_ids = fields.Many2many(comodel_name='ec.medical.recommended.procedure',
+                                                        relation="repeat_consultation_procedure_recommended_rel",
+                                                        column1="repeat_consultation_id",
+                                                        column2="procedure_id",
+                                                        string='Procedure Recommended')
     repeat_treatment_plan = fields.Html(string='Plan')
 
     repeat_note = fields.Html(string="Reason for visit / Couple concerns / History of presenting complaints")
@@ -171,6 +176,7 @@ class RepeatConsultation(models.Model):
                                                     string='Treatment Pathway')
 
     repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                   default='no',
                                                    string="Examination Required")
 
     repeat_gpe = fields.Text(string='GPE')
@@ -179,6 +185,7 @@ class RepeatConsultation(models.Model):
     repeat_breast = fields.Text(string="Breast")
 
     repeat_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                       default='no',
                                                        string="Pelvic examination done?")
 
     repeat_examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
@@ -232,6 +239,7 @@ class RepeatConsultation(models.Model):
     repeat_other_findings = fields.Text(string="Other findings")
 
     scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                     default='no',
                                      string="Scan required?")
 
     repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO,

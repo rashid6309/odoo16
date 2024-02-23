@@ -252,7 +252,7 @@
                                 </tr>
                                 <tr style="border-width : 0;border-style: hidden;">
                                     <td style="padding:1% 0% 0% 0%; border-width : 0;border-style: hidden;"><b>Semenologist:</b></td>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"><span t-field="o.seminologist_id"/></td>
+                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"><span t-field="o.seminologist_ids"/></td>
                                 </tr>
                             </table>
                             <div style="padding:2% 0% 0% 0%;">

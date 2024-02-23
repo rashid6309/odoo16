@@ -42,7 +42,6 @@ div[name='all_semen_analysis_ids'] {
 
 #gynecological_examination_section .o_form_label:not(.form-check-label)
 {
-   float : left !important;
    text-align: -webkit-right;
 }
 
@@ -613,5 +612,5 @@ label[for="lining_ids"] {
 }
 
 .table_fixed_height {
-  height: 304px !important;
+  height: 300px !important;
 }

@@ -45,6 +45,7 @@
 
         # 'views/ec_patient.xml', # not being used now.
         'views/ec_procedure.xml',
+        'views/ec_medical_recommended_procedure.xml',
         'views/lab_history.xml',
         'views/ec_medical_patient_attachmnent.xml',
 

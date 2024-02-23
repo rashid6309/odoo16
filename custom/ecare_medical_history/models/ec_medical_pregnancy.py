@@ -109,3 +109,10 @@ class PregnancyProcedures(models.Model):
 
     name = fields.Char("Name", required=True)
     value = fields.Text("Value")
+
+
+class RecommendedProcedures(models.Model):
+    _name = 'ec.medical.recommended.procedure'
+    _description = 'Recommended Procedures'
+
+    name = fields.Char("Name", required=True)

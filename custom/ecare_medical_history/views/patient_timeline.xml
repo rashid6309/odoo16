@@ -131,7 +131,7 @@
 												<field name="repeat_seen_with_other"
 													   attrs="{'required': [('repeat_consultation_with', '=', 'other')]}"/>
 												<field name="repeat_seen_by"/>
-												<field name="repeat_other_doctors_present" widget="many2many_tags"
+												<field name="repeat_other_doctors_present" required="1" widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 											</group>
 											<group>
@@ -520,7 +520,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="d-flex ">
+												<div class="d-flex bg-light bg-gradient">
 
 													<div class="col-md-3">
 														Endometrial Lining Character
@@ -635,16 +635,18 @@
 												<field name="repeat_diagnosis"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
-												<field name="repeat_investigations_ids" widget="many2many_tags"
+												<field name="repeat_investigations_ids" required="1" widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
-												<field name="repeat_procedure_recommended"/>
+												<field name="repeat_procedure_recommended_ids" widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_treatment_plan"/>
 
 												<field name="repeat_treatment_advised_ids" widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
 												<field name="repeat_new_treatment_pathway"
+													   required="1"
 													   widget="radio"
 													   options="{'horizontal': True}"
 												/>
@@ -1931,22 +1933,35 @@
 																	</field>
 																</div>
 															</div>
+															<div>
+																<span class="oe_inline">
+																	Endometrial Lining Character
+																</span>
+																<field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/>
+																<span class="oe_inline">
+																	CET
+																</span>
+																<field name="lining_size" class="oe_inline" nolabel="1"/>
+																<span class="oe_inline">
+																	mm
+																</span>
+															</div>
 														</div>
 													</div>
 
 
-													<label for="lining_ids"/>
-													<div>
-														<field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/>
-														<div/>
-														<span class="oe_inline">
-															CET
-														</span>
-														<field name="lining_size" class="oe_inline" nolabel="1"/>
-														<span class="oe_inline">
-															mm
-														</span>
-													</div>
+<!--													<label for="lining_ids"/>-->
+<!--													<div class="bg-light bg-gradient" style="margin-top: -1%; width: 80%;">-->
+<!--														<field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/>-->
+<!--														<div/>-->
+<!--														<span class="oe_inline">-->
+<!--															CET-->
+<!--														</span>-->
+<!--														<field name="lining_size" class="oe_inline" nolabel="1"/>-->
+<!--														<span class="oe_inline">-->
+<!--															mm-->
+<!--														</span>-->
+<!--													</div>-->
 													<label for="gynae_rov"/>
 													<div>
 														<field name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;"/>
