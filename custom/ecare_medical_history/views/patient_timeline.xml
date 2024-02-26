@@ -129,9 +129,12 @@
 													   widget="radio" options="{'horizontal': True}"/>
 												<field name="repeat_consultation_with"/>
 												<field name="repeat_seen_with_other"
-													   attrs="{'required': [('repeat_consultation_with', '=', 'other')]}"/>
+													   attrs="{'required': ['|',('repeat_consultation_with', '=', 'other'),
+													   ('show_repeat_section_state', '=', True)]}"/>
 												<field name="repeat_seen_by"/>
-												<field name="repeat_other_doctors_present" widget="many2many_tags"
+												<field name="repeat_other_doctors_present"
+													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
+													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 											</group>
 											<group>
@@ -672,7 +675,9 @@
 												<field name="repeat_diagnosis"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
-												<field name="repeat_investigations_ids" widget="many2many_tags"
+												<field name="repeat_investigations_ids"
+													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
+													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
 												<field name="repeat_procedure_recommended_ids" widget="many2many_tags"
@@ -683,6 +688,7 @@
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
 												<field name="repeat_new_treatment_pathway"
+													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
 													   widget="radio"
 													   options="{'horizontal': True}"
 												/>
