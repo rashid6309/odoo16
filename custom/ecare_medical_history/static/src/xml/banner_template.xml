@@ -4,13 +4,22 @@
 		<header class="site-header o_edit_patient_profile">
 			<div class="d-flex height: 50px align-items-center site-identity">
 				<div class="col-md-6">
-					<h1>
+					<h1 style="width: -webkit-fill-available;">
 						<t t-esc="props.value[1]" />
 						<a href="#" t-on-click="_onEditPatientProfile" class="editPatientProfile">
 							<i class="fa fa-pencil-square-o" title="Edit Patient"
-							   style="font-size:24px; color: white;"/>
+							   style="font-size:24px; color: white;margin-left:1%;"/>
+						</a>
+						<a href="#" t-on-click="_onEditPatientTimeline" class="editPatientSemen">
+							<i class="fa fa-calendar-o" title="Patient Timeline"
+							   style="font-size:24px; color: white;margin-left:1%;"/>
+						</a>
+						<a href="#" t-on-click="_onEditPatientSemen" class="editPatientSemen">
+							<i class="fa fa-flask" title="Patient Semen"
+							   style="font-size:24px; color: white;margin-left:1%;"/>
 						</a>
 					</h1>
+
 				</div>
 				<div class="col-md-6">
 					<div class="header2-text">Current treatment pathway</div>
