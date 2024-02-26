@@ -4,6 +4,10 @@
     max-height: 71vh;
 }
 
+strong
+{
+    font-weight:700 !important;
+}
 
 div[name='all_semen_analysis_ids'] {
     width: auto !important;
