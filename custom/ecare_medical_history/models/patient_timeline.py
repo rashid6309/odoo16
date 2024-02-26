@@ -513,6 +513,45 @@ class PatientTimeline(models.Model):
             'target': 'new',
         }
 
+    def action_open_patient_semen_view(self):
+        patient_id = self.env.context.get('0')
+        if patient_id:
+            context = {
+                'default_semen_patient_id': patient_id,
+            }
+            domain = [
+                ('semen_patient_id', '=', patient_id),
+            ]
+            return {
+                "name": _("Semen Analysis"),
+                "type": 'ir.actions.act_window',
+                "res_model": 'ec.semen.analysis',
+                'view_id': self.env.ref('ecare_medical_history.ec_semen_analysis_tree_read_only_view').id,
+                'view_mode': 'tree',
+                "target": 'current',
+                'context': context,
+                'domain': domain,
+            }
+        else:
+            raise UserError("Patient does not have any semen record.")
+
+    def action_open_patient_timeline_view(self):
+        patient_id = self.env.context.get('0')
+        if patient_id:
+            timeline_exists = self.env['ec.patient.timeline'].search([('timeline_patient_id', '=', int(patient_id))])
+
+            return {
+                "name": _("Timeline"),
+                "type": 'ir.actions.act_window',
+                "res_model": 'ec.patient.timeline',
+                'view_id': self.env.ref('ecare_medical_history.patient_timeline_form_view').id,
+                'view_mode': 'form',
+                "target": 'current',
+                'res_id': timeline_exists.id,
+            }
+        else:
+            raise UserError("Patient does not have any record.")
+
     def action_timeline_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
                                                                        self)
