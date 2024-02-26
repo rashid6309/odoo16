@@ -712,6 +712,14 @@
 											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
 											collapseDivs.forEach(function(collapseDiv) {
+											  var elements = document.querySelectorAll('[data-bs-target*="family_history_section"]');
+
+											  elements.forEach(function(element) {
+												if (element.querySelector('.fa-angle-up')) {
+												  element.querySelector('.fa-angle-up').classList.remove('fa-angle-up');
+												  element.querySelector('.fa').classList.add('fa-angle-down');
+												}
+											  });
 
 											collapseDiv.classList.remove("show");
 
@@ -727,7 +735,14 @@
 											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
 											collapseDivs.forEach(function(collapseDiv) {
+											  var elements = document.querySelectorAll('[data-bs-target*="family_history_section"]');
 
+											  elements.forEach(function(element) {
+												if (element.querySelector('.fa-angle-down')) {
+												  element.querySelector('.fa-angle-down').classList.remove('fa-angle-down');
+												  element.querySelector('.fa').classList.add('fa-angle-up');
+												}
+											  });
 											collapseDiv.classList.add("show");
 											});
 											});
