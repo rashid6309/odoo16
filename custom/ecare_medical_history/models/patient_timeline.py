@@ -528,7 +528,7 @@ class PatientTimeline(models.Model):
                 "res_model": 'ec.semen.analysis',
                 'view_id': self.env.ref('ecare_medical_history.ec_semen_analysis_tree_read_only_view').id,
                 'view_mode': 'tree',
-                "target": 'current',
+                "target": 'main',
                 'context': context,
                 'domain': domain,
             }
@@ -546,7 +546,7 @@ class PatientTimeline(models.Model):
                 "res_model": 'ec.patient.timeline',
                 'view_id': self.env.ref('ecare_medical_history.patient_timeline_form_view').id,
                 'view_mode': 'form',
-                "target": 'current',
+                "target": 'main',
                 'res_id': timeline_exists.id,
             }
         else:

@@ -712,14 +712,14 @@
 											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
 											collapseDivs.forEach(function(collapseDiv) {
-											  var elements = document.querySelectorAll('[data-bs-target*="family_history_section"]');
+											var elements = document.querySelectorAll('[data-bs-target*="family_history_section"]');
 
-											  elements.forEach(function(element) {
-												if (element.querySelector('.fa-angle-up')) {
-												  element.querySelector('.fa-angle-up').classList.remove('fa-angle-up');
-												  element.querySelector('.fa').classList.add('fa-angle-down');
-												}
-											  });
+											elements.forEach(function(element) {
+											if (element.querySelector('.fa-angle-up')) {
+											element.querySelector('.fa-angle-up').classList.remove('fa-angle-up');
+											element.querySelector('.fa').classList.add('fa-angle-down');
+											}
+											});
 
 											collapseDiv.classList.remove("show");
 
@@ -735,18 +735,68 @@
 											var collapseDivs = repeatKanbanDiv.querySelectorAll(".collapse");
 
 											collapseDivs.forEach(function(collapseDiv) {
-											  var elements = document.querySelectorAll('[data-bs-target*="family_history_section"]');
+											var elements = document.querySelectorAll('[data-bs-target*="family_history_section"]');
 
-											  elements.forEach(function(element) {
-												if (element.querySelector('.fa-angle-down')) {
-												  element.querySelector('.fa-angle-down').classList.remove('fa-angle-down');
-												  element.querySelector('.fa').classList.add('fa-angle-up');
-												}
-											  });
+											elements.forEach(function(element) {
+											if (element.querySelector('.fa-angle-down')) {
+											element.querySelector('.fa-angle-down').classList.remove('fa-angle-down');
+											element.querySelector('.fa').classList.add('fa-angle-up');
+											}
+											});
 											collapseDiv.classList.add("show");
 											});
 											});
 											});
+										</script>
+										<script>
+											document.addEventListener('click', function (event) {
+											var previousTreatmentButton = document.querySelector('[name="previous_treatment"]');
+
+											if(previousTreatmentButton){
+
+											if (event.target === previousTreatmentButton || previousTreatmentButton.contains(event.target)) {
+											setTimeout(function () {
+											var tables = document.querySelectorAll('.o_list_table');
+
+											tables.forEach(function (table) {
+											var tbody = table.querySelector('.ui-sortable');
+											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');
+
+											if (tbody) {
+											if (rowToAdd) {
+											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);
+											}
+											}
+											});
+											}, 200);
+											}
+											}
+											});
+
+											document.addEventListener('click', function (event) {
+											var obstetricsHistoryButton = document.getElementById("obstetrics_history_section_link");
+											if(obstetricsHistoryButton){
+											if (event.target === obstetricsHistoryButton || obstetricsHistoryButton.contains(event.target)) {
+											setTimeout(function () {
+											var tables = document.querySelectorAll('.o_list_table');
+
+											tables.forEach(function (table) {
+											var tbody = table.querySelector('.ui-sortable');
+											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');
+
+											if (tbody) {
+											if (rowToAdd) {
+											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);
+											}
+											}
+											});
+											}, 200);
+											}
+											}
+
+											});
+
+
 										</script>
 										<a style="float: right; display: inline-block; background-color: #71639e; color: #fff; text-align: center; text-decoration: none; border-radius: 5px;
 										 cursor: pointer; width: 7%;
@@ -856,7 +906,7 @@
 											<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
 												<!--											<field name="patient_id"/>-->
 												<tree editable="top">
-													<field name="first_obs_history_ids"
+													<field name="first_obs_history_ids" id="obstetrics_history_table"
 														   context="{'default_patient_id': timeline_patient_id,
 													   				'default_timeline_id' : id,}"
 														   nolabel="1" editable="top">
@@ -1990,19 +2040,24 @@
 																	</field>
 																</div>
 															</div>
-															<div>
-																<span class="oe_inline">
+
+															<div class="d-flex bg-light bg-gradient">
+
+																<div class="col-md-3">
 																	Endometrial Lining Character
-																</span>
-																<field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/>
-																<span class="oe_inline">
-																	CET
-																</span>
-																<field name="lining_size" class="oe_inline" nolabel="1"/>
-																<span class="oe_inline">
-																	mm
-																</span>
+																</div>
+																<div class="d-flex flex-column">
+																	<div>
+																		<field name="lining_ids" widget="many2many_checkboxes"/>
+																	</div>
+																	<div>
+																		<span>CET</span>
+																		<field name="lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
+																		<span>mm</span>
+																	</div>
+																</div>
 															</div>
+
 														</div>
 													</div>
 
@@ -2531,7 +2586,7 @@
 																		<div class="card-header" role="tab" id="male_diabetesOne">
 																			<div class="mb-0 row">
 																				<span id="male_diabetes" aria-expanded="false"
-																				   aria-controls="male_collapseDiabetes" class="collapsed colla mb-0 col-11">
+																					  aria-controls="male_collapseDiabetes" class="collapsed colla mb-0 col-11">
 																					<h3>Diabetes</h3>
 																				</span>
 																			</div>
@@ -2552,7 +2607,7 @@
 																		<div class="card-header" role="tab" id="male_malignanciesOne">
 																			<div class="mb-0 row">
 																				<span id="male_malignancies" aria-expanded="false"
-																				   aria-controls="male_collapseMalignancies" class="collapsed colla mb-0 col-11">
+																					  aria-controls="male_collapseMalignancies" class="collapsed colla mb-0 col-11">
 																					<h3>
 																						Malignancies
 																					</h3>
@@ -2570,7 +2625,7 @@
 																		<div class="card-header" role="tab" id="hypertensionOne">
 																			<div class="mb-0 row">
 																				<span id="male_hypertension" aria-expanded="false"
-																				   aria-controls="male_collapseHypertension" class="collapsed colla mb-0 col-11">
+																					  aria-controls="male_collapseHypertension" class="collapsed colla mb-0 col-11">
 																					<h3>
 																						Hypertension
 																					</h3>
@@ -2588,7 +2643,7 @@
 																		<div class="card-header" role="tab" id="male_mental_illnessOne">
 																			<div class="mb-0 row">
 																				<span id="male_mental_illness" aria-expanded="false"
-																				   aria-controls="male_collapseMental_illness" class="collapsed colla mb-0 col-11">
+																					  aria-controls="male_collapseMental_illness" class="collapsed colla mb-0 col-11">
 																					<h3>
 																						Mental Illnesses
 																					</h3>
@@ -2842,7 +2897,7 @@
 														<field name="male_cvs" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
 														<field name="male_cvs_comment" placeholder="other.." class="oe_inline" nolabel="1"/>
 													</div>
-													<label for="male_respiratory"/>
+													<label for="male_respiratory_systematic"/>
 													<div>
 														<field name="male_respiratory_systematic" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
 														<field name="male_respiratory_comment" class="oe_inline" nolabel="1" placeholder="other.."/>
@@ -2860,7 +2915,7 @@
 
 										</page>
 
-										<page string="Previous Treatment" name="previous_treatment">
+										<page string="Previous Treatment" name="previous_treatment" id="arrangeList">
 											<div class="card-block mb-5 pl-4" id="previous_treatment_tree_section">
 												<tree editable="top">
 													<field name="first_previous_treatment_ids"
