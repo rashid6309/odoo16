@@ -68,6 +68,7 @@ class StaticMember:
     UTERUS_FLEXION = [
         ('A/V', 'A/V'),
         ('R/V', 'R/V'),
+        ('unable_to_determine', 'Unable to Determine'),
     ]
 
     YEARS = [
@@ -119,6 +120,45 @@ class StaticMember:
         ('59', '59'), ('60', '60')
     ]
 
+    MONTHS_MEDICAL = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+        ('11', '11'),
+        ('12', '12'),
+        ('13', '13'),
+        ('14', '14'),
+        ('15', '15'),
+        ('16', '16'),
+        ('17', '17'),
+        ('18', '18'),
+        ('19', '19'),
+        ('20', '20'),
+        ('21', '21'),
+        ('22', '22'),
+        ('23', '23'),
+        ('24', '24'),
+        ('25', '25'),
+        ('26', '26'),
+        ('27', '27'),
+        ('28', '28'),
+        ('29', '29'),
+        ('30', '30'),
+        ('31', '31'),
+        ('32', '32'),
+        ('33', '33'),
+        ('34', '34'),
+        ('35', '35'),
+        ('36', '36')
+    ]
+
     GOITEAR_LENGTH = [
         ('1', '1'),
         ('2', '2'),
@@ -162,6 +202,28 @@ class StaticMember:
                 ('unmarried', 'Unmarried')
                 ]
 
+    SIGN_OVULATION = [('free_fluid', 'Free Fluid'),
+                      ('loss_of_dominant_follicle', 'Loss of Dominant Follicle(s)'),
+                      ('irregular_follicle', 'Irregular Follicle(s)'),
+                      ('corpus_luteum', 'Corpus Luteum'),
+                      ]
+
+    TVS_DIAGNOSIS = [
+        ('early_mid_follicular', 'Early-Mid Follicular Phase'),
+        ('late_follicular', 'Late Follicular Phase'),
+        ('pre_ovulation', 'Pre-Ovulation'),
+        ('recent_ovulation', 'Recent Ovulation'),
+        ('late_luteal_pre_menstrual', 'Late Luteal Phase/Pre-Menstrual'),
+        ('luf', 'LUF'),
+        ('post_menopausal', 'Post-Menopausal'),
+        ('pre_menarche', 'Pre-Menarche'),
+        ('uncertain', 'Uncertain'),
+    ]
+
+    TYPE_CONCEPTION = [('natural', 'Natural'),
+                       ('assisted', 'Assisted'),
+                       ]
+
     DoP = [('<6', '<6'),
            ('6', '6'),
            ('7', '7'),
@@ -190,8 +252,12 @@ class StaticMember:
            ('CAESAREAN', 'CAESAREAN'),
            ('MISCARRIAGE', 'MISCARRIAGE'),
            ('TOP', 'TOP'),
-           ('Ectopic', 'ECTOPIC'),
-           ('VBAC', 'VBAC'), ]
+           ('VBAC', 'VBAC'),
+           ('r_tubal', 'R TUBAL ECTOPIC'),
+           ('l_tubal', 'L TUBAL ECTOPIC'),
+           ('tubal_ectopic', 'TUBAL ECTOPIC SIDE UNKNOWN'),
+           ('ectopic_other', 'ECTOPIC OTHER'),
+           ]
 
     GENDER = [('Male', 'Male'),
               ('Female', 'Female'),
@@ -352,17 +418,17 @@ class StaticMember:
         ('29', '29'),
         ('30', '30'),
         ('31', '31'),
-        ('32', '31'),
-        ('33', '31'),
-        ('34', '31'),
-        ('35', '31'),
-        ('36', '31'),
-        ('37', '31'),
-        ('38', '31'),
-        ('39', '31'),
-        ('40', '31'),
-        ('41', '31'),
-        ('42', '31'),
+        ('32', '32'),
+        ('33', '33'),
+        ('34', '34'),
+        ('35', '35'),
+        ('36', '36'),
+        ('37', '37'),
+        ('38', '38'),
+        ('39', '39'),
+        ('40', '40'),
+        ('41', '41'),
+        ('42', '42'),
     ]
 
     MENARCHE_CYCLE_MONTHS = [
@@ -1124,4 +1190,14 @@ class StaticMember:
         ('abandoned', 'Attempt Abandoned'),
     ]
 
+
+    SURGERY_TYPES = [
+        ('tubal_patency_testing', 'Tubal Patency Testing'),
+        ('minimally_invasive_surgery', 'Minimally Invasive Surgery Other Than Tubal Testing'),
+        ('laparotomy', 'Laparotomy'),
+        ('cardiac_surgery', 'Cardiac Surgery'),
+        ('neurosurgery', 'Neurosurgery'),
+        ('surgery_for_cancer', 'Surgery for Cancer'),
+        ('other', 'Other'),
+    ]
 

@@ -49,13 +49,13 @@
             </field>
         </record>
 
-        <!-- Explicit Tree Action -->
+        <!-- Explicit Tree View -->
 
         <record id="ec_lab_history_tree_view" model="ir.ui.view">
             <field name="name">lab.history.tree.view</field>
             <field name="model">ec.lab.history</field>
             <field name="arch" type="xml">
-                <tree create="0" editable="bottom">
+                <tree create="0">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="attachment_id" widget="many2many_binary" readonly="1" filename="filename"/>

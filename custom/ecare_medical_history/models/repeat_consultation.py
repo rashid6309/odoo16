@@ -10,7 +10,7 @@ _logger = getLogger(__name__)
 class RepeatConsultation(models.Model):
     _name = 'ec.repeat.consultation'
     _description = "Patient Repeat Consultation"
-    _order = "create_date desc"
+    _order = "repeat_date desc"
     _inherits = {
         'ec.medical.tvs': 'repeat_tvs_id',
         'ec.medical.pregnancy.data': 'repeat_pregnancy_id',
@@ -42,12 +42,12 @@ class RepeatConsultation(models.Model):
     #                                            ('4', "Question 4")],
     #                                 default="1",
     #                                 required=True)
-    first_consultation_state = fields.Selection([('open', 'In Progress'),
-                                                 ('closed', 'Done'),
-                                                 ('decision_pending', "Decision Pending"),
-                                                 ],
-                                                default='open',
-                                                string='State')
+    repeat_consultation_state = fields.Selection([('open', 'In Progress'),
+                                                  ('closed', 'Done'),
+                                                  ('decision_pending', "Decision Pending"),
+                                                  ],
+                                                 default='open',
+                                                 string='State')
 
     """ Question One
     Yes: Open the pregnancy assessment form
@@ -147,12 +147,12 @@ class RepeatConsultation(models.Model):
                                      default=lambda self: self.env.user)
 
     repeat_other_doctors_present = fields.Many2many(comodel_name='res.consultant',
-                                                    string='Other Doctors Present')
+                                                    string='Others Present')
     ''' Seen with list required '''
     repeat_consultation_with = fields.Selection(selection=StaticMember.SEEN_WITH,
                                                 string='Consultation with')
 
-    repeat_seen_with_other = fields.Text(string='Other Present')
+    repeat_seen_with_other = fields.Text(string='Others Present')
 
     # Define TVS field as per your TVS form structure
     # TVS = fields.Many2one('tvs.form', string='TVS Form')
@@ -163,6 +163,12 @@ class RepeatConsultation(models.Model):
                                         column2="diagnosis_id",
                                         string="Diagnosis")
 
+    repeat_procedure_recommended = fields.Html(string='Procedure Recommended')
+    repeat_procedure_recommended_ids = fields.Many2many(comodel_name='ec.medical.recommended.procedure',
+                                                        relation="repeat_consultation_procedure_recommended_rel",
+                                                        column1="repeat_consultation_id",
+                                                        column2="procedure_id",
+                                                        string='Procedure Recommended')
     repeat_treatment_plan = fields.Html(string='Plan')
 
     repeat_note = fields.Html(string="Reason for visit / Couple concerns / History of presenting complaints")
@@ -177,9 +183,10 @@ class RepeatConsultation(models.Model):
                                                     relation="repeat_consultation_medical_treatment_list_rel",
                                                     column1="repeat_consultation_id",
                                                     column2="treatment_list_id",
-                                                    string='Treatment Advised')
+                                                    string='Treatment Pathway')
 
     repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                   default='no',
                                                    string="Examination Required")
 
     repeat_gpe = fields.Text(string='GPE')
@@ -188,6 +195,7 @@ class RepeatConsultation(models.Model):
     repeat_breast = fields.Text(string="Breast")
 
     repeat_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                       default='no',
                                                        string="Pelvic examination done?")
 
     repeat_examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
@@ -205,7 +213,7 @@ class RepeatConsultation(models.Model):
     repeat_findings_on_inspection = fields.Text(string="Findings on inspection")
 
     repeat_vaginal_exam = fields.Text(string='Vaginal Exam')
-    repeat_valva_vaginal_exam = fields.Text(string='Valva and Vagina')
+    repeat_valva_vaginal_exam = fields.Text(string='Vulva and Vagina')
     repeat_cervix = fields.Text(string="Cervix")
     repeat_uterus_and_adnexae = fields.Text(string="Uterus and adnexae (bimanual)")
 
@@ -241,6 +249,7 @@ class RepeatConsultation(models.Model):
     repeat_other_findings = fields.Text(string="Other findings")
 
     scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                     default='no',
                                      string="Scan required?")
 
     repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
@@ -294,7 +303,11 @@ class RepeatConsultation(models.Model):
                     for record in repeat.repeat_timeline_id.tvs_generic_sizes_ids:
                         size_x_value = str(record.generic_size_x) if record.generic_size_x is not None else '-'
                         size_y_value = str(record.generic_size_y) if record.generic_size_y is not None else '-'
-                        table_row = f"<tr><td>{size_x_value},</td><td>{size_y_value}</td></tr>"
+                        distorting_endometrium = 'Yes' if record.distorting_endometrium == 'yes' else '-'
+                        if not distorting_endometrium:
+                            distorting_endometrium = 'No' if record.distorting_endometrium == 'no' else '-'
+                        location_or_features = str(record.location_or_features) if record.location_or_features is not False else '-'
+                        table_row = f"<tr><td>{size_x_value},</td><td>{location_or_features},</td><td>{distorting_endometrium}</td></tr>"
                         table_rows.append(table_row)
                     dynamic_table = f"<table>{''.join(table_rows)}</table>"
                     repeat.repeat_uterus_fibroid_computed = dynamic_table
@@ -346,10 +359,12 @@ class RepeatConsultation(models.Model):
         self.repeat_timeline_id.show_repeat_section_state = True
         if self.repeat_timeline_id.ec_repeat_consultation_id.id == self.id:
             self.repeat_timeline_id.first_consultation_state = 'open'
+            self.repeat_consultation_state = 'open'
             return
 
         self.repeat_timeline_id.ec_repeat_consultation_id = self.id
         self.repeat_timeline_id.first_consultation_state = 'open'
+        self.repeat_consultation_state = 'open'
 
     """ Other actions opening place over here"""
 

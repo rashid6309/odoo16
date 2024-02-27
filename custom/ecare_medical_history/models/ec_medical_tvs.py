@@ -31,8 +31,10 @@ class EcMedicalTVS(models.Model):
 
     tvs_uterus_tvs_size = fields.Boolean(default=False, string="Size")
     tvs_uterus_tvs_position = fields.Boolean(default=False, string="Position")
-    tvs_uterus_tvs_normal = fields.Boolean(default=False, string="Normal")
+    # tvs_uterus_tvs_normal = fields.Boolean(default=False, string="Normal")
     tvs_uterus_tvs_fiobrid = fields.Boolean(default=False, string="Fibroid")
+
+    tvs_uterus_flexion = fields.Selection(selection=StaticMember.UTERUS_FLEXION, string='Uterus Flexion')
 
     tvs_uterus_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                          string='Size X')
@@ -47,25 +49,37 @@ class EcMedicalTVS(models.Model):
                                         relation='repeat_multi_selection_repeat_position',
                                         column1='tvs_id',
                                         column2='multi_selection_id',
-                                        string='Linining',
+                                        string='Endometrial Lining Character',
                                         domain="[('type', '=', 'linining')]")
 
     tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
-                                       string='Size')
+                                       string='CET')
 
     tvs_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
-                                            inverse_name="tvs_fiobrid_id",
-                                            string="Fibroid")
+                                        inverse_name="tvs_fiobrid_id",
+                                        string="Fibroid")
 
-    tvs_rov = fields.Char(string='ROV',)
+    tvs_rov = fields.Char(string='ROV')
 
-    tvs_lov = fields.Char(string='LOV',)
+    tvs_lov = fields.Char(string='LOV')
 
     tvs_other_text = fields.Text(string='Other')
     tvs_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",
                                             inverse_name="tvs_cyst_size_id",
                                             string="Sizes")
 
+    # tvs_signs_of_ovulation_ids = fields.Many2many(string='Signs of Ovulation',
+    #                                               selection=StaticMember.SIGN_OVULATION)
+    tvs_signs_of_ovulation_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                                  relation='repeat_multi_selection_repeat_ovulation',
+                                                  column1='tvs_ovulation_id',
+                                                  column2='multi_selection_id',
+                                                  string='Signs of Ovulation',
+                                                  domain="[('type', '=', 'ovulation')]")
+    tv_diagnosis = fields.Selection(selection=StaticMember.TVS_DIAGNOSIS,
+                                    string='Diagnosis of Ultrasound')
+    tvs_left_ovary_not_visualised = fields.Boolean(string='Not Visualised', default=False)
+    tvs_right_ovary_not_visualised = fields.Boolean(string='Not Visualised', default=False)
     def action_open_tvs_scan(self):
         context = self._context.copy()
         if context:
@@ -125,11 +139,13 @@ class EcMedicalTVSScan(models.TransientModel):
     display = fields.Char('Output')
     tvs_id = fields.Many2one(comodel_name='ec.medical.tvs',
                              string='TVS')
+    gynae_id = fields.Many2one(comodel_name='ec.medical.gynaecological.examination',
+                               string='Gynaecological')
 
     def action_tvs_output_process_text(self):
         if self.tvs_id:
             context = self._context.copy()
-            record = self.env['ec.medical.tvs'].browse(int(self.tvs_id.id))
+            record = self.tvs_id
 
             if context and record:
                 field = context.get('default_field')
@@ -161,6 +177,41 @@ class EcMedicalTVSScan(models.TransientModel):
                 elif field and field == 'tvs_lov':
                     return record.write({
                         'tvs_lov': display,
+                    })
+        if self.gynae_id:
+            context = self._context.copy()
+            record = self.gynae_id
+
+            if context and record:
+                field = context.get('default_field')
+                display = self.display or None
+                if display:
+                    # Convert the string to a list of elements
+                    data_list = display.split(',')
+
+                    # Separate the '+' and '>22' elements
+                    plus_elements = [element for element in data_list if element == '+']
+                    greater_than_22_elements = [element for element in data_list if element == '>22']
+
+                    # Remove '+' and '>22' elements from the original list
+                    data_list = [element for element in data_list if element not in ['+', '>22']]
+
+                    # Sort the remaining elements in ascending order
+                    sorted_data = sorted(data_list, key=lambda x: int(x) if x.isdigit() else float('inf'))
+
+                    # Concatenate the '+' elements, sorted elements, and '>22' elements
+                    result_list = plus_elements + sorted_data + greater_than_22_elements
+
+                    # Filter out empty strings and join the list back to a string
+                    result_str = ','.join(filter(None, result_list))
+                    display = result_str
+                if field and field == 'gynae_rov':
+                    return record.write({
+                        'gynae_rov': display,
+                    })
+                elif field and field == 'gynae_lov':
+                    return record.write({
+                        'gynae_lov': display,
                     })
 
     @api.onchange('display')

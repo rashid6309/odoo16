@@ -22,21 +22,24 @@ class FemaleObstetricsHistory(models.Model):
     timeline_id = fields.Many2one(comodel_name='ec.patient.timeline', string='Patient Timeline')
 
     baby_name = fields.Char(string='Baby Name')
+    type_of_conception = fields.Selection(selection=StaticMember.TYPE_CONCEPTION,
+                                          string='Type of Conception')
     birth_place = fields.Char(string="Place of Delivery",
-                      required=False, )
+                              required=False, )
+    year = fields.Many2one("ec.medical.year", 'Year')
     date_of_birth = fields.Date(string='Date of Birth')
     age = fields.Char(string='Age', compute='_get_age')
-    baby_notes = fields.Text(string='Baby Notes')
+    # baby_notes = fields.Text(string='Baby Notes')
     duration_of_pregnancy = fields.Selection(string='Duration of Pregnancy', selection=StaticMember.DoP)
-    mode_of_delivery = fields.Selection(string='Mode Of delivery', selection=StaticMember.MoD, required=False)
-    other_indications = fields.Char('Other Indications')
+    mode_of_delivery = fields.Selection(string='Outcome', selection=StaticMember.MoD, required=False)
+    other_indications = fields.Char('Other Notes')
     # complications = fields.Text(string='Complications in Pregnancy')
     complication_delivery = fields.Text(string='Complications in Delivery')
 
     complication_post_partum = fields.Text(string='Complications in Post-partum')
     complication_pregnancy = fields.Text(string='Complication In Pregnancy')
 
-    gender = fields.Selection(string='Child Gender', selection=StaticMember.GENDER, required=True)
+    gender = fields.Selection(string='Child Gender', selection=StaticMember.GENDER)
     weight = fields.Selection(string='Child Weight', selection=StaticMember.WEIGHT)
     health = fields.Selection(string='Child Health', selection=StaticMember.HEALTH)
     child_health_issues = fields.Text(string='Child Health Issues')

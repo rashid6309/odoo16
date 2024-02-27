@@ -6,6 +6,8 @@ class PregnancyForm(models.Model):
     _name = 'ec.medical.pregnancy.data'
     _description = 'Pregnancy Data'
 
+    pregnancy_patient_id = fields.Many2one(comodel_name="ec.medical.patient")
+
     pregnancy_repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
                                                        readonly=True,
                                                        string='Repeat Consultation')
@@ -47,7 +49,7 @@ class PregnancyForm(models.Model):
     repeat_pregnancy_type_sample_obtained = fields.Char(string="Type of Sample Obtained")
 
     repeat_pregnancy_reason_to_visit = fields.Selection(StaticMember.VISIT_REASON, string="Reason for visit")
-    repeat_pregnancy_notes = fields.Char(string="Notes")
+    repeat_pregnancy_notes = fields.Text(string="Notes")
     genetic_testing = fields.Char(string="Genetic Testing")
     early_pregnancy_assessment = fields.Char(string="Early Pregnancy Assessment")
 
@@ -84,7 +86,7 @@ class PregnancyForm(models.Model):
     @api.onchange('repeat_pregnancy_lmp')
     def _compute_gestational_age(self):
         for rec in self:
-            date_analysis = rec.create_date
+            date_analysis = rec.pregnancy_repeat_consultation_id.repeat_date
             lmp = rec.repeat_pregnancy_lmp
             if date_analysis and lmp:
                 diff = date_analysis.date() - lmp
@@ -107,3 +109,10 @@ class PregnancyProcedures(models.Model):
 
     name = fields.Char("Name", required=True)
     value = fields.Text("Value")
+
+
+class RecommendedProcedures(models.Model):
+    _name = 'ec.medical.recommended.procedure'
+    _description = 'Recommended Procedures'
+
+    name = fields.Char("Name", required=True)

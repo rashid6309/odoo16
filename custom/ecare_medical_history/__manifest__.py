@@ -17,6 +17,7 @@
         # Security
         'security/ir_groups.xml',
         'security/ir.model.access.csv',
+        'security/ir_groups.xml',
 
         # Menu
         'data/family_history_data.xml',
@@ -45,7 +46,9 @@
 
         # 'views/ec_patient.xml', # not being used now.
         'views/ec_procedure.xml',
+        'views/ec_medical_recommended_procedure.xml',
         'views/lab_history.xml',
+        'views/ec_medical_patient_attachmnent.xml',
 
         # This Views should be below after all of its views.
 

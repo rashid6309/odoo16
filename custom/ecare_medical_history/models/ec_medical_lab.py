@@ -8,8 +8,13 @@ _logger = logging.getLogger(__name__)
 
 class EcHMedicalLab(models.Model):
     _name = 'ec.medical.labs'
-    _description = "Information about the labs"
+    _description = "Medical Labs"
     _order = 'create_date desc'
 
     name = fields.Char(string='Name',
                        required=True)
+
+    _sql_constraints = [
+        ('name_unique', 'unique (name)',
+         'Lab name already exists!'),
+    ]

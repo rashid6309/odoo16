@@ -17,6 +17,7 @@ from . import individual_patient
 from . import family_relation_list
 from . import previous_treatment
 from . import ec_medical_tvs
+from . import ec_medical_patient_attachment
 from . import treatment_pathway_wizard
 from . import ec_medical_oi_ti_platform_attempt
 from . import ec_medical_oi_ti_platform_cycle

@@ -27,6 +27,29 @@ class MedicalGynaecologicalExamination(models.Model):
     gynaecological_examination_ps_selection = fields.Selection(selection=StaticMember.ORGAN_SIZE,  string='P/S')
     gynaecological_examination_ps_comment = fields.Char('P/S Comment')
 
+    # Fields for gynae_exam
+    gynae_exam_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                           string="Pelvic examination done?")
+    gynae_exam_inspection_only = fields.Boolean(string='Inspection Only')
+    gynae_exam_p_v_only = fields.Boolean(string='P/V Only')
+    gynae_exam_p_s_only = fields.Boolean(string='P/S Only')
+
+    gynae_exam_findings_on_inspection = fields.Text(string='Findings on Inspection')
+    gynae_exam_valva_vaginal_exam = fields.Text(string='Vulva Vaginal Exam')
+    gynae_exam_cervix = fields.Text(string='Cervix')
+    gynae_exam_uterus_and_adnexae = fields.Text(string='Uterus and adnexae (bimanual)')
+
+    gynae_exam_hvs = fields.Boolean(string='HVS')
+    gynae_exam_endocervical = fields.Boolean(string='Endocervical')
+    gynae_exam_no_swab_taken = fields.Boolean(string="No swab taken")
+    gynae_exam_method_of_hvs = fields.Selection(string="Method of HVS",
+                                                selection=StaticMember.METHOD_OF_HVS)
+
+    gynae_exam_pap_smear_done = fields.Boolean(string='Pap Smear Done')
+    gynae_exam_pipelle_sampling_done = fields.Boolean(string='Pipelle Sampling Done')
+
+    gynae_exam_other_findings = fields.Text(string='Other Findings')
+
     gynaecological_examination_date = fields.Date(string='Date')
     gynaecological_ultrasound_type = fields.Selection(selection=StaticMember.ULTRASOUND_TYPE,
                                                       string="Ultrasound")
@@ -42,7 +65,8 @@ class MedicalGynaecologicalExamination(models.Model):
     gynaecological_left_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                                    inverse_name="gynaecological_left_size_id",
                                                    string="Left Ovary")
-
+    left_ovary_not_visualised = fields.Boolean(string='Not Visualised', default=False)
+    gynae_uterus_flexion = fields.Selection(selection=StaticMember.UTERUS_FLEXION, string='Uterus Flexion')
     left_ovary_nos = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Left Ovary Nos')
     '''
         FIXME: What is length and width?
@@ -55,17 +79,25 @@ class MedicalGynaecologicalExamination(models.Model):
         FIXME: What is length and width?
 
     '''
+
+    gynae_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
+                                          inverse_name="gynaecological_fiobrid_id",
+                                          string="Fibroid")
+    gynae_rov = fields.Char(string='ROV')
+
+    gynae_lov = fields.Char(string='LOV')
     right_ovary = fields.Selection(selection=StaticMember.OVARY_SIZE, string='Right Ovary')
     right_ovary_type = fields.Selection(selection=StaticMember.OVARY_SIZE_TYPE, string='Right Ovary Type')
     gynaecological_right_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                                     inverse_name="gynaecological_right_size_id",
                                                     string="Right Ovary")
+    right_ovary_not_visualised = fields.Boolean(string='Not Visualised', default=False)
 
     uterus = fields.Selection(selection=StaticMember.UTERUS_TYPE_SIZE, string='Uterus')
 
     gynaecological_uterus_size = fields.Boolean(default=False, string="Size")
     gynaecological_uterus_position = fields.Boolean(default=False, string="Position")
-    gynaecological_uterus_normal = fields.Boolean(default=False, string="Normal")
+    # gynaecological_uterus_normal = fields.Boolean(default=False, string="Normal")
     gynaecological_uterus_fiobrid = fields.Boolean(default=False, string="Fibroid")
 
     uterus_size_length = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Uterus Length')
@@ -86,11 +118,27 @@ class MedicalGynaecologicalExamination(models.Model):
                                                        inverse_name="gynaecological_fiobrid_id",
                                                        string="Sizes")
 
-
     lining_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                   relation='gynaecological_examination_multi_selection_lining',
                                   column1='gynaecological_id',
                                   column2='multi_selection_id',
-                                  string='Lining', domain="[('type', '=', 'linining')]")
-    lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Lining Size')
+                                  string='Endometrial Lining Character', domain="[('type', '=', 'linining')]")
+    lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='CET')
 
+    def action_open_gynae_scan(self):
+        context = self._context.copy()
+        if context:
+            field = context.get('default_field')
+            if field:
+                return {
+                    "name": _("TVS Scan"),
+                    "type": 'ir.actions.act_window',
+                    "res_model": 'ec.medical.tvs.scan',
+                    'view_id': self.env.ref('ecare_medical_history.view_ec_medical_tvs_scan_form').id,
+                    'view_mode': 'form',
+                    "target": 'new',
+                    "context": {
+                        'default_gynae_id': self.id,
+                        'default_field': field
+                    },
+                }

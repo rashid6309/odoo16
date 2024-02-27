@@ -101,11 +101,14 @@ class SemenAnalysis(models.Model):
                                         string='Suitable For', domain="[('type', '=', 'suitable_for')]")
 
     # sperm_cryopreservation = fields.Char()
+    sperm_cryopreservation_recommended = fields.Boolean('Recommended')
     sperm_cryopreservation_consented = fields.Boolean('Cryopreservation Consented')
     sperm_cryopreservation_strawe = fields.Char('Cryopreservation Strawe')
     sperm_cryopreservation_code = fields.Char('Cryopreservation Code')
 
-    seminologist = fields.Char("Seminologist")
+    seminologist_ids = fields.Many2many(comodel_name='res.users', string='Seminologist', default=lambda self: self.env.user)
+    legacy_seminologist = fields.Char(string="Legacy System Seminologist", readonly=1)
+
     special_notes = fields.Char("Special Notes")
 
     seme_analysis_id_dummy = fields.Many2one('ec.semen.analysis')
@@ -137,7 +140,7 @@ class SemenAnalysis(models.Model):
             'res_model': 'ec.semen.analysis',
             'res_id': self.id,
             'view_mode': 'form',
-            "target": "current",
+            "target": "main",
         }
 
     @api.onchange('semen_patient_id')
@@ -146,14 +149,18 @@ class SemenAnalysis(models.Model):
         if semen_patient_id:
             all_semen_analysis_records = self.env['ec.semen.analysis'].search(
                 [('semen_patient_id', '=', semen_patient_id.id)])
-
-            # Filter out self.id from the list of IDs
-            filtered_ids = [rec.id for rec in all_semen_analysis_records if rec.id != self.id]
-
-            if filtered_ids:
-                self.all_semen_analysis_ids = [(6, 0, filtered_ids)]
+            if all_semen_analysis_records:
+                self.all_semen_analysis_ids = all_semen_analysis_records
             else:
                 self.all_semen_analysis_ids = None
+
+            # Filter out self.id from the list of IDs
+            # filtered_ids = [rec.id for rec in all_semen_analysis_records if rec.id != self.id]
+            #
+            # if filtered_ids:
+            #     self.all_semen_analysis_ids = [(6, 0, filtered_ids)]
+            # else:
+            #     self.all_semen_analysis_ids = None
 
     def delete_semen_analysis_record(self):
         # Unlink (delete) the records
@@ -225,13 +232,14 @@ class SemenAnalysis(models.Model):
     def _check_progression_input(self):
         self._check_numeric_input('progression', self.progression)
 
-    @api.onchange('production_time', "analysis_time","liquifaction_time")
+    @api.onchange('production_time', "analysis_time", "liquifaction_time")
     def _onchange_time(self):
 
         if self.production_time:
             time = TimeValidation.validate_time(self.production_time)
 
             if not time:
+                self.production_time = None
                 return CustomNotification.notification_time_validation()
             try:
                 parsed_time = datetime.strptime(time, '%H:%M')
@@ -244,6 +252,7 @@ class SemenAnalysis(models.Model):
         if self.analysis_time:
             time = TimeValidation.validate_time(self.analysis_time)
             if not time:
+                self.analysis_time = None
                 return CustomNotification.notification_time_validation()
             try:
                 parsed_time = datetime.strptime(time, '%H:%M')
@@ -256,6 +265,7 @@ class SemenAnalysis(models.Model):
         if self.liquifaction_time:
             time = TimeValidation.validate_time(self.liquifaction_time)
             if not time:
+                self.liquifaction_time = None
                 return CustomNotification.notification_time_validation()
             try:
                 parsed_time = datetime.strptime(time, '%H:%M')
@@ -264,3 +274,4 @@ class SemenAnalysis(models.Model):
             except ValueError:
                 raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
             self.liquifaction_time = time
+

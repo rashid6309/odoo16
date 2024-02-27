@@ -29,7 +29,7 @@
                             </group>
                             <group>
                                 <field name="all_semen_analysis_ids" nolabel="1">
-                                    <tree create="0" edit="0">
+                                    <tree create="0" edit="0" class="table_fixed_height">
                                         <field name="date"/>
                                         <field name="lab_number"/>
                                         <field name="lab_name"/>
@@ -375,7 +375,11 @@
                                 <div class="col-md-2">
                                     Sperm Cryopreservation
                                 </div>
-                                <div class="col-md-11 ">
+                                <div class="col-md-12 ">
+                                    <div class="d-flex align-items-center">
+                                        <field class="mb-0" name="sperm_cryopreservation_recommended"/>
+                                        <label for="sperm_cryopreservation_recommended" string="Recommended"/>
+                                    </div>
                                     <div class="d-flex align-items-center">
                                         <field class="mb-0" name="sperm_cryopreservation_consented"/>
                                         <label for="sperm_cryopreservation_consented" string="Consented"/>
@@ -391,7 +395,10 @@
 
                         <group string="Additional Info" class="semen_analysis_div">
                             <group>
-                                <field name="seminologist"/>
+                                <field name="seminologist_ids" widget="many2many_tags"
+                                       options="{'no_open': True, 'no_create': True}"
+                                       force_save="1"/>
+                                <field name="legacy_seminologist" readonly="1" force_save="1"/>
                                 <field name="special_notes"/>
                             </group>
                         </group>
@@ -418,11 +425,16 @@
             <field name="model">ec.semen.analysis</field>
             <field name="priority">20</field>
             <field name="arch" type="xml">
-                <tree edit="0" create="0">
-                    <field name="semen_patient_id"/>
+                <tree  edit="0" create="0">
+<!--                    <field name="semen_patient_id"/>-->
                     <field name="date"/>
                     <field name="lab_number"/>
                     <field name="lab_name"/>
+                    <button name="edit_semen_analysis_record"
+                            type="object"
+                            groups="ecare_medical_history.group_ec_medical_scientist"
+                            string="View"
+                            class="repeat_kanban_button"/>
                 </tree>
             </field>
         </record>

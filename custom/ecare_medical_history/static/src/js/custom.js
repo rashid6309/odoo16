@@ -107,6 +107,36 @@ odoo.define('ecare_medical_history.patient_banner', function (require) {
             });
         }
 
+        async _onEditPatientSemen() {
+        await this.props.record.save();
+            this.action.doActionButton({
+                type: "object",
+                resId: this.props.value[0],
+                name: "action_open_patient_semen_view",
+                context: this.props.value,
+                resModel: "ec.patient.timeline",
+                onClose: async () => {
+                    await this.props.record.model.root.load();
+                    this.props.record.model.notify();
+                },
+            });
+        }
+
+        async _onEditPatientTimeline() {
+        await this.props.record.save();
+            this.action.doActionButton({
+                type: "object",
+                resId: this.props.value[0],
+                name: "action_open_patient_timeline_view",
+                context: this.props.value,
+                resModel: "ec.patient.timeline",
+                onClose: async () => {
+                    await this.props.record.model.root.load();
+                    this.props.record.model.notify();
+                },
+            });
+        }
+
     }
 
     PatientBanner.template = "ecare_medical_history.FieldDateMultipleDate";

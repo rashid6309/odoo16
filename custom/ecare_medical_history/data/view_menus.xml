@@ -14,12 +14,14 @@
                   name="Timelines"
                   parent="ec_medical_root"
                   sequence="50"
+                  groups="ecare_medical_history.group_ec_medical_normal_doctor"
                   action="ecare_medical_history.patient_timeline_action"/>
 
         <menuitem id="ec_medical_patient_timeline_menu"
                   name="Create Timeline"
                   parent="ec_medical_root"
                   sequence="60"
+                  groups="ecare_medical_history.group_ec_medical_normal_doctor"
                   action="ecare_medical_history.ec_patient_timeline_wizard_action"/>
 
 

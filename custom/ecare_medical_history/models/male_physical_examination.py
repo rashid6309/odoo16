@@ -12,7 +12,7 @@ class MaleMedicalPhysicalExamination(models.Model):
 
     male_weight = fields.Char('Weight')
     male_height = fields.Char('Height')
-    male_bmi = fields.Char('BMI')
+    male_bmi = fields.Char('BMI', readonly=True)
     male_bp_upper = fields.Char('B.P')
     male_bp_lower = fields.Char('B.P')
     male_pulse = fields.Char('Pulse')

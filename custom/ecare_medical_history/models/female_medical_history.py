@@ -12,6 +12,36 @@ class FemaleMedicalHistory(models.Model):
     male_no_medical_history = fields.Boolean(string='No Significant Medical History')
     female_no_medical_history = fields.Boolean(string='No Significant Medical History')
     # Female-specific fields with the 'female_' prefix
+
+    female_acne = fields.Char('Acne')
+    female_acne_date = fields.Many2one("ec.medical.year", 'Acne Date')
+    female_weight_gain = fields.Char('Weight gain')
+    female_weight_gain_year = fields.Many2one("ec.medical.year", 'Over period of (Years)')
+    
+    female_weight_loss = fields.Char('Weight loss')
+    female_weight_loss_year = fields.Many2one("ec.medical.year", 'Over period of (Years)')
+
+    female_weight_at_marriage = fields.Char('Weight at marriage')
+    female_weight_comments = fields.Char('Comments')
+
+    female_hirsuitism = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                     string='Hirsuitism')
+    female_hirsuitism_treatment = fields.Char('Any treatment')
+
+    female_tuberculosis = fields.Char('Tuberculosis')
+    female_tuberculosis_date = fields.Many2one("ec.medical.year", 'Tuberculosis Date')
+    female_att_months = fields.Selection(selection=StaticMember.MONTHS_MEDICAL, string='ATT (Months)')
+    female_syphilis = fields.Char('Syphilis')
+    female_syphilis_date = fields.Many2one("ec.medical.year", 'Syphilis Date')
+    female_herpes = fields.Char('Herpes')
+    female_herpes_date = fields.Many2one("ec.medical.year", 'Herpes Date')
+    female_gonorrhoea = fields.Char('Gonorrhoea')
+    female_gonorrhoea_date = fields.Many2one("ec.medical.year", 'Gonorrhoea Date')
+    female_hiv = fields.Char('HIV')
+    female_hiv_date = fields.Many2one("ec.medical.year", 'HIV Date')
+    female_mumps = fields.Char('Mumps')
+    female_mumps_date = fields.Many2one("ec.medical.year", 'Mumps Date')
+
     female_adrenal = fields.Char('Adrenal')
     female_adrenal_date = fields.Many2one("ec.medical.year", 'Adrenal Date')
 
@@ -103,8 +133,13 @@ class FemaleMedicalHistory(models.Model):
     female_operations_pr = fields.Text(string='Operations (if any)')
     female_medical_history_others = fields.Char(string='Others')
     female_medical_history_others_date = fields.Many2one("ec.medical.year",'Others Date')
+    female_medical_current_medication = fields.Char(string='Current Medication')
+
 
     ''' not being used '''
     # female_allergies_pr = fields.Text(string='Allergies Pr')
     # female_allergies_pr_d = fields.Date('Allergies Date')
     # female_operations_pr_d = fields.Date('Operations Date')
+
+    def write(self, vals):
+        return super(FemaleMedicalHistory, self).write(vals)
