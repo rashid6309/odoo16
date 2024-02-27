@@ -2819,7 +2819,7 @@
 														</div>
 														<label for="male_bmi"/>
 														<div>
-															<field name="male_bmi" class="oe_inline" nolabel="1"/>
+															<field name="male_bmi" force_save="1" class="oe_inline" nolabel="1"/>
 															<span>
 																Kg/sqm
 															</span>
@@ -2971,7 +2971,7 @@
 										</div>
 										<div>
 											<span class="word-title">Relationship:</span>
-											<span class="counter-word"><field style="color: #2F5597;" name="female_relation"/></span>
+											<span class="counter-word"><field style="color: #2F5597;" name="female_relation_related"/></span>
 										</div>
 										<div>
 											<span class="word-title">Infertility Type:</span>
