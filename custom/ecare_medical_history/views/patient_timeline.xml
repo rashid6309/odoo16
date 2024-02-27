@@ -1744,8 +1744,8 @@
 															</span>
 														</div>
 														<label for="female_bmi"/>
-														<div style="pointer-events: none;">
-															<field name="female_bmi" class="oe_inline" nolabel="1"/>
+														<div>
+															<field name="female_bmi" force_save="1" class="oe_inline" nolabel="1"/>
 															<span>
 																Kg/sqm
 															</span>
