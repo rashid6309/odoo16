@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record model="ec.medical.factors" id="unsuitable_male">
+            <field name="name">OI/TI unsuitable</field>
+            <field name="type">male</field>
+            <field name="color">1</field>
+        </record>
+        <record model="ec.medical.factors" id="unsuitable_female">
+            <field name="name">OI/TI unsuitable</field>
+            <field name="type">female</field>
+            <field name="color">1</field>
+        </record>
+    </data>
+</odoo>

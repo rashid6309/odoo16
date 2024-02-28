@@ -24,6 +24,7 @@
         'data/menus.xml',
         'data/semen_analysis_sequence.xml',
         'data/years_data.xml',
+        'data/factors_data.xml',
 
         # Reports here
 
