@@ -164,7 +164,7 @@
 											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
 									</div>
 									<div class="col-2 text-right" style="text-align: right">
-										<field name="first_consultation_state" invisible="1"/>
+										<field name="repeat_consultation_state" invisible="1"/>
 										<button name="action_create_repeat_consultation"
 												type="object"
 												class="btn btn-primary"
@@ -173,17 +173,17 @@
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
 										<h5 class="mt-2 mb-0"
-											attrs="{'invisible':[('show_repeat_section_state', '!=', True)]}">
+											attrs="{'invisible':[('repeat_consultation_state', '!=', 'open')]}">
 											<span id="repeat_consultation_working_state" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
 
 										</h5>
 										<h5 class="mt-2 mb-0"
-											attrs="{'invisible':['|', ('first_consultation_state', '!=', 'decision_pending'),('show_repeat_section_state', '!=', True)]}">
+											attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
 											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>
 										</h5>
 									</div>
 								</div>
-								<div class="card-block mb-5 pl-4 collapse asa" id="repeat_consultation_section" attrs="{'readonly': [('first_consultation_state', '=', 'decision_pending')]}">
+								<div class="card-block mb-5 pl-4 collapse asa" id="repeat_consultation_section" attrs="{'readonly': [('repeat_consultation_state', '=', 'decision_pending')]}">
 									<field name="show_repeat_consultation_history_section"
 										   invisible="1"
 										   force_save="1"
@@ -775,17 +775,17 @@
 													<field name="iui_plan"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
+													<field name="primary_indication" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<span class="o_form_label" attrs="{'invisible': ['|',('iui_plan', '!=', 'yes'),('primary_indication', '!=', 'husband_not_present')]}"/>
+													<span id="husband_not_present" attrs="{'invisible': ['|',('iui_plan', '=', 'no'),('primary_indication', '!=', 'husband_not_present')]}">
+														The andrology department needs to confirm the presence of a suitable sample for Frozen-Thawed IUI.
+														The request for approval will be sent upon saving this form.
+													</span>
 												</group>
 												<group string="Hormonal Profile">
 													<field name="fsh_level"/>
 													<field name="lh_level"/>
 													<field name="amh_level"/>
-													<field name="primary_indication" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
-													<span class="o_form_label" attrs="{'invisible': [('primary_indication', '!=', 'husband_not_present')]}"/>
-													<span id="husband_not_present" attrs="{'invisible': [('primary_indication', '!=', 'husband_not_present')]}">
-														The andrology department needs to confirm the presence of a suitable sample for Frozen-Thawed IUI.
-														The request for approval will be sent upon saving this form.
-													</span>
 													<field name="tubal_patency_test" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
 													<field name="diagnosis_cervical_incompetence"
 														   widget="radio"
@@ -839,7 +839,7 @@
 														   options="{'horizontal': True}"/>
 												</group>
 												<group class="m-3" string="Decisions"
-													   attrs="{'invisible':[('first_consultation_state', '!=', 'decision_pending')]}">
+													   attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
 													<field name="oi_ti_decisions"/>
 													<field name="oi_ti_treatment_state"/>
 													<label for="action_proceed_to_ui_ti"/>
