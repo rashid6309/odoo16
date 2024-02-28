@@ -22,17 +22,17 @@
 			</div>
 		</header>
 			<div class="d-flex height: 15px align-items-center site-identity" style="background:#B4C7E7;">
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin:0.3rem 3.5rem 0.3rem 2.5rem;">
 <!--					<t t-esc="props.value[1]" />-->
 					<a href="#" t-on-click="_onEditPatientTimeline"
-					   style="display: inline-block; padding: 3px 18px; background-color: #3e5bc5; color: #fff; text-decoration: none; border-radius: 5px; margin-left: 10%; margin-bottom: 0.4%;"
+					   style="display: inline-block; padding: 3px 18px; background-color: #3e5bc5; color: #fff; text-decoration: none; border-radius: 5px;"
 					   class="editPatientSemen">
 						<span>
 							Patient Timeline
 						</span>
 					</a>
 					<a href="#" t-on-click="_onEditPatientSemen"
-					   style="display: inline-block; padding: 3px 18px; background-color: #3e5bc5; color: #fff; text-decoration: none; border-radius: 5px; margin-left: 1%; margin-bottom: 0.4%;"
+					   style="display: inline-block; padding: 3px 18px; background-color: #3e5bc5; color: #fff; text-decoration: none; border-radius: 5px; margin-left: 1%;"
 					   class="editPatientSemen">
 						<span>
 							Lab
