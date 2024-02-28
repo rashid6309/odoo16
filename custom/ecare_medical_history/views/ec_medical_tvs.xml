@@ -17,7 +17,6 @@
                                    style="width: 100%;"/>
                             <field name="tvs_id" readonly="1" invisible="1"/>
                             <field name="gynae_id" readonly="1" invisible="1"/>
-                            <!--                            <input class="output_results" type="text" name="display" id="display" />-->
                         </div>
                         <div class="d-flex flex-column">
                             <div>

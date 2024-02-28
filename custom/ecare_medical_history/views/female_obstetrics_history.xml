@@ -22,8 +22,6 @@
                     <field name="birth_place"/>
                     <field name="complication_pregnancy"/>
                     <field name="labour_history"/>
-<!--                    <field name="baby_notes"/>-->
-<!--                    <field name="complications"/>-->
                     <field name="complication_delivery"/>
                     <field name="complication_post_partum"/>
                     <field name="gender"/>
@@ -33,7 +31,6 @@
                     <field name="alive"/>
                     <field name="feed"/>
                     <field name="other_indications"/>
-<!--                    <field name="legacy_system_ID"/>-->
                 </tree>
             </field>
         </record>

@@ -108,8 +108,7 @@
 										<h5 class="mt-2 mb-0"
 											attrs="{'invisible':[('show_repeat_section_state', '!=', True)]}">
 											<span id="repeat_consultation_working_state" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
-											<!--											<span for="file">In progress</span>-->
-											<!--											<progress id="file" value="32" max="90"> 32% </progress>-->
+
 										</h5>
 									</div>
 								</div>
@@ -156,10 +155,7 @@
 											</group>
 
 											<group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
-												<!--												<group>-->
-												<!--													<field name="repeat_lmp"/>-->
-												<!--													<field name="repeat_lmp_embryo"/>-->
-												<!--												</group>-->
+
 											</group>
 											<div attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
 												<group>
@@ -285,9 +281,7 @@
 												</tree>
 
 											</div>
-											<!--										<group attrs="{'invisible': [('repeat_state', '!=', '4')]}">-->
-											<!--											<field name="question_four_label"/>-->
-											<!--										</group>-->
+
 
 											<group>
 												<group>
@@ -676,7 +670,8 @@
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_investigations_ids"
-													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
@@ -688,7 +683,8 @@
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
 												<field name="repeat_new_treatment_pathway"
-													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   widget="radio"
 													   options="{'horizontal': True}"
 												/>

@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-<!--        <record id="ec_medical_investigation_form" model="ir.ui.view">-->
-<!--            <field name="name">ec.medical.investigation.form</field>-->
-<!--            <field name="model">ec.medical.investigation</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <form string="Investigations">-->
-<!--                    <sheet>-->
-<!--                        <group>-->
-<!--                            <field name="name"/>-->
-<!--                        </group>-->
-<!--                    </sheet>-->
-<!--                </form>-->
-<!--            </field>-->
-<!--        </record>-->
 
         <record id="ec_medical_investigation_tree_view" model="ir.ui.view">
             <field name="name">ec.medical.investigation.tree.view</field>

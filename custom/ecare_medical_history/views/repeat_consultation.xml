@@ -14,10 +14,7 @@
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban repeat_kanban_section_header">
                                 <t t-set="rec_id" t-value="record.id.raw_value"/>
-                                <!--                                <t t-set="repeat_consultation_state" t-esc="record.repeat_consultation_state.raw_value"/>-->
-                                <!--                                <t t-if="repeat_consultation_state == 'in_progress'">-->
-                                <!--                                 -->
-                                <!--                                </t>-->
+
                                 <div style="text-align: -webkit-right;" attrs="{'invisible': [('repeat_consultation_state','!=','open')]}">
                                     <span class="bg-success" style="display: grid; width: 15%;
                                     height: 50%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); color: #fff;
@@ -534,12 +531,7 @@
                                                                     <field name="question_two_choice"/>
                                                                 </h5>
                                                             </div>
-                                                            <!--                                                            <span  t-if="record.question_two_choice.raw_value == 'yes'">-->
-                                                            <!--                                                                <button name="action_repeat_consultation_open_obstetrics_history"-->
-                                                            <!--                                                                        type="object"-->
-                                                            <!--                                                                        class="btn btn-primary"-->
-                                                            <!--                                                                        string="Obstetrics History"/>-->
-                                                            <!--                                                            </span>-->
+
 
                                                             <div class="oe_kanban_title d-inline-block col-9">
                                                                 <field name="question_three_label"/>
