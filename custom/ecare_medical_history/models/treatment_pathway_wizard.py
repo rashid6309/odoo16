@@ -9,6 +9,8 @@ class TreatmentPathwayWizard(models.TransientModel):
     ec_repeat_consultation_id = fields.Many2one('ec.repeat.consultation')
 
     def action_understand_wizard(self):
-        if self.ec_repeat_consultation_id:
-            return self.ec_repeat_consultation_id.action_state_to_decision_pending()
+        proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
+        if not proceed_to_ui_ti:
+            if self.ec_repeat_consultation_id:
+                return self.ec_repeat_consultation_id.action_state_to_decision_pending()
 

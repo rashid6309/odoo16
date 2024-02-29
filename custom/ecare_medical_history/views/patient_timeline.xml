@@ -854,16 +854,18 @@
 												</div>
 												<group class="m-3" string="Decisions"
 													   attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
-													<field name="oi_ti_decisions"/>
+													<field name="oi_ti_decisions" attrs="{'required':['|', ('repeat_consultation_state', '=', 'decision_pending'),
+													('repeat_consultation_state', '=', 'decision_pending')]}"/>
 													<field name="oi_ti_treatment_state"/>
 													<label for="action_proceed_to_ui_ti"/>
 													<div id="action_proceed_buttons">
 														<button name="action_proceed_to_ui_ti"
 																type="object"
+																context="{'proceed_to_ui_ti': 'True'}"
 																class="btn btn-success m-3"
 																attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
 																string="Proceed to OI/TI"/>
-														<button name="action_proceed_to_ui_ti"
+														<button name="action_not_proceed_to_ui_ti"
 																type="object"
 																class="btn btn-danger m-3"
 																attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"

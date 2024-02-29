@@ -1035,6 +1035,12 @@ class PatientTimeline(models.Model):
         oi_ti_platform_attempt_ref.create_oi_ti_platform_attempt(self, self.ec_repeat_consultation_id)
 
     def action_proceed_to_ui_ti(self):
+        proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
+        if proceed_to_ui_ti:
+            self.oi_ti_platform_enabled = True
+            self.action_save_repeat_consultation_section()
+            oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
+            oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
         check_red_values = self.ec_repeat_consultation_id.check_field_values_as_red()
         if check_red_values:
             values = {
@@ -1080,6 +1086,20 @@ class PatientTimeline(models.Model):
         self.action_save_repeat_consultation_section()
         oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
         oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
+
+    def action_not_proceed_to_ui_ti(self):
+        self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
+        self.show_repeat_section_state = False
+        record_male = self.env.ref('ecare_medical_history.unsuitable_male', raise_if_not_found=False)
+        record_female = self.env.ref('ecare_medical_history.unsuitable_female', raise_if_not_found=False)
+        if record_female:
+            if record_female not in self.female_factor_ids:
+                self.female_factor_ids |= record_female
+        if record_male:
+            if record_male not in self.male_factor_ids:
+                self.male_factor_ids |= record_male
+        else:
+            print("Record not found")
 
     @api.onchange('fsh_level', 'lh_level', 'amh_level')
     def _check_hormonal_profile_level(self):
