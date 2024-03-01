@@ -15,8 +15,9 @@
     'demo': [],
     'data': [
         # Security
-        'security/ir.model.access.csv',
         'security/ir_groups.xml',
+        'security/user_management.xml',
+        'security/ir.model.access.csv',
 
         # Menu
         'data/family_history_data.xml',

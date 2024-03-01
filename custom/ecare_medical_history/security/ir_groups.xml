@@ -30,6 +30,14 @@
                    eval="[(4,ref('ecare_medical_history.group_ec_medical_scientist'))]"/>
         </record>
 
+        <record id="group_ec_medical_administrator" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_role"/>
+            <field name="implied_ids"
+                   eval="[(4,ref('ecare_medical_history.group_ec_medical_normal_doctor'))]"/>
+        </record>
+
+<!--      -->
 
     </data>
 </odoo>

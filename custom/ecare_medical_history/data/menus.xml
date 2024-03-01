@@ -16,7 +16,7 @@
 
         <menuitem id="ec_medical_history_configuration"
                   name="Configuration"
-                  groups="ecare_appointment.group_appointment_super_administrator"
+                  groups="ecare_medical_history.group_ec_medical_administrator"
                   parent="ec_medical_root"
                   sequence="110"/>
 
