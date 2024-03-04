@@ -771,8 +771,28 @@
 
 											document.addEventListener('click', function (event) {
 											var obstetricsHistoryButton = document.getElementById("obstetrics_history_section_link");
+											var repeatConsultationButton = document.getElementById("repeat_consultation_section_link");
 											if(obstetricsHistoryButton){
 											if (event.target === obstetricsHistoryButton || obstetricsHistoryButton.contains(event.target)) {
+											setTimeout(function () {
+											var tables = document.querySelectorAll('.o_list_table');
+
+											tables.forEach(function (table) {
+											var tbody = table.querySelector('.ui-sortable');
+											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');
+
+											if (tbody) {
+											if (rowToAdd) {
+											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);
+											}
+											}
+											});
+											}, 200);
+											}
+											}
+
+											if(repeatConsultationButton){
+											if (event.target === repeatConsultationButton || repeatConsultationButton.contains(event.target)) {
 											setTimeout(function () {
 											var tables = document.querySelectorAll('.o_list_table');
 
