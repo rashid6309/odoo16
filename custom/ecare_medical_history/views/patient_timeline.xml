@@ -3012,6 +3012,7 @@
 									</div>
 									<button name="action_timeline_open_obstetrics_history"
 											type="object"
+											groups="ecare_medical_history.group_medical_history_timeline_create"
 											class="card-custom-right-button-btn"
 											string="Obstetrics History"/>
 

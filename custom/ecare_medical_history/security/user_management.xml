@@ -34,9 +34,9 @@
             <field name="comment">Timeline View Access</field>
         </record>
 
-        <record id="ecare_medical_history.group_ec_medical_normal_doctor" model="res.groups">
-            <field name="implied_ids" eval="[(4, ref('ecare_medical_history.group_medical_history_timeline_view'))]"/>
-        </record>
+<!--        <record id="ecare_medical_history.group_ec_medical_normal_doctor" model="res.groups">-->
+<!--            <field name="implied_ids" eval="[(4, ref('ecare_medical_history.group_medical_history_timeline_view'))]"/>-->
+<!--        </record>-->
 
         <record id="group_medical_history_timeline_edit_user_only" model="res.groups">
             <field name="name">Edit - User Only</field>
@@ -120,9 +120,9 @@
             <field name="implied_ids" eval="[(4, ref('ecare_medical_history.group_medical_history_andrology_create'))]"/>
         </record>
 
-        <record id="ecare_medical_history.group_ec_medical_scientist" model="res.groups">
-            <field name="implied_ids" eval="[(4, ref('ecare_medical_history.group_medical_history_andrology_view'))]"/>
-        </record>
+<!--        <record id="ecare_medical_history.group_ec_medical_scientist" model="res.groups">-->
+<!--            <field name="implied_ids" eval="[(4, ref('ecare_medical_history.group_medical_history_andrology_view'))]"/>-->
+<!--        </record>-->
 
 
         <!-- Configuration Category -->

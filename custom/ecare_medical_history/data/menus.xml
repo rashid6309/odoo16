@@ -10,7 +10,7 @@
 
         <menuitem id="ec_medical_history_andrology"
                   name="Andrology"
-                  groups="ecare_medical_history.group_ec_medical_scientist"
+                  groups="ecare_medical_history.group_medical_history_andrology_view"
                   parent="ec_medical_root"
                   sequence="100"/>
 
