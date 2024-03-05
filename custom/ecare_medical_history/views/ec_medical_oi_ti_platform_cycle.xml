@@ -24,16 +24,24 @@
                                         <p class="oi_ti_action_btn">Schedule</p>
                                     </td>
                                     <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                        <p class="oi_ti_action_btn">Appointment</p>
+                                        <p class="oi_ti_action_btn"><span><field name="oi_ti_schedule"/></span></p>
                                     </td>
                                     <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
                                         <p class="oi_ti_action_btn">Add intervention</p>
                                     </td>
                                     <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                        <p class="oi_ti_action_btn">Ready to trigger &amp; inseminate</p>
+                                        <p class="oi_ti_action_btn"><span><field name="oi_ti_intervention"/></span></p>
                                     </td>
                                     <td style="border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff8282;">
-                                        <p class="oi_ti_action_btn"><strong><span>ABANDON ATTEMPT</span></strong></p>
+                                        <p class="oi_ti_action_btn">
+                                            <strong>
+                                                <button
+                                                        name="action_abandoned_attempt"
+                                                        class="oi_ti_transparent_btn"
+                                                        type="object"
+                                                        string="ABANDON ATTEMPT"/>
+                                            </strong>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr style="height:15.75pt;">
@@ -148,7 +156,7 @@
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
                                 <field name="oi_ti_platform_attempt_ids" mode="kanban" invisble="1"/>
-<!--                                <field name="html_table" widget="html"/>-->
+                                <!--                                <field name="html_table" widget="html"/>-->
                                 <h3>Cycle created on: <field name="create_date"/></h3>
                                 <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                                     <tbody>
@@ -160,16 +168,23 @@
                                                 <p class="oi_ti_action_btn">Schedule</p>
                                             </td>
                                             <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                                <p class="oi_ti_action_btn">Appointment</p>
+                                                <p class="oi_ti_action_btn"><span><field name="oi_ti_schedule"/></span></p>
                                             </td>
                                             <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
                                                 <p class="oi_ti_action_btn">Add intervention</p>
                                             </td>
                                             <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                                <p class="oi_ti_action_btn">Ready to trigger &amp; inseminate</p>
+                                                <p class="oi_ti_action_btn"><span><field name="oi_ti_intervention"/></span></p>
                                             </td>
                                             <td style="border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff8282;">
-                                                <p class="oi_ti_action_btn"><strong><span>ABANDON ATTEMPT</span></strong></p>
+                                                <p class="oi_ti_action_btn">
+                                                    <strong>
+                                                        <button
+                                                                name="action_abandoned_attempt"
+                                                                class="oi_ti_transparent_btn"
+                                                                type="object"
+                                                                string="ABANDON ATTEMPT"/>
+                                                    </strong></p>
                                             </td>
                                         </tr>
                                         <tr style="height:15.75pt;">
@@ -264,10 +279,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <field name="html_table" widget="html"/>
                                 <t t-foreach="record.oi_ti_platform_attempt_ids.raw_value" t-as="line">
                                     <t t-out="line['oi_ti_other_diagnosis']"/>
                                     <t t-out="oi_ti_other_diagnosis"/>
-                                    <field name="html_table" widget="html"/>
+
                                 </t>
                             </div>
                         </t>

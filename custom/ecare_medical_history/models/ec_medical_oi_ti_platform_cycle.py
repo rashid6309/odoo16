@@ -13,6 +13,10 @@ class EcMedicalOITIPlatformCycle(models.Model):
                                                  string="OI/TI Platform Attempt")
 
     cycle_day = fields.Integer(string='Cycle Day', compute='_compute_cycle_day', store=True)
+    oi_ti_schedule = fields.Selection(selection=StaticMember.SCHEDULE,
+                                      string='Schedule')
+    oi_ti_intervention = fields.Selection(selection=StaticMember.INTERVENTION,
+                                      string='Intervention')
     trigger_regimen = fields.Selection(selection=StaticMember.TRIGGER_REGIMEN,
                                        string='Trigger regimen')
     trigger_date_time = fields.Datetime(
@@ -74,10 +78,26 @@ class EcMedicalOITIPlatformCycle(models.Model):
 
             if attempt_completed is False:
                 raise UserError("There is no attempt in progress!")
+            
+    def action_abandoned_attempt(self):
+        if self.insemination is False:
+            raise UserError("‘Insemination’ is not entered yet!")
+        oi_ti_attempts = self.env['ec.medical.oi.ti.platform.attempt'].search([
+            ('attempt_cycle_id', '=', int(self.id))])
+        attempt_completed = False
+        if oi_ti_attempts:
+            for rec in oi_ti_attempts:
+                if rec.oi_ti_attempt_state == 'in_progress':
+                    rec.oi_ti_attempt_state = 'abandoned'
+                    attempt_completed = True
+
+            if attempt_completed is False:
+                raise UserError("There is no attempt in progress!")
 
     @api.constrains('html_table')
     def computed_value(self):
         table = ''
+        table_list = []
         for rec in self:
             for attempt in rec.oi_ti_platform_attempt_ids:
                 table = (f"<table cellspacing='0' cellpadding='0' class='oi_ti_attempt_table_style'> <tbody> <tr "
@@ -86,7 +106,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
                          f"style='height:15.75pt;'> <td colspan='7' class='oi_ti_attempt_preparation_td' "
                          f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'><strong><span "
                          f"style='color:#1f1f1f;'> "
-                         f"{attempt.preparation_method}"
+                         f"{attempt.preparation_method or ''}"
                          f"</span></strong></p> </td> </tr> <tr style='height:15.75pt;'> <td "
                          f"class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> <p "
                          f"class='oi_ti_text_paragraph_td'>OI day: 3</p> </td> <td colspan='2' class='oi_ti_heading_td' "
@@ -101,20 +121,20 @@ class EcMedicalOITIPlatformCycle(models.Model):
                          f"class='oi_ti_heading_td' style='background-color:#fff2cc;'> <p "
                          f"class='oi_ti_text_paragraph_td'>Follicle(s)</p> </td> <td class='oi_ti_heading_td' "
                          f"style='background-color:#fff2cc;'> <p class='oi_ti_text_paragraph_td'>"
-                         f"( {attempt.oi_ti_follicle_left})</p> </td> <td "
+                         f"( {attempt.oi_ti_follicle_left or ''})</p> </td> <td "
                          f"class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
                          f"class='oi_ti_text_paragraph_td'>Follicle(s)</p> </td> <td class='oi_ti_heading_td' "
                          f"style='background-color:#d9ead3;'> <p class='oi_ti_text_paragraph_td'>"
-                         f"( {attempt.oi_ti_follicle_right} )</p> </td> <td "
+                         f"( {attempt.oi_ti_follicle_right or ''} )</p> </td> <td "
                          f"class='oi_ti_heading_td' style='background-color:#ffffff;'> <p class='oi_ti_action_btn'>Free "
                          f"fluid, loss of dominant follicle, corpus luteum</p> </td> <td class='oi_ti_attempt_diagnosis_td' "
                          f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'> "
-                         f"{attempt.oi_ti_diagnosis_ids.name}"
+                         f"{attempt.oi_ti_diagnosis_ids.name or ''}"
                          # f"<field name='oi_ti_diagnosis_ids'/> "
                          f"</p> </td> </tr> <tr "
                          f"style='height:15.75pt;'> <td class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> "
                          f"<p class='oi_ti_text_paragraph_td'><strong>Cycle day:  "
-                         f"{attempt.oi_ti_cycle_day}"
+                         f"{attempt.oi_ti_cycle_day or ''}"
                          f" </strong></p> </td> <td class='oi_ti_heading_td' "
                          f"style='background-color:#fff2cc;'> <p class='oi_ti_text_paragraph_td'><strong>Dominant Follicle("
                          f"s)</strong></p> </td> <td class='oi_ti_heading_td' style='background-color:#fff2cc;'> <p "
@@ -125,7 +145,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
                          f"style='background-color:#ffffff;'> <p class='oi_ti_text_paragraph_td'>CET: 11</p> </td> <td "
                          f"rowspan='2' class='oi_ti_attempt_diagnosis_td' style='background-color:#f4cccc;'> <p "
                          f"class='oi_ti_text_paragraph_td'>Other diagnoses: "
-                         f"{attempt.oi_ti_other_diagnosis}"
+                         f"{attempt.oi_ti_other_diagnosis or ''}"
                          f"</p> </td> </tr> <tr style='height:26.25pt;'> "
                          f"<td class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> <p "
                          f"class='oi_ti_text_paragraph_td'><strong>AFC (R+L):</strong></p> </td> <td class='oi_ti_heading_td' "
@@ -139,7 +159,9 @@ class EcMedicalOITIPlatformCycle(models.Model):
                          f"smooth, triple echo</p> </td> </tr> <tr style='height:15.75pt;'> <td colspan='7' "
                          f"style='border-top:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; "
                          f"background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'>"
-                         f"Comments: {attempt.oi_ti_comments}</p> </td> </tr> </tbody> "
+                         f"Comments: {attempt.oi_ti_comments or ''}</p> </td> </tr> </tbody> "
                          f"</table>")
+                table_list.append(table)
 
-            rec.html_table = table
+            rec.html_table = ''.join(table_list)
+

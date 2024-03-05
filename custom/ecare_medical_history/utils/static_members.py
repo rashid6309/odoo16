@@ -1154,6 +1154,18 @@ class StaticMember:
         ('ivf_c_10', 'IVF-C 10,000IU S/C'),
     ]
 
+    SCHEDULE = [
+        ('appointment', 'Appointment'),
+        ('documented_ultrasound', 'Documented Ultrasound'),
+        ('blood_tests', 'Blood Tests'),
+    ]
+
+    INTERVENTION = [
+        ('trigger_inseminate', 'Ready to trigger & inseminate'),
+        ('2nd_trigger', '2nd trigger'),
+        ('luteal_phase_support', 'Luteal phase support'),
+    ]
+
     INSEMINATION = [
         ('fresh_iui', 'Fresh IUI'),
     ]
