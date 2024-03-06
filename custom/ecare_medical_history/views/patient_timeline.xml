@@ -581,6 +581,7 @@
 															'default_display': tvs_rov
 															}"
 																name="action_open_tvs_scan"
+																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
 																string="Begin Scan"/>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -606,6 +607,7 @@
 															'default_display': tvs_lov
 															}"
 																name="action_open_tvs_scan"
+																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
 																string="Begin Scan"/>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -1437,6 +1439,7 @@
 
 														<button type="action" style="float:right;"
 																class="btn-primary mt--5"
+																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
 																name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
 																context="{'default_female_consultation_id': ec_first_consultation_id}"
 																string="Add" target="current"/>
@@ -1724,6 +1727,7 @@
 														<button type="action"
 																style="float:right;"
 																class="btn-primary mt--5"
+																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
 																name="%(ecare_medical_history.ec_lab_history_action)d"
 																context="{'default_female_first_consultation_id':ec_first_consultation_id}"
 																string="Add" target="new"/>
@@ -2098,6 +2102,7 @@
 																	class="btn-primary"
 																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"
 																	name="action_open_gynae_scan"
+																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
 																	string="Begin Scan"/>
 														</span>
 														<div style="display: inline; margin-left: 2%;">
@@ -2115,6 +2120,7 @@
 																	class="btn-primary"
 																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"
 																	name="action_open_gynae_scan"
+																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
 																	string="Begin Scan"/>
 														</span>
 														<div style="display: inline; margin-left: 2%;">
@@ -2526,6 +2532,7 @@
                                                             -->
 														<button type="action" style="float:right;"
 																class="btn-primary mt--5"
+																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
 																name="%(ecare_medical_history.ec_medical_procedures_create_action)d"
 																context="{'default_male_consultation_id':ec_first_consultation_id}"
 																string="Add" target="current"/>
@@ -2768,6 +2775,7 @@
 														<button type="action"
 																style="float:right;"
 																class="btn-primary"
+																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
 																name="%(ecare_medical_history.ec_lab_history_action)d"
 																context="{'default_male_first_consultation_id':ec_first_consultation_id}"
 																string="Add" target="new"/>
@@ -3012,7 +3020,7 @@
 									</div>
 									<button name="action_timeline_open_obstetrics_history"
 											type="object"
-											groups="ecare_medical_history.group_medical_history_timeline_create"
+											groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
 											class="card-custom-right-button-btn"
 											string="Obstetrics History"/>
 

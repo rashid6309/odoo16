@@ -10,6 +10,7 @@
                 <button name="action_register" position="before">
                     <button name="action_patient_profile_print_report"
                             type="object"
+                            groups="ecare_user_management.group_patient_menu"
                             string="Print Report"
                             class="btn btn-primary"/>
                 </button>

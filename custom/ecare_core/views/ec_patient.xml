@@ -138,8 +138,10 @@
                         <div class="oe_button_box" name="button_box">
                             <button style="float: right;"
                                     name="action_open_patient_slots"
+                                    groups="ecare_user_management.group_patient_menu"
                                     type="object" class="oe_highlight" string="Appointments"/>
                             <button style="float: right;"
+                                    groups="ecare_user_management.group_patient_menu"
                                     name="action_open_patient_invoices"
                                     type="object" class="oe_highlight" string="Invoices"/>
 

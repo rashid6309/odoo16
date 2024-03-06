@@ -25,6 +25,9 @@
             <field name="name">User</field>
             <field name="comment">User</field>
             <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_role"/>
+            <field name="implied_ids"
+                   eval="[(4,ref('ecare_appointment.group_appointment_administrator'))]"/>
+
         </record>
 
 
