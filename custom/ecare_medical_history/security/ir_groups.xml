@@ -16,26 +16,35 @@
             <field name="visible" eval="1"/>
         </record>
 
-        <record id="group_ec_medical_scientist" model="res.groups">
-            <field name="name">Hospital Scientist</field>
-            <field name="comment">Scientist Role</field>
-            <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_role"/>
-        </record>
+<!--        <record id="group_ec_medical_scientist" model="res.groups">-->
+<!--            <field name="name">Hospital Scientist</field>-->
+<!--            <field name="comment">Scientist Role</field>-->
+<!--            <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_role"/>-->
+<!--        </record>-->
 
-
-        <record id="group_ec_medical_normal_doctor" model="res.groups">
-            <field name="name">Hospital Doctor</field>
-            <field name="comment">Doctor Role</field>
+        <record id="group_ec_medical_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="comment">User</field>
             <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_role"/>
             <field name="implied_ids"
-                   eval="[(4,ref('ecare_medical_history.group_ec_medical_scientist'))]"/>
+                   eval="[(4,ref('ecare_appointment.group_appointment_administrator'))]"/>
+
         </record>
+
+
+<!--        <record id="group_ec_medical_normal_doctor" model="res.groups">-->
+<!--            <field name="name">Hospital Doctor</field>-->
+<!--            <field name="comment">Doctor Role</field>-->
+<!--            <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_role"/>-->
+<!--            <field name="implied_ids"-->
+<!--                   eval="[(4,ref('ecare_medical_history.group_ec_medical_scientist'))]"/>-->
+<!--        </record>-->
 
         <record id="group_ec_medical_administrator" model="res.groups">
             <field name="name">Administrator</field>
             <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_role"/>
             <field name="implied_ids"
-                   eval="[(4,ref('ecare_medical_history.group_ec_medical_normal_doctor'))]"/>
+                   eval="[(4,ref('ecare_medical_history.group_ec_medical_user'))]"/>
         </record>
 
 <!--      -->

@@ -512,6 +512,8 @@ class PatientTimeline(models.Model):
     """
 
     def action_open_patient_time_view(self):
+        # if not self.env.user.has_group('ecare_medical_history.group_medical_history_timeline_edit'):
+        #     raise UserError("Logged in user does not have the access to perform this action.")
         patient_id = self.env.context.get('0')
         return {
             'name': 'Patient',

@@ -12,6 +12,7 @@
                     <button
                             name="action_open_invoice_line_history"
                             type="object"
+                            groups="ecare_user_management.group_patient_menu"
                             class="oe_highlight"
                             string="Services"/>
                 </xpath>
