@@ -45,18 +45,18 @@
 							<div class="col-md-2">
 								<div class="card-custom1">
 									<div class="card-type">
-										<div>
-											<span class="word-title">IVF/ICSI Attempt(s) Completed:</span>
-											<span class="counter-word">0</span>
-										</div>
-										<div>
-											<span class="word-title">Frozen Embryos Stored:</span>
-											<span class="counter-word">0</span>
-										</div>
-										<div>
-											<span class="word-title">Sperm Straws Stored:</span>
-											<span class="counter-word">0</span>
-										</div>
+<!--										<div>-->
+<!--											<span class="word-title">IVF/ICSI Attempt(s) Completed:</span>-->
+<!--											<span class="counter-word">0</span>-->
+<!--										</div>-->
+<!--										<div>-->
+<!--											<span class="word-title">Frozen Embryos Stored:</span>-->
+<!--											<span class="counter-word">0</span>-->
+<!--										</div>-->
+<!--										<div>-->
+<!--											<span class="word-title">Sperm Straws Stored:</span>-->
+<!--											<span class="counter-word">0</span>-->
+<!--										</div>-->
 										<button name="action_timeline_open_treatment_history"
 												type="object"
 												class="card-custom-right-button-btn"
