@@ -30,13 +30,20 @@
                                 </tr>
 
                                 <tr style="height:15.75pt;">
-                                    <td colspan="7" class="oi_ti_attempt_preparation_td" style="background-color:#f4cccc;">
+                                    <td colspan="5" class="oi_ti_attempt_preparation_td" style="background-color:#f4cccc;">
                                         <p class="oi_ti_text_paragraph_td">
                                             <strong>
                                                 <span style="color:#1f1f1f;">
                                                     <field name="preparation_method" placeholder="Cycle regime..."/>
                                                 </span>
                                             </strong></p>
+                                    </td>
+                                    <td colspan="2" class="oi_ti_attempt_preparation_td" style="background-color:#f4cccc;">
+                                        <p class="oi_ti_text_paragraph_td">
+                                            <span style="color:#1f1f1f;">
+                                                <field name="oi_ti_attempt_state" readonly="1" force_save="1"/>
+                                            </span>
+                                        </p>
                                     </td>
 
                                 </tr>
@@ -160,8 +167,20 @@
                                         </tr>
 
                                         <tr style="height:15.75pt;">
-                                            <td colspan="7" class="oi_ti_attempt_preparation_td" style="background-color:#f4cccc;">
-                                                <p class="oi_ti_text_paragraph_td"><strong><span style="color:#1f1f1f;"><field name="preparation_method"/></span></strong></p>
+                                            <td colspan="5" class="oi_ti_attempt_preparation_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td">
+                                                    <strong>
+                                                        <span style="color:#1f1f1f;">
+                                                            <field name="preparation_method" placeholder="Cycle regime..."/>
+                                                        </span>
+                                                    </strong></p>
+                                            </td>
+                                            <td colspan="2" class="oi_ti_attempt_preparation_td" style="background-color:#f4cccc;">
+                                                <p class="oi_ti_text_paragraph_td">
+                                                    <span style="color:#1f1f1f;">
+                                                        <field name="oi_ti_attempt_state" readonly="1" force_save="1"/>
+                                                    </span>
+                                                </p>
                                             </td>
 
                                         </tr>

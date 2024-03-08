@@ -99,6 +99,27 @@
 										<a data-bs-toggle="collapse" data-bs-target="#io_ti_platform_section" href="#">
 											<h4 class="mt-2 mb-0">OI/TI Platform</h4></a>
 									</div>
+									<div class="col-2 text-right" style="text-align: right">
+														<field name="repeat_consultation_state" invisible="1"/>
+														<button name="action_proceed_to_ui_ti"
+																type="object"
+																context="{'repeat_ui_ti_add': 'True'}"
+																class="btn btn-primary">
+<!--																attrs="{'invisible': [('show_repeat_section_state', '=', True)]}"-->
+<!--																onclick="showRepeatConsultationSection('repeat_consultation_section')">-->
+															<i title="Add new UI/TI Attempt"  class="fa fa-plus" aria-hidden="true"/>
+														</button>
+<!--														<h5 class="mt-2 mb-0"-->
+<!--															attrs="{'invisible':[('repeat_consultation_state', '!=', 'open')]}">-->
+<!--															<span id="repeat_consultation_working_state" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>-->
+
+<!--														</h5>-->
+<!--														<h5 class="mt-2 mb-0"-->
+<!--															attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">-->
+<!--															<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>-->
+<!--														</h5>-->
+													</div>
+
 								</div>
 								<div class="card-block mb-5 pl-4 collapse asa"
 									 id="io_ti_platform_section"

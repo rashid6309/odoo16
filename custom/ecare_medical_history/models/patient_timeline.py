@@ -1038,6 +1038,12 @@ class PatientTimeline(models.Model):
 
     def action_proceed_to_ui_ti(self):
         proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
+        repeat_ui_ti_add = self.env.context.get('repeat_ui_ti_add')
+        if repeat_ui_ti_add:
+            self.oi_ti_platform_enabled = True
+            oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
+            return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
+
         if proceed_to_ui_ti:
             self.oi_ti_platform_enabled = True
             self.action_save_repeat_consultation_section()

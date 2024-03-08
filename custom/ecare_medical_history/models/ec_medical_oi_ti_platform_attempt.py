@@ -60,12 +60,12 @@ class EcMedicalOITIPlatform(models.Model):
         oi_ti_attempts = self.env['ec.medical.oi.ti.platform.attempt'].search([
             ('repeat_consultation_id', '=', int(repeat_consultation_id))])
         if oi_ti_attempts:
-            if len(oi_ti_attempts) >= 3:
-                raise UserError("Three attempts against one OI/TI cycle have already been made, "
-                                "start a new repeat consultation first.")
+            # if len(oi_ti_attempts) >= 3:
+            #     raise UserError("Three attempts against one OI/TI cycle have already been made, "
+            #                     "start a new repeat consultation first.")
             for rec in oi_ti_attempts:
                 if rec.oi_ti_attempt_state == 'in_progress':
-                    raise UserError("There is an attempt already in progress, please complete that first!")
+                    raise UserError("There is a visit already in progress, please complete that first!")
 
         vals = {
             'timeline_id': cycle_id.cycle_timeline_id.id,

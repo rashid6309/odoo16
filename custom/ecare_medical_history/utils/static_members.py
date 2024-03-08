@@ -1202,6 +1202,11 @@ class StaticMember:
         ('abandoned', 'Attempt Abandoned'),
     ]
 
+    OI_TI_PLATFORM_STATE = [
+        ('ready_to_trigger', 'Ready to trigger & inseminate'),
+        ('2nd_trigger', '2nd trigger'),
+        ('luteal_phase', 'Luteal phase support'),
+    ]
 
     SURGERY_TYPES = [
         ('tubal_patency_testing', 'Tubal Patency Testing'),

@@ -11,6 +11,8 @@ class EcMedicalOITIPlatformCycle(models.Model):
     oi_ti_platform_attempt_ids = fields.One2many(comodel_name="ec.medical.oi.ti.platform.attempt",
                                                  inverse_name="attempt_cycle_id",
                                                  string="OI/TI Platform Attempt")
+    oi_ti_platform = fields.Selection(selection=StaticMember.OI_TI_PLATFORM_STATE, string='State',
+                                      defult='ready_to_trigger')
 
     cycle_day = fields.Integer(string='Cycle Day', compute='_compute_cycle_day', store=True)
     oi_ti_schedule = fields.Selection(selection=StaticMember.SCHEDULE,
@@ -94,20 +96,43 @@ class EcMedicalOITIPlatformCycle(models.Model):
             if attempt_completed is False:
                 raise UserError("There is no attempt in progress!")
 
+    def get_display_string(self, model_name, field_name, field_value):
+        model = self.env[model_name]
+        field = model._fields.get(field_name)
+
+        if field and field.type == 'selection':
+            return dict(field.selection).get(field_value, field_value)
+        else:
+            return field_value
+
     @api.constrains('html_table')
     def computed_value(self):
         table = ''
         table_list = []
         for rec in self:
             for attempt in rec.oi_ti_platform_attempt_ids:
+                preparation_method_value, oi_ti_attempt_state_value = '', ''
+                if attempt.preparation_method:
+                    attempt_model = 'ec.medical.oi.ti.platform.attempt'
+                    preparation_method_field = 'preparation_method'
+                    preparation_method_value = self.get_display_string(attempt_model, preparation_method_field, attempt.preparation_method)
+                if attempt.oi_ti_attempt_state:
+                    attempt_model = 'ec.medical.oi.ti.platform.attempt'
+                    oi_ti_attempt_state_field = 'oi_ti_attempt_state'
+                    oi_ti_attempt_state_value = self.get_display_string(attempt_model, oi_ti_attempt_state_field, attempt.oi_ti_attempt_state)
+
                 table = (f"<table cellspacing='0' cellpadding='0' class='oi_ti_attempt_table_style'> <tbody> <tr "
                          f"style='height:15.75pt;'> <td colspan='7' class='oi_ti_computed_values_td' "
                          f"style='background-color:#cccccc;'> <p class='oi_ti_text_paragraph_td'/> </td> </tr> <tr "
-                         f"style='height:15.75pt;'> <td colspan='7' class='oi_ti_attempt_preparation_td' "
+                         f"style='height:15.75pt;'> <td colspan='5' class='oi_ti_attempt_preparation_td' "
                          f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'><strong><span "
                          f"style='color:#1f1f1f;'> "
-                         f"{attempt.preparation_method or ''}"
-                         f"</span></strong></p> </td> </tr> <tr style='height:15.75pt;'> <td "
+                         f"{preparation_method_value or ''}"
+                         f"</span></strong></p> </td>"
+                         f"<td colspan='2' class='oi_ti_attempt_preparation_td' style='background-color:#f4cccc;'> "
+                         f"<p class='oi_ti_text_paragraph_td'> <span style='color:#1f1f1f;'> "
+                         f"{oi_ti_attempt_state_value or ''} </span> </p> </td>"
+                         f"</tr> <tr style='height:15.75pt;'> <td "
                          f"class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> <p "
                          f"class='oi_ti_text_paragraph_td'>OI day: 3</p> </td> <td colspan='2' class='oi_ti_heading_td' "
                          f"style='background-color:#fff2cc;'> <p class='oi_ti_action_btn'><strong>LEFT OVARY</strong></p> "
