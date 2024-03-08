@@ -163,18 +163,17 @@
 
         <!-- Configuration Menu -->
 
-        <record id="group_medical_history_configuration_menu" model="res.groups">
+        <record id="group_medical_history_configuration_menu_view" model="res.groups">
             <field name="name">View</field>
             <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_user_configuration_category"/>
             <field name="comment">Configuration View Access</field>
-            <field name="implied_ids" eval="[(4, ref('ecare_medical_history.group_ec_medical_administrator'))]"/>
         </record>
 
         <record id="group_medical_history_configuration_edit" model="res.groups">
             <field name="name">Edit</field>
             <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_user_configuration_category"/>
             <field name="comment">Configuration Edit Access</field>
-            <field name="implied_ids" eval="[(4, ref('ecare_medical_history.group_medical_history_configuration_menu'))]"/>
+            <field name="implied_ids" eval="[(4, ref('ecare_medical_history.group_medical_history_configuration_menu_view'))]"/>
         </record>
 
         <record id="group_medical_history_configuration_create" model="res.groups">
