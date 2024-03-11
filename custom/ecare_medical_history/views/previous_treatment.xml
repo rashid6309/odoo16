@@ -26,7 +26,7 @@
             <field name="model">ec.medical.previous.treatment</field>
             <field name="priority">20</field>
             <field name="arch" type="xml">
-                <tree edit="0" create="0">
+                <tree edit="0">
                     <field name="create_date"/>
                     <field name="treatment_of"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
