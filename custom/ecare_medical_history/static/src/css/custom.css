@@ -621,3 +621,7 @@ label[for="lining_ids"] {
 .o_form_view .o_required_modifier{
     background-color: #ffbdbd !important;
 }
+
+.o_dropdown_button {
+        visibility: visible !important;
+}
