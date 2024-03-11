@@ -617,3 +617,7 @@ label[for="lining_ids"] {
 .table_fixed_height {
   height: 300px !important;
 }
+
+.o_form_view .o_required_modifier{
+    background-color: #ffbdbd !important;
+}
