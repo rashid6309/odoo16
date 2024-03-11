@@ -427,14 +427,13 @@ class PatientTimeline(models.Model):
         else:
             self.female_medical_history = None
 
-
     def _compute_surgical_history(self):
         # Male Fields Processing
         for record in self:
             html_content = ""
             for surgery in record.ec_first_consultation_id.male_procedures_ids:
                 type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
-                field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
+                field_text = f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br>' \
                              f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>'
                 html_content += field_text
             record.male_surgical_history = html_content
@@ -444,7 +443,7 @@ class PatientTimeline(models.Model):
             html_content = ""
             for surgery in record.ec_first_consultation_id.female_procedures_ids:
                 type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
-                field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
+                field_text = f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br>' \
                              f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>'
                 html_content += field_text
             record.female_surgical_history = html_content
