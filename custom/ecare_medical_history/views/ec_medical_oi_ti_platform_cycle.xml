@@ -280,11 +280,11 @@
                                     </tbody>
                                 </table>
                                 <field name="html_table" widget="html"/>
-                                <t t-foreach="record.oi_ti_platform_attempt_ids.raw_value" t-as="line">
-                                    <t t-out="line['oi_ti_other_diagnosis']"/>
-                                    <t t-out="oi_ti_other_diagnosis"/>
+<!--                                <t t-foreach="record.oi_ti_platform_attempt_ids.raw_value" t-as="line">-->
+<!--                                    <t t-out="line['oi_ti_other_diagnosis']"/>-->
+<!--                                    <t t-out="oi_ti_other_diagnosis"/>-->
 
-                                </t>
+<!--                                </t>-->
                             </div>
                         </t>
                     </templates>

@@ -108,85 +108,89 @@ class EcMedicalOITIPlatformCycle(models.Model):
     @api.constrains('html_table')
     def computed_value(self):
         table = ''
-        table_list = []
+
         for rec in self:
-            for attempt in rec.oi_ti_platform_attempt_ids:
-                preparation_method_value, oi_ti_attempt_state_value = '', ''
-                if attempt.preparation_method:
-                    attempt_model = 'ec.medical.oi.ti.platform.attempt'
-                    preparation_method_field = 'preparation_method'
-                    preparation_method_value = self.get_display_string(attempt_model, preparation_method_field, attempt.preparation_method)
-                if attempt.oi_ti_attempt_state:
-                    attempt_model = 'ec.medical.oi.ti.platform.attempt'
-                    oi_ti_attempt_state_field = 'oi_ti_attempt_state'
-                    oi_ti_attempt_state_value = self.get_display_string(attempt_model, oi_ti_attempt_state_field, attempt.oi_ti_attempt_state)
+            table_list = []
+            if rec.oi_ti_platform_attempt_ids:
+                for attempt in rec.oi_ti_platform_attempt_ids:
+                    preparation_method_value, oi_ti_attempt_state_value = '', ''
+                    if attempt.preparation_method:
+                        attempt_model = 'ec.medical.oi.ti.platform.attempt'
+                        preparation_method_field = 'preparation_method'
+                        preparation_method_value = self.get_display_string(attempt_model, preparation_method_field, attempt.preparation_method)
+                    if attempt.oi_ti_attempt_state:
+                        attempt_model = 'ec.medical.oi.ti.platform.attempt'
+                        oi_ti_attempt_state_field = 'oi_ti_attempt_state'
+                        oi_ti_attempt_state_value = self.get_display_string(attempt_model, oi_ti_attempt_state_field, attempt.oi_ti_attempt_state)
 
-                table = (f"<table cellspacing='0' cellpadding='0' class='oi_ti_attempt_table_style'> <tbody> <tr "
-                         f"style='height:15.75pt;'> <td colspan='7' class='oi_ti_computed_values_td' "
-                         f"style='background-color:#cccccc;'> <p class='oi_ti_text_paragraph_td'/> </td> </tr> <tr "
-                         f"style='height:15.75pt;'> <td colspan='5' class='oi_ti_attempt_preparation_td' "
-                         f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'><strong><span "
-                         f"style='color:#1f1f1f;'> "
-                         f"{preparation_method_value or ''}"
-                         f"</span></strong></p> </td>"
-                         f"<td colspan='2' class='oi_ti_attempt_preparation_td' style='background-color:#f4cccc;'> "
-                         f"<p class='oi_ti_text_paragraph_td'> <span style='color:#1f1f1f;'> "
-                         f"{oi_ti_attempt_state_value or ''} </span> </p> </td>"
-                         f"</tr> <tr style='height:15.75pt;'> <td "
-                         f"class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> <p "
-                         f"class='oi_ti_text_paragraph_td'>OI day: 3</p> </td> <td colspan='2' class='oi_ti_heading_td' "
-                         f"style='background-color:#fff2cc;'> <p class='oi_ti_action_btn'><strong>LEFT OVARY</strong></p> "
-                         f"</td> <td colspan='2' class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
-                         f"class='oi_ti_action_btn'><strong>RIGHT OVARY</strong></p> </td> <td class='oi_ti_heading_td' "
-                         f"style='background-color:#ffffff;'> <p class='oi_ti_action_btn'><strong>Signs of "
-                         f"ovulation</strong></p> </td> <td class='oi_ti_attempt_diagnosis_td' "
-                         f"style='background-color:#f4cccc;'> <p class='oi_ti_action_btn'><strong>Diagnosis</strong></p> "
-                         f"</td> </tr> <tr style='height:26.25pt;'> <td class='oi_ti_computed_values_td' "
-                         f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'>LMP</p> </td> <td "
-                         f"class='oi_ti_heading_td' style='background-color:#fff2cc;'> <p "
-                         f"class='oi_ti_text_paragraph_td'>Follicle(s)</p> </td> <td class='oi_ti_heading_td' "
-                         f"style='background-color:#fff2cc;'> <p class='oi_ti_text_paragraph_td'>"
-                         f"( {attempt.oi_ti_follicle_left or ''})</p> </td> <td "
-                         f"class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
-                         f"class='oi_ti_text_paragraph_td'>Follicle(s)</p> </td> <td class='oi_ti_heading_td' "
-                         f"style='background-color:#d9ead3;'> <p class='oi_ti_text_paragraph_td'>"
-                         f"( {attempt.oi_ti_follicle_right or ''} )</p> </td> <td "
-                         f"class='oi_ti_heading_td' style='background-color:#ffffff;'> <p class='oi_ti_action_btn'>Free "
-                         f"fluid, loss of dominant follicle, corpus luteum</p> </td> <td class='oi_ti_attempt_diagnosis_td' "
-                         f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'> "
-                         f"{attempt.oi_ti_diagnosis_ids.name or ''}"
-                         # f"<field name='oi_ti_diagnosis_ids'/> "
-                         f"</p> </td> </tr> <tr "
-                         f"style='height:15.75pt;'> <td class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> "
-                         f"<p class='oi_ti_text_paragraph_td'><strong>Cycle day:  "
-                         f"{attempt.oi_ti_cycle_day or ''}"
-                         f" </strong></p> </td> <td class='oi_ti_heading_td' "
-                         f"style='background-color:#fff2cc;'> <p class='oi_ti_text_paragraph_td'><strong>Dominant Follicle("
-                         f"s)</strong></p> </td> <td class='oi_ti_heading_td' style='background-color:#fff2cc;'> <p "
-                         f"class='oi_ti_text_paragraph_td'>None</p> </td> <td class='oi_ti_heading_td' "
-                         f"style='background-color:#d9ead3;'> <p class='oi_ti_text_paragraph_td'><strong>Dominant Follicle("
-                         f"s)</strong></p> </td> <td class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
-                         f"class='oi_ti_text_paragraph_td'>None</p> </td> <td class='oi_ti_heading_td' "
-                         f"style='background-color:#ffffff;'> <p class='oi_ti_text_paragraph_td'>CET: 11</p> </td> <td "
-                         f"rowspan='2' class='oi_ti_attempt_diagnosis_td' style='background-color:#f4cccc;'> <p "
-                         f"class='oi_ti_text_paragraph_td'>Other diagnoses: "
-                         f"{attempt.oi_ti_other_diagnosis or ''}"
-                         f"</p> </td> </tr> <tr style='height:26.25pt;'> "
-                         f"<td class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> <p "
-                         f"class='oi_ti_text_paragraph_td'><strong>AFC (R+L):</strong></p> </td> <td class='oi_ti_heading_td' "
-                         f"style='background-color:#fff2cc;'> <p class='oi_ti_text_paragraph_td'>Cyst(s)</p> </td> <td "
-                         f"class='oi_ti_heading_td' style='background-color:#fff2cc;'> <p "
-                         f"class='oi_ti_text_paragraph_td'>None</p> </td> <td class='oi_ti_heading_td' "
-                         f"style='background-color:#d9ead3;'> <p class='oi_ti_text_paragraph_td'>Cyst(s)</p> </td> <td "
-                         f"class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
-                         f"class='oi_ti_text_paragraph_td'>None</p> </td> <td class='oi_ti_heading_td' "
-                         f"style='background-color:#ffffff;'> <p class='oi_ti_text_paragraph_td'>Endometrial character: "
-                         f"smooth, triple echo</p> </td> </tr> <tr style='height:15.75pt;'> <td colspan='7' "
-                         f"style='border-top:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; "
-                         f"background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'>"
-                         f"Comments: {attempt.oi_ti_comments or ''}</p> </td> </tr> </tbody> "
-                         f"</table>")
-                table_list.append(table)
+                    table = (f"<table cellspacing='0' cellpadding='0' class='oi_ti_attempt_table_style'> <tbody> <tr "
+                             f"style='height:15.75pt;'> <td colspan='7' class='oi_ti_computed_values_td' "
+                             f"style='background-color:#cccccc;'> <p class='oi_ti_text_paragraph_td'/> </td> </tr> <tr "
+                             f"style='height:15.75pt;'> <td colspan='5' class='oi_ti_attempt_preparation_td' "
+                             f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'><strong><span "
+                             f"style='color:#1f1f1f;'> "
+                             f"{preparation_method_value or ''}"
+                             f"</span></strong></p> </td>"
+                             f"<td colspan='2' class='oi_ti_attempt_preparation_td' style='background-color:#f4cccc;'> "
+                             f"<p class='oi_ti_text_paragraph_td'> <span style='color:#1f1f1f;'> "
+                             f"{oi_ti_attempt_state_value or ''} </span> </p> </td>"
+                             f"</tr> <tr style='height:15.75pt;'> <td "
+                             f"class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> <p "
+                             f"class='oi_ti_text_paragraph_td'>OI day: 3</p> </td> <td colspan='2' class='oi_ti_heading_td' "
+                             f"style='background-color:#fff2cc;'> <p class='oi_ti_action_btn'><strong>LEFT OVARY</strong></p> "
+                             f"</td> <td colspan='2' class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
+                             f"class='oi_ti_action_btn'><strong>RIGHT OVARY</strong></p> </td> <td class='oi_ti_heading_td' "
+                             f"style='background-color:#ffffff;'> <p class='oi_ti_action_btn'><strong>Signs of "
+                             f"ovulation</strong></p> </td> <td class='oi_ti_attempt_diagnosis_td' "
+                             f"style='background-color:#f4cccc;'> <p class='oi_ti_action_btn'><strong>Diagnosis</strong></p> "
+                             f"</td> </tr> <tr style='height:26.25pt;'> <td class='oi_ti_computed_values_td' "
+                             f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'>LMP</p> </td> <td "
+                             f"class='oi_ti_heading_td' style='background-color:#fff2cc;'> <p "
+                             f"class='oi_ti_text_paragraph_td'>Follicle(s)</p> </td> <td class='oi_ti_heading_td' "
+                             f"style='background-color:#fff2cc;'> <p class='oi_ti_text_paragraph_td'>"
+                             f"( {attempt.oi_ti_follicle_left or ''})</p> </td> <td "
+                             f"class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
+                             f"class='oi_ti_text_paragraph_td'>Follicle(s)</p> </td> <td class='oi_ti_heading_td' "
+                             f"style='background-color:#d9ead3;'> <p class='oi_ti_text_paragraph_td'>"
+                             f"( {attempt.oi_ti_follicle_right or ''} )</p> </td> <td "
+                             f"class='oi_ti_heading_td' style='background-color:#ffffff;'> <p class='oi_ti_action_btn'>Free "
+                             f"fluid, loss of dominant follicle, corpus luteum</p> </td> <td class='oi_ti_attempt_diagnosis_td' "
+                             f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'> "
+                             f"{attempt.oi_ti_diagnosis_ids.name or ''}"
+                             # f"<field name='oi_ti_diagnosis_ids'/> "
+                             f"</p> </td> </tr> <tr "
+                             f"style='height:15.75pt;'> <td class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> "
+                             f"<p class='oi_ti_text_paragraph_td'><strong>Cycle day:  "
+                             f"{attempt.oi_ti_cycle_day or ''}"
+                             f" </strong></p> </td> <td class='oi_ti_heading_td' "
+                             f"style='background-color:#fff2cc;'> <p class='oi_ti_text_paragraph_td'><strong>Dominant Follicle("
+                             f"s)</strong></p> </td> <td class='oi_ti_heading_td' style='background-color:#fff2cc;'> <p "
+                             f"class='oi_ti_text_paragraph_td'>None</p> </td> <td class='oi_ti_heading_td' "
+                             f"style='background-color:#d9ead3;'> <p class='oi_ti_text_paragraph_td'><strong>Dominant Follicle("
+                             f"s)</strong></p> </td> <td class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
+                             f"class='oi_ti_text_paragraph_td'>None</p> </td> <td class='oi_ti_heading_td' "
+                             f"style='background-color:#ffffff;'> <p class='oi_ti_text_paragraph_td'>CET: 11</p> </td> <td "
+                             f"rowspan='2' class='oi_ti_attempt_diagnosis_td' style='background-color:#f4cccc;'> <p "
+                             f"class='oi_ti_text_paragraph_td'>Other diagnoses: "
+                             f"{attempt.oi_ti_other_diagnosis or ''}"
+                             f"</p> </td> </tr> <tr style='height:26.25pt;'> "
+                             f"<td class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> <p "
+                             f"class='oi_ti_text_paragraph_td'><strong>AFC (R+L):</strong></p> </td> <td class='oi_ti_heading_td' "
+                             f"style='background-color:#fff2cc;'> <p class='oi_ti_text_paragraph_td'>Cyst(s)</p> </td> <td "
+                             f"class='oi_ti_heading_td' style='background-color:#fff2cc;'> <p "
+                             f"class='oi_ti_text_paragraph_td'>None</p> </td> <td class='oi_ti_heading_td' "
+                             f"style='background-color:#d9ead3;'> <p class='oi_ti_text_paragraph_td'>Cyst(s)</p> </td> <td "
+                             f"class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
+                             f"class='oi_ti_text_paragraph_td'>None</p> </td> <td class='oi_ti_heading_td' "
+                             f"style='background-color:#ffffff;'> <p class='oi_ti_text_paragraph_td'>Endometrial character: "
+                             f"smooth, triple echo</p> </td> </tr> <tr style='height:15.75pt;'> <td colspan='7' "
+                             f"style='border-top:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; "
+                             f"background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'>"
+                             f"Comments: {attempt.oi_ti_comments or ''}</p> </td> </tr> </tbody> "
+                             f"</table>")
+                    table_list.append(table)
 
-            rec.html_table = ''.join(table_list)
+                rec.html_table = ''.join(table_list)
+            else:
+                rec.html_table = None
 

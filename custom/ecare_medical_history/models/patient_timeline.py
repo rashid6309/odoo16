@@ -1041,8 +1041,18 @@ class PatientTimeline(models.Model):
         repeat_ui_ti_add = self.env.context.get('repeat_ui_ti_add')
         if repeat_ui_ti_add:
             self.oi_ti_platform_enabled = True
-            oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
-            return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
+            recent_repeat_consultation = self.env['ec.repeat.consultation'].search([
+                ('repeat_timeline_id', '=', self.id),
+                ('repeat_new_treatment_pathway', '=', 'yes'),
+            ], order='write_date desc', limit=1)
+            if recent_repeat_consultation:
+                oi_ti_cycle = self.env['ec.medical.oi.ti.platform.cycle'].search([
+                    ('repeat_consultation_id', '=', int(recent_repeat_consultation.id))])
+                if oi_ti_cycle and len(oi_ti_cycle) >= 3:
+                    raise UserError("Three attempts against one OI/TI cycle have already been made, "
+                                    "start a new repeat consultation first.")
+                oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
+                return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
 
         if proceed_to_ui_ti:
             self.oi_ti_platform_enabled = True
