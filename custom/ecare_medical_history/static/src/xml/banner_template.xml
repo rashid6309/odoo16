@@ -31,13 +31,13 @@
 							Patient Timeline
 						</span>
 					</a>
-					<a href="#" t-on-click="_onEditPatientSemen"
-					   style="display: inline-block; padding: 3px 18px; background-color: #3e5bc5; color: #fff; text-decoration: none; border-radius: 5px; margin-left: 1%;"
-					   class="editPatientSemen">
-						<span>
-							Semen Analysis
-						</span>
-					</a>
+<!--					<a href="#" t-on-click="_onEditPatientSemen"-->
+<!--					   style="display: inline-block; padding: 3px 18px; background-color: #3e5bc5; color: #fff; text-decoration: none; border-radius: 5px; margin-left: 1%;"-->
+<!--					   class="editPatientSemen">-->
+<!--						<span>-->
+<!--							Semen Analysis-->
+<!--						</span>-->
+<!--					</a>-->
 
 				</div>
 			</div>
