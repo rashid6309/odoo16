@@ -53,7 +53,7 @@ class PatientTimeline(models.Model):
     timeline_patient_husband_name = fields.Char('Husband Name', related="timeline_patient_id.husband_name")
 
     timeline_patient_mobile_wife = fields.Char('Mobile Wife', related="timeline_patient_id.mobile_wife")
-    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband",)
+    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband", )
 
     timeline_patient_wife_image = fields.Binary('Patient Wife Image', related="timeline_patient_id.image_1920")
     timeline_patient_husband_image = fields.Binary('Patient Husband Image', related="timeline_patient_id.husband_image")
@@ -144,10 +144,11 @@ class PatientTimeline(models.Model):
     timeline_conclusion = fields.Html(string="Conclusion")
 
     patient_attachment_ids = fields.One2many(string='Attachments Details',
-                                         comodel_name='ec.medical.patient.attachment',
-                                         inverse_name='patient_attachment_timeline_id')
+                                             comodel_name='ec.medical.patient.attachment',
+                                             inverse_name='patient_attachment_timeline_id')
 
     ''' Static methods '''
+
     @staticmethod
     def _compute_patient_family_history(family_history, fields_to_process):
         if not family_history:
@@ -249,7 +250,7 @@ class PatientTimeline(models.Model):
             return
 
         pregnancies = len(obs_histories)
-        count_after_24_weeks = 0 # Or parity
+        count_after_24_weeks = 0  # Or parity
         for obs_history in obs_histories:
             dop = obs_history.duration_of_pregnancy.replace("<", "").replace(">", "") \
                 if obs_history.duration_of_pregnancy else None
@@ -264,7 +265,6 @@ class PatientTimeline(models.Model):
 
             if obs_history.alive == 'Alive':
                 alive += 1
-
 
         self.gravida_w = pregnancies
         self.parity_x = count_after_24_weeks
@@ -390,7 +390,8 @@ class PatientTimeline(models.Model):
             'female_hiv_date': ('HIV', 'female_hiv'),
             'female_mumps_date': ('Mumps', 'female_mumps'),
             'female_adrenal_date': ('Adrenal', 'female_adrenal'),
-            'female_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome'),
+            'female_anti_phospholipid_syndrome_date': (
+            'Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome'),
             'female_autoimmune_disease_date': ('Autoimmune Diseases', 'female_autoimmune_disease'),
             'female_blood_transfusion_date': ('Blood Transfusion', 'female_blood_transfusion'),
             'female_cardiac_date': ('Cardiac', 'female_cardiac'),
@@ -432,7 +433,9 @@ class PatientTimeline(models.Model):
         for record in self:
             html_content = ""
             for surgery in record.ec_first_consultation_id.male_procedures_ids:
-                type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
+                type_of_surgery_label = dict(
+                    self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery,
+                                                                                                '')
                 field_text = f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br>' \
                              f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>'
                 html_content += field_text
@@ -442,7 +445,9 @@ class PatientTimeline(models.Model):
         for record in self:
             html_content = ""
             for surgery in record.ec_first_consultation_id.female_procedures_ids:
-                type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
+                type_of_surgery_label = dict(
+                    self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery,
+                                                                                                '')
                 field_text = f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br>' \
                              f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>'
                 html_content += field_text
@@ -470,6 +475,7 @@ class PatientTimeline(models.Model):
     ''' XXX - Override methods - XXX'''
 
     ''' Onchange methods '''
+
     @api.onchange("timeline_patient_id")
     def populate_dependent_patient_field(self):
         """
@@ -603,6 +609,7 @@ class PatientTimeline(models.Model):
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
                                                                        None)
+
     def action_open_seminology(self):
         return self.env['ec.semen.analysis'].action_open_form_view(self.timeline_patient_id)
 
@@ -620,7 +627,7 @@ class PatientTimeline(models.Model):
             'repeat_timeline_id': self.id,
             'repeat_patient_id': patient_id,
             'tvs_patient_id': patient_id,
-            'tvs_repeat_consultation_id': self.id
+            'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id
         }
 
     def move_next(self):
@@ -642,6 +649,9 @@ class PatientTimeline(models.Model):
     def action_save_repeat_consultation_section(self):
         self.show_repeat_section_state = False
         self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
+
+    def action_delete_repeat_consultation_section(self):
+        return self.ec_repeat_consultation_id.action_delete_repeat_consultation_section(self)
 
     @api.onchange('female_lmp')
     def _check_female_lmp_date(self):
@@ -954,7 +964,7 @@ class PatientTimeline(models.Model):
     @api.onchange('female_weight', 'female_height')
     def _calculate_physical_exam_bmi(self):
         if (self.female_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_weight) or
-                self.female_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_height)) :
+                self.female_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_height)):
             raise UserError(f"Please enter a numeric value in female weight!")
         if self.female_weight and self.female_height:
             female_height = float(self.female_height)
@@ -968,7 +978,7 @@ class PatientTimeline(models.Model):
     @api.onchange('male_weight', 'male_height')
     def _calculate_physical_exam_male_bmi(self):
         if (self.male_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_weight) or
-                self.male_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_height)) :
+                self.male_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_height)):
             raise UserError(f"Please enter a numeric value in male weight and height!")
         if self.male_weight and self.male_height:
             male_height = float(self.male_height)
@@ -1011,12 +1021,14 @@ class PatientTimeline(models.Model):
 
     @api.onchange('repeat_pregnancy_bp_upper')
     def _check_float_input_bp_upper(self):
-        if self.repeat_pregnancy_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.repeat_pregnancy_bp_upper):
+        if self.repeat_pregnancy_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE,
+                                                           self.repeat_pregnancy_bp_upper):
             raise UserError(f"Please enter a numeric value in pregnancy BP (Upper).")
 
     @api.onchange('repeat_pregnancy_bp_lower')
     def _check_float_input_bp_lower(self):
-        if self.repeat_pregnancy_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.repeat_pregnancy_bp_lower):
+        if self.repeat_pregnancy_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE,
+                                                           self.repeat_pregnancy_bp_lower):
             raise UserError(f"Please enter a numeric value in pregnancy BP (Lower).")
 
     @api.onchange('repeat_pregnancy_rr')
@@ -1026,7 +1038,8 @@ class PatientTimeline(models.Model):
 
     @api.onchange('repeat_pregnancy_embryos_replaced')
     def _check_input_repeat_pregnancy_embryos_replaced(self):
-        if self.repeat_pregnancy_embryos_replaced and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_embryos_replaced):
+        if self.repeat_pregnancy_embryos_replaced and not re.match(Validation.REGEX_FLOAT_2_DP,
+                                                                   self.repeat_pregnancy_embryos_replaced):
             raise UserError(f"Please enter a numeric value in pregnancy embryos replaced!")
 
     @api.onchange('female_height')

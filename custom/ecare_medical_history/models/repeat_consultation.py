@@ -52,8 +52,7 @@ class RepeatConsultation(models.Model):
                                      readonly=1,
                                      )
     question_one_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                           string="Choice",
-                                           default='no')
+                                           string="Choice")
 
     repeat_lmp = fields.Date(string="LMP",
                              readonly=True,
@@ -357,6 +356,24 @@ class RepeatConsultation(models.Model):
 
     def action_open_tvs_form(self):
         return self.env['ec.medical.tvs'].action_open_form_view(self, target='new')
+
+    def action_delete_repeat_consultation_section(self, timeline_id):
+        existing_repeat = self.env['ec.repeat.consultation'].search([
+            ('repeat_timeline_id', '=', timeline_id.id),
+            ('id', '!=', self.id),
+        ], order="id desc", limit=1)
+        if existing_repeat:
+            timeline_id.show_repeat_section_state = False
+            timeline_id.ec_repeat_consultation_id = existing_repeat.id
+            self.unlink()
+        else:
+            timeline_id.show_repeat_section_state = False
+            timeline_id.show_repeat_consultation_history_section = False
+            new_repeat_consultation_id = self.env['ec.repeat.consultation'].create(
+                timeline_id._get_repeat_consultation_mandatory_attribute()
+            )
+            timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
+            self.unlink()
 
 
 # Fibroid
