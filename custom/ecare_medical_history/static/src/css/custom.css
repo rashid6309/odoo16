@@ -626,7 +626,12 @@ label[for="lining_ids"] {
         visibility: visible !important;
 }
 
-select
-{
-    -webkit-appearance: listbox !important;
+
+select{
+            background: none !important;
+            -webkit-appearance: listbox !important;
+}
+
+select:hover{
+            background: none !important;
 }
