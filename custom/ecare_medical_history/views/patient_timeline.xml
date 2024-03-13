@@ -122,22 +122,20 @@
 										<group>
 											<group>
 												<field name="repeat_date"/>
-												<field name="repeat_consultation_interaction"
+												<field attrs="{'required': [('show_repeat_section_state', '=', True)]}" name="repeat_consultation_interaction"
 												/>
-												<field name="repeat_status"
+												<field name="repeat_status" attrs="{'required': [('show_repeat_section_state', '=', True)]}"
 													   widget="radio" options="{'horizontal': True}"/>
-												<field name="repeat_consultation_with"/>
-												<field name="repeat_seen_with_other"
-													   attrs="{'required': ['|',('repeat_consultation_with', '=', 'other'),
-													   ('show_repeat_section_state', '=', True)]}"/>
+												<field name="repeat_consultation_with" attrs="{'required': [('show_repeat_section_state', '=', True)]}"/>
+												<field name="repeat_seen_with_other"/>
 												<field name="repeat_seen_by"/>
 												<field name="repeat_other_doctors_present"
-													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 											</group>
 											<group>
 												<field name="repeat_location_id"
+													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
 													   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
 
 											</group>
@@ -151,6 +149,7 @@
 												<field name="question_one_label"/>
 												<label for="question_one_choice" string=""/>
 												<field name="question_one_choice"
+													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
 													   widget="radio" nolabel="1"/>
 											</group>
 
@@ -159,88 +158,132 @@
 											</group>
 											<div attrs="{'invisible': [('question_one_choice', '!=', 'yes')]}">
 												<group>
-													<field name="repeat_pregnancy_lmp"/>
+													<field name="repeat_pregnancy_lmp" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_gestational_age"/>
-													<field name="repeat_pregnancy_conception"/>
-													<field name="repeat_pregnancy_embryos_replaced"/>
+													<field name="repeat_pregnancy_conception" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
+													<field name="repeat_pregnancy_embryos_replaced" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 												<group string="Pregnancy Status:">
-													<field name="repeat_pregnancy_gestation_type"/>
+													<field name="repeat_pregnancy_gestation_type" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_other_info"
 														   attrs="{'invisible': [('repeat_pregnancy_gestation_type','!=','other')],
                                             'required':[('repeat_pregnancy_gestation_type','=','other'),('question_one_choice','=','yes')]}"/>
-													<field name="repeat_pregnancy_viability_potential"/>
-													<field name="repeat_pregnancy_details"/>
-													<field name="repeat_pregnancy_diagnosis"/>
+													<field name="repeat_pregnancy_viability_potential" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
+													<field name="repeat_pregnancy_details" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
+													<field name="repeat_pregnancy_diagnosis" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 
 												<group string="Reason for visit">
-													<field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
+													<field name="repeat_pregnancy_reason_to_visit" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}" widget="radio"/>
 												</group>
 												<group>
-													<field name="repeat_pregnancy_notes" widget="html"/>
-													<field name="repeat_pregnancy_scanned" widget="radio"/>
-													<field name="repeat_pregnancy_significant_findings"/>
+													<field name="repeat_pregnancy_notes" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}" widget="html"/>
+													<field name="repeat_pregnancy_scanned" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}" widget="radio"/>
+													<field name="repeat_pregnancy_significant_findings" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 
 												<group string="Examination:" class="d-flex flex-column custom_width">
 													<div class="d-flex" style="width:305%;margin-left: 30%;">
 														<label  class="timeline_examination" for="repeat_pregnancy_hr"/>
-														<field name="repeat_pregnancy_hr"/>
+														<field name="repeat_pregnancy_hr" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<label class="timeline_examination" for="repeat_pregnancy_rhythm"/>
-														<field name="repeat_pregnancy_rhythm"/>
+														<field name="repeat_pregnancy_rhythm" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<label  class="timeline_examination" style=" margin-left: 2%;" for="repeat_pregnancy_bp_upper"/>
-														<field name="repeat_pregnancy_bp_upper"/>
+														<field name="repeat_pregnancy_bp_upper" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<span class="me-1">/</span>
-														<field name="repeat_pregnancy_bp_lower"/>
+														<field name="repeat_pregnancy_bp_lower" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<span class="me-1" style="margin-right:4% !important;">mmHg</span>
 														<label class="timeline_examination" for="repeat_pregnancy_temp"/>
-														<field name="repeat_pregnancy_temp"/>
+														<field name="repeat_pregnancy_temp" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<label class="timeline_examination" for="repeat_pregnancy_rr"/>
-														<field name="repeat_pregnancy_rr"/>
+														<field name="repeat_pregnancy_rr" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 													</div>
 													<div class="d-flex flex-column" style="width:100%;margin-left: 15%;">
 														<div class="d-flex">
 															<label class="ms-4 me-3" for="repeat_pregnancy_fetal_heart"/>
-															<field name="repeat_pregnancy_fetal_heart" widget="radio" options="{'horizontal': True}"/>
+															<field name="repeat_pregnancy_fetal_heart"  attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
+																   widget="radio" options="{'horizontal': True}"/>
 														</div>
 														<div class="d-flex">
 															<label class="ms-4 me-3" for="repeat_pregnancy_signs_of_ohss"/>
-															<field name="repeat_pregnancy_signs_of_ohss" widget="radio" options="{'horizontal': True}"/>
+															<field name="repeat_pregnancy_signs_of_ohss"
+																    attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
+																   widget="radio" options="{'horizontal': True}"/>
 														</div>
 													</div>
 												</group>
 												<group>
-													<field name="repeat_pregnancy_icsi_ultrasound"/>
+													<field name="repeat_pregnancy_icsi_ultrasound" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 												<group string="Diagnosis">
 													<field name="repeat_pregnancy_diagnosis_ids"
+														    attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
-													<field name="repeat_pregnancy_diagnosis_id_text"/>
+													<field name="repeat_pregnancy_diagnosis_id_text" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 												<group string="Investigations">
 													<field name="repeat_pregnancy_investigation_ids"
+														    attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
-													<field name="repeat_pregnancy_investigation_id_text"/>
+													<field name="repeat_pregnancy_investigation_id_text"
+													 attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 												<group>
 													<field name="repeat_pregnancy_procedure_performed"
+														    attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
-													<field name="repeat_pregnancy_procedure_performed_text"/>
+													<field name="repeat_pregnancy_procedure_performed_text"
+													 attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_doctors"
 														   widget="many2many_tags"
+														    attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_assistants"
 														   widget="many2many_tags"
+														    attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 												</group>
 												<group>
-													<field name="repeat_pregnancy_type_sample_obtained"/>
+													<field name="repeat_pregnancy_type_sample_obtained"
+													 attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_name_receiving_geneticist"
+														    attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
-													<field name="repeat_pregnancy_plan"/>
+													<field name="repeat_pregnancy_plan"
+													 attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 											</div>
 
@@ -251,6 +294,8 @@
 												<field name="question_two_label"/>
 												<label for="question_two_choice" string=""/>
 												<field name="question_two_choice"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   widget="radio" nolabel="1"/>
 											</group>
 											<div>
@@ -268,6 +313,8 @@
 												<field name="question_three_label"/>
 												<label for="question_three_choice" string=""/>
 												<field name="question_three_choice"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   widget="radio" nolabel="1"/>
 											</group>
 											<div>
@@ -285,20 +332,29 @@
 
 											<group>
 												<group>
-													<field name="lmp_question_four"/>
+													<field name="lmp_question_four"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"/>
 												</group>
 												<group>
-													<field name="repeat_cycle_day" force_save="1"/>
+													<field name="repeat_cycle_day"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
+														   force_save="1"/>
 												</group>
 											</group>
 
 											<group>
 												<field name="is_couple_living_together"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"
 												/>
 												<field name="is_couple_using_contraception"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"
 												/>
 											</group>
@@ -318,6 +374,8 @@
 												<div>
 													<field name="repeat_note"
 														   nolabel="1"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 														   placeholder="Add..."/>
 
 												</div>
@@ -332,14 +390,30 @@
 											<group>
 												<field name="repeat_examination_required"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"/>
 											</group>
 
 											<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
-												<field name="repeat_gpe"/>
-												<field name="repeat_thyroid"/>
-												<field name="repeat_abdominal"/>
-												<field name="repeat_breast"/>
+												<field name="repeat_gpe"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('repeat_examination_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
+												/>
+												<field name="repeat_thyroid"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('repeat_examination_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
+												/>
+												<field name="repeat_abdominal"
+												attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('repeat_examination_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"/>
+												<field name="repeat_breast"
+												attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('repeat_examination_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"/>
 											</group>
 											<div class="d-flex flex-column" attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
 												<div/>
@@ -351,6 +425,9 @@
 											<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
 												<field name="repeat_pelvic_examination_state"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('repeat_examination_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"
 												/>
 											</group>
@@ -371,19 +448,22 @@
 										('repeat_pelvic_examination_state', '=', 'no')]}">
 
 												<field name="repeat_findings_on_inspection"
-													   attrs="{'invisible': [('inspection_only', '!=', True)]}"
+													   attrs="{'invisible': [('inspection_only', '!=', True)],'required': [('inspection_only', '=', True)]}"
 												/>
 
 												<field name="repeat_valva_vaginal_exam"
-													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)]}"
+													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
 												/>
 
 												<field name="repeat_cervix"
-													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)]}"
+													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
 												/>
 
 												<field name="repeat_uterus_and_adnexae"
-													   attrs="{'invisible': [('p_v_only', '!=', True)]}"
+													   attrs="{'invisible': [('p_v_only', '!=', True)],
+													   'required': [('p_v_only', '=', True)]}"
 												/>
 											</group>
 											<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
@@ -436,7 +516,7 @@
 												<field
 														attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)]}"
+													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True)]}"
 														name="repeat_method_of_hvs"/>
 											</group>
 
@@ -457,7 +537,8 @@
 
 												<field name="repeat_other_findings"
 													   attrs="{'invisible': [('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)]}"
+													   ('p_s_only', '!=', True)],
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
 												/>
 
 											</group>
@@ -472,12 +553,17 @@
 											<group>
 												<field name="scan_required"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"/>
 											</group>
 											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 
 												<field name="repeat_ultrasound_type"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"/>
 											</group>
 
@@ -489,7 +575,8 @@
 													</div>
 													<div class="col-md-10">
 														<div class="d-flex custom-checkbox-alignment-boolean">
-															<field name="tvs_uterus_tvs_size"/>
+															<field name="tvs_uterus_tvs_size"
+															/>
 															<label class="custom-text-align" for="tvs_uterus_tvs_size"/>
 
 															<field name="tvs_uterus_tvs_position"/>
@@ -507,16 +594,27 @@
 																Uterus Flexion
 															</div>
 															<div class="d-flex">
-																<field name="tvs_uterus_flexion"/>
+																<field name="tvs_uterus_flexion"
+																	   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
+																/>
 															</div>
 														</div>
 														<div class="d-flex"
 															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
 															<span style="font-weight:bold;">Size</span>
-															<field name="tvs_uterus_size_x"/>
+															<field name="tvs_uterus_size_x" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no'),
+													   ('tvs_uterus_tvs_size', '=', True)]}"/>
 															<span class="m-2">x</span>
 
-															<field name="tvs_uterus_size_y"/>
+															<field name="tvs_uterus_size_y"
+																   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no'),
+													   ('tvs_uterus_tvs_size', '=', True)]}"/>
 															<span>cm</span>
 														</div>
 														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
@@ -524,7 +622,12 @@
 																Position
 															</div>
 															<div class="d-flex">
-																<field name="tvs_uterus_position_ids" widget="many2many_checkboxes"/>
+																<field name="tvs_uterus_position_ids"
+																	   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no'),
+													   ('tvs_uterus_tvs_position', '=', True)]}"
+																	   widget="many2many_checkboxes"/>
 															</div>
 														</div>
 														<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
@@ -552,11 +655,19 @@
 													</div>
 													<div class="d-flex flex-column">
 														<div>
-															<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
+															<field name="tvs_linining_ids"
+																   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
+																   widget="many2many_checkboxes"/>
 														</div>
 														<div>
 															<span>CET</span>
-															<field name="tvs_lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
+															<field name="tvs_lining_size"
+																   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
+																   placeholder="..." class="oe_inline" nolabel="1"/>
 															<span>mm</span>
 														</div>
 													</div>
@@ -570,6 +681,9 @@
 													<div class="col-md-5">
 														<div class="col-md-12" style="pointer-events: none;">
 															<field name="tvs_rov"/>
+<!--															<field name="tvs_rov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+<!--													   ('scan_required', '=', 'yes'),-->
+<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 														</div>
 													</div>
 
@@ -597,6 +711,9 @@
 													<div class="col-md-5">
 														<div class="col-md-12" style="pointer-events: none;">
 															<field name="tvs_lov"/>
+<!--															<field name="tvs_lov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+<!--													   ('scan_required', '=', 'yes'),-->
+<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 														</div>
 													</div>
 
@@ -640,7 +757,9 @@
 													</div>
 													<div class="col-md-10">
 
-														<field name="tvs_other_text"/>
+														<field name="tvs_other_text" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"/>
 													</div>
 
 
@@ -653,8 +772,13 @@
 											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 												<field name="tvs_signs_of_ovulation_ids"
 													   widget="many2many_tags"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
 													   options='{"no_open": True, "no_create": True}'/>
-												<field name="tv_diagnosis"/>
+												<field name="tv_diagnosis" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"/>
 											</group>
 
 											<div class="d-flex flex-column">
@@ -666,26 +790,34 @@
 											</div>
 											<group>
 
-												<field name="counseling_and_discussion"/>
+												<field name="counseling_and_discussion"
+												attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"/>
 												<field name="repeat_diagnosis"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_investigations_ids"
+													   widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
+
+												<field name="repeat_procedure_recommended_ids"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
+													   widget="many2many_tags"
+													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="repeat_treatment_plan"
+												attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"/>
+
+												<field name="repeat_treatment_advised_ids"
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
-												<field name="repeat_procedure_recommended_ids" widget="many2many_tags"
-													   options="{'no_create_edit': True, 'no_create': True}"/>
-												<field name="repeat_treatment_plan"/>
-
-												<field name="repeat_treatment_advised_ids" widget="many2many_tags"
-													   options="{'no_create_edit': True, 'no_create': True}"/>
-
 												<field name="repeat_new_treatment_pathway"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"
 													   widget="radio"
 													   options="{'horizontal': True}"
 												/>
