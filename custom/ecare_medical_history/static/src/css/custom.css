@@ -625,3 +625,8 @@ label[for="lining_ids"] {
 .o_dropdown_button {
         visibility: visible !important;
 }
+
+select
+{
+    -webkit-appearance: listbox !important;
+}
