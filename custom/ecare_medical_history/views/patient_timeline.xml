@@ -836,6 +836,7 @@
 <!--												<span>-->
 <!--													Delete Consultation-->
 <!--												</span>-->
+
 <!--											</a>-->
 											<button name="action_delete_repeat_consultation_section"
 													type="object"
