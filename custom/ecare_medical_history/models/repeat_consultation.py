@@ -70,8 +70,7 @@ class RepeatConsultation(models.Model):
                                      store=False,
                                      readonly=True)
     question_two_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                           string="Choice",
-                                           default='no')
+                                           string="Choice")
 
     """ Question Three
         Yes: Open the treatment outside of ICSI from and add a record in the previous treatment history 
@@ -83,8 +82,7 @@ class RepeatConsultation(models.Model):
                                        store=False,
                                        readonly=1)
     question_three_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                             string="Choice",
-                                             default='no')
+                                             string="Choice")
 
     """ Question Four
         Yes: Open the treatment outside of ICSI from and add a record in the previous treatment history 
