@@ -669,7 +669,7 @@ class PatientTimeline(models.Model):
 
                         'title': 'Warning!',
 
-                        'message': 'Date of Marriage should be lesser than date of birth.'}
+                        'message': 'Date of birth should be lesser than date of Marriage.'}
 
                 }
             else:
