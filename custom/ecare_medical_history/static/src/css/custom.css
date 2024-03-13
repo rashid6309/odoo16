@@ -635,3 +635,7 @@ select{
 select:hover{
             background: none !important;
 }
+
+.o_datepicker_button{
+    visibility: visible !important;
+}
