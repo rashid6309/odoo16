@@ -260,6 +260,7 @@ class EcarePatient(models.Model):
                 }
             if self.wife_dob > self.married_since:
                 patient.married_since = None
+                patient.yom = None
                 return {
 
                     'warning': {
