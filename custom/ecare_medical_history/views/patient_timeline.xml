@@ -225,7 +225,7 @@
 														<div class="d-flex">
 															<label class="ms-4 me-3" for="repeat_pregnancy_signs_of_ohss"/>
 															<field name="repeat_pregnancy_signs_of_ohss"
-																    attrs="{'required': [('show_repeat_section_state', '=', True),
+																   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"
 																   widget="radio" options="{'horizontal': True}"/>
 														</div>
@@ -237,7 +237,7 @@
 												</group>
 												<group string="Diagnosis">
 													<field name="repeat_pregnancy_diagnosis_ids"
-														    attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
@@ -246,43 +246,43 @@
 												</group>
 												<group string="Investigations">
 													<field name="repeat_pregnancy_investigation_ids"
-														    attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
 													<field name="repeat_pregnancy_investigation_id_text"
-													 attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 												<group>
 													<field name="repeat_pregnancy_procedure_performed"
-														    attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_procedure_performed_text"
-													 attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_doctors"
 														   widget="many2many_tags"
-														    attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_assistants"
 														   widget="many2many_tags"
-														    attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 												</group>
 												<group>
 													<field name="repeat_pregnancy_type_sample_obtained"
-													 attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_name_receiving_geneticist"
-														    attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_plan"
-													 attrs="{'required': [('show_repeat_section_state', '=', True),
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 											</div>
@@ -407,11 +407,11 @@
 													   ('question_one_choice', '=', 'no')]}"
 												/>
 												<field name="repeat_abdominal"
-												attrs="{'required': [('show_repeat_section_state', '=', True),
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('repeat_examination_required', '=', 'yes'),
 													   ('question_one_choice', '=', 'no')]}"/>
 												<field name="repeat_breast"
-												attrs="{'required': [('show_repeat_section_state', '=', True),
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('repeat_examination_required', '=', 'yes'),
 													   ('question_one_choice', '=', 'no')]}"/>
 											</group>
@@ -681,9 +681,9 @@
 													<div class="col-md-5">
 														<div class="col-md-12" style="pointer-events: none;">
 															<field name="tvs_rov"/>
-<!--															<field name="tvs_rov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
-<!--													   ('scan_required', '=', 'yes'),-->
-<!--													   ('question_one_choice', '=', 'no')]}"/>-->
+															<!--															<field name="tvs_rov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+															<!--													   ('scan_required', '=', 'yes'),-->
+															<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 														</div>
 													</div>
 
@@ -711,9 +711,9 @@
 													<div class="col-md-5">
 														<div class="col-md-12" style="pointer-events: none;">
 															<field name="tvs_lov"/>
-<!--															<field name="tvs_lov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
-<!--													   ('scan_required', '=', 'yes'),-->
-<!--													   ('question_one_choice', '=', 'no')]}"/>-->
+															<!--															<field name="tvs_lov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+															<!--													   ('scan_required', '=', 'yes'),-->
+															<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 														</div>
 													</div>
 
@@ -791,7 +791,7 @@
 											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 
 												<field name="counseling_and_discussion"
-												attrs="{'required': [('show_repeat_section_state', '=', True),
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"/>
 												<field name="repeat_diagnosis"
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
@@ -808,7 +808,7 @@
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_treatment_plan"
-												attrs="{'required': [('show_repeat_section_state', '=', True),
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"/>
 
 												<field name="repeat_treatment_advised_ids"
@@ -825,6 +825,18 @@
 
 										</span>
 										<div style="text-align-last: right;background: #adb5bd;">
+<!--											<a href="#" t-on-click="_onEditPatientTimeline"-->
+<!--											   style="color: #FFFFFF !important; background-color: #71639e !important;-->
+<!--											   border-color: #71639e; display: inline-block; font-weight: 500;-->
+<!--											   line-height: 1.5; text-align: center; vertical-align: middle;-->
+<!--											    cursor: pointer; user-select: none; border: aliceblue;-->
+<!--											    padding: 0.375rem 0.75rem; font-size: 1.08333333rem;-->
+<!--											    border-radius: 0.25rem; margin: 0.5rem !important;"-->
+<!--											   class="editPatientSemen">-->
+<!--												<span>-->
+<!--													Delete Consultation-->
+<!--												</span>-->
+<!--											</a>-->
 											<button name="action_delete_repeat_consultation_section"
 													type="object"
 													class="btn btn-primary m-2"
