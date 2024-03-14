@@ -15,8 +15,9 @@
     font-size: 20px;
     color: #fff;
     cursor: pointer;
-    margin: 10px;
-    margin-top: -12%;
+    margin-top: -8%;
+    height: auto;
+    margin-bottom: 11%;
 }
 
 .display{
@@ -51,4 +52,5 @@
     color: #fff;
     cursor: pointer;
     margin: 10px;
+    text-align : center !important;
 }
