@@ -93,36 +93,31 @@ odoo.define('ecare_medical_history.patient_banner', function (require) {
         }
 
         async _onEditPatientProfile() {
+        var self = this;
+        await this.props.record.save().then(function(result) {
+            console.log(result);
            const errorSpan = document.querySelector('span.text-danger.small.ms-2');
-            if (errorSpan) {
+            if (!result) {
+
                 // Handle the scenario where the error span exists
                 // For example, display an error message to the user
                 console.error("Error: Unable to save. Please correct the errors.");
                 return;
             }
-//        const fields = this.props.record.fields;
-//        console.log(fields);
-//        for (const fieldName in fields) {
-//            const field = fields[fieldName];
-//            if (field.required && !this.props.record.data[fieldName]) {
-//                // Handle the scenario where a mandatory field is not filled
-//                // For example, display an error message to the user
-//                console.error(`Mandatory field ${fieldName} is not filled.`);
-//                return;
-//            }
-//        }
-
-        await this.props.record.save();
-            this.action.doActionButton({
+            else{
+            self.action.doActionButton({
                 type: "object",
-                resId: this.props.value[0],
+                resId: self.props.value[0],
                 name: "action_open_patient_time_view",
-                context: this.props.value,
+                context: self.props.value,
                 resModel: "ec.patient.timeline",
                 onClose: async () => {
-                    await this.props.record.model.root.load();
-                    this.props.record.model.notify();
+                    await self.props.record.model.root.load();
+                    self.props.record.model.notify();
                 },
+            });
+
+            }
             });
         }
 
@@ -142,24 +137,31 @@ odoo.define('ecare_medical_history.patient_banner', function (require) {
         }
 
         async _onEditPatientTimeline() {
+        var self = this;
+        await this.props.record.save().then(function(result) {
+           console.log(result);
            const errorSpan = document.querySelector('span.text-danger.small.ms-2');
-            if (errorSpan) {
+           if (!result) {
+
                 // Handle the scenario where the error span exists
                 // For example, display an error message to the user
                 console.error("Error: Unable to save. Please correct the errors.");
                 return;
             }
-        await this.props.record.save();
-            this.action.doActionButton({
+            else{
+                self.action.doActionButton({
                 type: "object",
-                resId: this.props.value[0],
+                resId: self.props.value[0],
                 name: "action_open_patient_timeline_view",
-                context: this.props.value,
+                context: self.props.value,
                 resModel: "ec.patient.timeline",
                 onClose: async () => {
-                    await this.props.record.model.root.load();
-                    this.props.record.model.notify();
-                },
+                    await self.props.record.model.root.load();
+                    self.props.record.model.notify();
+                   },
+            });
+
+            }
             });
         }
 
