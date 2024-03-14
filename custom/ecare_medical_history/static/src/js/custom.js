@@ -93,6 +93,25 @@ odoo.define('ecare_medical_history.patient_banner', function (require) {
         }
 
         async _onEditPatientProfile() {
+           const errorSpan = document.querySelector('span.text-danger.small.ms-2');
+            if (errorSpan) {
+                // Handle the scenario where the error span exists
+                // For example, display an error message to the user
+                console.error("Error: Unable to save. Please correct the errors.");
+                return;
+            }
+//        const fields = this.props.record.fields;
+//        console.log(fields);
+//        for (const fieldName in fields) {
+//            const field = fields[fieldName];
+//            if (field.required && !this.props.record.data[fieldName]) {
+//                // Handle the scenario where a mandatory field is not filled
+//                // For example, display an error message to the user
+//                console.error(`Mandatory field ${fieldName} is not filled.`);
+//                return;
+//            }
+//        }
+
         await this.props.record.save();
             this.action.doActionButton({
                 type: "object",
@@ -123,6 +142,13 @@ odoo.define('ecare_medical_history.patient_banner', function (require) {
         }
 
         async _onEditPatientTimeline() {
+           const errorSpan = document.querySelector('span.text-danger.small.ms-2');
+            if (errorSpan) {
+                // Handle the scenario where the error span exists
+                // For example, display an error message to the user
+                console.error("Error: Unable to save. Please correct the errors.");
+                return;
+            }
         await this.props.record.save();
             this.action.doActionButton({
                 type: "object",
