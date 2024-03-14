@@ -619,7 +619,7 @@ label[for="lining_ids"] {
 }
 
 .o_form_view .o_required_modifier{
-    background-color: #ffbdbd !important;
+    background-color: #faf0f4 !important;
 }
 
 .o_dropdown_button {
@@ -639,3 +639,17 @@ select:hover{
 .o_datepicker_button{
     visibility: visible !important;
 }
+
+  .tvs_scan_popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #000000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    height: 41rem;
+  }

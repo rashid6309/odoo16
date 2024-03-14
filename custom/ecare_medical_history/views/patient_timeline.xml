@@ -35,6 +35,118 @@
 					<div style="margin-top: -2%;">
 						<field name="timeline_patient_id" style="display:block;" widget="banner_summary_widget"/>
 					</div>
+					<script>
+
+						function showLovBeginScan(type) {
+							var scan_type = type;
+							scan_input = document.getElementById('type_of_scan');
+							scan_input.value = scan_type;
+							var popup = document.getElementById('tvs_scan_popup');
+							popup.style.display = 'block';
+
+							inputValue = document.getElementById('tvs_lov').value;
+							document.querySelector('.output_results').value = inputValue;
+						}
+
+						function showRovBeginScan(type) {
+							var scan_type = type;
+							scan_input = document.getElementById('type_of_scan');
+							scan_input.value = scan_type;
+							var popup = document.getElementById('tvs_scan_popup');
+							popup.style.display = 'block';
+
+							inputValue = document.getElementById('tvs_rov').value;
+							document.querySelector('.output_results').value = inputValue;
+						}
+
+						function cancelPopup() {
+							var popup = document.getElementById('tvs_scan_popup');
+							popup.style.display = 'none';
+						}
+
+						function processDisplay(display) {
+							let dataList = display.split(',');
+							let plusElements = dataList.filter(element => element === '+');
+							let greaterThan22Elements = dataList.filter(element => element === '>22');
+							dataList = dataList.filter(element => element !== '+' &amp; &amp; element !== '>22');
+							let sortedData = dataList.sort((a, b) => {
+								if (!isNaN(parseFloat(a)) &amp; &amp; !isNaN(parseFloat(b))) {
+									return parseFloat(a) - parseFloat(b);
+								} else {
+									return a.localeCompare(b);
+								}
+							});
+							let resultList = plusElements.concat(sortedData, greaterThan22Elements);
+							let resultStr = resultList.filter(Boolean).join(',');
+							return resultStr;
+						}
+
+						function saveTvsScan() {
+							scan_input = document.getElementById('type_of_scan').value;
+							if (scan_input == "lov") {
+								var popup = document.getElementById('tvs_scan_popup');
+								popup.style.display = 'none';
+								var inputValue = document.querySelector('.output_results').value;
+								processed_value = processDisplay(inputValue);
+								document.getElementById('tvs_lov').value = processed_value;
+							} else {
+								var popup = document.getElementById('tvs_scan_popup');
+								popup.style.display = 'none';
+								var inputValue = document.querySelector('.output_results').value;
+								processed_value = processDisplay(inputValue);
+								document.getElementById('tvs_rov').value = processed_value;
+							}
+
+						}
+					</script>
+					<div id="tvs_scan_popup" class="tvs_scan_popup">
+						<h2>TVS Scan</h2>
+						<div class="tvs_scan">
+							<div class="display">
+								<input type="text" class="output_results" name="display" id="display"
+									   style="width:30rem;"/>
+								<!--																<field name="tvs_id" readonly="1" invisible="1"/>-->
+								<!--																<field name="gynae_id" readonly="1" invisible="1"/>-->
+							</div>
+							<div class="d-flex flex-column" style="margin-top: -8%;">
+								<div>
+									<button type="button" name="+" value="+" onclick="display.value += '+,' "  class="tvs_scan_form_input"/>
+								</div>
+								<div>
+									<input type="button" value="8" onclick="display.value += '8,' "  class="tvs_scan_form_input"/>
+									<input type="button" value="9" onclick="display.value += '9,' " class="tvs_scan_form_input"/>
+									<input type="button" value="10" onclick="display.value += '10,' " class="tvs_scan_form_input"/>
+									<input type="button" value="11" onclick="display.value += '11,' " class="tvs_scan_form_input"/>
+								</div>
+								<div>
+									<input type="button" value="12" onclick="display.value += '12,' " class="tvs_scan_form_input"/>
+									<input type="button" value="13" onclick="display.value += '13,' " class="tvs_scan_form_input"/>
+									<input type="button" value="14" onclick="display.value += '14,' " class="tvs_scan_form_input"/>
+									<input type="button" value="15" onclick="display.value += '15,' " class="tvs_scan_form_input"/>
+								</div>
+								<div>
+									<input type="button" value="16" onclick="display.value += '16,' " class="tvs_scan_form_input"/>
+									<input type="button" value="17" onclick="display.value += '17,' " class="tvs_scan_form_input"/>
+									<input type="button" value="18" onclick="display.value += '18,' " class="tvs_scan_form_input"/>
+									<input type="button" value="19" onclick="display.value += '19,' " class="tvs_scan_form_input"/>
+								</div>
+								<div>
+									<input type="button" value="20" onclick="display.value += '20,' " class="tvs_scan_form_input"/>
+									<input type="button" value="21" onclick="display.value += '21,' " class="tvs_scan_form_input"/>
+									<input type="button" value="22" onclick="display.value += '22,' " class="tvs_scan_form_input"/>
+									<input type="button" value="&gt;22" onclick="display.value += '&gt;22,' " class="tvs_scan_form_input"/>
+								</div>
+								<div>
+									<input type="button" value="DE" onclick="display.value =  display.value.toString().slice(0,-1)" class="tvs_scan_form_input"/>
+									<input type="button" value="AC" onclick="display.value = '' " class="tvs_scan_form_input"/>
+								</div>
+							</div>
+						</div>
+						<a class="btn btn-primary m-3" onclick="saveTvsScan()">Save</a>
+						<a class="btn btn-primary m-3" onclick="cancelPopup()">Cancel</a>
+						<input type="hidden" id="type_of_scan" name="type_of_scan"/>
+					</div>
+
 					<group>
 						<field name="first_consultation_patient_id" invisible="1" force_save="1"/>
 						<field name="timeline_patient_id" invisible="1"
@@ -468,8 +580,7 @@
 											</group>
 											<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-												<div
-														attrs="{'invisible': [('inspection_only', '!=', True),
+												<div attrs="{'invisible': [('inspection_only', '!=', True),
 												   ('p_v_only', '!=', True),
 												   ('p_s_only', '!=', True)]}"
 												>
@@ -688,15 +799,15 @@
 													</div>
 
 													<div class="col-md-6">
-
-														<button type="object"
-																class="btn-primary"
-																context="{'default_field': 'tvs_rov',
-															'default_display': tvs_rov
-															}"
-																name="action_open_tvs_scan"
-																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
-																string="Begin Scan"/>
+														<a class="btn btn-primary" onclick="showRovBeginScan('rov')">Begin Scan</a>
+														<!--														<button type="object"-->
+														<!--																class="btn-primary"-->
+														<!--																context="{'default_field': 'tvs_rov',-->
+														<!--															'default_display': tvs_rov-->
+														<!--															}"-->
+														<!--																name="action_open_tvs_scan"-->
+														<!--																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+														<!--																string="Begin Scan"/>-->
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
 															<field name="tvs_right_ovary_not_visualised"/>
@@ -718,14 +829,15 @@
 													</div>
 
 													<div class="col-md-6">
-														<button type="object"
-																class="btn-primary"
-																context="{'default_field': 'tvs_lov',
-															'default_display': tvs_lov
-															}"
-																name="action_open_tvs_scan"
-																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
-																string="Begin Scan"/>
+														<a class="btn btn-primary" onclick="showLovBeginScan('lov')">Begin Scan</a>
+														<!--														<button type="object"-->
+														<!--																class="btn-primary"-->
+														<!--																context="{'default_field': 'tvs_lov',-->
+														<!--															'default_display': tvs_lov-->
+														<!--															}"-->
+														<!--																name="action_open_tvs_scan"-->
+														<!--																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+														<!--																string="Begin Scan"/>-->
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
 															<field name="tvs_left_ovary_not_visualised"/>
@@ -825,19 +937,19 @@
 
 										</span>
 										<div style="text-align-last: right;background: #adb5bd;">
-<!--											<a href="#" t-on-click="_onEditPatientTimeline"-->
-<!--											   style="color: #FFFFFF !important; background-color: #71639e !important;-->
-<!--											   border-color: #71639e; display: inline-block; font-weight: 500;-->
-<!--											   line-height: 1.5; text-align: center; vertical-align: middle;-->
-<!--											    cursor: pointer; user-select: none; border: aliceblue;-->
-<!--											    padding: 0.375rem 0.75rem; font-size: 1.08333333rem;-->
-<!--											    border-radius: 0.25rem; margin: 0.5rem !important;"-->
-<!--											   class="editPatientSemen">-->
-<!--												<span>-->
-<!--													Delete Consultation-->
-<!--												</span>-->
+											<!--											<a href="#" t-on-click="_onEditPatientTimeline"-->
+											<!--											   style="color: #FFFFFF !important; background-color: #71639e !important;-->
+											<!--											   border-color: #71639e; display: inline-block; font-weight: 500;-->
+											<!--											   line-height: 1.5; text-align: center; vertical-align: middle;-->
+											<!--											    cursor: pointer; user-select: none; border: aliceblue;-->
+											<!--											    padding: 0.375rem 0.75rem; font-size: 1.08333333rem;-->
+											<!--											    border-radius: 0.25rem; margin: 0.5rem !important;"-->
+											<!--											   class="editPatientSemen">-->
+											<!--												<span>-->
+											<!--													Delete Consultation-->
+											<!--												</span>-->
 
-<!--											</a>-->
+											<!--											</a>-->
 											<button name="action_delete_repeat_consultation_section"
 													type="object"
 													class="btn btn-primary m-2"
@@ -897,6 +1009,7 @@
 											});
 											});
 										</script>
+
 										<script>
 											document.addEventListener('click', function (event) {
 											var previousTreatmentButton = document.querySelector('[name="previous_treatment"]');
@@ -967,6 +1080,9 @@
 
 
 										</script>
+
+
+
 										<a style="float: right; display: inline-block; background-color: #71639e; color: #fff; text-align: center; text-decoration: none; border-radius: 5px;
 										 cursor: pointer; width: 7%;
 										 FONT-SIZE: 12px; padding-top: 1%;"
