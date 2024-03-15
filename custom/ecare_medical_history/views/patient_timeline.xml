@@ -1185,7 +1185,8 @@
 										<a data-bs-toggle="collapse" data-bs-target="#first_consultation_section" href="#">
 											<h4 class="mt-2 mb-0">First Consultation
 												<field style="font-size: 0.9rem; margin-left: 3%;"
-													   name="ec_first_consultation_create_date"/></h4></a>
+													   force_save="1"
+													   name="ec_create_date_first_consultation_computed"/></h4></a>
 									</div>
 									<div class="col-6 text-right" style="margin-top:9px;text-align: right;">
 										<h4>
@@ -1198,6 +1199,7 @@
 								<div class="card-block mb-5 pl-4 collapse " id="first_consultation_section">
 									<notebook class="notebook-headers-custom">
 										<page string="Female" name="female">
+											<field name="create_date_first_consultation"/>
 											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="general_examination_section_link">
 												<div class="col-6">
 													<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General History</h4></a>

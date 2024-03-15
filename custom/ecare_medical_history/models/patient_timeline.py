@@ -39,6 +39,13 @@ class PatientTimeline(models.Model):
     ec_first_consultation_create_date = fields.Datetime("Create Date",
                                                         related='ec_first_consultation_id.create_date')
 
+    create_date_first_consultation = fields.Datetime("Create Date",
+                                                     default=lambda self: fields.Datetime.now())
+    ec_create_date_first_consultation_computed = fields.Datetime("Create Date",
+                                                                 readonly=True,
+                                                                 store=True,
+                                                                 conpute='ec_create_date_first_consultation')
+
     ec_first_consultation_create_uid = fields.Many2one(string="Create User",
                                                        comodel_name='res.users',
                                                        related='ec_first_consultation_id.create_uid')
@@ -204,6 +211,19 @@ class PatientTimeline(models.Model):
         return None
 
     ''' Computed methods '''
+
+    @api.onchange('create_date_first_consultation')
+    def ec_create_date_first_consultation(self):
+        if self:
+            for record in self:
+                if record.create_date_first_consultation:
+                    record.ec_create_date_first_consultation_computed = record.create_date_first_consultation
+                else:
+                    record.ec_create_date_first_consultation_computed = None
+
+
+
+
 
     @api.onchange('repeat_date', 'lmp_question_four')
     def _compute_cycle_day(self):
@@ -391,7 +411,7 @@ class PatientTimeline(models.Model):
             'female_mumps_date': ('Mumps', 'female_mumps'),
             'female_adrenal_date': ('Adrenal', 'female_adrenal'),
             'female_anti_phospholipid_syndrome_date': (
-            'Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome'),
+                'Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome'),
             'female_autoimmune_disease_date': ('Autoimmune Diseases', 'female_autoimmune_disease'),
             'female_blood_transfusion_date': ('Blood Transfusion', 'female_blood_transfusion'),
             'female_cardiac_date': ('Cardiac', 'female_cardiac'),
