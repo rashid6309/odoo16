@@ -217,6 +217,10 @@ class PatientTimeline(models.Model):
         if self:
             for record in self:
                 if record.create_date_first_consultation:
+                    if CustomDateTime.datetime_greater_than_today(record.create_date_first_consultation):
+                        record.create_date_first_consultation= None
+                        raise ValidationError(_(
+                            "Date can't be greater than current date!"))
                     record.ec_create_date_first_consultation_computed = record.create_date_first_consultation
                 else:
                     record.ec_create_date_first_consultation_computed = None
