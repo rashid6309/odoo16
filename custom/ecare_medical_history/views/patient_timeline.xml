@@ -862,7 +862,7 @@
 													</div>
 
 													<div class="col-md-5">
-														<div class="col-md-12">
+														<div class="col-md-12" style="pointer-events: none;">
 															<field name="tvs_rov"/>
 															<!--															<field name="tvs_rov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
 															<!--													   ('scan_required', '=', 'yes'),-->
