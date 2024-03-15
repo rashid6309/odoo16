@@ -220,14 +220,10 @@ class PatientTimeline(models.Model):
                     if CustomDateTime.datetime_greater_than_today(record.create_date_first_consultation):
                         record.create_date_first_consultation= None
                         raise ValidationError(_(
-                            "Date can't be greater than current date!"))
+                            "Date/Time can't be greater than current date time!"))
                     record.ec_create_date_first_consultation_computed = record.create_date_first_consultation
                 else:
                     record.ec_create_date_first_consultation_computed = None
-
-
-
-
 
     @api.onchange('repeat_date', 'lmp_question_four')
     def _compute_cycle_day(self):

@@ -116,6 +116,8 @@
 							   popup.style.display = 'none';
 							   var inputValue = document.querySelector('.output_results').innerText;
 							   processed_value = processDisplay(inputValue)+',';
+								processed_value = processed_value === ',' ? null : processed_value;
+
 							   if (scan_input == "lov")
 							   {
 								  var inputField = document.getElementById('tvs_lov');
