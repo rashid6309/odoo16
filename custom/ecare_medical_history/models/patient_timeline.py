@@ -436,8 +436,8 @@ class PatientTimeline(models.Model):
                 type_of_surgery_label = dict(
                     self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery,
                                                                                                 '')
-                field_text = f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br>' \
-                             f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>'
+                field_text = (f'<strong style="font-weight: 700;"> {surgery.details} ({surgery.surgical_year_id.year})'
+                              f'</strong><br>')
                 html_content += field_text
             record.male_surgical_history = html_content
         # Male Fields Processing
@@ -448,8 +448,8 @@ class PatientTimeline(models.Model):
                 type_of_surgery_label = dict(
                     self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery,
                                                                                                 '')
-                field_text = f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br>' \
-                             f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>'
+                field_text = (f'<strong style="font-weight: 700;"> {surgery.details} ({surgery.surgical_year_id.year})'
+                              f'</strong><br>')
                 html_content += field_text
             record.female_surgical_history = html_content
 

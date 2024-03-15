@@ -36,89 +36,134 @@
 						<field name="timeline_patient_id" style="display:block;" widget="banner_summary_widget"/>
 					</div>
 					<script>
-						function showBeginScan(type, element_id) {
-							var scan_type = type;
-							scan_input = document.getElementById('type_of_scan');
-							scan_input.value = scan_type;
-							var popup = document.getElementById('tvs_scan_popup');
-							popup.style.display = 'block';
+						function showTreatmentHistory() {
+						var popup = document.getElementById('treatment_history_popup');
+						popup.style.display = 'block';
+						}
+						function saveTreatmentHistory() {
+						var popup = document.getElementById('treatment_history_popup');
+						popup.style.display = 'none';
+						}
 
-							inputValue = document.getElementById(element_id).value;
-							document.querySelector('.output_results').innerText = inputValue;
+						function showBeginScan(type, element_id) {
+						var scan_type = type;
+						scan_input = document.getElementById('type_of_scan');
+						scan_input.value = scan_type;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'block';
+
+						inputValue = document.getElementById(element_id).value;
+						document.querySelector('.output_results').innerText = inputValue;
 						}
 
 						function showLovBeginScan(type) {
-							var scan_type = type;
-							scan_input = document.getElementById('type_of_scan');
-							scan_input.value = scan_type;
-							var popup = document.getElementById('tvs_scan_popup');
-							popup.style.display = 'block';
+						var scan_type = type;
+						scan_input = document.getElementById('type_of_scan');
+						scan_input.value = scan_type;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'block';
 
-							inputValue = document.getElementById('tvs_lov').value;
-							document.querySelector('.output_results').value = inputValue;
+						inputValue = document.getElementById('tvs_lov').value;
+						document.querySelector('.output_results').value = inputValue;
 						}
 
 						function showRovBeginScan(type) {
-							var scan_type = type;
-							scan_input = document.getElementById('type_of_scan');
-							scan_input.value = scan_type;
-							var popup = document.getElementById('tvs_scan_popup');
-							popup.style.display = 'block';
+						var scan_type = type;
+						scan_input = document.getElementById('type_of_scan');
+						scan_input.value = scan_type;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'block';
 
-							inputValue = document.getElementById('tvs_rov').value;
-							document.querySelector('.output_results').value = inputValue;
+						inputValue = document.getElementById('tvs_rov').value;
+						document.querySelector('.output_results').value = inputValue;
 						}
 
 						function cancelPopup() {
-							var popup = document.getElementById('tvs_scan_popup');
-							popup.style.display = 'none';
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'none';
 						}
 
 						function processDisplay(dataListText) {
-							let dataList = dataListText.split(',');
-							let plusElements = dataList.filter(element => element === '+');
-							let greaterThan22Elements = dataList.filter(element => element === '>22');
-							dataList = dataList.filter(element => {
-										if (element !== '+' ) {
-											if (element !== '>22') {
-												return true;
-											}
-										}
-										return false;
-									});
+						let dataList = dataListText.split(',');
+						let plusElements = dataList.filter(element => element === '+');
+						let greaterThan22Elements = dataList.filter(element => element === '>22');
+						dataList = dataList.filter(element => {
+						if (element !== '+' ) {
+						if (element !== '>22') {
+						return true;
+						}
+						}
+						return false;
+						});
 
-							let sortedData = dataList.sort((a, b) => {
-								if (!isNaN(parseFloat(a))) {
-									if(!isNaN(parseFloat(b))){
-									return parseFloat(a) - parseFloat(b);
-										}
-								} else {
-									return a.localeCompare(b);
-								}
-							});
-							let resultList = plusElements.concat(sortedData, greaterThan22Elements);
-							let resultStr = resultList.filter(Boolean).join(',');
-							return resultStr;
+						let sortedData = dataList.sort((a, b) => {
+						if (!isNaN(parseFloat(a))) {
+						if(!isNaN(parseFloat(b))){
+						return parseFloat(a) - parseFloat(b);
+						}
+						} else {
+						return a.localeCompare(b);
+						}
+						});
+						let resultList = plusElements.concat(sortedData, greaterThan22Elements);
+						let resultStr = resultList.filter(Boolean).join(',');
+						return resultStr;
 						}
 
 						function saveTvsScan() {
-							scan_input = document.getElementById('type_of_scan').value;
-							if (scan_input == "lov") {
-								var popup = document.getElementById('tvs_scan_popup');
-								popup.style.display = 'none';
-								var inputValue = document.querySelector('.output_results').innerText;
-								processed_value = processDisplay(inputValue)+',';
-								document.getElementById('tvs_lov').value = processed_value;
-							} else {
-								var popup = document.getElementById('tvs_scan_popup');
-								popup.style.display = 'none';
-								var inputValue = document.querySelector('.output_results').innerText;
-								processed_value = processDisplay(inputValue)+',';
-								document.getElementById('tvs_rov').value = processed_value;
-							}
+						scan_input = document.getElementById('type_of_scan').value;
+						if (scan_input == "lov") {
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'none';
+						var inputValue = document.querySelector('.output_results').innerText;
+						processed_value = processDisplay(inputValue)+',';
+						document.getElementById('tvs_lov').value = processed_value;
+						}
+						else if (scan_input == "rov")
+						{
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'none';
+						var inputValue = document.querySelector('.output_results').innerText;
+						processed_value = processDisplay(inputValue)+',';
+						document.getElementById('tvs_rov').value = processed_value;
+						}
+						else if (scan_input == "gynae_rov")
+						{
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'none';
+						var inputValue = document.querySelector('.output_results').innerText;
+						processed_value = processDisplay(inputValue)+',';
+						document.getElementById('gynae_rov').value = processed_value;
+						}
+						else if (scan_input == "gynae_lov")
+						{
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'none';
+						var inputValue = document.querySelector('.output_results').innerText;
+						processed_value = processDisplay(inputValue)+',';
+						document.getElementById('gynae_lov').value = processed_value;
+						}
+						else
+						{
+						return;
+						}
 
 						}
 					</script>
+					<div id="treatment_history_popup" class="tvs_scan_popup">
+						<tree editable="top">
+							<field name="timeline_previous_treatment_ids"
+								   context="{'default_patient_id': timeline_patient_id,
+													   'default_timeline_id' : id,
+													   }"
+								   nolabel="1" editable="top">
+							</field>
+						</tree>
+						<a class="btn btn-primary m-3" onclick="saveTreatmentHistory()">Save</a>
+					</div>
+
+
+
 					<div id="tvs_scan_popup" class="tvs_scan_popup">
 						<h2>TVS Scan</h2>
 						<div class="tvs_scan">
@@ -820,6 +865,7 @@
 
 													<div class="col-md-6">
 														<a class="btn btn-primary" onclick="showBeginScan('rov', 'tvs_rov')">Begin Scan</a>
+<!--														<a class="btn btn-primary" onclick="showTreatmentHistory()">Treatment History</a>-->
 														<!--														<button type="object"-->
 														<!--																class="btn-primary"-->
 														<!--																context="{'default_field': 'tvs_rov',-->
@@ -970,12 +1016,12 @@
 											<!--												</span>-->
 
 											<!--											</a>-->
-<!--											<button name="action_delete_repeat_consultation_section"-->
-<!--													type="object"-->
-<!--													class="btn btn-primary m-2"-->
-<!--													groups="ecare_medical_history.group_ec_medical_administrator"-->
-<!--													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"-->
-<!--													string="Delete Consultation"/>-->
+											<!--											<button name="action_delete_repeat_consultation_section"-->
+											<!--													type="object"-->
+											<!--													class="btn btn-primary m-2"-->
+											<!--													groups="ecare_medical_history.group_ec_medical_administrator"-->
+											<!--													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"-->
+											<!--													string="Delete Consultation"/>-->
 
 											<button name="action_save_repeat_consultation_section"
 													type="object"
@@ -2385,12 +2431,13 @@
 													<div>
 														<field name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;"/>
 														<span class="oe_inline">
-															<button type="object"
-																	class="btn-primary"
-																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"
-																	name="action_open_gynae_scan"
-																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
-																	string="Begin Scan"/>
+															<a class="btn btn-primary" onclick="showBeginScan('gynae_rov', 'gynae_rov')">Begin Scan</a>
+<!--															<button type="object"-->
+<!--																	class="btn-primary"-->
+<!--																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"-->
+<!--																	name="action_open_gynae_scan"-->
+<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+<!--																	string="Begin Scan"/>-->
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -2403,12 +2450,13 @@
 													<div>
 														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;"/>
 														<span class="oe_inline">
-															<button type="object"
-																	class="btn-primary"
-																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"
-																	name="action_open_gynae_scan"
-																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
-																	string="Begin Scan"/>
+															<a class="btn btn-primary" onclick="showBeginScan('gynae_lov', 'gynae_lov')">Begin Scan</a>
+<!--															<button type="object"-->
+<!--																	class="btn-primary"-->
+<!--																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"-->
+<!--																	name="action_open_gynae_scan"-->
+<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+<!--																	string="Begin Scan"/>-->
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
