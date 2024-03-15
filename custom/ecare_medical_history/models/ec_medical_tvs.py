@@ -52,6 +52,12 @@ class EcMedicalTVS(models.Model):
                                         string='Endometrial Lining Character',
                                         domain="[('type', '=', 'linining')]")
 
+    tvs_smooth = fields.Boolean(string="Smooth", default=False)
+    tvs_distorted = fields.Boolean(string="Distorted", default=False)
+    tvs_triple_echo = fields.Boolean(string="Triple Echo", default=False)
+    tvs_hyperechoic_solid = fields.Boolean(string="Hyperechoic/Solid", default=False)
+    tvs_suspected_cavity_lesion = fields.Boolean(string="Suspected Cavity Lesion", default=False)
+
     tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                        string='CET')
 

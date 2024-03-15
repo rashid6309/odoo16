@@ -831,11 +831,22 @@
 													</div>
 													<div class="d-flex flex-column">
 														<div>
-															<field name="tvs_linining_ids"
-																   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('scan_required', '=', 'yes'),
-													   ('question_one_choice', '=', 'no')]}"
-																   widget="many2many_checkboxes"/>
+															<field name="tvs_smooth"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Smooth</span>
+															<field name="tvs_distorted"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Distorted</span>
+															<field name="tvs_triple_echo"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Triple Echo</span>
+															<field name="tvs_hyperechoic_solid"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Hyperechoic/Solid</span>
+															<field name="tvs_suspected_cavity_lesion"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
+
+<!--															<field name="tvs_linining_ids"-->
+<!--																   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+<!--													   ('scan_required', '=', 'yes'),-->
+<!--													   ('question_one_choice', '=', 'no')]}"-->
+<!--																   widget="many2many_checkboxes"/>-->
 														</div>
 														<div>
 															<span>CET</span>
@@ -1076,76 +1087,76 @@
 											});
 										</script>
 
-										<script>
-											document.addEventListener('click', function (event) {
-											var previousTreatmentButton = document.querySelector('[name="previous_treatment"]');
+<!--										<script>-->
+<!--											document.addEventListener('click', function (event) {-->
+<!--											var previousTreatmentButton = document.querySelector('[name="previous_treatment"]');-->
 
-											if(previousTreatmentButton){
+<!--											if(previousTreatmentButton){-->
 
-											if (event.target === previousTreatmentButton || previousTreatmentButton.contains(event.target)) {
-											setTimeout(function () {
-											var tables = document.querySelectorAll('.o_list_table');
+<!--											if (event.target === previousTreatmentButton || previousTreatmentButton.contains(event.target)) {-->
+<!--											setTimeout(function () {-->
+<!--											var tables = document.querySelectorAll('.o_list_table');-->
 
-											tables.forEach(function (table) {
-											var tbody = table.querySelector('.ui-sortable');
-											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');
+<!--											tables.forEach(function (table) {-->
+<!--											var tbody = table.querySelector('.ui-sortable');-->
+<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
 
-											if (tbody) {
-											if (rowToAdd) {
-											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);
-											}
-											}
-											});
-											}, 200);
-											}
-											}
-											});
+<!--											if (tbody) {-->
+<!--											if (rowToAdd) {-->
+<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
+<!--											}-->
+<!--											}-->
+<!--											});-->
+<!--											}, 200);-->
+<!--											}-->
+<!--											}-->
+<!--											});-->
 
-											document.addEventListener('click', function (event) {
-											var obstetricsHistoryButton = document.getElementById("obstetrics_history_section_link");
-											var repeatConsultationButton = document.getElementById("repeat_consultation_section_link");
-											if(obstetricsHistoryButton){
-											if (event.target === obstetricsHistoryButton || obstetricsHistoryButton.contains(event.target)) {
-											setTimeout(function () {
-											var tables = document.querySelectorAll('.o_list_table');
+<!--											document.addEventListener('click', function (event) {-->
+<!--											var obstetricsHistoryButton = document.getElementById("obstetrics_history_section_link");-->
+<!--											var repeatConsultationButton = document.getElementById("repeat_consultation_section_link");-->
+<!--											if(obstetricsHistoryButton){-->
+<!--											if (event.target === obstetricsHistoryButton || obstetricsHistoryButton.contains(event.target)) {-->
+<!--											setTimeout(function () {-->
+<!--											var tables = document.querySelectorAll('.o_list_table');-->
 
-											tables.forEach(function (table) {
-											var tbody = table.querySelector('.ui-sortable');
-											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');
+<!--											tables.forEach(function (table) {-->
+<!--											var tbody = table.querySelector('.ui-sortable');-->
+<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
 
-											if (tbody) {
-											if (rowToAdd) {
-											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);
-											}
-											}
-											});
-											}, 200);
-											}
-											}
+<!--											if (tbody) {-->
+<!--											if (rowToAdd) {-->
+<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
+<!--											}-->
+<!--											}-->
+<!--											});-->
+<!--											}, 200);-->
+<!--											}-->
+<!--											}-->
 
-											if(repeatConsultationButton){
-											if (event.target === repeatConsultationButton || repeatConsultationButton.contains(event.target)) {
-											setTimeout(function () {
-											var tables = document.querySelectorAll('.o_list_table');
+<!--											if(repeatConsultationButton){-->
+<!--											if (event.target === repeatConsultationButton || repeatConsultationButton.contains(event.target)) {-->
+<!--											setTimeout(function () {-->
+<!--											var tables = document.querySelectorAll('.o_list_table');-->
 
-											tables.forEach(function (table) {
-											var tbody = table.querySelector('.ui-sortable');
-											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');
+<!--											tables.forEach(function (table) {-->
+<!--											var tbody = table.querySelector('.ui-sortable');-->
+<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
 
-											if (tbody) {
-											if (rowToAdd) {
-											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);
-											}
-											}
-											});
-											}, 200);
-											}
-											}
+<!--											if (tbody) {-->
+<!--											if (rowToAdd) {-->
+<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
+<!--											}-->
+<!--											}-->
+<!--											});-->
+<!--											}, 200);-->
+<!--											}-->
+<!--											}-->
 
-											});
+<!--											});-->
 
 
-										</script>
+<!--										</script>-->
 
 
 
@@ -2401,7 +2412,17 @@
 																</div>
 																<div class="d-flex flex-column">
 																	<div>
-																		<field name="lining_ids" widget="many2many_checkboxes"/>
+																		<field name="gynae_smooth"/>
+																		<span style=" margin-right: 1%; ">Smooth</span>
+																		<field name="gynae_distorted"/>
+																		<span style=" margin-right: 1%; ">Distorted</span>
+																		<field name="gynae_triple_echo"/>
+																		<span style=" margin-right: 1%; ">Triple Echo</span>
+																		<field name="gynae_hyperechoic_solid"/>
+																		<span style=" margin-right: 1%; ">Hyperechoic/Solid</span>
+																		<field name="gynae_suspected_cavity_lesion"/>
+																		<span style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
+<!--																		<field name="lining_ids" widget="many2many_checkboxes"/>-->
 																	</div>
 																	<div>
 																		<span>CET</span>

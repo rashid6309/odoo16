@@ -123,6 +123,12 @@ class MedicalGynaecologicalExamination(models.Model):
                                   column1='gynaecological_id',
                                   column2='multi_selection_id',
                                   string='Endometrial Lining Character', domain="[('type', '=', 'linining')]")
+    gynae_smooth = fields.Boolean(string="Smooth", default=False)
+    gynae_distorted = fields.Boolean(string="Distorted", default=False)
+    gynae_triple_echo = fields.Boolean(string="Triple Echo", default=False)
+    gynae_hyperechoic_solid = fields.Boolean(string="Hyperechoic/Solid", default=False)
+    gynae_suspected_cavity_lesion = fields.Boolean(string="Suspected Cavity Lesion", default=False)
+
     lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='CET')
 
     def action_open_gynae_scan(self):
