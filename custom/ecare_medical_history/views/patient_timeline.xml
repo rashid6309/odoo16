@@ -37,118 +37,114 @@
 					</div>
 					<script>
 						function showTreatmentHistory() {
-						var popup = document.getElementById('treatment_history_popup');
-						popup.style.display = 'block';
+							var popup = document.getElementById('treatment_history_popup');
+							popup.style.display = 'block';
 						}
 						function saveTreatmentHistory() {
-						var popup = document.getElementById('treatment_history_popup');
-						popup.style.display = 'none';
+							var popup = document.getElementById('treatment_history_popup');
+							popup.style.display = 'none';
 						}
 
 						function showBeginScan(type, element_id) {
-						var scan_type = type;
-						scan_input = document.getElementById('type_of_scan');
-						scan_input.value = scan_type;
-						var popup = document.getElementById('tvs_scan_popup');
-						popup.style.display = 'block';
+							var scan_type = type;
+							scan_input = document.getElementById('type_of_scan');
+							scan_input.value = scan_type;
+							var popup = document.getElementById('tvs_scan_popup');
+							popup.style.display = 'block';
 
-						inputValue = document.getElementById(element_id).value;
-						document.querySelector('.output_results').innerText = inputValue;
+							inputValue = document.getElementById(element_id).value;
+							document.querySelector('.output_results').innerText = inputValue;
 						}
 
 						function showLovBeginScan(type) {
-						var scan_type = type;
-						scan_input = document.getElementById('type_of_scan');
-						scan_input.value = scan_type;
-						var popup = document.getElementById('tvs_scan_popup');
-						popup.style.display = 'block';
+							var scan_type = type;
+							scan_input = document.getElementById('type_of_scan');
+							scan_input.value = scan_type;
+							var popup = document.getElementById('tvs_scan_popup');
+							popup.style.display = 'block';
 
-						inputValue = document.getElementById('tvs_lov').value;
-						document.querySelector('.output_results').value = inputValue;
+							inputValue = document.getElementById('tvs_lov').value;
+							document.querySelector('.output_results').value = inputValue;
 						}
 
 						function showRovBeginScan(type) {
-						var scan_type = type;
-						scan_input = document.getElementById('type_of_scan');
-						scan_input.value = scan_type;
-						var popup = document.getElementById('tvs_scan_popup');
-						popup.style.display = 'block';
+							var scan_type = type;
+							scan_input = document.getElementById('type_of_scan');
+							scan_input.value = scan_type;
+							var popup = document.getElementById('tvs_scan_popup');
+							popup.style.display = 'block';
 
-						inputValue = document.getElementById('tvs_rov').value;
-						document.querySelector('.output_results').value = inputValue;
+							inputValue = document.getElementById('tvs_rov').value;
+							document.querySelector('.output_results').value = inputValue;
 						}
 
 						function cancelPopup() {
-						var popup = document.getElementById('tvs_scan_popup');
-						popup.style.display = 'none';
+							var popup = document.getElementById('tvs_scan_popup');
+							popup.style.display = 'none';
 						}
 
 						function processDisplay(dataListText) {
-						let dataList = dataListText.split(',');
-						let plusElements = dataList.filter(element => element === '+');
-						let greaterThan22Elements = dataList.filter(element => element === '>22');
-						dataList = dataList.filter(element => {
-						if (element !== '+' ) {
-						if (element !== '>22') {
-						return true;
-						}
-						}
-						return false;
-						});
+							let dataList = dataListText.split(',');
+							let plusElements = dataList.filter(element => element === '+');
+							let greaterThan22Elements = dataList.filter(element => element === '>22');
+							dataList = dataList.filter(element => {
+							if (element !== '+' ) {
+							if (element !== '>22') {
+							return true;
+							}
+							}
+							return false;
+							});
 
-						let sortedData = dataList.sort((a, b) => {
-						if (!isNaN(parseFloat(a))) {
-						if(!isNaN(parseFloat(b))){
-						return parseFloat(a) - parseFloat(b);
-						}
-						} else {
-						return a.localeCompare(b);
-						}
-						});
-						let resultList = plusElements.concat(sortedData, greaterThan22Elements);
-						let resultStr = resultList.filter(Boolean).join(',');
-						return resultStr;
-						}
-
-						function saveTvsScan() {
-						scan_input = document.getElementById('type_of_scan').value;
-						if (scan_input == "lov") {
-						var popup = document.getElementById('tvs_scan_popup');
-						popup.style.display = 'none';
-						var inputValue = document.querySelector('.output_results').innerText;
-						processed_value = processDisplay(inputValue)+',';
-						document.getElementById('tvs_lov').value = processed_value;
-						}
-						else if (scan_input == "rov")
-						{
-						var popup = document.getElementById('tvs_scan_popup');
-						popup.style.display = 'none';
-						var inputValue = document.querySelector('.output_results').innerText;
-						processed_value = processDisplay(inputValue)+',';
-						document.getElementById('tvs_rov').value = processed_value;
-						}
-						else if (scan_input == "gynae_rov")
-						{
-						var popup = document.getElementById('tvs_scan_popup');
-						popup.style.display = 'none';
-						var inputValue = document.querySelector('.output_results').innerText;
-						processed_value = processDisplay(inputValue)+',';
-						document.getElementById('gynae_rov').value = processed_value;
-						}
-						else if (scan_input == "gynae_lov")
-						{
-						var popup = document.getElementById('tvs_scan_popup');
-						popup.style.display = 'none';
-						var inputValue = document.querySelector('.output_results').innerText;
-						processed_value = processDisplay(inputValue)+',';
-						document.getElementById('gynae_lov').value = processed_value;
-						}
-						else
-						{
-						return;
+							let sortedData = dataList.sort((a, b) => {
+							if (!isNaN(parseFloat(a))) {
+							if(!isNaN(parseFloat(b))){
+							return parseFloat(a) - parseFloat(b);
+							}
+							} else {
+							return a.localeCompare(b);
+							}
+							});
+							let resultList = plusElements.concat(sortedData, greaterThan22Elements);
+							let resultStr = resultList.filter(Boolean).join(',');
+							return resultStr;
 						}
 
-						}
+							function saveTvsScan() {
+							   scan_input = document.getElementById('type_of_scan').value;
+							   var popup = document.getElementById('tvs_scan_popup');
+							   popup.style.display = 'none';
+							   var inputValue = document.querySelector('.output_results').innerText;
+							   processed_value = processDisplay(inputValue)+',';
+							   if (scan_input == "lov")
+							   {
+								  var inputField = document.getElementById('tvs_lov');
+								  inputField.value = processed_value;
+								  inputField.dispatchEvent(new Event('input', { bubbles: true }));
+							   }
+							   else if (scan_input == "rov")
+							   {
+								  var inputField = document.getElementById('tvs_rov');
+								  inputField.value = processed_value;
+								  inputField.dispatchEvent(new Event('input', { bubbles: true }));
+							   }
+							   else if (scan_input == "gynae_rov")
+							   {
+								  var inputField = document.getElementById('gynae_rov');
+								  inputField.value = processed_value;
+								  inputField.dispatchEvent(new Event('input', { bubbles: true }));
+							   }
+							   else if (scan_input == "gynae_lov")
+							   {
+								  var inputField = document.getElementById('gynae_lov');
+								  inputField.value = processed_value;
+								  inputField.dispatchEvent(new Event('input', { bubbles: true }));
+							   }
+							   else
+							   {
+								  return;
+							   }
+							}
 					</script>
 					<div id="treatment_history_popup" class="tvs_scan_popup">
 						<tree editable="top">
@@ -866,7 +862,7 @@
 													</div>
 
 													<div class="col-md-5">
-														<div class="col-md-12" style="pointer-events: none;">
+														<div class="col-md-12">
 															<field name="tvs_rov"/>
 															<!--															<field name="tvs_rov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
 															<!--													   ('scan_required', '=', 'yes'),-->
@@ -875,7 +871,7 @@
 													</div>
 
 													<div class="col-md-6">
-														<a class="btn btn-primary" onclick="showBeginScan('rov', 'tvs_rov')">Begin Scan</a>
+														<a class="btn btn-primary oe_edit_only" onclick="showBeginScan('rov', 'tvs_rov')">Begin Scan</a>
 <!--														<a class="btn btn-primary" onclick="showTreatmentHistory()">Treatment History</a>-->
 														<!--														<button type="object"-->
 														<!--																class="btn-primary"-->
