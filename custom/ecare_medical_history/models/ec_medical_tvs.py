@@ -42,8 +42,16 @@ class EcMedicalTVS(models.Model):
     tvs_uterus_size_y= fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                         string='Size Y')
 
+
+
     tvs_uterus_position = fields.Selection(selection=StaticMember.UTERUS_SIZE_POSITION,
                                            string='Position')
+
+    position_to_left = fields.Boolean(string="Deviated to Left", default=False)
+    position_to_right = fields.Boolean(string="Deviated to Right", default=False)
+    position_a_v = fields.Boolean(string="Av/V", default=False)
+    position_r_v = fields.Boolean(string="R/V", default=False)
+    position_mid_position = fields.Boolean(string="Mid Position", default=False)
 
     tvs_linining_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                         relation='repeat_multi_selection_repeat_position',

@@ -104,6 +104,13 @@ class MedicalGynaecologicalExamination(models.Model):
     uterus_size_width = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Uterus Width')
 
     uterus_size_position = fields.Selection(selection=StaticMember.UTERUS_SIZE_POSITION, string='Uterus Position')
+    
+    gynae_position_to_left = fields.Boolean(string="Deviated to Left", default=False)
+    gynae_position_to_right = fields.Boolean(string="Deviated to Right", default=False)
+    gynae_position_a_v = fields.Boolean(string="Av/V", default=False)
+    gynae_position_r_v = fields.Boolean(string="R/V", default=False)
+    gynae_position_mid_position = fields.Boolean(string="Mid Position", default=False)
+
 
     gynaecological_uterus_position_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                                           relation='gynaecological_uterus_multi_selection_repeat_position',
@@ -123,6 +130,7 @@ class MedicalGynaecologicalExamination(models.Model):
                                   column1='gynaecological_id',
                                   column2='multi_selection_id',
                                   string='Endometrial Lining Character', domain="[('type', '=', 'linining')]")
+
     gynae_smooth = fields.Boolean(string="Smooth", default=False)
     gynae_distorted = fields.Boolean(string="Distorted", default=False)
     gynae_triple_echo = fields.Boolean(string="Triple Echo", default=False)
