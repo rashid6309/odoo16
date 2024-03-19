@@ -9,6 +9,8 @@ from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from odoo.addons.ecare_medical_history.utils.validation import Validation
 
+from odoo.addons.ecare_medical_history.models.ec_medical_years import EcMedicalYear
+
 
 class PatientTimeline(models.Model):
     _name = "ec.patient.timeline"
@@ -195,7 +197,10 @@ class PatientTimeline(models.Model):
             custom_field = getattr(medical_history, custom_field_name)
             if field_records or (custom_field and custom_field.strip()):
                 custom_text = f' {custom_field.strip()}' if custom_field else ''
-                medical_members_list = [str(rec.year) for rec in field_records]
+                if isinstance(field_records, EcMedicalYear):
+                    medical_members_list = [str(rec.year) for rec in field_records]
+                else:
+                    medical_members_list = None
                 if medical_members_list:
                     year_in_bracket = f"({medical_members_list[0]})"
                     field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
