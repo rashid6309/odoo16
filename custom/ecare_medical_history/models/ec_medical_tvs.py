@@ -49,7 +49,7 @@ class EcMedicalTVS(models.Model):
 
     position_to_left = fields.Boolean(string="Deviated to Left", default=False)
     position_to_right = fields.Boolean(string="Deviated to Right", default=False)
-    position_a_v = fields.Boolean(string="Av/V", default=False)
+    position_a_v = fields.Boolean(string="A/V", default=False)
     position_r_v = fields.Boolean(string="R/V", default=False)
     position_mid_position = fields.Boolean(string="Mid Position", default=False)
 
