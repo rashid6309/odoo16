@@ -13,9 +13,9 @@
         <record model="ec.family.relation.list"  id="brother">
             <field name="name">Brother</field>
         </record>
-        <record model="ec.family.relation.list"  id="inlaws">
-            <field name="name">In-laws</field>
-        </record>
+<!--        <record model="ec.family.relation.list"  id="inlaws">-->
+<!--            <field name="name">In-laws</field>-->
+<!--        </record>-->
         <record model="ec.family.relation.list"  id="mfamily">
             <field name="name">Maternal Family</field>
         </record>

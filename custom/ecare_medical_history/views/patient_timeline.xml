@@ -37,116 +37,116 @@
 					</div>
 					<script>
 						function showTreatmentHistory() {
-							var popup = document.getElementById('treatment_history_popup');
-							popup.style.display = 'block';
+						var popup = document.getElementById('treatment_history_popup');
+						popup.style.display = 'block';
 						}
 						function saveTreatmentHistory() {
-							var popup = document.getElementById('treatment_history_popup');
-							popup.style.display = 'none';
+						var popup = document.getElementById('treatment_history_popup');
+						popup.style.display = 'none';
 						}
 
 						function showBeginScan(type, element_id) {
-							var scan_type = type;
-							scan_input = document.getElementById('type_of_scan');
-							scan_input.value = scan_type;
-							var popup = document.getElementById('tvs_scan_popup');
-							popup.style.display = 'block';
+						var scan_type = type;
+						scan_input = document.getElementById('type_of_scan');
+						scan_input.value = scan_type;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'block';
 
-							inputValue = document.getElementById(element_id).value;
-							document.querySelector('.output_results').innerText = inputValue;
+						inputValue = document.getElementById(element_id).value;
+						document.querySelector('.output_results').innerText = inputValue;
 						}
 
 						function showLovBeginScan(type) {
-							var scan_type = type;
-							scan_input = document.getElementById('type_of_scan');
-							scan_input.value = scan_type;
-							var popup = document.getElementById('tvs_scan_popup');
-							popup.style.display = 'block';
+						var scan_type = type;
+						scan_input = document.getElementById('type_of_scan');
+						scan_input.value = scan_type;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'block';
 
-							inputValue = document.getElementById('tvs_lov').value;
-							document.querySelector('.output_results').value = inputValue;
+						inputValue = document.getElementById('tvs_lov').value;
+						document.querySelector('.output_results').value = inputValue;
 						}
 
 						function showRovBeginScan(type) {
-							var scan_type = type;
-							scan_input = document.getElementById('type_of_scan');
-							scan_input.value = scan_type;
-							var popup = document.getElementById('tvs_scan_popup');
-							popup.style.display = 'block';
+						var scan_type = type;
+						scan_input = document.getElementById('type_of_scan');
+						scan_input.value = scan_type;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'block';
 
-							inputValue = document.getElementById('tvs_rov').value;
-							document.querySelector('.output_results').value = inputValue;
+						inputValue = document.getElementById('tvs_rov').value;
+						document.querySelector('.output_results').value = inputValue;
 						}
 
 						function cancelPopup() {
-							var popup = document.getElementById('tvs_scan_popup');
-							popup.style.display = 'none';
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'none';
 						}
 
 						function processDisplay(dataListText) {
-							let dataList = dataListText.split(',');
-							let plusElements = dataList.filter(element => element === '+');
-							let greaterThan22Elements = dataList.filter(element => element === '>22');
-							dataList = dataList.filter(element => {
-							if (element !== '+' ) {
-							if (element !== '>22') {
-							return true;
-							}
-							}
-							return false;
-							});
+						let dataList = dataListText.split(',');
+						let plusElements = dataList.filter(element => element === '+');
+						let greaterThan22Elements = dataList.filter(element => element === '>22');
+						dataList = dataList.filter(element => {
+						if (element !== '+' ) {
+						if (element !== '>22') {
+						return true;
+						}
+						}
+						return false;
+						});
 
-							let sortedData = dataList.sort((a, b) => {
-							if (!isNaN(parseFloat(a))) {
-							if(!isNaN(parseFloat(b))){
-							return parseFloat(a) - parseFloat(b);
-							}
-							} else {
-							return a.localeCompare(b);
-							}
-							});
-							let resultList = plusElements.concat(sortedData, greaterThan22Elements);
-							let resultStr = resultList.filter(Boolean).join(',');
-							return resultStr;
+						let sortedData = dataList.sort((a, b) => {
+						if (!isNaN(parseFloat(a))) {
+						if(!isNaN(parseFloat(b))){
+						return parseFloat(a) - parseFloat(b);
+						}
+						} else {
+						return a.localeCompare(b);
+						}
+						});
+						let resultList = plusElements.concat(sortedData, greaterThan22Elements);
+						let resultStr = resultList.filter(Boolean).join(',');
+						return resultStr;
 						}
 
-							function saveTvsScan() {
-							   scan_input = document.getElementById('type_of_scan').value;
-							   var popup = document.getElementById('tvs_scan_popup');
-							   popup.style.display = 'none';
-							   var inputValue = document.querySelector('.output_results').innerText;
-							   processed_value = processDisplay(inputValue)+',';
-								processed_value = processed_value === ',' ? null : processed_value;
+						function saveTvsScan() {
+						scan_input = document.getElementById('type_of_scan').value;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'none';
+						var inputValue = document.querySelector('.output_results').innerText;
+						processed_value = processDisplay(inputValue)+',';
+						processed_value = processed_value === ',' ? null : processed_value;
 
-							   if (scan_input == "lov")
-							   {
-								  var inputField = document.getElementById('tvs_lov');
-								  inputField.value = processed_value;
-								  inputField.dispatchEvent(new Event('input', { bubbles: true }));
-							   }
-							   else if (scan_input == "rov")
-							   {
-								  var inputField = document.getElementById('tvs_rov');
-								  inputField.value = processed_value;
-								  inputField.dispatchEvent(new Event('input', { bubbles: true }));
-							   }
-							   else if (scan_input == "gynae_rov")
-							   {
-								  var inputField = document.getElementById('gynae_rov');
-								  inputField.value = processed_value;
-								  inputField.dispatchEvent(new Event('input', { bubbles: true }));
-							   }
-							   else if (scan_input == "gynae_lov")
-							   {
-								  var inputField = document.getElementById('gynae_lov');
-								  inputField.value = processed_value;
-								  inputField.dispatchEvent(new Event('input', { bubbles: true }));
-							   }
-							   else
-							   {
-								  return;
-							   }
-							}
+						if (scan_input == "lov")
+						{
+						var inputField = document.getElementById('tvs_lov');
+						inputField.value = processed_value;
+						inputField.dispatchEvent(new Event('input', { bubbles: true }));
+						}
+						else if (scan_input == "rov")
+						{
+						var inputField = document.getElementById('tvs_rov');
+						inputField.value = processed_value;
+						inputField.dispatchEvent(new Event('input', { bubbles: true }));
+						}
+						else if (scan_input == "gynae_rov")
+						{
+						var inputField = document.getElementById('gynae_rov');
+						inputField.value = processed_value;
+						inputField.dispatchEvent(new Event('input', { bubbles: true }));
+						}
+						else if (scan_input == "gynae_lov")
+						{
+						var inputField = document.getElementById('gynae_lov');
+						inputField.value = processed_value;
+						inputField.dispatchEvent(new Event('input', { bubbles: true }));
+						}
+						else
+						{
+						return;
+						}
+						}
 					</script>
 					<div id="treatment_history_popup" class="tvs_scan_popup">
 						<tree editable="top">
@@ -429,33 +429,33 @@
 														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
-												<group>
+												<group attrs="{'invisible': [('repeat_pregnancy_reason_to_visit', '!=', 'genetic_testing')]}">
 													<field name="repeat_pregnancy_procedure_performed"
 														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_procedure_performed_text"
 														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"/>
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"/>
 													<field name="repeat_pregnancy_doctors"
 														   widget="many2many_tags"
 														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_assistants"
 														   widget="many2many_tags"
 														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
+													<field name="repeat_pregnancy_type_sample_obtained"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"/>
+													<field name="repeat_pregnancy_name_receiving_geneticist"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 												</group>
 												<group>
-													<field name="repeat_pregnancy_type_sample_obtained"
-														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"/>
-													<field name="repeat_pregnancy_name_receiving_geneticist"
-														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"
-														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_plan"
 														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
@@ -806,12 +806,12 @@
 																<span for="position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>
 																<field name="position_mid_position"/>
 																<span for="position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
-<!--																<field name="tvs_uterus_position_ids"-->
-<!--																	   attrs="{'required': [('show_repeat_section_state', '=', True),-->
-<!--													   ('scan_required', '=', 'yes'),-->
-<!--													   ('question_one_choice', '=', 'no'),-->
-<!--													   ('tvs_uterus_tvs_position', '=', True)]}"-->
-<!--																	   widget="many2many_checkboxes"/>-->
+																<!--																<field name="tvs_uterus_position_ids"-->
+																<!--																	   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+																<!--													   ('scan_required', '=', 'yes'),-->
+																<!--													   ('question_one_choice', '=', 'no'),-->
+																<!--													   ('tvs_uterus_tvs_position', '=', True)]}"-->
+																<!--																	   widget="many2many_checkboxes"/>-->
 															</div>
 														</div>
 														<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
@@ -850,11 +850,11 @@
 															<field name="tvs_suspected_cavity_lesion"/>
 															<span for="tvs_smooth" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
 
-<!--															<field name="tvs_linining_ids"-->
-<!--																   attrs="{'required': [('show_repeat_section_state', '=', True),-->
-<!--													   ('scan_required', '=', 'yes'),-->
-<!--													   ('question_one_choice', '=', 'no')]}"-->
-<!--																   widget="many2many_checkboxes"/>-->
+															<!--															<field name="tvs_linining_ids"-->
+															<!--																   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+															<!--													   ('scan_required', '=', 'yes'),-->
+															<!--													   ('question_one_choice', '=', 'no')]}"-->
+															<!--																   widget="many2many_checkboxes"/>-->
 														</div>
 														<div>
 															<span>CET</span>
@@ -884,7 +884,7 @@
 
 													<div class="col-md-6">
 														<a class="btn btn-primary oe_edit_only" onclick="showBeginScan('rov', 'tvs_rov')">Begin Scan</a>
-<!--														<a class="btn btn-primary" onclick="showTreatmentHistory()">Treatment History</a>-->
+														<!--														<a class="btn btn-primary" onclick="showTreatmentHistory()">Treatment History</a>-->
 														<!--														<button type="object"-->
 														<!--																class="btn-primary"-->
 														<!--																context="{'default_field': 'tvs_rov',-->
@@ -947,20 +947,32 @@
 														</div>
 													</div>
 												</div>
-
-												<div class="d-flex bg-light bg-gradient">
-													<div class="col-md-1 o_form_label">
+												<div class="d-flex align-items-center bg-light bg-gradient">
+													<div class="col-md-1">
 														Other
 													</div>
-													<div class="col-md-10">
-
-														<field name="tvs_other_text" attrs="{'required': [('show_repeat_section_state', '=', True),
+													<div class="col-md-7 d-flex flex-column">
+														<div>
+															<field name="tvs_other_text" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('scan_required', '=', 'yes'),
 													   ('question_one_choice', '=', 'no')]}"/>
+														</div>
 													</div>
-
-
 												</div>
+
+<!--												<div class="d-flex bg-light bg-gradient">-->
+<!--													<div class="col-md-1 o_form_label">-->
+<!--														Other-->
+<!--													</div>-->
+<!--													<div class="col-md-10">-->
+
+<!--														<field name="tvs_other_text" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+<!--													   ('scan_required', '=', 'yes'),-->
+<!--													   ('question_one_choice', '=', 'no')]}"/>-->
+<!--													</div>-->
+
+
+<!--												</div>-->
 
 											</div>
 
@@ -1095,76 +1107,76 @@
 											});
 										</script>
 
-<!--										<script>-->
-<!--											document.addEventListener('click', function (event) {-->
-<!--											var previousTreatmentButton = document.querySelector('[name="previous_treatment"]');-->
+										<!--										<script>-->
+										<!--											document.addEventListener('click', function (event) {-->
+										<!--											var previousTreatmentButton = document.querySelector('[name="previous_treatment"]');-->
 
-<!--											if(previousTreatmentButton){-->
+										<!--											if(previousTreatmentButton){-->
 
-<!--											if (event.target === previousTreatmentButton || previousTreatmentButton.contains(event.target)) {-->
-<!--											setTimeout(function () {-->
-<!--											var tables = document.querySelectorAll('.o_list_table');-->
+										<!--											if (event.target === previousTreatmentButton || previousTreatmentButton.contains(event.target)) {-->
+										<!--											setTimeout(function () {-->
+										<!--											var tables = document.querySelectorAll('.o_list_table');-->
 
-<!--											tables.forEach(function (table) {-->
-<!--											var tbody = table.querySelector('.ui-sortable');-->
-<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
+										<!--											tables.forEach(function (table) {-->
+										<!--											var tbody = table.querySelector('.ui-sortable');-->
+										<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
 
-<!--											if (tbody) {-->
-<!--											if (rowToAdd) {-->
-<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
-<!--											}-->
-<!--											}-->
-<!--											});-->
-<!--											}, 200);-->
-<!--											}-->
-<!--											}-->
-<!--											});-->
+										<!--											if (tbody) {-->
+										<!--											if (rowToAdd) {-->
+										<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
+										<!--											}-->
+										<!--											}-->
+										<!--											});-->
+										<!--											}, 200);-->
+										<!--											}-->
+										<!--											}-->
+										<!--											});-->
 
-<!--											document.addEventListener('click', function (event) {-->
-<!--											var obstetricsHistoryButton = document.getElementById("obstetrics_history_section_link");-->
-<!--											var repeatConsultationButton = document.getElementById("repeat_consultation_section_link");-->
-<!--											if(obstetricsHistoryButton){-->
-<!--											if (event.target === obstetricsHistoryButton || obstetricsHistoryButton.contains(event.target)) {-->
-<!--											setTimeout(function () {-->
-<!--											var tables = document.querySelectorAll('.o_list_table');-->
+										<!--											document.addEventListener('click', function (event) {-->
+										<!--											var obstetricsHistoryButton = document.getElementById("obstetrics_history_section_link");-->
+										<!--											var repeatConsultationButton = document.getElementById("repeat_consultation_section_link");-->
+										<!--											if(obstetricsHistoryButton){-->
+										<!--											if (event.target === obstetricsHistoryButton || obstetricsHistoryButton.contains(event.target)) {-->
+										<!--											setTimeout(function () {-->
+										<!--											var tables = document.querySelectorAll('.o_list_table');-->
 
-<!--											tables.forEach(function (table) {-->
-<!--											var tbody = table.querySelector('.ui-sortable');-->
-<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
+										<!--											tables.forEach(function (table) {-->
+										<!--											var tbody = table.querySelector('.ui-sortable');-->
+										<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
 
-<!--											if (tbody) {-->
-<!--											if (rowToAdd) {-->
-<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
-<!--											}-->
-<!--											}-->
-<!--											});-->
-<!--											}, 200);-->
-<!--											}-->
-<!--											}-->
+										<!--											if (tbody) {-->
+										<!--											if (rowToAdd) {-->
+										<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
+										<!--											}-->
+										<!--											}-->
+										<!--											});-->
+										<!--											}, 200);-->
+										<!--											}-->
+										<!--											}-->
 
-<!--											if(repeatConsultationButton){-->
-<!--											if (event.target === repeatConsultationButton || repeatConsultationButton.contains(event.target)) {-->
-<!--											setTimeout(function () {-->
-<!--											var tables = document.querySelectorAll('.o_list_table');-->
+										<!--											if(repeatConsultationButton){-->
+										<!--											if (event.target === repeatConsultationButton || repeatConsultationButton.contains(event.target)) {-->
+										<!--											setTimeout(function () {-->
+										<!--											var tables = document.querySelectorAll('.o_list_table');-->
 
-<!--											tables.forEach(function (table) {-->
-<!--											var tbody = table.querySelector('.ui-sortable');-->
-<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
+										<!--											tables.forEach(function (table) {-->
+										<!--											var tbody = table.querySelector('.ui-sortable');-->
+										<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
 
-<!--											if (tbody) {-->
-<!--											if (rowToAdd) {-->
-<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
-<!--											}-->
-<!--											}-->
-<!--											});-->
-<!--											}, 200);-->
-<!--											}-->
-<!--											}-->
+										<!--											if (tbody) {-->
+										<!--											if (rowToAdd) {-->
+										<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
+										<!--											}-->
+										<!--											}-->
+										<!--											});-->
+										<!--											}, 200);-->
+										<!--											}-->
+										<!--											}-->
 
-<!--											});-->
+										<!--											});-->
 
 
-<!--										</script>-->
+										<!--										</script>-->
 
 
 
@@ -1229,7 +1241,7 @@
 
 													<field name="patient_female_dob"/>
 													<field name="biological_female_dob_check"/>
-													<field name="biological_female_dob"  attrs="{'invisible': [('biological_female_dob_check', '=', True)]}"/>
+													<field name="biological_female_dob"  style="width:30% !important;"  attrs="{'invisible': [('biological_female_dob_check', '=', True)]}"/>
 													<field name="biological_female_age" attrs="{'invisible': ['|', ('biological_female_dob', '=', False), ('biological_female_dob_check', '=', True)]}" force_save="1"/>
 
 													<field name="female_age" attrs="{'invisible': [('biological_female_dob_check', '!=', True)]}"/>
@@ -1408,7 +1420,7 @@
 												</div>
 												<!--											 -->
 												<group>
-													<field name="sx_frequency" string="Frequency (per month)"/>
+													<field name="sx_frequency" style="width:12% !important;" string="Frequency (per month)"/>
 													<field name="sx_issues" widget="radio" options="{'horizontal': True}"/>
 													<field name="sx_comments"/>
 												</group>
@@ -1731,15 +1743,15 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Year"  />
 
-													<field name="female_thyroid_TYPE"
-														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
-														   placeholder="" string="Thyroid"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="female_thyroid"
+<!--													<field name="female_thyroid_TYPE"-->
+<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
+<!--														   placeholder="" string="Thyroid"-->
+<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<field name="female_thyroid_medical"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   string="" />
+														   string="Thyroid" />
 													<field name="female_thyroid_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
@@ -1756,10 +1768,10 @@
 													<field name="female_medical_history_others"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details" />
-													<field name="female_medical_history_others_date"
-														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
-														   string="Year"  />
+													<!--													<field name="female_medical_history_others_date"-->
+													<!--														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"-->
+													<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
+													<!--														   string="Year"  />-->
 													<field name="female_medical_current_medication"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Current Medications and Allergies"/>
@@ -2127,11 +2139,11 @@
 														</div>
 														<label for="female_bp_upper"/>
 														<div>
-															<field name="female_bp_upper" class="oe_inline" nolabel="1"/>
+															<field name="female_bp_upper" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span class="oe_inline">
 																/
 															</span>
-															<field name="female_bp_lower" class="oe_inline" nolabel="1"/>
+															<field name="female_bp_lower" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span class="oe_inline">
 																mmHg
 															</span>
@@ -2352,8 +2364,8 @@
 													<field name="gynaecological_ultrasound_type"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
-													<field name="gynaecological_examination_date"/>
-													<field name="gynaecological_examination_lmp"/>
+													<field name="gynaecological_examination_date"  style="width:30% !important;"/>
+													<field name="gynaecological_examination_lmp"  style="width:30% !important;"/>
 
 													<div/>
 													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -30%;">
@@ -2407,7 +2419,7 @@
 																	<field name="gynae_position_mid_position"/>
 																	<span for="gynae_position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
 
-<!--																	<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>-->
+																	<!--																	<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>-->
 																</div>
 															</div>
 															<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
@@ -2444,7 +2456,7 @@
 																		<span style=" margin-right: 1%; ">Hyperechoic/Solid</span>
 																		<field name="gynae_suspected_cavity_lesion"/>
 																		<span style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
-<!--																		<field name="lining_ids" widget="many2many_checkboxes"/>-->
+																		<!--																		<field name="lining_ids" widget="many2many_checkboxes"/>-->
 																	</div>
 																	<div>
 																		<span>CET</span>
@@ -2475,12 +2487,12 @@
 														<field name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_rov', 'gynae_rov')">Begin Scan</a>
-<!--															<button type="object"-->
-<!--																	class="btn-primary"-->
-<!--																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"-->
-<!--																	name="action_open_gynae_scan"-->
-<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
-<!--																	string="Begin Scan"/>-->
+															<!--															<button type="object"-->
+															<!--																	class="btn-primary"-->
+															<!--																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"-->
+															<!--																	name="action_open_gynae_scan"-->
+															<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+															<!--																	string="Begin Scan"/>-->
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -2494,12 +2506,12 @@
 														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_lov', 'gynae_lov')">Begin Scan</a>
-<!--															<button type="object"-->
-<!--																	class="btn-primary"-->
-<!--																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"-->
-<!--																	name="action_open_gynae_scan"-->
-<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
-<!--																	string="Begin Scan"/>-->
+															<!--															<button type="object"-->
+															<!--																	class="btn-primary"-->
+															<!--																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"-->
+															<!--																	name="action_open_gynae_scan"-->
+															<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+															<!--																	string="Begin Scan"/>-->
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -2550,7 +2562,7 @@
 
 													<field name="patient_male_dob"/>
 													<field name="biological_male_dob_check"/>
-													<field name="biological_male_dob"  attrs="{'invisible': [('biological_male_dob_check', '=', True)]}"/>
+													<field name="biological_male_dob"  style="width:30% !important;"  attrs="{'invisible': [('biological_male_dob_check', '=', True)]}"/>
 													<field name="biological_male_age" attrs="{'invisible': ['|', ('biological_male_dob', '=', False), ('biological_male_dob_check', '=', True)]}" force_save="1"/>
 
 													<field name="male_age" attrs="{'invisible': [('biological_male_dob_check', '!=', True)]}"/>
@@ -2849,13 +2861,13 @@
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
-													<field name="male_thyroid_TYPE"
+<!--													<field name="male_thyroid_TYPE"-->
+<!--														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"-->
+<!--														   placeholder="" string="Thyroid"-->
+<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<field name="male_thyroid_medical"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
-														   placeholder="" string="Thyroid"
-														   widget="radio" options="{'horizontal': True}"/>
-													<field name="male_thyroid"
-														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
-														   placeholder="Add Details" string="" />
+														   placeholder="Add Details" string="Thyroid" />
 													<field name="male_thyroid_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -2872,10 +2884,10 @@
 													<field name="male_medical_history_others"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   placeholder="Add Details" />
-													<field name="male_medical_history_others_date"
-														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
-														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   string="Year"  />
+													<!--													<field name="male_medical_history_others_date"-->
+													<!--														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"-->
+													<!--														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"-->
+													<!--														   string="Year"  />-->
 													<field name="male_medical_current_medication"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   string="Current Medications and Allergies"/>
@@ -3228,11 +3240,11 @@
 														</div>
 														<label for="male_bp_upper"/>
 														<div>
-															<field name="male_bp_upper" class="oe_inline" nolabel="1"/>
+															<field name="male_bp_upper" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span>
 																/
 															</span>
-															<field name="male_bp_lower" class="oe_inline" nolabel="1"/>
+															<field name="male_bp_lower" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span>
 																mmHg
 															</span>
