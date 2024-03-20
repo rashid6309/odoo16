@@ -186,6 +186,7 @@ class PatientTimeline(models.Model):
 
         return None
 
+    @staticmethod
     def _compute_patient_medical_history(medical_history, fields_to_process):
         if not medical_history:
             return None
@@ -197,17 +198,18 @@ class PatientTimeline(models.Model):
             custom_field = getattr(medical_history, custom_field_name)
             if field_records or (custom_field and custom_field.strip()):
                 custom_text = f' {custom_field.strip()}' if custom_field else ''
-                if isinstance(field_records, EcMedicalYear):
-                    medical_members_list = [str(rec.year) for rec in field_records]
+
+                ''' Please populate this for every key which is not object '''
+
+                if field_name not in ('male_att_months', 'female_att_months'):
+                    medical_history_year = field_records.year
                 else:
-                    medical_members_list = None
-                if medical_members_list:
-                    year_in_bracket = f"({medical_members_list[0]})"
-                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
-                    medical_history_text.append(field_text)
-                else:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}'
-                    medical_history_text.append(field_text)
+                    medical_history_year = None
+
+                year_in_bracket = f" ({medical_history_year})" if medical_history_year else ""
+
+                field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
+                medical_history_text.append(field_text)
 
         if medical_history_text:
             medical_history_text = '<br>'.join(medical_history_text)
