@@ -30,7 +30,10 @@
         </record>
 
 <!--        Complains-->
-
+        <record model="ec.medical.multi.selection" id="complains_none">
+            <field name="name">None</field>
+            <field name="type">complains</field>
+        </record>
         <record model="ec.medical.multi.selection" id="intermenstrual_bleeding">
             <field name="name">Intermenstrual Bleeding</field>
             <field name="type">complains</field>
@@ -41,10 +44,6 @@
         </record>
         <record model="ec.medical.multi.selection" id="pcb">
             <field name="name">PCB</field>
-            <field name="type">complains</field>
-        </record>
-        <record model="ec.medical.multi.selection" id="complains_none">
-            <field name="name">None</field>
             <field name="type">complains</field>
         </record>
 

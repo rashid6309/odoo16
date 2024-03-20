@@ -568,7 +568,7 @@ label[for="male_cardiac"], label[for="male_gall_bladder"], label[for="male_gastr
 label[for="male_gynaecology"], label[for="male_haematology"], label[for="male_intestinal"],
 label[for="male_liver"], label[for="male_low_urinary_tract"], label[for="male_malignancy"],
 label[for="male_neurological"], label[for="male_renal"], label[for="male_respiratory"],
-label[for="male_skeletal"], label[for="male_thyroid_TYPE"], label[for="male_thyroid"],
+label[for="male_skeletal"], label[for="male_thyroid_medical"], label[for="male_thyroid"],
 label[for="male_heart_disease"], label[for="male_urinary_infection"],
 label[for="male_hyper_tension"], label[for="male_janduice"],
 label[for="male_complications_pr"], label[for="male_diabetes_type"],
@@ -589,7 +589,7 @@ label[for="female_cardiac"], label[for="female_gall_bladder"], label[for="female
 label[for="female_gynaecology"], label[for="female_haematology"], label[for="female_intestinal"],
 label[for="female_liver"], label[for="female_low_urinary_tract"], label[for="female_malignancy"],
 label[for="female_neurological"], label[for="female_renal"], label[for="female_respiratory"],
-label[for="female_skeletal"], label[for="female_thyroid_TYPE"], label[for="female_thyroid"],
+label[for="female_skeletal"], label[for="female_thyroid_medical"], label[for="female_thyroid"],
 label[for="female_heart_disease"], label[for="female_urinary_infection"],
 label[for="female_hyper_tension"], label[for="female_janduice"],
 label[for="female_complications_pr"], label[for="female_diabetes_type"],
@@ -653,3 +653,23 @@ select:hover{
     z-index: 9999;
     height: 41rem;
   }
+
+#female_bp_upper
+{
+        width: 100% !important;
+}
+
+#female_bp_lower
+{
+        width: 100% !important;
+}
+
+#male_bp_upper
+{
+        width: 100% !important;
+}
+
+#male_bp_lower
+{
+        width: 100% !important;
+}
