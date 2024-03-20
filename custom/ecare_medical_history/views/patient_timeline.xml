@@ -508,11 +508,13 @@
 											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<group>
 													<field name="lmp_question_four"
+														   style="width: 55% !important;"
 														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"/>
 												</group>
 												<group>
 													<field name="repeat_cycle_day"
+														   style="width: 55% !important;"
 														   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"
 														   force_save="1"/>
