@@ -1336,7 +1336,7 @@
 															<span>
 																Comments
 															</span>
-															<field name="female_menstrual_comments" class="oe_inline" nolabel="1"/>
+															<field name="female_menstrual_comments" style="width:50% !important;" class="oe_inline" nolabel="1"/>
 														</div>
 													</div>
 
@@ -1374,7 +1374,7 @@
 															<span>
 																Other
 															</span>
-															<field name="female_menstrual_gap_other" class="oe_inline" nolabel="1"/>
+															<field name="female_menstrual_gap_other" style="width:50% !important;" class="oe_inline" nolabel="1"/>
 														</div>
 													</div>
 													<div/>
@@ -1383,21 +1383,21 @@
 															<span>
 																Comments
 															</span>
-															<field name="female_menstrual_all_comments" class="oe_inline" nolabel="1"/>
+															<field name="female_menstrual_all_comments" style=" width: 76% !important; " class="oe_inline" nolabel="1"/>
 														</div>
 													</div>
 
 													<field name="female_menstrual_flow" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_dysmenorrhoea_ids" widget="many2many_checkboxes"/>
 													<field name="female_pain_intensity" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_lmp"/>
+													<field name="female_lmp" style="width:30% !important;"/>
 													<field name="female_complications_ids" widget="many2many_checkboxes"/>
 													<div/>
 													<div>
 														<span>
 															Other
 														</span>
-														<field name="female_complications_other" class="oe_inline" nolabel="1"/>
+														<field name="female_complications_other" style="width:89% !important;" class="oe_inline" nolabel="1"/>
 													</div>
 													<field name="female_complains_ids" widget="many2many_checkboxes"/>
 												</group>
@@ -1862,7 +1862,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseDiabetes" class="show" role="tabpanel" aria-labelledby="diabetesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_diabetes_ids" widget="many2many_checkboxes"/>
-																				<field name="female_other_diabetes" placeholder="Other..."/>
+																				<field name="female_other_diabetes" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1879,7 +1879,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseMalignancies" class="show" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_malignancies_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_malignancies" placeholder="Other..."/>
+																				<field name="female_other_malignancies" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1896,7 +1896,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseHypertension" class="show" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_hypertension" placeholder="Other..."/>
+																				<field name="female_other_hypertension" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1913,7 +1913,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseMental_illness" class="show" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_mental_illness_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_mental_illness" placeholder="Other..."/>
+																				<field name="female_other_mental_illness" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1930,7 +1930,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseTwins" class="show" role="tabpanel" aria-labelledby="twinsOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_twins_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_twins" placeholder="Other..."/>
+																				<field name="female_other_twins" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1947,7 +1947,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseTuberculosis" class="show" role="tabpanel" aria-labelledby="tuberculosisOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_tuberculosis_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_tuberculosis" placeholder="Other..."/>
+																				<field name="female_other_tuberculosis" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1964,7 +1964,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseC_abnormalities" class="show" role="tabpanel" aria-labelledby="c_abnormalitiesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_abnormalities_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_abnormalities" placeholder="Other..."/>
+																				<field name="female_other_abnormalities" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1981,7 +1981,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapsePih" class="show" role="tabpanel" aria-labelledby="pihOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_pregnancy_induced_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_pregnancy_induced_hypertension" placeholder="Other..."/>
+																				<field name="female_other_pregnancy_induced_hypertension" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1998,7 +1998,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseMisscarriages" class="show" role="tabpanel" aria-labelledby="misscarriagesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_miscarriage_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_miscarriage" placeholder="Other..."/>
+																				<field name="female_other_miscarriage" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2015,7 +2015,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapsePb" class="show" role="tabpanel" aria-labelledby="pbOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_preterm_birth_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_preterm_birth" placeholder="Other..."/>
+																				<field name="female_other_preterm_birth" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2032,7 +2032,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseSb" class="show" role="tabpanel" aria-labelledby="sbOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_still_birth_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_still_birth" placeholder="Other..."/>
+																				<field name="female_other_still_birth" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2049,7 +2049,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapsePmof" class="show" role="tabpanel" aria-labelledby="pmofOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_pre_mature_ovarian_failure_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_pre_mature_ovarian_failure" placeholder="Other..."/>
+																				<field name="female_other_pre_mature_ovarian_failure" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2065,7 +2065,7 @@
 																		</div>
 																		<div style="margin-left:17px; margin-top:10px" id="collapseOther" class="show" role="tabpanel" aria-labelledby="otherOne" aria-expanded="false">
 																			<div class="card-block">
-																				<field name="female_family_history_other" placeholder="Other..."/>
+																				<field name="female_family_history_other" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2210,27 +2210,27 @@
 														<label for="breast_right"/>
 														<div>
 															<field name="breast_right" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="breast_right_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="breast_right_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 														<label for="breast_left"/>
 														<div>
 															<field name="breast_left" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="breast_left_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="breast_left_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 														<label for="cvs"/>
 														<div>
 															<field name="cvs" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="cvs_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="cvs_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 														<label for="respiratory"/>
 														<div>
 															<field name="respiratory" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="respiratory_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="respiratory_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 														<label for="abdomen"/>
 														<div>
 															<field name="abdomen" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="abdomen_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="abdomen_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 
 														<field name="other_findings"/>
@@ -3012,7 +3012,7 @@
 																			 aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_diabetes_ids" widget="many2many_checkboxes"/>
-																				<field name="male_other_diabetes" placeholder="Other..."/>
+																				<field name="male_other_diabetes" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3030,7 +3030,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMalignancies" class="show" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_malignancies_ids"  widget="many2many_checkboxes" />
-																				<field name="male_other_malignancies" placeholder="Other..."/>
+																				<field name="male_other_malignancies" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3048,7 +3048,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseHypertension" class="show" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_hypertension" placeholder="Other..."/>
+																				<field name="male_other_hypertension" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3066,7 +3066,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMental_illness" class="show" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_mental_illness_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_mental_illness" placeholder="Other..."/>
+																				<field name="male_other_mental_illness" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3084,7 +3084,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseTwins" class="show" role="tabpanel" aria-labelledby="male_twinsOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_twins_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_twins" placeholder="Other..."/>
+																				<field name="male_other_twins" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3102,7 +3102,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseTuberculosis" class="show" role="tabpanel" aria-labelledby="male_tuberculosisOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_tuberculosis_ids"  widget="many2many_checkboxes" />
-																				<field name="male_other_tuberculosis" placeholder="Other..."/>
+																				<field name="male_other_tuberculosis" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3120,7 +3120,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseC_abnormalities" class="show" role="tabpanel" aria-labelledby="male_c_abnormalitiesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_abnormalities_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_abnormalities" placeholder="Other..."/>
+																				<field name="male_other_abnormalities" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3136,7 +3136,7 @@
 																		</div>
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseOther" class="show" role="tabpanel" aria-labelledby="male_otherOne" aria-expanded="false">
 																			<div class="card-block">
-																				<field name="male_family_history_other" placeholder="Other..."/>
+																				<field name="male_family_history_other" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3309,17 +3309,17 @@
 													<label for="male_cvs"/>
 													<div>
 														<field name="male_cvs" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-														<field name="male_cvs_comment" placeholder="other.." class="oe_inline" nolabel="1"/>
+														<field name="male_cvs_comment" style="width: 75% !important;" placeholder="other.." class="oe_inline" nolabel="1"/>
 													</div>
 													<label for="male_respiratory_systematic"/>
 													<div>
 														<field name="male_respiratory_systematic" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-														<field name="male_respiratory_comment" class="oe_inline" nolabel="1" placeholder="other.."/>
+														<field name="male_respiratory_comment" style="width: 75% !important;" class="oe_inline" nolabel="1" placeholder="other.."/>
 													</div>
 													<label for="male_abdomen"/>
 													<div>
 														<field name="male_abdomen" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-														<field name="male_abdomen_comment" placeholder="other.." class="oe_inline" nolabel="1"/>
+														<field name="male_abdomen_comment" style="width: 75% !important;" placeholder="other.." class="oe_inline" nolabel="1"/>
 													</div>
 
 													<field name="male_systemic_other" placeholder="other.."/>
