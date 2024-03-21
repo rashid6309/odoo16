@@ -673,3 +673,52 @@ select:hover{
 {
         width: 100% !important;
 }
+#female_menstrual_comments
+{
+        width: 100% !important;
+}
+#female_menstrual_gap_other
+{
+        width: 100% !important;
+}
+#female_menstrual_all_comments
+{
+        width: 100% !important;
+}
+#female_complications_other
+{
+        width: 100% !important;
+}
+
+#male_cvs_comment
+{
+        width: 100% !important;
+}
+#male_respiratory_comment
+{
+        width: 100% !important;
+}
+#male_abdomen_comment
+{
+        width: 100% !important;
+}
+#breast_right_comment
+{
+        width: 100% !important;
+}
+#breast_left_comment
+{
+        width: 100% !important;
+}
+#cvs_comment
+{
+        width: 100% !important;
+}
+#respiratory_comment
+{
+        width: 100% !important;
+}
+#abdomen_comment
+{
+        width: 100% !important;
+}

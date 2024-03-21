@@ -596,6 +596,7 @@ class PatientTimeline(models.Model):
             self.show_repeat_consultation_history_section = True
             if self.ec_repeat_consultation_id:
                 self.repeat_consultation_ids.repeat_date = datetime.now()
+                self.repeat_consultation_ids.repeat_seen_by = self.env.user.id
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create(
