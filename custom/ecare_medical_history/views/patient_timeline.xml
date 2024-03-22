@@ -360,8 +360,7 @@
 													   ('question_one_choice', '=', 'yes')]}" widget="radio"/>
 												</group>
 												<group>
-													<field name="repeat_pregnancy_notes" attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}" widget="html"/>
+													<field name="repeat_pregnancy_notes" widget="html"/>
 													<field name="repeat_pregnancy_scanned" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}" widget="radio"/>
 													<field name="repeat_pregnancy_significant_findings" attrs="{'required': [('show_repeat_section_state', '=', True),
@@ -551,8 +550,6 @@
 												<div>
 													<field name="repeat_note"
 														   nolabel="1"
-														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"
 														   placeholder="Add..."/>
 
 												</div>
@@ -689,7 +686,7 @@
 
 											<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-												<field
+												<field style=" width: 40% !important; "
 														attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True)]}"
@@ -1001,9 +998,7 @@
 											</div>
 											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 
-												<field name="counseling_and_discussion"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"/>
+												<field name="counseling_and_discussion"/>
 												<field name="repeat_diagnosis"
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"
@@ -1018,9 +1013,7 @@
 													   ('question_one_choice', '=', 'no')]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
-												<field name="repeat_treatment_plan"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"/>
+												<field name="repeat_treatment_plan"/>
 
 												<field name="repeat_treatment_advised_ids"
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
