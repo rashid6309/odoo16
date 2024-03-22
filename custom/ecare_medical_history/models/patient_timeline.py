@@ -688,7 +688,7 @@ class PatientTimeline(models.Model):
 
     @api.onchange('biological_female_dob')
     def _check_biological_female_dob_date(self):
-        if self.biological_female_dob:
+        if self.biological_female_dob and self.timeline_patient_id.married_since:
             if self.biological_female_dob > self.timeline_patient_id.married_since:
                 self.biological_female_dob = None
                 return {
@@ -702,6 +702,7 @@ class PatientTimeline(models.Model):
                 }
             else:
                 return Validation._date_validation(self.biological_female_dob)
+
     @api.onchange('biological_male_dob')
     def _check_biological_male_dob_date(self):
         if self.biological_male_dob:
