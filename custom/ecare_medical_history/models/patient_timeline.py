@@ -200,8 +200,15 @@ class PatientTimeline(models.Model):
                 custom_text = f' {custom_field.strip()}' if custom_field else ''
 
                 ''' Please populate this for every key which is not object '''
+                fields_list_without_year = [
+                    'male_att_months', 'female_att_months',
+                    'female_medical_current_medication', 'male_medical_current_medication',
+                    'female_weight_at_marriage', 'male_weight_at_marriage',
+                    'female_weight_comments', 'male_weight_comments',
+                    'female_diabetes_type', 'male_diabetes_type',
+                ]
 
-                if field_name not in ('male_att_months', 'female_att_months'):
+                if field_name not in fields_list_without_year:
                     medical_history_year = field_records.year
                 else:
                     medical_history_year = None
@@ -349,8 +356,8 @@ class PatientTimeline(models.Model):
             'male_acne_date': ('Acne', 'male_acne'),
             'male_weight_gain_year': ('Weight gain', 'male_weight_gain'),
             'male_weight_loss_year': ('Weight loss', 'male_weight_loss'),
-            # 'male_weight_at_marriage': ('Weight at marriage', 'male_weight_at_marriage'),
-            # 'male_weight_comments': ('Comments', 'male_weight_comments'),
+            'male_weight_at_marriage': ('Weight at marriage', 'male_weight_at_marriage'),
+            'male_weight_comments': ('Comments', 'male_weight_comments'),
             # 'male_hirsuitism': ('Hirsuitism', 'male_hirsuitism'),
             # 'male_hirsuitism_treatment': ('Any treatment', 'male_hirsuitism_treatment'),
             'male_tuberculosis_date': ('Tuberculosis', 'male_tuberculosis'),
@@ -365,6 +372,7 @@ class PatientTimeline(models.Model):
             'male_autoimmune_disease_date': ('Autoimmune Diseases', 'male_autoimmune_disease'),
             'male_blood_transfusion_date': ('Blood Transfusion', 'male_blood_transfusion'),
             'male_cardiac_date': ('Cardiac', 'male_cardiac'),
+            'male_diabetes_type': ('Diabetes Type', 'male_diabetes_type'),
             'male_gall_bladder_date': ('Gall Bladder', 'male_gall_bladder'),
             'male_gastric_date': ('Gastric', 'male_gastric'),
             'male_gynaecology_date': ('Gynecological', 'male_gynaecology'),
@@ -388,7 +396,7 @@ class PatientTimeline(models.Model):
             'male_smoking_date': ('Smoking', 'male_smoking'),
             'male_alcohol_date': ('Alcohol', 'male_alcohol'),
             'male_medical_history_others_date': ('Others', 'male_medical_history_others'),
-            # 'male_current_medication': ('Current Medication', 'male_medical_current_medication'),
+            'male_medical_current_medication': ('Current Medication and Allergies', 'male_medical_current_medication'),
         }
 
         if self.male_no_medical_history is False:
@@ -405,8 +413,8 @@ class PatientTimeline(models.Model):
             'female_acne_date': ('Acne', 'female_acne'),
             'female_weight_gain_year': ('Weight gain', 'female_weight_gain'),
             'female_weight_loss_year': ('Weight loss', 'female_weight_loss'),
-            # 'female_weight_at_marriage': ('Weight at marriage', 'female_weight_at_marriage'),
-            # 'female_weight_comments': ('Comments', 'female_weight_comments'),
+            'female_weight_at_marriage': ('Weight at marriage', 'female_weight_at_marriage'),
+            'female_weight_comments': ('Comments', 'female_weight_comments'),
             # 'female_hirsuitism': ('Hirsuitism', 'female_hirsuitism'),
             # 'female_hirsuitism_treatment': ('Any treatment', 'female_hirsuitism_treatment'),
             'female_tuberculosis_date': ('Tuberculosis', 'female_tuberculosis'),
@@ -422,6 +430,7 @@ class PatientTimeline(models.Model):
             'female_autoimmune_disease_date': ('Autoimmune Diseases', 'female_autoimmune_disease'),
             'female_blood_transfusion_date': ('Blood Transfusion', 'female_blood_transfusion'),
             'female_cardiac_date': ('Cardiac', 'female_cardiac'),
+            'female_diabetes_type': ('Diabetes Type', 'female_diabetes_type'),
             'female_gall_bladder_date': ('Gall Bladder', 'female_gall_bladder'),
             'female_gastric_date': ('Gastric', 'female_gastric'),
             'female_gynaecology_date': ('Gynecological', 'female_gynaecology'),
@@ -445,7 +454,7 @@ class PatientTimeline(models.Model):
             'female_smoking_date': ('Smoking', 'female_smoking'),
             'female_alcohol_date': ('Alcohol', 'female_alcohol'),
             'female_medical_history_others_date': ('Others', 'female_medical_history_others'),
-            # 'female_current_medication': ('Current Medication', 'female_medical_current_medication'),
+            'female_medical_current_medication': ('Current Medication and Allergies', 'female_medical_current_medication'),
         }
         if self.female_no_medical_history is False:
             self.female_medical_history = PatientTimeline._compute_patient_medical_history(
