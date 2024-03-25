@@ -1,5 +1,4 @@
 from odoo import models, fields, api
-from odoo.addons.ecare_medical_history.utils.validation import Validation
 
 
 class MedicalPatientAttachment(models.Model):
@@ -16,7 +15,7 @@ class MedicalPatientAttachment(models.Model):
                                      'patient_attachment_id',
                                      'doc_id',
                                      help="If you want to upload any attachment.",
-                                     string='Document', public=True,copy=False)
+                                     string='Document', public=True, copy=False)
 
     results = fields.Text('Results')
 

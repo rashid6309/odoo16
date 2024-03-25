@@ -683,7 +683,7 @@ select:hover{
 }
 #female_menstrual_all_comments
 {
-        width: 100% !important;
+        width: 80% !important;
 }
 #female_complications_other
 {
@@ -721,4 +721,8 @@ select:hover{
 #abdomen_comment
 {
         width: 100% !important;
+}
+#gynae_exam_method_of_hvs
+{
+        width: 40% !important;
 }
