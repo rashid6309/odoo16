@@ -18,7 +18,7 @@ class LabHistory(models.Model):
                                      'lab_id', 'doc_id', help="If you want to upload any attachment.",
                                      string='Document')
 
-    results = fields.Text('Results')
+    results = fields.Text('Results', required=True)
 
     # attachment_ids = fields.Many2many(comodel_name="ir.attachment",
     #                                   column1="lab_id",
@@ -31,3 +31,13 @@ class LabHistory(models.Model):
     def _check_lab_date(self):
         if self.date:
             return Validation._date_validation(self.date)
+
+    @api.model
+    def create(self, vals):
+        templates = super(LabHistory, self).create(vals)
+        # fix attachment ownership
+        for template in templates:
+            if template.attachment_id:
+                template.attachment_id.write({'res_model': self._name, 'res_id': template.id})
+        return templates
+

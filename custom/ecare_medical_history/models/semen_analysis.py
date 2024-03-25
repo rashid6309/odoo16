@@ -106,7 +106,7 @@ class SemenAnalysis(models.Model):
     sperm_cryopreservation_strawe = fields.Char('Cryopreservation Strawe')
     sperm_cryopreservation_code = fields.Char('Cryopreservation Code')
 
-    seminologist_id = fields.Many2one(comodel_name='res.users', string='Seminologist', default=lambda self: self.env.user)
+    seminologist_ids = fields.Many2many(comodel_name='res.users', string='Seminologist', default=lambda self: self.env.user)
     legacy_seminologist = fields.Char(string="Legacy System Seminologist", readonly=1)
 
     special_notes = fields.Char("Special Notes")
@@ -232,7 +232,12 @@ class SemenAnalysis(models.Model):
     def _check_progression_input(self):
         self._check_numeric_input('progression', self.progression)
 
-    @api.onchange('production_time', "analysis_time", "liquifaction_time")
+    @api.onchange('liquifaction_time')
+    def _check_liquifaction_time_input(self):
+        if self.liquifaction_time and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.liquifaction_time):
+            raise UserError(f"Please enter a numeric value in Liquifaction Time!")
+
+    @api.onchange('production_time', "analysis_time")
     def _onchange_time(self):
 
         if self.production_time:
@@ -261,17 +266,4 @@ class SemenAnalysis(models.Model):
             except ValueError:
                 raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
             self.analysis_time = time
-
-        if self.liquifaction_time:
-            time = TimeValidation.validate_time(self.liquifaction_time)
-            if not time:
-                self.liquifaction_time = None
-                return CustomNotification.notification_time_validation()
-            try:
-                parsed_time = datetime.strptime(time, '%H:%M')
-                if not 0 <= parsed_time.hour <= 23:
-                    raise ValueError()
-            except ValueError:
-                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
-            self.liquifaction_time = time
 

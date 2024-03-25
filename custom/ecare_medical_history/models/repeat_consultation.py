@@ -33,11 +33,11 @@ class RepeatConsultation(models.Model):
     #                                 default="1",
     #                                 required=True)
     repeat_consultation_state = fields.Selection([('open', 'In Progress'),
-                                                 ('closed', 'Done'),
-                                                 ('decision_pending', "Decision Pending"),
-                                                 ],
-                                                default='open',
-                                                string='State')
+                                                  ('closed', 'Done'),
+                                                  ('decision_pending', "Decision Pending"),
+                                                  ],
+                                                 default='open',
+                                                 string='State')
 
     """ Question One
     Yes: Open the pregnancy assessment form
@@ -52,8 +52,7 @@ class RepeatConsultation(models.Model):
                                      readonly=1,
                                      )
     question_one_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                           string="Choice",
-                                           default='no')
+                                           string="Choice")
 
     repeat_lmp = fields.Date(string="LMP",
                              readonly=True,
@@ -71,8 +70,7 @@ class RepeatConsultation(models.Model):
                                      store=False,
                                      readonly=True)
     question_two_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                           string="Choice",
-                                           default='no')
+                                           string="Choice")
 
     """ Question Three
         Yes: Open the treatment outside of ICSI from and add a record in the previous treatment history 
@@ -84,8 +82,7 @@ class RepeatConsultation(models.Model):
                                        store=False,
                                        readonly=1)
     question_three_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                             string="Choice",
-                                             default='no')
+                                             string="Choice")
 
     """ Question Four
         Yes: Open the treatment outside of ICSI from and add a record in the previous treatment history 
@@ -154,6 +151,11 @@ class RepeatConsultation(models.Model):
                                         string="Diagnosis")
 
     repeat_procedure_recommended = fields.Html(string='Procedure Recommended')
+    repeat_procedure_recommended_ids = fields.Many2many(comodel_name='ec.medical.recommended.procedure',
+                                                        relation="repeat_consultation_procedure_recommended_rel",
+                                                        column1="repeat_consultation_id",
+                                                        column2="procedure_id",
+                                                        string='Procedure Recommended')
     repeat_treatment_plan = fields.Html(string='Plan')
 
     repeat_note = fields.Html(string="Reason for visit / Couple concerns / History of presenting complaints")
@@ -171,6 +173,7 @@ class RepeatConsultation(models.Model):
                                                     string='Treatment Pathway')
 
     repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                   default='no',
                                                    string="Examination Required")
 
     repeat_gpe = fields.Text(string='GPE')
@@ -179,6 +182,7 @@ class RepeatConsultation(models.Model):
     repeat_breast = fields.Text(string="Breast")
 
     repeat_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                       default='no',
                                                        string="Pelvic examination done?")
 
     repeat_examination_type = fields.Selection(selection=StaticMember.PELVIC_EXAM_CHOICES,
@@ -232,6 +236,7 @@ class RepeatConsultation(models.Model):
     repeat_other_findings = fields.Text(string="Other findings")
 
     scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                     default='no',
                                      string="Scan required?")
 
     repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
@@ -349,6 +354,24 @@ class RepeatConsultation(models.Model):
 
     def action_open_tvs_form(self):
         return self.env['ec.medical.tvs'].action_open_form_view(self, target='new')
+
+    def action_delete_repeat_consultation_section(self, timeline_id):
+        existing_repeat = self.env['ec.repeat.consultation'].search([
+            ('repeat_timeline_id', '=', timeline_id.id),
+            ('id', '!=', self.id),
+        ], order="id desc", limit=1)
+        if existing_repeat:
+            timeline_id.show_repeat_section_state = False
+            timeline_id.ec_repeat_consultation_id = existing_repeat.id
+            self.unlink()
+        else:
+            timeline_id.show_repeat_section_state = False
+            timeline_id.show_repeat_consultation_history_section = False
+            new_repeat_consultation_id = self.env['ec.repeat.consultation'].create(
+                timeline_id._get_repeat_consultation_mandatory_attribute()
+            )
+            timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
+            self.unlink()
 
 
 # Fibroid

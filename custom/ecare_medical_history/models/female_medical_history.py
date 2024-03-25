@@ -98,7 +98,7 @@ class FemaleMedicalHistory(models.Model):
 
     female_thyroid_TYPE = fields.Selection(selection=StaticMember.MEDICAL_THYROID,
                                            string='Thyroid')
-    female_thyroid = fields.Text('Thyroid')
+    female_thyroid_medical = fields.Char('Thyroid')
     female_thyroid_date = fields.Many2one("ec.medical.year",'Thyroid Date')
 
     female_heart_disease = fields.Char(string='Heart Disease')

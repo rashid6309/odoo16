@@ -93,17 +93,75 @@ odoo.define('ecare_medical_history.patient_banner', function (require) {
         }
 
         async _onEditPatientProfile() {
+        var self = this;
+        await this.props.record.save().then(function(result) {
+            console.log(result);
+           const errorSpan = document.querySelector('span.text-danger.small.ms-2');
+            if (!result) {
+
+                // Handle the scenario where the error span exists
+                // For example, display an error message to the user
+                console.error("Error: Unable to save. Please correct the errors.");
+                return;
+            }
+            else{
+            self.action.doActionButton({
+                type: "object",
+                resId: self.props.value[0],
+                name: "action_open_patient_time_view",
+                context: self.props.value,
+                resModel: "ec.patient.timeline",
+                onClose: async () => {
+                    await self.props.record.model.root.load();
+                    self.props.record.model.notify();
+                },
+            });
+
+            }
+            });
+        }
+
+        async _onEditPatientSemen() {
         await this.props.record.save();
             this.action.doActionButton({
                 type: "object",
                 resId: this.props.value[0],
-                name: "action_open_patient_time_view",
+                name: "action_open_patient_semen_view",
                 context: this.props.value,
                 resModel: "ec.patient.timeline",
                 onClose: async () => {
                     await this.props.record.model.root.load();
                     this.props.record.model.notify();
                 },
+            });
+        }
+
+        async _onEditPatientTimeline() {
+        var self = this;
+        await this.props.record.save().then(function(result) {
+           console.log(result);
+           const errorSpan = document.querySelector('span.text-danger.small.ms-2');
+           if (!result) {
+
+                // Handle the scenario where the error span exists
+                // For example, display an error message to the user
+                console.error("Error: Unable to save. Please correct the errors.");
+                return;
+            }
+            else{
+                self.action.doActionButton({
+                type: "object",
+                resId: self.props.value[0],
+                name: "action_open_patient_timeline_view",
+                context: self.props.value,
+                resModel: "ec.patient.timeline",
+                onClose: async () => {
+                    await self.props.record.model.root.load();
+                    self.props.record.model.notify();
+                   },
+            });
+
+            }
             });
         }
 

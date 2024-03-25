@@ -395,7 +395,9 @@
 
                         <group string="Additional Info" class="semen_analysis_div">
                             <group>
-                                <field name="seminologist_id" readonly="1" force_save="1"/>
+                                <field name="seminologist_ids" widget="many2many_tags"
+                                       options="{'no_open': True, 'no_create': True}"
+                                       force_save="1"/>
                                 <field name="legacy_seminologist" readonly="1" force_save="1"/>
                                 <field name="special_notes"/>
                             </group>
@@ -430,7 +432,7 @@
                     <field name="lab_name"/>
                     <button name="edit_semen_analysis_record"
                             type="object"
-                            groups="ecare_medical_history.group_ec_medical_scientist"
+                            groups="ecare_medical_history.group_medical_history_andrology_view"
                             string="View"
                             class="repeat_kanban_button"/>
                 </tree>

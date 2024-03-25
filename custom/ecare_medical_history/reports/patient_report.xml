@@ -285,7 +285,7 @@
                                         <b>Semenologist:</b>
                                     </td>
                                     <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;" colspan="2">
-                                        <span t-field="o.seminologist_id"/>
+                                        <span t-field="o.seminologist_ids"/>
                                     </td>
                                 </tr>
                             </table>

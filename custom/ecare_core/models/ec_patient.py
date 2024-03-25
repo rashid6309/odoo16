@@ -258,6 +258,18 @@ class EcarePatient(models.Model):
                         'message': 'Date of Marriage should be lesser than or equal to today.'}
 
                 }
+            if self.wife_dob > self.married_since:
+                patient.married_since = None
+                patient.yom = None
+                return {
+
+                    'warning': {
+
+                        'title': 'Warning!',
+
+                        'message': 'Date of Marriage should be lesser than date of birth.'}
+
+                }
 
             patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since)
 

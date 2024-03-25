@@ -119,6 +119,10 @@ class FirstConsultation(models.Model):
     female_age = fields.Char(string="Female Age",
                              related="first_consultation_patient_id.wife_age")
 
+    female_relation_related = fields.Selection(string='Relation',
+                                               related='ec_general_examination_id.female_relation')
+
+
     ''' On-change methods '''
 
     @api.onchange("first_consultation_patient_id")

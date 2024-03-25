@@ -13,10 +13,7 @@
             <field name="mode">primary</field>
             <field name="arch" type="xml">
                 <button name="action_open_patient_slots" position="before">
-<!--                    <button style="float: right;"-->
-<!--                            name="action_open_patient_first_consultation"-->
-<!--                            type="object" class="btn btn-primary"-->
-<!--                            string="First Consultation"/>-->
+
                 </button>
             </field>
         </record>

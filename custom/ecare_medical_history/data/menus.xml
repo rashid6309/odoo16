@@ -8,15 +8,15 @@
                 sequence="200"
         />
 
-        <menuitem id="ec_medical_history_configuration"
-                  name="Configuration"
-                  groups="ecare_appointment.group_appointment_super_administrator"
+        <menuitem id="ec_medical_history_andrology"
+                  name="Andrology"
+                  groups="ecare_medical_history.group_medical_history_andrology_view"
                   parent="ec_medical_root"
                   sequence="100"/>
 
-        <menuitem id="ec_medical_history_andrology"
-                  name="Andrology"
-                  groups="ecare_medical_history.group_ec_medical_scientist"
+        <menuitem id="ec_medical_history_configuration"
+                  name="Configuration"
+                  groups="ecare_medical_history.group_medical_history_configuration_menu_view"
                   parent="ec_medical_root"
                   sequence="110"/>
 

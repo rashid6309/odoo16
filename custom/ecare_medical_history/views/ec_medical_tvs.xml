@@ -17,7 +17,6 @@
                                    style="width: 100%;"/>
                             <field name="tvs_id" readonly="1" invisible="1"/>
                             <field name="gynae_id" readonly="1" invisible="1"/>
-                            <!--                            <input class="output_results" type="text" name="display" id="display" />-->
                         </div>
                         <div class="d-flex flex-column">
                             <div>
@@ -61,6 +60,13 @@
                     </footer>
                 </form>
             </field>
+        </record>
+
+        <record id="ec_medical_tvs_scan_action" model="ir.actions.act_window">
+            <field name="name">TVS Scan</field>
+            <field name="res_model">ec.medical.tvs.scan</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
         </record>
 
     </data>
