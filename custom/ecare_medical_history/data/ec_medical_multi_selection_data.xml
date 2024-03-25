@@ -3,6 +3,11 @@
     <data>
 
 <!--        Complications-->
+        <record model="ec.medical.multi.selection" id="none">
+            <field name="name">None</field>
+            <field name="type">complications</field>
+        </record>
+
         <record model="ec.medical.multi.selection" id="viginal_discharge">
             <field name="name">Vaginal Discharge</field>
             <field name="type">complications</field>
@@ -21,11 +26,6 @@
         </record>
         <record model="ec.medical.multi.selection" id="pcos">
             <field name="name">PCOS</field>
-            <field name="type">complications</field>
-        </record>
-
-        <record model="ec.medical.multi.selection" id="none">
-            <field name="name">None</field>
             <field name="type">complications</field>
         </record>
 
@@ -48,6 +48,10 @@
         </record>
 
 <!--        Dysmenorrhoea-->
+        <record model="ec.medical.multi.selection" id="dysmenorrhoea_none">
+            <field name="name">None</field>
+            <field name="type">dysmenorrhoea</field>
+        </record>
 
         <record model="ec.medical.multi.selection" id="before_menses">
             <field name="name">Before Menses</field>
@@ -62,10 +66,6 @@
             <field name="type">dysmenorrhoea</field>
         </record>
 
-        <record model="ec.medical.multi.selection" id="dysmenorrhoea_none">
-            <field name="name">None</field>
-            <field name="type">dysmenorrhoea</field>
-        </record>
 
 <!--        Position-->
         <record model="ec.medical.multi.selection" id="position_1">
@@ -297,6 +297,12 @@
             <field name="type">supermatic_cord_tender</field>
         </record>
 
+<!--ovulation-->
+        <record model="ec.medical.multi.selection" id="ovulation_none">
+            <field name="name">None</field>
+            <field name="type">ovulation</field>
+        </record>
+
         <record model="ec.medical.multi.selection" id="ovulation_free_fluid">
             <field name="name">Free Fluid</field>
             <field name="type">ovulation</field>
@@ -313,9 +319,6 @@
             <field name="name">Corpus Luteum</field>
             <field name="type">ovulation</field>
         </record>
-        <record model="ec.medical.multi.selection" id="ovulation_none">
-            <field name="name">None</field>
-            <field name="type">ovulation</field>
-        </record>
+
     </data>
 </odoo>
