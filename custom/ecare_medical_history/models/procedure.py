@@ -15,6 +15,11 @@ class PatientProcedures(models.Model):
         selection=StaticMember.SURGERY_TYPES,
         string='Type of Surgery',
     )
+
+    type_of_surgery_male = fields.Selection(
+        selection=StaticMember.SURGERY_TYPES_MALE,
+        string='Type of Surgery',
+    )
     details = fields.Char('Details', required=True)
 
     surgical_year_id = fields.Many2one(

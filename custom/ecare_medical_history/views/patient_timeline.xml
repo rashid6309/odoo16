@@ -687,10 +687,10 @@
 											<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
 												<field style=" width: 40% !important; "
-														attrs="{'invisible': [('inspection_only', '!=', True),
+													   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
 													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True)]}"
-														name="repeat_method_of_hvs"/>
+													   name="repeat_method_of_hvs"/>
 											</group>
 
 											<div class="d-flex" attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
@@ -959,19 +959,19 @@
 													</div>
 												</div>
 
-<!--												<div class="d-flex bg-light bg-gradient">-->
-<!--													<div class="col-md-1 o_form_label">-->
-<!--														Other-->
-<!--													</div>-->
-<!--													<div class="col-md-10">-->
+												<!--												<div class="d-flex bg-light bg-gradient">-->
+												<!--													<div class="col-md-1 o_form_label">-->
+												<!--														Other-->
+												<!--													</div>-->
+												<!--													<div class="col-md-10">-->
 
-<!--														<field name="tvs_other_text" attrs="{'required': [('show_repeat_section_state', '=', True),-->
-<!--													   ('scan_required', '=', 'yes'),-->
-<!--													   ('question_one_choice', '=', 'no')]}"/>-->
-<!--													</div>-->
+												<!--														<field name="tvs_other_text" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+												<!--													   ('scan_required', '=', 'yes'),-->
+												<!--													   ('question_one_choice', '=', 'no')]}"/>-->
+												<!--													</div>-->
 
 
-<!--												</div>-->
+												<!--												</div>-->
 
 											</div>
 
@@ -1738,10 +1738,10 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Year"  />
 
-<!--													<field name="female_thyroid_TYPE"-->
-<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
-<!--														   placeholder="" string="Thyroid"-->
-<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<!--													<field name="female_thyroid_TYPE"-->
+													<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
+													<!--														   placeholder="" string="Thyroid"-->
+													<!--														   widget="radio" options="{'horizontal': True}"/>-->
 													<field name="female_thyroid_medical"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details"
@@ -2856,10 +2856,10 @@
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
-<!--													<field name="male_thyroid_TYPE"-->
-<!--														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"-->
-<!--														   placeholder="" string="Thyroid"-->
-<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<!--													<field name="male_thyroid_TYPE"-->
+													<!--														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"-->
+													<!--														   placeholder="" string="Thyroid"-->
+													<!--														   widget="radio" options="{'horizontal': True}"/>-->
 													<field name="male_thyroid_medical"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   placeholder="Add Details" string="Thyroid" />
@@ -2923,8 +2923,17 @@
 																string="Add" target="current"/>
 													</div>
 												</group>
-												<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="tree" nolabel="1"
-													   string="Patient Procedures" create="false"/>
+												<field name="male_procedures_ids" nolabel="1" create="false">
+													<tree class="custom-scrollbar opd-notes-height">
+														<field name="female_consultation_id" invisible="1" force_save="1"/>
+														<field name="male_consultation_id" invisible="1" force_save="1"/>
+														<field name="type_of_surgery_male"/>
+														<field name="details" placeholder="Details..."/>
+														<field name="surgical_year_id" placeholder="Year.."/>
+													</tree>
+												</field>
+<!--												<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="tree" nolabel="1"-->
+<!--													   string="Patient Procedures" create="false"/>-->
 											</div>
 
 

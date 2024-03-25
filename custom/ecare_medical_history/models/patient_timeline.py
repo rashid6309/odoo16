@@ -217,7 +217,8 @@ class PatientTimeline(models.Model):
 
                 year_in_bracket = f" ({medical_history_year})" if medical_history_year else ""
 
-                field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
+                if field_label:
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
                 medical_history_text.append(field_text)
 
         if medical_history_text:

@@ -11,7 +11,12 @@
                             <group>
                                 <field name="female_consultation_id" invisible="1" force_save="1"/>
                                 <field name="male_consultation_id" invisible="1" force_save="1"/>
-                                <field name="type_of_surgery" required="1"/>
+                                <field name="type_of_surgery"
+                                       attrs="{'invisible': [('female_consultation_id', '=', False)],
+                                       'required': [('female_consultation_id', '!=', False)]}"/>
+                                <field name="type_of_surgery_male"
+                                       attrs="{'invisible': [('male_consultation_id', '=', False)],
+                                       'required': [('male_consultation_id', '!=', False)]}"/>
                                 <field name="details" placeholder="Details..." required="1"/>
                                 <field name="surgical_year_id" required="1"
                                        options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"

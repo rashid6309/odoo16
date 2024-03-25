@@ -1119,3 +1119,12 @@ class StaticMember:
         ('other', 'Other'),
     ]
 
+    SURGERY_TYPES_MALE = [
+        ('minimally_invasive_surgery', 'Minimally Invasive Testing'),
+        ('laparotomy', 'Laparotomy'),
+        ('cardiac_surgery', 'Cardiac Surgery'),
+        ('neurosurgery', 'Neurosurgery'),
+        ('surgery_for_cancer', 'Surgery for Cancer'),
+        ('other', 'Other'),
+    ]
+
