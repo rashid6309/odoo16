@@ -2923,7 +2923,7 @@
 													</div>
 												</group>
 												<field name="male_procedures_ids" nolabel="1" create="false">
-													<tree class="custom-scrollbar opd-notes-height">
+													<tree class="custom-scrollbar opd-notes-height" create="false">
 														<field name="female_consultation_id" invisible="1" force_save="1"/>
 														<field name="male_consultation_id" invisible="1" force_save="1"/>
 														<field name="type_of_surgery_male"/>
