@@ -1120,7 +1120,7 @@ class StaticMember:
     ]
 
     SURGERY_TYPES_MALE = [
-        ('minimally_invasive_surgery', 'Minimally Invasive Testing'),
+        ('minimally_invasive_surgery', 'Minimally Invasive Surgery'),
         ('laparotomy', 'Laparotomy'),
         ('cardiac_surgery', 'Cardiac Surgery'),
         ('neurosurgery', 'Neurosurgery'),
