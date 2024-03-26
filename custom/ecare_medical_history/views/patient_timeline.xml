@@ -36,6 +36,41 @@
 						<field name="timeline_patient_id" style="display:block;" widget="banner_summary_widget"/>
 					</div>
 					<script>
+							var minusButtonFemale = document.querySelector(".btn_minus_female");
+							var plusButtonFemale = document.querySelector(".btn_plus_female");
+
+							if (minusButtonFemale) {
+								if (plusButtonFemale) {
+								minusButtonFemale.addEventListener("click", function() {
+									minusButtonFemale.style.display = "none";
+									plusButtonFemale.style.display = "inline";
+								});
+
+								plusButtonFemale.addEventListener("click", function() {
+									plusButtonFemale.style.display = "none";
+									minusButtonFemale.style.display = "inline";
+								});
+								}
+							}
+
+							var minusButtonMale = document.querySelector(".btn_minus_male");
+							var plusButtonMale = document.querySelector(".btn_plus_male");
+
+							if (minusButtonMale) {
+								if (plusButtonMale) {
+								minusButtonMale.addEventListener("click", function() {
+									minusButtonMale.style.display = "none";
+									plusButtonMale.style.display = "inline";
+								});
+
+								plusButtonMale.addEventListener("click", function() {
+									plusButtonMale.style.display = "none";
+									minusButtonMale.style.display = "inline";
+								});
+								}
+							}
+					</script>
+					<script>
 						function showTreatmentHistory() {
 						var popup = document.getElementById('treatment_history_popup');
 						popup.style.display = 'block';
@@ -3418,8 +3453,11 @@
 											string="Obstetrics History"/>
 
 									<div class="divider"/>
-									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#femaleCollapseSection" href="#">
+									<a class="buttonCollapse btn_minus_female" data-bs-toggle="collapse" data-bs-target="#femaleCollapseSection" href="#">
 										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
+									</a>
+									<a class="buttonCollapse btn_plus_female" style="display:none;" data-bs-toggle="collapse" data-bs-target="#femaleCollapseSection" href="#">
+										<i title="Hide/Show" class="fa fa-plus-square" aria-hidden="true"/>
 									</a>
 									<div class="show" id="femaleCollapseSection">
 										<div class="divider"/>
@@ -3453,8 +3491,11 @@
 											class="card-custom-right-button"
 											string="Seminology"/>
 									<div class="divider"/>
-									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
+									<a class="buttonCollapse btn_minus_male" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
 										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
+									</a>
+									<a class="buttonCollapse btn_plus_male" style="display:none;" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
+										<i title="Hide/Show" class="fa fa-plus-square" aria-hidden="true"/>
 									</a>
 									<div class="show" id="maleCollapseSection">
 										<div class="divider"/>
