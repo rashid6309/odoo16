@@ -765,6 +765,7 @@ class StaticMember:
         ('in_person', 'In-person Consultation'),
         ('telephonic', 'Telephonic Consultation'),
         ('online', 'Online Consultation'),
+        ('migration', 'Migration'),
     ]
 
     SEEN_WITH = [
