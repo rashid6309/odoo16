@@ -77,14 +77,14 @@
             <field name="name">Deviated to Left</field>
             <field name="type">position</field>
         </record>
-        <record model="ec.medical.multi.selection" id="position_3">
-            <field name="name">A/V</field>
-            <field name="type">position</field>
-        </record>
-        <record model="ec.medical.multi.selection" id="position_4">
-            <field name="name">R/V</field>
-            <field name="type">position</field>
-        </record>
+<!--        <record model="ec.medical.multi.selection" id="position_3">-->
+<!--            <field name="name">A/V</field>-->
+<!--            <field name="type">position</field>-->
+<!--        </record>-->
+<!--        <record model="ec.medical.multi.selection" id="position_4">-->
+<!--            <field name="name">R/V</field>-->
+<!--            <field name="type">position</field>-->
+<!--        </record>-->
 
         <record model="ec.medical.multi.selection" id="position_5">
             <field name="name">Mid-Position</field>
