@@ -585,6 +585,11 @@ class StaticMember:
     CHOICE_YES_NO = [('yes', "Yes"),
                      ('no', "No")]
 
+    CHOICE_YES_NO_NOT_AVAILABLE = [('yes', "Yes"),
+                                   ('no', "No"),
+                                   ('not_available', "Not Available")
+                                   ]
+
     ORGAN_SIZE = [('normal', 'Normal'),
                   ('other', 'Other'),
                   ]
