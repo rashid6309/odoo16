@@ -5,7 +5,7 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 class MedicalPreviousHistory(models.Model):
     _name = 'ec.medical.previous.treatment'
     _description = "Previous Treatment"
-    _order = "create_date desc"
+    _order = "create_date desc, id asc"
 
     timeline_id = fields.Many2one('ec.patient.timeline', string='Patient Timeline')
     patient_id = fields.Many2one(comodel_name="ec.medical.patient", string="Patient")
