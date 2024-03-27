@@ -568,9 +568,6 @@
 												</div>
 											</div>
 											<div class="d-flex flex-column" attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
-												<div>
-													<label class="oe_left" for="repeat_note"/>
-												</div>
 
 												<div>
 													<field name="repeat_note"
