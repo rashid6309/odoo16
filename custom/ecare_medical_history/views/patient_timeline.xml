@@ -2880,7 +2880,7 @@
 													<field name="male_urinary_infection_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   string="Year"  />
+														   string="Year"/>
 
 													<field name="male_medical_history_others"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
