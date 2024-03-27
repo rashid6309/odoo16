@@ -165,6 +165,7 @@ class RepeatConsultation(models.Model):
                                                  column1="repeat_consultation_id",
                                                  column2="investigation_id",
                                                  string='Investigations')
+    repeat_investigation_notes = fields.Text(string="Investigation Notes")
 
     repeat_treatment_advised_ids = fields.Many2many(comodel_name='ec.medical.treatment.list',
                                                     relation="repeat_consultation_medical_treatment_list_rel",

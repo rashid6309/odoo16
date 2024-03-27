@@ -359,7 +359,6 @@
 												<field name="question_one_label"/>
 												<label for="question_one_choice" string=""/>
 												<field name="question_one_choice"
-													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
 													   widget="radio" nolabel="1"/>
 											</group>
 
@@ -373,8 +372,7 @@
 													<field name="repeat_pregnancy_gestational_age"/>
 													<field name="repeat_pregnancy_conception" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
-													<field name="repeat_pregnancy_embryos_replaced" attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"/>
+													<field name="repeat_pregnancy_embryos_replaced"/>
 												</group>
 												<group string="Pregnancy Status:">
 													<field name="repeat_pregnancy_gestation_type" attrs="{'required': [('show_repeat_section_state', '=', True),
@@ -384,8 +382,7 @@
                                             'required':[('repeat_pregnancy_gestation_type','=','other'),('question_one_choice','=','yes')]}"/>
 													<field name="repeat_pregnancy_viability_potential" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
-													<field name="repeat_pregnancy_details" attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"/>
+													<field name="repeat_pregnancy_details"/>
 													<field name="repeat_pregnancy_diagnosis" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
@@ -398,8 +395,7 @@
 													<field name="repeat_pregnancy_notes" widget="html"/>
 													<field name="repeat_pregnancy_scanned" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}" widget="radio"/>
-													<field name="repeat_pregnancy_significant_findings" attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"/>
+													<field name="repeat_pregnancy_significant_findings"/>
 												</group>
 
 												<group string="Examination:" class="d-flex flex-column custom_width">
@@ -421,8 +417,7 @@
 														<field name="repeat_pregnancy_temp" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
 														<label class="timeline_examination" for="repeat_pregnancy_rr"/>
-														<field name="repeat_pregnancy_rr" attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"/>
+														<field name="repeat_pregnancy_rr"/>
 													</div>
 													<div class="d-flex flex-column" style="width:100%;margin-left: 15%;">
 														<div class="d-flex">
@@ -454,13 +449,9 @@
 												</group>
 												<group string="Investigations">
 													<field name="repeat_pregnancy_investigation_ids"
-														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
-													<field name="repeat_pregnancy_investigation_id_text"
-														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'yes')]}"/>
+													<field name="repeat_pregnancy_investigation_id_text"/>
 												</group>
 												<group attrs="{'invisible': [('repeat_pregnancy_reason_to_visit', '!=', 'genetic_testing')]}">
 													<field name="repeat_pregnancy_procedure_performed"
@@ -609,19 +600,14 @@
 													   ('repeat_examination_required', '=', 'yes'),
 													   ('question_one_choice', '=', 'no')]}"
 												/>
-												<field name="repeat_thyroid"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('repeat_examination_required', '=', 'yes'),
-													   ('question_one_choice', '=', 'no')]}"
-												/>
-												<field name="repeat_abdominal"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('repeat_examination_required', '=', 'yes'),
-													   ('question_one_choice', '=', 'no')]}"/>
-												<field name="repeat_breast"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('repeat_examination_required', '=', 'yes'),
-													   ('question_one_choice', '=', 'no')]}"/>
+												<field name="repeat_thyroid"/>
+<!--												<field name="repeat_thyroid"-->
+<!--													   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+<!--													   ('repeat_examination_required', '=', 'yes'),-->
+<!--													   ('question_one_choice', '=', 'no')]}"-->
+<!--												/>-->
+												<field name="repeat_abdominal"/>
+												<field name="repeat_breast"/>
 											</group>
 											<div class="d-flex flex-column" attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
 												<div/>
@@ -669,10 +655,7 @@
 													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
 												/>
 
-												<field name="repeat_uterus_and_adnexae"
-													   attrs="{'invisible': [('p_v_only', '!=', True)],
-													   'required': [('p_v_only', '=', True)]}"
-												/>
+												<field name="repeat_uterus_and_adnexae"/>
 											</group>
 											<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
@@ -718,12 +701,12 @@
 												</div>
 											</div>
 
-											<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
-										('repeat_pelvic_examination_state', '=', 'no')]}">
+											<group attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
+										('repeat_pelvic_examination_state', '=', 'no'),('repeat_hvs', '!=', True)]}">
 												<field style=" width: 40% !important; "
 													   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True)]}"
+													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True),('repeat_hvs', '=', True)]}"
 													   name="repeat_method_of_hvs"/>
 											</group>
 
@@ -801,11 +784,7 @@
 																Uterus Flexion
 															</div>
 															<div class="d-flex">
-																<field name="tvs_uterus_flexion"
-																	   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('scan_required', '=', 'yes'),
-													   ('question_one_choice', '=', 'no')]}"
-																/>
+																<field name="tvs_uterus_flexion"/>
 															</div>
 														</div>
 														<div class="d-flex"
@@ -892,9 +871,6 @@
 														<div>
 															<span>CET</span>
 															<field name="tvs_lining_size"
-																   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('scan_required', '=', 'yes'),
-													   ('question_one_choice', '=', 'no')]}"
 																   placeholder="..." class="oe_inline" nolabel="1"/>
 															<span>mm</span>
 														</div>
@@ -986,9 +962,7 @@
 													</div>
 													<div class="col-md-7 d-flex flex-column">
 														<div>
-															<field name="tvs_other_text" attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('scan_required', '=', 'yes'),
-													   ('question_one_choice', '=', 'no')]}"/>
+															<field name="tvs_other_text"/>
 														</div>
 													</div>
 												</div>
@@ -1034,13 +1008,12 @@
 
 												<field name="counseling_and_discussion"/>
 												<field name="repeat_diagnosis"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_investigations_ids"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="repeat_investigation_notes"/>
 
 												<field name="repeat_procedure_recommended_ids"
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
@@ -1050,8 +1023,6 @@
 												<field name="repeat_treatment_plan"/>
 
 												<field name="repeat_treatment_advised_ids"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
@@ -1802,6 +1773,7 @@
 													<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
 													<!--														   string="Year"  />-->
 													<field name="female_medical_current_medication"
+														   widget="html"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Current Medications and Allergies"/>
 												</group>
@@ -2918,6 +2890,7 @@
 													<!--														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"-->
 													<!--														   string="Year"  />-->
 													<field name="male_medical_current_medication"
+														   widget="html"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   string="Current Medications and Allergies"/>
 												</group>
