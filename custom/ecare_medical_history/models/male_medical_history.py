@@ -138,7 +138,7 @@ class MaleMedicalHistory(models.Model):
     male_operations_pr = fields.Text(string='Operations (if any)')
     male_medical_history_others = fields.Char(string='Others')
     male_medical_history_others_date = fields.Many2one("ec.medical.year", 'Others Date')
-    male_medical_current_medication = fields.Char(string='Current Medication')
+    male_medical_current_medication = fields.Html(string='Current Medication')
 
     ''' not being used '''
     # male_allergies_pr = fields.Text(string='Allergies Pr')

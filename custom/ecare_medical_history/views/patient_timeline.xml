@@ -1769,7 +1769,6 @@
 													<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
 													<!--														   string="Year"  />-->
 													<field name="female_medical_current_medication"
-														   widget="html"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Current Medications and Allergies"/>
 												</group>
@@ -2886,7 +2885,6 @@
 													<!--														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"-->
 													<!--														   string="Year"  />-->
 													<field name="male_medical_current_medication"
-														   widget="html"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   string="Current Medications and Allergies"/>
 												</group>

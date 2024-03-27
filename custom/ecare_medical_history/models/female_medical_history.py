@@ -133,7 +133,7 @@ class FemaleMedicalHistory(models.Model):
     female_operations_pr = fields.Text(string='Operations (if any)')
     female_medical_history_others = fields.Char(string='Others')
     female_medical_history_others_date = fields.Many2one("ec.medical.year",'Others Date')
-    female_medical_current_medication = fields.Char(string='Current Medication')
+    female_medical_current_medication = fields.Html(string='Current Medication')
 
 
     ''' not being used '''
