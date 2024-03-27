@@ -724,8 +724,7 @@
 
 												<field name="repeat_other_findings"
 													   attrs="{'invisible': [('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)],
-													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
+													   ('p_s_only', '!=', True)]}"
 												/>
 
 											</group>
