@@ -396,6 +396,31 @@ class RepeatConsultation(models.Model):
             timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
             self.unlink()
 
+    def compute_open_completed_repeat_consultation(self):
+        # Search for records where show_repeat_section_state is open or closed
+        repeat_consultations = self.env['ec.repeat.consultation'].search(
+            [('repeat_consultation_state', 'in', ['open', 'closed'])])
+        unique_repeat_timeline_ids = set()
+
+        filtered_repeat_consultations = []
+
+        for consultation in repeat_consultations:
+            if consultation.repeat_timeline_id.show_repeat_section_state or consultation.repeat_location_id:
+                filtered_repeat_consultations.append(consultation)
+
+        filtered_consultation_ids = [consultation.id for consultation in filtered_repeat_consultations]
+
+        domain = [('id', 'in', filtered_consultation_ids)]
+        return {
+            "name": _("Repeat Consultation (In Progress/Complete)"),
+            "type": 'ir.actions.act_window',
+            "res_model": 'ec.repeat.consultation',
+            'view_id': self.env.ref('ecare_medical_history.view_ec_repeat_consultation_in_progress_tree').id,
+            'view_mode': 'tree',
+            "target": 'current',
+            'domain': domain,
+        }
+
 
 # Fibroid
 class RepeatFiobrid(models.Model):

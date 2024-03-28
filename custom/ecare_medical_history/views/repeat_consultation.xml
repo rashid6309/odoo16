@@ -1136,17 +1136,24 @@
             <field name="target">current</field>
         </record>
 
-        <record id="repeat_consultation_action_open_in_progress" model="ir.actions.act_window">
-            <field name="name">Repeat Consultation (In Progress)</field>
-            <field name="res_model">ec.repeat.consultation</field>
-            <field name="view_mode">tree</field>
-            <field name="target">current</field>
-            <field name="domain">[('repeat_consultation_state', '=', 'open'),('repeat_timeline_id.show_repeat_section_state', '=', True)]</field>
-            <field name="view_id" ref="ecare_medical_history.view_ec_repeat_consultation_in_progress_tree"/>
+        <record id="repeat_consultation_action_open_in_progress_complete" model="ir.actions.server">
+            <field name="name">Repeat Consultation (In Progress/Complete)</field>
+            <field name="model_id" ref="ecare_medical_history.model_ec_repeat_consultation"/>
+            <field name="binding_model_id" ref="ecare_medical_history.model_ec_repeat_consultation"/>
+            <field name="state">code</field>
+            <field name="code">action = model.compute_open_completed_repeat_consultation()</field>
         </record>
 
+<!--        <record id="repeat_consultation_action_open_in_progress" model="ir.actions.act_window">-->
+<!--            <field name="name">Repeat Consultation (In Progress/Complete)</field>-->
+<!--            <field name="res_model">ec.repeat.consultation</field>-->
+<!--            <field name="view_mode">tree</field>-->
+<!--            <field name="target">current</field>-->
+<!--            <field name="view_id" ref="ecare_medical_history.view_ec_repeat_consultation_in_progress_tree"/>-->
+<!--        </record>-->
+
         <record id="ecare_medical_history.ec_medical_history_delete_repeat_consultation" model="ir.ui.menu">
-            <field name="action" ref="ecare_medical_history.repeat_consultation_action_open_in_progress"/>
+            <field name="action" ref="ecare_medical_history.repeat_consultation_action_open_in_progress_complete"/>
         </record>
 
     </data>

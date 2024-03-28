@@ -502,7 +502,7 @@
 											</group>
 											<div>
 												<p attrs="{'invisible': [('question_two_choice', '!=', 'yes')]}" style="text-decoration: underline; color: red;">Please add details of pregnancy in table below</p>
-												<tree editable="top">
+												<tree editable="top" attrs="{'invisible': [('question_two_choice', '!=', 'yes')]}">
 													<field name="repeat_obs_history_ids"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
@@ -522,7 +522,7 @@
 											</group>
 											<div>
 												<p attrs="{'invisible': [('question_three_choice', '!=', 'yes')]}" style="text-decoration: underline; color: red;">Please add details of treatment in table below</p>
-												<tree editable="top">
+												<tree editable="top" attrs="{'invisible': [('question_three_choice', '!=', 'yes')]}">
 													<field name="timeline_previous_treatment_ids"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
