@@ -1384,10 +1384,24 @@
 													</div>
 
 													<field name="female_menstrual_flow" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_dysmenorrhoea_ids" widget="many2many_checkboxes"/>
+													<label for="female_dysmenorrhoea_check"/>
+													<div class="d-flex">
+														<field name="female_dysmenorrhoea_check"/>
+														<span>None</span>
+													</div>
+													<field name="female_dysmenorrhoea_ids"
+														   attrs="{'readonly': [('female_dysmenorrhoea_check', '=', True)]}"
+														   widget="many2many_checkboxes"/>
 													<field name="female_pain_intensity" widget="radio" options="{'horizontal': True}"/>
 													<field name="female_lmp" style="width:30% !important;"/>
-													<field name="female_complications_ids" widget="many2many_checkboxes"/>
+													<label for="female_complications_check"/>
+													<div class="d-flex">
+														<field name="female_complications_check"/>
+														<span>None</span>
+													</div>
+													<field name="female_complications_ids"
+														   attrs="{'readonly': [('female_complications_check', '=', True)]}"
+														   widget="many2many_checkboxes"/>
 													<div/>
 													<div>
 														<span>
@@ -1395,7 +1409,14 @@
 														</span>
 														<field name="female_complications_other" style="width:89% !important;" class="oe_inline" nolabel="1"/>
 													</div>
-													<field name="female_complains_ids" widget="many2many_checkboxes"/>
+													<label for="female_complains_check"/>
+													<div class="d-flex">
+														<field name="female_complains_check"/>
+														<span>None</span>
+													</div>
+													<field name="female_complains_ids"
+														   attrs="{'readonly': [('female_complains_check', '=', True)]}"
+														   widget="many2many_checkboxes"/>
 												</group>
 											</div>
 

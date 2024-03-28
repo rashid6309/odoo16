@@ -23,6 +23,7 @@ class FemaleGynaecologicalHistory(models.Model):
     female_menstrual_gap_other = fields.Char(string='Menstrual Cycle Gap Other')
     female_menstrual_all_comments = fields.Char(string='Menstrual Cycle All Comments')
     female_menstrual_flow = fields.Selection(selection=StaticMember.MENSTRUAL_FLOW, string='Menstrual Flow')
+    female_dysmenorrhoea_check = fields.Boolean('Dysmenorrhoea')
     female_dysmenorrhoea_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                                 relation='gynaecological_history_multi_selection_dysmenorrhoea',
                                                 column1='gynaecological_id',
@@ -30,6 +31,7 @@ class FemaleGynaecologicalHistory(models.Model):
                                                 string='Dysmenorrhoea', domain="[('type', '=', 'dysmenorrhoea')]")
     female_pain_intensity = fields.Selection(selection=StaticMember.INTENSITY, string='Pain Intensity')
     female_lmp = fields.Date(string='LMP')
+    female_complications_check = fields.Boolean('Complications')
     female_complications_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                                 relation='gynaecological_history_multi_selection_complications',
                                                 column1='gynaecological_id',
@@ -37,6 +39,7 @@ class FemaleGynaecologicalHistory(models.Model):
                                                 string='Complications', domain="[('type', '=', 'complications')]")
 
     female_complications_other = fields.Char(string='Other Complications')
+    female_complains_check = fields.Boolean('Complains')
     female_complains_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                             relation='gynaecological_history_multi_selection_complains',
                                             column1='gynaecological_id',

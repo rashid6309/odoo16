@@ -3,10 +3,10 @@
     <data>
 
 <!--        Complications-->
-        <record model="ec.medical.multi.selection" id="none">
-            <field name="name">None</field>
-            <field name="type">complications</field>
-        </record>
+<!--        <record model="ec.medical.multi.selection" id="none">-->
+<!--            <field name="name">None</field>-->
+<!--            <field name="type">complications</field>-->
+<!--        </record>-->
 
         <record model="ec.medical.multi.selection" id="viginal_discharge">
             <field name="name">Vaginal Discharge</field>
@@ -30,10 +30,10 @@
         </record>
 
 <!--        Complains-->
-        <record model="ec.medical.multi.selection" id="complains_none">
-            <field name="name">None</field>
-            <field name="type">complains</field>
-        </record>
+<!--        <record model="ec.medical.multi.selection" id="complains_none">-->
+<!--            <field name="name">None</field>-->
+<!--            <field name="type">complains</field>-->
+<!--        </record>-->
         <record model="ec.medical.multi.selection" id="intermenstrual_bleeding">
             <field name="name">Intermenstrual Bleeding</field>
             <field name="type">complains</field>
@@ -48,10 +48,10 @@
         </record>
 
 <!--        Dysmenorrhoea-->
-        <record model="ec.medical.multi.selection" id="dysmenorrhoea_none">
-            <field name="name">None</field>
-            <field name="type">dysmenorrhoea</field>
-        </record>
+<!--        <record model="ec.medical.multi.selection" id="dysmenorrhoea_none">-->
+<!--            <field name="name">None</field>-->
+<!--            <field name="type">dysmenorrhoea</field>-->
+<!--        </record>-->
 
         <record model="ec.medical.multi.selection" id="before_menses">
             <field name="name">Before Menses</field>
