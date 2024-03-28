@@ -560,7 +560,6 @@ class StaticMember:
     INTENSITY = [
         ('increase', 'Increase'),
         ('decrease', 'Decrease'),
-        ('none', 'None'),
     ]
 
     SIDE = [

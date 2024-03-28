@@ -29,6 +29,7 @@ class FemaleGynaecologicalHistory(models.Model):
                                                 column1='gynaecological_id',
                                                 column2='multi_selection_id',
                                                 string='Dysmenorrhoea', domain="[('type', '=', 'dysmenorrhoea')]")
+    female_pain_intensity_check = fields.Boolean('Pain Intensity')
     female_pain_intensity = fields.Selection(selection=StaticMember.INTENSITY, string='Pain Intensity')
     female_lmp = fields.Date(string='LMP')
     female_complications_check = fields.Boolean('Complications')

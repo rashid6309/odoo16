@@ -1392,7 +1392,14 @@
 													<field name="female_dysmenorrhoea_ids"
 														   attrs="{'readonly': [('female_dysmenorrhoea_check', '=', True)]}"
 														   widget="many2many_checkboxes"/>
-													<field name="female_pain_intensity" widget="radio" options="{'horizontal': True}"/>
+													<label for="female_pain_intensity_check"/>
+													<div class="d-flex">
+														<field name="female_pain_intensity_check"/>
+														<span>None</span>
+													</div>
+													<field name="female_pain_intensity"
+														   attrs="{'readonly': [('female_pain_intensity_check', '=', True)]}"
+														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_lmp" style="width:30% !important;"/>
 													<label for="female_complications_check"/>
 													<div class="d-flex">
