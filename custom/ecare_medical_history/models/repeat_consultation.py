@@ -34,9 +34,10 @@ class RepeatConsultation(models.Model):
     #                                 required=True)
     repeat_consultation_state = fields.Selection([('open', 'In Progress'),
                                                   ('closed', 'Done'),
+                                                  ('none', 'None'),
                                                   ('decision_pending', "Decision Pending"),
                                                   ],
-                                                 default='open',
+                                                 default='none',
                                                  string='State')
 
     """ Question One

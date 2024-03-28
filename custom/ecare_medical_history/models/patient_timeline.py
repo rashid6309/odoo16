@@ -665,6 +665,7 @@ class PatientTimeline(models.Model):
         patient_id = self.timeline_patient_id.id
         return {
             'repeat_timeline_id': self.id,
+            'repeat_consultation_state': 'open',
             'repeat_patient_id': patient_id,
             'tvs_patient_id': patient_id,
             'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id
