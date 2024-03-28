@@ -374,6 +374,25 @@ class RepeatConsultation(models.Model):
             timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
             self.unlink()
 
+    def action_direct_delete_repeat_consultation_section(self):
+        timeline_id = self.repeat_timeline_id
+        existing_repeat = self.env['ec.repeat.consultation'].search([
+            ('repeat_timeline_id', '=', timeline_id.id),
+            ('id', '!=', self.id),
+        ], order="id desc", limit=1)
+        if existing_repeat:
+            timeline_id.show_repeat_section_state = False
+            timeline_id.ec_repeat_consultation_id = existing_repeat.id
+            self.unlink()
+        else:
+            timeline_id.show_repeat_section_state = False
+            timeline_id.show_repeat_consultation_history_section = False
+            new_repeat_consultation_id = self.env['ec.repeat.consultation'].create(
+                timeline_id._get_repeat_consultation_mandatory_attribute()
+            )
+            timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
+            self.unlink()
+
 
 # Fibroid
 class RepeatFiobrid(models.Model):

@@ -20,6 +20,12 @@
                   parent="ec_medical_root"
                   sequence="110"/>
 
+        <menuitem id="ec_medical_history_delete_repeat_consultation"
+                  name="Repeat Consultation (In Progress)"
+                  groups="ecare_medical_history.group_ec_medical_administrator"
+                  parent="ec_medical_root"
+                  sequence="120"/>
+
 
     </data>
 </odoo>
