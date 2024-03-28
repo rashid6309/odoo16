@@ -8,8 +8,8 @@
             <field name="priority">15</field>
             <field name="arch" type="xml">
                 <tree  editable="top" export_xlsx="false">
-                    <field name="create_date"/>
                     <field name="treatment_of"/>
+                    <field name="outcome"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="type"/>
                     <field name="consultant_id" options='{"no_open": True, "no_create": True}'/>
@@ -17,7 +17,8 @@
                     <field name="down_regulation"/>
                     <field name="superovulation"/>
                     <field name="ovarian_response"/>
-                    <field name="outcome"/>
+                    <field name="treatment_notes"/>
+                    <field name="create_date"/>
                 </tree>
             </field>
         </record>
@@ -27,8 +28,8 @@
             <field name="priority">20</field>
             <field name="arch" type="xml">
                 <tree editable="top" export_xlsx="false">
-                    <field name="create_date"/>
                     <field name="treatment_of"/>
+                    <field name="outcome"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="type"/>
                     <field name="consultant_id"/>
@@ -36,7 +37,8 @@
                     <field name="down_regulation"/>
                     <field name="superovulation"/>
                     <field name="ovarian_response"/>
-                    <field name="outcome"/>
+                    <field name="treatment_notes"/>
+                    <field name="create_date"/>
                 </tree>
             </field>
         </record>

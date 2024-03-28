@@ -17,6 +17,7 @@ class MedicalPreviousHistory(models.Model):
                                  required=False,
                                  string='Consultant')
     oral_drugs = fields.Text(string='Oral Drugs')
+    treatment_notes = fields.Text(string='Treatment History (Notes)')
     down_regulation = fields.Text(string='Down Regulation')
     superovulation = fields.Text(string='Superovulation')
     ovarian_response = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_RESPONSE,
