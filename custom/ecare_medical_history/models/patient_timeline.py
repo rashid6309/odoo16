@@ -685,11 +685,15 @@ class PatientTimeline(models.Model):
 
     def _get_repeat_consultation_mandatory_attribute(self):
         patient_id = self.timeline_patient_id.id
+        repeat_obs_history_lines = len(self.repeat_obs_history_ids.ids)
+        repeat_previous_treatment_lines = len(self.timeline_previous_treatment_ids.ids)
         return {
             'repeat_timeline_id': self.id,
             'repeat_patient_id': patient_id,
             'tvs_patient_id': patient_id,
-            'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id
+            'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id,
+            'repeat_obs_history_lines': int(repeat_obs_history_lines),
+            'repeat_previous_treatment_lines': int(repeat_previous_treatment_lines)
         }
 
     def move_next(self):
@@ -714,8 +718,15 @@ class PatientTimeline(models.Model):
                 or not self.ec_repeat_consultation_id.repeat_procedure_recommended_ids):
             raise ValidationError('Diagnosis or Procedure Recommended can not be empty.')
         else:
-            self.show_repeat_section_state = False
-            self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
+            if (self.ec_repeat_consultation_id.repeat_obs_history_lines >= len(self.repeat_obs_history_ids.ids) or
+                    self.ec_repeat_consultation_id.repeat_previous_treatment_lines >= len(self.timeline_previous_treatment_ids.ids)):
+                raise ValidationError("Once the question two is answered as 'Yes' "
+                                      "then new record in Pregnancy table must be added, "
+                                      "or if the question three is answered as 'Yes' "
+                                      "then new record must be added in the Treatment table.")
+            else:
+                self.show_repeat_section_state = False
+                self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
 
     def action_delete_repeat_consultation_section(self):
         return self.ec_repeat_consultation_id.action_delete_repeat_consultation_section(self)

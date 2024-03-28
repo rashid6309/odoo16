@@ -39,6 +39,9 @@ class RepeatConsultation(models.Model):
                                                  default='open',
                                                  string='State')
 
+    repeat_obs_history_lines = fields.Integer('OBS History Lines')
+    repeat_previous_treatment_lines = fields.Integer('Previous Treatment Lines')
+
     """ Question One
     Yes: Open the pregnancy assessment form
         * LMP (Added manually)
