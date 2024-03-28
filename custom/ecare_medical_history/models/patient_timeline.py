@@ -631,6 +631,7 @@ class PatientTimeline(models.Model):
             if self.ec_repeat_consultation_id:
                 self.repeat_consultation_ids.repeat_date = datetime.now()
                 self.repeat_consultation_ids.repeat_seen_by = self.env.user.id
+                self.ec_repeat_consultation_id.repeat_consultation_state = 'open'
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create(

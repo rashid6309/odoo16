@@ -114,7 +114,7 @@
                                                                         <field name="repeat_seen_with_other"/>
                                                                     </div>
                                                                 </div>
-                                                  self.id              <div class="d-flex d-sm-contents flex-column">
+                                                                <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
                                                                         <span class="o_form_label">Seen by</span>
                                                                     </div>
@@ -1104,18 +1104,18 @@
             </field>
         </record>
 
-		<!-- Search View -->
-		<record id="view_ec_repeat_consultation_search" model="ir.ui.view">
-			<field name="name">ec.repeat.consultation.search.view</field>
-			<field name="model">ec.repeat.consultation</field>
-			<field name="arch" type="xml">
-				<search string=">Repeat Consultation">
-					<field name="repeat_date"/>
-					<field name="repeat_patient_id" string="Patient"/>
-					<field name="repeat_consultation_state"/>
-				</search>
-			</field>
-		</record>
+        <!-- Search View -->
+        <record id="view_ec_repeat_consultation_search" model="ir.ui.view">
+            <field name="name">ec.repeat.consultation.search.view</field>
+            <field name="model">ec.repeat.consultation</field>
+            <field name="arch" type="xml">
+                <search string=">Repeat Consultation">
+                    <field name="repeat_date"/>
+                    <field name="repeat_patient_id" string="Patient"/>
+                    <field name="repeat_consultation_state"/>
+                </search>
+            </field>
+        </record>
 
         <!-- Explicit Tree view -->
         <record id="view_ec_repeat_consultation_in_progress_tree" model="ir.ui.view">
@@ -1148,13 +1148,13 @@
             <field name="target">current</field>
         </record>
 
-<!--        <record id="repeat_consultation_action_open_in_progress_complete" model="ir.actions.server">-->
-<!--            <field name="name">Repeat Consultation (In Progress/Complete)</field>-->
-<!--            <field name="model_id" ref="ecare_medical_history.model_ec_repeat_consultation"/>-->
-<!--            <field name="binding_model_id" ref="ecare_medical_history.model_ec_repeat_consultation"/>-->
-<!--            <field name="state">code</field>-->
-<!--            <field name="code">action = model.compute_open_completed_repeat_consultation()</field>-->
-<!--        </record>-->
+        <!--        <record id="repeat_consultation_action_open_in_progress_complete" model="ir.actions.server">-->
+        <!--            <field name="name">Repeat Consultation (In Progress/Complete)</field>-->
+        <!--            <field name="model_id" ref="ecare_medical_history.model_ec_repeat_consultation"/>-->
+        <!--            <field name="binding_model_id" ref="ecare_medical_history.model_ec_repeat_consultation"/>-->
+        <!--            <field name="state">code</field>-->
+        <!--            <field name="code">action = model.compute_open_completed_repeat_consultation()</field>-->
+        <!--        </record>-->
 
         <record id="repeat_consultation_action_open_in_progress" model="ir.actions.act_window">
             <field name="name">Repeat Consultation (In Progress/Complete)</field>

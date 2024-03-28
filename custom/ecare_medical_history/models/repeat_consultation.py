@@ -375,6 +375,7 @@ class RepeatConsultation(models.Model):
             new_repeat_consultation_id = self.env['ec.repeat.consultation'].create(
                 timeline_id._get_repeat_consultation_mandatory_attribute()
             )
+            new_repeat_consultation_id.repeat_consultation_state = 'none'
             timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
             self.unlink()
 
@@ -394,6 +395,7 @@ class RepeatConsultation(models.Model):
             new_repeat_consultation_id = self.env['ec.repeat.consultation'].create(
                 timeline_id._get_repeat_consultation_mandatory_attribute()
             )
+            new_repeat_consultation_id.repeat_consultation_state = 'none'
             timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
             self.unlink()
 
