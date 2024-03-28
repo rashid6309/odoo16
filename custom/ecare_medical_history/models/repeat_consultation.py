@@ -261,13 +261,21 @@ class RepeatConsultation(models.Model):
 
     ''' Data methods '''
 
-    def action_set_repeat_state(self):
+    def action_set_repeat_state(self, skip_state_set=False):
         self.ensure_one()
+
+        if skip_state_set:
+            return True
+
         if not self.repeat_consultation_state:
             self.repeat_consultation_state = 'open'
 
         return True
 
+    def action_set_post_required_attributes(self):
+        for rec in self:
+            skip_test_state = self._context.get('skip_set_state', False)
+            rec.action_set_repeat_state(skip_test_state)
 
     def repeat_values_compute(self):
         if self:
@@ -364,24 +372,6 @@ class RepeatConsultation(models.Model):
     def action_open_tvs_form(self):
         return self.env['ec.medical.tvs'].action_open_form_view(self, target='new')
 
-    def action_delete_repeat_consultation_section(self, timeline_id):
-        existing_repeat = self.env['ec.repeat.consultation'].search([
-            ('repeat_timeline_id', '=', timeline_id.id),
-            ('id', '!=', self.id),
-        ], order="id desc", limit=1)
-        if existing_repeat:
-            timeline_id.show_repeat_section_state = False
-            timeline_id.ec_repeat_consultation_id = existing_repeat.id
-            self.unlink()
-        else:
-            timeline_id.show_repeat_section_state = False
-            timeline_id.show_repeat_consultation_history_section = False
-            new_repeat_consultation_id = self.env['ec.repeat.consultation'].create(
-                timeline_id._get_repeat_consultation_mandatory_attribute()
-            )
-            timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
-            self.unlink()
-
     def action_direct_delete_repeat_consultation_section(self):
         timeline_id = self.repeat_timeline_id
         existing_repeat = self.env['ec.repeat.consultation'].search([
@@ -398,34 +388,11 @@ class RepeatConsultation(models.Model):
             new_repeat_consultation_id = self.env['ec.repeat.consultation'].create(
                 timeline_id._get_repeat_consultation_mandatory_attribute()
             )
+
+            new_repeat_consultation_id.with_context({'skip_set_state': True}).action_set_post_required_attributes()
+
             timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
             self.unlink()
-
-    def compute_open_completed_repeat_consultation(self):
-        # Search for records where show_repeat_section_state is open or closed
-        repeat_consultations = self.env['ec.repeat.consultation'].search(
-            [('repeat_consultation_state', 'in', ['open', 'closed'])])
-        unique_repeat_timeline_ids = set()
-
-        filtered_repeat_consultations = []
-
-        for consultation in repeat_consultations:
-            if consultation.repeat_timeline_id.show_repeat_section_state or consultation.repeat_location_id:
-                filtered_repeat_consultations.append(consultation)
-
-        filtered_consultation_ids = [consultation.id for consultation in filtered_repeat_consultations]
-
-        domain = [('id', 'in', filtered_consultation_ids)]
-        return {
-            "name": _("Repeat Consultation (In Progress/Complete)"),
-            "type": 'ir.actions.act_window',
-            "res_model": 'ec.repeat.consultation',
-            'view_id': self.env.ref('ecare_medical_history.view_ec_repeat_consultation_in_progress_tree').id,
-            'view_mode': 'tree',
-            "target": 'current',
-            'domain': domain,
-        }
-
 
 # Fibroid
 class RepeatFiobrid(models.Model):
