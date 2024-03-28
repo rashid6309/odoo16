@@ -809,10 +809,10 @@
 																<span for="position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
 																<field name="position_to_right"/>
 																<span for="position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
-																<field name="position_a_v"/>
-																<span for="position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>
-																<field name="position_r_v"/>
-																<span for="position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>
+<!--																<field name="position_a_v"/>-->
+<!--																<span for="position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
+<!--																<field name="position_r_v"/>-->
+<!--																<span for="position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
 																<field name="position_mid_position"/>
 																<span for="position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
 																<!--																<field name="tvs_uterus_position_ids"-->
@@ -2361,8 +2361,15 @@
 													<field name="gynaecological_ultrasound_type"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
-													<field name="gynaecological_examination_date"  style="width:30% !important;"/>
-													<field name="gynaecological_examination_lmp"  style="width:30% !important;"/>
+<!--													<field name="gynaecological_examination_date"  style="width:30% !important;"/>-->
+													<label for="gynaecological_examination_lmp" style="width:30% !important;"/>
+													<div class="d-flex">
+														<field name="gynaecological_examination_lmp" style="width:30% !important;"/>
+														<label for="gynaecological_examination_cycle_day" style="width:30% !important;"/>
+														<field name="gynaecological_examination_cycle_day" force_save="1" style="width:30% !important;"/>
+													</div>
+<!--													<field name="gynaecological_examination_lmp" style="width:30% !important;"/>-->
+<!--													<field name="gynaecological_examination_cycle_day" force_save="1"/>-->
 
 													<div/>
 													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -30%;">
@@ -2409,10 +2416,10 @@
 																	<span for="gynae_position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
 																	<field name="gynae_position_to_right"/>
 																	<span for="gynae_position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
-																	<field name="gynae_position_a_v"/>
-																	<span for="gynae_position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>
-																	<field name="gynae_position_r_v"/>
-																	<span for="gynae_position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>
+<!--																	<field name="gynae_position_a_v"/>-->
+<!--																	<span for="gynae_position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
+<!--																	<field name="gynae_position_r_v"/>-->
+<!--																	<span for="gynae_position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
 																	<field name="gynae_position_mid_position"/>
 																	<span for="gynae_position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
 

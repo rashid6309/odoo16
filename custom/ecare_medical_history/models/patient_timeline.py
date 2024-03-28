@@ -264,6 +264,26 @@ class PatientTimeline(models.Model):
             self.repeat_cycle_day = 0
             self.tvs_cycle_day = 0
 
+    @api.onchange('create_date_first_consultation', 'gynaecological_examination_lmp')
+    def _compute_gynaecological_examination_cycle_day(self):
+        """
+        This is the onchange on the first consultation form.
+        Formula: (Consultation Date - LMP) + 1
+        :return: cycle day
+        """
+        if self.gynaecological_examination_lmp:
+            if CustomDateTime.greater_than_today(self.gynaecological_examination_lmp):
+                self.gynaecological_examination_lmp = None
+                raise ValidationError(_(
+                    "Date can't be greater than current date!"))
+
+            cycle_day = (self.create_date_first_consultation.date() - self.gynaecological_examination_lmp).days
+            cycle_day += 1
+
+            self.gynaecological_examination_cycle_day = cycle_day
+        else:
+            self.gynaecological_examination_cycle_day = 0
+
     def _compute_female_values(self):
         """
         Gravida: Total number of records in the obs.history
@@ -297,7 +317,9 @@ class PatientTimeline(models.Model):
 
                 if dop >= 24:
                     count_after_24_weeks += 1
-                if dop < 24 and obs_history.mode_of_delivery == 'MISCARRIAGE':
+                # if dop < 24 and obs_history.mode_of_delivery == 'MISCARRIAGE':
+                # before it was logic which then excluded the Miscarriages
+                if dop < 24:
                     miscarriages += 1
 
             if obs_history.alive == 'Alive':
