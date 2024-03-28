@@ -1014,20 +1014,18 @@
 												<field name="repeat_investigation_notes"/>
 
 												<field name="repeat_procedure_recommended_ids"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_treatment_plan"/>
 
-												<field name="repeat_treatment_advised_ids"
-													   widget="many2many_tags"
-													   options="{'no_create_edit': True, 'no_create': True}"/>
+<!--												<field name="repeat_treatment_advised_ids"-->
+<!--													   widget="many2many_tags"-->
+<!--													   options="{'no_create_edit': True, 'no_create': True}"/>-->
 
-												<field name="repeat_new_treatment_pathway"
-													   widget="radio"
-													   options="{'horizontal': True}"
-												/>
+<!--												<field name="repeat_new_treatment_pathway"-->
+<!--													   widget="radio"-->
+<!--													   options="{'horizontal': True}"-->
+<!--												/>-->
 											</group>
 
 										</span>

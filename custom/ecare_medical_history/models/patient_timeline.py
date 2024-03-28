@@ -709,8 +709,13 @@ class PatientTimeline(models.Model):
         self.repeat_state = str(value)
 
     def action_save_repeat_consultation_section(self):
-        self.show_repeat_section_state = False
-        self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
+        if (self.ec_repeat_consultation_id.question_one_choice == 'no' and
+                not self.ec_repeat_consultation_id.repeat_diagnosis
+                or not self.ec_repeat_consultation_id.repeat_procedure_recommended_ids):
+            raise ValidationError('Diagnosis or Procedure Recommended can not be empty.')
+        else:
+            self.show_repeat_section_state = False
+            self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
 
     def action_delete_repeat_consultation_section(self):
         return self.ec_repeat_consultation_id.action_delete_repeat_consultation_section(self)
