@@ -1104,6 +1104,18 @@
             </field>
         </record>
 
+		<!-- Search View -->
+		<record id="view_ec_repeat_consultation_search" model="ir.ui.view">
+			<field name="name">ec.repeat.consultation.search.view</field>
+			<field name="model">ec.repeat.consultation</field>
+			<field name="arch" type="xml">
+				<search string=">Repeat Consultation">
+					<field name="repeat_date"/>
+					<field name="repeat_patient_id" string="Patient"/>
+					<field name="repeat_consultation_state"/>
+				</search>
+			</field>
+		</record>
 
         <!-- Explicit Tree view -->
         <record id="view_ec_repeat_consultation_in_progress_tree" model="ir.ui.view">
