@@ -629,16 +629,17 @@ class PatientTimeline(models.Model):
         if self.show_repeat_consultation_history_section is False:
             self.show_repeat_consultation_history_section = True
             if self.ec_repeat_consultation_id:
-                self.repeat_consultation_ids.repeat_date = datetime.now()
-                self.repeat_consultation_ids.repeat_seen_by = self.env.user.id
-                self.ec_repeat_consultation_id.repeat_consultation_state = 'open'
+                self.ec_repeat_consultation_id.repeat_date = datetime.now()
+                self.ec_repeat_consultation_id.repeat_seen_by = self.env.user.id
+                self.ec_repeat_consultation_id.action_set_post_required_attributes() # Need to call this explicitly here.
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create(
             self._get_repeat_consultation_mandatory_attribute()
         )
+
         self.ec_repeat_consultation_id = repeat_consultation_id.id
-        # return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
+        self.ec_repeat_consultation_id.action_set_post_required_attributes()
 
     ''' Action for opening views block ended '''
 
@@ -690,7 +691,6 @@ class PatientTimeline(models.Model):
         repeat_previous_treatment_lines = len(self.timeline_previous_treatment_ids.ids)
         return {
             'repeat_timeline_id': self.id,
-            'repeat_consultation_state': 'open',
             'repeat_patient_id': patient_id,
             'tvs_patient_id': patient_id,
             'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id,
