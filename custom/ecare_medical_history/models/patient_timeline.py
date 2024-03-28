@@ -689,6 +689,7 @@ class PatientTimeline(models.Model):
         repeat_previous_treatment_lines = len(self.timeline_previous_treatment_ids.ids)
         return {
             'repeat_timeline_id': self.id,
+            'repeat_consultation_state': 'open',
             'repeat_patient_id': patient_id,
             'tvs_patient_id': patient_id,
             'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id,
