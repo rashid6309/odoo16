@@ -36,7 +36,7 @@ class RepeatConsultation(models.Model):
                                                   ('closed', 'Done'),
                                                   ('decision_pending', "Decision Pending"),
                                                   ],
-                                                 default='open',
+                                                 default=None,
                                                  string='State')
 
     """ Question One
@@ -260,6 +260,14 @@ class RepeatConsultation(models.Model):
         return result
 
     ''' Data methods '''
+
+    def action_set_repeat_state(self):
+        self.ensure_one()
+        if not self.repeat_consultation_state:
+            self.repeat_consultation_state = 'open'
+
+        return True
+
 
     def repeat_values_compute(self):
         if self:
