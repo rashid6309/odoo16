@@ -652,7 +652,8 @@
 													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
 												/>
 
-												<field name="repeat_uterus_and_adnexae"/>
+												<field name="repeat_uterus_and_adnexae"
+													   attrs="{'invisible': [('p_v_only', '!=', True)]}"/>
 											</group>
 											<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
