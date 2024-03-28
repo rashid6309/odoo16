@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
 import re
@@ -8,8 +6,6 @@ from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from odoo.addons.ecare_medical_history.utils.validation import Validation
-
-from odoo.addons.ecare_medical_history.models.ec_medical_years import EcMedicalYear
 
 
 class PatientTimeline(models.Model):
@@ -629,8 +625,6 @@ class PatientTimeline(models.Model):
         if self.show_repeat_consultation_history_section is False:
             self.show_repeat_consultation_history_section = True
             if self.ec_repeat_consultation_id:
-                self.ec_repeat_consultation_id.repeat_date = datetime.now()
-                self.ec_repeat_consultation_id.repeat_seen_by = self.env.user.id
                 self.ec_repeat_consultation_id.action_set_post_required_attributes() # Need to call this explicitly here.
             return
 

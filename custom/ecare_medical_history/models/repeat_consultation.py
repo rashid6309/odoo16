@@ -1,5 +1,6 @@
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
+from datetime import datetime
 
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from logging import getLogger
@@ -273,6 +274,9 @@ class RepeatConsultation(models.Model):
         for rec in self:
             skip_test_state = self._context.get('skip_set_state', False)
             rec.action_set_repeat_state(skip_test_state)
+
+            rec.ec_repeat_consultation_id.repeat_date = datetime.now()
+            rec.ec_repeat_consultation_id.repeat_seen_by = rec.env.user.id
 
     def repeat_values_compute(self):
         if self:
