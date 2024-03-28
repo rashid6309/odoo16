@@ -114,7 +114,7 @@
                                                                         <field name="repeat_seen_with_other"/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex d-sm-contents flex-column">
+                                                  self.id              <div class="d-flex d-sm-contents flex-column">
                                                                     <div>
                                                                         <span class="o_form_label">Seen by</span>
                                                                     </div>
@@ -1148,10 +1148,10 @@
             <field name="target">current</field>
         </record>
 
-<!--        <record id="repeat_consultation_action_open_in_progress" model="ir.actions.server">-->
+<!--        <record id="repeat_consultation_action_open_in_progress_complete" model="ir.actions.server">-->
 <!--            <field name="name">Repeat Consultation (In Progress/Complete)</field>-->
-<!--            <field name="model_id" ref="ecare.model_ec_repeat_consultation"/>-->
-<!--            <field name="binding_model_id" ref="ecare.model_ec_repeat_consultation"/>-->
+<!--            <field name="model_id" ref="ecare_medical_history.model_ec_repeat_consultation"/>-->
+<!--            <field name="binding_model_id" ref="ecare_medical_history.model_ec_repeat_consultation"/>-->
 <!--            <field name="state">code</field>-->
 <!--            <field name="code">action = model.compute_open_completed_repeat_consultation()</field>-->
 <!--        </record>-->
