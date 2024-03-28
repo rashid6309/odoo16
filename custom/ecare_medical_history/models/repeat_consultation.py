@@ -25,16 +25,9 @@ class RepeatConsultation(models.Model):
     repeat_pregnancy_id = fields.Many2one(comodel_name="ec.medical.pregnancy.data")
 
     ''' Data attributes '''
-    #
-    # repeat_state = fields.Selection(selection=[('1', "Question 1"),
-    #                                            ('2', "Question 2"),
-    #                                            ('3', "Question 3"),
-    #                                            ('4', "Question 4")],
-    #                                 default="1",
-    #                                 required=True)
+
     repeat_consultation_state = fields.Selection([('open', 'In Progress'),
                                                   ('closed', 'Done'),
-                                                  ('none', 'None'),
                                                   ('decision_pending', "Decision Pending"),
                                                   ],
                                                  default=None,
