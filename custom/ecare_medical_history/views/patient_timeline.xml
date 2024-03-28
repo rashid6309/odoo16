@@ -310,6 +310,7 @@
 										<field name="first_consultation_state" invisible="1"/>
 										<button name="action_create_repeat_consultation"
 												type="object"
+												confirm="Do you really want to create a new repeat consultation?"
 												class="btn btn-primary"
 												attrs="{'invisible': [('show_repeat_section_state', '=', True)]}"
 												onclick="showRepeatConsultationSection('repeat_consultation_section')">
