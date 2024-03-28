@@ -44,7 +44,7 @@ class FemaleFamilyHistory(models.Model):
                                         relation='ec_female_family_history_twins_rel',
                                         column1='twins_id',
                                         column2='ec_female_family_history_id',
-                                    string='Twins')
+                                    string='Multiple Pregnancies')
 
     female_other_twins = fields.Char(string='Other Details')
 
