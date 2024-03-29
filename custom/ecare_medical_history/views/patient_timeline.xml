@@ -644,17 +644,17 @@
 										('repeat_pelvic_examination_state', '=', 'no')]}">
 
 												<field name="repeat_findings_on_inspection"
-													   attrs="{'invisible': [('inspection_only', '!=', True)],'required': [('inspection_only', '=', True)]}"
+													   attrs="{'invisible': [('inspection_only', '!=', True)],'required': [('show_repeat_section_state', '=', True),('inspection_only', '=', True)]}"
 												/>
 
 												<field name="repeat_valva_vaginal_exam"
 													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
-													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True),('show_repeat_section_state', '=', True)]}"
 												/>
 
 												<field name="repeat_cervix"
 													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
-													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True),('show_repeat_section_state', '=', True)]}"
 												/>
 
 												<field name="repeat_uterus_and_adnexae"
@@ -709,7 +709,7 @@
 												<field style=" width: 40% !important; "
 													   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True),('repeat_hvs', '=', True)]}"
+													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True),('repeat_hvs', '=', True),('show_repeat_section_state', '=', True)]}"
 													   name="repeat_method_of_hvs"/>
 											</group>
 
