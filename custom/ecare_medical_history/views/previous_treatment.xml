@@ -7,7 +7,7 @@
             <field name="model">ec.medical.previous.treatment</field>
             <field name="priority">15</field>
             <field name="arch" type="xml">
-                <tree  editable="top" export_xlsx="false">
+                <tree  editable="bottom" export_xlsx="false">
                     <field name="treatment_of"/>
                     <field name="outcome"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
@@ -27,7 +27,7 @@
             <field name="model">ec.medical.previous.treatment</field>
             <field name="priority">20</field>
             <field name="arch" type="xml">
-                <tree editable="top" export_xlsx="false">
+                <tree editable="bottom" export_xlsx="false">
                     <field name="treatment_of"/>
                     <field name="outcome"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>

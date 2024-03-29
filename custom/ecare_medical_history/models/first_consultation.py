@@ -174,5 +174,9 @@ class FirstConsultation(models.Model):
 
     # Override Methods
     def write(self, vals):
-        rec = super(FirstConsultation, self).write(vals)
-        return rec
+        if vals.get('first_consultation_state'):
+            return super(FirstConsultation, self).write(vals)
+        if self.first_consultation_state == 'closed':
+            raise UserError(_('First consultation has been disallowed for further editing.'))
+        else:
+            return super(FirstConsultation, self).write(vals)

@@ -3387,18 +3387,18 @@
 										</page>
 
 										<page string="Conclusion" name="conclusion">
-											<!--											<div style="text-align: right;">-->
-											<!--												<button name="action_close_first_consultation"-->
-											<!--														type="object"-->
-											<!--														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"-->
-											<!--														class="card-custom-close-button-btn"-->
-											<!--														string="Close First Consultation"/>-->
-											<!--												<button name="action_open_first_consultation"-->
-											<!--														type="object"-->
-											<!--														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"-->
-											<!--														class="card-custom-close-button-btn"-->
-											<!--														string="Open First Consultation"/>-->
-											<!--											</div>-->
+											<div style="text-align: right;">
+												<button name="action_close_first_consultation"
+														type="object"
+														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"
+														class="card-custom-close-button-btn"
+														string="Disallow Editing"/>
+												<button name="action_open_first_consultation"
+														type="object"
+														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"
+														class="card-custom-close-button-btn"
+														string="Allow Editing"/>
+											</div>
 											<field name="timeline_conclusion" placeholder="Type..."/>
 										</page>
 
