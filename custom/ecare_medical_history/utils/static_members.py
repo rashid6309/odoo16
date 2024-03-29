@@ -677,7 +677,6 @@ class StaticMember:
     SX_ISSUES = [
         ('aparunea', 'Aparunea'),
         ('dysparunea', 'Dysparunea'),
-        ('none', 'None'),
     ]
 
     CN_TYPES = [
