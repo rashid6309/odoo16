@@ -1770,15 +1770,15 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Year"  />
 
-													<!--													<field name="female_thyroid_TYPE"-->
-													<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
-													<!--														   placeholder="" string="Thyroid"-->
-													<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<field name="female_thyroid_type"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_thyroid_medical"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   string="Thyroid" />
+														   string="" />
 													<field name="female_thyroid_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
@@ -2930,13 +2930,13 @@
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
-													<!--													<field name="male_thyroid_TYPE"-->
-													<!--														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"-->
-													<!--														   placeholder="" string="Thyroid"-->
-													<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<field name="male_thyroid_type"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_thyroid_medical"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
-														   placeholder="Add Details" string="Thyroid" />
+														   placeholder="Add Details" string="" />
 													<field name="male_thyroid_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
