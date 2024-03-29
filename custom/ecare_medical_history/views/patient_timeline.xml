@@ -872,8 +872,7 @@
 														</div>
 														<div>
 															<span>CET</span>
-															<field name="tvs_lining_size"
-																   placeholder="..." class="oe_inline" nolabel="1"/>
+															<field name="tvs_lining_size_decimal" class="oe_inline" nolabel="1"/>
 															<span>mm</span>
 														</div>
 													</div>
@@ -2495,7 +2494,7 @@
 																	</div>
 																	<div>
 																		<span>CET</span>
-																		<field name="lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
+																		<field name="lining_size_decimal" class="oe_inline" nolabel="1"/>
 																		<span>mm</span>
 																	</div>
 																</div>

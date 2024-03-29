@@ -1106,7 +1106,16 @@ class PatientTimeline(models.Model):
     def _check_float_input_temp(self):
         if self.repeat_pregnancy_temp and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_temp):
             raise UserError(f"Please enter a numeric value in pregnancy temperature.")
-            # raise UserError(f"Please enter a numeric value in pregnancy temperature with up to 2 decimal points.")
+
+    @api.onchange('lining_size_decimal')
+    def _check_float_input_lining_size(self):
+        if self.lining_size_decimal and not re.match(Validation.REGEX_FLOAT_2_DP, self.lining_size_decimal):
+            raise UserError(f"Please enter a numeric value in CET.")
+
+    @api.onchange('tvs_lining_size_decimal')
+    def _check_float_tvs_lining_size(self):
+        if self.tvs_lining_size_decimal and not re.match(Validation.REGEX_FLOAT_2_DP, self.tvs_lining_size_decimal):
+            raise UserError(f"Please enter a numeric value in CET.")
 
     @api.onchange('repeat_pregnancy_hr')
     def _check_float_input_hr(self):

@@ -141,6 +141,7 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_suspected_cavity_lesion = fields.Boolean(string="Suspected Cavity Lesion", default=False)
 
     lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='CET')
+    lining_size_decimal = fields.Char(string='CET')
 
     def action_open_gynae_scan(self):
         context = self._context.copy()
