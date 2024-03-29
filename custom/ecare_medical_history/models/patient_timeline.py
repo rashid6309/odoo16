@@ -718,7 +718,7 @@ class PatientTimeline(models.Model):
         if ((self.ec_repeat_consultation_id.question_one_choice == 'no') and
                 (not self.ec_repeat_consultation_id.repeat_diagnosis
                 or not self.ec_repeat_consultation_id.repeat_procedure_recommended_ids)):
-            raise ValidationError('Diagnosis or Procedure Recommended can not be empty.')
+            raise ValidationError('Diagnosis and Procedure Recommended can not be empty.')
         else:
             if ((self.ec_repeat_consultation_id.question_two_choice == 'yes' or
                 self.ec_repeat_consultation_id.question_three_choice == 'yes') and
