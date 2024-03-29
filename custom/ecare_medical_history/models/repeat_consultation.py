@@ -1,3 +1,4 @@
+from datetime import datetime
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 
@@ -274,6 +275,9 @@ class RepeatConsultation(models.Model):
             skip_test_state = self._context.get('skip_set_state', False)
             rec.action_set_repeat_state(skip_test_state)
 
+            rec.repeat_date = datetime.now()
+            rec.repeat_seen_by = rec.env.user.id
+
     def repeat_values_compute(self):
         if self:
             for repeat in self:
@@ -375,10 +379,16 @@ class RepeatConsultation(models.Model):
             ('repeat_timeline_id', '=', timeline_id.id),
             ('id', '!=', self.id),
         ], order="id desc", limit=1)
+
         if existing_repeat:
-            timeline_id.show_repeat_section_state = False
+
+            # At one time only one repeat can be in the in_progress state on the timeline and its id should
+            # comply with: self.id == timeline_id.ec_repeat_consultation_id.id
+
+            if self.repeat_consultation_state == 'in_progress':
+                timeline_id.show_repeat_section_state = False
+
             timeline_id.ec_repeat_consultation_id = existing_repeat.id
-            self.unlink()
         else:
             timeline_id.show_repeat_section_state = False
             timeline_id.show_repeat_consultation_history_section = False
@@ -389,7 +399,7 @@ class RepeatConsultation(models.Model):
             new_repeat_consultation_id.with_context({'skip_set_state': True}).action_set_post_required_attributes()
 
             timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
-            self.unlink()
+        self.unlink()
 
 
 # Fibroid
