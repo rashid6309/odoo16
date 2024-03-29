@@ -1127,7 +1127,6 @@
                     <field name="repeat_patient_id"/>
                     <field name="repeat_location_id"/>
                     <field name="repeat_seen_by"/>
-                    <field name="lmp_question_four"/>
                     <field name="repeat_consultation_state"/>
                     <button name="action_direct_delete_repeat_consultation_section"
                             type="object"
