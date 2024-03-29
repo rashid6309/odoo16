@@ -252,6 +252,11 @@ class PatientTimeline(models.Model):
                 raise ValidationError(_(
                     "Date can't be greater than current date!"))
 
+            if self.lmp_question_four and self.repeat_date:
+                if self.lmp_question_four > self.repeat_date.date():
+                    raise ValidationError(_(
+                        "LMP Date can't be greater than current consultation date!"))
+
             cycle_day = (self.repeat_date.date() - self.lmp_question_four).days
             cycle_day += 1
 
@@ -273,6 +278,11 @@ class PatientTimeline(models.Model):
                 self.gynaecological_examination_lmp = None
                 raise ValidationError(_(
                     "Date can't be greater than current date!"))
+
+            if self.gynaecological_examination_lmp and self.create_date_first_consultation:
+                if self.gynaecological_examination_lmp > self.create_date_first_consultation.date():
+                    raise ValidationError(_(
+                        "LMP Date can't be greater than current consultation date!"))
 
             cycle_day = (self.create_date_first_consultation.date() - self.gynaecological_examination_lmp).days
             cycle_day += 1

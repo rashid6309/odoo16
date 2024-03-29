@@ -1399,19 +1399,23 @@
 													<div class="d-flex">
 														<field name="female_pain_intensity_check"/>
 														<span>None</span>
-													</div>
-													<field name="female_pain_intensity"
+														<field name="female_pain_intensity"
+															   nolabel="1"
 														   attrs="{'readonly': [('female_pain_intensity_check', '=', True)]}"
 														   widget="radio" options="{'horizontal': True}"/>
+													</div>
+
 													<field name="female_lmp" style="width:30% !important;"/>
 													<label for="female_complications_check"/>
 													<div class="d-flex">
 														<field name="female_complications_check"/>
 														<span>None</span>
-													</div>
-													<field name="female_complications_ids"
+														<field name="female_complications_ids"
+															   nolabel="1"
 														   attrs="{'readonly': [('female_complications_check', '=', True)]}"
 														   widget="many2many_checkboxes"/>
+													</div>
+
 													<div/>
 													<div>
 														<span>
@@ -1423,10 +1427,11 @@
 													<div class="d-flex">
 														<field name="female_complains_check"/>
 														<span>None</span>
-													</div>
-													<field name="female_complains_ids"
+														<field name="female_complains_ids"
+															   nolabel="1"
 														   attrs="{'readonly': [('female_complains_check', '=', True)]}"
 														   widget="many2many_checkboxes"/>
+													</div>
 												</group>
 											</div>
 
