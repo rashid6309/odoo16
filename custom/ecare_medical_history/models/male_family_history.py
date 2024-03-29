@@ -63,6 +63,20 @@ class MaleFamilyHistory(models.Model):
 
     male_other_abnormalities = fields.Char(string='Other Details')
 
+    male_heart_disease_ids = fields.Many2many(comodel_name='ec.family.relation.list',
+                                              relation='ec_male_family_history_heart_disease_rel',
+                                              column1='ec_male_family_history_id',
+                                              column2='heart_disease_id',
+                                              string='Heart Disease')
 
+    male_other_heart_disease = fields.Char(string='Other Details')
+
+    male_subfertility_ids = fields.Many2many(comodel_name='ec.family.relation.list',
+                                             relation='ec_male_family_history_subfertility_rel',
+                                             column1='ec_male_family_history_id',
+                                             column2='subfertility_id',
+                                             string='Subfertility')
+
+    male_other_subfertility = fields.Char(string='Other Details')
 
     male_family_history_other = fields.Char(string='Other History')

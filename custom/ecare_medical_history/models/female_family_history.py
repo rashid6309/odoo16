@@ -63,6 +63,22 @@ class FemaleFamilyHistory(models.Model):
 
     female_other_abnormalities = fields.Char(string='Other Details')
 
+    female_heart_disease_ids = fields.Many2many(comodel_name='ec.family.relation.list',
+                                              relation='ec_female_family_history_heart_disease_rel',
+                                              column1='ec_female_family_history_id',
+                                              column2='heart_disease_id',
+                                              string='Heart Disease')
+
+    female_other_heart_disease = fields.Char(string='Other Details')
+
+    female_subfertility_ids = fields.Many2many(comodel_name='ec.family.relation.list',
+                                               relation='ec_female_family_history_subfertility_rel',
+                                               column1='ec_female_family_history_id',
+                                               column2='subfertility_id',
+                                               string='Subfertility')
+
+    female_other_subfertility = fields.Char(string='Other Details')
+
     female_pregnancy_induced_hypertension_ids = fields.Many2many(comodel_name='ec.family.relation.list',
                                                                  relation='ec_female_family_history_pregnancy_induce_hypertension_rel',
                                                                  column1='pregnancy_induce_hypertension_id',
