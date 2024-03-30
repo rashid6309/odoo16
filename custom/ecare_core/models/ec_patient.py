@@ -341,6 +341,9 @@ class EcarePatient(models.Model):
 
         return patient_name
 
+    def action_create_legacy_patient_directly(self):
+        self.post_data_history_software()
+
     def action_register(self):
         self.ensure_one()
         self.constraints_validation()
@@ -352,7 +355,7 @@ class EcarePatient(models.Model):
 
         # POST API to update the data at that side ICSI existing history software
 
-        # self.post_data_history_software()
+        self.post_data_history_software()
 
     def constraints_validation(self):
         WIFE_CONSTRAINT_MSG = "Wife cnic or passport, dob mobile and mobile are mandatory"
