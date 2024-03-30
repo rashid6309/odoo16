@@ -23,10 +23,10 @@ class MedicalPreviousHistory(models.Model):
     ovarian_response = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_RESPONSE,
                                         string='Ovarian Response')
     outcome = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_OUTCOME,
-                               string='Outcome', required=True)
+                               string='Outcome')
 
     treatment_of = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_OF,
-                                    string='Treatment of', required=True)
+                                    string='Treatment of')
 
     def action_open_form_view(self, patient_id, timeline_id=None):
         context = {

@@ -537,9 +537,11 @@
 											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<group>
 													<field name="lmp_question_four"
-														   style="width: 55% !important;"
-														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"/>
+														   style="width: 55% !important;"/>
+<!--													<field name="lmp_question_four"-->
+<!--														   style="width: 55% !important;"-->
+<!--														   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 												</group>
 												<group>
 													<field name="repeat_cycle_day"
@@ -1018,6 +1020,8 @@
 
 												<field name="repeat_procedure_recommended_ids"
 													   widget="many2many_tags"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_treatment_plan"/>
 
@@ -1290,7 +1294,9 @@
 											<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
 												<!--											<field name="patient_id"/>-->
 												<tree editable="top">
-													<field name="first_obs_history_ids" id="obstetrics_history_table"
+													<field name="first_obs_history_ids"
+														   attrs="{'readonly': [('first_consultation_state', '=', 'closed')]}"
+														   id="obstetrics_history_table"
 														   context="{'default_patient_id': timeline_patient_id,
 													   				'default_timeline_id' : id,}"
 														   nolabel="1" editable="top">
@@ -1391,10 +1397,12 @@
 													<div class="d-flex">
 														<field name="female_dysmenorrhoea_check"/>
 														<span>None</span>
+														<field name="female_dysmenorrhoea_ids"
+															   nolabel="1"
+															   attrs="{'readonly': [('female_dysmenorrhoea_check', '=', True)]}"
+															   widget="many2many_checkboxes"/>
 													</div>
-													<field name="female_dysmenorrhoea_ids"
-														   attrs="{'readonly': [('female_dysmenorrhoea_check', '=', True)]}"
-														   widget="many2many_checkboxes"/>
+
 													<label for="female_pain_intensity_check"/>
 													<div class="d-flex">
 														<field name="female_pain_intensity_check"/>
@@ -1464,7 +1472,16 @@
 												<group>
 
 													<!--													<field name="cn_type" widget="radio" options="{'horizontal': True}"/>-->
-													<field name="cn_type" widget="many2many_checkboxes"/>
+													<label for="cn_type_check"/>
+													<div class="d-flex">
+														<field name="cn_type_check"/>
+														<span>None</span>
+														<field name="cn_type"
+															   nolabel="1"
+															   widget="many2many_checkboxes"
+															   attrs="{'readonly': [('cn_type_check', '=', True)]}"/>
+													</div>
+<!--													<field name="cn_type" widget="many2many_checkboxes"/>-->
 													<field name="other_comments" string="Other"/>
 												</group>
 											</div>
@@ -3450,6 +3467,7 @@
 											<div class="card-block mb-5 pl-4" id="previous_treatment_tree_section">
 												<tree editable="top">
 													<field name="first_previous_treatment_ids"
+														   attrs="{'readonly': [('first_consultation_state', '=', 'closed')]}"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
 													   }"

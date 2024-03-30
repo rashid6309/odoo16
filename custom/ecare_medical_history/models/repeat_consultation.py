@@ -123,7 +123,6 @@ class RepeatConsultation(models.Model):
                                       store=True)
 
     repeat_date = fields.Datetime(string='Consultation Date',
-                                  readonly=True,
                                   default=fields.Datetime.now)
 
     repeat_seen_by = fields.Many2one(comodel_name='res.users',

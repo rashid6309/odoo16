@@ -181,10 +181,10 @@
 
 <!--        Contraception-->
 
-        <record model="ec.medical.multi.selection" id="cn_type_none">
-            <field name="name">None</field>
-            <field name="type">cn_type</field>
-        </record>
+<!--        <record model="ec.medical.multi.selection" id="cn_type_none">-->
+<!--            <field name="name">None</field>-->
+<!--            <field name="type">cn_type</field>-->
+<!--        </record>-->
 
         <record model="ec.medical.multi.selection" id="cn_type_withdrawal">
             <field name="name">Withdrawal</field>

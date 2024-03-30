@@ -146,7 +146,6 @@ class PatientTimeline(models.Model):
     infertility_type = fields.Char(readonly=True, compute="_compute_infertility_type")
 
     ''' Data members '''
-    timeline_conclusion = fields.Html(string="Conclusion")
 
     patient_attachment_ids = fields.One2many(string='Attachments Details',
                                              comodel_name='ec.medical.patient.attachment',
@@ -726,22 +725,22 @@ class PatientTimeline(models.Model):
         self.repeat_state = str(value)
 
     def action_save_repeat_consultation_section(self):
-        if ((self.ec_repeat_consultation_id.question_one_choice == 'no') and
-                (not self.ec_repeat_consultation_id.repeat_diagnosis
-                or not self.ec_repeat_consultation_id.repeat_procedure_recommended_ids)):
-            raise ValidationError('Diagnosis and Procedure Recommended can not be empty.')
+        # if ((self.ec_repeat_consultation_id.question_one_choice == 'no') and
+        #         (not self.ec_repeat_consultation_id.repeat_diagnosis
+        #         or not self.ec_repeat_consultation_id.repeat_procedure_recommended_ids)):
+        #     raise ValidationError('Diagnosis and Procedure Recommended can not be empty.')
+        # else:
+        if ((self.ec_repeat_consultation_id.question_two_choice == 'yes' or
+            self.ec_repeat_consultation_id.question_three_choice == 'yes') and
+                (self.ec_repeat_consultation_id.repeat_obs_history_lines >= len(self.repeat_obs_history_ids.ids) or
+                self.ec_repeat_consultation_id.repeat_previous_treatment_lines >= len(self.timeline_previous_treatment_ids.ids))):
+            raise ValidationError("Once the question two is answered as 'Yes' "
+                                  "then new record in Pregnancy table must be added, "
+                                  "or if the question three is answered as 'Yes' "
+                                  "then new record must be added in the Treatment table.")
         else:
-            if ((self.ec_repeat_consultation_id.question_two_choice == 'yes' or
-                self.ec_repeat_consultation_id.question_three_choice == 'yes') and
-                    (self.ec_repeat_consultation_id.repeat_obs_history_lines >= len(self.repeat_obs_history_ids.ids) or
-                    self.ec_repeat_consultation_id.repeat_previous_treatment_lines >= len(self.timeline_previous_treatment_ids.ids))):
-                raise ValidationError("Once the question two is answered as 'Yes' "
-                                      "then new record in Pregnancy table must be added, "
-                                      "or if the question three is answered as 'Yes' "
-                                      "then new record must be added in the Treatment table.")
-            else:
-                self.show_repeat_section_state = False
-                self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
+            self.show_repeat_section_state = False
+            self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
 
     def action_delete_repeat_consultation_section(self):
         return self.ec_repeat_consultation_id.action_delete_repeat_consultation_section(self)

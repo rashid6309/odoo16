@@ -29,6 +29,9 @@ class FirstConsultation(models.Model):
                  'ec.male.medical.history': 'ec_male_medical_history_id',
                  }
 
+    # Data Members
+    timeline_conclusion = fields.Html(string="Conclusion")
+
     # Inherits synchronized objects.
     ''' Common '''
     ec_general_examination_id = fields.Many2one(comodel_name="ec.general.history", ondelete='restrict')

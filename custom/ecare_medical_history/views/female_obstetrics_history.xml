@@ -15,7 +15,7 @@
                     <field name="alive" required="1"/>
                     <field name="type_of_conception"/>
                     <field name="mode_of_delivery" required="1"/>
-                    <field name="duration_of_pregnancy" string="Dur. of Preg"/>
+                    <field name="duration_of_pregnancy" required="1" string="Dur. of Preg"/>
                     <field name="year" options="{'no_open': True, 'no_create': True}" invisible="1"/>
                     <field name="date_of_birth" required="1"/>
                     <field name="age"/>
