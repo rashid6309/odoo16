@@ -644,17 +644,17 @@
 										('repeat_pelvic_examination_state', '=', 'no')]}">
 
 												<field name="repeat_findings_on_inspection"
-													   attrs="{'invisible': [('inspection_only', '!=', True)],'required': [('inspection_only', '=', True)]}"
+													   attrs="{'invisible': [('inspection_only', '!=', True)],'required': [('show_repeat_section_state', '=', True),('inspection_only', '=', True)]}"
 												/>
 
 												<field name="repeat_valva_vaginal_exam"
 													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
-													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True),('show_repeat_section_state', '=', True)]}"
 												/>
 
 												<field name="repeat_cervix"
 													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
-													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True),('show_repeat_section_state', '=', True)]}"
 												/>
 
 												<field name="repeat_uterus_and_adnexae"
@@ -709,7 +709,7 @@
 												<field style=" width: 40% !important; "
 													   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True),('repeat_hvs', '=', True)]}"
+													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True),('repeat_hvs', '=', True),('show_repeat_section_state', '=', True)]}"
 													   name="repeat_method_of_hvs"/>
 											</group>
 
@@ -1399,19 +1399,23 @@
 													<div class="d-flex">
 														<field name="female_pain_intensity_check"/>
 														<span>None</span>
-													</div>
-													<field name="female_pain_intensity"
+														<field name="female_pain_intensity"
+															   nolabel="1"
 														   attrs="{'readonly': [('female_pain_intensity_check', '=', True)]}"
 														   widget="radio" options="{'horizontal': True}"/>
+													</div>
+
 													<field name="female_lmp" style="width:30% !important;"/>
 													<label for="female_complications_check"/>
 													<div class="d-flex">
 														<field name="female_complications_check"/>
 														<span>None</span>
-													</div>
-													<field name="female_complications_ids"
+														<field name="female_complications_ids"
+															   nolabel="1"
 														   attrs="{'readonly': [('female_complications_check', '=', True)]}"
 														   widget="many2many_checkboxes"/>
+													</div>
+
 													<div/>
 													<div>
 														<span>
@@ -1423,10 +1427,11 @@
 													<div class="d-flex">
 														<field name="female_complains_check"/>
 														<span>None</span>
-													</div>
-													<field name="female_complains_ids"
+														<field name="female_complains_ids"
+															   nolabel="1"
 														   attrs="{'readonly': [('female_complains_check', '=', True)]}"
 														   widget="many2many_checkboxes"/>
+													</div>
 												</group>
 											</div>
 
@@ -1770,15 +1775,15 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Year"  />
 
-													<!--													<field name="female_thyroid_TYPE"-->
-													<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
-													<!--														   placeholder="" string="Thyroid"-->
-													<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<field name="female_thyroid_type"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_thyroid_medical"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   string="Thyroid" />
+														   string="" />
 													<field name="female_thyroid_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
@@ -2930,13 +2935,13 @@
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
-													<!--													<field name="male_thyroid_TYPE"-->
-													<!--														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"-->
-													<!--														   placeholder="" string="Thyroid"-->
-													<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<field name="male_thyroid_type"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_thyroid_medical"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
-														   placeholder="Add Details" string="Thyroid" />
+														   placeholder="Add Details" string="" />
 													<field name="male_thyroid_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"

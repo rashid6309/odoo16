@@ -204,6 +204,7 @@ class PatientTimeline(models.Model):
                     'female_weight_at_marriage', 'male_weight_at_marriage',
                     'female_weight_comments', 'male_weight_comments',
                     'female_diabetes_type', 'male_diabetes_type',
+                    'female_thyroid_type', 'male_thyroid_type',
                 ]
 
                 if field_name not in fields_list_without_year:
@@ -251,6 +252,11 @@ class PatientTimeline(models.Model):
                 raise ValidationError(_(
                     "Date can't be greater than current date!"))
 
+            if self.lmp_question_four and self.repeat_date:
+                if self.lmp_question_four > self.repeat_date.date():
+                    raise ValidationError(_(
+                        "LMP Date can't be greater than current consultation date!"))
+
             cycle_day = (self.repeat_date.date() - self.lmp_question_four).days
             cycle_day += 1
 
@@ -272,6 +278,11 @@ class PatientTimeline(models.Model):
                 self.gynaecological_examination_lmp = None
                 raise ValidationError(_(
                     "Date can't be greater than current date!"))
+
+            if self.gynaecological_examination_lmp and self.create_date_first_consultation:
+                if self.gynaecological_examination_lmp > self.create_date_first_consultation.date():
+                    raise ValidationError(_(
+                        "LMP Date can't be greater than current consultation date!"))
 
             cycle_day = (self.create_date_first_consultation.date() - self.gynaecological_examination_lmp).days
             cycle_day += 1
@@ -411,6 +422,7 @@ class PatientTimeline(models.Model):
             'male_renal_date': ('Renal', 'male_renal'),
             'male_respiratory_date': ('Respiratory', 'male_respiratory'),
             'male_skeletal_date': ('Skeletal', 'male_skeletal'),
+            'male_thyroid_type': ('Thyroid Type', 'male_thyroid_type'),
             'male_thyroid_date': ('Thyroid', 'male_thyroid_medical'),
             'male_heart_disease_date': ('Heart Disease', 'male_heart_disease'),
             'male_urinary_infection_date': ('Urinary Infections', 'male_urinary_infection'),
@@ -469,6 +481,7 @@ class PatientTimeline(models.Model):
             'female_renal_date': ('Renal', 'female_renal'),
             'female_respiratory_date': ('Respiratory', 'female_respiratory'),
             'female_skeletal_date': ('Skeletal', 'female_skeletal'),
+            'female_thyroid_type': ('Thyroid Type', 'female_thyroid_type'),
             'female_thyroid_date': ('Thyroid', 'female_thyroid_medical'),
             'female_heart_disease_date': ('Heart Disease', 'female_heart_disease'),
             'female_urinary_infection_date': ('Urinary Infections', 'female_urinary_infection'),
