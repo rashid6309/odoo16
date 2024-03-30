@@ -332,7 +332,7 @@
 
 										<group>
 											<group>
-												<field name="repeat_date"/>
+												<field name="repeat_date" attrs="{'required': [('show_repeat_section_state', '=', True)]}"/>
 												<field attrs="{'required': [('show_repeat_section_state', '=', True)]}" name="repeat_consultation_interaction"
 												/>
 												<field name="repeat_status" attrs="{'required': [('show_repeat_section_state', '=', True)]}"
@@ -874,7 +874,7 @@
 														</div>
 														<div>
 															<span>CET</span>
-															<field name="tvs_lining_size_decimal" class="oe_inline" nolabel="1"/>
+															<field name="tvs_lining_size_decimal" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span>mm</span>
 														</div>
 													</div>
@@ -2551,7 +2551,7 @@
 																	</div>
 																	<div>
 																		<span>CET</span>
-																		<field name="lining_size_decimal" class="oe_inline" nolabel="1"/>
+																		<field name="lining_size_decimal" style="width:15% !important;" class="oe_inline" nolabel="1"/>
 																		<span>mm</span>
 																	</div>
 																</div>

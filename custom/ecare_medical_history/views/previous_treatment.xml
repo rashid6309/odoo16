@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <tree  editable="bottom" export_xlsx="false">
                     <field name="treatment_of"/>
-                    <field name="outcome"  required="1"/>
+                    <field name="outcome"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="type"/>
                     <field name="consultant_id" options='{"no_open": True, "no_create": True}'/>
