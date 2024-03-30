@@ -1104,12 +1104,48 @@
             </field>
         </record>
 
+
+        <!-- Explicit Tree view -->
+        <record id="view_ec_repeat_consultation_in_progress_tree" model="ir.ui.view">
+            <field name="name">ec.repeat.consultation.tree.view</field>
+            <field name="model">ec.repeat.consultation</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" import="false" export_xlsx="false" delete="false">
+                    <field name="repeat_date"/>
+                    <field name="repeat_patient_id"/>
+                    <field name="repeat_location_id"/>
+                    <field name="repeat_seen_by"/>
+                    <field name="lmp_question_four"/>
+                    <field name="repeat_consultation_state"/>
+                    <button name="action_direct_delete_repeat_consultation_section"
+                            type="object"
+                            class="btn btn-primary m-2"
+                            groups="ecare_medical_history.group_ec_medical_administrator"
+                            string="Delete Consultation"/>
+                </tree>
+            </field>
+        </record>
+
+
         <!-- Explicit Action -->
         <record id="repeat_consultation_action" model="ir.actions.act_window">
             <field name="name">Repeat Consultation</field>
             <field name="res_model">ec.repeat.consultation</field>
             <field name="view_mode">tree,form,kanban</field>
             <field name="target">current</field>
+        </record>
+
+        <record id="repeat_consultation_action_open_in_progress" model="ir.actions.act_window">
+            <field name="name">Repeat Consultation (In Progress)</field>
+            <field name="res_model">ec.repeat.consultation</field>
+            <field name="view_mode">tree</field>
+            <field name="target">current</field>
+            <field name="domain">[('repeat_consultation_state', '=', 'open'),('repeat_timeline_id.show_repeat_section_state', '=', True)]</field>
+            <field name="view_id" ref="ecare_medical_history.view_ec_repeat_consultation_in_progress_tree"/>
+        </record>
+
+        <record id="ecare_medical_history.ec_medical_history_delete_repeat_consultation" model="ir.ui.menu">
+            <field name="action" ref="ecare_medical_history.repeat_consultation_action_open_in_progress"/>
         </record>
 
     </data>
