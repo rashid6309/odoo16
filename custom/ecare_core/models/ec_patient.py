@@ -352,7 +352,7 @@ class EcarePatient(models.Model):
 
         # POST API to update the data at that side ICSI existing history software
 
-        # self.post_data_history_software()
+        self.post_data_history_software()
 
     def constraints_validation(self):
         WIFE_CONSTRAINT_MSG = "Wife cnic or passport, dob mobile and mobile are mandatory"
