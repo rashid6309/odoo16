@@ -384,7 +384,7 @@ class RepeatConsultation(models.Model):
             # At one time only one repeat can be in the in_progress state on the timeline and its id should
             # comply with: self.id == timeline_id.ec_repeat_consultation_id.id
 
-            if self.repeat_consultation_state == 'in_progress':
+            if self.repeat_consultation_state == 'open':
                 timeline_id.show_repeat_section_state = False
 
             timeline_id.ec_repeat_consultation_id = existing_repeat.id
