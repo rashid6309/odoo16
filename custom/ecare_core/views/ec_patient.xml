@@ -134,12 +134,12 @@
                                                       ('id', '==', False)]}"
                         />
 
-<!--                        <button name="action_create_legacy_patient_directly"-->
-<!--                                type="object"-->
-<!--                                string="Create Patient Legacy"-->
-<!--                                class="btn btn-secondary"-->
-<!--                                groups="ecare_appointment.menu_invisible_for_all"-->
-<!--                        />-->
+                        <button name="action_create_legacy_patient_directly"
+                                type="object"
+                                string="Create Patient Legacy"
+                                class="btn btn-secondary"
+                                groups="ecare_appointment.menu_invisible_for_all"
+                        />
 
                     </header>
                     <sheet>
