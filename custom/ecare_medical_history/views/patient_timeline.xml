@@ -310,6 +310,7 @@
 										<field name="first_consultation_state" invisible="1"/>
 										<button name="action_create_repeat_consultation"
 												type="object"
+												confirm="Do you really want to create a new repeat consultation?"
 												class="btn btn-primary"
 												attrs="{'invisible': [('show_repeat_section_state', '=', True)]}"
 												onclick="showRepeatConsultationSection('repeat_consultation_section')">
@@ -490,6 +491,8 @@
 										<span attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 
 											<group>
+												<field name="repeat_previous_treatment_lines" invisible="1" force_save="1"/>
+												<field name="repeat_obs_history_lines" invisible="1" force_save="1"/>
 												<field name="question_two_label"/>
 												<label for="question_two_choice" string=""/>
 												<field name="question_two_choice"
@@ -498,6 +501,7 @@
 													   widget="radio" nolabel="1"/>
 											</group>
 											<div>
+												<p attrs="{'invisible': [('question_two_choice', '!=', 'yes')]}" style="text-decoration: underline; color: red;">Please add details of pregnancy in table below</p>
 												<tree editable="top" attrs="{'invisible': [('question_two_choice', '!=', 'yes')]}">
 													<field name="repeat_obs_history_ids"
 														   context="{'default_patient_id': timeline_patient_id,
@@ -517,6 +521,7 @@
 													   widget="radio" nolabel="1"/>
 											</group>
 											<div>
+												<p attrs="{'invisible': [('question_three_choice', '!=', 'yes')]}" style="text-decoration: underline; color: red;">Please add details of treatment in table below</p>
 												<tree editable="top" attrs="{'invisible': [('question_three_choice', '!=', 'yes')]}">
 													<field name="timeline_previous_treatment_ids"
 														   context="{'default_patient_id': timeline_patient_id,
@@ -532,9 +537,11 @@
 											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<group>
 													<field name="lmp_question_four"
-														   style="width: 55% !important;"
-														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"/>
+														   style="width: 55% !important;"/>
+<!--													<field name="lmp_question_four"-->
+<!--														   style="width: 55% !important;"-->
+<!--														   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 												</group>
 												<group>
 													<field name="repeat_cycle_day"
@@ -639,20 +646,21 @@
 										('repeat_pelvic_examination_state', '=', 'no')]}">
 
 												<field name="repeat_findings_on_inspection"
-													   attrs="{'invisible': [('inspection_only', '!=', True)],'required': [('inspection_only', '=', True)]}"
+													   attrs="{'invisible': [('inspection_only', '!=', True)],'required': [('show_repeat_section_state', '=', True),('inspection_only', '=', True)]}"
 												/>
 
 												<field name="repeat_valva_vaginal_exam"
 													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
-													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True),('show_repeat_section_state', '=', True)]}"
 												/>
 
 												<field name="repeat_cervix"
 													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
-													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True)]}"
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True),('show_repeat_section_state', '=', True)]}"
 												/>
 
-												<field name="repeat_uterus_and_adnexae"/>
+												<field name="repeat_uterus_and_adnexae"
+													   attrs="{'invisible': [('p_v_only', '!=', True)]}"/>
 											</group>
 											<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
@@ -703,7 +711,7 @@
 												<field style=" width: 40% !important; "
 													   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True),('repeat_hvs', '=', True)]}"
+													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True),('repeat_hvs', '=', True),('show_repeat_section_state', '=', True)]}"
 													   name="repeat_method_of_hvs"/>
 											</group>
 
@@ -808,10 +816,10 @@
 																<span for="position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
 																<field name="position_to_right"/>
 																<span for="position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
-																<field name="position_a_v"/>
-																<span for="position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>
-																<field name="position_r_v"/>
-																<span for="position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>
+<!--																<field name="position_a_v"/>-->
+<!--																<span for="position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
+<!--																<field name="position_r_v"/>-->
+<!--																<span for="position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
 																<field name="position_mid_position"/>
 																<span for="position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
 																<!--																<field name="tvs_uterus_position_ids"-->
@@ -866,8 +874,7 @@
 														</div>
 														<div>
 															<span>CET</span>
-															<field name="tvs_lining_size"
-																   placeholder="..." class="oe_inline" nolabel="1"/>
+															<field name="tvs_lining_size_decimal" class="oe_inline" nolabel="1"/>
 															<span>mm</span>
 														</div>
 													</div>
@@ -1012,20 +1019,20 @@
 												<field name="repeat_investigation_notes"/>
 
 												<field name="repeat_procedure_recommended_ids"
+													   widget="many2many_tags"
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"
-													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_treatment_plan"/>
 
-												<field name="repeat_treatment_advised_ids"
-													   widget="many2many_tags"
-													   options="{'no_create_edit': True, 'no_create': True}"/>
+<!--												<field name="repeat_treatment_advised_ids"-->
+<!--													   widget="many2many_tags"-->
+<!--													   options="{'no_create_edit': True, 'no_create': True}"/>-->
 
-												<field name="repeat_new_treatment_pathway"
-													   widget="radio"
-													   options="{'horizontal': True}"
-												/>
+<!--												<field name="repeat_new_treatment_pathway"-->
+<!--													   widget="radio"-->
+<!--													   options="{'horizontal': True}"-->
+<!--												/>-->
 											</group>
 
 										</span>
@@ -1287,7 +1294,9 @@
 											<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
 												<!--											<field name="patient_id"/>-->
 												<tree editable="top">
-													<field name="first_obs_history_ids" id="obstetrics_history_table"
+													<field name="first_obs_history_ids"
+														   attrs="{'readonly': [('first_consultation_state', '=', 'closed')]}"
+														   id="obstetrics_history_table"
 														   context="{'default_patient_id': timeline_patient_id,
 													   				'default_timeline_id' : id,}"
 														   nolabel="1" editable="top">
@@ -1384,10 +1393,37 @@
 													</div>
 
 													<field name="female_menstrual_flow" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_dysmenorrhoea_ids" widget="many2many_checkboxes"/>
-													<field name="female_pain_intensity" widget="radio" options="{'horizontal': True}"/>
+													<label for="female_dysmenorrhoea_check"/>
+													<div class="d-flex">
+														<field name="female_dysmenorrhoea_check"/>
+														<span>None</span>
+														<field name="female_dysmenorrhoea_ids"
+															   nolabel="1"
+															   attrs="{'readonly': [('female_dysmenorrhoea_check', '=', True)]}"
+															   widget="many2many_checkboxes"/>
+													</div>
+
+													<label for="female_pain_intensity_check"/>
+													<div class="d-flex">
+														<field name="female_pain_intensity_check"/>
+														<span>None</span>
+														<field name="female_pain_intensity"
+															   nolabel="1"
+														   attrs="{'readonly': [('female_pain_intensity_check', '=', True)]}"
+														   widget="radio" options="{'horizontal': True}"/>
+													</div>
+
 													<field name="female_lmp" style="width:30% !important;"/>
-													<field name="female_complications_ids" widget="many2many_checkboxes"/>
+													<label for="female_complications_check"/>
+													<div class="d-flex">
+														<field name="female_complications_check"/>
+														<span>None</span>
+														<field name="female_complications_ids"
+															   nolabel="1"
+														   attrs="{'readonly': [('female_complications_check', '=', True)]}"
+														   widget="many2many_checkboxes"/>
+													</div>
+
 													<div/>
 													<div>
 														<span>
@@ -1395,7 +1431,15 @@
 														</span>
 														<field name="female_complications_other" style="width:89% !important;" class="oe_inline" nolabel="1"/>
 													</div>
-													<field name="female_complains_ids" widget="many2many_checkboxes"/>
+													<label for="female_complains_check"/>
+													<div class="d-flex">
+														<field name="female_complains_check"/>
+														<span>None</span>
+														<field name="female_complains_ids"
+															   nolabel="1"
+														   attrs="{'readonly': [('female_complains_check', '=', True)]}"
+														   widget="many2many_checkboxes"/>
+													</div>
 												</group>
 											</div>
 
@@ -1428,7 +1472,16 @@
 												<group>
 
 													<!--													<field name="cn_type" widget="radio" options="{'horizontal': True}"/>-->
-													<field name="cn_type" widget="many2many_checkboxes"/>
+													<label for="cn_type_check"/>
+													<div class="d-flex">
+														<field name="cn_type_check"/>
+														<span>None</span>
+														<field name="cn_type"
+															   nolabel="1"
+															   widget="many2many_checkboxes"
+															   attrs="{'readonly': [('cn_type_check', '=', True)]}"/>
+													</div>
+<!--													<field name="cn_type" widget="many2many_checkboxes"/>-->
 													<field name="other_comments" string="Other"/>
 												</group>
 											</div>
@@ -1739,15 +1792,15 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Year"  />
 
-													<!--													<field name="female_thyroid_TYPE"-->
-													<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
-													<!--														   placeholder="" string="Thyroid"-->
-													<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<field name="female_thyroid_type"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_thyroid_medical"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   string="Thyroid" />
+														   string="" />
 													<field name="female_thyroid_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
@@ -1918,7 +1971,7 @@
 																			<div class="mb-0 row">
 																				<span id="twins" aria-expanded="false" aria-controls="collapseTwins" class="collapsed colla mb-0 col-11">
 																					<h3>
-																						Twins
+																						Multiple Pregnancies
 																					</h3>
 																				</span>
 																			</div>
@@ -1961,6 +2014,41 @@
 																			<div class="card-block">
 																				<field name="female_abnormalities_ids" widget="many2many_checkboxes" />
 																				<field name="female_other_abnormalities" placeholder="Other..." style=" width: 90% !important;"/>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="card">
+																		<div class="card-header" role="tab" id="female_c_heart_diseaseOne">
+																			<div class="mb-0 row">
+																				<span id="c_heart_disease" aria-expanded="false" aria-controls="collapseC_heart_disease" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Heart Disease
+																					</h3>
+																				</span>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="female_collapseC_heart_disease" class="show" role="tabpanel" aria-labelledby="female_c_heart_diseaseOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_heart_disease_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_heart_disease" placeholder="Other..." style=" width: 90% !important;"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="female_c_subfertilityOne">
+																			<div class="mb-0 row">
+																				<span id="c_subfertility" aria-expanded="false" aria-controls="collapseC_subfertility" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Subfertility
+																					</h3>
+																				</span>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="female_collapseC_subfertility" class="show" role="tabpanel" aria-labelledby="female_c_subfertilityOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_subfertility_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_subfertility" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2360,8 +2448,15 @@
 													<field name="gynaecological_ultrasound_type"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
-													<field name="gynaecological_examination_date"  style="width:30% !important;"/>
-													<field name="gynaecological_examination_lmp"  style="width:30% !important;"/>
+<!--													<field name="gynaecological_examination_date"  style="width:30% !important;"/>-->
+													<label for="gynaecological_examination_lmp" style="width:30% !important;"/>
+													<div class="d-flex">
+														<field name="gynaecological_examination_lmp" style="width:30% !important;"/>
+														<label for="gynaecological_examination_cycle_day" style="width:30% !important;"/>
+														<field name="gynaecological_examination_cycle_day" force_save="1" style="width:30% !important;"/>
+													</div>
+<!--													<field name="gynaecological_examination_lmp" style="width:30% !important;"/>-->
+<!--													<field name="gynaecological_examination_cycle_day" force_save="1"/>-->
 
 													<div/>
 													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -30%;">
@@ -2408,10 +2503,10 @@
 																	<span for="gynae_position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
 																	<field name="gynae_position_to_right"/>
 																	<span for="gynae_position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
-																	<field name="gynae_position_a_v"/>
-																	<span for="gynae_position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>
-																	<field name="gynae_position_r_v"/>
-																	<span for="gynae_position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>
+<!--																	<field name="gynae_position_a_v"/>-->
+<!--																	<span for="gynae_position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
+<!--																	<field name="gynae_position_r_v"/>-->
+<!--																	<span for="gynae_position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
 																	<field name="gynae_position_mid_position"/>
 																	<span for="gynae_position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
 
@@ -2456,7 +2551,7 @@
 																	</div>
 																	<div>
 																		<span>CET</span>
-																		<field name="lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
+																		<field name="lining_size_decimal" class="oe_inline" nolabel="1"/>
 																		<span>mm</span>
 																	</div>
 																</div>
@@ -2857,13 +2952,13 @@
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
-													<!--													<field name="male_thyroid_TYPE"-->
-													<!--														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"-->
-													<!--														   placeholder="" string="Thyroid"-->
-													<!--														   widget="radio" options="{'horizontal': True}"/>-->
+													<field name="male_thyroid_type"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="" string="Thyroid"
+														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_thyroid_medical"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
-														   placeholder="Add Details" string="Thyroid" />
+														   placeholder="Add Details" string="" />
 													<field name="male_thyroid_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -3081,7 +3176,7 @@
 																			<div class="mb-0 row">
 																				<span id="twins" aria-expanded="false" aria-controls="male_collapseTwins" class="collapsed colla mb-0 col-11">
 																					<h3>
-																						Twins
+																						Multiple Pregnancies
 																					</h3>
 																				</span>
 																			</div>
@@ -3126,6 +3221,40 @@
 																			<div class="card-block">
 																				<field name="male_abnormalities_ids" widget="many2many_checkboxes" />
 																				<field name="male_other_abnormalities" placeholder="Other..." style=" width: 90% !important;"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_c_heart_diseaseOne">
+																			<div class="mb-0 row">
+																				<span id="c_heart_disease" aria-expanded="false" aria-controls="collapseC_heart_disease" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Heart Disease
+																					</h3>
+																				</span>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseC_heart_disease" class="show" role="tabpanel" aria-labelledby="male_c_heart_diseaseOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_heart_disease_ids" widget="many2many_checkboxes" />
+																				<field name="male_other_heart_disease" placeholder="Other..." style=" width: 90% !important;"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_c_subfertilityOne">
+																			<div class="mb-0 row">
+																				<span id="c_subfertility" aria-expanded="false" aria-controls="collapseC_subfertility" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Subfertility
+																					</h3>
+																				</span>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseC_subfertility" class="show" role="tabpanel" aria-labelledby="male_c_subfertilityOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_subfertility_ids" widget="many2many_checkboxes" />
+																				<field name="male_other_subfertility" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3338,6 +3467,7 @@
 											<div class="card-block mb-5 pl-4" id="previous_treatment_tree_section">
 												<tree editable="top">
 													<field name="first_previous_treatment_ids"
+														   attrs="{'readonly': [('first_consultation_state', '=', 'closed')]}"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
 													   }"
@@ -3348,18 +3478,18 @@
 										</page>
 
 										<page string="Conclusion" name="conclusion">
-											<!--											<div style="text-align: right;">-->
-											<!--												<button name="action_close_first_consultation"-->
-											<!--														type="object"-->
-											<!--														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"-->
-											<!--														class="card-custom-close-button-btn"-->
-											<!--														string="Close First Consultation"/>-->
-											<!--												<button name="action_open_first_consultation"-->
-											<!--														type="object"-->
-											<!--														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"-->
-											<!--														class="card-custom-close-button-btn"-->
-											<!--														string="Open First Consultation"/>-->
-											<!--											</div>-->
+											<div style="text-align: right;">
+												<button name="action_close_first_consultation"
+														type="object"
+														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"
+														class="card-custom-close-button-btn"
+														string="Disallow Editing"/>
+												<button name="action_open_first_consultation"
+														type="object"
+														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"
+														class="card-custom-close-button-btn"
+														string="Allow Editing"/>
+											</div>
 											<field name="timeline_conclusion" placeholder="Type..."/>
 										</page>
 

@@ -55,6 +55,9 @@ class MedicalGynaecologicalExamination(models.Model):
                                                       string="Ultrasound")
 
     gynaecological_examination_lmp = fields.Date(string='LMP')
+    gynaecological_examination_cycle_day = fields.Integer(string='Cycle Day',
+                                                          readonly=True,
+                                                          store=True)
 
     gynaecological_examination_comment = fields.Char('Comments')
 
@@ -104,7 +107,7 @@ class MedicalGynaecologicalExamination(models.Model):
     uterus_size_width = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='Uterus Width')
 
     uterus_size_position = fields.Selection(selection=StaticMember.UTERUS_SIZE_POSITION, string='Uterus Position')
-    
+
     gynae_position_to_left = fields.Boolean(string="Deviated to Left", default=False)
     gynae_position_to_right = fields.Boolean(string="Deviated to Right", default=False)
     gynae_position_a_v = fields.Boolean(string="A/V", default=False)
@@ -138,6 +141,7 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_suspected_cavity_lesion = fields.Boolean(string="Suspected Cavity Lesion", default=False)
 
     lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='CET')
+    lining_size_decimal = fields.Char(string='CET')
 
     def action_open_gynae_scan(self):
         context = self._context.copy()

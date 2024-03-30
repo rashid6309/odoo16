@@ -101,7 +101,7 @@ class MaleMedicalHistory(models.Model):
     male_skeletal = fields.Char('Skeletal')
     male_skeletal_date = fields.Many2one("ec.medical.year", 'Skeletal Date')
 
-    male_thyroid_TYPE = fields.Selection(selection=StaticMember.MEDICAL_THYROID,
+    male_thyroid_type = fields.Selection(selection=StaticMember.MEDICAL_THYROID,
                                          string='Thyroid')
     male_thyroid_medical = fields.Char('Thyroid')
     male_thyroid_date = fields.Many2one("ec.medical.year", 'Thyroid Date')
