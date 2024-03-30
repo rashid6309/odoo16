@@ -17,15 +17,16 @@ class MedicalPreviousHistory(models.Model):
                                  required=False,
                                  string='Consultant')
     oral_drugs = fields.Text(string='Oral Drugs')
+    treatment_notes = fields.Text(string='Notes')
     down_regulation = fields.Text(string='Down Regulation')
     superovulation = fields.Text(string='Superovulation')
     ovarian_response = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_RESPONSE,
                                         string='Ovarian Response')
     outcome = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_OUTCOME,
-                               string='Outcome', required=True)
+                               string='Outcome')
 
     treatment_of = fields.Selection(selection=StaticMember.PREVIOUS_TREATMENT_OF,
-                                    string='Treatment of', required=True)
+                                    string='Treatment of')
 
     def action_open_form_view(self, patient_id, timeline_id=None):
         context = {

@@ -29,7 +29,7 @@
             <field name="name">Second Cousin</field>
         </record>
         <record model="ec.family.relation.list"  id="distcou">
-            <field name="name">Distant Cousin</field>
+            <field name="name">Distant Relative</field>
         </record>
         <record model="ec.family.relation.list"  id="ownchil">
             <field name="name">Own Children</field>

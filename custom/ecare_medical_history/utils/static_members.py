@@ -560,7 +560,6 @@ class StaticMember:
     INTENSITY = [
         ('increase', 'Increase'),
         ('decrease', 'Decrease'),
-        ('none', 'None'),
     ]
 
     SIDE = [
@@ -678,7 +677,6 @@ class StaticMember:
     SX_ISSUES = [
         ('aparunea', 'Aparunea'),
         ('dysparunea', 'Dysparunea'),
-        ('none', 'None'),
     ]
 
     CN_TYPES = [
@@ -1060,9 +1058,16 @@ class StaticMember:
 
     VIABILITY_POTENTIAL = [("all_fetus_alive", "All fetus(es) alive"),
                            ("iud", "IUD"),
-                           ("atleat_1_alive", "Atleast 1 alive fetus")]
+                           ("atleat_1_alive", "Atleast 1 alive fetus"),
+                           ("missed_miscarriage", "Missed miscarriage"),
+                           ("incomplete_miscarriage", "Incomplete miscarriage"),
+                           ("complete_miscarriage", "Complete miscarriage"),
+                           ("theatened_miscarriage", "Theatened miscarriage"),
+                           ("inevitable_miscarriage", "Inevitable miscarriage"),
+                           ("ectopic", "Ectopic"),
+                           ]
 
-    VISIT_REASON = [('early_pregnancy_assessment', 'Early pregnancy assessment'),
+    VISIT_REASON = [('early_pregnancy_assessment', 'Early pregnancy management'),
                     ('genetic_testing', 'Genetic Testing')]
 
     FETAL_HEART = [("positive", "Positive"),

@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
 import re
@@ -8,8 +6,6 @@ from odoo.addons.ecare_core.utilities.time_conversion import CustomDateTime
 from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 from odoo.addons.ecare_medical_history.utils.validation import Validation
-
-from odoo.addons.ecare_medical_history.models.ec_medical_years import EcMedicalYear
 
 
 class PatientTimeline(models.Model):
@@ -150,7 +146,6 @@ class PatientTimeline(models.Model):
     infertility_type = fields.Char(readonly=True, compute="_compute_infertility_type")
 
     ''' Data members '''
-    timeline_conclusion = fields.Html(string="Conclusion")
 
     patient_attachment_ids = fields.One2many(string='Attachments Details',
                                              comodel_name='ec.medical.patient.attachment',
@@ -208,6 +203,7 @@ class PatientTimeline(models.Model):
                     'female_weight_at_marriage', 'male_weight_at_marriage',
                     'female_weight_comments', 'male_weight_comments',
                     'female_diabetes_type', 'male_diabetes_type',
+                    'female_thyroid_type', 'male_thyroid_type',
                 ]
 
                 if field_name not in fields_list_without_year:
@@ -255,6 +251,11 @@ class PatientTimeline(models.Model):
                 raise ValidationError(_(
                     "Date can't be greater than current date!"))
 
+            if self.lmp_question_four and self.repeat_date:
+                if self.lmp_question_four > self.repeat_date.date():
+                    raise ValidationError(_(
+                        "LMP Date can't be greater than current consultation date!"))
+
             cycle_day = (self.repeat_date.date() - self.lmp_question_four).days
             cycle_day += 1
 
@@ -263,6 +264,31 @@ class PatientTimeline(models.Model):
         else:
             self.repeat_cycle_day = 0
             self.tvs_cycle_day = 0
+
+    @api.onchange('create_date_first_consultation', 'gynaecological_examination_lmp')
+    def _compute_gynaecological_examination_cycle_day(self):
+        """
+        This is the onchange on the first consultation form.
+        Formula: (Consultation Date - LMP) + 1
+        :return: cycle day
+        """
+        if self.gynaecological_examination_lmp:
+            if CustomDateTime.greater_than_today(self.gynaecological_examination_lmp):
+                self.gynaecological_examination_lmp = None
+                raise ValidationError(_(
+                    "Date can't be greater than current date!"))
+
+            if self.gynaecological_examination_lmp and self.create_date_first_consultation:
+                if self.gynaecological_examination_lmp > self.create_date_first_consultation.date():
+                    raise ValidationError(_(
+                        "LMP Date can't be greater than current consultation date!"))
+
+            cycle_day = (self.create_date_first_consultation.date() - self.gynaecological_examination_lmp).days
+            cycle_day += 1
+
+            self.gynaecological_examination_cycle_day = cycle_day
+        else:
+            self.gynaecological_examination_cycle_day = 0
 
     def _compute_female_values(self):
         """
@@ -297,7 +323,9 @@ class PatientTimeline(models.Model):
 
                 if dop >= 24:
                     count_after_24_weeks += 1
-                if dop < 24 and obs_history.mode_of_delivery == 'MISCARRIAGE':
+                # if dop < 24 and obs_history.mode_of_delivery == 'MISCARRIAGE':
+                # before it was logic which then excluded the Miscarriages
+                if dop < 24:
                     miscarriages += 1
 
             if obs_history.alive == 'Alive':
@@ -316,9 +344,11 @@ class PatientTimeline(models.Model):
             'male_malignancies_ids': ('Malignancies', 'male_other_malignancies'),
             'male_hypertension_ids': ('Hypertension', 'male_other_hypertension'),
             'male_mental_illness_ids': ('Mental Illness', 'male_other_mental_illness'),
-            'male_twins_ids': ('Twins', 'male_other_twins'),
+            'male_twins_ids': ('Multiple Pregnancies', 'male_other_twins'),
             'male_tuberculosis_ids': ('Tuberculosis', 'male_other_tuberculosis'),
             'male_abnormalities_ids': ('Congenital Abnormalities', 'male_other_abnormalities'),
+            'male_heart_disease_ids': ('Heart Disease', 'male_other_heart_disease'),
+            'male_subfertility_ids': ('Subfertility', 'male_other_subfertility'),
             'male_family_history_other': ('Other History', 'male_family_history_other')
         }
 
@@ -336,7 +366,9 @@ class PatientTimeline(models.Model):
             'female_mental_illness_ids': ('Mental Illness', 'female_other_mental_illness'),
             'female_tuberculosis_ids': ('Tuberculosis', 'female_other_tuberculosis'),
             'female_abnormalities_ids': ('Congenital Abnormalities', 'female_other_abnormalities'),
-            'female_twins_ids': ('Twins', 'female_other_twins'),
+            'female_heart_disease_ids': ('Heart Disease', 'female_other_heart_disease'),
+            'female_subfertility_ids': ('Subfertility', 'female_other_subfertility'),
+            'female_twins_ids': ('Multiple Pregnancies', 'female_other_twins'),
             'female_pregnancy_induced_hypertension_ids': (
                 'Pregnancy Induced Hypertension', 'female_other_pregnancy_induced_hypertension'),
             'female_miscarriage_ids': ('Miscarriages', 'female_other_miscarriage'),
@@ -389,6 +421,7 @@ class PatientTimeline(models.Model):
             'male_renal_date': ('Renal', 'male_renal'),
             'male_respiratory_date': ('Respiratory', 'male_respiratory'),
             'male_skeletal_date': ('Skeletal', 'male_skeletal'),
+            'male_thyroid_type': ('Thyroid Type', 'male_thyroid_type'),
             'male_thyroid_date': ('Thyroid', 'male_thyroid_medical'),
             'male_heart_disease_date': ('Heart Disease', 'male_heart_disease'),
             'male_urinary_infection_date': ('Urinary Infections', 'male_urinary_infection'),
@@ -447,6 +480,7 @@ class PatientTimeline(models.Model):
             'female_renal_date': ('Renal', 'female_renal'),
             'female_respiratory_date': ('Respiratory', 'female_respiratory'),
             'female_skeletal_date': ('Skeletal', 'female_skeletal'),
+            'female_thyroid_type': ('Thyroid Type', 'female_thyroid_type'),
             'female_thyroid_date': ('Thyroid', 'female_thyroid_medical'),
             'female_heart_disease_date': ('Heart Disease', 'female_heart_disease'),
             'female_urinary_infection_date': ('Urinary Infections', 'female_urinary_infection'),
@@ -607,15 +641,15 @@ class PatientTimeline(models.Model):
         if self.show_repeat_consultation_history_section is False:
             self.show_repeat_consultation_history_section = True
             if self.ec_repeat_consultation_id:
-                self.repeat_consultation_ids.repeat_date = datetime.now()
-                self.repeat_consultation_ids.repeat_seen_by = self.env.user.id
+                self.ec_repeat_consultation_id.action_set_post_required_attributes() # Need to call this explicitly here.
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create(
             self._get_repeat_consultation_mandatory_attribute()
         )
+
         self.ec_repeat_consultation_id = repeat_consultation_id.id
-        # return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
+        self.ec_repeat_consultation_id.action_set_post_required_attributes()
 
     ''' Action for opening views block ended '''
 
@@ -663,11 +697,15 @@ class PatientTimeline(models.Model):
 
     def _get_repeat_consultation_mandatory_attribute(self):
         patient_id = self.timeline_patient_id.id
+        repeat_obs_history_lines = len(self.repeat_obs_history_ids.ids)
+        repeat_previous_treatment_lines = len(self.timeline_previous_treatment_ids.ids)
         return {
             'repeat_timeline_id': self.id,
             'repeat_patient_id': patient_id,
             'tvs_patient_id': patient_id,
-            'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id
+            'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id,
+            'repeat_obs_history_lines': int(repeat_obs_history_lines),
+            'repeat_previous_treatment_lines': int(repeat_previous_treatment_lines)
         }
 
     def move_next(self):
@@ -687,8 +725,22 @@ class PatientTimeline(models.Model):
         self.repeat_state = str(value)
 
     def action_save_repeat_consultation_section(self):
-        self.show_repeat_section_state = False
-        self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
+        # if ((self.ec_repeat_consultation_id.question_one_choice == 'no') and
+        #         (not self.ec_repeat_consultation_id.repeat_diagnosis
+        #         or not self.ec_repeat_consultation_id.repeat_procedure_recommended_ids)):
+        #     raise ValidationError('Diagnosis and Procedure Recommended can not be empty.')
+        # else:
+        if ((self.ec_repeat_consultation_id.question_two_choice == 'yes' or
+            self.ec_repeat_consultation_id.question_three_choice == 'yes') and
+                (self.ec_repeat_consultation_id.repeat_obs_history_lines >= len(self.repeat_obs_history_ids.ids) or
+                self.ec_repeat_consultation_id.repeat_previous_treatment_lines >= len(self.timeline_previous_treatment_ids.ids))):
+            raise ValidationError("Once the question two is answered as 'Yes' "
+                                  "then new record in Pregnancy table must be added, "
+                                  "or if the question three is answered as 'Yes' "
+                                  "then new record must be added in the Treatment table.")
+        else:
+            self.show_repeat_section_state = False
+            self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
 
     def action_delete_repeat_consultation_section(self):
         return self.ec_repeat_consultation_id.action_delete_repeat_consultation_section(self)
@@ -1064,7 +1116,16 @@ class PatientTimeline(models.Model):
     def _check_float_input_temp(self):
         if self.repeat_pregnancy_temp and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_temp):
             raise UserError(f"Please enter a numeric value in pregnancy temperature.")
-            # raise UserError(f"Please enter a numeric value in pregnancy temperature with up to 2 decimal points.")
+
+    @api.onchange('lining_size_decimal')
+    def _check_float_input_lining_size(self):
+        if self.lining_size_decimal and not re.match(Validation.REGEX_FLOAT_2_DP, self.lining_size_decimal):
+            raise UserError(f"Please enter a numeric value in CET.")
+
+    @api.onchange('tvs_lining_size_decimal')
+    def _check_float_tvs_lining_size(self):
+        if self.tvs_lining_size_decimal and not re.match(Validation.REGEX_FLOAT_2_DP, self.tvs_lining_size_decimal):
+            raise UserError(f"Please enter a numeric value in CET.")
 
     @api.onchange('repeat_pregnancy_hr')
     def _check_float_input_hr(self):

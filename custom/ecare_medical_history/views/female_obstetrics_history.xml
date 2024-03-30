@@ -6,18 +6,18 @@
             <field name="name">ec.obstetrics.history.tree</field>
             <field name="model">ec.obstetrics.history</field>
             <field name="arch" type="xml">
-                <tree editable="top" export_xlsx="false">
+                <tree editable="bottom" export_xlsx="false">
                     <field name="patient_id"
                            invisible="1"
                            readonly="1"
                            force_save="1"/>
-                    <field name="create_date"/>
                     <field name="baby_name"/>
+                    <field name="alive" required="1"/>
                     <field name="type_of_conception"/>
                     <field name="mode_of_delivery" required="1"/>
-                    <field name="duration_of_pregnancy" string="Dur. of Preg"/>
-                    <field name="year" options="{'no_open': True, 'no_create': True}"/>
-                    <field name="date_of_birth"/>
+                    <field name="duration_of_pregnancy" required="1" string="Dur. of Preg"/>
+                    <field name="year" options="{'no_open': True, 'no_create': True}" invisible="1"/>
+                    <field name="date_of_birth" required="1"/>
                     <field name="age"/>
                     <field name="birth_place"/>
                     <field name="complication_pregnancy"/>
@@ -28,9 +28,9 @@
                     <field name="weight"/>
                     <field name="health"/>
                     <field name="child_health_issues"/>
-                    <field name="alive"/>
                     <field name="feed"/>
                     <field name="other_indications"/>
+                    <field name="create_date"/>
                 </tree>
             </field>
         </record>

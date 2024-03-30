@@ -68,6 +68,7 @@ class EcMedicalTVS(models.Model):
 
     tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                        string='CET')
+    tvs_lining_size_decimal = fields.Char(string='CET')
 
     tvs_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                         inverse_name="tvs_fiobrid_id",
