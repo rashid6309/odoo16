@@ -711,7 +711,7 @@
 												<field style=" width: 40% !important; "
 													   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)],'required': [('inspection_only', '=', True),('repeat_hvs', '=', True),('show_repeat_section_state', '=', True)]}"
+													   ('p_s_only', '!=', True)],'required': [('repeat_hvs', '=', True),('show_repeat_section_state', '=', True)]}"
 													   name="repeat_method_of_hvs"/>
 											</group>
 
