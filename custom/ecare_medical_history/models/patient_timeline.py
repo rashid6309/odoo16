@@ -194,6 +194,14 @@ class PatientTimeline(models.Model):
             if field_records or (custom_field and custom_field.strip()):
                 custom_text = f' {custom_field.strip()}' if custom_field else ''
 
+                yes_or_no = None
+
+                fields_list_with_yes_no = [
+                    'female_hirsuitism_year', 'female_anti_phospholipid_syndrome_date',
+                    'female_blood_transfusion_date',
+                    'male_anti_phospholipid_syndrome_date', 'male_blood_transfusion_date',
+                    'male_hirsuitism_year'
+                ]
                 ''' Please populate this for every key which is not object '''
                 fields_list_without_year = [
                     'male_att_months', 'female_att_months',
@@ -207,7 +215,14 @@ class PatientTimeline(models.Model):
                 ]
 
                 if field_name not in fields_list_without_year:
-                    medical_history_year = field_records.year
+                    if field_name in fields_list_with_yes_no:
+                        field_name = field_name.replace('_year', '').replace('_date', '')
+                        yes_or_no = getattr(medical_history, field_name, None)
+                        if yes_or_no:
+                            custom_text = yes_or_no + ' - ' + custom_text
+                        medical_history_year = field_records.year
+                    else:
+                        medical_history_year = field_records.year
                 else:
                     medical_history_year = None
 
@@ -398,7 +413,7 @@ class PatientTimeline(models.Model):
             'male_weight_loss_year': ('Weight loss', 'male_weight_loss'),
             'male_weight_at_marriage': ('Weight at marriage', 'male_weight_at_marriage'),
             'male_weight_comments': ('Comments', 'male_weight_comments'),
-            'male_hirsuitism': ('Hirsuitism', 'male_hirsuitism'),
+            'male_hirsuitism_year': ('Hirsuitism', 'male_hirsuitism_comments'),
             'male_hirsuitism_treatment': ('Any treatment', 'male_hirsuitism_treatment'),
             'male_tuberculosis_date': ('Tuberculosis', 'male_tuberculosis'),
             'male_att_months': ('ATT (Months)', 'male_att_months'),
@@ -408,9 +423,10 @@ class PatientTimeline(models.Model):
             'male_hiv_date': ('HIV', 'male_hiv'),
             'male_mumps_date': ('Mumps', 'male_mumps'),
             'male_adrenal_date': ('Adrenal', 'male_adrenal'),
-            'male_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 'male_anti_phospholipid_syndrome'),
+            'male_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 
+                                                     'male_anti_phospholipid_syndrome_comments'),
             'male_autoimmune_disease_date': ('Autoimmune Diseases', 'male_autoimmune_disease'),
-            'male_blood_transfusion_date': ('Blood Transfusion', 'male_blood_transfusion'),
+            'male_blood_transfusion_date': ('Blood Transfusion', 'male_blood_transfusion_comments'),
             'male_cardiac_date': ('Cardiac', 'male_cardiac'),
             'male_diabetes_type': ('Diabetes Type', 'male_diabetes_type'),
             'male_diabetes_date': ('Diabetes', 'male_diabetes'),
@@ -456,7 +472,7 @@ class PatientTimeline(models.Model):
             'female_weight_loss_year': ('Weight loss', 'female_weight_loss'),
             'female_weight_at_marriage': ('Weight at marriage', 'female_weight_at_marriage'),
             'female_weight_comments': ('Comments', 'female_weight_comments'),
-            'female_hirsuitism': ('Hirsuitism', 'female_hirsuitism'),
+            'female_hirsuitism_year': ('Hirsuitism', 'female_hirsuitism_comments'),
             'female_hirsuitism_treatment': ('Any treatment', 'female_hirsuitism_treatment'),
             'female_tuberculosis_date': ('Tuberculosis', 'female_tuberculosis'),
             'female_att_months': ('ATT (Months)', 'female_att_months'),
@@ -467,9 +483,9 @@ class PatientTimeline(models.Model):
             'female_mumps_date': ('Mumps', 'female_mumps'),
             'female_adrenal_date': ('Adrenal', 'female_adrenal'),
             'female_anti_phospholipid_syndrome_date': (
-                'Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome'),
+                'Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome_comments'),
             'female_autoimmune_disease_date': ('Autoimmune Diseases', 'female_autoimmune_disease'),
-            'female_blood_transfusion_date': ('Blood Transfusion', 'female_blood_transfusion'),
+            'female_blood_transfusion_date': ('Blood Transfusion', 'female_blood_transfusion_comments'),
             'female_cardiac_date': ('Cardiac', 'female_cardiac'),
             'female_diabetes_type': ('Diabetes Type', 'female_diabetes_type'),
             'female_diabetes_date': ('Diabetes', 'female_diabetes'),

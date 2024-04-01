@@ -26,7 +26,9 @@ class FemaleMedicalHistory(models.Model):
 
     female_hirsuitism = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                      string='Hirsuitism')
+    female_hirsuitism_year = fields.Many2one("ec.medical.year", 'Hirsuitism')
     female_hirsuitism_treatment = fields.Char('Any treatment')
+    female_hirsuitism_comments = fields.Char('Comments')
 
     female_tuberculosis = fields.Char('Tuberculosis')
     female_tuberculosis_date = fields.Many2one("ec.medical.year", 'Tuberculosis Date')
@@ -46,16 +48,20 @@ class FemaleMedicalHistory(models.Model):
     female_adrenal_date = fields.Many2one("ec.medical.year", 'Adrenal Date')
 
     female_anti_phospholipid_syndrome = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                     string='Anti-phospholipid Syndrome')
+                                                         string='Anti-phospholipid Syndrome')
+    female_anti_phospholipid_syndrome_comments = fields.Char(string='Anti-phospholipid Syndrome')
 
-    female_anti_phospholipid_syndrome_date = fields.Many2one("ec.medical.year",'Anti-phospholipid Syndrome Date')
+    female_anti_phospholipid_syndrome_date = fields.Many2one("ec.medical.year",
+                                                             'Anti-phospholipid Syndrome Date')
 
     female_autoimmune_disease = fields.Char('Autoimmune Diseases')
     female_autoimmune_disease_date = fields.Many2one("ec.medical.year",'Autoimmune Diseases Date')
 
     female_blood_transfusion = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                              string='Blood Transfusion')
-    female_blood_transfusion_date = fields.Many2one("ec.medical.year",'Blood Transfusion Date')
+                                                string='Blood Transfusion')
+    female_blood_transfusion_comments = fields.Char('Blood Transfusion')
+    female_blood_transfusion_date = fields.Many2one("ec.medical.year",
+                                                    'Blood Transfusion Date')
 
     female_cardiac = fields.Char('Cardiac')
     female_cardiac_date = fields.Many2one("ec.medical.year",'Cardiac Date')

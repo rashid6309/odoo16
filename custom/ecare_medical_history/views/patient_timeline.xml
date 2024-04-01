@@ -1535,6 +1535,12 @@
 													<field name="female_hirsuitism"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   widget="radio"/>
+													<field name="female_hirsuitism_year"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="female_hirsuitism_comments"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"/>
 													<field name="female_hirsuitism_treatment"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"/>
 
@@ -1597,6 +1603,11 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_anti_phospholipid_syndrome_comments"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details"
+														   string=""
+													/>
 													<field name="female_anti_phospholipid_syndrome_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
@@ -1614,6 +1625,11 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_blood_transfusion_comments"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details"
+														   string=""
+													/>
 													<field name="female_blood_transfusion_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
@@ -2707,6 +2723,12 @@
 													<field name="male_hirsuitism"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   widget="radio"/>
+													<field name="male_hirsuitism_year"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="male_hirsuitism_comments"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"/>
 													<field name="male_hirsuitism_treatment"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"/>
 
@@ -2763,6 +2785,11 @@
 													<field name="male_anti_phospholipid_syndrome" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_anti_phospholipid_syndrome_comments"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details"
+														   string=""
+													/>
 													<field name="male_anti_phospholipid_syndrome_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -2779,6 +2806,11 @@
 													<field name="male_blood_transfusion" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_blood_transfusion_comments"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details"
+														   string=""
+													/>
 													<field name="male_blood_transfusion_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
