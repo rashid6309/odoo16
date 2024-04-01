@@ -751,10 +751,11 @@ class PatientTimeline(models.Model):
         #         or not self.ec_repeat_consultation_id.repeat_procedure_recommended_ids)):
         #     raise ValidationError('Diagnosis and Procedure Recommended can not be empty.')
         # else:
-        if ((self.ec_repeat_consultation_id.question_two_choice == 'yes' or
-            self.ec_repeat_consultation_id.question_three_choice == 'yes') and
-                (self.ec_repeat_consultation_id.repeat_obs_history_lines >= len(self.repeat_obs_history_ids.ids) or
-                self.ec_repeat_consultation_id.repeat_previous_treatment_lines >= len(self.timeline_previous_treatment_ids.ids))):
+        if ((self.ec_repeat_consultation_id.question_two_choice == 'yes' and
+             self.ec_repeat_consultation_id.repeat_obs_history_lines >= len(self.repeat_obs_history_ids.ids)) or
+                (self.ec_repeat_consultation_id.question_three_choice == 'yes' and
+                 self.ec_repeat_consultation_id.repeat_previous_treatment_lines >=
+                 len(self.timeline_previous_treatment_ids.ids))):
             raise ValidationError("Once the question two is answered as 'Yes' "
                                   "then new record in Pregnancy table must be added, "
                                   "or if the question three is answered as 'Yes' "
