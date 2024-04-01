@@ -261,7 +261,7 @@ class PatientTimeline(models.Model):
         :return: cycle day
         """
         if self.repeat_date:
-            if CustomDateTime.greater_than_today(self.repeat_date.date()):
+            if CustomDateTime.datetime_greater_than_today(self.repeat_date):
                 self.repeat_date = None
                 raise ValidationError(_(
                     "Date can't be greater than current date!"))

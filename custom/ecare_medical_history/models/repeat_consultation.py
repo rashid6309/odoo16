@@ -50,7 +50,7 @@ class RepeatConsultation(models.Model):
                                      readonly=1,
                                      )
     question_one_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                           string="Choice")
+                                           string="Is the couple currently pregnant?")
 
     repeat_lmp = fields.Date(string="LMP",
                              readonly=True,
@@ -68,7 +68,7 @@ class RepeatConsultation(models.Model):
                                      store=False,
                                      readonly=True)
     question_two_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                           string="Choice")
+                                           string="Has the couple had any conception since the last visit?")
 
     """ Question Three
         Yes: Open the treatment outside of ICSI from and add a record in the previous treatment history 
@@ -80,7 +80,7 @@ class RepeatConsultation(models.Model):
                                        store=False,
                                        readonly=1)
     question_three_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                             string="Choice")
+                                             string="Has the couple had any treatment outside of ICSI Pvt. Ltd. since last visit?")
 
     """ Question Four
         Yes: Open the treatment outside of ICSI from and add a record in the previous treatment history 

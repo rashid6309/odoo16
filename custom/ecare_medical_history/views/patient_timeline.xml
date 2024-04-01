@@ -1411,7 +1411,7 @@
 														   widget="radio" options="{'horizontal': True}"/>
 													</div>
 
-													<field name="female_lmp" style="width:30% !important;"/>
+													<field name="female_lmp" style="width:18% !important;"/>
 													<label for="female_complications_check"/>
 													<div class="d-flex">
 														<field name="female_complications_check"/>
