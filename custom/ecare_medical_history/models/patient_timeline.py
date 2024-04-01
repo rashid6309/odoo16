@@ -245,6 +245,11 @@ class PatientTimeline(models.Model):
         Formula: (Consultation Date - LMP) + 1
         :return: cycle day
         """
+        if self.repeat_date:
+            if CustomDateTime.greater_than_today(self.repeat_date.date()):
+                self.repeat_date = None
+                raise ValidationError(_(
+                    "Date can't be greater than current date!"))
         if self.lmp_question_four:
             if CustomDateTime.greater_than_today(self.lmp_question_four):
                 self.lmp_question_four = None
@@ -392,7 +397,7 @@ class PatientTimeline(models.Model):
             'male_weight_gain_year': ('Weight gain', 'male_weight_gain'),
             'male_weight_loss_year': ('Weight loss', 'male_weight_loss'),
             'male_weight_at_marriage': ('Weight at marriage', 'male_weight_at_marriage'),
-            'male_weight_comments': ('', 'male_weight_comments'),
+            'male_weight_comments': ('Comments', 'male_weight_comments'),
             'male_hirsuitism': ('Hirsuitism', 'male_hirsuitism'),
             'male_hirsuitism_treatment': ('Any treatment', 'male_hirsuitism_treatment'),
             'male_tuberculosis_date': ('Tuberculosis', 'male_tuberculosis'),
@@ -450,7 +455,7 @@ class PatientTimeline(models.Model):
             'female_weight_gain_year': ('Weight gain', 'female_weight_gain'),
             'female_weight_loss_year': ('Weight loss', 'female_weight_loss'),
             'female_weight_at_marriage': ('Weight at marriage', 'female_weight_at_marriage'),
-            'female_weight_comments': (' ', 'female_weight_comments'),
+            'female_weight_comments': ('Comments', 'female_weight_comments'),
             'female_hirsuitism': ('Hirsuitism', 'female_hirsuitism'),
             'female_hirsuitism_treatment': ('Any treatment', 'female_hirsuitism_treatment'),
             'female_tuberculosis_date': ('Tuberculosis', 'female_tuberculosis'),
@@ -510,7 +515,7 @@ class PatientTimeline(models.Model):
                     self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery,
                                                                                                 '')
                 field_text = (f'<p> {surgery.details} ({surgery.surgical_year_id.year})'
-                              f'</p')
+                              f'</p<br>')
                 html_content += field_text
             record.male_surgical_history = html_content
         # Male Fields Processing

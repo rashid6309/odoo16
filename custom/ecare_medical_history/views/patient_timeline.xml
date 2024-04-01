@@ -537,7 +537,7 @@
 											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<group>
 													<field name="lmp_question_four"
-														   style="width: 55% !important;"/>
+														   style="width: 40% !important;"/>
 <!--													<field name="lmp_question_four"-->
 <!--														   style="width: 55% !important;"-->
 <!--														   attrs="{'required': [('show_repeat_section_state', '=', True),-->
@@ -546,8 +546,6 @@
 												<group>
 													<field name="repeat_cycle_day"
 														   style="width: 55% !important;"
-														   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"
 														   force_save="1"/>
 												</group>
 											</group>
@@ -1396,7 +1394,7 @@
 													<label for="female_dysmenorrhoea_check"/>
 													<div class="d-flex">
 														<field name="female_dysmenorrhoea_check"/>
-														<span>None</span>
+														<span style="margin-right: 2%;">None</span>
 														<field name="female_dysmenorrhoea_ids"
 															   nolabel="1"
 															   attrs="{'readonly': [('female_dysmenorrhoea_check', '=', True)]}"
@@ -1406,7 +1404,7 @@
 													<label for="female_pain_intensity_check"/>
 													<div class="d-flex">
 														<field name="female_pain_intensity_check"/>
-														<span>None</span>
+														<span style="margin-right: 2%;">None</span>
 														<field name="female_pain_intensity"
 															   nolabel="1"
 														   attrs="{'readonly': [('female_pain_intensity_check', '=', True)]}"
@@ -1417,7 +1415,7 @@
 													<label for="female_complications_check"/>
 													<div class="d-flex">
 														<field name="female_complications_check"/>
-														<span>None</span>
+														<span style="margin-right: 2%;">None</span>
 														<field name="female_complications_ids"
 															   nolabel="1"
 														   attrs="{'readonly': [('female_complications_check', '=', True)]}"
@@ -1434,7 +1432,7 @@
 													<label for="female_complains_check"/>
 													<div class="d-flex">
 														<field name="female_complains_check"/>
-														<span>None</span>
+														<span style="margin-right: 2%;">None</span>
 														<field name="female_complains_ids"
 															   nolabel="1"
 														   attrs="{'readonly': [('female_complains_check', '=', True)]}"
@@ -1475,7 +1473,7 @@
 													<label for="cn_type_check"/>
 													<div class="d-flex">
 														<field name="cn_type_check"/>
-														<span>None</span>
+														<span style="margin-right: 2%;">None</span>
 														<field name="cn_type"
 															   nolabel="1"
 															   widget="many2many_checkboxes"
@@ -2451,9 +2449,9 @@
 <!--													<field name="gynaecological_examination_date"  style="width:30% !important;"/>-->
 													<label for="gynaecological_examination_lmp" style="width:30% !important;"/>
 													<div class="d-flex">
-														<field name="gynaecological_examination_lmp" style="width:30% !important;"/>
+														<field name="gynaecological_examination_lmp" style="width:20% !important;"/>
 														<label for="gynaecological_examination_cycle_day" style="width:30% !important;"/>
-														<field name="gynaecological_examination_cycle_day" force_save="1" style="width:30% !important;"/>
+														<field name="gynaecological_examination_cycle_day" force_save="1" style="width:30% !important;margin-left: 2%;"/>
 													</div>
 <!--													<field name="gynaecological_examination_lmp" style="width:30% !important;"/>-->
 <!--													<field name="gynaecological_examination_cycle_day" force_save="1"/>-->
