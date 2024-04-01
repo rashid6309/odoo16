@@ -522,8 +522,8 @@
 											</group>
 											<div>
 												<p attrs="{'invisible': [('question_three_choice', '!=', 'yes')]}" style="text-decoration: underline; color: red;">Please add details of treatment in table below</p>
-												<tree attrs="{'invisible': [('question_three_choice', '!=', 'yes')]}">
-													<field name="timeline_previous_treatment_ids"
+												<tree editable="bottom" attrs="{'invisible': [('question_three_choice', '!=', 'yes')]}">
+													<field name="repeat_previous_treatment_ids"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
 													   }"
