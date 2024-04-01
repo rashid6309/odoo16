@@ -341,6 +341,18 @@ class EcarePatient(models.Model):
 
         return patient_name
 
+    def action_create_legacy_patient_directly(self):
+        '''
+            It was required incase we need patient creation in the legacy system after mr number creation.
+            It happened due to post_data_history_software line commented in the history_software_dev branch,
+            and after merge no patient was available in the legacy system
+
+
+            XXX - Not being used now as client action is commented -  XXX
+        '''
+
+        self.post_data_history_software()
+
     def action_register(self):
         self.ensure_one()
         self.constraints_validation()
