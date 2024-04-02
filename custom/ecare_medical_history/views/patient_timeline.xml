@@ -761,10 +761,8 @@
 
 											<!-- TVS Section -->
 											<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+												<p class="col-md-10" style="background: #e4eaf3;padding: 0.3%;">Uterus</p>
 												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1">
-														Uterus
-													</div>
 													<div class="col-md-10">
 														<div class="d-flex custom-checkbox-alignment-boolean">
 															<field name="tvs_uterus_tvs_size"
@@ -789,8 +787,10 @@
 																<field name="tvs_uterus_flexion"/>
 															</div>
 														</div>
+														<p attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}" style="background: #e4eaf3;padding: 0.3%;">Size</p>
 														<div class="d-flex"
 															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
+
 															<span style="font-weight:bold;">Size</span>
 															<field name="tvs_uterus_size_x" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('scan_required', '=', 'yes'),
@@ -805,6 +805,7 @@
 													   ('tvs_uterus_tvs_size', '=', True)]}"/>
 															<span>cm</span>
 														</div>
+														<p attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}" style="background: #e4eaf3;padding: 0.3%;">Position</p>
 														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
 															<div class="col-md-1" style="font-weight:bold;">
 																Position
@@ -828,10 +829,11 @@
 																<!--																	   widget="many2many_checkboxes"/>-->
 															</div>
 														</div>
+														<p attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}" style="background: #e4eaf3;padding: 0.3%;">Fibroid</p>
 														<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
-															<div class="col-md-2" style="font-weight:bold;">
-																Fibroid
-															</div>
+<!--															<div class="col-md-2" style="font-weight:bold;">-->
+<!--																Fibroid-->
+<!--															</div>-->
 															<div class="col-md-7">
 																<field name="tvs_generic_sizes_ids">
 																	<tree editable="top">
@@ -941,10 +943,12 @@
 													</div>
 												</div>
 
+												<p class="col-md-10" style="background: #e4eaf3;padding: 0.3%;">Cyst</p>
+
 												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1">
-														Cyst
-													</div>
+<!--													<div class="col-md-1">-->
+<!--														Cyst-->
+<!--													</div>-->
 													<div class="col-md-5 d-flex flex-column">
 														<div>
 															<field name="tvs_cyst_size_ids">
