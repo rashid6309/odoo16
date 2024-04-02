@@ -761,8 +761,9 @@
 
 											<!-- TVS Section -->
 											<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
-												<p class="col-md-10" style="background: #e4eaf3;padding: 0.3%;">Uterus</p>
+												<group string="Uterus"/>
 												<div class="d-flex align-items-center bg-light bg-gradient">
+													<div class="col-md-1"/>
 													<div class="col-md-10">
 														<div class="d-flex custom-checkbox-alignment-boolean">
 															<field name="tvs_uterus_tvs_size"
@@ -787,7 +788,7 @@
 																<field name="tvs_uterus_flexion"/>
 															</div>
 														</div>
-														<p attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}" style="background: #e4eaf3;padding: 0.3%;">Size</p>
+
 														<div class="d-flex"
 															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
 
@@ -805,8 +806,8 @@
 													   ('tvs_uterus_tvs_size', '=', True)]}"/>
 															<span>cm</span>
 														</div>
-														<p attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}" style="background: #e4eaf3;padding: 0.3%;">Position</p>
-														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+
+ 														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
 															<div class="col-md-1" style="font-weight:bold;">
 																Position
 															</div>
@@ -829,7 +830,7 @@
 																<!--																	   widget="many2many_checkboxes"/>-->
 															</div>
 														</div>
-														<p attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}" style="background: #e4eaf3;padding: 0.3%;">Fibroid</p>
+														<group string="Fibroid"/>
 														<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
 <!--															<div class="col-md-2" style="font-weight:bold;">-->
 <!--																Fibroid-->
@@ -880,6 +881,7 @@
 													</div>
 												</div>
 
+												<group string="Ovaries"/>
 												<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
 													<div class="col-md-1">
 														ROV
@@ -943,12 +945,12 @@
 													</div>
 												</div>
 
-												<p class="col-md-10" style="background: #e4eaf3;padding: 0.3%;">Cyst</p>
+<!--												<group string="Cyst"/>-->
 
 												<div class="d-flex align-items-center bg-light bg-gradient">
-<!--													<div class="col-md-1">-->
-<!--														Cyst-->
-<!--													</div>-->
+													<div class="col-md-1">
+														Cyst
+													</div>
 													<div class="col-md-5 d-flex flex-column">
 														<div>
 															<field name="tvs_cyst_size_ids">
@@ -2471,11 +2473,13 @@
 <!--													<field name="gynaecological_examination_lmp" style="width:30% !important;"/>-->
 <!--													<field name="gynaecological_examination_cycle_day" force_save="1"/>-->
 
+													<div class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Uterus</div>
+													<div/>
 													<div/>
 													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -30%;">
-														<div class="col-md-1">
-															Uterus
-														</div>
+<!--														<div class="col-md-1">-->
+<!--															Uterus-->
+<!--														</div>-->
 														<div class="col-md-10">
 															<div class="d-flex">
 																<field name="gynaecological_uterus_size"/>
@@ -2586,6 +2590,8 @@
 													<!--															mm-->
 													<!--														</span>-->
 													<!--													</div>-->
+													<div class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Ovaries</div>
+													<div/>
 													<label for="gynae_rov"/>
 													<div>
 														<field name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;"/>
