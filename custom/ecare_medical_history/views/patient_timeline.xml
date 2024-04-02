@@ -79,6 +79,13 @@
 						var popup = document.getElementById('treatment_history_popup');
 						popup.style.display = 'none';
 						}
+						function revertProcessInputPluses(input) {
+							var output = input.replace(/\+\((\d+)\)/g, function(match, count) {
+									return '+,'.repeat(parseInt(count)) + ',';
+								});
+							output = output.replace(/,+/g, ',');
+							return output;
+						}
 
 						function showBeginScan(type, element_id) {
 						var scan_type = type;
@@ -88,6 +95,7 @@
 						popup.style.display = 'block';
 
 						inputValue = document.getElementById(element_id).value;
+						inputValue = revertProcessInputPluses(inputValue);
 						document.querySelector('.output_results').innerText = inputValue;
 						}
 
@@ -144,13 +152,26 @@
 						let resultStr = resultList.filter(Boolean).join(',');
 						return resultStr;
 						}
+						function processInputPluses(processed_input) {
+							var plusCount = 0;
+							var output = processed_input.replace(/\+/g, function() {
+								plusCount++;
+								return '';
+							});
+							output = output.replace(/,+/, ',');
+							if (plusCount > 0) {
+								output = '+(' + plusCount + ')' + output;
+							}
+							return output;
+						}
 
 						function saveTvsScan() {
 						scan_input = document.getElementById('type_of_scan').value;
 						var popup = document.getElementById('tvs_scan_popup');
 						popup.style.display = 'none';
 						var inputValue = document.querySelector('.output_results').innerText;
-						processed_value = processDisplay(inputValue)+',';
+						processed_value_initial = processDisplay(inputValue)+',';
+						processed_value = processInputPluses(processed_value_initial);
 						processed_value = processed_value === ',' ? null : processed_value;
 
 						if (scan_input == "lov")
