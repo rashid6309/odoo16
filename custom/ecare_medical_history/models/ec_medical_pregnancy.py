@@ -106,6 +106,7 @@ class PregnancyForm(models.Model):
 class PregnancyProcedures(models.Model):
     _name = 'ec.medical.pregnancy.procedure'
     _description = 'Pregnancy Procedures'
+    _order = 'name asc'
 
     name = fields.Char("Name", required=True)
     value = fields.Text("Value")
@@ -114,5 +115,6 @@ class PregnancyProcedures(models.Model):
 class RecommendedProcedures(models.Model):
     _name = 'ec.medical.recommended.procedure'
     _description = 'Recommended Procedures'
+    _order = 'name asc'
 
     name = fields.Char("Name", required=True)

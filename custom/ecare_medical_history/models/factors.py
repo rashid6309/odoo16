@@ -4,13 +4,12 @@ from odoo import models, api, fields
 class EcMedicalFactors(models.Model):
     _name = "ec.medical.factors"
     _description = "Medical Factor"
-    _order = 'create_date desc'
+    _order = 'name asc'
 
     _sql_constraints = [
         ('name_unique', 'unique (name,type)',
          'Multiple factors with same name can not be created for each type!'),
     ]
-
 
     type = fields.Selection(string='Type', required=1,
                             selection=[('male', 'Male'),

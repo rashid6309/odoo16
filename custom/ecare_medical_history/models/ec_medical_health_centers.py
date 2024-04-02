@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 class EcHealthCenters(models.Model):
     _name = 'ec.medical.health.center'
     _description = "Information about the health centers"
-    _order = 'create_date desc'
+    _order = 'name asc'
 
     name = fields.Char(string='Name',
                        required=True)
