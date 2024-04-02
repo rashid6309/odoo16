@@ -611,6 +611,10 @@ label[for="gynaecological_examination_cycle_day"] {
     margin-left: 10% !important;
 }
 
+label[for="lmp_question_four_1"] {
+    pointer-events: none !important;
+}
+
 label[for="tv_diagnosis"] {
     font-weight: 700 !important;
 }
