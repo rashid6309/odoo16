@@ -2530,10 +2530,12 @@
 																	<!--																	<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>-->
 																</div>
 															</div>
+															<div attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}" class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Fibroid</div>
+															<div/>
 															<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
-																<div class="col-md-2" style="font-weight:bold;">
-																	Fibroid
-																</div>
+<!--																<div class="col-md-2" style="font-weight:bold;">-->
+<!--																	Fibroid-->
+<!--																</div>-->
 																<div class="col-md-10">
 																	<field name="gynaecological_generic_sizes_ids">
 																		<tree editable="top">
