@@ -3616,7 +3616,7 @@
 									<button name="action_open_seminology"
 											type="object"
 											class="card-custom-right-button"
-											string="Seminology"/>
+											string="Semenology"/>
 									<div class="divider"/>
 									<a class="buttonCollapse btn_minus_male" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
 										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>

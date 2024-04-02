@@ -18,6 +18,8 @@ class MaleMedicalHistory(models.Model):
     male_medical_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                                       ondelete='restrict')
 
+    male_no_medical_history = fields.Boolean(string='No Significant Medical History')
+
     male_acne = fields.Char('Acne')
     male_acne_date = fields.Many2one("ec.medical.year", 'Acne Date')
     male_weight_gain = fields.Char('Weight gain')

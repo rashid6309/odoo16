@@ -192,7 +192,7 @@ class PatientTimeline(models.Model):
             field_records = getattr(medical_history, field_name)
             custom_field = getattr(medical_history, custom_field_name)
             if field_records or (custom_field and custom_field.strip()):
-                custom_text = f' {custom_field.strip()}' if custom_field else ''
+                custom_text = f' {str(custom_field).strip()}' if custom_field else ''
 
                 yes_or_no = None
 
@@ -204,6 +204,7 @@ class PatientTimeline(models.Model):
                 ]
                 ''' Please populate this for every key which is not object '''
                 fields_list_without_year = [
+                    'female_no_medical_history', 'male_no_medical_history',
                     'male_att_months', 'female_att_months',
                     'female_hirsuitism', 'male_hirsuitism',
                     'female_hirsuitism_treatment', 'male_hirsuitism_treatment',
@@ -408,6 +409,7 @@ class PatientTimeline(models.Model):
         # Male Fields Processing
 
         male_fields_to_process = {
+            'male_no_medical_history': ('No significant medical history', 'male_no_medical_history'),
             'male_acne_date': ('Acne', 'male_acne'),
             'male_weight_gain_year': ('Weight gain', 'male_weight_gain'),
             'male_weight_loss_year': ('Weight loss', 'male_weight_loss'),
@@ -456,17 +458,18 @@ class PatientTimeline(models.Model):
             'male_medical_current_medication': ('Current Medication and Allergies', 'male_medical_current_medication'),
         }
 
-        if self.male_no_medical_history is False:
-            self.male_medical_history = PatientTimeline._compute_patient_medical_history(
-                medical_history=self.ec_first_consultation_id.ec_male_medical_history_id,
-                fields_to_process=male_fields_to_process
-            )
-        else:
-            self.male_medical_history = None
+        # if self.male_no_medical_history is False:
+        self.male_medical_history = PatientTimeline._compute_patient_medical_history(
+            medical_history=self.ec_first_consultation_id.ec_male_medical_history_id,
+            fields_to_process=male_fields_to_process
+        )
+        # else:
+        #     self.male_medical_history = None
 
         # Female Fields Processing
 
         female_fields_to_process = {
+            'female_no_medical_history': ('No significant medical history', 'female_no_medical_history'),
             'female_acne_date': ('Acne', 'female_acne'),
             'female_weight_gain_year': ('Weight gain', 'female_weight_gain'),
             'female_weight_loss_year': ('Weight loss', 'female_weight_loss'),
@@ -514,13 +517,13 @@ class PatientTimeline(models.Model):
             'female_medical_history_others_date': ('Others', 'female_medical_history_others'),
             'female_medical_current_medication': ('Current Medication and Allergies', 'female_medical_current_medication'),
         }
-        if self.female_no_medical_history is False:
-            self.female_medical_history = PatientTimeline._compute_patient_medical_history(
-                medical_history=self.ec_first_consultation_id.ec_female_medical_history_id,
-                fields_to_process=female_fields_to_process
-            )
-        else:
-            self.female_medical_history = None
+        # if self.female_no_medical_history is False:
+        self.female_medical_history = PatientTimeline._compute_patient_medical_history(
+            medical_history=self.ec_first_consultation_id.ec_female_medical_history_id,
+            fields_to_process=female_fields_to_process
+        )
+        # else:
+        #     self.female_medical_history = None
 
     def _compute_surgical_history(self):
         # Male Fields Processing
