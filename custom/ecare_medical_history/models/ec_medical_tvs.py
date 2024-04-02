@@ -65,6 +65,7 @@ class EcMedicalTVS(models.Model):
     tvs_triple_echo = fields.Boolean(string="Triple Echo", default=False)
     tvs_hyperechoic_solid = fields.Boolean(string="Hyperechoic/Solid", default=False)
     tvs_suspected_cavity_lesion = fields.Boolean(string="Suspected Cavity Lesion", default=False)
+    tvs_menstruating = fields.Boolean(string="Menstruating", default=False)
 
     tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                        string='CET')

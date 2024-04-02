@@ -139,6 +139,7 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_triple_echo = fields.Boolean(string="Triple Echo", default=False)
     gynae_hyperechoic_solid = fields.Boolean(string="Hyperechoic/Solid", default=False)
     gynae_suspected_cavity_lesion = fields.Boolean(string="Suspected Cavity Lesion", default=False)
+    gynae_menstruating = fields.Boolean(string="Menstruating", default=False)
 
     lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='CET')
     lining_size_decimal = fields.Char(string='CET')
