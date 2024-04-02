@@ -35,7 +35,7 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_exam_p_s_only = fields.Boolean(string='P/S Only')
 
     gynae_exam_findings_on_inspection = fields.Text(string='Findings on Inspection')
-    gynae_exam_valva_vaginal_exam = fields.Text(string='Vulva Vaginal Exam')
+    gynae_exam_valva_vaginal_exam = fields.Text(string='Vulva and Vagina')
     gynae_exam_cervix = fields.Text(string='Cervix')
     gynae_exam_uterus_and_adnexae = fields.Text(string='Uterus and adnexae (bimanual)')
 

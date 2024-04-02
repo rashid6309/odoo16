@@ -967,7 +967,7 @@
 												</div>
 												<div class="d-flex align-items-center bg-light bg-gradient">
 													<div class="col-md-1">
-														Other
+														Other Findings
 													</div>
 													<div class="col-md-7 d-flex flex-column">
 														<div>
@@ -2437,9 +2437,8 @@
 													</div>
 
 													<field
-															attrs="{'invisible': ['|','|','|',('gynae_exam_hvs', '!=', True),('gynae_exam_inspection_only', '!=', True),
-													   ('gynae_exam_p_v_only', '!=', True),
-													   ('gynae_exam_p_s_only', '!=', True)]}"
+															attrs="{'invisible': ['|',('gynae_exam_hvs', '!=', True),
+															('gynae_exam_inspection_only', '!=', True)]}"
 															name="gynae_exam_method_of_hvs"/>
 
 													<div class="d-flex" attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
@@ -2653,7 +2652,7 @@
 														</div>
 													</div>
 
-													<field name="gynaecological_examination_comment"/>
+													<field name="gynaecological_examination_comment" string="Other Findings"/>
 												</group>
 											</div>
 

@@ -35,5 +35,12 @@
             </field>
         </record>
 
+        <record id="ec_obstetrics_history_action" model="ir.actions.act_window">
+            <field name="name">Obstetrics History</field>
+            <field name="res_model">ec.obstetrics.history</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
     </data>
 </odoo>
