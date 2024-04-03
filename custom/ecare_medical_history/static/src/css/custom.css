@@ -606,6 +606,9 @@ div.repeat_kanban_section_content section{
 label[for="tvs_signs_of_ovulation_ids"] {
     font-weight: 700 !important;
 }
+label[for="gynae_exam_method_of_hvs"] {
+    width: 16% !important;
+}
 
 label[for="gynaecological_examination_cycle_day"] {
     margin-left: 10% !important;
