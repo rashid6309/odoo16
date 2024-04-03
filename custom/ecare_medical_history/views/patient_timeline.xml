@@ -2401,17 +2401,17 @@
 														   ('gynae_exam_inspection_only', '!=', True)]}"
 													/>
 													<field name="gynae_exam_valva_vaginal_exam"
-														   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
+														   attrs="{'invisible': ['|','|',  ('gynae_exam_pelvic_examination_state', '=', 'no'),('gynae_exam_p_v_only', '!=', True),
 														   ('gynae_exam_p_s_only', '!=', True)]}"
 													/>
 
 													<field name="gynae_exam_cervix"
-														   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
+														   attrs="{'invisible': ['|', '|', ('gynae_exam_pelvic_examination_state', '=', 'no'),('gynae_exam_p_v_only', '!=', True),
 														   ('gynae_exam_p_s_only', '!=', True)]}"
 													/>
 
 													<field name="gynae_exam_uterus_and_adnexae"
-														   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True)]}"
+														   attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),('gynae_exam_p_v_only', '!=', True)]}"
 													/>
 
 
@@ -2481,7 +2481,7 @@
 
 													</div>
 													<field name="gynae_exam_other_findings"
-														   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
+														   attrs="{'invisible': ['|',('gynae_exam_pelvic_examination_state', '=', 'no'),'|',('gynae_exam_p_v_only', '!=', True),
 														   ('gynae_exam_p_s_only', '!=', True)]}"
 													/>
 

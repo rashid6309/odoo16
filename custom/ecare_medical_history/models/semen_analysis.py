@@ -258,6 +258,24 @@ class SemenAnalysis(models.Model):
         if self.liquifaction_time and not re.match(Validation.REGEX_INTEGER_WITH_CHAR, self.liquifaction_time):
             raise UserError(f"Please enter a numeric value in Liquifaction Time!")
 
+    @api.onchange('production_time', "analysis_time")
+    def _onchange_time(self):
+        if self.analysis_time:
+            time = TimeValidation.validate_time(self.analysis_time)
+
+            if not time:
+                return CustomNotification.notification_time_validation()
+
+            self.analysis_time = time
+
+        if self.production_time:
+            time = TimeValidation.validate_time(self.production_time)
+
+            self.production_time = time
+            if not time:
+                return CustomNotification.notification_time_validation()
+
+
     # @api.onchange('production_time', "analysis_time")
     # def _onchange_time(self):
     #

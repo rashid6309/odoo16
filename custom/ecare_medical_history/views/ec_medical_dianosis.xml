@@ -39,7 +39,7 @@
         </record>
 
         <record id="ec_medical_diagnosis_semen_action" model="ir.actions.act_window">
-            <field name="name">Medical Diagnosis Semen</field>
+            <field name="name">Andrology Diagnosis</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">ec.medical.diagnosis.semen</field>
             <field name="view_mode">tree,form</field>
@@ -47,7 +47,7 @@
 
         <menuitem
             id="ec_medical_diagnosis_semen_menu"
-            name="Medical Diagnosis Semen"
+            name="Andrology Diagnosis"
             action="ec_medical_diagnosis_semen_action"
             parent="ec_medical_history_configuration"
             sequence="5110"/>

@@ -68,8 +68,8 @@
 
                         <group>
                             <group>
-                                <field name="production_time"  style="width:25% !important;" widget="timepicker"/>
-                                <field name="analysis_time"  style="width:25% !important;" widget="timepicker"/>
+                                <field name="production_time"  style="width:25% !important;"/>
+                                <field name="analysis_time"  style="width:25% !important;"/>
                             </group>
                         </group>
                         <group string="General Examination"/>

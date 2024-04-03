@@ -231,7 +231,7 @@ class RepeatConsultation(models.Model):
     repeat_pipelle_sampling_done = fields.Boolean(string="Pipelle sampling done",
                                                   default=False)
 
-    repeat_other_findings = fields.Text(string="Other findings")
+    repeat_other_findings = fields.Html(string="Other findings")
 
     scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                      default='no',

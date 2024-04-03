@@ -626,6 +626,10 @@ label[for="lining_ids"] {
     width: max-content !important;
 }
 
+label[for="progression_dead"] {
+    margin-right: 2% !important;
+}
+
 .table_fixed_height {
   height: 300px !important;
 }
