@@ -15,6 +15,10 @@ class SemenAnalysis(models.Model):
     _description = 'Semen Analysis'
     _rec_name = "semen_patient_id"
     _order = "date desc"
+    _sql_constraints = [
+        ('lab_number_unique', 'unique (lab_number)',
+         'Lab Number already exists!'),
+    ]
 
     semen_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                        required=True,
@@ -55,7 +59,18 @@ class SemenAnalysis(models.Model):
     progression_s_forward = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='S Forward')
     progression_lateral = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Lateral')
     progression_non_progressive = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Non Progressive')
-    progression_dead = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Dead')
+    progression_dead = fields.Char(string='Dead', compute='_compute_progression_dead')
+
+    @api.onchange('progression_f_forward', 'progression_s_forward', 'progression_lateral', 'progression_non_progressive')
+    def _compute_progression_dead(self):
+        for record in self:
+            total_progression = sum([
+                int(record.progression_f_forward or 0),
+                int(record.progression_s_forward or 0),
+                int(record.progression_lateral or 0),
+                int(record.progression_non_progressive or 0)
+            ])
+            record.progression_dead = str(100 - total_progression)
 
     # progression = fields.Selection([
     #     ('no_progression', 'No Progression'),
@@ -68,7 +83,7 @@ class SemenAnalysis(models.Model):
     debris = fields.Selection(selection=StaticMember.SEMEN_SIGN_VALUES, string='Debris')
     bacteria = fields.Selection(selection=StaticMember.SEMEN_SIGN_VALUES, string='Bacteria')
     epi_cells_immature_cells = fields.Char(string='EPI Cells/Immature Cells')
-    other_observation = fields.Text(string='Other Observation')
+    other_observation = fields.Html(string='Other Observation')
 
     normal = fields.Selection(selection=StaticMember.SEMEN_MORPHOLOGY, string="Normal")
     abnormal = fields.Selection(selection=StaticMember.SEMEN_MORPHOLOGY, string="Abnormal")
@@ -90,7 +105,7 @@ class SemenAnalysis(models.Model):
                                                         string='After 24hrs %Motility')
     after_24_hrs_progression = fields.Char(string='After 24hrs Progression')
 
-    comments = fields.Text(string='Comments')
+    comments = fields.Html(string='Comments')
 
     # suitable_for
 
@@ -106,10 +121,10 @@ class SemenAnalysis(models.Model):
     sperm_cryopreservation_strawe = fields.Char('Cryopreservation Strawe')
     sperm_cryopreservation_code = fields.Char('Cryopreservation Code')
 
-    seminologist_ids = fields.Many2many(comodel_name='res.users', string='Seminologist', default=lambda self: self.env.user)
+    seminologist_ids = fields.Many2many(comodel_name='ec.medical.seminologist', string='Seminologist')
     legacy_seminologist = fields.Char(string="Legacy System Seminologist", readonly=1)
 
-    special_notes = fields.Char("Special Notes")
+    special_notes = fields.Html("Special Notes")
 
     seme_analysis_id_dummy = fields.Many2one('ec.semen.analysis')
     
@@ -173,9 +188,10 @@ class SemenAnalysis(models.Model):
 
     @api.model_create_multi
     def create(self, vals):
-        if vals[0].get('lab_number') in [False, '']:
-            vals[0]['lab_number'] = self.env['ir.sequence'].next_by_code('ecare_history.semen.sequence.lab.no') or '/'
         return super(SemenAnalysis, self).create(vals)
+        # if vals[0].get('lab_number') in [False, '']:
+        #     vals[0]['lab_number'] = self.env['ir.sequence'].next_by_code('ecare_history.semen.sequence.lab.no') or '/'
+        # return super(SemenAnalysis, self).create(vals)
 
     def print_semen_analysis_report(self):
         return self.env.ref('ecare_medical_history.ec_semen_analysis_report').report_action(self)
@@ -192,6 +208,10 @@ class SemenAnalysis(models.Model):
         if value and not re.match(Validation.REGEX_FLOAT_2_DP, value):
             raise UserError(f"Please enter a numeric value in {field_name} with up to 2 decimal points.")
 
+    def _check_numeric_input_with_char(self, field_name, value):
+        if value and not re.match(Validation.REGEX_INTEGER_WITH_CHAR, value):
+            raise UserError(f"Please enter a numeric value in {field_name} with up to 2 decimal points.")
+
     @api.onchange('abstinence')
     def _check_abstinence_input(self):
         self._check_numeric_input('abstinence', self.abstinence)
@@ -206,11 +226,11 @@ class SemenAnalysis(models.Model):
 
     @api.onchange('wbcs')
     def _check_wbcs_input(self):
-        self._check_numeric_input('WBCs', self.wbcs)
+        self._check_numeric_input_with_char('WBCs', self.wbcs)
 
     @api.onchange('epi_cells_immature_cells')
     def _check_epi_cells_immature_cells_input(self):
-        self._check_numeric_input('EPI Cells/Immature Cells', self.epi_cells_immature_cells)
+        self._check_numeric_input_with_char('EPI Cells/Immature Cells', self.epi_cells_immature_cells)
 
     @api.onchange('prep_conc')
     def _check_prep_conc_input(self):
@@ -230,40 +250,40 @@ class SemenAnalysis(models.Model):
 
     @api.onchange('progression')
     def _check_progression_input(self):
-        self._check_numeric_input('progression', self.progression)
+        self._check_numeric_input_with_char('progression', self.progression)
 
     @api.onchange('liquifaction_time')
     def _check_liquifaction_time_input(self):
-        if self.liquifaction_time and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.liquifaction_time):
+        if self.liquifaction_time and not re.match(Validation.REGEX_INTEGER_WITH_CHAR, self.liquifaction_time):
             raise UserError(f"Please enter a numeric value in Liquifaction Time!")
 
-    @api.onchange('production_time', "analysis_time")
-    def _onchange_time(self):
-
-        if self.production_time:
-            time = TimeValidation.validate_time(self.production_time)
-
-            if not time:
-                self.production_time = None
-                return CustomNotification.notification_time_validation()
-            try:
-                parsed_time = datetime.strptime(time, '%H:%M')
-                if not 0 <= parsed_time.hour <= 23:
-                    raise ValueError()
-            except ValueError:
-                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
-            self.production_time = time
-
-        if self.analysis_time:
-            time = TimeValidation.validate_time(self.analysis_time)
-            if not time:
-                self.analysis_time = None
-                return CustomNotification.notification_time_validation()
-            try:
-                parsed_time = datetime.strptime(time, '%H:%M')
-                if not 0 <= parsed_time.hour <= 23:
-                    raise ValueError()
-            except ValueError:
-                raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
-            self.analysis_time = time
+    # @api.onchange('production_time', "analysis_time")
+    # def _onchange_time(self):
+    #
+    #     if self.production_time:
+    #         time = TimeValidation.validate_time(self.production_time)
+    #
+    #         if not time:
+    #             self.production_time = None
+    #             return CustomNotification.notification_time_validation()
+    #         try:
+    #             parsed_time = datetime.strptime(time, '%H:%M')
+    #             if not 0 <= parsed_time.hour <= 23:
+    #                 raise ValueError()
+    #         except ValueError:
+    #             raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
+    #         self.production_time = time
+    #
+    #     if self.analysis_time:
+    #         time = TimeValidation.validate_time(self.analysis_time)
+    #         if not time:
+    #             self.analysis_time = None
+    #             return CustomNotification.notification_time_validation()
+    #         try:
+    #             parsed_time = datetime.strptime(time, '%H:%M')
+    #             if not 0 <= parsed_time.hour <= 23:
+    #                 raise ValueError()
+    #         except ValueError:
+    #             raise UserError("Invalid time format or hours. Please use HH:MM (24-hour format) with valid hours.")
+    #         self.analysis_time = time
 

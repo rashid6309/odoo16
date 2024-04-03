@@ -20,7 +20,7 @@
                                 <field name="semen_patient_id"
                                        options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
                                 <field name="date"/>
-                                <field name="lab_number" readonly="1" force_save="1"/>
+                                <field name="lab_number" force_save="1"/>
                                 <field name="lab_name" options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
                                 <field name="preparation_ids"  widget="many2many_checkboxes"/>
                                 <field name="sample_produced_at_lab" widget="radio" options="{'horizontal': True}"/>
@@ -68,9 +68,27 @@
 
                         <group>
                             <group>
-                                <field name="production_time"/>
-                                <field name="analysis_time"/>
-                                <field name="liquifaction_time"/>
+                                <field name="production_time" widget="timepicker"/>
+                                <field name="analysis_time" widget="timepicker"/>
+                            </group>
+                        </group>
+                        <group string="General Examination"/>
+                        <div class="d-flex ">
+                            <div class="col-md-1" style=" width: 9%;">
+                                <label for="liquifaction_time"/>
+                            </div>
+                            <div class="d-flex">
+                                <div>
+                                    <field name="liquifaction_time"/>
+                                </div>
+                                <div>
+                                    <div>min</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <group>
+                            <group>
                                 <field name="color"/>
                             </group>
                         </group>
@@ -114,6 +132,7 @@
                             </div>
                         </div>
 
+                        <group string="Makler Chamber"/>
                         <div class="d-flex ">
                             <div class="col-md-1" style=" width: 9%;">
                                 <label for="total_count"/>
@@ -123,7 +142,7 @@
                                     <field name="total_count"/>
                                 </div>
                                 <div>
-                                    <div>million/ml Range: >20</div>
+                                    <div>million/ml Range: >=15</div>
                                 </div>
                             </div>
                         </div>
@@ -138,12 +157,13 @@
                                     <field name="motility"/>
                                 </div>
                                 <div>
-                                    <div>% Range: >40</div>
+                                    <div>% Range: >=40</div>
                                 </div>
                             </div>
                         </div>
 
                         <!--    progression-->
+                        <group string="Progression Slide"/>
                         <div class="d-flex flex-column col-lg-7">
                             <div class="d-flex align-items-center bg-light bg-gradient">
                                 <div class="col-md-1">
@@ -355,17 +375,20 @@
                                 </div>
                             </div>
                         </div>
+                        <group col="4">
+                            <field name="comments"/>
+                        </group>
 
-                        <div class="d-flex ">
-                            <div class="col-md-1">
-                                <label for="comments"/>
-                            </div>
-                            <div class="d-flex">
-                                <div>
-                                    <field name="comments"/>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="d-flex ">-->
+<!--                            <div class="col-md-1">-->
+<!--                                <label for="comments"/>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex col-md-10">-->
+<!--                                <div>-->
+<!--                                    <field name="comments"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <group>
                             <field name="suitable_for_ids" widget="many2many_checkboxes"/>
                         </group>

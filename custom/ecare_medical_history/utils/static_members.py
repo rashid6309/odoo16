@@ -810,12 +810,15 @@ class StaticMember:
 
     SEMEN_COLOR = [
         ('creamy_white', 'Creamy White'),
+        ('yellow', 'Yellow'),
+        ('pale', 'Pale'),
+        ('straw', 'Straw'),
     ]
 
     SEMEN_VISCOSITY = [
         ('thick', 'Thick'),
         ('thin', 'Thin'),
-        ('vicious', 'Vicious'),
+        ('viscous', 'Viscous'),
         ('normal', 'Normal'),
     ]
 

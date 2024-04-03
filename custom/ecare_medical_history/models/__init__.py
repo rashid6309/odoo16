@@ -11,6 +11,7 @@ from . import factors
 from . import generic_size
 from . import ec_medical_dianosis
 from . import ec_medical_investigation
+from . import ec_medical_seminologist
 
 from . import patient
 from . import individual_patient
