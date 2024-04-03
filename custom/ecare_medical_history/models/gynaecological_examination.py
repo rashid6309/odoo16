@@ -31,8 +31,8 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_exam_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                            string="Pelvic examination done?")
     gynae_exam_inspection_only = fields.Boolean(string='Inspection Only')
-    gynae_exam_p_v_only = fields.Boolean(string='P/V Only')
-    gynae_exam_p_s_only = fields.Boolean(string='P/S Only')
+    gynae_exam_p_v_only = fields.Boolean(string='P/V')
+    gynae_exam_p_s_only = fields.Boolean(string='P/S')
 
     gynae_exam_findings_on_inspection = fields.Text(string='Findings on Inspection')
     gynae_exam_valva_vaginal_exam = fields.Text(string='Vulva and Vagina')

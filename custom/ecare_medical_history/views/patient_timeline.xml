@@ -852,7 +852,7 @@
 																<!--																	   widget="many2many_checkboxes"/>-->
 															</div>
 														</div>
-														<group string="Fibroid"/>
+														<group attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}" string="Fibroid"/>
 														<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
 <!--															<div class="col-md-2" style="font-weight:bold;">-->
 <!--																Fibroid-->
@@ -2459,8 +2459,9 @@
 													</div>
 
 													<field
-															attrs="{'invisible': ['|',('gynae_exam_hvs', '!=', True),
-															('gynae_exam_inspection_only', '!=', True)]}"
+															attrs="{'invisible': [('gynae_exam_hvs', '!=', True),
+															('gynae_exam_endocervical', '!=', True),
+															('gynae_exam_no_swab_taken', '!=', True)]}"
 															name="gynae_exam_method_of_hvs"/>
 
 													<div class="d-flex" attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
