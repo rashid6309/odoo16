@@ -48,7 +48,7 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_exam_pap_smear_done = fields.Boolean(string='Pap Smear Done')
     gynae_exam_pipelle_sampling_done = fields.Boolean(string='Pipelle Sampling Done')
 
-    gynae_exam_other_findings = fields.Text(string='Other Findings')
+    gynae_exam_other_findings = fields.Html(string='Other Findings')
 
     gynaecological_examination_date = fields.Date(string='Date')
     gynaecological_ultrasound_type = fields.Selection(selection=StaticMember.ULTRASOUND_TYPE,

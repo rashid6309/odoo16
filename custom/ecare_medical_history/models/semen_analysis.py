@@ -125,6 +125,7 @@ class SemenAnalysis(models.Model):
     legacy_seminologist = fields.Char(string="Legacy System Seminologist", readonly=1)
 
     special_notes = fields.Html("Special Notes")
+    semen_diagnosis_id = fields.Many2one(comodel_name="ec.medical.diagnosis.semen", string='Diagnosis')
 
     seme_analysis_id_dummy = fields.Many2one('ec.semen.analysis')
     

@@ -19,9 +19,9 @@
                             <group>
                                 <field name="semen_patient_id"
                                        options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
-                                <field name="date"/>
-                                <field name="lab_number" force_save="1"/>
-                                <field name="lab_name" options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
+                                <field name="date"  style="width:25% !important;"/>
+                                <field name="lab_number" style="width:25% !important;" force_save="1"/>
+                                <field name="lab_name"  style="width:25% !important;" options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
                                 <field name="preparation_ids"  widget="many2many_checkboxes"/>
                                 <field name="sample_produced_at_lab" widget="radio" options="{'horizontal': True}"/>
                                 <field name="repeat_semen_analysis" widget="radio" options="{'horizontal': True}"/>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="d-flex">
                                 <div>
-                                    <field name="abstinence"/>
+                                    <field name="abstinence" />
                                 </div>
                                 <div>
                                     <div><span>days</span> <span>Range:3-5</span></div>
@@ -68,8 +68,8 @@
 
                         <group>
                             <group>
-                                <field name="production_time" widget="timepicker"/>
-                                <field name="analysis_time" widget="timepicker"/>
+                                <field name="production_time"  style="width:25% !important;" widget="timepicker"/>
+                                <field name="analysis_time"  style="width:25% !important;" widget="timepicker"/>
                             </group>
                         </group>
                         <group string="General Examination"/>
@@ -89,7 +89,7 @@
 
                         <group>
                             <group>
-                                <field name="color"/>
+                                <field style="width:25% !important;" name="color"/>
                             </group>
                         </group>
 
@@ -239,7 +239,7 @@
 
                         <group>
                             <group>
-                                <field name="other_observation"/>
+                                <field name="other_observation" style="background: #ebebeb;"/>
                             </group>
                         </group>
                         <group string="Sperm Morphology"/>
@@ -308,7 +308,7 @@
                         </div>
                         <group string="Preparation Method">
                             <group>
-                                <field name="method"/>
+                                <field style="width:25% !important;" name="method"/>
                             </group>
                         </group>
 
@@ -376,7 +376,7 @@
                             </div>
                         </div>
                         <group col="4">
-                            <field name="comments"/>
+                            <field name="comments" style="background: #ebebeb;"/>
                         </group>
 
 <!--                        <div class="d-flex ">-->
@@ -418,11 +418,14 @@
 
                         <group string="Additional Info" class="semen_analysis_div">
                             <group>
-                                <field name="seminologist_ids" widget="many2many_tags"
+                                <field style="width:40% !important;" name="seminologist_ids" widget="many2many_tags"
                                        options="{'no_open': True, 'no_create': True}"
                                        force_save="1"/>
                                 <field name="legacy_seminologist" readonly="1" force_save="1"/>
-                                <field name="special_notes"/>
+                                <field name="semen_diagnosis_id"
+                                        style="width:25% !important;"
+                                       options="{'no_open': True, 'no_create': True}"/>
+                                <field name="special_notes" style="background: #ebebeb;"/>
                             </group>
                         </group>
                     </span>
@@ -439,6 +442,18 @@
                     <field name="date"/>
                     <field name="lab_number"/>
                     <field name="lab_name"/>
+                    <field name="preparation_ids" string="Type of analysis" widget="many2many_tags"/>
+                    <field name="semen_diagnosis_id" string="Diagnosis"/>
+                    <field name="total_count" string="Count (x10^6/ml)"/>
+                    <field name="motility" string="Motility (%)"/>
+                    <field name="normal" string="Normal forms (%)"/>
+                    <field name="acrosomal_cap" string="Acrosome defect (%)"/>
+                    <field name="motility_percentage" string="Prep Motility (%)"/>
+                    <field name="after_24_hrs_motility_percentage" string="24h survival of prep (%)"/>
+                    <field name="sperm_cryopreservation_consented" string="Freezing recommended?"/>
+                    <field name="other_observation" string="Patient Report 1"/>
+                    <field name="comments" string="Patient Report 2"/>
+                    <field name="special_notes" string="Special notes"/>
                 </tree>
             </field>
         </record>
