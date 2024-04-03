@@ -13,11 +13,11 @@
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="type"/>
                     <field name="consultant_id" options='{"no_open": True, "no_create": True}'/>
-                    <field name="oral_drugs"/>
-                    <field name="down_regulation"/>
-                    <field name="superovulation"/>
+                    <field name="oral_drugs" class="truncate_text"/>
+                    <field name="down_regulation" class="truncate_text"/>
+                    <field name="superovulation" class="truncate_text"/>
                     <field name="ovarian_response"/>
-                    <field name="treatment_notes"/>
+                    <field name="treatment_notes" class="truncate_text"/>
                     <field name="create_date"/>
                 </tree>
             </field>
@@ -33,11 +33,11 @@
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="type"/>
                     <field name="consultant_id"/>
-                    <field name="oral_drugs"/>
-                    <field name="down_regulation"/>
-                    <field name="superovulation"/>
+                    <field name="oral_drugs" class="truncate_text"/>
+                    <field name="down_regulation" class="truncate_text"/>
+                    <field name="superovulation" class="truncate_text"/>
                     <field name="ovarian_response"/>
-                    <field name="treatment_notes"/>
+                    <field name="treatment_notes" class="truncate_text"/>
                     <field name="create_date"/>
                 </tree>
             </field>

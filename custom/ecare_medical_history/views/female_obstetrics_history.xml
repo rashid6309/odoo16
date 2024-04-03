@@ -20,16 +20,16 @@
                     <field name="date_of_birth" required="1"/>
                     <field name="age"/>
                     <field name="birth_place"/>
-                    <field name="complication_pregnancy"/>
+                    <field name="complication_pregnancy" class="truncate_text"/>
                     <field name="labour_history"/>
-                    <field name="complication_delivery"/>
-                    <field name="complication_post_partum"/>
+                    <field name="complication_delivery" class="truncate_text"/>
+                    <field name="complication_post_partum" class="truncate_text"/>
                     <field name="gender"/>
                     <field name="weight"/>
                     <field name="health"/>
-                    <field name="child_health_issues"/>
+                    <field name="child_health_issues" class="truncate_text"/>
                     <field name="feed"/>
-                    <field name="other_indications"/>
+                    <field name="other_indications" class="truncate_text"/>
                     <field name="create_date"/>
                 </tree>
             </field>

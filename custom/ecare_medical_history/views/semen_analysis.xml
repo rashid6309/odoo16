@@ -468,6 +468,18 @@
                     <field name="date"/>
                     <field name="lab_number"/>
                     <field name="lab_name"/>
+                    <field name="preparation_ids" string="Type of analysis" widget="many2many_tags"/>
+                    <field name="semen_diagnosis_id" string="Diagnosis"/>
+                    <field name="total_count" string="Count (x10^6/ml)"/>
+                    <field name="motility" string="Motility (%)"/>
+                    <field name="normal" string="Normal forms (%)"/>
+                    <field name="acrosomal_cap" string="Acrosome defect (%)"/>
+                    <field name="motility_percentage" string="Prep Motility (%)"/>
+                    <field name="after_24_hrs_motility_percentage" string="24h survival of prep (%)"/>
+                    <field name="sperm_cryopreservation_consented" string="Freezing recommended?"/>
+                    <field name="other_observation" string="Patient Report 1"/>
+                    <field name="comments" string="Patient Report 2"/>
+                    <field name="special_notes" string="Special notes"/>
                     <button name="edit_semen_analysis_record"
                             type="object"
                             groups="ecare_medical_history.group_medical_history_andrology_view"
