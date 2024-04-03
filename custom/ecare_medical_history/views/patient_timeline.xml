@@ -888,8 +888,10 @@
 															<span for="tvs_smooth" style=" margin-right: 1%; ">Hyperechoic/Solid</span>
 															<field name="tvs_suspected_cavity_lesion"/>
 															<span for="tvs_smooth" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
-															<field name="tvs_menstruating"/>
-															<span for="tvs_smooth" style=" margin-right: 1%; ">Menstruating</span>
+															<div class="d-flex">
+																<field name="tvs_menstruating"/>
+																<span for="tvs_menstruating" style=" margin-right: 1%; ">Menstruating</span>
+															</div>
 
 															<!--															<field name="tvs_linining_ids"-->
 															<!--																   attrs="{'required': [('show_repeat_section_state', '=', True),-->
@@ -993,7 +995,7 @@
 													</div>
 													<div class="col-md-7 d-flex flex-column">
 														<div>
-															<field name="tvs_other_text"/>
+															<field name="tvs_other_text" widget="html"/>
 														</div>
 													</div>
 												</div>
