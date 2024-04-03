@@ -728,7 +728,7 @@ class StaticMember:
         ('Ectopic_Right', 'ECTOPIC RIGHT'),
         ('Ectopic_Left', 'ECTOPIC LEFT'),
         ('VBAC', 'VBAC'),
-        ('NA', 'NA'),
+        ('NA', 'N/A'),
     ]
 
     PREVIOUS_TREATMENT_OF = [
