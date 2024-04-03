@@ -778,7 +778,7 @@
 													   ('scan_required', '=', 'yes'),
 													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"/>
-												<field name="lmp_question_four" style="width: 20% !important; pointer-events: none;"/>
+												<field name="duplicated_lmp_question_four" force_save="1" style="width: 20% !important; pointer-events: none;"/>
 											</group>
 
 											<!-- TVS Section -->

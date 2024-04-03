@@ -97,6 +97,7 @@ class PatientTimeline(models.Model):
                                      related="timeline_patient_id.wife_dob")
     patient_male_dob = fields.Date(string='CNIC DOB', store=True,
                                    related="timeline_patient_id.husband_dob")
+    duplicated_lmp_question_four = fields.Date(string='LMP', related='ec_repeat_consultation_id.lmp_question_four')
 
     # first_consultation_state = fields.Selection([('open', 'In Progress'),
     #                                              ('closed', 'Done'),
