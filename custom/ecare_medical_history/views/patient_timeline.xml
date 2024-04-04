@@ -2498,7 +2498,7 @@
 
 													</div>
 													<field name="gynae_exam_other_findings"
-														   attrs="{'invisible': ['|',('gynae_exam_pelvic_examination_state', '=', 'no'),'|',('gynae_exam_p_v_only', '!=', True),
+														   attrs="{'invisible': ['|',('gynae_exam_pelvic_examination_state', '=', 'no'),('gynae_exam_p_v_only', '!=', True),
 														   ('gynae_exam_p_s_only', '!=', True)]}"
 													/>
 
