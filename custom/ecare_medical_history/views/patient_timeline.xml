@@ -2585,19 +2585,19 @@
 																	<div>
 																		<div class="d-flex">
 																			<field name="gynae_smooth"/>
-																			<span style=" margin-right: 1%; ">Smooth</span>
+																			<span style=" margin-right: 2%; ">Smooth</span>
 																			<field name="gynae_distorted"/>
-																			<span style=" margin-right: 1%; ">Distorted</span>
+																			<span style=" margin-right: 2%; ">Distorted</span>
 																			<field name="gynae_triple_echo"/>
-																			<span style=" margin-right: 1%;min-width: fit-content; ">Triple Echo</span>
+																			<span style=" margin-right: 2%;min-width: fit-content; ">Triple Echo</span>
 																			<field name="gynae_hyperechoic_solid"/>
-																			<span style=" margin-right: 1%; ">Hyperechoic/Solid</span>
+																			<span style=" margin-right: 2%; ">Hyperechoic/Solid</span>
 																		</div>
 																		<div class="d-flex">
 																			<field name="gynae_suspected_cavity_lesion"/>
-																			<span style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
+																			<span style=" margin-right: 2%; ">Suspected Cavity Lesion</span>
 																			<field name="gynae_menstruating"/>
-																			<span style=" margin-right: 1%; ">Menstruating</span>
+																			<span style=" margin-right: 2%; ">Menstruating</span>
 																		</div>
 																		<!--																		<field name="lining_ids" widget="many2many_checkboxes"/>-->
 																	</div>

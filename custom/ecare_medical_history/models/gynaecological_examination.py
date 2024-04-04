@@ -59,7 +59,7 @@ class MedicalGynaecologicalExamination(models.Model):
                                                           readonly=True,
                                                           store=True)
 
-    gynaecological_examination_comment = fields.Char('Comments')
+    gynaecological_examination_comment = fields.Html('Comments')
 
     # LEFT OVARY FIELDS
 

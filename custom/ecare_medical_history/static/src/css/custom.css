@@ -757,24 +757,10 @@ th[data-name="treatment_notes"] div {
     width: 200px;
 }
 
-td[name='superovulation'],td[name='down_regulation'],td[name='oral_drugs']
-{
-
-    /* max-height: 30px; */
-    display: -webkit-box !important;
-    max-width: 1800px !important;
-    -webkit-line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
-}
-
 .truncate_text
 {
-
-    /* max-height: 30px; */
-    display: -webkit-box !important;
-    max-width: 170px !important;
-    -webkit-line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
+    max-width: 150px !important;
     overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
 }
