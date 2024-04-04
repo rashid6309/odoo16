@@ -1543,6 +1543,7 @@
 												</div>
 											</div>
 											<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
+												<field name="first_consultation_state" invisible="1" force_save="1"/>
 												<!--											<field name="patient_id"/>-->
 												<tree editable="top">
 													<field name="first_obs_history_ids"
