@@ -62,5 +62,12 @@
             </field>
         </record>
 
+        <record id="ec_medical_tvs_scan_action" model="ir.actions.act_window">
+            <field name="name">TVS Scan</field>
+            <field name="res_model">ec.medical.tvs.scan</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
     </data>
 </odoo>

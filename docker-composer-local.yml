@@ -11,7 +11,7 @@ services:
         volumes:
           - odoo16ce_db:/var/lib/postgresql/data
         ports:
-          - "5433:5432"
+          - "5434:5432"
      web:
        container_name: icsi_odoo16ce_web
        build:

@@ -568,7 +568,7 @@ label[for="male_cardiac"], label[for="male_gall_bladder"], label[for="male_gastr
 label[for="male_gynaecology"], label[for="male_haematology"], label[for="male_intestinal"],
 label[for="male_liver"], label[for="male_low_urinary_tract"], label[for="male_malignancy"],
 label[for="male_neurological"], label[for="male_renal"], label[for="male_respiratory"],
-label[for="male_skeletal"], label[for="male_thyroid_TYPE"], label[for="male_thyroid"],
+label[for="male_skeletal"], label[for="male_thyroid_medical"], label[for="male_thyroid"],label[for="male_thyroid_type"],
 label[for="male_heart_disease"], label[for="male_urinary_infection"],
 label[for="male_hyper_tension"], label[for="male_janduice"],
 label[for="male_complications_pr"], label[for="male_diabetes_type"],
@@ -589,7 +589,7 @@ label[for="female_cardiac"], label[for="female_gall_bladder"], label[for="female
 label[for="female_gynaecology"], label[for="female_haematology"], label[for="female_intestinal"],
 label[for="female_liver"], label[for="female_low_urinary_tract"], label[for="female_malignancy"],
 label[for="female_neurological"], label[for="female_renal"], label[for="female_respiratory"],
-label[for="female_skeletal"], label[for="female_thyroid_TYPE"], label[for="female_thyroid"],
+label[for="female_skeletal"], label[for="female_thyroid_medical"],label[for="female_thyroid_type"],
 label[for="female_heart_disease"], label[for="female_urinary_infection"],
 label[for="female_hyper_tension"], label[for="female_janduice"],
 label[for="female_complications_pr"], label[for="female_diabetes_type"],
@@ -694,6 +694,18 @@ div.repeat_kanban_section_content section{
 label[for="tvs_signs_of_ovulation_ids"] {
     font-weight: 700 !important;
 }
+label[for="gynae_exam_method_of_hvs"] {
+    width: 16% !important;
+}
+
+label[for="gynaecological_examination_cycle_day"] {
+    margin-left: 10% !important;
+}
+
+label[for="lmp_question_four_1"] {
+    pointer-events: none !important;
+}
+
 label[for="tv_diagnosis"] {
     font-weight: 700 !important;
 }
@@ -702,6 +714,141 @@ label[for="lining_ids"] {
     width: max-content !important;
 }
 
+label[for="progression_dead"] {
+    margin-right: 2% !important;
+}
+
 .table_fixed_height {
   height: 300px !important;
+}
+
+.o_form_view .o_required_modifier{
+    background-color: #faf0f4 !important;
+}
+
+.o_dropdown_button {
+        visibility: visible !important;
+}
+
+
+select{
+            background: none !important;
+            -webkit-appearance: listbox !important;
+}
+
+select:hover{
+            background: none !important;
+}
+
+.o_datepicker_button{
+    visibility: visible !important;
+}
+
+  .tvs_scan_popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #000000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    height: 41rem;
+  }
+
+#female_bp_upper
+{
+        width: 100% !important;
+}
+
+#female_bp_lower
+{
+        width: 100% !important;
+}
+
+#male_bp_upper
+{
+        width: 100% !important;
+}
+
+#male_bp_lower
+{
+        width: 100% !important;
+}
+#female_menstrual_comments
+{
+        width: 100% !important;
+}
+#female_menstrual_gap_other
+{
+        width: 100% !important;
+}
+#female_menstrual_all_comments
+{
+        width: 80% !important;
+}
+#female_complications_other
+{
+        width: 100% !important;
+}
+
+#male_cvs_comment
+{
+        width: 100% !important;
+}
+#male_respiratory_comment
+{
+        width: 100% !important;
+}
+#male_abdomen_comment
+{
+        width: 100% !important;
+}
+#breast_right_comment
+{
+        width: 100% !important;
+}
+#breast_left_comment
+{
+        width: 100% !important;
+}
+#cvs_comment
+{
+        width: 100% !important;
+}
+#respiratory_comment
+{
+        width: 100% !important;
+}
+#abdomen_comment
+{
+        width: 100% !important;
+}
+#gynae_exam_method_of_hvs
+{
+        width: 40% !important;
+}
+
+#lining_size_decimal
+{
+        width: 100% !important;
+}
+
+#tvs_lining_size_decimal
+{
+        width: 100% !important;
+}
+
+th[data-name="treatment_notes"] div {
+    width: 200px;
+}
+
+.truncate_text
+{
+    max-width: 150px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
 }

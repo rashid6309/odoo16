@@ -16,7 +16,7 @@ REVIEW FULL FILE
 class FemaleObstetricsHistory(models.Model):
     _name = 'ec.obstetrics.history'
     _description = "Female Obstetrics History"
-    _order = "create_date desc"
+    _order = "date_of_birth desc, id asc"
 
     patient_id = fields.Many2one(comodel_name='ec.medical.patient', string='Patient') # Why it is required??
     timeline_id = fields.Many2one(comodel_name='ec.patient.timeline', string='Patient Timeline')

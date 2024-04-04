@@ -29,6 +29,9 @@ class FirstConsultation(models.Model):
                  'ec.male.medical.history': 'ec_male_medical_history_id',
                  }
 
+    # Data Members
+    timeline_conclusion = fields.Html(string="Conclusion")
+
     # Inherits synchronized objects.
     ''' Common '''
     ec_general_examination_id = fields.Many2one(comodel_name="ec.general.history", ondelete='restrict')
@@ -174,5 +177,9 @@ class FirstConsultation(models.Model):
 
     # Override Methods
     def write(self, vals):
-        rec = super(FirstConsultation, self).write(vals)
-        return rec
+        if vals.get('first_consultation_state'):
+            return super(FirstConsultation, self).write(vals)
+        if self.first_consultation_state == 'closed':
+            raise UserError(_('First consultation has been disallowed for further editing.'))
+        else:
+            return super(FirstConsultation, self).write(vals)

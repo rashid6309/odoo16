@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from odoo import models, fields, api, _
 from odoo.addons.ecare_core.utilities.helper import TimeValidation
 import re
@@ -39,6 +37,13 @@ class PatientTimeline(models.Model):
     ec_first_consultation_create_date = fields.Datetime("Create Date",
                                                         related='ec_first_consultation_id.create_date')
 
+    create_date_first_consultation = fields.Datetime("Create Date",
+                                                     default=lambda self: fields.Datetime.now())
+    ec_create_date_first_consultation_computed = fields.Datetime("Create Date",
+                                                                 readonly=True,
+                                                                 store=True,
+                                                                 conpute='ec_create_date_first_consultation')
+
     ec_first_consultation_create_uid = fields.Many2one(string="Create User",
                                                        comodel_name='res.users',
                                                        related='ec_first_consultation_id.create_uid')
@@ -53,7 +58,7 @@ class PatientTimeline(models.Model):
     timeline_patient_husband_name = fields.Char('Husband Name', related="timeline_patient_id.husband_name")
 
     timeline_patient_mobile_wife = fields.Char('Mobile Wife', related="timeline_patient_id.mobile_wife")
-    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband",)
+    timeline_patient_mobile_husband = fields.Char('Husband Wife', related="timeline_patient_id.mobile_husband", )
 
     timeline_patient_wife_image = fields.Binary('Patient Wife Image', related="timeline_patient_id.image_1920")
     timeline_patient_husband_image = fields.Binary('Patient Husband Image', related="timeline_patient_id.husband_image")
@@ -92,6 +97,7 @@ class PatientTimeline(models.Model):
                                      related="timeline_patient_id.wife_dob")
     patient_male_dob = fields.Date(string='CNIC DOB', store=True,
                                    related="timeline_patient_id.husband_dob")
+    duplicated_lmp_question_four = fields.Date(string='LMP', related='ec_repeat_consultation_id.lmp_question_four')
 
     # first_consultation_state = fields.Selection([('open', 'In Progress'),
     #                                              ('closed', 'Done'),
@@ -141,7 +147,6 @@ class PatientTimeline(models.Model):
     infertility_type = fields.Char(readonly=True, compute="_compute_infertility_type")
 
     ''' Data members '''
-    timeline_conclusion = fields.Html(string="Conclusion")
 
     ''' OI/TI Fields '''
     oi_ti_platform_enabled = fields.Boolean(string="OI/TI Platform", default=False)
@@ -150,10 +155,11 @@ class PatientTimeline(models.Model):
                                                string="OI/TI Platform Cycle")
 
     patient_attachment_ids = fields.One2many(string='Attachments Details',
-                                         comodel_name='ec.medical.patient.attachment',
-                                         inverse_name='patient_attachment_timeline_id')
+                                             comodel_name='ec.medical.patient.attachment',
+                                             inverse_name='patient_attachment_timeline_id')
 
     ''' Static methods '''
+
     @staticmethod
     def _compute_patient_family_history(family_history, fields_to_process):
         if not family_history:
@@ -182,6 +188,7 @@ class PatientTimeline(models.Model):
 
         return None
 
+    @staticmethod
     def _compute_patient_medical_history(medical_history, fields_to_process):
         if not medical_history:
             return None
@@ -192,15 +199,46 @@ class PatientTimeline(models.Model):
             field_records = getattr(medical_history, field_name)
             custom_field = getattr(medical_history, custom_field_name)
             if field_records or (custom_field and custom_field.strip()):
-                custom_text = f' {custom_field.strip()}' if custom_field else ''
-                medical_members_list = [str(rec.year) for rec in field_records]
-                if medical_members_list:
-                    year_in_bracket = f"({medical_members_list[0]})"
-                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
-                    medical_history_text.append(field_text)
+                custom_text = f' {str(custom_field).strip()}' if custom_field else ''
+
+                yes_or_no = None
+
+                fields_list_with_yes_no = [
+                    'female_hirsuitism_year', 'female_anti_phospholipid_syndrome_date',
+                    'female_blood_transfusion_date',
+                    'male_anti_phospholipid_syndrome_date', 'male_blood_transfusion_date',
+                    'male_hirsuitism_year'
+                ]
+                ''' Please populate this for every key which is not object '''
+                fields_list_without_year = [
+                    'female_no_medical_history', 'male_no_medical_history',
+                    'male_att_months', 'female_att_months',
+                    'female_hirsuitism', 'male_hirsuitism',
+                    'female_hirsuitism_treatment', 'male_hirsuitism_treatment',
+                    'female_medical_current_medication', 'male_medical_current_medication',
+                    'female_weight_at_marriage', 'male_weight_at_marriage',
+                    'female_weight_comments', 'male_weight_comments',
+                    'female_diabetes_type', 'male_diabetes_type',
+                    'female_thyroid_type', 'male_thyroid_type',
+                ]
+
+                if field_name not in fields_list_without_year:
+                    if field_name in fields_list_with_yes_no:
+                        field_name = field_name.replace('_year', '').replace('_date', '')
+                        yes_or_no = getattr(medical_history, field_name, None)
+                        if yes_or_no:
+                            custom_text = yes_or_no + ' - ' + custom_text
+                        medical_history_year = field_records.year
+                    else:
+                        medical_history_year = field_records.year
                 else:
-                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}'
-                    medical_history_text.append(field_text)
+                    medical_history_year = None
+
+                year_in_bracket = f" ({medical_history_year})" if medical_history_year else ""
+
+                if field_label:
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
+                medical_history_text.append(field_text)
 
         if medical_history_text:
             medical_history_text = '<br>'.join(medical_history_text)
@@ -210,6 +248,19 @@ class PatientTimeline(models.Model):
 
     ''' Computed methods '''
 
+    @api.onchange('create_date_first_consultation')
+    def ec_create_date_first_consultation(self):
+        if self:
+            for record in self:
+                if record.create_date_first_consultation:
+                    if CustomDateTime.datetime_greater_than_today(record.create_date_first_consultation):
+                        record.create_date_first_consultation= None
+                        raise ValidationError(_(
+                            "Date/Time can't be greater than current date time!"))
+                    record.ec_create_date_first_consultation_computed = record.create_date_first_consultation
+                else:
+                    record.ec_create_date_first_consultation_computed = None
+
     @api.onchange('repeat_date', 'lmp_question_four')
     def _compute_cycle_day(self):
         """
@@ -217,11 +268,21 @@ class PatientTimeline(models.Model):
         Formula: (Consultation Date - LMP) + 1
         :return: cycle day
         """
+        if self.repeat_date:
+            if CustomDateTime.datetime_greater_than_today(self.repeat_date):
+                self.repeat_date = None
+                raise ValidationError(_(
+                    "Date can't be greater than current date!"))
         if self.lmp_question_four:
             if CustomDateTime.greater_than_today(self.lmp_question_four):
                 self.lmp_question_four = None
                 raise ValidationError(_(
                     "Date can't be greater than current date!"))
+
+            if self.lmp_question_four and self.repeat_date:
+                if self.lmp_question_four > self.repeat_date.date():
+                    raise ValidationError(_(
+                        "LMP Date can't be greater than current consultation date!"))
 
             cycle_day = (self.repeat_date.date() - self.lmp_question_four).days
             cycle_day += 1
@@ -231,6 +292,31 @@ class PatientTimeline(models.Model):
         else:
             self.repeat_cycle_day = 0
             self.tvs_cycle_day = 0
+
+    @api.onchange('create_date_first_consultation', 'gynaecological_examination_lmp')
+    def _compute_gynaecological_examination_cycle_day(self):
+        """
+        This is the onchange on the first consultation form.
+        Formula: (Consultation Date - LMP) + 1
+        :return: cycle day
+        """
+        if self.gynaecological_examination_lmp:
+            if CustomDateTime.greater_than_today(self.gynaecological_examination_lmp):
+                self.gynaecological_examination_lmp = None
+                raise ValidationError(_(
+                    "Date can't be greater than current date!"))
+
+            if self.gynaecological_examination_lmp and self.create_date_first_consultation:
+                if self.gynaecological_examination_lmp > self.create_date_first_consultation.date():
+                    raise ValidationError(_(
+                        "LMP Date can't be greater than current consultation date!"))
+
+            cycle_day = (self.create_date_first_consultation.date() - self.gynaecological_examination_lmp).days
+            cycle_day += 1
+
+            self.gynaecological_examination_cycle_day = cycle_day
+        else:
+            self.gynaecological_examination_cycle_day = 0
 
     def _compute_female_values(self):
         """
@@ -255,7 +341,7 @@ class PatientTimeline(models.Model):
             return
 
         pregnancies = len(obs_histories)
-        count_after_24_weeks = 0 # Or parity
+        count_after_24_weeks = 0  # Or parity
         for obs_history in obs_histories:
             dop = obs_history.duration_of_pregnancy.replace("<", "").replace(">", "") \
                 if obs_history.duration_of_pregnancy else None
@@ -265,12 +351,13 @@ class PatientTimeline(models.Model):
 
                 if dop >= 24:
                     count_after_24_weeks += 1
-                if dop < 24 and obs_history.mode_of_delivery == 'MISCARRIAGE':
+                # if dop < 24 and obs_history.mode_of_delivery == 'MISCARRIAGE':
+                # before it was logic which then excluded the Miscarriages
+                if dop < 24:
                     miscarriages += 1
 
             if obs_history.alive == 'Alive':
                 alive += 1
-
 
         self.gravida_w = pregnancies
         self.parity_x = count_after_24_weeks
@@ -285,9 +372,11 @@ class PatientTimeline(models.Model):
             'male_malignancies_ids': ('Malignancies', 'male_other_malignancies'),
             'male_hypertension_ids': ('Hypertension', 'male_other_hypertension'),
             'male_mental_illness_ids': ('Mental Illness', 'male_other_mental_illness'),
-            'male_twins_ids': ('Twins', 'male_other_twins'),
+            'male_twins_ids': ('Multiple Pregnancies', 'male_other_twins'),
             'male_tuberculosis_ids': ('Tuberculosis', 'male_other_tuberculosis'),
             'male_abnormalities_ids': ('Congenital Abnormalities', 'male_other_abnormalities'),
+            'male_heart_disease_ids': ('Heart Disease', 'male_other_heart_disease'),
+            'male_subfertility_ids': ('Subfertility', 'male_other_subfertility'),
             'male_family_history_other': ('Other History', 'male_family_history_other')
         }
 
@@ -305,7 +394,9 @@ class PatientTimeline(models.Model):
             'female_mental_illness_ids': ('Mental Illness', 'female_other_mental_illness'),
             'female_tuberculosis_ids': ('Tuberculosis', 'female_other_tuberculosis'),
             'female_abnormalities_ids': ('Congenital Abnormalities', 'female_other_abnormalities'),
-            'female_twins_ids': ('Twins', 'female_other_twins'),
+            'female_heart_disease_ids': ('Heart Disease', 'female_other_heart_disease'),
+            'female_subfertility_ids': ('Subfertility', 'female_other_subfertility'),
+            'female_twins_ids': ('Multiple Pregnancies', 'female_other_twins'),
             'female_pregnancy_induced_hypertension_ids': (
                 'Pregnancy Induced Hypertension', 'female_other_pregnancy_induced_hypertension'),
             'female_miscarriage_ids': ('Miscarriages', 'female_other_miscarriage'),
@@ -325,13 +416,14 @@ class PatientTimeline(models.Model):
         # Male Fields Processing
 
         male_fields_to_process = {
+            'male_no_medical_history': ('No significant medical history', 'male_no_medical_history'),
             'male_acne_date': ('Acne', 'male_acne'),
             'male_weight_gain_year': ('Weight gain', 'male_weight_gain'),
             'male_weight_loss_year': ('Weight loss', 'male_weight_loss'),
-            # 'male_weight_at_marriage': ('Weight at marriage', 'male_weight_at_marriage'),
-            # 'male_weight_comments': ('Comments', 'male_weight_comments'),
-            # 'male_hirsuitism': ('Hirsuitism', 'male_hirsuitism'),
-            # 'male_hirsuitism_treatment': ('Any treatment', 'male_hirsuitism_treatment'),
+            'male_weight_at_marriage': ('Weight at marriage', 'male_weight_at_marriage'),
+            'male_weight_comments': ('Comments', 'male_weight_comments'),
+            'male_hirsuitism_year': ('Hirsuitism', 'male_hirsuitism_comments'),
+            'male_hirsuitism_treatment': ('Any treatment', 'male_hirsuitism_treatment'),
             'male_tuberculosis_date': ('Tuberculosis', 'male_tuberculosis'),
             'male_att_months': ('ATT (Months)', 'male_att_months'),
             'male_syphilis_date': ('Syphilis', 'male_syphilis'),
@@ -340,10 +432,13 @@ class PatientTimeline(models.Model):
             'male_hiv_date': ('HIV', 'male_hiv'),
             'male_mumps_date': ('Mumps', 'male_mumps'),
             'male_adrenal_date': ('Adrenal', 'male_adrenal'),
-            'male_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 'male_anti_phospholipid_syndrome'),
+            'male_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 
+                                                     'male_anti_phospholipid_syndrome_comments'),
             'male_autoimmune_disease_date': ('Autoimmune Diseases', 'male_autoimmune_disease'),
-            'male_blood_transfusion_date': ('Blood Transfusion', 'male_blood_transfusion'),
+            'male_blood_transfusion_date': ('Blood Transfusion', 'male_blood_transfusion_comments'),
             'male_cardiac_date': ('Cardiac', 'male_cardiac'),
+            'male_diabetes_type': ('Diabetes Type', 'male_diabetes_type'),
+            'male_diabetes_date': ('Diabetes', 'male_diabetes'),
             'male_gall_bladder_date': ('Gall Bladder', 'male_gall_bladder'),
             'male_gastric_date': ('Gastric', 'male_gastric'),
             'male_gynaecology_date': ('Gynecological', 'male_gynaecology'),
@@ -356,38 +451,39 @@ class PatientTimeline(models.Model):
             'male_renal_date': ('Renal', 'male_renal'),
             'male_respiratory_date': ('Respiratory', 'male_respiratory'),
             'male_skeletal_date': ('Skeletal', 'male_skeletal'),
-            'male_thyroid_date': ('Thyroid', 'male_thyroid'),
+            'male_thyroid_type': ('Thyroid Type', 'male_thyroid_type'),
+            'male_thyroid_date': ('Thyroid', 'male_thyroid_medical'),
             'male_heart_disease_date': ('Heart Disease', 'male_heart_disease'),
             'male_urinary_infection_date': ('Urinary Infections', 'male_urinary_infection'),
             'male_hyper_tension_date': ('Hypertension Pr', 'male_hyper_tension'),
             'male_janduice_date': ('Jaundice', 'male_janduice'),
             'male_complications_pr': ('Complications', 'male_complications_pr'),
-            'male_diabetes_date': ('Diabetes', 'male_diabetes'),
             'male_dvt_date': ('DVT', 'male_dvt'),
             'male_smoking_date': ('Smoking', 'male_smoking'),
             'male_alcohol_date': ('Alcohol', 'male_alcohol'),
             'male_medical_history_others_date': ('Others', 'male_medical_history_others'),
-            # 'male_current_medication': ('Current Medication', 'male_medical_current_medication'),
+            'male_medical_current_medication': ('Current Medication and Allergies', 'male_medical_current_medication'),
         }
 
-        if self.male_no_medical_history is False:
-            self.male_medical_history = PatientTimeline._compute_patient_medical_history(
-                medical_history=self.ec_first_consultation_id.ec_male_medical_history_id,
-                fields_to_process=male_fields_to_process
-            )
-        else:
-            self.male_medical_history = None
+        # if self.male_no_medical_history is False:
+        self.male_medical_history = PatientTimeline._compute_patient_medical_history(
+            medical_history=self.ec_first_consultation_id.ec_male_medical_history_id,
+            fields_to_process=male_fields_to_process
+        )
+        # else:
+        #     self.male_medical_history = None
 
         # Female Fields Processing
 
         female_fields_to_process = {
+            'female_no_medical_history': ('No significant medical history', 'female_no_medical_history'),
             'female_acne_date': ('Acne', 'female_acne'),
             'female_weight_gain_year': ('Weight gain', 'female_weight_gain'),
             'female_weight_loss_year': ('Weight loss', 'female_weight_loss'),
-            # 'female_weight_at_marriage': ('Weight at marriage', 'female_weight_at_marriage'),
-            # 'female_weight_comments': ('Comments', 'female_weight_comments'),
-            # 'female_hirsuitism': ('Hirsuitism', 'female_hirsuitism'),
-            # 'female_hirsuitism_treatment': ('Any treatment', 'female_hirsuitism_treatment'),
+            'female_weight_at_marriage': ('Weight at marriage', 'female_weight_at_marriage'),
+            'female_weight_comments': ('Comments', 'female_weight_comments'),
+            'female_hirsuitism_year': ('Hirsuitism', 'female_hirsuitism_comments'),
+            'female_hirsuitism_treatment': ('Any treatment', 'female_hirsuitism_treatment'),
             'female_tuberculosis_date': ('Tuberculosis', 'female_tuberculosis'),
             'female_att_months': ('ATT (Months)', 'female_att_months'),
             'female_syphilis_date': ('Syphilis', 'female_syphilis'),
@@ -396,10 +492,13 @@ class PatientTimeline(models.Model):
             'female_hiv_date': ('HIV', 'female_hiv'),
             'female_mumps_date': ('Mumps', 'female_mumps'),
             'female_adrenal_date': ('Adrenal', 'female_adrenal'),
-            'female_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome'),
+            'female_anti_phospholipid_syndrome_date': (
+                'Anti-phospholipid Syndrome', 'female_anti_phospholipid_syndrome_comments'),
             'female_autoimmune_disease_date': ('Autoimmune Diseases', 'female_autoimmune_disease'),
-            'female_blood_transfusion_date': ('Blood Transfusion', 'female_blood_transfusion'),
+            'female_blood_transfusion_date': ('Blood Transfusion', 'female_blood_transfusion_comments'),
             'female_cardiac_date': ('Cardiac', 'female_cardiac'),
+            'female_diabetes_type': ('Diabetes Type', 'female_diabetes_type'),
+            'female_diabetes_date': ('Diabetes', 'female_diabetes'),
             'female_gall_bladder_date': ('Gall Bladder', 'female_gall_bladder'),
             'female_gastric_date': ('Gastric', 'female_gastric'),
             'female_gynaecology_date': ('Gynecological', 'female_gynaecology'),
@@ -412,38 +511,37 @@ class PatientTimeline(models.Model):
             'female_renal_date': ('Renal', 'female_renal'),
             'female_respiratory_date': ('Respiratory', 'female_respiratory'),
             'female_skeletal_date': ('Skeletal', 'female_skeletal'),
-            'female_thyroid_date': ('Thyroid', 'female_thyroid'),
+            'female_thyroid_type': ('Thyroid Type', 'female_thyroid_type'),
+            'female_thyroid_date': ('Thyroid', 'female_thyroid_medical'),
             'female_heart_disease_date': ('Heart Disease', 'female_heart_disease'),
             'female_urinary_infection_date': ('Urinary Infections', 'female_urinary_infection'),
             'female_hyper_tension_date': ('Hypertension Pr', 'female_hyper_tension'),
             'female_janduice_date': ('Jaundice', 'female_janduice'),
             'female_complications_pr': ('Complications', 'female_complications_pr'),
-            'female_diabetes_date': ('Diabetes', 'female_diabetes'),
             'female_dvt_date': ('DVT', 'female_dvt'),
             'female_smoking_date': ('Smoking', 'female_smoking'),
             'female_alcohol_date': ('Alcohol', 'female_alcohol'),
             'female_medical_history_others_date': ('Others', 'female_medical_history_others'),
-            # 'female_current_medication': ('Current Medication', 'female_medical_current_medication'),
+            'female_medical_current_medication': ('Current Medication and Allergies', 'female_medical_current_medication'),
         }
-        if self.female_no_medical_history is False:
-            self.female_medical_history = PatientTimeline._compute_patient_medical_history(
-                medical_history=self.ec_first_consultation_id.ec_female_medical_history_id,
-                fields_to_process=female_fields_to_process
-            )
-        else:
-            self.female_medical_history = None
-
+        # if self.female_no_medical_history is False:
+        self.female_medical_history = PatientTimeline._compute_patient_medical_history(
+            medical_history=self.ec_first_consultation_id.ec_female_medical_history_id,
+            fields_to_process=female_fields_to_process
+        )
+        # else:
+        #     self.female_medical_history = None
 
     def _compute_surgical_history(self):
         # Male Fields Processing
         for record in self:
             html_content = ""
             for surgery in record.ec_first_consultation_id.male_procedures_ids:
-                type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
-                field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
-                             f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>' \
-                             # f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
-                             # f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
+                type_of_surgery_label = dict(
+                    self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery,
+                                                                                                '')
+                field_text = (f'<p> {surgery.details} ({surgery.surgical_year_id.year})'
+                              f'</p<br>')
                 html_content += field_text
             record.male_surgical_history = html_content
         # Male Fields Processing
@@ -451,11 +549,11 @@ class PatientTimeline(models.Model):
         for record in self:
             html_content = ""
             for surgery in record.ec_first_consultation_id.female_procedures_ids:
-                type_of_surgery_label = dict(self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery, '')
-                field_text = f'<strong style="font-weight: 700;">Type of Surgery:</strong> {type_of_surgery_label}<br>' \
-                             f'<strong style="font-weight: 700;">Details:</strong> {surgery.details}<br>' \
-                             # f'<strong style="font-weight: 700;">Detail On:</strong> {surgery.date_on}<br>' \
-                             # f'<strong style="font-weight: 700;">Year:</strong> {surgery.surgical_year_id.year}<br><br>'
+                type_of_surgery_label = dict(
+                    self.env['ec.patient.procedures']._fields['type_of_surgery'].selection).get(surgery.type_of_surgery,
+                                                                                                '')
+                field_text = (f'<p> {surgery.details} ({surgery.surgical_year_id.year})'
+                              f'</p>')
                 html_content += field_text
             record.female_surgical_history = html_content
 
@@ -485,6 +583,7 @@ class PatientTimeline(models.Model):
     ''' XXX - Override methods - XXX'''
 
     ''' Onchange methods '''
+
     @api.onchange("timeline_patient_id")
     def populate_dependent_patient_field(self):
         """
@@ -577,14 +676,15 @@ class PatientTimeline(models.Model):
         if self.show_repeat_consultation_history_section is False:
             self.show_repeat_consultation_history_section = True
             if self.ec_repeat_consultation_id:
-                self.repeat_consultation_ids.repeat_date = datetime.now()
+                self.ec_repeat_consultation_id.action_set_post_required_attributes() # Need to call this explicitly here.
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create(
             self._get_repeat_consultation_mandatory_attribute()
         )
+
         self.ec_repeat_consultation_id = repeat_consultation_id.id
-        # return self.env['ec.repeat.consultation'].action_open_form_view(self.timeline_patient_id, self)
+        self.ec_repeat_consultation_id.action_set_post_required_attributes()
 
     ''' Action for opening views block ended '''
 
@@ -618,6 +718,7 @@ class PatientTimeline(models.Model):
     def action_repeat_consultation_open_obstetrics_history(self):
         return self.env['ec.obstetrics.history'].action_open_form_view(self.timeline_patient_id,
                                                                        None)
+
     def action_open_seminology(self):
         return self.env['ec.semen.analysis'].action_open_form_view(self.timeline_patient_id)
 
@@ -631,11 +732,15 @@ class PatientTimeline(models.Model):
 
     def _get_repeat_consultation_mandatory_attribute(self):
         patient_id = self.timeline_patient_id.id
+        repeat_obs_history_lines = len(self.repeat_obs_history_ids.ids)
+        repeat_previous_treatment_lines = len(self.timeline_previous_treatment_ids.ids)
         return {
             'repeat_timeline_id': self.id,
             'repeat_patient_id': patient_id,
             'tvs_patient_id': patient_id,
-            'tvs_repeat_consultation_id': self.id
+            'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id,
+            'repeat_obs_history_lines': int(repeat_obs_history_lines),
+            'repeat_previous_treatment_lines': int(repeat_previous_treatment_lines)
         }
 
     def move_next(self):
@@ -655,8 +760,40 @@ class PatientTimeline(models.Model):
         self.repeat_state = str(value)
 
     def action_save_repeat_consultation_section(self):
-        self.show_repeat_section_state = False
-        self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
+        # if ((self.ec_repeat_consultation_id.question_one_choice == 'no') and
+        #         (not self.ec_repeat_consultation_id.repeat_diagnosis
+        #         or not self.ec_repeat_consultation_id.repeat_procedure_recommended_ids)):
+        #     raise ValidationError('Diagnosis and Procedure Recommended can not be empty.')
+        # else:
+        # if ((self.ec_repeat_consultation_id.question_two_choice == 'yes' and
+        #      self.ec_repeat_consultation_id.repeat_obs_history_lines >= len(self.repeat_obs_history_ids.ids)) or
+        #         (self.ec_repeat_consultation_id.question_three_choice == 'yes' and
+        #          self.ec_repeat_consultation_id.repeat_previous_treatment_lines >=
+        #          len(self.timeline_previous_treatment_ids.ids))):
+        if self.ec_repeat_consultation_id.question_two_choice == 'yes':
+            current_repeat_date = self.ec_repeat_consultation_id.repeat_date
+            obstetrics_records = self.repeat_obs_history_ids
+            if obstetrics_records:
+                records_after_repeat_date = [record for record in obstetrics_records if
+                                             record.create_date > current_repeat_date]
+                if not records_after_repeat_date:
+                    raise ValidationError("Once the question two is answered as 'Yes' "
+                                          "then new record in Pregnancy table must be added.")
+        if self.ec_repeat_consultation_id.question_three_choice == 'yes':
+            current_repeat_date = self.ec_repeat_consultation_id.repeat_date
+            treatment_line_records = self.timeline_previous_treatment_ids
+            if treatment_line_records:
+                records_after_repeat_date = [record for record in treatment_line_records if
+                                             record.create_date > current_repeat_date]
+                if not records_after_repeat_date:
+                    raise ValidationError("If the question three is answered as 'Yes' "
+                                          "then new record must be added in the Treatment table.")
+
+            self.show_repeat_section_state = False
+            self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
+
+    def action_delete_repeat_consultation_section(self):
+        return self.ec_repeat_consultation_id.action_delete_repeat_consultation_section(self)
 
     @api.onchange('female_lmp')
     def _check_female_lmp_date(self):
@@ -665,8 +802,20 @@ class PatientTimeline(models.Model):
 
     @api.onchange('biological_female_dob')
     def _check_biological_female_dob_date(self):
-        if self.biological_female_dob:
-            return Validation._date_validation(self.biological_female_dob)
+        if self.biological_female_dob and self.timeline_patient_id.married_since:
+            if self.biological_female_dob > self.timeline_patient_id.married_since:
+                self.biological_female_dob = None
+                return {
+
+                    'warning': {
+
+                        'title': 'Warning!',
+
+                        'message': 'Date of birth should be lesser than date of Marriage.'}
+
+                }
+            else:
+                return Validation._date_validation(self.biological_female_dob)
 
     @api.onchange('biological_male_dob')
     def _check_biological_male_dob_date(self):
@@ -969,7 +1118,7 @@ class PatientTimeline(models.Model):
     @api.onchange('female_weight', 'female_height')
     def _calculate_physical_exam_bmi(self):
         if (self.female_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_weight) or
-                self.female_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_height)) :
+                self.female_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_height)):
             raise UserError(f"Please enter a numeric value in female weight!")
         if self.female_weight and self.female_height:
             female_height = float(self.female_height)
@@ -983,7 +1132,7 @@ class PatientTimeline(models.Model):
     @api.onchange('male_weight', 'male_height')
     def _calculate_physical_exam_male_bmi(self):
         if (self.male_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_weight) or
-                self.male_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_height)) :
+                self.male_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_height)):
             raise UserError(f"Please enter a numeric value in male weight and height!")
         if self.male_weight and self.male_height:
             male_height = float(self.male_height)
@@ -1138,7 +1287,16 @@ class PatientTimeline(models.Model):
     def _check_float_input_temp(self):
         if self.repeat_pregnancy_temp and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_temp):
             raise UserError(f"Please enter a numeric value in pregnancy temperature.")
-            # raise UserError(f"Please enter a numeric value in pregnancy temperature with up to 2 decimal points.")
+
+    @api.onchange('lining_size_decimal')
+    def _check_float_input_lining_size(self):
+        if self.lining_size_decimal and not re.match(Validation.REGEX_FLOAT_2_DP, self.lining_size_decimal):
+            raise UserError(f"Please enter a numeric value in CET.")
+
+    @api.onchange('tvs_lining_size_decimal')
+    def _check_float_tvs_lining_size(self):
+        if self.tvs_lining_size_decimal and not re.match(Validation.REGEX_FLOAT_2_DP, self.tvs_lining_size_decimal):
+            raise UserError(f"Please enter a numeric value in CET.")
 
     @api.onchange('repeat_pregnancy_hr')
     def _check_float_input_hr(self):
@@ -1147,12 +1305,14 @@ class PatientTimeline(models.Model):
 
     @api.onchange('repeat_pregnancy_bp_upper')
     def _check_float_input_bp_upper(self):
-        if self.repeat_pregnancy_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.repeat_pregnancy_bp_upper):
+        if self.repeat_pregnancy_bp_upper and not re.match(Validation.REGEX_INTEGER_SIMPLE,
+                                                           self.repeat_pregnancy_bp_upper):
             raise UserError(f"Please enter a numeric value in pregnancy BP (Upper).")
 
     @api.onchange('repeat_pregnancy_bp_lower')
     def _check_float_input_bp_lower(self):
-        if self.repeat_pregnancy_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE, self.repeat_pregnancy_bp_lower):
+        if self.repeat_pregnancy_bp_lower and not re.match(Validation.REGEX_INTEGER_SIMPLE,
+                                                           self.repeat_pregnancy_bp_lower):
             raise UserError(f"Please enter a numeric value in pregnancy BP (Lower).")
 
     @api.onchange('repeat_pregnancy_rr')
@@ -1162,7 +1322,8 @@ class PatientTimeline(models.Model):
 
     @api.onchange('repeat_pregnancy_embryos_replaced')
     def _check_input_repeat_pregnancy_embryos_replaced(self):
-        if self.repeat_pregnancy_embryos_replaced and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_embryos_replaced):
+        if self.repeat_pregnancy_embryos_replaced and not re.match(Validation.REGEX_FLOAT_2_DP,
+                                                                   self.repeat_pregnancy_embryos_replaced):
             raise UserError(f"Please enter a numeric value in pregnancy embryos replaced!")
 
     @api.onchange('female_height')

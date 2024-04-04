@@ -7,17 +7,18 @@
             <field name="model">ec.medical.previous.treatment</field>
             <field name="priority">15</field>
             <field name="arch" type="xml">
-                <tree editable="top">
-                    <field name="create_date"/>
-                    <field name="treatment_of"/>
+                <tree  editable="bottom" export_xlsx="false">
+                    <field name="treatment_of" required="1"/>
+                    <field name="outcome" required="1"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="type"/>
                     <field name="consultant_id" options='{"no_open": True, "no_create": True}'/>
-                    <field name="oral_drugs"/>
-                    <field name="down_regulation"/>
-                    <field name="superovulation"/>
+                    <field name="oral_drugs" class="truncate_text"/>
+                    <field name="down_regulation" class="truncate_text"/>
+                    <field name="superovulation" class="truncate_text"/>
                     <field name="ovarian_response"/>
-                    <field name="outcome"/>
+                    <field name="treatment_notes" class="truncate_text"/>
+                    <field name="create_date"/>
                 </tree>
             </field>
         </record>
@@ -26,17 +27,18 @@
             <field name="model">ec.medical.previous.treatment</field>
             <field name="priority">20</field>
             <field name="arch" type="xml">
-                <tree edit="0" create="0">
-                    <field name="create_date"/>
-                    <field name="treatment_of"/>
+                <tree editable="bottom" export_xlsx="false">
+                    <field name="treatment_of" required="1"/>
+                    <field name="outcome" required="1"/>
                     <field name="patient_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="type"/>
                     <field name="consultant_id"/>
-                    <field name="oral_drugs"/>
-                    <field name="down_regulation"/>
-                    <field name="superovulation"/>
+                    <field name="oral_drugs" class="truncate_text"/>
+                    <field name="down_regulation" class="truncate_text"/>
+                    <field name="superovulation" class="truncate_text"/>
                     <field name="ovarian_response"/>
-                    <field name="outcome"/>
+                    <field name="treatment_notes" class="truncate_text"/>
+                    <field name="create_date"/>
                 </tree>
             </field>
         </record>

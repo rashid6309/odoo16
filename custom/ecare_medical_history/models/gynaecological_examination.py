@@ -31,11 +31,11 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_exam_pelvic_examination_state = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                            string="Pelvic examination done?")
     gynae_exam_inspection_only = fields.Boolean(string='Inspection Only')
-    gynae_exam_p_v_only = fields.Boolean(string='P/V Only')
-    gynae_exam_p_s_only = fields.Boolean(string='P/S Only')
+    gynae_exam_p_v_only = fields.Boolean(string='P/V')
+    gynae_exam_p_s_only = fields.Boolean(string='P/S')
 
     gynae_exam_findings_on_inspection = fields.Text(string='Findings on Inspection')
-    gynae_exam_valva_vaginal_exam = fields.Text(string='Vulva Vaginal Exam')
+    gynae_exam_valva_vaginal_exam = fields.Text(string='Vulva and Vagina')
     gynae_exam_cervix = fields.Text(string='Cervix')
     gynae_exam_uterus_and_adnexae = fields.Text(string='Uterus and adnexae (bimanual)')
 
@@ -48,15 +48,18 @@ class MedicalGynaecologicalExamination(models.Model):
     gynae_exam_pap_smear_done = fields.Boolean(string='Pap Smear Done')
     gynae_exam_pipelle_sampling_done = fields.Boolean(string='Pipelle Sampling Done')
 
-    gynae_exam_other_findings = fields.Text(string='Other Findings')
+    gynae_exam_other_findings = fields.Html(string='Other Findings')
 
     gynaecological_examination_date = fields.Date(string='Date')
     gynaecological_ultrasound_type = fields.Selection(selection=StaticMember.ULTRASOUND_TYPE,
                                                       string="Ultrasound")
 
     gynaecological_examination_lmp = fields.Date(string='LMP')
+    gynaecological_examination_cycle_day = fields.Integer(string='Cycle Day',
+                                                          readonly=True,
+                                                          store=True)
 
-    gynaecological_examination_comment = fields.Char('Comments')
+    gynaecological_examination_comment = fields.Html('Comments')
 
     # LEFT OVARY FIELDS
 
@@ -105,6 +108,13 @@ class MedicalGynaecologicalExamination(models.Model):
 
     uterus_size_position = fields.Selection(selection=StaticMember.UTERUS_SIZE_POSITION, string='Uterus Position')
 
+    gynae_position_to_left = fields.Boolean(string="Deviated to Left", default=False)
+    gynae_position_to_right = fields.Boolean(string="Deviated to Right", default=False)
+    gynae_position_a_v = fields.Boolean(string="A/V", default=False)
+    gynae_position_r_v = fields.Boolean(string="R/V", default=False)
+    gynae_position_mid_position = fields.Boolean(string="Mid Position", default=False)
+
+
     gynaecological_uterus_position_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                                           relation='gynaecological_uterus_multi_selection_repeat_position',
                                                           column1='gynaecological_id',
@@ -123,7 +133,16 @@ class MedicalGynaecologicalExamination(models.Model):
                                   column1='gynaecological_id',
                                   column2='multi_selection_id',
                                   string='Endometrial Lining Character', domain="[('type', '=', 'linining')]")
+
+    gynae_smooth = fields.Boolean(string="Smooth", default=False)
+    gynae_distorted = fields.Boolean(string="Distorted", default=False)
+    gynae_triple_echo = fields.Boolean(string="Triple Echo", default=False)
+    gynae_hyperechoic_solid = fields.Boolean(string="Hyperechoic/Solid", default=False)
+    gynae_suspected_cavity_lesion = fields.Boolean(string="Suspected Cavity Lesion", default=False)
+    gynae_menstruating = fields.Boolean(string="Menstruating", default=False)
+
     lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER, string='CET')
+    lining_size_decimal = fields.Char(string='CET')
 
     def action_open_gynae_scan(self):
         context = self._context.copy()

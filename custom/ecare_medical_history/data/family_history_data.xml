@@ -13,9 +13,9 @@
         <record model="ec.family.relation.list"  id="brother">
             <field name="name">Brother</field>
         </record>
-        <record model="ec.family.relation.list"  id="inlaws">
-            <field name="name">In-laws</field>
-        </record>
+<!--        <record model="ec.family.relation.list"  id="inlaws">-->
+<!--            <field name="name">In-laws</field>-->
+<!--        </record>-->
         <record model="ec.family.relation.list"  id="mfamily">
             <field name="name">Maternal Family</field>
         </record>
@@ -29,7 +29,7 @@
             <field name="name">Second Cousin</field>
         </record>
         <record model="ec.family.relation.list"  id="distcou">
-            <field name="name">Distant Cousin</field>
+            <field name="name">Distant Relative</field>
         </record>
         <record model="ec.family.relation.list"  id="ownchil">
             <field name="name">Own Children</field>

@@ -24,13 +24,15 @@ class GenitalExamination(models.Model):
     # supermatic_cord_tender = fields.Selection(selection=StaticMember.SIDE, )
 
     testicular_size_right = fields.Selection(selection=StaticMember.SIZE, )
-    testicular_motility_right = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility Right')
+    testicular_motility_right = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                 string='Testicular Mobility Right')
     testicular_size_left = fields.Selection(selection=StaticMember.SIZE, )
-    testicular_motility_left = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string='Testicular Motility Left')
+    testicular_motility_left = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
+                                                string='Testicular Mobility Left')
 
     testicular_size_motility = fields.Selection(selection=StaticMember.CHOICE_YES_NO, )
 
-    ec_genital_examination_comment = fields.Char(string="Comment")
+    ec_genital_examination_comment = fields.Char(string="Comments")
 
     hernia_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                   relation='genital_examination_multi_selection_hernia',

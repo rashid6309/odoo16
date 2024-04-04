@@ -3,6 +3,11 @@
     <data>
 
 <!--        Complications-->
+<!--        <record model="ec.medical.multi.selection" id="none">-->
+<!--            <field name="name">None</field>-->
+<!--            <field name="type">complications</field>-->
+<!--        </record>-->
+
         <record model="ec.medical.multi.selection" id="viginal_discharge">
             <field name="name">Vaginal Discharge</field>
             <field name="type">complications</field>
@@ -24,13 +29,11 @@
             <field name="type">complications</field>
         </record>
 
-        <record model="ec.medical.multi.selection" id="none">
-            <field name="name">None</field>
-            <field name="type">complications</field>
-        </record>
-
 <!--        Complains-->
-
+<!--        <record model="ec.medical.multi.selection" id="complains_none">-->
+<!--            <field name="name">None</field>-->
+<!--            <field name="type">complains</field>-->
+<!--        </record>-->
         <record model="ec.medical.multi.selection" id="intermenstrual_bleeding">
             <field name="name">Intermenstrual Bleeding</field>
             <field name="type">complains</field>
@@ -43,12 +46,12 @@
             <field name="name">PCB</field>
             <field name="type">complains</field>
         </record>
-        <record model="ec.medical.multi.selection" id="complains_none">
-            <field name="name">None</field>
-            <field name="type">complains</field>
-        </record>
 
 <!--        Dysmenorrhoea-->
+<!--        <record model="ec.medical.multi.selection" id="dysmenorrhoea_none">-->
+<!--            <field name="name">None</field>-->
+<!--            <field name="type">dysmenorrhoea</field>-->
+<!--        </record>-->
 
         <record model="ec.medical.multi.selection" id="before_menses">
             <field name="name">Before Menses</field>
@@ -63,10 +66,6 @@
             <field name="type">dysmenorrhoea</field>
         </record>
 
-        <record model="ec.medical.multi.selection" id="dysmenorrhoea_none">
-            <field name="name">None</field>
-            <field name="type">dysmenorrhoea</field>
-        </record>
 
 <!--        Position-->
         <record model="ec.medical.multi.selection" id="position_1">
@@ -78,14 +77,14 @@
             <field name="name">Deviated to Left</field>
             <field name="type">position</field>
         </record>
-        <record model="ec.medical.multi.selection" id="position_3">
-            <field name="name">A/V</field>
-            <field name="type">position</field>
-        </record>
-        <record model="ec.medical.multi.selection" id="position_4">
-            <field name="name">R/V</field>
-            <field name="type">position</field>
-        </record>
+<!--        <record model="ec.medical.multi.selection" id="position_3">-->
+<!--            <field name="name">A/V</field>-->
+<!--            <field name="type">position</field>-->
+<!--        </record>-->
+<!--        <record model="ec.medical.multi.selection" id="position_4">-->
+<!--            <field name="name">R/V</field>-->
+<!--            <field name="type">position</field>-->
+<!--        </record>-->
 
         <record model="ec.medical.multi.selection" id="position_5">
             <field name="name">Mid-Position</field>
@@ -115,6 +114,11 @@
 
         <record model="ec.medical.multi.selection" id="lining_suspected_cavity_lesion">
             <field name="name">Suspected Cavity Lesion</field>
+            <field name="type">linining</field>
+        </record>
+
+        <record model="ec.medical.multi.selection" id="lining_menstruating">
+            <field name="name">Menstruating</field>
             <field name="type">linining</field>
         </record>
 
@@ -182,10 +186,10 @@
 
 <!--        Contraception-->
 
-        <record model="ec.medical.multi.selection" id="cn_type_none">
-            <field name="name">None</field>
-            <field name="type">cn_type</field>
-        </record>
+<!--        <record model="ec.medical.multi.selection" id="cn_type_none">-->
+<!--            <field name="name">None</field>-->
+<!--            <field name="type">cn_type</field>-->
+<!--        </record>-->
 
         <record model="ec.medical.multi.selection" id="cn_type_withdrawal">
             <field name="name">Withdrawal</field>
@@ -298,6 +302,12 @@
             <field name="type">supermatic_cord_tender</field>
         </record>
 
+<!--ovulation-->
+        <record model="ec.medical.multi.selection" id="ovulation_none">
+            <field name="name">None</field>
+            <field name="type">ovulation</field>
+        </record>
+
         <record model="ec.medical.multi.selection" id="ovulation_free_fluid">
             <field name="name">Free Fluid</field>
             <field name="type">ovulation</field>
@@ -314,9 +324,6 @@
             <field name="name">Corpus Luteum</field>
             <field name="type">ovulation</field>
         </record>
-        <record model="ec.medical.multi.selection" id="ovulation_none">
-            <field name="name">None</field>
-            <field name="type">ovulation</field>
-        </record>
+
     </data>
 </odoo>

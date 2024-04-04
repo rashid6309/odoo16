@@ -560,7 +560,6 @@ class StaticMember:
     INTENSITY = [
         ('increase', 'Increase'),
         ('decrease', 'Decrease'),
-        ('none', 'None'),
     ]
 
     SIDE = [
@@ -584,6 +583,11 @@ class StaticMember:
 
     CHOICE_YES_NO = [('yes', "Yes"),
                      ('no', "No")]
+
+    CHOICE_YES_NO_NOT_AVAILABLE = [('yes', "Yes"),
+                                   ('no', "No"),
+                                   ('not_available', "Not Available")
+                                   ]
 
     ORGAN_SIZE = [('normal', 'Normal'),
                   ('other', 'Other'),
@@ -673,7 +677,6 @@ class StaticMember:
     SX_ISSUES = [
         ('aparunea', 'Aparunea'),
         ('dysparunea', 'Dysparunea'),
-        ('none', 'None'),
     ]
 
     CN_TYPES = [
@@ -725,6 +728,7 @@ class StaticMember:
         ('Ectopic_Right', 'ECTOPIC RIGHT'),
         ('Ectopic_Left', 'ECTOPIC LEFT'),
         ('VBAC', 'VBAC'),
+        ('NA', 'N/A'),
     ]
 
     PREVIOUS_TREATMENT_OF = [
@@ -765,6 +769,7 @@ class StaticMember:
         ('in_person', 'In-person Consultation'),
         ('telephonic', 'Telephonic Consultation'),
         ('online', 'Online Consultation'),
+        ('migration', 'Migration'),
     ]
 
     SEEN_WITH = [
@@ -805,12 +810,15 @@ class StaticMember:
 
     SEMEN_COLOR = [
         ('creamy_white', 'Creamy White'),
+        ('yellow', 'Yellow'),
+        ('pale', 'Pale'),
+        ('straw', 'Straw'),
     ]
 
     SEMEN_VISCOSITY = [
         ('thick', 'Thick'),
         ('thin', 'Thin'),
-        ('vicious', 'Vicious'),
+        ('viscous', 'Viscous'),
         ('normal', 'Normal'),
     ]
 
@@ -1054,9 +1062,16 @@ class StaticMember:
 
     VIABILITY_POTENTIAL = [("all_fetus_alive", "All fetus(es) alive"),
                            ("iud", "IUD"),
-                           ("atleat_1_alive", "Atleast 1 alive fetus")]
+                           ("atleat_1_alive", "Atleast 1 alive fetus"),
+                           ("missed_miscarriage", "Missed miscarriage"),
+                           ("incomplete_miscarriage", "Incomplete miscarriage"),
+                           ("complete_miscarriage", "Complete miscarriage"),
+                           ("theatened_miscarriage", "Theatened miscarriage"),
+                           ("inevitable_miscarriage", "Inevitable miscarriage"),
+                           ("ectopic", "Ectopic"),
+                           ]
 
-    VISIT_REASON = [('early_pregnancy_assessment', 'Early pregnancy assessment'),
+    VISIT_REASON = [('early_pregnancy_assessment', 'Early pregnancy management'),
                     ('genetic_testing', 'Genetic Testing')]
 
     FETAL_HEART = [("positive", "Positive"),
@@ -1211,6 +1226,15 @@ class StaticMember:
     SURGERY_TYPES = [
         ('tubal_patency_testing', 'Tubal Patency Testing'),
         ('minimally_invasive_surgery', 'Minimally Invasive Surgery Other Than Tubal Testing'),
+        ('laparotomy', 'Laparotomy'),
+        ('cardiac_surgery', 'Cardiac Surgery'),
+        ('neurosurgery', 'Neurosurgery'),
+        ('surgery_for_cancer', 'Surgery for Cancer'),
+        ('other', 'Other'),
+    ]
+
+    SURGERY_TYPES_MALE = [
+        ('minimally_invasive_surgery', 'Minimally Invasive Surgery'),
         ('laparotomy', 'Laparotomy'),
         ('cardiac_surgery', 'Cardiac Surgery'),
         ('neurosurgery', 'Neurosurgery'),

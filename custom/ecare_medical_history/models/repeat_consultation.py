@@ -1,3 +1,4 @@
+from datetime import datetime
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 
@@ -35,19 +36,16 @@ class RepeatConsultation(models.Model):
 
 
     ''' Data attributes '''
-    #
-    # repeat_state = fields.Selection(selection=[('1', "Question 1"),
-    #                                            ('2', "Question 2"),
-    #                                            ('3', "Question 3"),
-    #                                            ('4', "Question 4")],
-    #                                 default="1",
-    #                                 required=True)
+
     repeat_consultation_state = fields.Selection([('open', 'In Progress'),
                                                   ('closed', 'Done'),
                                                   ('decision_pending', "Decision Pending"),
                                                   ],
-                                                 default='open',
+                                                 default=None,
                                                  string='State')
+
+    repeat_obs_history_lines = fields.Integer('OBS History Lines')
+    repeat_previous_treatment_lines = fields.Integer('Previous Treatment Lines')
 
     """ Question One
     Yes: Open the pregnancy assessment form
@@ -62,8 +60,7 @@ class RepeatConsultation(models.Model):
                                      readonly=1,
                                      )
     question_one_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                           string="Choice",
-                                           default='no')
+                                           string="Is the couple currently pregnant?")
 
     repeat_lmp = fields.Date(string="LMP",
                              readonly=True,
@@ -81,8 +78,7 @@ class RepeatConsultation(models.Model):
                                      store=False,
                                      readonly=True)
     question_two_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                           string="Choice",
-                                           default='no')
+                                           string="Has the couple had any conception since the last visit?")
 
     """ Question Three
         Yes: Open the treatment outside of ICSI from and add a record in the previous treatment history 
@@ -94,8 +90,7 @@ class RepeatConsultation(models.Model):
                                        store=False,
                                        readonly=1)
     question_three_choice = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                             string="Choice",
-                                             default='no')
+                                             string="Has the couple had any treatment outside of ICSI Pvt. Ltd. since last visit?")
 
     """ Question Four
         Yes: Open the treatment outside of ICSI from and add a record in the previous treatment history 
@@ -138,7 +133,6 @@ class RepeatConsultation(models.Model):
                                       store=True)
 
     repeat_date = fields.Datetime(string='Consultation Date',
-                                  readonly=True,
                                   default=fields.Datetime.now)
 
     repeat_seen_by = fields.Many2one(comodel_name='res.users',
@@ -178,6 +172,7 @@ class RepeatConsultation(models.Model):
                                                  column1="repeat_consultation_id",
                                                  column2="investigation_id",
                                                  string='Investigations')
+    repeat_investigation_notes = fields.Text(string="Investigation Notes")
 
     repeat_treatment_advised_ids = fields.Many2many(comodel_name='ec.medical.treatment.list',
                                                     relation="repeat_consultation_medical_treatment_list_rel",
@@ -246,7 +241,7 @@ class RepeatConsultation(models.Model):
     repeat_pipelle_sampling_done = fields.Boolean(string="Pipelle sampling done",
                                                   default=False)
 
-    repeat_other_findings = fields.Text(string="Other findings")
+    repeat_other_findings = fields.Html(string="Other findings")
 
     scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                      default='no',
@@ -282,6 +277,25 @@ class RepeatConsultation(models.Model):
         return result
 
     ''' Data methods '''
+
+    def action_set_repeat_state(self, skip_state_set=False):
+        self.ensure_one()
+
+        if skip_state_set:
+            return True
+
+        if not self.repeat_consultation_state:
+            self.repeat_consultation_state = 'open'
+
+        return True
+
+    def action_set_post_required_attributes(self):
+        for rec in self:
+            skip_test_state = self._context.get('skip_set_state', False)
+            rec.action_set_repeat_state(skip_test_state)
+
+            rec.repeat_date = datetime.now()
+            rec.repeat_seen_by = rec.env.user.id
 
     def repeat_values_compute(self):
         if self:
@@ -397,6 +411,34 @@ class RepeatConsultation(models.Model):
             return True
         else:
             return False
+
+    def action_direct_delete_repeat_consultation_section(self):
+        timeline_id = self.repeat_timeline_id
+        existing_repeat = self.env['ec.repeat.consultation'].search([
+            ('repeat_timeline_id', '=', timeline_id.id),
+            ('id', '!=', self.id),
+        ], order="id desc", limit=1)
+
+        if existing_repeat:
+
+            # At one time only one repeat can be in the in_progress state on the timeline and its id should
+            # comply with: self.id == timeline_id.ec_repeat_consultation_id.id
+
+            if self.repeat_consultation_state == 'open':
+                timeline_id.show_repeat_section_state = False
+
+            timeline_id.ec_repeat_consultation_id = existing_repeat.id
+        else:
+            timeline_id.show_repeat_section_state = False
+            timeline_id.show_repeat_consultation_history_section = False
+            new_repeat_consultation_id = self.env['ec.repeat.consultation'].create(
+                timeline_id._get_repeat_consultation_mandatory_attribute()
+            )
+
+            new_repeat_consultation_id.with_context({'skip_set_state': True}).action_set_post_required_attributes()
+
+            timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
+        self.unlink()
 
 
 # Fibroid

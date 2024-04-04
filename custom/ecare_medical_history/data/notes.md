@@ -12,7 +12,7 @@ order by create date desc.
 
 <h3>Previous Treatment</h3>
 Anywhere the previous treatments is shown, all of its records are visible. 
-order by create date desc.
+order by create date desc. 
 
 <h4>Limitations</h4>
 

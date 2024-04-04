@@ -42,8 +42,16 @@ class EcMedicalTVS(models.Model):
     tvs_uterus_size_y= fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                         string='Size Y')
 
+
+
     tvs_uterus_position = fields.Selection(selection=StaticMember.UTERUS_SIZE_POSITION,
                                            string='Position')
+
+    position_to_left = fields.Boolean(string="Deviated to Left", default=False)
+    position_to_right = fields.Boolean(string="Deviated to Right", default=False)
+    position_a_v = fields.Boolean(string="A/V", default=False)
+    position_r_v = fields.Boolean(string="R/V", default=False)
+    position_mid_position = fields.Boolean(string="Mid Position", default=False)
 
     tvs_linining_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                         relation='repeat_multi_selection_repeat_position',
@@ -52,8 +60,16 @@ class EcMedicalTVS(models.Model):
                                         string='Endometrial Lining Character',
                                         domain="[('type', '=', 'linining')]")
 
+    tvs_smooth = fields.Boolean(string="Smooth", default=False)
+    tvs_distorted = fields.Boolean(string="Distorted", default=False)
+    tvs_triple_echo = fields.Boolean(string="Triple Echo", default=False)
+    tvs_hyperechoic_solid = fields.Boolean(string="Hyperechoic/Solid", default=False)
+    tvs_suspected_cavity_lesion = fields.Boolean(string="Suspected Cavity Lesion", default=False)
+    tvs_menstruating = fields.Boolean(string="Menstruating", default=False)
+
     tvs_lining_size = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                        string='CET')
+    tvs_lining_size_decimal = fields.Char(string='CET')
 
     tvs_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                         inverse_name="tvs_fiobrid_id",

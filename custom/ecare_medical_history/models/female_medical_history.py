@@ -9,7 +9,6 @@ class FemaleMedicalHistory(models.Model):
     female_medical_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
                                          ondelete='restrict')
 
-    male_no_medical_history = fields.Boolean(string='No Significant Medical History')
     female_no_medical_history = fields.Boolean(string='No Significant Medical History')
     # Female-specific fields with the 'female_' prefix
 
@@ -26,7 +25,9 @@ class FemaleMedicalHistory(models.Model):
 
     female_hirsuitism = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                      string='Hirsuitism')
+    female_hirsuitism_year = fields.Many2one("ec.medical.year", 'Hirsuitism')
     female_hirsuitism_treatment = fields.Char('Any treatment')
+    female_hirsuitism_comments = fields.Char('Comments')
 
     female_tuberculosis = fields.Char('Tuberculosis')
     female_tuberculosis_date = fields.Many2one("ec.medical.year", 'Tuberculosis Date')
@@ -46,16 +47,20 @@ class FemaleMedicalHistory(models.Model):
     female_adrenal_date = fields.Many2one("ec.medical.year", 'Adrenal Date')
 
     female_anti_phospholipid_syndrome = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                     string='Anti-phospholipid Syndrome')
+                                                         string='Anti-phospholipid Syndrome')
+    female_anti_phospholipid_syndrome_comments = fields.Char(string='Anti-phospholipid Syndrome')
 
-    female_anti_phospholipid_syndrome_date = fields.Many2one("ec.medical.year",'Anti-phospholipid Syndrome Date')
+    female_anti_phospholipid_syndrome_date = fields.Many2one("ec.medical.year",
+                                                             'Anti-phospholipid Syndrome Date')
 
     female_autoimmune_disease = fields.Char('Autoimmune Diseases')
     female_autoimmune_disease_date = fields.Many2one("ec.medical.year",'Autoimmune Diseases Date')
 
     female_blood_transfusion = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                              string='Blood Transfusion')
-    female_blood_transfusion_date = fields.Many2one("ec.medical.year",'Blood Transfusion Date')
+                                                string='Blood Transfusion')
+    female_blood_transfusion_comments = fields.Char('Blood Transfusion')
+    female_blood_transfusion_date = fields.Many2one("ec.medical.year",
+                                                    'Blood Transfusion Date')
 
     female_cardiac = fields.Char('Cardiac')
     female_cardiac_date = fields.Many2one("ec.medical.year",'Cardiac Date')
@@ -96,9 +101,9 @@ class FemaleMedicalHistory(models.Model):
     female_skeletal = fields.Char('Skeletal')
     female_skeletal_date = fields.Many2one("ec.medical.year",'Skeletal Date')
 
-    female_thyroid_TYPE = fields.Selection(selection=StaticMember.MEDICAL_THYROID,
+    female_thyroid_type = fields.Selection(selection=StaticMember.MEDICAL_THYROID,
                                            string='Thyroid')
-    female_thyroid = fields.Text('Thyroid')
+    female_thyroid_medical = fields.Char('Thyroid')
     female_thyroid_date = fields.Many2one("ec.medical.year",'Thyroid Date')
 
     female_heart_disease = fields.Char(string='Heart Disease')
@@ -133,7 +138,7 @@ class FemaleMedicalHistory(models.Model):
     female_operations_pr = fields.Text(string='Operations (if any)')
     female_medical_history_others = fields.Char(string='Others')
     female_medical_history_others_date = fields.Many2one("ec.medical.year",'Others Date')
-    female_medical_current_medication = fields.Char(string='Current Medication')
+    female_medical_current_medication = fields.Html(string='Current Medication')
 
 
     ''' not being used '''

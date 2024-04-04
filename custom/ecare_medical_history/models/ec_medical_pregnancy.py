@@ -53,7 +53,7 @@ class PregnancyForm(models.Model):
     genetic_testing = fields.Char(string="Genetic Testing")
     early_pregnancy_assessment = fields.Char(string="Early Pregnancy Assessment")
 
-    repeat_pregnancy_scanned = fields.Selection(StaticMember.CHOICE_YES_NO, string="Documented Medicsi Scan Reviewed?")
+    repeat_pregnancy_scanned = fields.Selection(StaticMember.CHOICE_YES_NO_NOT_AVAILABLE, string="Documented Medicsi Scan Reviewed?")
     repeat_pregnancy_significant_findings = fields.Char(string="Mention any SIGNIFICANT findings")
 
     repeat_pregnancy_hr = fields.Char(string="HR")
@@ -106,6 +106,7 @@ class PregnancyForm(models.Model):
 class PregnancyProcedures(models.Model):
     _name = 'ec.medical.pregnancy.procedure'
     _description = 'Pregnancy Procedures'
+    _order = 'name asc'
 
     name = fields.Char("Name", required=True)
     value = fields.Text("Value")
@@ -114,5 +115,6 @@ class PregnancyProcedures(models.Model):
 class RecommendedProcedures(models.Model):
     _name = 'ec.medical.recommended.procedure'
     _description = 'Recommended Procedures'
+    _order = 'name asc'
 
     name = fields.Char("Name", required=True)

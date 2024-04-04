@@ -39,7 +39,7 @@
                         <field name="name"/>
                         <field name="date"/>
                         <field name="filename" invisible="True" force_save="True"/>
-                        <field name="attachment_id"  widget="many2many_binary" filename="filename"/>
+                        <field name="attachment_id" widget="binary" filename="filename"/>
                         <field name="results" required="1"/>
                         <field name="male_first_consultation_id" invisible="1" force_save="1"/>
                         <field name="female_first_consultation_id" invisible="1" force_save="1"/>
@@ -57,8 +57,9 @@
             <field name="arch" type="xml">
                 <tree create="0">
                     <field name="name"/>
+                    <field name="filename" invisible="1"/>
                     <field name="date"/>
-                    <field name="attachment_id" widget="many2many_binary" readonly="1" filename="filename"/>
+                    <field name="attachment_id" widget="binary" readonly="1" filename="filename"/>
                     <field name="results"/>
                 </tree>
             </field>

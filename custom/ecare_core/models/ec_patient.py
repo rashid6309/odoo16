@@ -258,6 +258,20 @@ class EcarePatient(models.Model):
                         'message': 'Date of Marriage should be lesser than or equal to today.'}
 
                 }
+            if self.wife_dob and self.married_since:
+                if self.wife_dob > self.married_since:
+                    patient.married_since = None
+                    patient.yom = None
+                    return {
+
+                        'warning': {
+
+                            'title': 'Warning!',
+
+                            'message': 'Date of Marriage should be lesser than date of birth.'
+                        }
+
+                    }
 
             patient.yom = TimeValidation.convert_date_to_days_years(patient.married_since)
 
@@ -327,6 +341,18 @@ class EcarePatient(models.Model):
 
         return patient_name
 
+    def action_create_legacy_patient_directly(self):
+        '''
+            It was required incase we need patient creation in the legacy system after mr number creation.
+            It happened due to post_data_history_software line commented in the history_software_dev branch,
+            and after merge no patient was available in the legacy system
+
+
+            XXX - Not being used now as client action is commented -  XXX
+        '''
+
+        self.post_data_history_software()
+
     def action_register(self):
         self.ensure_one()
         self.constraints_validation()
@@ -338,7 +364,7 @@ class EcarePatient(models.Model):
 
         # POST API to update the data at that side ICSI existing history software
 
-        # self.post_data_history_software()
+        self.post_data_history_software()
 
     def constraints_validation(self):
         WIFE_CONSTRAINT_MSG = "Wife cnic or passport, dob mobile and mobile are mandatory"

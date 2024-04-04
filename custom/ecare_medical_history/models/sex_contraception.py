@@ -18,6 +18,7 @@ class EcContraception(models.Model):
 
     # cn_type = fields.Selection(selection=StaticMember.CN_TYPES,
     #                            string="Type")
+    cn_type_check = fields.Boolean('Type')
 
     cn_type = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                relation='contraception_multi_selection_cn_type',

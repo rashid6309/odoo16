@@ -11,7 +11,7 @@
     'maintainer': 'Rashid Noor',
     'license': 'LGPL-3',
     'support': '',
-    'depends': ['web', 'base', 'mail', 'ecare_core', 'ecare_appointment'],
+    'depends': ['web', 'base', 'mail', 'ecare_core', 'ecare_appointment', 'field_timepicker'],
     'demo': [],
     'data': [
         # Security
@@ -39,6 +39,7 @@
         'views/treatment_list.xml',
         'views/ec_medical_dianosis.xml',
         'views/ec_medical_investigation.xml',
+        'views/ec_medical_seminologist.xml',
         'data/ec_medical_multi_selection_data.xml',
         
         # Views

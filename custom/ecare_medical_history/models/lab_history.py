@@ -14,20 +14,13 @@ class LabHistory(models.Model):
     date = fields.Date(string="Date")
 
     filename = fields.Char(string="Filename")
-    attachment_id = fields.Many2many('ir.attachment', 'lab_history_document_rel',
-                                     'lab_id', 'doc_id', help="If you want to upload any attachment.",
-                                     string='Document')
 
-    results = fields.Text('Results')
+    attachment_id = fields.Binary(string="Document")
 
-    # attachment_ids = fields.Many2many(comodel_name="ir.attachment",
-    #                                   column1="lab_id",
-    #                                   column2="attachment_id",
-    #                                   relation="lab_history_attachment_id",
-    #                                   string="Attachments",
-    #                                   help="If you want to upload any attachment.")
+    results = fields.Text('Results', required=True)
 
     @api.onchange('date')
     def _check_lab_date(self):
         if self.date:
             return Validation._date_validation(self.date)
+

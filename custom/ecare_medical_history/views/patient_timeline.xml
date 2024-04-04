@@ -35,6 +35,237 @@
 					<div style="margin-top: -2%;">
 						<field name="timeline_patient_id" style="display:block;" widget="banner_summary_widget"/>
 					</div>
+					<script>
+							var minusButtonFemale = document.querySelector(".btn_minus_female");
+							var plusButtonFemale = document.querySelector(".btn_plus_female");
+
+							if (minusButtonFemale) {
+								if (plusButtonFemale) {
+								minusButtonFemale.addEventListener("click", function() {
+									minusButtonFemale.style.display = "none";
+									plusButtonFemale.style.display = "inline";
+								});
+
+								plusButtonFemale.addEventListener("click", function() {
+									plusButtonFemale.style.display = "none";
+									minusButtonFemale.style.display = "inline";
+								});
+								}
+							}
+
+							var minusButtonMale = document.querySelector(".btn_minus_male");
+							var plusButtonMale = document.querySelector(".btn_plus_male");
+
+							if (minusButtonMale) {
+								if (plusButtonMale) {
+								minusButtonMale.addEventListener("click", function() {
+									minusButtonMale.style.display = "none";
+									plusButtonMale.style.display = "inline";
+								});
+
+								plusButtonMale.addEventListener("click", function() {
+									plusButtonMale.style.display = "none";
+									minusButtonMale.style.display = "inline";
+								});
+								}
+							}
+					</script>
+					<script>
+						function showTreatmentHistory() {
+						var popup = document.getElementById('treatment_history_popup');
+						popup.style.display = 'block';
+						}
+						function saveTreatmentHistory() {
+						var popup = document.getElementById('treatment_history_popup');
+						popup.style.display = 'none';
+						}
+						function revertProcessInputPluses(input) {
+							var output = input.replace(/\+\((\d+)\)/g, function(match, count) {
+									return '+,'.repeat(parseInt(count)) + ',';
+								});
+							output = output.replace(/,+/g, ',');
+							return output;
+						}
+
+						function showBeginScan(type, element_id) {
+						var scan_type = type;
+						scan_input = document.getElementById('type_of_scan');
+						scan_input.value = scan_type;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'block';
+
+						inputValue = document.getElementById(element_id).value;
+						inputValue = revertProcessInputPluses(inputValue);
+						document.querySelector('.output_results').innerText = inputValue;
+						}
+
+						function showLovBeginScan(type) {
+						var scan_type = type;
+						scan_input = document.getElementById('type_of_scan');
+						scan_input.value = scan_type;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'block';
+
+						inputValue = document.getElementById('tvs_lov').value;
+						document.querySelector('.output_results').value = inputValue;
+						}
+
+						function showRovBeginScan(type) {
+						var scan_type = type;
+						scan_input = document.getElementById('type_of_scan');
+						scan_input.value = scan_type;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'block';
+
+						inputValue = document.getElementById('tvs_rov').value;
+						document.querySelector('.output_results').value = inputValue;
+						}
+
+						function cancelPopup() {
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'none';
+						}
+
+						function processDisplay(dataListText) {
+						let dataList = dataListText.split(',');
+						let plusElements = dataList.filter(element => element === '+');
+						let greaterThan22Elements = dataList.filter(element => element === '>22');
+						dataList = dataList.filter(element => {
+						if (element !== '+' ) {
+						if (element !== '>22') {
+						return true;
+						}
+						}
+						return false;
+						});
+
+						let sortedData = dataList.sort((a, b) => {
+						if (!isNaN(parseFloat(a))) {
+						if(!isNaN(parseFloat(b))){
+						return parseFloat(a) - parseFloat(b);
+						}
+						} else {
+						return a.localeCompare(b);
+						}
+						});
+						let resultList = plusElements.concat(sortedData, greaterThan22Elements);
+						let resultStr = resultList.filter(Boolean).join(',');
+						return resultStr;
+						}
+						function processInputPluses(processed_input) {
+							var plusCount = 0;
+							var output = processed_input.replace(/\+/g, function() {
+								plusCount++;
+								return '';
+							});
+							output = output.replace(/,+/, ',');
+							if (plusCount > 0) {
+								output = '+(' + plusCount + ')' + output;
+							}
+							return output;
+						}
+
+						function saveTvsScan() {
+						scan_input = document.getElementById('type_of_scan').value;
+						var popup = document.getElementById('tvs_scan_popup');
+						popup.style.display = 'none';
+						var inputValue = document.querySelector('.output_results').innerText;
+						processed_value_initial = processDisplay(inputValue)+',';
+						processed_value = processInputPluses(processed_value_initial);
+						processed_value = processed_value === ',' ? null : processed_value;
+
+						if (scan_input == "lov")
+						{
+						var inputField = document.getElementById('tvs_lov');
+						inputField.value = processed_value;
+						inputField.dispatchEvent(new Event('input', { bubbles: true }));
+						}
+						else if (scan_input == "rov")
+						{
+						var inputField = document.getElementById('tvs_rov');
+						inputField.value = processed_value;
+						inputField.dispatchEvent(new Event('input', { bubbles: true }));
+						}
+						else if (scan_input == "gynae_rov")
+						{
+						var inputField = document.getElementById('gynae_rov');
+						inputField.value = processed_value;
+						inputField.dispatchEvent(new Event('input', { bubbles: true }));
+						}
+						else if (scan_input == "gynae_lov")
+						{
+						var inputField = document.getElementById('gynae_lov');
+						inputField.value = processed_value;
+						inputField.dispatchEvent(new Event('input', { bubbles: true }));
+						}
+						else
+						{
+						return;
+						}
+						}
+					</script>
+					<div id="treatment_history_popup" class="tvs_scan_popup">
+						<tree editable="top">
+							<field name="timeline_previous_treatment_ids"
+								   context="{'default_patient_id': timeline_patient_id,
+													   'default_timeline_id' : id,
+													   }"
+								   nolabel="1" editable="top">
+							</field>
+						</tree>
+						<a class="btn btn-primary m-3" onclick="saveTreatmentHistory()">Save</a>
+					</div>
+
+
+
+					<div id="tvs_scan_popup" class="tvs_scan_popup">
+						<h2>TVS Scan</h2>
+						<div class="tvs_scan">
+							<div class="display">
+								<span type="text" class="output_results" name="display" id="display"
+									  style="width:30rem;"/>
+								<!--																<field name="tvs_id" readonly="1" invisible="1"/>-->
+								<!--																<field name="gynae_id" readonly="1" invisible="1"/>-->
+							</div>
+							<div class="d-flex flex-column" style="margin-top: -8%;">
+								<div>
+									<span type="button" name="+" value="+" onclick="display.innerText += '+,' "  class="tvs_scan_form_input">+</span>
+								</div>
+								<div>
+									<span type="button" value="8" onclick="display.innerText += '8,' "  class="tvs_scan_form_input">8</span>
+									<span type="button" value="9" onclick="display.innerText += '9,' " class="tvs_scan_form_input">9</span>
+									<span type="button" value="10" onclick="display.innerText += '10,' " class="tvs_scan_form_input">10</span>
+									<span type="button" value="11" onclick="display.innerText += '11,' " class="tvs_scan_form_input">11</span>
+								</div>
+								<div>
+									<span type="button" value="12" onclick="display.innerText += '12,' " class="tvs_scan_form_input">12</span>
+									<span type="button" value="13" onclick="display.innerText += '13,' " class="tvs_scan_form_input">13</span>
+									<span type="button" value="14" onclick="display.innerText += '14,' " class="tvs_scan_form_input">14</span>
+									<span type="button" value="15" onclick="display.innerText += '15,' " class="tvs_scan_form_input">15</span>
+								</div>
+								<div>
+									<span type="button" value="16" onclick="display.innerText += '16,' " class="tvs_scan_form_input">16</span>
+									<span type="button" value="17" onclick="display.innerText += '17,' " class="tvs_scan_form_input">17</span>
+									<span type="button" value="18" onclick="display.innerText += '18,' " class="tvs_scan_form_input">18</span>
+									<span type="button" value="19" onclick="display.innerText += '19,' " class="tvs_scan_form_input">19</span>
+								</div>
+								<div>
+									<span type="button" value="20" onclick="display.innerText += '20,' " class="tvs_scan_form_input">20</span>
+									<span type="button" value="21" onclick="display.innerText += '21,' " class="tvs_scan_form_input">21</span>
+									<span type="button" value="22" onclick="display.innerText += '22,' " class="tvs_scan_form_input">22</span>
+									<span type="button" value="&gt;22" onclick="display.innerText += '&gt;22,' " class="tvs_scan_form_input">>22</span>
+								</div>
+								<div>
+									<span type="button" value="DE" onclick="display.innerText =  display.innerText.toString().slice(0,-1)" class="tvs_scan_form_input">DE</span>
+									<span type="button" value="AC" onclick="display.innerText = '' " class="tvs_scan_form_input">AC</span>
+								</div>
+							</div>
+						</div>
+						<a class="btn btn-primary m-3" onclick="saveTvsScan()">Save</a>
+						<a class="btn btn-primary m-3" onclick="cancelPopup()">Cancel</a>
+						<span type="hidden" id="type_of_scan" name="type_of_scan"/>
+					</div>
+
 					<group>
 						<field name="first_consultation_patient_id" invisible="1" force_save="1"/>
 						<field name="timeline_patient_id" invisible="1"
@@ -45,18 +276,18 @@
 							<div class="col-md-2">
 								<div class="card-custom1">
 									<div class="card-type">
-										<div>
-											<span class="word-title">IVF/ICSI Attempt(s) Completed:</span>
-											<span class="counter-word">0</span>
-										</div>
-										<div>
-											<span class="word-title">Frozen Embryos Stored:</span>
-											<span class="counter-word">0</span>
-										</div>
-										<div>
-											<span class="word-title">Sperm Straws Stored:</span>
-											<span class="counter-word">0</span>
-										</div>
+										<!--										<div>-->
+										<!--											<span class="word-title">IVF/ICSI Attempt(s) Completed:</span>-->
+										<!--											<span class="counter-word">0</span>-->
+										<!--										</div>-->
+										<!--										<div>-->
+										<!--											<span class="word-title">Frozen Embryos Stored:</span>-->
+										<!--											<span class="counter-word">0</span>-->
+										<!--										</div>-->
+										<!--										<div>-->
+										<!--											<span class="word-title">Sperm Straws Stored:</span>-->
+										<!--											<span class="counter-word">0</span>-->
+										<!--										</div>-->
 										<button name="action_timeline_open_treatment_history"
 												type="object"
 												class="card-custom-right-button-btn"
@@ -188,6 +419,7 @@
 										<field name="repeat_consultation_state" invisible="1"/>
 										<button name="action_create_repeat_consultation"
 												type="object"
+												confirm="Do you really want to create a new repeat consultation?"
 												class="btn btn-primary"
 												attrs="{'invisible': [('show_repeat_section_state', '=', True)]}"
 												onclick="showRepeatConsultationSection('repeat_consultation_section')">
@@ -213,23 +445,21 @@
 
 										<group>
 											<group>
-												<field name="repeat_date"/>
-												<field name="repeat_consultation_interaction"
+												<field name="repeat_date" attrs="{'required': [('show_repeat_section_state', '=', True)]}"/>
+												<field attrs="{'required': [('show_repeat_section_state', '=', True)]}" name="repeat_consultation_interaction"
 												/>
-												<field name="repeat_status"
+												<field name="repeat_status" attrs="{'required': [('show_repeat_section_state', '=', True)]}"
 													   widget="radio" options="{'horizontal': True}"/>
-												<field name="repeat_consultation_with"/>
-												<field name="repeat_seen_with_other"
-													   attrs="{'required': ['|',('repeat_consultation_with', '=', 'other'),
-													   ('show_repeat_section_state', '=', True)]}"/>
+												<field name="repeat_consultation_with" attrs="{'required': [('show_repeat_section_state', '=', True)]}"/>
+												<field name="repeat_seen_with_other"/>
 												<field name="repeat_seen_by"/>
 												<field name="repeat_other_doctors_present"
-													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 											</group>
 											<group>
 												<field name="repeat_location_id"
+													   attrs="{'required': [('show_repeat_section_state', '=', True)]}"
 													   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
 
 											</group>
@@ -246,67 +476,87 @@
 													   widget="radio" nolabel="1"/>
 											</group>
 
-											<group attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
+											<group attrs="{'invisible': [('question_one_choice', '!=', 'yes')]}">
 
 											</group>
-											<div attrs="{'invisible': [('question_one_choice', '=', 'no')]}">
+											<div attrs="{'invisible': [('question_one_choice', '!=', 'yes')]}">
 												<group>
-													<field name="repeat_pregnancy_lmp"/>
+													<field name="repeat_pregnancy_lmp" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_gestational_age"/>
-													<field name="repeat_pregnancy_conception"/>
+													<field name="repeat_pregnancy_conception" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_embryos_replaced"/>
 												</group>
 												<group string="Pregnancy Status:">
-													<field name="repeat_pregnancy_gestation_type"/>
+													<field name="repeat_pregnancy_gestation_type" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_other_info"
 														   attrs="{'invisible': [('repeat_pregnancy_gestation_type','!=','other')],
                                             'required':[('repeat_pregnancy_gestation_type','=','other'),('question_one_choice','=','yes')]}"/>
-													<field name="repeat_pregnancy_viability_potential"/>
+													<field name="repeat_pregnancy_viability_potential" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_details"/>
-													<field name="repeat_pregnancy_diagnosis"/>
+													<field name="repeat_pregnancy_diagnosis" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 
 												<group string="Reason for visit">
-													<field name="repeat_pregnancy_reason_to_visit" widget="radio"/>
+													<field name="repeat_pregnancy_reason_to_visit" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}" widget="radio"/>
 												</group>
 												<group>
 													<field name="repeat_pregnancy_notes" widget="html"/>
-													<field name="repeat_pregnancy_scanned" widget="radio"/>
+													<field name="repeat_pregnancy_scanned" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}" widget="radio"/>
 													<field name="repeat_pregnancy_significant_findings"/>
 												</group>
 
 												<group string="Examination:" class="d-flex flex-column custom_width">
 													<div class="d-flex" style="width:305%;margin-left: 30%;">
 														<label  class="timeline_examination" for="repeat_pregnancy_hr"/>
-														<field name="repeat_pregnancy_hr"/>
+														<field name="repeat_pregnancy_hr" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<label class="timeline_examination" for="repeat_pregnancy_rhythm"/>
-														<field name="repeat_pregnancy_rhythm"/>
+														<field name="repeat_pregnancy_rhythm" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<label  class="timeline_examination" style=" margin-left: 2%;" for="repeat_pregnancy_bp_upper"/>
-														<field name="repeat_pregnancy_bp_upper"/>
+														<field name="repeat_pregnancy_bp_upper" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<span class="me-1">/</span>
-														<field name="repeat_pregnancy_bp_lower"/>
+														<field name="repeat_pregnancy_bp_lower" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<span class="me-1" style="margin-right:4% !important;">mmHg</span>
 														<label class="timeline_examination" for="repeat_pregnancy_temp"/>
-														<field name="repeat_pregnancy_temp"/>
+														<field name="repeat_pregnancy_temp" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 														<label class="timeline_examination" for="repeat_pregnancy_rr"/>
 														<field name="repeat_pregnancy_rr"/>
 													</div>
 													<div class="d-flex flex-column" style="width:100%;margin-left: 15%;">
 														<div class="d-flex">
 															<label class="ms-4 me-3" for="repeat_pregnancy_fetal_heart"/>
-															<field name="repeat_pregnancy_fetal_heart" widget="radio" options="{'horizontal': True}"/>
+															<field name="repeat_pregnancy_fetal_heart"  attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
+																   widget="radio" options="{'horizontal': True}"/>
 														</div>
 														<div class="d-flex">
 															<label class="ms-4 me-3" for="repeat_pregnancy_signs_of_ohss"/>
-															<field name="repeat_pregnancy_signs_of_ohss" widget="radio" options="{'horizontal': True}"/>
+															<field name="repeat_pregnancy_signs_of_ohss"
+																   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
+																   widget="radio" options="{'horizontal': True}"/>
 														</div>
 													</div>
 												</group>
 												<group>
-													<field name="repeat_pregnancy_icsi_ultrasound"/>
+													<field name="repeat_pregnancy_icsi_ultrasound" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 												<group string="Diagnosis">
 													<field name="repeat_pregnancy_diagnosis_ids"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
 													<field name="repeat_pregnancy_diagnosis_id_text"/>
@@ -317,36 +567,55 @@
 														   widget="many2many_tags"/>
 													<field name="repeat_pregnancy_investigation_id_text"/>
 												</group>
-												<group>
+												<group attrs="{'invisible': [('repeat_pregnancy_reason_to_visit', '!=', 'genetic_testing')]}">
 													<field name="repeat_pregnancy_procedure_performed"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
-													<field name="repeat_pregnancy_procedure_performed_text"/>
+													<field name="repeat_pregnancy_procedure_performed_text"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"/>
 													<field name="repeat_pregnancy_doctors"
 														   widget="many2many_tags"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 													<field name="repeat_pregnancy_assistants"
 														   widget="many2many_tags"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
+													<field name="repeat_pregnancy_type_sample_obtained"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"/>
+													<field name="repeat_pregnancy_name_receiving_geneticist"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes'),('repeat_pregnancy_reason_to_visit', '=', 'genetic_testing')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
 												</group>
 												<group>
-													<field name="repeat_pregnancy_type_sample_obtained"/>
-													<field name="repeat_pregnancy_name_receiving_geneticist"
-														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
-													<field name="repeat_pregnancy_plan"/>
+													<field name="repeat_pregnancy_plan"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"/>
 												</group>
 											</div>
 
 										</group>
-										<span attrs="{'invisible': [('question_one_choice', '=', 'yes')]}">
+										<span attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 
 											<group>
+												<field name="repeat_previous_treatment_lines" invisible="1" force_save="1"/>
+												<field name="repeat_obs_history_lines" invisible="1" force_save="1"/>
 												<field name="question_two_label"/>
 												<label for="question_two_choice" string=""/>
 												<field name="question_two_choice"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   widget="radio" nolabel="1"/>
 											</group>
 											<div>
-												<tree editable="top" attrs="{'invisible': [('question_two_choice', '=', 'no')]}">
+												<p attrs="{'invisible': [('question_two_choice', '!=', 'yes')]}" style="text-decoration: underline; color: red;">Please add details of pregnancy in table below</p>
+												<tree editable="top" attrs="{'invisible': [('question_two_choice', '!=', 'yes')]}">
 													<field name="repeat_obs_history_ids"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
@@ -360,52 +629,63 @@
 												<field name="question_three_label"/>
 												<label for="question_three_choice" string=""/>
 												<field name="question_three_choice"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   widget="radio" nolabel="1"/>
 											</group>
 											<div>
-												<tree editable="top" attrs="{'invisible': [('question_three_choice', '=', 'no')]}">
-													<field name="timeline_previous_treatment_ids"
+												<p attrs="{'invisible': [('question_three_choice', '!=', 'yes')]}" style="text-decoration: underline; color: red;">Please add details of treatment in table below</p>
+												<tree editable="bottom" attrs="{'invisible': [('question_three_choice', '!=', 'yes')]}">
+													<field name="repeat_previous_treatment_ids"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
 													   }"
-														   nolabel="1" editable="top">
+														   nolabel="1">
 													</field>
 												</tree>
 
 											</div>
 
 
-											<group>
+											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<group>
-													<field name="lmp_question_four"/>
+													<field name="lmp_question_four"
+														   style="width: 40% !important;"/>
+<!--													<field name="lmp_question_four"-->
+<!--														   style="width: 55% !important;"-->
+<!--														   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 												</group>
 												<group>
-													<field name="repeat_cycle_day" force_save="1"/>
+													<field name="repeat_cycle_day"
+														   style="width: 55% !important;"
+														   force_save="1"/>
 												</group>
 											</group>
 
-											<group>
+											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<field name="is_couple_living_together"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"
 												/>
 												<field name="is_couple_using_contraception"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"
 												/>
 											</group>
 
-											<div class="d-flex flex-column">
+											<div class="d-flex flex-column" attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<div/>
 
 												<div style="background: #cddbf3; padding: 0.3%;">
 													<h5>Reason for visit / Couple concerns / History of presenting complaints</h5>
 												</div>
 											</div>
-											<div class="d-flex flex-column">
-												<div>
-													<label class="oe_left" for="repeat_note"/>
-												</div>
+											<div class="d-flex flex-column" attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 
 												<div>
 													<field name="repeat_note"
@@ -414,22 +694,33 @@
 
 												</div>
 											</div>
-											<div class="d-flex flex-column">
+											<div class="d-flex flex-column" attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<div/>
 
 												<div style="background: #cddbf3; padding: 0.3%;">
 													<h5>Examination Required</h5>
 												</div>
 											</div>
-											<group>
+											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<field name="repeat_examination_required"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"/>
 											</group>
 
 											<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
-												<field name="repeat_gpe"/>
+												<field name="repeat_gpe"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('repeat_examination_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
+												/>
 												<field name="repeat_thyroid"/>
+<!--												<field name="repeat_thyroid"-->
+<!--													   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+<!--													   ('repeat_examination_required', '=', 'yes'),-->
+<!--													   ('question_one_choice', '=', 'no')]}"-->
+<!--												/>-->
 												<field name="repeat_abdominal"/>
 												<field name="repeat_breast"/>
 											</group>
@@ -443,6 +734,9 @@
 											<group attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
 												<field name="repeat_pelvic_examination_state"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('repeat_examination_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"
 												/>
 											</group>
@@ -463,25 +757,25 @@
 										('repeat_pelvic_examination_state', '=', 'no')]}">
 
 												<field name="repeat_findings_on_inspection"
-													   attrs="{'invisible': [('inspection_only', '!=', True)]}"
+													   attrs="{'invisible': [('inspection_only', '!=', True)],'required': [('show_repeat_section_state', '=', True),('inspection_only', '=', True)]}"
 												/>
 
 												<field name="repeat_valva_vaginal_exam"
-													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)]}"
+													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True),('show_repeat_section_state', '=', True)]}"
 												/>
 
 												<field name="repeat_cervix"
-													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)]}"
+													   attrs="{'invisible': [('p_v_only', '!=', True),('p_s_only', '!=', True)],
+													   'required': ['|',('p_v_only', '=', True),('p_s_only', '=', True),('show_repeat_section_state', '=', True)]}"
 												/>
 
 												<field name="repeat_uterus_and_adnexae"
-													   attrs="{'invisible': [('p_v_only', '!=', True)]}"
-												/>
+													   attrs="{'invisible': [('p_v_only', '!=', True)]}"/>
 											</group>
 											<div class="d-flex flex-column" attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
 										('repeat_pelvic_examination_state', '=', 'no')]}">
-												<div
-														attrs="{'invisible': [('inspection_only', '!=', True),
+												<div attrs="{'invisible': [('inspection_only', '!=', True),
 												   ('p_v_only', '!=', True),
 												   ('p_s_only', '!=', True)]}"
 												>
@@ -523,13 +817,13 @@
 												</div>
 											</div>
 
-											<group attrs="{'invisible': ['|', ('repeat_examination_required', '!=', 'yes'),
-										('repeat_pelvic_examination_state', '=', 'no')]}">
-												<field
-														attrs="{'invisible': [('inspection_only', '!=', True),
+											<group attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
+										('repeat_pelvic_examination_state', '=', 'no'),('repeat_hvs', '!=', True)]}">
+												<field style=" width: 40% !important; "
+													   attrs="{'invisible': [('inspection_only', '!=', True),
 													   ('p_v_only', '!=', True),
-													   ('p_s_only', '!=', True)]}"
-														name="repeat_method_of_hvs"/>
+													   ('p_s_only', '!=', True)],'required': [('repeat_hvs', '=', True),('show_repeat_section_state', '=', True)]}"
+													   name="repeat_method_of_hvs"/>
 											</group>
 
 											<div class="d-flex" attrs="{'invisible': ['|', '|', ('repeat_examination_required', '!=', 'yes'),
@@ -554,34 +848,40 @@
 
 											</group>
 
-											<div class="d-flex flex-column">
+											<div class="d-flex flex-column" attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<div/>
 
 												<div style="background: #cddbf3; padding: 0.3%;">
 													<h5>Scan Required</h5>
 												</div>
 											</div>
-											<group>
+											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<field name="scan_required"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"/>
 											</group>
 											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 
 												<field name="repeat_ultrasound_type"
 													   widget="radio"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"/>
+												<field name="duplicated_lmp_question_four" force_save="1" style="width: 20% !important; pointer-events: none;"/>
 											</group>
 
 											<!-- TVS Section -->
 											<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+												<group string="Uterus"/>
 												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1">
-														Uterus
-													</div>
+													<div class="col-md-1"/>
 													<div class="col-md-10">
 														<div class="d-flex custom-checkbox-alignment-boolean">
-															<field name="tvs_uterus_tvs_size"/>
+															<field name="tvs_uterus_tvs_size"
+															/>
 															<label class="custom-text-align" for="tvs_uterus_tvs_size"/>
 
 															<field name="tvs_uterus_tvs_position"/>
@@ -602,27 +902,53 @@
 																<field name="tvs_uterus_flexion"/>
 															</div>
 														</div>
+
 														<div class="d-flex"
 															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
+
 															<span style="font-weight:bold;">Size</span>
-															<field name="tvs_uterus_size_x"/>
+															<field name="tvs_uterus_size_x" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no'),
+													   ('tvs_uterus_tvs_size', '=', True)]}"/>
 															<span class="m-2">x</span>
 
-															<field name="tvs_uterus_size_y"/>
+															<field name="tvs_uterus_size_y"
+																   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no'),
+													   ('tvs_uterus_tvs_size', '=', True)]}"/>
 															<span>cm</span>
 														</div>
-														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+
+ 														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
 															<div class="col-md-1" style="font-weight:bold;">
 																Position
 															</div>
 															<div class="d-flex">
-																<field name="tvs_uterus_position_ids" widget="many2many_checkboxes"/>
+																<field name="position_to_left"/>
+																<span for="position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
+																<field name="position_to_right"/>
+																<span for="position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
+<!--																<field name="position_a_v"/>-->
+<!--																<span for="position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
+<!--																<field name="position_r_v"/>-->
+<!--																<span for="position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
+																<field name="position_mid_position"/>
+																<span for="position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
+																<!--																<field name="tvs_uterus_position_ids"-->
+																<!--																	   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+																<!--													   ('scan_required', '=', 'yes'),-->
+																<!--													   ('question_one_choice', '=', 'no'),-->
+																<!--													   ('tvs_uterus_tvs_position', '=', True)]}"-->
+																<!--																	   widget="many2many_checkboxes"/>-->
 															</div>
 														</div>
+														<group attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}" string="Fibroid"/>
 														<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
-															<div class="col-md-2" style="font-weight:bold;">
-																Fibroid
-															</div>
+<!--															<div class="col-md-2" style="font-weight:bold;">-->
+<!--																Fibroid-->
+<!--															</div>-->
 															<div class="col-md-7">
 																<field name="tvs_generic_sizes_ids">
 																	<tree editable="top">
@@ -640,20 +966,40 @@
 												<div class="d-flex bg-light bg-gradient">
 
 													<div class="col-md-3">
-														Endometrial Lining Character
+														Endometrial Character
 													</div>
 													<div class="d-flex flex-column">
-														<div>
-															<field name="tvs_linining_ids" widget="many2many_checkboxes"/>
+														<div style="width: 50rem;">
+															<field name="tvs_smooth"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Smooth</span>
+															<field name="tvs_distorted"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Distorted</span>
+															<field name="tvs_triple_echo"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Triple Echo</span>
+															<field name="tvs_hyperechoic_solid"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Hyperechoic/Solid</span>
+															<field name="tvs_suspected_cavity_lesion"/>
+															<span for="tvs_smooth" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
+															<div class="d-flex">
+																<field name="tvs_menstruating"/>
+																<span for="tvs_menstruating" style=" margin-right: 1%; ">Menstruating</span>
+															</div>
+
+															<!--															<field name="tvs_linining_ids"-->
+															<!--																   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+															<!--													   ('scan_required', '=', 'yes'),-->
+															<!--													   ('question_one_choice', '=', 'no')]}"-->
+															<!--																   widget="many2many_checkboxes"/>-->
 														</div>
 														<div>
 															<span>CET</span>
-															<field name="tvs_lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
+															<field name="tvs_lining_size_decimal" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span>mm</span>
 														</div>
 													</div>
 												</div>
 
+												<group string="Ovaries"/>
 												<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
 													<div class="col-md-1">
 														ROV
@@ -662,19 +1008,23 @@
 													<div class="col-md-5">
 														<div class="col-md-12" style="pointer-events: none;">
 															<field name="tvs_rov"/>
+															<!--															<field name="tvs_rov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+															<!--													   ('scan_required', '=', 'yes'),-->
+															<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 														</div>
 													</div>
 
 													<div class="col-md-6">
-
-														<button type="object"
-																class="btn-primary"
-																context="{'default_field': 'tvs_rov',
-															'default_display': tvs_rov
-															}"
-																name="action_open_tvs_scan"
-																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
-																string="Begin Scan"/>
+														<a class="btn btn-primary oe_edit_only" onclick="showBeginScan('rov', 'tvs_rov')">Begin Scan</a>
+														<!--														<a class="btn btn-primary" onclick="showTreatmentHistory()">Treatment History</a>-->
+														<!--														<button type="object"-->
+														<!--																class="btn-primary"-->
+														<!--																context="{'default_field': 'tvs_rov',-->
+														<!--															'default_display': tvs_rov-->
+														<!--															}"-->
+														<!--																name="action_open_tvs_scan"-->
+														<!--																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+														<!--																string="Begin Scan"/>-->
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
 															<field name="tvs_right_ovary_not_visualised"/>
@@ -689,18 +1039,22 @@
 													<div class="col-md-5">
 														<div class="col-md-12" style="pointer-events: none;">
 															<field name="tvs_lov"/>
+															<!--															<field name="tvs_lov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+															<!--													   ('scan_required', '=', 'yes'),-->
+															<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 														</div>
 													</div>
 
 													<div class="col-md-6">
-														<button type="object"
-																class="btn-primary"
-																context="{'default_field': 'tvs_lov',
-															'default_display': tvs_lov
-															}"
-																name="action_open_tvs_scan"
-																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
-																string="Begin Scan"/>
+														<a class="btn btn-primary" onclick="showBeginScan('lov', 'tvs_lov')">Begin Scan</a>
+														<!--														<button type="object"-->
+														<!--																class="btn-primary"-->
+														<!--																context="{'default_field': 'tvs_lov',-->
+														<!--															'default_display': tvs_lov-->
+														<!--															}"-->
+														<!--																name="action_open_tvs_scan"-->
+														<!--																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+														<!--																string="Begin Scan"/>-->
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
 															<field name="tvs_left_ovary_not_visualised"/>
@@ -708,6 +1062,8 @@
 
 													</div>
 												</div>
+
+<!--												<group string="Cyst"/>-->
 
 												<div class="d-flex align-items-center bg-light bg-gradient">
 													<div class="col-md-1">
@@ -725,18 +1081,30 @@
 														</div>
 													</div>
 												</div>
-
-												<div class="d-flex">
-													<div class="col-md-1 o_form_label">
-														Other
+												<div class="d-flex align-items-center bg-light bg-gradient">
+													<div class="col-md-1">
+														Other Findings
 													</div>
-													<div class="col-md-10">
-
-														<field name="tvs_other_text"/>
+													<div class="col-md-7 d-flex flex-column">
+														<div>
+															<field name="tvs_other_text" widget="html"/>
+														</div>
 													</div>
-
-
 												</div>
+
+												<!--												<div class="d-flex bg-light bg-gradient">-->
+												<!--													<div class="col-md-1 o_form_label">-->
+												<!--														Other-->
+												<!--													</div>-->
+												<!--													<div class="col-md-10">-->
+
+												<!--														<field name="tvs_other_text" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+												<!--													   ('scan_required', '=', 'yes'),-->
+												<!--													   ('question_one_choice', '=', 'no')]}"/>-->
+												<!--													</div>-->
+
+
+												<!--												</div>-->
 
 											</div>
 
@@ -745,27 +1113,29 @@
 											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 												<field name="tvs_signs_of_ovulation_ids"
 													   widget="many2many_tags"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"
 													   options='{"no_open": True, "no_create": True}'/>
-												<field name="tv_diagnosis"/>
+												<field name="tv_diagnosis" attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('scan_required', '=', 'yes'),
+													   ('question_one_choice', '=', 'no')]}"/>
 											</group>
-											<group>
-												<field name="counseling_and_discussion"/>
-											</group>
-											<div class="d-flex flex-column">
+
+											<div class="d-flex flex-column" attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 												<div/>
 
 												<div style="background: #cddbf3; padding: 0.3%;">
 													<h5>Post Assessment</h5>
 												</div>
 											</div>
-											<group>
+											<group attrs="{'invisible': [('question_one_choice', '!=', 'no')]}">
 
+												<field name="counseling_and_discussion"/>
 												<field name="repeat_diagnosis"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_investigations_ids"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 
@@ -781,13 +1151,23 @@
 													   options="{'horizontal': True}"/>
 												<field name="repeat_treatment_pathway"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="repeat_investigation_notes"/>
 
-												<field name="repeat_new_treatment_pathway"
+												<field name="repeat_procedure_recommended_ids"
+													   widget="many2many_tags"
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"
-													   widget="radio"
-													   options="{'horizontal': True}"
-												/>
+													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="repeat_treatment_plan"/>
+
+<!--												<field name="repeat_treatment_advised_ids"-->
+<!--													   widget="many2many_tags"-->
+<!--													   options="{'no_create_edit': True, 'no_create': True}"/>-->
+
+<!--												<field name="repeat_new_treatment_pathway"-->
+<!--													   widget="radio"-->
+<!--													   options="{'horizontal': True}"-->
+<!--												/>-->
 											</group>
 
 											<span attrs="{'invisible': [('repeat_new_treatment_pathway', '!=', 'yes')]}">
@@ -908,9 +1288,29 @@
 
 										</span>
 										<div style="text-align-last: right;background: #adb5bd;">
+											<!--											<a href="#" t-on-click="_onEditPatientTimeline"-->
+											<!--											   style="color: #FFFFFF !important; background-color: #71639e !important;-->
+											<!--											   border-color: #71639e; display: inline-block; font-weight: 500;-->
+											<!--											   line-height: 1.5; text-align: center; vertical-align: middle;-->
+											<!--											    cursor: pointer; user-select: none; border: aliceblue;-->
+											<!--											    padding: 0.375rem 0.75rem; font-size: 1.08333333rem;-->
+											<!--											    border-radius: 0.25rem; margin: 0.5rem !important;"-->
+											<!--											   class="editPatientSemen">-->
+											<!--												<span>-->
+											<!--													Delete Consultation-->
+											<!--												</span>-->
+
+											<!--											</a>-->
+											<!--											<button name="action_delete_repeat_consultation_section"-->
+											<!--													type="object"-->
+											<!--													class="btn btn-primary m-2"-->
+											<!--													groups="ecare_medical_history.group_ec_medical_administrator"-->
+											<!--													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"-->
+											<!--													string="Delete Consultation"/>-->
+
 											<button name="action_save_repeat_consultation_section"
 													type="object"
-													class="btn btn-primary"
+													class="btn btn-primary m-2"
 													attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
 													string="Close Consultation"/>
 										</div>
@@ -960,76 +1360,80 @@
 											});
 											});
 										</script>
-										<script>
-											document.addEventListener('click', function (event) {
-											var previousTreatmentButton = document.querySelector('[name="previous_treatment"]');
 
-											if(previousTreatmentButton){
+										<!--										<script>-->
+										<!--											document.addEventListener('click', function (event) {-->
+										<!--											var previousTreatmentButton = document.querySelector('[name="previous_treatment"]');-->
 
-											if (event.target === previousTreatmentButton || previousTreatmentButton.contains(event.target)) {
-											setTimeout(function () {
-											var tables = document.querySelectorAll('.o_list_table');
+										<!--											if(previousTreatmentButton){-->
 
-											tables.forEach(function (table) {
-											var tbody = table.querySelector('.ui-sortable');
-											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');
+										<!--											if (event.target === previousTreatmentButton || previousTreatmentButton.contains(event.target)) {-->
+										<!--											setTimeout(function () {-->
+										<!--											var tables = document.querySelectorAll('.o_list_table');-->
 
-											if (tbody) {
-											if (rowToAdd) {
-											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);
-											}
-											}
-											});
-											}, 200);
-											}
-											}
-											});
+										<!--											tables.forEach(function (table) {-->
+										<!--											var tbody = table.querySelector('.ui-sortable');-->
+										<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
 
-											document.addEventListener('click', function (event) {
-											var obstetricsHistoryButton = document.getElementById("obstetrics_history_section_link");
-											var repeatConsultationButton = document.getElementById("repeat_consultation_section_link");
-											if(obstetricsHistoryButton){
-											if (event.target === obstetricsHistoryButton || obstetricsHistoryButton.contains(event.target)) {
-											setTimeout(function () {
-											var tables = document.querySelectorAll('.o_list_table');
+										<!--											if (tbody) {-->
+										<!--											if (rowToAdd) {-->
+										<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
+										<!--											}-->
+										<!--											}-->
+										<!--											});-->
+										<!--											}, 200);-->
+										<!--											}-->
+										<!--											}-->
+										<!--											});-->
 
-											tables.forEach(function (table) {
-											var tbody = table.querySelector('.ui-sortable');
-											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');
+										<!--											document.addEventListener('click', function (event) {-->
+										<!--											var obstetricsHistoryButton = document.getElementById("obstetrics_history_section_link");-->
+										<!--											var repeatConsultationButton = document.getElementById("repeat_consultation_section_link");-->
+										<!--											if(obstetricsHistoryButton){-->
+										<!--											if (event.target === obstetricsHistoryButton || obstetricsHistoryButton.contains(event.target)) {-->
+										<!--											setTimeout(function () {-->
+										<!--											var tables = document.querySelectorAll('.o_list_table');-->
 
-											if (tbody) {
-											if (rowToAdd) {
-											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);
-											}
-											}
-											});
-											}, 200);
-											}
-											}
+										<!--											tables.forEach(function (table) {-->
+										<!--											var tbody = table.querySelector('.ui-sortable');-->
+										<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
 
-											if(repeatConsultationButton){
-											if (event.target === repeatConsultationButton || repeatConsultationButton.contains(event.target)) {
-											setTimeout(function () {
-											var tables = document.querySelectorAll('.o_list_table');
+										<!--											if (tbody) {-->
+										<!--											if (rowToAdd) {-->
+										<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
+										<!--											}-->
+										<!--											}-->
+										<!--											});-->
+										<!--											}, 200);-->
+										<!--											}-->
+										<!--											}-->
 
-											tables.forEach(function (table) {
-											var tbody = table.querySelector('.ui-sortable');
-											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');
+										<!--											if(repeatConsultationButton){-->
+										<!--											if (event.target === repeatConsultationButton || repeatConsultationButton.contains(event.target)) {-->
+										<!--											setTimeout(function () {-->
+										<!--											var tables = document.querySelectorAll('.o_list_table');-->
 
-											if (tbody) {
-											if (rowToAdd) {
-											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);
-											}
-											}
-											});
-											}, 200);
-											}
-											}
+										<!--											tables.forEach(function (table) {-->
+										<!--											var tbody = table.querySelector('.ui-sortable');-->
+										<!--											var rowToAdd = table.querySelector('.o_field_x2many_list_row_add');-->
 
-											});
+										<!--											if (tbody) {-->
+										<!--											if (rowToAdd) {-->
+										<!--											tbody.insertBefore(rowToAdd.parentNode, tbody.firstElementChild);-->
+										<!--											}-->
+										<!--											}-->
+										<!--											});-->
+										<!--											}, 200);-->
+										<!--											}-->
+										<!--											}-->
+
+										<!--											});-->
 
 
-										</script>
+										<!--										</script>-->
+
+
+
 										<a style="float: right; display: inline-block; background-color: #71639e; color: #fff; text-align: center; text-decoration: none; border-radius: 5px;
 										 cursor: pointer; width: 7%;
 										 FONT-SIZE: 12px; padding-top: 1%;"
@@ -1059,7 +1463,8 @@
 										<a data-bs-toggle="collapse" data-bs-target="#first_consultation_section" href="#">
 											<h4 class="mt-2 mb-0">First Consultation
 												<field style="font-size: 0.9rem; margin-left: 3%;"
-													   name="ec_first_consultation_create_date"/></h4></a>
+													   force_save="1"
+													   name="ec_create_date_first_consultation_computed"/></h4></a>
 									</div>
 									<div class="col-6 text-right" style="margin-top:9px;text-align: right;">
 										<h4>
@@ -1072,6 +1477,8 @@
 								<div class="card-block mb-5 pl-4 collapse " id="first_consultation_section">
 									<notebook class="notebook-headers-custom">
 										<page string="Female" name="female">
+											<span>Date:</span>
+											<field name="create_date_first_consultation"/>
 											<div class="d-flex scroll-to card-header first_consultation_sub_container_female" id="general_examination_section_link">
 												<div class="col-6">
 													<a data-bs-toggle="collapse" data-bs-target="#general_examination_section" href="#"><h4 class="mt-2 mb-0">General History</h4></a>
@@ -1088,7 +1495,7 @@
 
 													<field name="patient_female_dob"/>
 													<field name="biological_female_dob_check"/>
-													<field name="biological_female_dob"  attrs="{'invisible': [('biological_female_dob_check', '=', True)]}"/>
+													<field name="biological_female_dob"  style="width:30% !important;"  attrs="{'invisible': [('biological_female_dob_check', '=', True)]}"/>
 													<field name="biological_female_age" attrs="{'invisible': ['|', ('biological_female_dob', '=', False), ('biological_female_dob_check', '=', True)]}" force_save="1"/>
 
 													<field name="female_age" attrs="{'invisible': [('biological_female_dob_check', '!=', True)]}"/>
@@ -1138,7 +1545,9 @@
 											<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
 												<!--											<field name="patient_id"/>-->
 												<tree editable="top">
-													<field name="first_obs_history_ids" id="obstetrics_history_table"
+													<field name="first_obs_history_ids"
+														   attrs="{'readonly': [('first_consultation_state', '=', 'closed')]}"
+														   id="obstetrics_history_table"
 														   context="{'default_patient_id': timeline_patient_id,
 													   				'default_timeline_id' : id,}"
 														   nolabel="1" editable="top">
@@ -1183,7 +1592,7 @@
 															<span>
 																Comments
 															</span>
-															<field name="female_menstrual_comments" class="oe_inline" nolabel="1"/>
+															<field name="female_menstrual_comments" style="width:50% !important;" class="oe_inline" nolabel="1"/>
 														</div>
 													</div>
 
@@ -1221,7 +1630,7 @@
 															<span>
 																Other
 															</span>
-															<field name="female_menstrual_gap_other" class="oe_inline" nolabel="1"/>
+															<field name="female_menstrual_gap_other" style="width:50% !important;" class="oe_inline" nolabel="1"/>
 														</div>
 													</div>
 													<div/>
@@ -1230,23 +1639,58 @@
 															<span>
 																Comments
 															</span>
-															<field name="female_menstrual_all_comments" class="oe_inline" nolabel="1"/>
+															<field name="female_menstrual_all_comments" style=" width: 76% !important; " class="oe_inline" nolabel="1"/>
 														</div>
 													</div>
 
 													<field name="female_menstrual_flow" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_dysmenorrhoea_ids" widget="many2many_checkboxes"/>
-													<field name="female_pain_intensity" widget="radio" options="{'horizontal': True}"/>
-													<field name="female_lmp"/>
-													<field name="female_complications_ids" widget="many2many_checkboxes"/>
+													<label for="female_dysmenorrhoea_check"/>
+													<div class="d-flex">
+														<field name="female_dysmenorrhoea_check"/>
+														<span style="margin-right: 2%;">None</span>
+														<field name="female_dysmenorrhoea_ids"
+															   nolabel="1"
+															   attrs="{'readonly': [('female_dysmenorrhoea_check', '=', True)]}"
+															   widget="many2many_checkboxes"/>
+													</div>
+
+													<label for="female_pain_intensity_check"/>
+													<div class="d-flex">
+														<field name="female_pain_intensity_check"/>
+														<span style="margin-right: 2%;">None</span>
+														<field name="female_pain_intensity"
+															   nolabel="1"
+														   attrs="{'readonly': [('female_pain_intensity_check', '=', True)]}"
+														   widget="radio" options="{'horizontal': True}"/>
+													</div>
+
+													<field name="female_lmp" style="width:18% !important;"/>
+													<label for="female_complications_check"/>
+													<div class="d-flex">
+														<field name="female_complications_check"/>
+														<span style="margin-right: 2%;">None</span>
+														<field name="female_complications_ids"
+															   nolabel="1"
+														   attrs="{'readonly': [('female_complications_check', '=', True)]}"
+														   widget="many2many_checkboxes"/>
+													</div>
+
 													<div/>
 													<div>
 														<span>
 															Other
 														</span>
-														<field name="female_complications_other" class="oe_inline" nolabel="1"/>
+														<field name="female_complications_other" style="width:89% !important;" class="oe_inline" nolabel="1"/>
 													</div>
-													<field name="female_complains_ids" widget="many2many_checkboxes"/>
+													<label for="female_complains_check"/>
+													<div class="d-flex">
+														<field name="female_complains_check"/>
+														<span style="margin-right: 2%;">None</span>
+														<field name="female_complains_ids"
+															   nolabel="1"
+														   attrs="{'readonly': [('female_complains_check', '=', True)]}"
+														   widget="many2many_checkboxes"/>
+													</div>
 												</group>
 											</div>
 
@@ -1267,7 +1711,7 @@
 												</div>
 												<!--											 -->
 												<group>
-													<field name="sx_frequency" string="Frequency (per month)"/>
+													<field name="sx_frequency" style="width:12% !important;" string="Frequency (per month)"/>
 													<field name="sx_issues" widget="radio" options="{'horizontal': True}"/>
 													<field name="sx_comments"/>
 												</group>
@@ -1279,7 +1723,16 @@
 												<group>
 
 													<!--													<field name="cn_type" widget="radio" options="{'horizontal': True}"/>-->
-													<field name="cn_type" widget="many2many_checkboxes"/>
+													<label for="cn_type_check"/>
+													<div class="d-flex">
+														<field name="cn_type_check"/>
+														<span style="margin-right: 2%;">None</span>
+														<field name="cn_type"
+															   nolabel="1"
+															   widget="many2many_checkboxes"
+															   attrs="{'readonly': [('cn_type_check', '=', True)]}"/>
+													</div>
+<!--													<field name="cn_type" widget="many2many_checkboxes"/>-->
 													<field name="other_comments" string="Other"/>
 												</group>
 											</div>
@@ -1335,6 +1788,12 @@
 													<field name="female_hirsuitism"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   widget="radio"/>
+													<field name="female_hirsuitism_year"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="female_hirsuitism_comments"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"/>
 													<field name="female_hirsuitism_treatment"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"/>
 
@@ -1397,6 +1856,11 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_anti_phospholipid_syndrome_comments"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details"
+														   string=""
+													/>
 													<field name="female_anti_phospholipid_syndrome_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
@@ -1414,6 +1878,11 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="female_blood_transfusion_comments"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   placeholder="Add Details"
+														   string=""
+													/>
 													<field name="female_blood_transfusion_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
@@ -1590,11 +2059,11 @@
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Year"  />
 
-													<field name="female_thyroid_TYPE"
+													<field name="female_thyroid_type"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="" string="Thyroid"
 														   widget="radio" options="{'horizontal': True}"/>
-													<field name="female_thyroid"
+													<field name="female_thyroid_medical"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -1615,10 +2084,10 @@
 													<field name="female_medical_history_others"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   placeholder="Add Details" />
-													<field name="female_medical_history_others_date"
-														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
-														   string="Year"  />
+													<!--													<field name="female_medical_history_others_date"-->
+													<!--														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"-->
+													<!--														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"-->
+													<!--														   string="Year"  />-->
 													<field name="female_medical_current_medication"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Current Medications and Allergies"/>
@@ -1709,7 +2178,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseDiabetes" class="show" role="tabpanel" aria-labelledby="diabetesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_diabetes_ids" widget="many2many_checkboxes"/>
-																				<field name="female_other_diabetes" placeholder="Other..."/>
+																				<field name="female_other_diabetes" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1726,7 +2195,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseMalignancies" class="show" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_malignancies_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_malignancies" placeholder="Other..."/>
+																				<field name="female_other_malignancies" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1743,7 +2212,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseHypertension" class="show" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_hypertension" placeholder="Other..."/>
+																				<field name="female_other_hypertension" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1760,7 +2229,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseMental_illness" class="show" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_mental_illness_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_mental_illness" placeholder="Other..."/>
+																				<field name="female_other_mental_illness" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1769,7 +2238,7 @@
 																			<div class="mb-0 row">
 																				<span id="twins" aria-expanded="false" aria-controls="collapseTwins" class="collapsed colla mb-0 col-11">
 																					<h3>
-																						Twins
+																						Multiple Pregnancies
 																					</h3>
 																				</span>
 																			</div>
@@ -1777,7 +2246,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseTwins" class="show" role="tabpanel" aria-labelledby="twinsOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_twins_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_twins" placeholder="Other..."/>
+																				<field name="female_other_twins" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1794,7 +2263,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseTuberculosis" class="show" role="tabpanel" aria-labelledby="tuberculosisOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_tuberculosis_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_tuberculosis" placeholder="Other..."/>
+																				<field name="female_other_tuberculosis" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1811,7 +2280,42 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseC_abnormalities" class="show" role="tabpanel" aria-labelledby="c_abnormalitiesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_abnormalities_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_abnormalities" placeholder="Other..."/>
+																				<field name="female_other_abnormalities" placeholder="Other..." style=" width: 90% !important;"/>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="card">
+																		<div class="card-header" role="tab" id="female_c_heart_diseaseOne">
+																			<div class="mb-0 row">
+																				<span id="c_heart_disease" aria-expanded="false" aria-controls="collapseC_heart_disease" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Heart Disease
+																					</h3>
+																				</span>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="female_collapseC_heart_disease" class="show" role="tabpanel" aria-labelledby="female_c_heart_diseaseOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_heart_disease_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_heart_disease" placeholder="Other..." style=" width: 90% !important;"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="female_c_subfertilityOne">
+																			<div class="mb-0 row">
+																				<span id="c_subfertility" aria-expanded="false" aria-controls="collapseC_subfertility" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Subfertility
+																					</h3>
+																				</span>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="female_collapseC_subfertility" class="show" role="tabpanel" aria-labelledby="female_c_subfertilityOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="female_subfertility_ids" widget="many2many_checkboxes" />
+																				<field name="female_other_subfertility" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1828,7 +2332,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapsePih" class="show" role="tabpanel" aria-labelledby="pihOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_pregnancy_induced_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_pregnancy_induced_hypertension" placeholder="Other..."/>
+																				<field name="female_other_pregnancy_induced_hypertension" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1845,7 +2349,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseMisscarriages" class="show" role="tabpanel" aria-labelledby="misscarriagesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_miscarriage_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_miscarriage" placeholder="Other..."/>
+																				<field name="female_other_miscarriage" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1862,7 +2366,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapsePb" class="show" role="tabpanel" aria-labelledby="pbOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_preterm_birth_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_preterm_birth" placeholder="Other..."/>
+																				<field name="female_other_preterm_birth" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1879,7 +2383,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapseSb" class="show" role="tabpanel" aria-labelledby="sbOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_still_birth_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_still_birth" placeholder="Other..."/>
+																				<field name="female_other_still_birth" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1896,7 +2400,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="collapsePmof" class="show" role="tabpanel" aria-labelledby="pmofOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="female_pre_mature_ovarian_failure_ids" widget="many2many_checkboxes" />
-																				<field name="female_other_pre_mature_ovarian_failure" placeholder="Other..."/>
+																				<field name="female_other_pre_mature_ovarian_failure" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1912,7 +2416,7 @@
 																		</div>
 																		<div style="margin-left:17px; margin-top:10px" id="collapseOther" class="show" role="tabpanel" aria-labelledby="otherOne" aria-expanded="false">
 																			<div class="card-block">
-																				<field name="female_family_history_other" placeholder="Other..."/>
+																				<field name="female_family_history_other" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -1986,11 +2490,11 @@
 														</div>
 														<label for="female_bp_upper"/>
 														<div>
-															<field name="female_bp_upper" class="oe_inline" nolabel="1"/>
+															<field name="female_bp_upper" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span class="oe_inline">
 																/
 															</span>
-															<field name="female_bp_lower" class="oe_inline" nolabel="1"/>
+															<field name="female_bp_lower" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span class="oe_inline">
 																mmHg
 															</span>
@@ -2057,27 +2561,27 @@
 														<label for="breast_right"/>
 														<div>
 															<field name="breast_right" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="breast_right_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="breast_right_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 														<label for="breast_left"/>
 														<div>
 															<field name="breast_left" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="breast_left_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="breast_left_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 														<label for="cvs"/>
 														<div>
 															<field name="cvs" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="cvs_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="cvs_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 														<label for="respiratory"/>
 														<div>
 															<field name="respiratory" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="respiratory_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="respiratory_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 														<label for="abdomen"/>
 														<div>
 															<field name="abdomen" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-															<field name="abdomen_comment" placeholder="other"  class="oe_inline" nolabel="1"/>
+															<field name="abdomen_comment" style="width: 75% !important;" placeholder="other"  class="oe_inline" nolabel="1"/>
 														</div>
 
 														<field name="other_findings"/>
@@ -2117,28 +2621,41 @@
 														   attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
 														   ('gynae_exam_inspection_only', '!=', True)]}"
 													/>
-													<field name="gynae_exam_valva_vaginal_exam"
-														   attrs="{'invisible': ['|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
-															   ('gynae_exam_p_v_only', '!=', True),
-														   ('gynae_exam_p_s_only', '!=', True)]}"
-													/>
 
-													<field name="gynae_exam_cervix"
-														   attrs="{'invisible': ['|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
-															   ('gynae_exam_p_v_only', '!=', True),
-															   ('gynae_exam_p_s_only', '!=', True)]}"
-													/>
+													<div class="o_cell o_wrap_label flex-grow-1 flex-sm-grow-0 w-100 text-break text-900"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
+														<label class="o_form_label"  attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True), ('gynae_exam_p_s_only', '!=', True)]}" for="gynae_exam_valva_vaginal_exam">Vulva and Vagina</label>
+													</div>
+													<div class="o_cell o_wrap_input flex-grow-1 flex-sm-grow-0 text-break"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"
+														 style="width: 100%;">
+														<field name="gynae_exam_valva_vaginal_exam"
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}"
+														/>
+													</div>
+
+													<div class="o_cell o_wrap_label flex-grow-1 flex-sm-grow-0 w-100 text-break text-900"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
+														<label class="o_form_label"  attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True), ('gynae_exam_p_s_only', '!=', True)]}" for="gynae_exam_cervix">Cervix</label>
+													</div>
+													<div class="o_cell o_wrap_input flex-grow-1 flex-sm-grow-0 text-break"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"
+														 style="width: 100%;">
+														<field name="gynae_exam_cervix"
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True), ('gynae_exam_p_s_only', '!=', True)]}"
+														/>
+													</div>
+
+
 
 													<field name="gynae_exam_uterus_and_adnexae"
-														   attrs="{'invisible': ['|',('gynae_exam_pelvic_examination_state', '=', 'no'),
-															   ('gynae_exam_p_v_only', '!=', True)]}"
+														   attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),('gynae_exam_p_v_only', '!=', True)]}"
 													/>
 
 
 													<div attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"/>
 													<div class="d-flex flex-column" attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
-														<div
-																attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+														<div attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
 												   ('gynae_exam_p_v_only', '!=', True),
 												   ('gynae_exam_p_s_only', '!=', True)]}"
 														>
@@ -2178,14 +2695,15 @@
 
 
 														</div>
+														<div class="d-flex" style=" width: 230%;"
+															 attrs="{'invisible': [('gynae_exam_inspection_only', '!=', True),
+																			  ('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}">
+															<label style="width: 16%;" for="gynae_exam_method_of_hvs" attrs="{'invisible': [('gynae_exam_hvs', '!=', True)]}"/>
+															<field name="gynae_exam_method_of_hvs" attrs="{'invisible': [('gynae_exam_hvs', '!=', True)]}"/>
+														</div>
 													</div>
 
-													<field
-															attrs="{'invisible': ['|','|','|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
-															('gynae_exam_inspection_only', '!=', True),
-													   ('gynae_exam_p_v_only', '!=', True),
-													   ('gynae_exam_p_s_only', '!=', True)]}"
-															name="gynae_exam_method_of_hvs"/>
+
 
 													<div class="d-flex" attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
 													('gynae_exam_p_s_only', '!=', True)]}"/>
@@ -2201,9 +2719,8 @@
 
 													</div>
 													<field name="gynae_exam_other_findings"
-														   attrs="{'invisible': ['|','|',('gynae_exam_pelvic_examination_state', '=', 'no'),
-														   ('gynae_exam_p_v_only', '!=', True),
-													   ('gynae_exam_p_s_only', '!=', True)]}"
+														   attrs="{'invisible': ['|',('gynae_exam_pelvic_examination_state', '=', 'no'),'|',('gynae_exam_p_v_only', '!=', True),
+														   ('gynae_exam_p_s_only', '!=', True)]}"
 													/>
 
 													<h4 style="width:200%;">Ultrasound</h4>
@@ -2211,14 +2728,23 @@
 													<field name="gynaecological_ultrasound_type"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
-													<field name="gynaecological_examination_date"/>
-													<field name="gynaecological_examination_lmp"/>
+<!--													<field name="gynaecological_examination_date"  style="width:30% !important;"/>-->
+													<label for="gynaecological_examination_lmp" style="width:30% !important;"/>
+													<div class="d-flex">
+														<field name="gynaecological_examination_lmp" style="width:20% !important;"/>
+														<label for="gynaecological_examination_cycle_day" style="width:30% !important;"/>
+														<field name="gynaecological_examination_cycle_day" force_save="1" style="width:30% !important;margin-left: 2%;"/>
+													</div>
+<!--													<field name="gynaecological_examination_lmp" style="width:30% !important;"/>-->
+<!--													<field name="gynaecological_examination_cycle_day" force_save="1"/>-->
 
+													<div class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Uterus</div>
+													<div/>
 													<div/>
 													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -30%;">
-														<div class="col-md-1">
-															Uterus
-														</div>
+<!--														<div class="col-md-1">-->
+<!--															Uterus-->
+<!--														</div>-->
 														<div class="col-md-10">
 															<div class="d-flex">
 																<field name="gynaecological_uterus_size"/>
@@ -2255,13 +2781,26 @@
 																	Position
 																</div>
 																<div class="d-flex">
-																	<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>
+																	<field name="gynae_position_to_left"/>
+																	<span for="gynae_position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
+																	<field name="gynae_position_to_right"/>
+																	<span for="gynae_position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
+<!--																	<field name="gynae_position_a_v"/>-->
+<!--																	<span for="gynae_position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
+<!--																	<field name="gynae_position_r_v"/>-->
+<!--																	<span for="gynae_position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
+																	<field name="gynae_position_mid_position"/>
+																	<span for="gynae_position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
+
+																	<!--																	<field name="gynaecological_uterus_position_ids" widget="many2many_checkboxes"/>-->
 																</div>
 															</div>
+															<div attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}" class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Fibroid</div>
+															<div/>
 															<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
-																<div class="col-md-2" style="font-weight:bold;">
-																	Fibroid
-																</div>
+<!--																<div class="col-md-2" style="font-weight:bold;">-->
+<!--																	Fibroid-->
+<!--																</div>-->
 																<div class="col-md-10">
 																	<field name="gynaecological_generic_sizes_ids">
 																		<tree editable="top">
@@ -2278,15 +2817,31 @@
 															<div class="d-flex bg-light bg-gradient">
 
 																<div class="col-md-3">
-																	Endometrial Lining Character
+																	Endometrial Character
 																</div>
 																<div class="d-flex flex-column">
 																	<div>
-																		<field name="lining_ids" widget="many2many_checkboxes"/>
+																		<div class="d-flex">
+																			<field name="gynae_smooth"/>
+																			<span style=" margin-right: 2%; ">Smooth</span>
+																			<field name="gynae_distorted"/>
+																			<span style=" margin-right: 2%; ">Distorted</span>
+																			<field name="gynae_triple_echo"/>
+																			<span style=" margin-right: 2%;min-width: fit-content; ">Triple Echo</span>
+																			<field name="gynae_hyperechoic_solid"/>
+																			<span style=" margin-right: 2%; ">Hyperechoic/Solid</span>
+																		</div>
+																		<div class="d-flex">
+																			<field name="gynae_suspected_cavity_lesion"/>
+																			<span style=" margin-right: 2%; ">Suspected Cavity Lesion</span>
+																			<field name="gynae_menstruating"/>
+																			<span style=" margin-right: 2%; ">Menstruating</span>
+																		</div>
+																		<!--																		<field name="lining_ids" widget="many2many_checkboxes"/>-->
 																	</div>
 																	<div>
 																		<span>CET</span>
-																		<field name="lining_size" placeholder="..." class="oe_inline" nolabel="1"/>
+																		<field name="lining_size_decimal" style="width:15% !important;" class="oe_inline" nolabel="1"/>
 																		<span>mm</span>
 																	</div>
 																</div>
@@ -2308,16 +2863,19 @@
 													<!--															mm-->
 													<!--														</span>-->
 													<!--													</div>-->
+													<div class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Ovaries</div>
+													<div/>
 													<label for="gynae_rov"/>
 													<div>
 														<field name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;"/>
 														<span class="oe_inline">
-															<button type="object"
-																	class="btn-primary"
-																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"
-																	name="action_open_gynae_scan"
-																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
-																	string="Begin Scan"/>
+															<a class="btn btn-primary" onclick="showBeginScan('gynae_rov', 'gynae_rov')">Begin Scan</a>
+															<!--															<button type="object"-->
+															<!--																	class="btn-primary"-->
+															<!--																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"-->
+															<!--																	name="action_open_gynae_scan"-->
+															<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+															<!--																	string="Begin Scan"/>-->
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -2330,12 +2888,13 @@
 													<div>
 														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;"/>
 														<span class="oe_inline">
-															<button type="object"
-																	class="btn-primary"
-																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"
-																	name="action_open_gynae_scan"
-																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"
-																	string="Begin Scan"/>
+															<a class="btn btn-primary" onclick="showBeginScan('gynae_lov', 'gynae_lov')">Begin Scan</a>
+															<!--															<button type="object"-->
+															<!--																	class="btn-primary"-->
+															<!--																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"-->
+															<!--																	name="action_open_gynae_scan"-->
+															<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+															<!--																	string="Begin Scan"/>-->
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -2361,7 +2920,7 @@
 														</div>
 													</div>
 
-													<field name="gynaecological_examination_comment"/>
+													<field name="gynaecological_examination_comment" string="Other Findings"/>
 												</group>
 											</div>
 
@@ -2386,7 +2945,7 @@
 
 													<field name="patient_male_dob"/>
 													<field name="biological_male_dob_check"/>
-													<field name="biological_male_dob"  attrs="{'invisible': [('biological_male_dob_check', '=', True)]}"/>
+													<field name="biological_male_dob"  style="width:30% !important;"  attrs="{'invisible': [('biological_male_dob_check', '=', True)]}"/>
 													<field name="biological_male_age" attrs="{'invisible': ['|', ('biological_male_dob', '=', False), ('biological_male_dob_check', '=', True)]}" force_save="1"/>
 
 													<field name="male_age" attrs="{'invisible': [('biological_male_dob_check', '!=', True)]}"/>
@@ -2442,6 +3001,12 @@
 													<field name="male_hirsuitism"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   widget="radio"/>
+													<field name="male_hirsuitism_year"
+														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   string="Year"  />
+													<field name="male_hirsuitism_comments"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"/>
 													<field name="male_hirsuitism_treatment"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"/>
 
@@ -2498,6 +3063,11 @@
 													<field name="male_anti_phospholipid_syndrome" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_anti_phospholipid_syndrome_comments"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details"
+														   string=""
+													/>
 													<field name="male_anti_phospholipid_syndrome_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -2514,6 +3084,11 @@
 													<field name="male_blood_transfusion" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   widget="radio" options="{'horizontal': True}"/>
+													<field name="male_blood_transfusion_comments"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   placeholder="Add Details"
+														   string=""
+													/>
 													<field name="male_blood_transfusion_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
@@ -2685,11 +3260,11 @@
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
-													<field name="male_thyroid_TYPE"
+													<field name="male_thyroid_type"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   placeholder="" string="Thyroid"
 														   widget="radio" options="{'horizontal': True}"/>
-													<field name="male_thyroid"
+													<field name="male_thyroid_medical"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   placeholder="Add Details" string="" />
 													<field name="male_thyroid_date"
@@ -2703,15 +3278,15 @@
 													<field name="male_urinary_infection_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   string="Year"  />
+														   string="Year"/>
 
 													<field name="male_medical_history_others"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   placeholder="Add Details" />
-													<field name="male_medical_history_others_date"
-														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
-														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
-														   string="Year"  />
+													<!--													<field name="male_medical_history_others_date"-->
+													<!--														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"-->
+													<!--														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"-->
+													<!--														   string="Year"  />-->
 													<field name="male_medical_current_medication"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   string="Current Medications and Allergies"/>
@@ -2752,8 +3327,17 @@
 																string="Add" target="current"/>
 													</div>
 												</group>
-												<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="tree" nolabel="1"
-													   string="Patient Procedures" create="false"/>
+												<field name="male_procedures_ids" nolabel="1" create="false">
+													<tree class="custom-scrollbar opd-notes-height" create="false">
+														<field name="female_consultation_id" invisible="1" force_save="1"/>
+														<field name="male_consultation_id" invisible="1" force_save="1"/>
+														<field name="type_of_surgery_male"/>
+														<field name="details" placeholder="Details..."/>
+														<field name="surgical_year_id" placeholder="Year.."/>
+													</tree>
+												</field>
+<!--												<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="tree" nolabel="1"-->
+<!--													   string="Patient Procedures" create="false"/>-->
 											</div>
 
 
@@ -2836,7 +3420,7 @@
 																			 aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_diabetes_ids" widget="many2many_checkboxes"/>
-																				<field name="male_other_diabetes" placeholder="Other..."/>
+																				<field name="male_other_diabetes" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2854,7 +3438,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMalignancies" class="show" role="tabpanel" aria-labelledby="malignanciesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_malignancies_ids"  widget="many2many_checkboxes" />
-																				<field name="male_other_malignancies" placeholder="Other..."/>
+																				<field name="male_other_malignancies" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2872,7 +3456,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseHypertension" class="show" role="tabpanel" aria-labelledby="hypertensionOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_hypertension_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_hypertension" placeholder="Other..."/>
+																				<field name="male_other_hypertension" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2890,7 +3474,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseMental_illness" class="show" role="tabpanel" aria-labelledby="mental_illnessOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_mental_illness_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_mental_illness" placeholder="Other..."/>
+																				<field name="male_other_mental_illness" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2900,7 +3484,7 @@
 																			<div class="mb-0 row">
 																				<span id="twins" aria-expanded="false" aria-controls="male_collapseTwins" class="collapsed colla mb-0 col-11">
 																					<h3>
-																						Twins
+																						Multiple Pregnancies
 																					</h3>
 																				</span>
 																			</div>
@@ -2908,7 +3492,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseTwins" class="show" role="tabpanel" aria-labelledby="male_twinsOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_twins_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_twins" placeholder="Other..."/>
+																				<field name="male_other_twins" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2926,7 +3510,7 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseTuberculosis" class="show" role="tabpanel" aria-labelledby="male_tuberculosisOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_tuberculosis_ids"  widget="many2many_checkboxes" />
-																				<field name="male_other_tuberculosis" placeholder="Other..."/>
+																				<field name="male_other_tuberculosis" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2944,7 +3528,41 @@
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseC_abnormalities" class="show" role="tabpanel" aria-labelledby="male_c_abnormalitiesOne" aria-expanded="false">
 																			<div class="card-block">
 																				<field name="male_abnormalities_ids" widget="many2many_checkboxes" />
-																				<field name="male_other_abnormalities" placeholder="Other..."/>
+																				<field name="male_other_abnormalities" placeholder="Other..." style=" width: 90% !important;"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_c_heart_diseaseOne">
+																			<div class="mb-0 row">
+																				<span id="c_heart_disease" aria-expanded="false" aria-controls="collapseC_heart_disease" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Heart Disease
+																					</h3>
+																				</span>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseC_heart_disease" class="show" role="tabpanel" aria-labelledby="male_c_heart_diseaseOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_heart_disease_ids" widget="many2many_checkboxes" />
+																				<field name="male_other_heart_disease" placeholder="Other..." style=" width: 90% !important;"/>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="card">
+																		<div class="card-header" role="tab" id="male_c_subfertilityOne">
+																			<div class="mb-0 row">
+																				<span id="c_subfertility" aria-expanded="false" aria-controls="collapseC_subfertility" class="collapsed colla mb-0 col-11">
+																					<h3>
+																						Subfertility
+																					</h3>
+																				</span>
+																			</div>
+																		</div>
+																		<div style="margin-left:17px; margin-top:10px" id="male_collapseC_subfertility" class="show" role="tabpanel" aria-labelledby="male_c_subfertilityOne" aria-expanded="false">
+																			<div class="card-block">
+																				<field name="male_subfertility_ids" widget="many2many_checkboxes" />
+																				<field name="male_other_subfertility" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -2960,7 +3578,7 @@
 																		</div>
 																		<div style="margin-left:17px; margin-top:10px" id="male_collapseOther" class="show" role="tabpanel" aria-labelledby="male_otherOne" aria-expanded="false">
 																			<div class="card-block">
-																				<field name="male_family_history_other" placeholder="Other..."/>
+																				<field name="male_family_history_other" placeholder="Other..." style=" width: 90% !important;"/>
 																			</div>
 																		</div>
 																	</div>
@@ -3064,11 +3682,11 @@
 														</div>
 														<label for="male_bp_upper"/>
 														<div>
-															<field name="male_bp_upper" class="oe_inline" nolabel="1"/>
+															<field name="male_bp_upper" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span>
 																/
 															</span>
-															<field name="male_bp_lower" class="oe_inline" nolabel="1"/>
+															<field name="male_bp_lower" style="width:12% !important;" class="oe_inline" nolabel="1"/>
 															<span>
 																mmHg
 															</span>
@@ -3133,17 +3751,17 @@
 													<label for="male_cvs"/>
 													<div>
 														<field name="male_cvs" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-														<field name="male_cvs_comment" placeholder="other.." class="oe_inline" nolabel="1"/>
+														<field name="male_cvs_comment" style="width: 75% !important;" placeholder="other.." class="oe_inline" nolabel="1"/>
 													</div>
 													<label for="male_respiratory_systematic"/>
 													<div>
 														<field name="male_respiratory_systematic" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-														<field name="male_respiratory_comment" class="oe_inline" nolabel="1" placeholder="other.."/>
+														<field name="male_respiratory_comment" style="width: 75% !important;" class="oe_inline" nolabel="1" placeholder="other.."/>
 													</div>
 													<label for="male_abdomen"/>
 													<div>
 														<field name="male_abdomen" widget="radio" options="{'horizontal': True}" class="oe_inline" nolabel="1"/>
-														<field name="male_abdomen_comment" placeholder="other.." class="oe_inline" nolabel="1"/>
+														<field name="male_abdomen_comment" style="width: 75% !important;" placeholder="other.." class="oe_inline" nolabel="1"/>
 													</div>
 
 													<field name="male_systemic_other" placeholder="other.."/>
@@ -3157,6 +3775,7 @@
 											<div class="card-block mb-5 pl-4" id="previous_treatment_tree_section">
 												<tree editable="top">
 													<field name="first_previous_treatment_ids"
+														   attrs="{'readonly': [('first_consultation_state', '=', 'closed')]}"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
 													   }"
@@ -3167,18 +3786,18 @@
 										</page>
 
 										<page string="Conclusion" name="conclusion">
-											<!--											<div style="text-align: right;">-->
-											<!--												<button name="action_close_first_consultation"-->
-											<!--														type="object"-->
-											<!--														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"-->
-											<!--														class="card-custom-close-button-btn"-->
-											<!--														string="Close First Consultation"/>-->
-											<!--												<button name="action_open_first_consultation"-->
-											<!--														type="object"-->
-											<!--														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"-->
-											<!--														class="card-custom-close-button-btn"-->
-											<!--														string="Open First Consultation"/>-->
-											<!--											</div>-->
+											<div style="text-align: right;">
+												<button name="action_close_first_consultation"
+														type="object"
+														attrs="{'invisible': [('first_consultation_state', '=', 'closed')]}"
+														class="card-custom-close-button-btn"
+														string="Disallow Editing"/>
+												<button name="action_open_first_consultation"
+														type="object"
+														attrs="{'invisible': [('first_consultation_state', '=', 'open')]}"
+														class="card-custom-close-button-btn"
+														string="Allow Editing"/>
+											</div>
 											<field name="timeline_conclusion" placeholder="Type..."/>
 										</page>
 
@@ -3239,8 +3858,11 @@
 											string="Obstetrics History"/>
 
 									<div class="divider"/>
-									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#femaleCollapseSection" href="#">
+									<a class="buttonCollapse btn_minus_female" data-bs-toggle="collapse" data-bs-target="#femaleCollapseSection" href="#">
 										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
+									</a>
+									<a class="buttonCollapse btn_plus_female" style="display:none;" data-bs-toggle="collapse" data-bs-target="#femaleCollapseSection" href="#">
+										<i title="Hide/Show" class="fa fa-plus-square" aria-hidden="true"/>
 									</a>
 									<div class="show" id="femaleCollapseSection">
 										<div class="divider"/>
@@ -3272,10 +3894,13 @@
 									<button name="action_open_seminology"
 											type="object"
 											class="card-custom-right-button"
-											string="Seminology"/>
+											string="Semenology"/>
 									<div class="divider"/>
-									<a class="buttonCollapse" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
+									<a class="buttonCollapse btn_minus_male" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
 										<i title="Hide/Show" class="fa fa-minus-square" aria-hidden="true"/>
+									</a>
+									<a class="buttonCollapse btn_plus_male" style="display:none;" data-bs-toggle="collapse" data-bs-target="#maleCollapseSection" href="#">
+										<i title="Hide/Show" class="fa fa-plus-square" aria-hidden="true"/>
 									</a>
 									<div class="show" id="maleCollapseSection">
 										<div class="divider"/>

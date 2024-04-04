@@ -16,7 +16,9 @@ class MaleMedicalHistory(models.Model):
 
     ''' Common '''
     male_medical_history_patient_id = fields.Many2one(comodel_name="ec.medical.patient",
-                                                        ondelete='restrict')
+                                                      ondelete='restrict')
+
+    male_no_medical_history = fields.Boolean(string='No Significant Medical History')
 
     male_acne = fields.Char('Acne')
     male_acne_date = fields.Many2one("ec.medical.year", 'Acne Date')
@@ -30,7 +32,9 @@ class MaleMedicalHistory(models.Model):
     male_weight_comments = fields.Char('Comments')
 
     male_hirsuitism = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                         string='Hirsuitism')
+                                       string='Hirsuitism')
+    male_hirsuitism_year = fields.Many2one("ec.medical.year", 'Hirsuitism')
+    male_hirsuitism_comments = fields.Char('Comments')
     male_hirsuitism_treatment = fields.Char('Any treatment')
 
     male_tuberculosis = fields.Char('Tuberculosis')
@@ -51,7 +55,8 @@ class MaleMedicalHistory(models.Model):
     male_adrenal_date = fields.Many2one("ec.medical.year", 'Adrenal Date')
 
     male_anti_phospholipid_syndrome = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                                         string='Anti-phospholipid Syndrome')
+                                                       string='Anti-phospholipid Syndrome')
+    male_anti_phospholipid_syndrome_comments = fields.Char(string='Anti-phospholipid Syndrome')
 
     male_anti_phospholipid_syndrome_date = fields.Many2one("ec.medical.year", 'Anti-phospholipid Syndrome Date')
 
@@ -59,7 +64,8 @@ class MaleMedicalHistory(models.Model):
     male_autoimmune_disease_date = fields.Many2one("ec.medical.year", 'Autoimmune Diseases Date')
 
     male_blood_transfusion = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                                string='Blood Transfusion')
+                                              string='Blood Transfusion')
+    male_blood_transfusion_comments = fields.Char('Blood Transfusion')
     male_blood_transfusion_date = fields.Many2one("ec.medical.year", 'Blood Transfusion Date')
 
     male_cardiac = fields.Char('Cardiac')
@@ -101,9 +107,9 @@ class MaleMedicalHistory(models.Model):
     male_skeletal = fields.Char('Skeletal')
     male_skeletal_date = fields.Many2one("ec.medical.year", 'Skeletal Date')
 
-    male_thyroid_TYPE = fields.Selection(selection=StaticMember.MEDICAL_THYROID,
-                                           string='Thyroid')
-    male_thyroid = fields.Text('Thyroid')
+    male_thyroid_type = fields.Selection(selection=StaticMember.MEDICAL_THYROID,
+                                         string='Thyroid')
+    male_thyroid_medical = fields.Char('Thyroid')
     male_thyroid_date = fields.Many2one("ec.medical.year", 'Thyroid Date')
 
     male_heart_disease = fields.Char(string='Heart Disease')
@@ -123,7 +129,7 @@ class MaleMedicalHistory(models.Model):
 
     male_diabetes = fields.Text(string='Diabetes')
     male_diabetes_type = fields.Selection(selection=StaticMember.DIABETES_TYPE,
-                                            string='Diabetes')
+                                          string='Diabetes')
     male_diabetes_date = fields.Many2one("ec.medical.year", 'Diabetes Date')
 
     male_dvt = fields.Char(string='DVT')
@@ -138,7 +144,7 @@ class MaleMedicalHistory(models.Model):
     male_operations_pr = fields.Text(string='Operations (if any)')
     male_medical_history_others = fields.Char(string='Others')
     male_medical_history_others_date = fields.Many2one("ec.medical.year", 'Others Date')
-    male_medical_current_medication = fields.Char(string='Current Medication')
+    male_medical_current_medication = fields.Html(string='Current Medication')
 
     ''' not being used '''
     # male_allergies_pr = fields.Text(string='Allergies Pr')

@@ -11,10 +11,14 @@
                             <group>
                                 <field name="female_consultation_id" invisible="1" force_save="1"/>
                                 <field name="male_consultation_id" invisible="1" force_save="1"/>
-                                <field name="type_of_surgery" required="1"/>
-                                <field name="details" placeholder="Details..."/>
-                                <field name="date_on" placeholder="Date On"/>
-                                <field name="surgical_year_id"
+                                <field name="type_of_surgery"
+                                       attrs="{'invisible': [('female_consultation_id', '=', False)],
+                                       'required': [('female_consultation_id', '!=', False)]}"/>
+                                <field name="type_of_surgery_male"
+                                       attrs="{'invisible': [('male_consultation_id', '=', False)],
+                                       'required': [('male_consultation_id', '!=', False)]}"/>
+                                <field name="details" placeholder="Details..." required="1"/>
+                                <field name="surgical_year_id" required="1"
                                        options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
                                        placeholder="Year.."/>
                             </group>
@@ -33,7 +37,6 @@
                     <field name="male_consultation_id" invisible="1" force_save="1"/>
                     <field name="type_of_surgery"/>
                     <field name="details" placeholder="Details..."/>
-                    <field name="date_on" placeholder="Date On"/>
                     <field name="surgical_year_id" placeholder="Year.."/>
                 </tree>
             </field>
@@ -45,7 +48,6 @@
             <field name="arch" type="xml">
                 <kanban create="false">
                     <field name="details"/>
-                    <field name="date_on"/>
                     <templates>
                         <t t-name="kanban-box" style="width:40mm; height:70mm;">
                             <div t-attf-class="oe_kanban_global_click">
@@ -57,14 +59,6 @@
                                             </td>
                                             <td>
                                                 <field name="details"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="o_td_label">
-                                                <label class="o_form_label" for="date_on">Date On:</label>
-                                            </td>
-                                            <td>
-                                                <field name="date_on"/>
                                             </td>
                                         </tr>
                                     </tbody>

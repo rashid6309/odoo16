@@ -1,5 +1,4 @@
 from odoo import models, fields, api
-from odoo.addons.ecare_medical_history.utils.validation import Validation
 
 
 class MedicalPatientAttachment(models.Model):
@@ -11,9 +10,21 @@ class MedicalPatientAttachment(models.Model):
 
     name = fields.Char(string="Details", required=True)
 
-    attachment_id = fields.Many2many('ir.attachment', 'patient_attachment_document_rel',
-                                     'patient_attachment_id', 'doc_id', help="If you want to upload any attachment.",
-                                     string='Document', public=True)
+    attachment_id = fields.Many2many('ir.attachment',
+                                     'patient_attachment_document_rel',
+                                     'patient_attachment_id',
+                                     'doc_id',
+                                     help="If you want to upload any attachment.",
+                                     string='Document', public=True, copy=False)
 
     results = fields.Text('Results')
+
+    @api.model
+    def create(self, vals):
+        templates = super(MedicalPatientAttachment, self).create(vals)
+        # fix attachment ownership
+        for template in templates:
+            if template.attachment_id:
+                template.attachment_id.write({'res_model': self._name, 'res_id': template.id})
+        return templates
 

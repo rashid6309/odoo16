@@ -56,6 +56,16 @@ class CustomDateTime:
         if date > today:
             return True
 
+        return (False)
+
+    @staticmethod
+    def datetime_greater_than_today(datetime):
+        if not datetime:
+            return False
+        today = datetime.today()
+        if datetime > today:
+            return True
+
         return False
 
 # class CustomDateTime:
