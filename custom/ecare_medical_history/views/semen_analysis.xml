@@ -467,7 +467,6 @@
 <!--                    <field name="semen_patient_id"/>-->
                     <field name="date"/>
                     <field name="lab_number"/>
-                    <field name="lab_name"/>
                     <field name="preparation_ids" string="Type of analysis" widget="many2many_tags"/>
                     <field name="semen_diagnosis_id" string="Diagnosis"/>
                     <field name="total_count" string="Count (x10^6/ml)"/>
