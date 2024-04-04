@@ -451,9 +451,9 @@
                     <field name="motility_percentage" string="Prep Motility (%)"/>
                     <field name="after_24_hrs_motility_percentage" string="24h survival of prep (%)"/>
                     <field name="sperm_cryopreservation_consented" string="Freezing recommended?"/>
-                    <field name="other_observation" string="Patient Report 1"/>
-                    <field name="comments" string="Patient Report 2"/>
-                    <field name="special_notes" string="Special notes"/>
+                    <field name="other_observation" string="Patient Report 1" class="truncate_text"/>
+                    <field name="comments" string="Patient Report 2" class="truncate_text"/>
+                    <field name="special_notes" string="Special notes" class="truncate_text"/>
                 </tree>
             </field>
         </record>
@@ -477,9 +477,9 @@
                     <field name="motility_percentage" string="Prep Motility (%)"/>
                     <field name="after_24_hrs_motility_percentage" string="24h survival of prep (%)"/>
                     <field name="sperm_cryopreservation_consented" string="Freezing recommended?"/>
-                    <field name="other_observation" string="Patient Report 1"/>
-                    <field name="comments" string="Patient Report 2"/>
-                    <field name="special_notes" string="Special notes"/>
+                    <field name="other_observation" string="Patient Report 1" class="truncate_text"/>
+                    <field name="comments" string="Patient Report 2" class="truncate_text"/>
+                    <field name="special_notes" string="Special notes" class="truncate_text"/>
                     <button name="edit_semen_analysis_record"
                             type="object"
                             groups="ecare_medical_history.group_medical_history_andrology_view"
