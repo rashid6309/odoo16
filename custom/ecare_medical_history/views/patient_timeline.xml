@@ -2400,15 +2400,32 @@
 														   attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),
 														   ('gynae_exam_inspection_only', '!=', True)]}"
 													/>
-													<field name="gynae_exam_valva_vaginal_exam"
-														   attrs="{'invisible': ['|','|',  ('gynae_exam_pelvic_examination_state', '=', 'no'),('gynae_exam_p_v_only', '!=', True),
-														   ('gynae_exam_p_s_only', '!=', True)]}"
-													/>
 
-													<field name="gynae_exam_cervix"
-														   attrs="{'invisible': ['|', '|', ('gynae_exam_pelvic_examination_state', '=', 'no'),('gynae_exam_p_v_only', '!=', True),
-														   ('gynae_exam_p_s_only', '!=', True)]}"
-													/>
+													<div class="o_cell o_wrap_label flex-grow-1 flex-sm-grow-0 w-100 text-break text-900"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
+														<label class="o_form_label"  attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True), ('gynae_exam_p_s_only', '!=', True)]}" for="gynae_exam_valva_vaginal_exam">Vulva and Vagina</label>
+													</div>
+													<div class="o_cell o_wrap_input flex-grow-1 flex-sm-grow-0 text-break"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"
+														 style="width: 100%;">
+														<field name="gynae_exam_valva_vaginal_exam"
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}"
+														/>
+													</div>
+
+													<div class="o_cell o_wrap_label flex-grow-1 flex-sm-grow-0 w-100 text-break text-900"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
+														<label class="o_form_label"  attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True), ('gynae_exam_p_s_only', '!=', True)]}" for="gynae_exam_cervix">Cervix</label>
+													</div>
+													<div class="o_cell o_wrap_input flex-grow-1 flex-sm-grow-0 text-break"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"
+														 style="width: 100%;">
+														<field name="gynae_exam_cervix"
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True), ('gynae_exam_p_s_only', '!=', True)]}"
+														/>
+													</div>
+
+
 
 													<field name="gynae_exam_uterus_and_adnexae"
 														   attrs="{'invisible': ['|', ('gynae_exam_pelvic_examination_state', '=', 'no'),('gynae_exam_p_v_only', '!=', True)]}"
