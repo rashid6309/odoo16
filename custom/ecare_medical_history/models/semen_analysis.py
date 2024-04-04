@@ -247,7 +247,7 @@ class SemenAnalysis(models.Model):
 
     @api.onchange('after_24_hrs_progression')
     def _check_after_24_hrs_progression_input(self):
-        self._check_numeric_input('After 24hrs Progression', self.after_24_hrs_progression)
+        self._check_numeric_input_with_char('After 24hrs Progression', self.after_24_hrs_progression)
 
     @api.onchange('progression')
     def _check_progression_input(self):
