@@ -142,7 +142,7 @@
                                     <field name="total_count"/>
                                 </div>
                                 <div>
-                                    <div>million/ml Range: >=15</div>
+                                    <div>million/ml Range: ≥15</div>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                                     <field name="motility"/>
                                 </div>
                                 <div>
-                                    <div>% Range: >=40</div>
+                                    <div>% Range: ≥40</div>
                                 </div>
                             </div>
                         </div>
