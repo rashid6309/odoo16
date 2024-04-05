@@ -421,7 +421,6 @@
                                 <field style="width:40% !important;" name="seminologist_ids" widget="many2many_tags"
                                        options="{'no_open': True, 'no_create': True}"
                                        force_save="1"/>
-                                <field name="legacy_seminologist" readonly="1" force_save="1"/>
                                 <field name="semen_diagnosis_id"
                                         style="width:25% !important;"
                                        options="{'no_open': True, 'no_create': True}"/>

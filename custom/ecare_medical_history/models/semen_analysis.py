@@ -122,7 +122,6 @@ class SemenAnalysis(models.Model):
     sperm_cryopreservation_code = fields.Char('Cryopreservation Code')
 
     seminologist_ids = fields.Many2many(comodel_name='ec.medical.seminologist', string='Seminologist')
-    legacy_seminologist = fields.Char(string="Legacy System Seminologist", readonly=1)
 
     special_notes = fields.Html("Special Notes")
     semen_diagnosis_id = fields.Many2one(comodel_name="ec.medical.diagnosis.semen", string='Diagnosis')
