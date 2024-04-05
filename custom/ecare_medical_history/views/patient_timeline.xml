@@ -2719,10 +2719,18 @@
 														<label class="custom-text-align" for="gynae_exam_pipelle_sampling_done"/>
 
 													</div>
-													<field name="gynae_exam_other_findings"
-														   attrs="{'invisible': ['|',('gynae_exam_pelvic_examination_state', '=', 'no'),'|',('gynae_exam_p_v_only', '!=', True),
+													<div class="o_cell o_wrap_label flex-grow-1 flex-sm-grow-0 w-100 text-break text-900"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}">
+														<label class="o_form_label"  attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),('gynae_exam_p_s_only', '!=', True)]}" for="gynae_exam_other_findings">Other Findings</label>
+													</div>
+													<div class="o_cell o_wrap_input flex-grow-1 flex-sm-grow-0 text-break"
+														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"
+														 style="width: 100%;">
+														<field name="gynae_exam_other_findings"
+														   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
 														   ('gynae_exam_p_s_only', '!=', True)]}"
 													/>
+													</div>
 
 													<h4 style="width:200%;">Ultrasound</h4>
 													<div/>
@@ -2824,19 +2832,19 @@
 																	<div>
 																		<div class="d-flex">
 																			<field name="gynae_smooth"/>
-																			<span style=" margin-right: 2%; ">Smooth</span>
+																			<span style=" margin-right: 7%; ">Smooth</span>
 																			<field name="gynae_distorted"/>
-																			<span style=" margin-right: 2%; ">Distorted</span>
+																			<span style=" margin-right: 7%; ">Distorted</span>
 																			<field name="gynae_triple_echo"/>
-																			<span style=" margin-right: 2%;min-width: fit-content; ">Triple Echo</span>
+																			<span style=" margin-right: 7%;min-width: fit-content; ">Triple Echo</span>
 																			<field name="gynae_hyperechoic_solid"/>
-																			<span style=" margin-right: 2%; ">Hyperechoic/Solid</span>
+																			<span style=" margin-right: 7%; ">Hyperechoic/Solid</span>
 																		</div>
 																		<div class="d-flex">
 																			<field name="gynae_suspected_cavity_lesion"/>
-																			<span style=" margin-right: 2%; ">Suspected Cavity Lesion</span>
+																			<span style=" margin-right: 7%; ">Suspected Cavity Lesion</span>
 																			<field name="gynae_menstruating"/>
-																			<span style=" margin-right: 2%; ">Menstruating</span>
+																			<span style=" margin-right: 7%; ">Menstruating</span>
 																		</div>
 																		<!--																		<field name="lining_ids" widget="many2many_checkboxes"/>-->
 																	</div>
@@ -3333,7 +3341,7 @@
 														<field name="female_consultation_id" invisible="1" force_save="1"/>
 														<field name="male_consultation_id" invisible="1" force_save="1"/>
 														<field name="type_of_surgery_male"/>
-														<field name="details" placeholder="Details..."/>
+														<field name="details" placeholder="Details..." class="truncate_text"/>
 														<field name="surgical_year_id" placeholder="Year.."/>
 													</tree>
 												</field>

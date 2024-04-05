@@ -142,7 +142,7 @@
                                     <field name="total_count"/>
                                 </div>
                                 <div>
-                                    <div>million/ml Range: >=15</div>
+                                    <div>million/ml Range: ≥15</div>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                                     <field name="motility"/>
                                 </div>
                                 <div>
-                                    <div>% Range: >=40</div>
+                                    <div>% Range: ≥40</div>
                                 </div>
                             </div>
                         </div>
@@ -421,7 +421,6 @@
                                 <field style="width:40% !important;" name="seminologist_ids" widget="many2many_tags"
                                        options="{'no_open': True, 'no_create': True}"
                                        force_save="1"/>
-                                <field name="legacy_seminologist" readonly="1" force_save="1"/>
                                 <field name="semen_diagnosis_id"
                                         style="width:25% !important;"
                                        options="{'no_open': True, 'no_create': True}"/>
@@ -451,9 +450,9 @@
                     <field name="motility_percentage" string="Prep Motility (%)"/>
                     <field name="after_24_hrs_motility_percentage" string="24h survival of prep (%)"/>
                     <field name="sperm_cryopreservation_consented" string="Freezing recommended?"/>
-                    <field name="other_observation" string="Patient Report 1"/>
-                    <field name="comments" string="Patient Report 2"/>
-                    <field name="special_notes" string="Special notes"/>
+                    <field name="other_observation" string="Patient Report 1" class="truncate_text"/>
+                    <field name="comments" string="Patient Report 2" class="truncate_text"/>
+                    <field name="special_notes" string="Special notes" class="truncate_text"/>
                 </tree>
             </field>
         </record>
@@ -467,7 +466,6 @@
 <!--                    <field name="semen_patient_id"/>-->
                     <field name="date"/>
                     <field name="lab_number"/>
-                    <field name="lab_name"/>
                     <field name="preparation_ids" string="Type of analysis" widget="many2many_tags"/>
                     <field name="semen_diagnosis_id" string="Diagnosis"/>
                     <field name="total_count" string="Count (x10^6/ml)"/>
@@ -477,9 +475,9 @@
                     <field name="motility_percentage" string="Prep Motility (%)"/>
                     <field name="after_24_hrs_motility_percentage" string="24h survival of prep (%)"/>
                     <field name="sperm_cryopreservation_consented" string="Freezing recommended?"/>
-                    <field name="other_observation" string="Patient Report 1"/>
-                    <field name="comments" string="Patient Report 2"/>
-                    <field name="special_notes" string="Special notes"/>
+                    <field name="other_observation" string="Patient Report 1" class="truncate_text"/>
+                    <field name="comments" string="Patient Report 2" class="truncate_text"/>
+                    <field name="special_notes" string="Special notes" class="truncate_text"/>
                     <button name="edit_semen_analysis_record"
                             type="object"
                             groups="ecare_medical_history.group_medical_history_andrology_view"

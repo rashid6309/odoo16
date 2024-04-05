@@ -15,7 +15,7 @@
             <field name="arch" type="xml">
                 <tree editable="top">
                     <field name="patient_attachment_timeline_id" invisible="1" readonly="1" force_save="1"/>
-                    <field name="name"/>
+                    <field name="name" class="truncate_text"/>
                     <field name="attachment_id" widget="many2many_binary" filename="filename"/>
 <!--                    <field name="results" string="Comments"/>-->
                 </tree>
