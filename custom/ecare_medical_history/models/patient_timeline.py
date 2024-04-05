@@ -789,8 +789,8 @@ class PatientTimeline(models.Model):
                     raise ValidationError("If the question three is answered as 'Yes' "
                                           "then new record must be added in the Treatment table.")
 
-            self.show_repeat_section_state = False
-            self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
+        self.show_repeat_section_state = False
+        self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
 
     def action_delete_repeat_consultation_section(self):
         return self.ec_repeat_consultation_id.action_delete_repeat_consultation_section(self)

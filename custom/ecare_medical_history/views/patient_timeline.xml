@@ -323,7 +323,7 @@
 							</div>
 							<div class="col-md-8 timeline_content">
 								<field name="oi_ti_platform_enabled" invisible="1"/>
-								<div class="d-flex scroll-to card-header-custom first_consultation_container mt-2"
+								<div class="d-flex scroll-to card-header-custom first_consultation_container"
 									 attrs="{'invisible': [('oi_ti_platform_enabled', '=', False)]}"
 									 id="io_ti_platform_section_link">
 									<div class="col-10">
@@ -410,7 +410,7 @@
 
 
 
-								<div class="d-flex scroll-to card-header-custom first_consultation_container mt-2" id="repeat_consultation_section_link">
+								<div class="d-flex scroll-to card-header-custom first_consultation_container" id="repeat_consultation_section_link">
 									<div class="col-10">
 										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
 											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
@@ -1138,8 +1138,12 @@
 												<field name="repeat_investigations_ids"
 													   widget="many2many_tags"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
+												<field name="repeat_investigation_notes"/>
 
-												<field name="repeat_procedure_recommended_ids" widget="many2many_tags"
+												<field name="repeat_procedure_recommended_ids"
+													   widget="many2many_tags"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_treatment_plan"/>
 
@@ -1149,16 +1153,7 @@
 												<field name="repeat_new_treatment_pathway"
 													   widget="radio"
 													   options="{'horizontal': True}"/>
-												<field name="repeat_treatment_pathway"
-													   options="{'no_create_edit': True, 'no_create': True}"/>
-												<field name="repeat_investigation_notes"/>
 
-												<field name="repeat_procedure_recommended_ids"
-													   widget="many2many_tags"
-													   attrs="{'required': [('show_repeat_section_state', '=', True),
-													   ('question_one_choice', '=', 'no')]}"
-													   options="{'no_create_edit': True, 'no_create': True}"/>
-												<field name="repeat_treatment_plan"/>
 
 <!--												<field name="repeat_treatment_advised_ids"-->
 <!--													   widget="many2many_tags"-->

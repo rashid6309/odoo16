@@ -1167,6 +1167,7 @@ class StaticMember:
 
     TRIGGER_REGIMEN = [
         ('ivf_c_10', 'IVF-C 10,000IU S/C'),
+        ('ovidrel_250_mcg', 'Ovidrel 250mcg S/C'),
     ]
 
     SCHEDULE = [
@@ -1182,15 +1183,27 @@ class StaticMember:
     ]
 
     INSEMINATION = [
+        ('natural', 'Natural'),
         ('fresh_iui', 'Fresh IUI'),
+        ('frozen_thawed_iui', 'Frozen-thawed IUI'),
     ]
 
     INDICATION_OF_IUI = [
         ('erectile_dysfunction', 'Erectile dysfunction'),
+        ('converted_natural', 'Converted from natural'),
+        ('premature_ejaculation', 'Premature ejaculation'),
+        ('female_sexual_dysfunction', 'Female sexual dysfunction'),
+        ('vaginismus', 'Vaginismus'),
+        ('cervical_hostility', 'Suspicion of cervical hostility'),
+        ('couple_request', 'Couple request'),
+        ('previous_iui', 'Previous successful IUI'),
+        ('husband_not_present', 'Husband not present'),
     ]
 
     LUTEAL_PHASE_SUPPORT = [
+        ('c', 'C'),
         ('c_d_2', 'C + D2'),
+        ('c_d_3', 'C + D3'),
     ]
 
     PREPARATION_METHOD = [
