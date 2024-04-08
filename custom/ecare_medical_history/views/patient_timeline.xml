@@ -814,7 +814,7 @@
 														<div class="d-flex"
 															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
 
-															<span style="font-weight:bold;">Size</span>
+															<span class="col-md-2"  style="font-weight:bold;">Size</span>
 															<field name="tvs_uterus_size_x" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('scan_required', '=', 'yes'),
 													   ('question_one_choice', '=', 'no'),
@@ -830,7 +830,7 @@
 														</div>
 
  														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
-															<div class="col-md-1" style="font-weight:bold;">
+															<div class="col-md-2" style="font-weight:bold;">
 																Position
 															</div>
 															<div class="d-flex">
@@ -876,7 +876,7 @@
 													<div class="col-md-2">
 														Endometrial Character
 													</div>
-													<div class="d-flex flex-column">
+													<div class="d-flex flex-column" style=" margin-left: 3.75rem;">
 														<div style="width: 50rem;">
 															<field name="tvs_smooth"/>
 															<span for="tvs_smooth" style=" margin-right: 1%; ">Smooth</span>
@@ -2550,23 +2550,23 @@
 
 															</div>
 															<div class="d-flex bg-light bg-gradient">
-																<div class="col-md-3">
+																<div class="col-md-2">
 																	Uterus Flexion
 																</div>
 																<div class="d-flex">
 																	<field name="gynae_uterus_flexion"/>
 																</div>
 															</div>
-															<div class="d-flex" style="width: 15%;" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
-																<span style="font-weight:bold;">Size</span>
-																<field name="uterus_size_length"/>
+															<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
+																<span class="col-md-2" style="font-weight:bold;">Size</span>
+																<field name="uterus_size_length" style=" width:8%;"/>
 																<span class="m-2">x</span>
 
-																<field name="uterus_size_width"/>
+																<field name="uterus_size_width" style=" width:8%;"/>
 																<span>cm</span>
 															</div>
 															<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
-																<div class="col-md-1 fw-bolder" style="margin-right: 4%;font-weight:bold;">
+																<div class="col-md-2 fw-bolder" style="font-weight:bold;">
 																	Position
 																</div>
 																<div class="d-flex">
@@ -2605,7 +2605,7 @@
 
 															<div class="d-flex bg-light bg-gradient">
 
-																<div class="col-md-2" style="width: auto !important;margin-right: 2%;">
+																<div class="col-md-2">
 																	Endometrial Character
 																</div>
 																<div class="d-flex flex-column">
