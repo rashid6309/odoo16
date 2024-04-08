@@ -151,7 +151,7 @@
             <field name="name">ec.medical.oi.ti.platform.cycle.kanban</field>
             <field name="model">ec.medical.oi.ti.platform.cycle</field>
             <field name="arch" type="xml">
-                <kanban class="max_width_kanban">
+                <kanban class="max_width_kanban" create="0">
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
