@@ -194,6 +194,8 @@ class PatientTimeline(models.Model):
             custom_field = getattr(medical_history, custom_field_name)
             if field_records or (custom_field and custom_field.strip()):
                 custom_text = f' {str(custom_field).strip()}' if custom_field else ''
+                if custom_text == ' True':
+                    custom_text = ''
 
                 yes_or_no = None
 

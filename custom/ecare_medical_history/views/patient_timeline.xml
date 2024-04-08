@@ -873,7 +873,7 @@
 												</div>
 												<div class="d-flex bg-light bg-gradient">
 
-													<div class="col-md-3">
+													<div class="col-md-2">
 														Endometrial Character
 													</div>
 													<div class="d-flex flex-column">
@@ -909,7 +909,7 @@
 
 												<group string="Ovaries"/>
 												<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
-													<div class="col-md-1">
+													<div class="col-md-1" style="text-align: end;">
 														ROV
 													</div>
 
@@ -941,7 +941,7 @@
 												</div>
 
 												<div class="d-flex justify-content-start">
-													<div class="col-md-1">
+													<div class="col-md-1" style="text-align: end;">
 														LOV
 													</div>
 													<div class="col-md-5">
@@ -974,7 +974,7 @@
 <!--												<group string="Cyst"/>-->
 
 												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1">
+													<div class="col-md-1" style="text-align: end;">
 														Cyst
 													</div>
 													<div class="col-md-5 d-flex flex-column">
@@ -2525,10 +2525,12 @@
 <!--													<field name="gynaecological_examination_lmp" style="width:30% !important;"/>-->
 <!--													<field name="gynaecological_examination_cycle_day" force_save="1"/>-->
 
-													<div class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Uterus</div>
+												</group>
+												<group string="Uterus"/>
+
+												<group>
 													<div/>
-													<div/>
-													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -30%;">
+													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;">
 <!--														<div class="col-md-1">-->
 <!--															Uterus-->
 <!--														</div>-->
@@ -2603,7 +2605,7 @@
 
 															<div class="d-flex bg-light bg-gradient">
 
-																<div class="col-md-3">
+																<div class="col-md-2" style="width: auto !important;margin-right: 2%;">
 																	Endometrial Character
 																</div>
 																<div class="d-flex flex-column">
@@ -2636,33 +2638,15 @@
 
 														</div>
 													</div>
-
-
-													<!--													<label for="lining_ids"/>-->
-													<!--													<div class="bg-light bg-gradient" style="margin-top: -1%; width: 80%;">-->
-													<!--														<field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/>-->
-													<!--														<div/>-->
-													<!--														<span class="oe_inline">-->
-													<!--															CET-->
-													<!--														</span>-->
-													<!--														<field name="lining_size" class="oe_inline" nolabel="1"/>-->
-													<!--														<span class="oe_inline">-->
-													<!--															mm-->
-													<!--														</span>-->
-													<!--													</div>-->
-													<div class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Ovaries</div>
-													<div/>
+												</group>
+												<group string="Ovaries"/>
+												<group>
 													<label for="gynae_rov"/>
 													<div>
 														<field name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_rov', 'gynae_rov')">Begin Scan</a>
-															<!--															<button type="object"-->
-															<!--																	class="btn-primary"-->
-															<!--																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"-->
-															<!--																	name="action_open_gynae_scan"-->
-															<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
-															<!--																	string="Begin Scan"/>-->
+
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -2676,12 +2660,7 @@
 														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_lov', 'gynae_lov')">Begin Scan</a>
-															<!--															<button type="object"-->
-															<!--																	class="btn-primary"-->
-															<!--																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"-->
-															<!--																	name="action_open_gynae_scan"-->
-															<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
-															<!--																	string="Begin Scan"/>-->
+
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -2692,7 +2671,7 @@
 													<!-- CYST Section -->
 													<div/>
 													<div class="d-flex align-items-center" style=" position: relative; left: -24%; ">
-														<div class="col-md-3">
+														<div class="col-md-3" style="text-align: center;">
 															<b>Cyst</b>
 														</div>
 														<div class="col-md-9">
@@ -2708,6 +2687,10 @@
 													</div>
 
 													<field name="gynaecological_examination_comment" string="Other Findings"/>
+													<field name="gynae_signs_of_ovulation_ids"
+														   widget="many2many_tags"
+														   options='{"no_open": True, "no_create": True}'/>
+													<field name="gynae_diagnosis"/>
 												</group>
 											</div>
 
