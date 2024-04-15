@@ -391,7 +391,7 @@
 												<group>
 													<field name="repeat_pregnancy_lmp" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
-													<field name="repeat_pregnancy_gestational_age"/>
+													<field name="repeat_pregnancy_gestational_age" force_save="1"/>
 													<field name="repeat_pregnancy_conception" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'yes')]}"/>
 													<field name="repeat_pregnancy_embryos_replaced"/>
