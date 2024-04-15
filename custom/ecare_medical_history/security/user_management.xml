@@ -196,6 +196,22 @@
             (4, ref('ecare_medical_history.group_medical_history_timeline_all'))]"/>
         </record>
 
+                <!-- Record Delete Category -->
+
+        <record id="module_ecare_medical_history_user_delete_category" model="ir.module.category">
+            <field name="name">Medical History Delete Access</field>
+            <field name="parent_id" ref="ecare_medical_history.module_ecare_medical_history_category"/>
+            <field name="sequence">130</field>
+            <field name="visible" eval="1"/>
+        </record>
+
+        <!-- Record Delete Menu -->
+
+        <record id="group_medical_history_delete_access_view" model="res.groups">
+            <field name="name">Medical History Delete Access</field>
+            <field name="category_id" ref="ecare_medical_history.module_ecare_medical_history_user_delete_category"/>
+            <field name="comment">Medical History Delete Access</field>
+        </record>
 
     </data>
 </odoo>
