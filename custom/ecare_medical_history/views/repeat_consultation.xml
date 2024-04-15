@@ -1151,7 +1151,7 @@
 
         <menuitem id="ec_medical_history_delete_repeat_consultation"
                   name="Repeat Consultation"
-                  groups="ecare_medical_history.group_ec_medical_administrator"
+                  groups="ecare_medical_history.group_ec_medical_administrator,ecare_medical_history.group_medical_history_delete_access_view"
                   parent="ec_medical_root"
                   action="repeat_consultation_action"
                   sequence="120"/>
