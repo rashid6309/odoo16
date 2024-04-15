@@ -200,8 +200,14 @@ class PatientTimeline(models.Model):
             custom_field = getattr(medical_history, custom_field_name)
             if field_records or (custom_field and custom_field.strip()):
                 custom_text = f' {str(custom_field).strip()}' if custom_field else ''
+                if custom_text == ' True':
+                    custom_text = ''
 
                 yes_or_no = None
+
+                field_label_with_no_dashed = [
+                    'No significant medical history'
+                ]
 
                 fields_list_with_yes_no = [
                     'female_hirsuitism_year', 'female_anti_phospholipid_syndrome_date',
@@ -236,7 +242,9 @@ class PatientTimeline(models.Model):
 
                 year_in_bracket = f" ({medical_history_year})" if medical_history_year else ""
 
-                if field_label:
+                if field_label and field_label in field_label_with_no_dashed:
+                    field_text = f'<strong style="font-weight: 700;">{field_label}</strong>'
+                else:
                     field_text = f'<strong style="font-weight: 700;">{field_label}</strong><br>{custom_text}{year_in_bracket}'
                 medical_history_text.append(field_text)
 

@@ -906,7 +906,7 @@
 														<div class="d-flex"
 															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
 
-															<span style="font-weight:bold;">Size</span>
+															<span class="col-md-2"  style="font-weight:bold;">Size</span>
 															<field name="tvs_uterus_size_x" attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('scan_required', '=', 'yes'),
 													   ('question_one_choice', '=', 'no'),
@@ -922,7 +922,7 @@
 														</div>
 
  														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
-															<div class="col-md-1" style="font-weight:bold;">
+															<div class="col-md-2" style="font-weight:bold;">
 																Position
 															</div>
 															<div class="d-flex">
@@ -965,10 +965,10 @@
 												</div>
 												<div class="d-flex bg-light bg-gradient">
 
-													<div class="col-md-3">
+													<div class="col-md-2">
 														Endometrial Character
 													</div>
-													<div class="d-flex flex-column">
+													<div class="d-flex flex-column" style=" margin-left: 3.75rem;">
 														<div style="width: 50rem;">
 															<field name="tvs_smooth"/>
 															<span for="tvs_smooth" style=" margin-right: 1%; ">Smooth</span>
@@ -1001,7 +1001,7 @@
 
 												<group string="Ovaries"/>
 												<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
-													<div class="col-md-1">
+													<div class="col-md-1" style="text-align: end;">
 														ROV
 													</div>
 
@@ -1033,7 +1033,7 @@
 												</div>
 
 												<div class="d-flex justify-content-start">
-													<div class="col-md-1">
+													<div class="col-md-1" style="text-align: end;">
 														LOV
 													</div>
 													<div class="col-md-5">
@@ -1066,7 +1066,7 @@
 <!--												<group string="Cyst"/>-->
 
 												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1">
+													<div class="col-md-1" style="text-align: end;">
 														Cyst
 													</div>
 													<div class="col-md-5 d-flex flex-column">
@@ -1751,137 +1751,172 @@
 
 													<field name="female_acne"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 
 													<field name="female_acne_date"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   string="Year"  />
 
 													<field name="female_weight_gain"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_weight_gain_year"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_weight_loss"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_weight_loss_year"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_weight_at_marriage"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Weight at Marriage" />
 													<field name="female_weight_comments"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Comments" />
 
 													<field name="female_hirsuitism"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   widget="radio"/>
 													<field name="female_hirsuitism_year"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="female_hirsuitism_comments"
-														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"/>
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"/>
 													<field name="female_hirsuitism_treatment"
-														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"/>
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"/>
 
 													<field name="female_tuberculosis"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_tuberculosis_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="female_att_months"
-														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"/>
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"/>
 													<field name="female_syphilis"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_syphilis_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="female_herpes"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_herpes_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="female_gonorrhoea"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_gonorrhoea_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="female_hiv"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_hiv_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_mumps"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_mumps_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 
 													<field name="female_adrenal"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_adrenal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_anti_phospholipid_syndrome"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_anti_phospholipid_syndrome_comments"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details"
 														   string=""
 													/>
 													<field name="female_anti_phospholipid_syndrome_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year" />
 
 													<field name="female_autoimmune_disease"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_autoimmune_disease_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_blood_transfusion"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_blood_transfusion_comments"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details"
 														   string=""
 													/>
 													<field name="female_blood_transfusion_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year" />
 
 													<field name="female_complications_pr"
@@ -1891,194 +1926,241 @@
 
 													<field name="female_cardiac"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_cardiac_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_diabetes_type"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder=""
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_diabetes"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="" />
 													<field name="female_diabetes_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_dvt"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_dvt_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_gall_bladder"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_gall_bladder_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_gastric"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_gastric_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_gynaecology"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_gynaecology_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_haematology"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_haematology_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_heart_disease"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_heart_disease_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_hyper_tension"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_hyper_tension_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_intestinal"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_intestinal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_janduice"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_janduice_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_liver"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_liver_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_low_urinary_tract"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_low_urinary_tract_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_malignancy"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_malignancy_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_neurological"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_neurological_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_renal"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_renal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_respiratory"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_respiratory_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_smoking"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_smoking_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_alcohol"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_alcohol_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_skeletal"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_skeletal_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_thyroid_type"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="" string="Thyroid"
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="female_thyroid_medical"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="" />
 													<field name="female_thyroid_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_urinary_infection"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="female_urinary_infection_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="female_medical_history_others"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<!--													<field name="female_medical_history_others_date"-->
 													<!--														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"-->
@@ -2086,6 +2168,7 @@
 													<!--														   string="Year"  />-->
 													<field name="female_medical_current_medication"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Current Medications and Allergies"/>
 												</group>
 											</div>
@@ -2742,10 +2825,12 @@
 <!--													<field name="gynaecological_examination_lmp" style="width:30% !important;"/>-->
 <!--													<field name="gynaecological_examination_cycle_day" force_save="1"/>-->
 
-													<div class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Uterus</div>
+												</group>
+												<group string="Uterus"/>
+
+												<group>
 													<div/>
-													<div/>
-													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;position: relative;left: -30%;">
+													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;">
 <!--														<div class="col-md-1">-->
 <!--															Uterus-->
 <!--														</div>-->
@@ -2765,23 +2850,23 @@
 
 															</div>
 															<div class="d-flex bg-light bg-gradient">
-																<div class="col-md-3">
+																<div class="col-md-2">
 																	Uterus Flexion
 																</div>
 																<div class="d-flex">
 																	<field name="gynae_uterus_flexion"/>
 																</div>
 															</div>
-															<div class="d-flex" style="width: 15%;" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
-																<span style="font-weight:bold;">Size</span>
-																<field name="uterus_size_length"/>
+															<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
+																<span class="col-md-2" style="font-weight:bold;">Size</span>
+																<field name="uterus_size_length" style=" width:8%;"/>
 																<span class="m-2">x</span>
 
-																<field name="uterus_size_width"/>
+																<field name="uterus_size_width" style=" width:8%;"/>
 																<span>cm</span>
 															</div>
 															<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
-																<div class="col-md-1 fw-bolder" style="margin-right: 4%;font-weight:bold;">
+																<div class="col-md-2 fw-bolder" style="font-weight:bold;">
 																	Position
 																</div>
 																<div class="d-flex">
@@ -2820,7 +2905,7 @@
 
 															<div class="d-flex bg-light bg-gradient">
 
-																<div class="col-md-3">
+																<div class="col-md-2">
 																	Endometrial Character
 																</div>
 																<div class="d-flex flex-column">
@@ -2853,33 +2938,15 @@
 
 														</div>
 													</div>
-
-
-													<!--													<label for="lining_ids"/>-->
-													<!--													<div class="bg-light bg-gradient" style="margin-top: -1%; width: 80%;">-->
-													<!--														<field name="lining_ids" widget="many2many_checkboxes" class="oe_inline" nolabel="1"/>-->
-													<!--														<div/>-->
-													<!--														<span class="oe_inline">-->
-													<!--															CET-->
-													<!--														</span>-->
-													<!--														<field name="lining_size" class="oe_inline" nolabel="1"/>-->
-													<!--														<span class="oe_inline">-->
-													<!--															mm-->
-													<!--														</span>-->
-													<!--													</div>-->
-													<div class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Ovaries</div>
-													<div/>
+												</group>
+												<group string="Ovaries"/>
+												<group>
 													<label for="gynae_rov"/>
 													<div>
 														<field name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_rov', 'gynae_rov')">Begin Scan</a>
-															<!--															<button type="object"-->
-															<!--																	class="btn-primary"-->
-															<!--																	context="{'default_field': 'gynae_rov','default_display': gynae_rov}"-->
-															<!--																	name="action_open_gynae_scan"-->
-															<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
-															<!--																	string="Begin Scan"/>-->
+
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -2893,12 +2960,7 @@
 														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_lov', 'gynae_lov')">Begin Scan</a>
-															<!--															<button type="object"-->
-															<!--																	class="btn-primary"-->
-															<!--																	context="{'default_field': 'gynae_lov','default_display': gynae_lov}"-->
-															<!--																	name="action_open_gynae_scan"-->
-															<!--																	groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
-															<!--																	string="Begin Scan"/>-->
+
 														</span>
 														<div style="display: inline; margin-left: 2%;">
 															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
@@ -2909,7 +2971,7 @@
 													<!-- CYST Section -->
 													<div/>
 													<div class="d-flex align-items-center" style=" position: relative; left: -24%; ">
-														<div class="col-md-3">
+														<div class="col-md-3" style="text-align: center;">
 															<b>Cyst</b>
 														</div>
 														<div class="col-md-9">
@@ -2925,6 +2987,10 @@
 													</div>
 
 													<field name="gynaecological_examination_comment" string="Other Findings"/>
+													<field name="gynae_signs_of_ovulation_ids"
+														   widget="many2many_tags"
+														   options='{"no_open": True, "no_create": True}'/>
+													<field name="gynae_diagnosis"/>
 												</group>
 											</div>
 
@@ -2973,319 +3039,405 @@
 													<field name="male_no_medical_history"/>
 													<field name="male_acne"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_acne_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="male_weight_gain"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_weight_gain_year"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="male_weight_loss"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_weight_loss_year"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="male_weight_at_marriage"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Weight at Marriage" />
 													<field name="male_weight_comments"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Comments" />
 
 													<field name="male_hirsuitism"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   widget="radio"/>
 													<field name="male_hirsuitism_year"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="male_hirsuitism_comments"
-														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"/>
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"/>
 													<field name="male_hirsuitism_treatment"
-														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"/>
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"/>
 
 													<field name="male_tuberculosis"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_tuberculosis_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="male_att_months"
-														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"/>
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"/>
 													<field name="male_syphilis"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_syphilis_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="male_herpes"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_herpes_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="male_gonorrhoea"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_gonorrhoea_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 													<field name="male_hiv"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_hiv_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
 
 													<field name="male_mumps"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_mumps_date"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Year"  />
-													<field name="male_adrenal" attrs="{'readonly': [('male_no_medical_history', '=', True)]}" placeholder="Add Details" />
-													<field name="male_adrenal_date" attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+													<field name="male_adrenal"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
+														   placeholder="Add Details" />
+													<field name="male_adrenal_date"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_anti_phospholipid_syndrome" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_anti_phospholipid_syndrome_comments"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details"
 														   string=""
 													/>
 													<field name="male_anti_phospholipid_syndrome_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_autoimmune_disease"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_autoimmune_disease_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_blood_transfusion" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_blood_transfusion_comments"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details"
 														   string=""
 													/>
 													<field name="male_blood_transfusion_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year" />
 
 													<field name="male_complications_pr"
-														   placeholder="Complications" string="" default=" " attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
+														   placeholder="Complications" string="" default=" "
+														   attrs="{'readonly': [('male_blood_transfusion_date', 'not in',['y'])]}" />
 
 													<field name="male_cardiac"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_cardiac_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_diabetes_type" placeholder=""
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_diabetes"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" string="" />
 													<field name="male_diabetes_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_dvt"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_dvt_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_gall_bladder"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_gall_bladder_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_gastric"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_gastric_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_gynaecology"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_gynaecology_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_haematology"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_haematology_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_heart_disease"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_heart_disease_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_hyper_tension"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_hyper_tension_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_intestinal"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_intestinal_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_janduice"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_janduice_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_liver"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_liver_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_low_urinary_tract"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_low_urinary_tract_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_malignancy"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_malignancy_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_neurological"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_neurological_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_renal"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_renal_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_respiratory"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_respiratory_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_smoking"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_smoking_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_alcohol"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_alcohol_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_skeletal"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_skeletal_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_thyroid_type"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="" string="Thyroid"
 														   widget="radio" options="{'horizontal': True}"/>
 													<field name="male_thyroid_medical"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" string="" />
 													<field name="male_thyroid_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"  />
 
 													<field name="male_urinary_infection"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<field name="male_urinary_infection_date"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   string="Year"/>
 
 													<field name="male_medical_history_others"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   placeholder="Add Details" />
 													<!--													<field name="male_medical_history_others_date"-->
 													<!--														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"-->
@@ -3293,6 +3445,7 @@
 													<!--														   string="Year"  />-->
 													<field name="male_medical_current_medication"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
 														   string="Current Medications and Allergies"/>
 												</group>
 											</div>

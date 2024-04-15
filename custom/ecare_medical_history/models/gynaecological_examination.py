@@ -50,6 +50,15 @@ class MedicalGynaecologicalExamination(models.Model):
 
     gynae_exam_other_findings = fields.Html(string='Other Findings')
 
+    gynae_signs_of_ovulation_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
+                                                    relation='gynae_multi_selection_repeat_ovulation',
+                                                    column1='gynae_ovulation_id',
+                                                    column2='multi_selection_id',
+                                                    string='Signs of Ovulation',
+                                                    domain="[('type', '=', 'ovulation')]")
+    gynae_diagnosis = fields.Selection(selection=StaticMember.TVS_DIAGNOSIS,
+                                       string='Diagnosis of Ultrasound')
+
     gynaecological_examination_date = fields.Date(string='Date')
     gynaecological_ultrasound_type = fields.Selection(selection=StaticMember.ULTRASOUND_TYPE,
                                                       string="Ultrasound")
