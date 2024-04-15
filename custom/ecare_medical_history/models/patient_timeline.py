@@ -1256,6 +1256,11 @@ class PatientTimeline(models.Model):
                 'context': values,
                 'target': 'new',
             }
+        if (self.fsh_level or self.lh_level >= 10 or
+                not (10 <= self.amh_level <= 25)):
+            self.ec_repeat_consultation_id.repeat_consultation_state = 'decision_pending'
+            raise ValidationError(_("Hormonal Profile values are not in range. "
+                                    "Please seek senior doctor's approval."))
 
         self.oi_ti_platform_enabled = True
         self.action_save_repeat_consultation_section()
@@ -1286,11 +1291,6 @@ class PatientTimeline(models.Model):
             if record.amh_level is not False and record.amh_level < 0:
                 raise ValidationError(_("AMH Level should not have negative values."))
 
-            if (record.fsh_level or record.lh_level >= 10 or
-                    not (10 <= record.amh_level <= 25)):
-                record.repeat_consultation_state = 'decision_pending'
-                raise ValidationError(_("Hormonal Profile values are not in range. "
-                                        "Please seek senior doctor's approval."))
     @api.onchange('repeat_pregnancy_temp')
     def _check_float_input_temp(self):
         if self.repeat_pregnancy_temp and not re.match(Validation.REGEX_FLOAT_2_DP, self.repeat_pregnancy_temp):
