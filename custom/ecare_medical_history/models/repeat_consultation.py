@@ -276,6 +276,8 @@ class RepeatConsultation(models.Model):
 
             rec.repeat_date = datetime.now()
             rec.repeat_seen_by = rec.env.user.id
+            rec.pregnancy_patient_id = rec.repeat_patient_id.id
+            rec.pregnancy_repeat_consultation_id = rec.id
 
     def repeat_values_compute(self):
         if self:
