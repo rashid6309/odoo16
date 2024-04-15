@@ -957,11 +957,11 @@
                                                                         <div class="d-flex d-sm-contents flex-column"
                                                                              t-if="record.tvs_other_text.raw_value">
                                                                             <div>
-                                                                                <span class="o_form_label">Other Text
+                                                                                <span class="o_form_label">Other Findings
                                                                                 </span>
                                                                             </div>
                                                                             <div>
-                                                                                <field name="tvs_other_text"/>
+                                                                                <field name="tvs_other_text" widget="html"/>
                                                                             </div>
                                                                         </div>
                                                                     </div>
