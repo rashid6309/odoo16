@@ -961,8 +961,10 @@
                                                                                 <span class="o_form_label">ROV</span>
                                                                             </div>
                                                                             <div>
-                                                                                <field name="tvs_rov"/>
-                                                                                <label for="tvs_right_ovary_not_visualised" style=" margin-left: 5%; ">Not Visualised</label>
+                                                                                <span t-if="record.tvs_rov.raw_value">
+                                                                                    <field name="tvs_rov" style=" margin-right: 3%; "/>
+                                                                                </span>
+                                                                                <label for="tvs_right_ovary_not_visualised">Not Visualised</label>
                                                                                 <field name="tvs_right_ovary_not_visualised"/>
                                                                             </div>
                                                                         </div>
@@ -971,8 +973,10 @@
                                                                                 <span class="o_form_label">LOV</span>
                                                                             </div>
                                                                             <div>
-                                                                                <field name="tvs_lov"/>
-                                                                                <label for="tvs_left_ovary_not_visualised" style=" margin-left: 5%; ">Not Visualised</label>
+                                                                                <span t-if="record.tvs_lov.raw_value">
+                                                                                    <field name="tvs_lov" style=" margin-right: 3%; "/>
+                                                                                </span>
+                                                                                <label for="tvs_left_ovary_not_visualised">Not Visualised</label>
                                                                                 <field name="tvs_left_ovary_not_visualised"/>
                                                                             </div>
                                                                         </div>
