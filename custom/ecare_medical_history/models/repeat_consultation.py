@@ -296,6 +296,8 @@ class RepeatConsultation(models.Model):
 
             rec.repeat_date = datetime.now()
             rec.repeat_seen_by = rec.env.user.id
+            rec.pregnancy_patient_id = rec.repeat_patient_id.id
+            rec.pregnancy_repeat_consultation_id = rec.id
 
     def repeat_values_compute(self):
         if self:
@@ -317,9 +319,14 @@ class RepeatConsultation(models.Model):
                     for record in repeat.repeat_timeline_id.tvs_generic_sizes_ids:
                         size_x_value = str(record.generic_size_x) if record.generic_size_x is not None else '-'
                         size_y_value = str(record.generic_size_y) if record.generic_size_y is not None else '-'
-                        distorting_endometrium = 'Yes' if record.distorting_endometrium == 'yes' else '-'
+                        if record.distorting_endometrium == 'yes':
+                            distorting_endometrium = 'Yes'
+                        elif record.distorting_endometrium == 'no':
+                            distorting_endometrium = 'No'
+                        else:
+                            distorting_endometrium = '-'
                         if not distorting_endometrium:
-                            distorting_endometrium = 'No' if record.distorting_endometrium == 'no' else '-'
+                            distorting_endometrium = 'No' if record.distorting_endometrium == 'no' else 'No'
                         location_or_features = str(record.location_or_features) if record.location_or_features is not False else '-'
                         table_row = f"<tr><td>{size_x_value},</td><td>{location_or_features},</td><td>{distorting_endometrium}</td></tr>"
                         table_rows.append(table_row)

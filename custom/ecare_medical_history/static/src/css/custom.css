@@ -852,3 +852,7 @@ th[data-name="treatment_notes"] div {
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
 }
+
+.cyst_class_div {
+    margin-top: 5rem !important;
+}

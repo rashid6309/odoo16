@@ -857,15 +857,37 @@
                                                                 <!--                                                                        </div>-->
                                                                 <!--                                                                    </div>-->
                                                                 <!--                                                                </div>-->
+                                                                   <div class="o_group row align-items-start" t-if="record.tvs_uterus_flexion.raw_value">
+                                                                    <div class="o_inner_group grid col-lg-12 text-900">
+                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                            <div>
+                                                                                <span class="o_form_label">Uterus Flexion</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="tvs_uterus_flexion"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
                                                                         <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
                                                                                 <span class="o_form_label">Position</span>
                                                                             </div>
-                                                                            <div>
-                                                                                <field name="tvs_uterus_position_ids"/>
+                                                                            <div class="d-flex">
+                                                                                <field name="position_to_left"/>
+                                                                                <span for="position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
+                                                                                <field name="position_to_right"/>
+                                                                                <span for="position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
+                                                                                <field name="position_mid_position"/>
+                                                                                <span for="position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
                                                                             </div>
+<!--                                                                            <div>-->
+<!--                                                                                -->
+<!--&lt;!&ndash;                                                                                <field name="tvs_uterus_position_ids"/>&ndash;&gt;-->
+<!--                                                                            </div>-->
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -902,16 +924,31 @@
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
                                                                         <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
-                                                                                <span class="o_form_label">Endometrial Lining Character</span>
+                                                                                <span class="o_form_label">Endometrial Character</span>
                                                                             </div>
-                                                                            <div>
+                                                                            <div style="width: 50rem;">
+                                                                                <field name="tvs_smooth"/>
+                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Smooth</span>
+                                                                                <field name="tvs_distorted"/>
+                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Distorted</span>
+                                                                                <field name="tvs_triple_echo"/>
+                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Triple Echo</span>
+                                                                                <field name="tvs_hyperechoic_solid"/>
+                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Hyperechoic/Solid</span>
+                                                                                <field name="tvs_suspected_cavity_lesion"/>
+                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
+                                                                                <div class="d-flex">
+                                                                                    <field name="tvs_menstruating"/>
+                                                                                    <span for="tvs_menstruating" style=" margin-right: 1%; ">Menstruating</span>
+                                                                                </div>
                                                                                 <field name="tvs_linining_ids"/>
                                                                             </div>
                                                                             <div>
                                                                                 <span class="o_form_label">CET</span>
                                                                             </div>
                                                                             <div>
-                                                                                <field name="tvs_lining_size"/>
+                                                                                <field name="tvs_lining_size_decimal"/>
+                                                                                <span style=" margin-left: 1%; ">(mm)</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -920,25 +957,27 @@
 
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
-                                                                        <div class="d-flex d-sm-contents flex-column"
-                                                                             t-if="record.tvs_rov.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
                                                                                 <span class="o_form_label">ROV</span>
                                                                             </div>
                                                                             <div>
-                                                                                <field name="tvs_rov"/>
-                                                                                <label for="tvs_right_ovary_not_visualised" style=" margin-left: 5%; ">Not Visualised</label>
+                                                                                <span t-if="record.tvs_rov.raw_value">
+                                                                                    <field name="tvs_rov" style=" margin-right: 3%; "/>
+                                                                                </span>
+                                                                                <label for="tvs_right_ovary_not_visualised">Not Visualised</label>
                                                                                 <field name="tvs_right_ovary_not_visualised"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column"
-                                                                             t-if="record.tvs_lov.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
                                                                                 <span class="o_form_label">LOV</span>
                                                                             </div>
                                                                             <div>
-                                                                                <field name="tvs_lov"/>
-                                                                                <label for="tvs_left_ovary_not_visualised" style=" margin-left: 5%; ">Not Visualised</label>
+                                                                                <span t-if="record.tvs_lov.raw_value">
+                                                                                    <field name="tvs_lov" style=" margin-right: 3%; "/>
+                                                                                </span>
+                                                                                <label for="tvs_left_ovary_not_visualised">Not Visualised</label>
                                                                                 <field name="tvs_left_ovary_not_visualised"/>
                                                                             </div>
                                                                         </div>
@@ -958,11 +997,11 @@
                                                                         <div class="d-flex d-sm-contents flex-column"
                                                                              t-if="record.tvs_other_text.raw_value">
                                                                             <div>
-                                                                                <span class="o_form_label">Other Text
+                                                                                <span class="o_form_label">Other Findings
                                                                                 </span>
                                                                             </div>
                                                                             <div>
-                                                                                <field name="tvs_other_text"/>
+                                                                                <field name="tvs_other_text" widget="html"/>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1027,6 +1066,17 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
+                                                                         t-if="record.repeat_investigation_notes.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">
+                                                                                Investigation Notes
+                                                                            </span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_investigation_notes"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_procedure_recommended_ids.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">
@@ -1048,28 +1098,28 @@
                                                                             <field name="repeat_treatment_plan"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.repeat_treatment_advised_ids.raw_value">
-                                                                        <div>
-                                                                            <span class="o_form_label">Treatment
-                                                                                Pathway
-                                                                            </span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <field name="repeat_treatment_advised_ids"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.repeat_new_treatment_pathway.raw_value">
-                                                                        <div>
-                                                                            <span class="o_form_label">Start new
-                                                                                treatment pathway
-                                                                            </span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <field name="repeat_new_treatment_pathway"/>
-                                                                        </div>
-                                                                    </div>
+<!--                                                                    <div class="d-flex d-sm-contents flex-column"-->
+<!--                                                                         t-if="record.repeat_treatment_advised_ids.raw_value">-->
+<!--                                                                        <div>-->
+<!--                                                                            <span class="o_form_label">Treatment-->
+<!--                                                                                Pathway-->
+<!--                                                                            </span>-->
+<!--                                                                        </div>-->
+<!--                                                                        <div>-->
+<!--                                                                            <field name="repeat_treatment_advised_ids"/>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="d-flex d-sm-contents flex-column"-->
+<!--                                                                         t-if="record.repeat_new_treatment_pathway.raw_value">-->
+<!--                                                                        <div>-->
+<!--                                                                            <span class="o_form_label">Start new-->
+<!--                                                                                treatment pathway-->
+<!--                                                                            </span>-->
+<!--                                                                        </div>-->
+<!--                                                                        <div>-->
+<!--                                                                            <field name="repeat_new_treatment_pathway"/>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
                                                                 </div>
                                                             </div>
 
