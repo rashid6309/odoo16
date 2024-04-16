@@ -856,6 +856,19 @@
                                                                 <!--                                                                        </div>-->
                                                                 <!--                                                                    </div>-->
                                                                 <!--                                                                </div>-->
+                                                                   <div class="o_group row align-items-start" t-if="record.tvs_uterus_flexion.raw_value">
+                                                                    <div class="o_inner_group grid col-lg-12 text-900">
+                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                            <div>
+                                                                                <span class="o_form_label">Uterus Flexion</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="tvs_uterus_flexion"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
                                                                         <div class="d-flex d-sm-contents flex-column">
