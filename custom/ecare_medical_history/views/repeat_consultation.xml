@@ -1093,28 +1093,28 @@
                                                                             <field name="repeat_treatment_plan"/>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.repeat_treatment_advised_ids.raw_value">
-                                                                        <div>
-                                                                            <span class="o_form_label">Treatment
-                                                                                Pathway
-                                                                            </span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <field name="repeat_treatment_advised_ids"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.repeat_new_treatment_pathway.raw_value">
-                                                                        <div>
-                                                                            <span class="o_form_label">Start new
-                                                                                treatment pathway
-                                                                            </span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <field name="repeat_new_treatment_pathway"/>
-                                                                        </div>
-                                                                    </div>
+<!--                                                                    <div class="d-flex d-sm-contents flex-column"-->
+<!--                                                                         t-if="record.repeat_treatment_advised_ids.raw_value">-->
+<!--                                                                        <div>-->
+<!--                                                                            <span class="o_form_label">Treatment-->
+<!--                                                                                Pathway-->
+<!--                                                                            </span>-->
+<!--                                                                        </div>-->
+<!--                                                                        <div>-->
+<!--                                                                            <field name="repeat_treatment_advised_ids"/>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="d-flex d-sm-contents flex-column"-->
+<!--                                                                         t-if="record.repeat_new_treatment_pathway.raw_value">-->
+<!--                                                                        <div>-->
+<!--                                                                            <span class="o_form_label">Start new-->
+<!--                                                                                treatment pathway-->
+<!--                                                                            </span>-->
+<!--                                                                        </div>-->
+<!--                                                                        <div>-->
+<!--                                                                            <field name="repeat_new_treatment_pathway"/>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
                                                                 </div>
                                                             </div>
 
