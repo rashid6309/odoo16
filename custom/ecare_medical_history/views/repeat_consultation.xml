@@ -943,8 +943,7 @@
 
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
-                                                                        <div class="d-flex d-sm-contents flex-column"
-                                                                             t-if="record.tvs_rov.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
                                                                                 <span class="o_form_label">ROV</span>
                                                                             </div>
@@ -954,8 +953,7 @@
                                                                                 <field name="tvs_right_ovary_not_visualised"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column"
-                                                                             t-if="record.tvs_lov.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
                                                                                 <span class="o_form_label">LOV</span>
                                                                             </div>

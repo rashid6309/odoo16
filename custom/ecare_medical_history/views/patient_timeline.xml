@@ -785,7 +785,6 @@
 											<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 												<group string="Uterus"/>
 												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1"/>
 													<div class="col-md-10">
 														<div class="d-flex custom-checkbox-alignment-boolean">
 															<field name="tvs_uterus_tvs_size"
@@ -909,7 +908,7 @@
 
 												<group string="Ovaries"/>
 												<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
-													<div class="col-md-1" style="text-align: end;">
+													<div style="text-align: end;margin-right: 2rem;">
 														ROV
 													</div>
 
@@ -941,7 +940,7 @@
 												</div>
 
 												<div class="d-flex justify-content-start">
-													<div class="col-md-1" style="text-align: end;">
+													<div style="text-align: end;margin-right: 2rem;">
 														LOV
 													</div>
 													<div class="col-md-5">
@@ -974,7 +973,7 @@
 <!--												<group string="Cyst"/>-->
 
 												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1" style="text-align: end;">
+													<div style="text-align: end;margin-right: 2rem;">
 														Cyst
 													</div>
 													<div class="col-md-5 d-flex flex-column">
@@ -990,7 +989,7 @@
 													</div>
 												</div>
 												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1">
+													<div class="col-md-1" style="text-align: right;">
 														Other Findings
 													</div>
 													<div class="col-md-7 d-flex flex-column">
@@ -2752,11 +2751,12 @@
 													</div>
 
 													<!-- CYST Section -->
-													<div/>
-													<div class="d-flex align-items-center" style=" position: relative; left: -24%; ">
-														<div class="col-md-3" style="text-align: center;">
-															<b>Cyst</b>
-														</div>
+													<div class="cyst_class_div">
+														<b>Cyst</b>
+													</div>
+													<div class="d-flex align-items-center" >
+<!--														<div class="col-md-3" style="text-align: center;">-->
+<!--														</div>-->
 														<div class="col-md-9">
 															<div class="col-md-12">
 																<field name="gynae_cyst_size_ids">
@@ -2768,8 +2768,11 @@
 															</div>
 														</div>
 													</div>
-
+												</group>
+												<group>
 													<field name="gynaecological_examination_comment" string="Other Findings"/>
+												</group>
+												<group>
 													<field name="gynae_signs_of_ovulation_ids"
 														   widget="many2many_tags"
 														   options='{"no_open": True, "no_create": True}'/>
