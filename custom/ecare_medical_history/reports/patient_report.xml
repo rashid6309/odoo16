@@ -167,14 +167,14 @@
                                         <span t-field="o.bacteria"/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">
-                                        EPI Cells/Immature Cells:
-                                    </td>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;" colspan="2">
-                                        <span t-field="o.epi_cells_immature_cells"/><span> /HPF</span>
-                                    </td>
-                                </tr>
+                                <!--<tr>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">-->
+                                <!--        EPI Cells/Immature Cells:-->
+                                <!--    </td>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;" colspan="2">-->
+                                <!--        <span t-field="o.epi_cells_immature_cells"/><span> /HPF</span>-->
+                                <!--    </td>-->
+                                <!--</tr>-->
                                 <tr>
                                     <td style="border-width : 0;border-style: hidden;vertical-align: top;padding:1% 0% 0% 0%;">
                                         Other Observation:
@@ -240,54 +240,54 @@
                                         <span t-field="o.comments"/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td style="border-width : 0;border-style: hidden;vertical-align: top;padding:2% 0% 0% 0%;">
-                                        <b>Suitable for:</b>
-                                    </td>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">
-                                        <t t-foreach="o.suitable_for_ids" t-as="item">
-                                            <span style="margin-right:5%;"><t t-esc="item.name"/>
-                                                <t t-if="not item == o.suitable_for_ids[-1]">
-                                                    <span style="margin-left: 5%;">/</span>
-                                                </t>
-                                            </span>
-                                        </t>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">
-                                        <b>Sperm Cryopreservation:</b>
-                                    </td>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">
-                                        Recommended: <span t-if="o.sperm_cryopreservation_recommended">Yes</span><span t-if="not o.sperm_cryopreservation_recommended">No</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"/>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">
-                                        Consented: <span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"/>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">
-                                        No. straws: <span t-field="o.sperm_cryopreservation_strawe"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"/>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">
-                                        Storage Code: <span t-field="o.sperm_cryopreservation_code"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">
-                                        <b>Semenologist:</b>
-                                    </td>
-                                    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;" colspan="2">
-                                        <span t-field="o.seminologist_ids"/>
-                                    </td>
-                                </tr>
+                                <!--<tr>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;vertical-align: top;padding:2% 0% 0% 0%;">-->
+                                <!--        <b>Suitable for:</b>-->
+                                <!--    </td>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">-->
+                                <!--        <t t-foreach="o.suitable_for_ids" t-as="item">-->
+                                <!--            <span style="margin-right:5%;"><t t-esc="item.name"/>-->
+                                <!--                <t t-if="not item == o.suitable_for_ids[-1]">-->
+                                <!--                    <span style="margin-left: 5%;">/</span>-->
+                                <!--                </t>-->
+                                <!--            </span>-->
+                                <!--        </t>-->
+                                <!--    </td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">-->
+                                <!--        <b>Sperm Cryopreservation:</b>-->
+                                <!--    </td>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">-->
+                                <!--        Recommended: <span t-if="o.sperm_cryopreservation_recommended">Yes</span><span t-if="not o.sperm_cryopreservation_recommended">No</span>-->
+                                <!--    </td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"/>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">-->
+                                <!--        Consented: <span t-if="o.sperm_cryopreservation_consented">Yes</span><span t-if="not o.sperm_cryopreservation_consented">No</span>-->
+                                <!--    </td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"/>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">-->
+                                <!--        No. straws: <span t-field="o.sperm_cryopreservation_strawe"/>-->
+                                <!--    </td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;"/>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">-->
+                                <!--        Storage Code: <span t-field="o.sperm_cryopreservation_code"/>-->
+                                <!--    </td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;">-->
+                                <!--        <b>Semenologist:</b>-->
+                                <!--    </td>-->
+                                <!--    <td style="border-width : 0;border-style: hidden;padding:1% 0% 0% 0%;" colspan="2">-->
+                                <!--        <span t-field="o.seminologist_ids"/>-->
+                                <!--    </td>-->
+                                <!--</tr>-->
                             </table>
                         </div>
                     </t>
