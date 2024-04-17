@@ -1215,7 +1215,7 @@ class PatientTimeline(models.Model):
             self.oi_ti_platform_enabled = True
             self.action_save_repeat_consultation_section()
             oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
-            oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
+            return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
         check_red_values = self.ec_repeat_consultation_id.check_field_values_as_red()
         if check_red_values:
             values = {
@@ -1256,11 +1256,25 @@ class PatientTimeline(models.Model):
                 'context': values,
                 'target': 'new',
             }
-        if (self.fsh_level or self.lh_level >= 10 or
-                not (10 <= self.amh_level <= 25)):
-            self.ec_repeat_consultation_id.repeat_consultation_state = 'decision_pending'
-            raise ValidationError(_("Hormonal Profile values are not in range. "
-                                    "Please seek senior doctor's approval."))
+        if (float(self.fsh_level) > 10 or float(self.lh_level) > 10 or
+                not (10 <= float(self.amh_level) <= 25)):
+            values = {
+                'default_message': "Hormonal Profile values are not in range. "
+                                   "Please seek senior doctor's approval.",
+                'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
+            }
+            return {
+                'name': 'Message',
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'views': [(False, 'form')],
+                'res_model': 'ec.medical.treatment.pathway.wizard',
+                'context': values,
+                'target': 'new',
+            }
+            # self.ec_repeat_consultation_id.repeat_consultation_state = 'decision_pending'
+            # raise ValidationError(_("Hormonal Profile values are not in range. "
+            #                         "Please seek senior doctor's approval."))
 
         self.oi_ti_platform_enabled = True
         self.action_save_repeat_consultation_section()
@@ -1280,16 +1294,6 @@ class PatientTimeline(models.Model):
                 self.male_factor_ids |= record_male
         else:
             print("Record not found")
-
-    @api.onchange('fsh_level', 'lh_level', 'amh_level')
-    def _check_hormonal_profile_level(self):
-        for record in self:
-            if record.fsh_level is not False and record.fsh_level < 0:
-                raise ValidationError(_("FSH Level should not have negative values."))
-            if record.lh_level is not False and record.lh_level < 0:
-                raise ValidationError(_("LH Level should not have negative values."))
-            if record.amh_level is not False and record.amh_level < 0:
-                raise ValidationError(_("AMH Level should not have negative values."))
 
     @api.onchange('repeat_pregnancy_temp')
     def _check_float_input_temp(self):
@@ -1398,6 +1402,21 @@ class PatientTimeline(models.Model):
     def _check_input_male_temperature(self):
         if self.male_temperature and not re.match(Validation.REGEX_FLOAT_2_DP, self.male_temperature):
             raise UserError(f"Please enter a numeric value in male temperature!")
+
+    @api.onchange('fsh_level')
+    def _check_input_fsh_level(self):
+        if self.fsh_level and not re.match(Validation.REGEX_FLOAT_2_DP, self.fsh_level) or float(self.fsh_level) < 0:
+            raise UserError(f"Please enter a numeric value in FSH and should be greater than 0!")
+
+    @api.onchange('lh_level')
+    def _check_input_lh_level(self):
+        if self.lh_level and not re.match(Validation.REGEX_FLOAT_2_DP, self.lh_level) or float(self.lh_level) < 0:
+            raise UserError(f"Please enter a numeric value in LH and should be greater than 0!")
+
+    @api.onchange('amh_level')
+    def _check_input_amh_level(self):
+        if self.amh_level and not re.match(Validation.REGEX_FLOAT_2_DP, self.amh_level) or float(self.amh_level) < 0:
+            raise UserError(f"Please enter a numeric value in AMH and should be greater than 0!")
 
     @api.onchange('biological_female_dob_check', 'biological_male_dob_check')
     def _check_same_as_above_functionality(self):
