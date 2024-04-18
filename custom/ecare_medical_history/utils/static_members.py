@@ -806,6 +806,7 @@ class StaticMember:
     OVARY_TYPE = [
         ('left', 'Left'),
         ('right', 'Right'),
+        ('unable_determine', 'Unable to Determine'),
     ]
 
     SEMEN_COLOR = [

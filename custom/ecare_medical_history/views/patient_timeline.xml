@@ -784,7 +784,7 @@
 											<!-- TVS Section -->
 											<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 												<group string="Uterus"/>
-												<div class="d-flex align-items-center bg-light bg-gradient">
+												<div class="d-flex align-items-center bg-light bg-gradient" style=" margin-left: 1.5rem; ">
 													<div class="col-md-10">
 														<div class="d-flex custom-checkbox-alignment-boolean">
 															<field name="tvs_uterus_tvs_size"
@@ -870,7 +870,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="d-flex bg-light bg-gradient">
+												<div class="d-flex bg-light bg-gradient" style=" margin-left: 1.5rem; ">
 
 													<div class="col-md-2">
 														Endometrial Character
@@ -907,68 +907,70 @@
 												</div>
 
 												<group string="Ovaries"/>
-												<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
-													<div style="text-align: end;margin-right: 2rem;">
-														ROV
-													</div>
+												<span class="bg-light bg-gradient">
+													<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
+														<div style="text-align: end;margin-right: 2rem;">
+															ROV
+														</div>
 
-													<div class="col-md-5">
-														<div class="col-md-12" style="pointer-events: none;">
-															<field name="tvs_rov"/>
-															<!--															<field name="tvs_rov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
-															<!--													   ('scan_required', '=', 'yes'),-->
-															<!--													   ('question_one_choice', '=', 'no')]}"/>-->
+														<div class="col-md-5" style="margin-right: 1rem;">
+															<div class="col-md-12" style="pointer-events: none;">
+																<field name="tvs_rov"/>
+																<!--															<field name="tvs_rov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+																<!--													   ('scan_required', '=', 'yes'),-->
+																<!--													   ('question_one_choice', '=', 'no')]}"/>-->
+															</div>
+														</div>
+
+														<div class="col-md-6">
+															<a class="btn btn-primary oe_edit_only" onclick="showBeginScan('rov', 'tvs_rov')">Begin Scan</a>
+															<!--														<a class="btn btn-primary" onclick="showTreatmentHistory()">Treatment History</a>-->
+															<!--														<button type="object"-->
+															<!--																class="btn-primary"-->
+															<!--																context="{'default_field': 'tvs_rov',-->
+															<!--															'default_display': tvs_rov-->
+															<!--															}"-->
+															<!--																name="action_open_tvs_scan"-->
+															<!--																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+															<!--																string="Begin Scan"/>-->
+															<div style="display: inline; margin-left: 2%;">
+																<p style="display: inline; margin-right: 2%;">Not Visualized</p>
+																<field name="tvs_right_ovary_not_visualised"/>
+															</div>
 														</div>
 													</div>
 
-													<div class="col-md-6">
-														<a class="btn btn-primary oe_edit_only" onclick="showBeginScan('rov', 'tvs_rov')">Begin Scan</a>
-														<!--														<a class="btn btn-primary" onclick="showTreatmentHistory()">Treatment History</a>-->
-														<!--														<button type="object"-->
-														<!--																class="btn-primary"-->
-														<!--																context="{'default_field': 'tvs_rov',-->
-														<!--															'default_display': tvs_rov-->
-														<!--															}"-->
-														<!--																name="action_open_tvs_scan"-->
-														<!--																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
-														<!--																string="Begin Scan"/>-->
-														<div style="display: inline; margin-left: 2%;">
-															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
-															<field name="tvs_right_ovary_not_visualised"/>
+													<div class="d-flex justify-content-start  bg-light bg-gradient">
+														<div style="text-align: end;margin-right: 2rem;">
+															LOV
 														</div>
-													</div>
-												</div>
-
-												<div class="d-flex justify-content-start">
-													<div style="text-align: end;margin-right: 2rem;">
-														LOV
-													</div>
-													<div class="col-md-5">
-														<div class="col-md-12" style="pointer-events: none;">
-															<field name="tvs_lov"/>
-															<!--															<field name="tvs_lov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
-															<!--													   ('scan_required', '=', 'yes'),-->
-															<!--													   ('question_one_choice', '=', 'no')]}"/>-->
-														</div>
-													</div>
-
-													<div class="col-md-6">
-														<a class="btn btn-primary" onclick="showBeginScan('lov', 'tvs_lov')">Begin Scan</a>
-														<!--														<button type="object"-->
-														<!--																class="btn-primary"-->
-														<!--																context="{'default_field': 'tvs_lov',-->
-														<!--															'default_display': tvs_lov-->
-														<!--															}"-->
-														<!--																name="action_open_tvs_scan"-->
-														<!--																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
-														<!--																string="Begin Scan"/>-->
-														<div style="display: inline; margin-left: 2%;">
-															<p style="display: inline; margin-right: 2%;">Not Visualized</p>
-															<field name="tvs_left_ovary_not_visualised"/>
+														<div class="col-md-5" style="margin-right: 1rem;">
+															<div class="col-md-12" style="pointer-events: none;">
+																<field name="tvs_lov"/>
+																<!--															<field name="tvs_lov" attrs="{'required': [('show_repeat_section_state', '=', True),-->
+																<!--													   ('scan_required', '=', 'yes'),-->
+																<!--													   ('question_one_choice', '=', 'no')]}"/>-->
+															</div>
 														</div>
 
+														<div class="col-md-6">
+															<a class="btn btn-primary" onclick="showBeginScan('lov', 'tvs_lov')">Begin Scan</a>
+															<!--														<button type="object"-->
+															<!--																class="btn-primary"-->
+															<!--																context="{'default_field': 'tvs_lov',-->
+															<!--															'default_display': tvs_lov-->
+															<!--															}"-->
+															<!--																name="action_open_tvs_scan"-->
+															<!--																groups="ecare_medical_history.group_medical_history_timeline_edit_user_only"-->
+															<!--																string="Begin Scan"/>-->
+															<div style="display: inline; margin-left: 2%;">
+																<p style="display: inline; margin-right: 2%;">Not Visualized</p>
+																<field name="tvs_left_ovary_not_visualised"/>
+															</div>
+
+														</div>
 													</div>
-												</div>
+												</span>
 
 <!--												<group string="Cyst"/>-->
 
@@ -988,16 +990,16 @@
 														</div>
 													</div>
 												</div>
-												<div class="d-flex align-items-center bg-light bg-gradient">
-													<div class="col-md-1" style="text-align: right;">
-														Other Findings
-													</div>
-													<div class="col-md-7 d-flex flex-column">
-														<div>
-															<field name="tvs_other_text" widget="html"/>
-														</div>
-													</div>
-												</div>
+<!--												<div class="d-flex align-items-center bg-light bg-gradient">-->
+<!--													<div class="col-md-1" style="text-align: right;">-->
+<!--														Other Findings-->
+<!--													</div>-->
+<!--													<div class="col-md-7 d-flex flex-column">-->
+<!--														<div>-->
+<!--															<field name="tvs_other_text" widget="html"/>-->
+<!--														</div>-->
+<!--													</div>-->
+<!--												</div>-->
 
 												<!--												<div class="d-flex bg-light bg-gradient">-->
 												<!--													<div class="col-md-1 o_form_label">-->
@@ -1018,6 +1020,7 @@
 											<!-- TVS section ends -->
 
 											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+												<field name="tvs_other_text" string="Other Findings" widget="html"/>
 												<field name="tvs_signs_of_ovulation_ids"
 													   widget="many2many_tags"
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
@@ -2722,10 +2725,10 @@
 													</div>
 												</group>
 												<group string="Ovaries"/>
-												<group>
+												<group class="bg-light bg-gradient">
 													<label for="gynae_rov"/>
 													<div>
-														<field name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;"/>
+														<field  name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;margin-right: 1rem; width:100%;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_rov', 'gynae_rov')">Begin Scan</a>
 
@@ -2739,7 +2742,7 @@
 
 													<label for="gynae_lov"/>
 													<div>
-														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;"/>
+														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;margin-right: 1rem;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_lov', 'gynae_lov')">Begin Scan</a>
 

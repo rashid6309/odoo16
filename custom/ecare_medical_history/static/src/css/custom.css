@@ -34,7 +34,7 @@ div[name='all_semen_analysis_ids'] {
 
 #semen_analysis_form_id .o_form_label:not(.form-check-label)
 {
-   width: 100px ;
+   width: 110px ;
    text-align : right;
 }
 
@@ -557,6 +557,10 @@ label[for="cn_type"]{
     font-weight: bold !important;
 }
 
+label[for="suitable_for_ids"]{
+    margin-right: 1rem !important;
+}
+
 
 label[for="male_acne"],label[for="male_weight_gain"],label[for="male_weight_loss"],
 label[for="male_hirsuitism"],label[for="male_weight_at_marriage"],
@@ -628,6 +632,15 @@ label[for="lining_ids"] {
 
 label[for="progression_dead"] {
     margin-right: 2% !important;
+}
+
+
+label[for="gynae_signs_of_ovulation_ids"] {
+    font-weight: 700 !important;
+}
+
+label[for="gynae_diagnosis"] {
+    font-weight: 700 !important;
 }
 
 .table_fixed_height {
