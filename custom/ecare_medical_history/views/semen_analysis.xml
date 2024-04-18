@@ -53,7 +53,7 @@
 
 
                         <div class="d-flex ">
-                            <div class="col-md-1" style=" margin-right: 2rem; ">
+                            <div class="col-md-1" style="width: 10.5rem;">
                                 <label for="abstinence"/>
                             </div>
                             <div class="d-flex">
@@ -74,7 +74,7 @@
                         </group>
                         <group string="General Examination"/>
                         <div class="d-flex ">
-                            <div class="col-md-1" style=" margin-right: 2rem; ">
+                            <div class="col-md-1" style="width: 10.5rem;">
                                 <label for="liquifaction_time"/>
                             </div>
                             <div class="d-flex">
@@ -94,7 +94,7 @@
                         </group>
 
                         <div class="d-flex ">
-                            <div class="col-md-1" style=" margin-right: 2rem; ">
+                            <div class="col-md-1" style="width: 10.5rem;">
                                 <label for="ph"/>
                             </div>
                             <div class="d-flex">
@@ -108,7 +108,7 @@
                         </div>
 
                         <div class="d-flex ">
-                            <div class="col-md-1" style=" margin-right: 2rem; ">
+                            <div class="col-md-1" style="width: 10.5rem;">
                                 <label for="viscosity"/>
                             </div>
                             <div class="d-flex">
@@ -119,7 +119,7 @@
                         </div>
 
                         <div class="d-flex ">
-                            <div class="col-md-1" style=" margin-right: 2rem; ">
+                            <div class="col-md-1" style="width: 10.5rem;">
                                 <label for="volume"/>
                             </div>
                             <div class="d-flex">
@@ -134,7 +134,7 @@
 
                         <group string="Makler Chamber"/>
                         <div class="d-flex ">
-                            <div class="col-md-1" style=" margin-right: 2rem; ">
+                            <div class="col-md-1" style="width: 10.5rem;">
                                 <label for="total_count"/>
                             </div>
                             <div class="d-flex">
@@ -149,7 +149,7 @@
 
 
                         <div class="d-flex ">
-                            <div class="col-md-1" style=" margin-right: 2rem; ">
+                            <div class="col-md-1" style="width: 10.5rem;">
                                 <label for="motility"/>
                             </div>
                             <div class="d-flex">
@@ -166,10 +166,10 @@
                         <group string="Progression Slide"/>
                         <div class="d-flex flex-column col-lg-7">
                             <div class="d-flex align-items-center bg-light bg-gradient">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     Progression
                                 </div>
-                                <div class="col-md-11 ">
+                                <div class="col-md-10">
                                     <div class="d-flex">
                                         <label for="progression_f_forward"/>
                                         <field name="progression_f_forward"/>
@@ -201,7 +201,7 @@
                         </div>
 
                         <div class="d-flex ">
-                            <div class="col-md-1" style=" margin-right: 2rem; ">
+                            <div class="col-md-1" style="width: 10.5rem;">
                                 <label for="wbcs"/>
                             </div>
                             <div class="d-flex">
@@ -224,7 +224,7 @@
                             </group>
                         </group>
                         <div class="d-flex ">
-                            <div class="col-md-1" style=" width: 10%; ">
+                            <div class="col-md-1" style="width: 10.5rem;">
                                 <label for="epi_cells_immature_cells"/>
                             </div>
                             <div class="d-flex">
@@ -306,11 +306,17 @@
                             </div>
 
                         </div>
-                        <group string="Preparation Method">
-                            <group>
-                                <field style="width:25% !important;" name="method"/>
-                            </group>
-                        </group>
+                        <group string="Preparation Method"/>
+                          <div class="d-flex">
+                            <div class="col-md-1" style="margin-right: 2rem;">
+                                <label for="method"/>
+                            </div>
+                            <div class="d-flex">
+                                <div>
+                                    <field name="method"/>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="d-flex">
                             <div class="col-md-1" style="margin-right: 2rem;">
