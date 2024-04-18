@@ -857,7 +857,7 @@
 <!--																Fibroid-->
 <!--															</div>-->
 															<div class="col-md-7">
-																<field name="tvs_generic_sizes_ids">
+																<field name="tvs_generic_sizes_ids" string="Location or features">
 																	<tree editable="top">
 																		<field name="generic_size_x"/>
 																		<field name="location_or_features"/>
@@ -2676,7 +2676,7 @@
 <!--																	Fibroid-->
 <!--																</div>-->
 																<div class="col-md-10">
-																	<field name="gynaecological_generic_sizes_ids">
+																	<field name="gynaecological_generic_sizes_ids" string="Location or features">
 																		<tree editable="top">
 																			<field name="generic_size_x"/>
 																			<field name="location_or_features"/>

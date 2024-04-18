@@ -612,18 +612,23 @@ label[for="tvs_signs_of_ovulation_ids"] {
 }
 label[for="progression_f_forward"] {
     width: 17rem !important;
+    margin-right: 1rem !important;
 }
 label[for="progression_s_forward"] {
     width: 17rem !important;
+    margin-right: 1rem !important;
 }
 label[for="progression_lateral"] {
     width: 17rem !important;
+    margin-right: 1rem !important;
 }
 label[for="progression_non_progressive"] {
     width: 17rem !important;
+    margin-right: 1rem !important;
 }
 label[for="progression_dead"] {
     width: 17rem !important;
+    margin-right: 1rem !important;
 }
 
 label[for="gynae_exam_method_of_hvs"] {
@@ -657,6 +662,26 @@ label[for="gynae_signs_of_ovulation_ids"] {
 
 label[for="gynae_diagnosis"] {
     font-weight: 700 !important;
+}
+
+label[for="cephalic"] {
+    margin-right: 1rem !important;
+}
+
+label[for="mid_piece"] {
+    margin-right: 1rem !important;
+}
+
+label[for="tail"] {
+    margin-right: 1rem !important;
+}
+
+label[for="acrosomal_cap"] {
+    margin-right: 1rem !important;
+}
+
+label[for="vacoules"] {
+    margin-right: 1rem !important;
 }
 
 .table_fixed_height {
