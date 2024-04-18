@@ -907,7 +907,7 @@
 												</div>
 
 												<group string="Ovaries"/>
-												<span class="bg-light bg-gradient">
+												<span class="bg-light bg-gradient" style=" margin-left: 1.5rem; ">
 													<div class="d-flex justify-content-start bg-light bg-gradient mb-2">
 														<div style="text-align: end;margin-right: 2rem;">
 															ROV
@@ -974,7 +974,7 @@
 
 <!--												<group string="Cyst"/>-->
 
-												<div class="d-flex align-items-center bg-light bg-gradient">
+												<div class="d-flex align-items-center bg-light bg-gradient" style=" margin-left: 1.5rem; ">
 													<div style="text-align: end;margin-right: 2rem;">
 														Cyst
 													</div>
@@ -2725,7 +2725,7 @@
 													</div>
 												</group>
 												<group string="Ovaries"/>
-												<group class="bg-light bg-gradient">
+												<group class="bg-light bg-gradient" style=" margin-left: 1.5rem; ">
 													<label for="gynae_rov"/>
 													<div>
 														<field  name="gynae_rov" class="oe_inline" nolabel="1" style="pointer-events: none;margin-right: 1rem; width:100%;"/>
