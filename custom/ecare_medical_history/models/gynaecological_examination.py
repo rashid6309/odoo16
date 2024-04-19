@@ -94,7 +94,7 @@ class MedicalGynaecologicalExamination(models.Model):
 
     gynae_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                           inverse_name="gynaecological_fiobrid_id",
-                                          string="Cyst")
+                                          string="Location")
     gynae_rov = fields.Char(string='ROV')
 
     gynae_lov = fields.Char(string='LOV')

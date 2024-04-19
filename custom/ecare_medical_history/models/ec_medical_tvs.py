@@ -73,7 +73,7 @@ class EcMedicalTVS(models.Model):
 
     tvs_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                         inverse_name="tvs_fiobrid_id",
-                                        string="Cyst")
+                                        string="Location")
 
     tvs_rov = fields.Char(string='ROV')
 
