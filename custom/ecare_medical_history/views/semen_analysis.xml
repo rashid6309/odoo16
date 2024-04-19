@@ -166,7 +166,7 @@
                         <group string="Progression Slide"/>
                         <div class="d-flex flex-column col-lg-7">
                             <div class="d-flex align-items-center bg-light bg-gradient">
-                                <div class="col-md-2">
+                                <div class="col-md-1" style="margin-right: 2rem;">
                                     Progression
                                 </div>
                                 <div class="col-md-10">
@@ -243,8 +243,8 @@
                             </group>
                         </group>
                         <group string="Sperm Morphology"/>
-                        <div class="d-flex ">
-                            <div class="col-md-1">
+                        <div class="d-flex " style="margin-bottom: 1rem;">
+                            <div class="col-md-1" style="margin-right: 1rem !important;">
                                 <label for="normal"/>
                             </div>
                             <div class="d-flex">
@@ -257,8 +257,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex ">
-                            <div class="col-md-1">
+                        <div class="d-flex " style="margin-bottom: 1rem;">
+                            <div class="col-md-1" style="margin-right: 1rem !important;">
                                 <label for="abnormal"/>
                             </div>
                             <div class="d-flex">
