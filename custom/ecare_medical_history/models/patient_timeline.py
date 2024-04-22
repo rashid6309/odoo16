@@ -1274,3 +1274,12 @@ class PatientTimeline(models.Model):
             self.biological_female_dob = None
         if self.biological_male_dob_check:
             self.biological_male_dob = None
+
+    # @api.onchange('tv_diagnosis')
+    # def _duplicate_tv_diagnosis(self):
+    #     if self.tv_diagnosis:
+    #         diagnosis = self.env['ec.medical.diagnosis'].search([('name', 'ilike', str(self.tv_diagnosis))])
+    #         if diagnosis:
+    #             self.repeat_diagnosis = self.tv_diagnosis
+
+
