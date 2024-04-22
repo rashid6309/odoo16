@@ -676,6 +676,16 @@ label[for="tail"] {
     margin-right: 1rem !important;
 }
 
+label[for="tvs_uterus_tvs_size"] {
+    width: 5rem !important;
+}
+label[for="tvs_uterus_tvs_position"] {
+    width: 5rem !important;
+}
+label[for="tvs_uterus_tvs_fiobrid"] {
+    width: 5rem !important;
+}
+
 label[for="acrosomal_cap"] {
     margin-right: 1rem !important;
 }

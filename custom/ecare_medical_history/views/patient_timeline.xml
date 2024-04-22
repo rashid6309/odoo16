@@ -875,7 +875,7 @@
 													<div class="col-md-2">
 														Endometrial Character
 													</div>
-													<div class="d-flex flex-column" style=" margin-left: 3.75rem;">
+													<div class="d-flex flex-column" style=" margin-left: 1.75rem;">
 														<div style="width: 50rem;">
 															<field name="tvs_smooth"/>
 															<span for="tvs_smooth" style=" margin-right: 1%; ">Smooth</span>
