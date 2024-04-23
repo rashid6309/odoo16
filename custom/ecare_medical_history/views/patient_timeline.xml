@@ -878,18 +878,18 @@
 													<div class="d-flex flex-column" style=" margin-left: 1.75rem;">
 														<div style="width: 50rem;">
 															<field name="tvs_smooth"/>
-															<span for="tvs_smooth" style=" margin-right: 1%; ">Smooth</span>
+															<span for="tvs_smooth" style=" margin-right: 2%; ">Smooth</span>
 															<field name="tvs_distorted"/>
-															<span for="tvs_smooth" style=" margin-right: 1%; ">Distorted</span>
+															<span for="tvs_smooth" style=" margin-right: 2%; ">Distorted</span>
 															<field name="tvs_triple_echo"/>
-															<span for="tvs_smooth" style=" margin-right: 1%; ">Triple Echo</span>
+															<span for="tvs_smooth" style=" margin-right: 2%; ">Triple Echo</span>
 															<field name="tvs_hyperechoic_solid"/>
-															<span for="tvs_smooth" style=" margin-right: 1%; ">Hyperechoic/Solid</span>
+															<span for="tvs_smooth" style=" margin-right: 2%; ">Hyperechoic/Solid</span>
 															<div class="d-flex">
 																<field name="tvs_suspected_cavity_lesion"/>
-																<span for="tvs_smooth" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
+																<span for="tvs_smooth" style=" margin-right: 2%; ">Suspected Cavity Lesion</span>
 																<field name="tvs_menstruating"/>
-																<span for="tvs_menstruating" style=" margin-right: 1%; ">Menstruating</span>
+																<span for="tvs_menstruating" style=" margin-right: 2%; ">Menstruating</span>
 															</div>
 
 															<!--															<field name="tvs_linining_ids"-->
