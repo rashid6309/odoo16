@@ -1187,10 +1187,10 @@
 													</span>
 												</group>
 												<group string="Hormonal Profile">
-													<field name="fsh_level"/>
+													<field name="fsh_level" widget="integer_widget"/>
 													<field name="lh_level"/>
 													<field name="amh_level"/>
-													<field name="tubal_patency_test" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<field name="tubal_patency_test" widget="integer_widget" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
 													<field name="diagnosis_cervical_incompetence"
 														   widget="radio"
 														   options="{'horizontal': True}"/>

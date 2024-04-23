@@ -10,74 +10,139 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet class="container_cycle">
+
+
+                        <nav class="navbar navbar-expand-lg navbar-dark"  id="navbarColor02">
+                            <div class="collapse navbar-collapse">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item active">
+                                        <p class="oi_ti_action_btn">
+                                            <strong>
+                                                <button
+                                                        name="action_complete_attempt"
+                                                        class="oi_ti_navbar_btn"
+                                                        type="object"
+                                                        string="COMPLETE ATTEMPT"/>
+                                            </strong>
+                                        </p>
+                                    </li>
+                                    <li class="nav-item">
+                                        <p class="oi_ti_action_btn">
+                                            <button
+                                                    name="action_create_oi_ti_platform_attempt"
+                                                    class="oi_ti_navbar_btn"
+                                                    type="object"
+                                                    string="START NEW OI/TI ATTEMPT"/>
+                                        </p>
+                                    </li>
+                                    <li class="nav-item">
+                                        <p class="oi_ti_action_btn">
+                                            <strong>
+                                                <button
+                                                        name="action_abandoned_attempt"
+                                                        class="oi_ti_navbar_btn"
+                                                        type="object"
+                                                        string="ABANDON ATTEMPT"/>
+                                            </strong>
+                                        </p>
+                                    </li>
+                                    <li class="nav-item">
+                                        <p class="oi_ti_action_btn">
+                                            <strong>
+                                                <button
+                                                        name="action_abandoned_attempt"
+                                                        class="oi_ti_navbar_btn"
+                                                        type="object"
+                                                        string="ADD INTERVENTION"/>
+                                            </strong>
+                                        </p>
+                                    </li>
+                                    <li class="nav-item">
+                                        <p class="oi_ti_action_btn">
+                                            <strong>
+                                                <button
+                                                        name="action_abandoned_attempt"
+                                                        class="oi_ti_navbar_btn"
+                                                        type="object"
+                                                        string="FOLLOW UP"/>
+                                            </strong>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+
+
+
+
                         <group>
                             <field name="cycle_timeline_id" readonly="1" force_save="1"/>
                             <field name="repeat_consultation_id" readonly="1" force_save="1"/>
                         </group>
                         <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                             <tbody>
-                                <tr style="height:15.75pt;">
-                                    <td class="oi_ti_computed_values_td" style="background-color:#f6b26b;">
-                                        <p class="oi_ti_action_btn">Add OPK</p>
-                                    </td>
-                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                        <p class="oi_ti_action_btn">Schedule</p>
-                                    </td>
-                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                        <p class="oi_ti_action_btn"><span><field name="oi_ti_schedule"/></span></p>
-                                    </td>
-                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                        <p class="oi_ti_action_btn">Add intervention</p>
-                                    </td>
-                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                        <p class="oi_ti_action_btn"><span><field name="oi_ti_intervention"/></span></p>
-                                    </td>
-                                    <td style="border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff8282;">
-                                        <p class="oi_ti_action_btn">
-                                            <strong>
-                                                <button
-                                                        name="action_abandoned_attempt"
-                                                        class="oi_ti_transparent_btn"
-                                                        type="object"
-                                                        string="ABANDON ATTEMPT"/>
-                                            </strong>
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr style="height:15.75pt;">
-                                    <td class="oi_ti_computed_values_td" style="background-color:#3c78d8;">
-                                        <p class="oi_ti_action_btn"><strong><span>Followup</span></strong></p>
-                                    </td>
-                                    <td class="oi_ti_heading_td" style="">
-                                        <p class="oi_ti_action_btn"></p>
-                                    </td>
-                                    <td class="oi_ti_heading_td" style="">
-                                        <p class="oi_ti_action_btn"></p>
-                                    </td>
-                                    <td colspan="2" class="oi_ti_heading_td" style=" background-color:#ff8282;">
-                                        <p class="oi_ti_action_btn"><strong><span>CONVERT TO CSO/OPU</span></strong></p>
-                                    </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#a6fda6;">
-                                        <p class="oi_ti_action_btn">
-                                            <button
-                                                    name="action_create_oi_ti_platform_attempt"
-                                                    class="oi_ti_transparent_btn"
-                                                    type="object"
-                                                    string="START NEW OI/TI ATTEMPT"/>
-                                        </p>
-                                    </td>
-                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#deb1fb;">
-                                        <p class="oi_ti_action_btn">
-                                            <strong>
-                                                <button
-                                                        name="action_complete_attempt"
-                                                        class="oi_ti_transparent_btn"
-                                                        type="object"
-                                                        string="COMPLETE ATTEMPT"/>
-                                            </strong>
-                                        </p>
-                                    </td>
-                                </tr>
+<!--                                <tr style="height:15.75pt;">-->
+<!--                                    <td class="oi_ti_computed_values_td" style="background-color:#f6b26b;">-->
+<!--                                        <p class="oi_ti_action_btn">Add OPK</p>-->
+<!--                                    </td>-->
+<!--                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">-->
+<!--                                        <p class="oi_ti_action_btn">Schedule</p>-->
+<!--                                    </td>-->
+<!--                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">-->
+<!--                                        <p class="oi_ti_action_btn"><span><field name="oi_ti_schedule"/></span></p>-->
+<!--                                    </td>-->
+<!--                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">-->
+<!--                                        <p class="oi_ti_action_btn">Add intervention</p>-->
+<!--                                    </td>-->
+<!--                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">-->
+<!--                                        <p class="oi_ti_action_btn"><span><field name="oi_ti_intervention"/></span></p>-->
+<!--                                    </td>-->
+<!--                                    <td style="border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff8282;">-->
+<!--                                        <p class="oi_ti_action_btn">-->
+<!--                                            <strong>-->
+<!--                                                <button-->
+<!--                                                        name="action_abandoned_attempt"-->
+<!--                                                        class="oi_ti_transparent_btn"-->
+<!--                                                        type="object"-->
+<!--                                                        string="ABANDON ATTEMPT"/>-->
+<!--                                            </strong>-->
+<!--                                        </p>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr style="height:15.75pt;">-->
+<!--                                    <td class="oi_ti_computed_values_td" style="background-color:#3c78d8;">-->
+<!--                                        <p class="oi_ti_action_btn"><strong><span>Followup</span></strong></p>-->
+<!--                                    </td>-->
+<!--                                    <td class="oi_ti_heading_td" style="">-->
+<!--                                        <p class="oi_ti_action_btn"></p>-->
+<!--                                    </td>-->
+<!--                                    <td class="oi_ti_heading_td" style="">-->
+<!--                                        <p class="oi_ti_action_btn"></p>-->
+<!--                                    </td>-->
+<!--                                    <td colspan="2" class="oi_ti_heading_td" style=" background-color:#ff8282;">-->
+<!--                                        <p class="oi_ti_action_btn"><strong><span>CONVERT TO CSO/OPU</span></strong></p>-->
+<!--                                    </td>-->
+<!--                                    <td class="oi_ti_heading_td" style=" background-color:#a6fda6;">-->
+<!--                                        <p class="oi_ti_action_btn">-->
+<!--                                            <button-->
+<!--                                                    name="action_create_oi_ti_platform_attempt"-->
+<!--                                                    class="oi_ti_transparent_btn"-->
+<!--                                                    type="object"-->
+<!--                                                    string="START NEW OI/TI ATTEMPT"/>-->
+<!--                                        </p>-->
+<!--                                    </td>-->
+<!--                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#deb1fb;">-->
+<!--                                        <p class="oi_ti_action_btn">-->
+<!--                                            <strong>-->
+<!--                                                <button-->
+<!--                                                        name="action_complete_attempt"-->
+<!--                                                        class="oi_ti_transparent_btn"-->
+<!--                                                        type="object"-->
+<!--                                                        string="COMPLETE ATTEMPT"/>-->
+<!--                                            </strong>-->
+<!--                                        </p>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
 
                                 <tr style="height:15.75pt;">
                                     <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#ff00ff;">
@@ -280,11 +345,11 @@
                                     </tbody>
                                 </table>
                                 <field name="html_table" widget="html"/>
-<!--                                <t t-foreach="record.oi_ti_platform_attempt_ids.raw_value" t-as="line">-->
-<!--                                    <t t-out="line['oi_ti_other_diagnosis']"/>-->
-<!--                                    <t t-out="oi_ti_other_diagnosis"/>-->
+                                <!--                                <t t-foreach="record.oi_ti_platform_attempt_ids.raw_value" t-as="line">-->
+                                <!--                                    <t t-out="line['oi_ti_other_diagnosis']"/>-->
+                                <!--                                    <t t-out="oi_ti_other_diagnosis"/>-->
 
-<!--                                </t>-->
+                                <!--                                </t>-->
                             </div>
                         </t>
                     </templates>

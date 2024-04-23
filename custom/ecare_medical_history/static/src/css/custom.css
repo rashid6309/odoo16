@@ -856,3 +856,15 @@ th[data-name="treatment_notes"] div {
 .cyst_class_div {
     margin-top: 5rem !important;
 }
+
+#navbarColor02
+{
+    margin-top:-2rem;
+}
+
+.oi_ti_navbar_btn
+{
+    background-color: #3e5bc5;
+    margin-right: 1rem;
+    color: white !important;
+}
