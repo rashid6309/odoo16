@@ -872,7 +872,7 @@
 												</div>
 												<div class="d-flex bg-light bg-gradient" style=" margin-left: 1.5rem; ">
 
-													<div class="col-md-1">
+													<div class="col-md-1" style=" width: 7.2rem; ">
 														Endometrial Character
 													</div>
 													<div class="d-flex flex-column" style=" margin-left: 1.75rem;">
@@ -978,7 +978,7 @@
 													<div style="text-align: end;margin-right: 2rem;">
 														Cyst
 													</div>
-													<div class="col-md-5 d-flex flex-column">
+													<div class="col-md-6 d-flex flex-column">
 														<div>
 															<field name="tvs_cyst_size_ids">
 																<tree editable="top">
