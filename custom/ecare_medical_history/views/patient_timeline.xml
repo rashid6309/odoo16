@@ -856,7 +856,7 @@
 <!--															<div class="col-md-2" style="font-weight:bold;">-->
 <!--																Fibroid-->
 <!--															</div>-->
-															<div class="col-md-7">
+															<div class="col-md-10">
 																<field name="tvs_generic_sizes_ids" string="Location or features">
 																	<tree editable="top">
 																		<field name="generic_size_x"/>
@@ -872,7 +872,7 @@
 												</div>
 												<div class="d-flex bg-light bg-gradient" style=" margin-left: 1.5rem; ">
 
-													<div class="col-md-2">
+													<div class="col-md-1">
 														Endometrial Character
 													</div>
 													<div class="d-flex flex-column" style=" margin-left: 1.75rem;">
@@ -885,9 +885,9 @@
 															<span for="tvs_smooth" style=" margin-right: 1%; ">Triple Echo</span>
 															<field name="tvs_hyperechoic_solid"/>
 															<span for="tvs_smooth" style=" margin-right: 1%; ">Hyperechoic/Solid</span>
-															<field name="tvs_suspected_cavity_lesion"/>
-															<span for="tvs_smooth" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
 															<div class="d-flex">
+																<field name="tvs_suspected_cavity_lesion"/>
+																<span for="tvs_smooth" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
 																<field name="tvs_menstruating"/>
 																<span for="tvs_menstruating" style=" margin-right: 1%; ">Menstruating</span>
 															</div>
@@ -2644,10 +2644,10 @@
 															</div>
 															<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
 																<span class="col-md-2" style="font-weight:bold;">Size</span>
-																<field name="uterus_size_length" style=" width:8%;"/>
+																<field name="uterus_size_length" style=" width:10%;"/>
 																<span class="m-2">x</span>
 
-																<field name="uterus_size_width" style=" width:8%;"/>
+																<field name="uterus_size_width" style=" width:10%;"/>
 																<span>cm</span>
 															</div>
 															<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
@@ -2761,7 +2761,7 @@
 													<div class="d-flex align-items-center" >
 <!--														<div class="col-md-3" style="text-align: center;">-->
 <!--														</div>-->
-														<div class="col-md-9">
+														<div class="col-md-12">
 															<div class="col-md-12">
 																<field name="gynae_cyst_size_ids">
 																	<tree editable="top">

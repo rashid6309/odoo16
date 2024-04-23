@@ -658,6 +658,7 @@ label[for="progression_dead"] {
 
 label[for="gynae_signs_of_ovulation_ids"] {
     font-weight: 700 !important;
+    width: 5rem !important;
 }
 
 label[for="gynae_diagnosis"] {
@@ -677,13 +678,13 @@ label[for="tail"] {
 }
 
 label[for="tvs_uterus_tvs_size"] {
-    width: 5rem !important;
+    width: 2rem !important;
 }
 label[for="tvs_uterus_tvs_position"] {
-    width: 5rem !important;
+    width: 3rem !important;
 }
 label[for="tvs_uterus_tvs_fiobrid"] {
-    width: 5rem !important;
+    width: 3rem !important;
 }
 
 label[for="acrosomal_cap"] {
