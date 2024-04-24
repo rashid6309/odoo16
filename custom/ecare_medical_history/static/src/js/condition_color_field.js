@@ -3,7 +3,7 @@ odoo.define('ecare_medical_history.integer_widget_color', function (require) {
 const { registry } = require('@web/core/registry');
 const {Field} = require('@web/views/fields/field');
 var rpc = require('web.rpc');
-const { Component, onMounted, useRef } = owl
+const { Component, onWillUpdateProps, onMounted, useRef } = owl
 
 class ConditionColorWidget extends Field {
 //    static template = 'FloatToIntFieldTemplate'
@@ -16,6 +16,9 @@ class ConditionColorWidget extends Field {
             onMounted(() => {
 //               $('label[for="' + labelName + '"]').css('color', 'red');
                this.checkFunction(labelName, timeline_id[0]);
+            });
+            onWillUpdateProps(nextProps => {
+              this.checkFunction(labelName, timeline_id[0]);
             });
 
 
