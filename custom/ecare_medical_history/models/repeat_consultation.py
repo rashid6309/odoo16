@@ -249,19 +249,19 @@ class RepeatConsultation(models.Model):
 
     ''' Override methods '''
 
-    def write(self, vals):
-        if vals.get('tv_diagnosis'):
-            if self.repeat_tvs_id.tv_diagnosis:
-                tvs_diagnosis_str = dict(self.env['ec.medical.tvs']._fields['tv_diagnosis'].selection).get(
-                    self.repeat_tvs_id.tv_diagnosis, '')
-                diagnosis = self.env['ec.medical.diagnosis'].search([('name', 'ilike', str(tvs_diagnosis_str))])
-                if diagnosis:
-                    self.repeat_diagnosis = [(6, 0, self.repeat_diagnosis.ids + diagnosis.ids)]
-                # else:
-                #     new_diagnosis = self.env['ec.medical.diagnosis'].create({'name': tvs_diagnosis_str})
-                #     self.repeat_diagnosis = [(6, 0, self.repeat_diagnosis.ids + new_diagnosis.ids)]
-
-        return super(RepeatConsultation, self).write(vals)
+    # def write(self, vals):
+    #     if vals.get('tv_diagnosis'):
+    #         if self.repeat_tvs_id.tv_diagnosis:
+    #             tvs_diagnosis_str = dict(self.env['ec.medical.tvs']._fields['tv_diagnosis'].selection).get(
+    #                 self.repeat_tvs_id.tv_diagnosis, '')
+    #             diagnosis = self.env['ec.medical.diagnosis'].search([('name', 'ilike', str(tvs_diagnosis_str))])
+    #             if diagnosis:
+    #                 self.repeat_diagnosis = [(6, 0, self.repeat_diagnosis.ids + diagnosis.ids)]
+    #             # else:
+    #             #     new_diagnosis = self.env['ec.medical.diagnosis'].create({'name': tvs_diagnosis_str})
+    #             #     self.repeat_diagnosis = [(6, 0, self.repeat_diagnosis.ids + new_diagnosis.ids)]
+    #
+    #     return super(RepeatConsultation, self).write(vals)
 
     def name_get(self):
         result = []
