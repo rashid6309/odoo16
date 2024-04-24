@@ -2,23 +2,37 @@ odoo.define('ecare_medical_history.integer_widget_color', function (require) {
     "use strict";
 const { registry } = require('@web/core/registry');
 const {Field} = require('@web/views/fields/field');
+var rpc = require('web.rpc');
 const { Component, onMounted, useRef } = owl
 
-class FloatToIntWidget extends Field {
+class ConditionColorWidget extends Field {
 //    static template = 'FloatToIntFieldTemplate'
-    setup() {
+   async setup() {
         super.setup();
         this.input = useRef('inputfloat');
         this.input_id = this.props.id;
         var labelName = this.props.name;
             onMounted(() => {
                $('label[for="' + labelName + '"]').css('color', 'red');
+               this.checkFunction(labelName);
             });
 
 
 
         console.log(this.props);
         console.log(this);
+    }
+   async checkFunction(labelName)
+    {
+             await rpc.query({
+            model: 'ec.medical.oi.ti.platform.cycle',
+            method: 'get_field_data_condition',
+            args: [labelName],
+            })
+            .then(function(result) {
+                self.data_values = result;
+            });
+
     }
     onFloatToInt(ev){
 
@@ -50,6 +64,6 @@ class FloatToIntWidget extends Field {
 //        }
     }
 }
-registry.category("fields").add("integer_widget", FloatToIntWidget);
+registry.category("fields").add("condition_color_widget", ConditionColorWidget);
 
 });

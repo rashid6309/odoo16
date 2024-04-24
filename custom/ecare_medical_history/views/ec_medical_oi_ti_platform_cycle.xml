@@ -11,11 +11,10 @@
                 <form>
                     <sheet class="container_cycle">
 
-
                         <nav class="navbar navbar-expand-lg navbar-dark"  id="navbarColor02">
                             <div class="collapse navbar-collapse">
                                 <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
+                                    <li class="nav-item">
                                         <p class="oi_ti_action_btn">
                                             <strong>
                                                 <button
@@ -26,7 +25,7 @@
                                             </strong>
                                         </p>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" >
                                         <p class="oi_ti_action_btn">
                                             <button
                                                     name="action_create_oi_ti_platform_attempt"
@@ -35,7 +34,7 @@
                                                     string="START NEW OI/TI ATTEMPT"/>
                                         </p>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}">
                                         <p class="oi_ti_action_btn">
                                             <strong>
                                                 <button
@@ -46,25 +45,26 @@
                                             </strong>
                                         </p>
                                     </li>
-                                    <li class="nav-item">
+
+                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['2nd_trigger','luteal_phase'])]}">
                                         <p class="oi_ti_action_btn">
                                             <strong>
                                                 <button
-                                                        name="action_abandoned_attempt"
+                                                        name="action_2nd_trigger_attempt"
                                                         class="oi_ti_navbar_btn"
                                                         type="object"
-                                                        string="ADD INTERVENTION"/>
+                                                        string="SECOND TRIGGER"/>
                                             </strong>
                                         </p>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}">
                                         <p class="oi_ti_action_btn">
                                             <strong>
                                                 <button
-                                                        name="action_abandoned_attempt"
+                                                        name="action_start_luteal_phase_attempt"
                                                         class="oi_ti_navbar_btn"
                                                         type="object"
-                                                        string="FOLLOW UP"/>
+                                                        string="START LUTEAL PHASE"/>
                                             </strong>
                                         </p>
                                     </li>
@@ -74,129 +74,90 @@
 
 
 
-
                         <group>
+                            <field name="oi_ti_platform" readonly="1" force_save="1"/>
                             <field name="cycle_timeline_id" readonly="1" force_save="1"/>
                             <field name="repeat_consultation_id" readonly="1" force_save="1"/>
                         </group>
                         <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                             <tbody>
-<!--                                <tr style="height:15.75pt;">-->
-<!--                                    <td class="oi_ti_computed_values_td" style="background-color:#f6b26b;">-->
-<!--                                        <p class="oi_ti_action_btn">Add OPK</p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">-->
-<!--                                        <p class="oi_ti_action_btn">Schedule</p>-->
-<!--                                    </td>-->
-<!--                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">-->
-<!--                                        <p class="oi_ti_action_btn"><span><field name="oi_ti_schedule"/></span></p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">-->
-<!--                                        <p class="oi_ti_action_btn">Add intervention</p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">-->
-<!--                                        <p class="oi_ti_action_btn"><span><field name="oi_ti_intervention"/></span></p>-->
-<!--                                    </td>-->
-<!--                                    <td style="border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff8282;">-->
-<!--                                        <p class="oi_ti_action_btn">-->
-<!--                                            <strong>-->
-<!--                                                <button-->
-<!--                                                        name="action_abandoned_attempt"-->
-<!--                                                        class="oi_ti_transparent_btn"-->
-<!--                                                        type="object"-->
-<!--                                                        string="ABANDON ATTEMPT"/>-->
-<!--                                            </strong>-->
-<!--                                        </p>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr style="height:15.75pt;">-->
-<!--                                    <td class="oi_ti_computed_values_td" style="background-color:#3c78d8;">-->
-<!--                                        <p class="oi_ti_action_btn"><strong><span>Followup</span></strong></p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_heading_td" style="">-->
-<!--                                        <p class="oi_ti_action_btn"></p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_heading_td" style="">-->
-<!--                                        <p class="oi_ti_action_btn"></p>-->
-<!--                                    </td>-->
-<!--                                    <td colspan="2" class="oi_ti_heading_td" style=" background-color:#ff8282;">-->
-<!--                                        <p class="oi_ti_action_btn"><strong><span>CONVERT TO CSO/OPU</span></strong></p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_heading_td" style=" background-color:#a6fda6;">-->
-<!--                                        <p class="oi_ti_action_btn">-->
-<!--                                            <button-->
-<!--                                                    name="action_create_oi_ti_platform_attempt"-->
-<!--                                                    class="oi_ti_transparent_btn"-->
-<!--                                                    type="object"-->
-<!--                                                    string="START NEW OI/TI ATTEMPT"/>-->
-<!--                                        </p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#deb1fb;">-->
-<!--                                        <p class="oi_ti_action_btn">-->
-<!--                                            <strong>-->
-<!--                                                <button-->
-<!--                                                        name="action_complete_attempt"-->
-<!--                                                        class="oi_ti_transparent_btn"-->
-<!--                                                        type="object"-->
-<!--                                                        string="COMPLETE ATTEMPT"/>-->
-<!--                                            </strong>-->
-<!--                                        </p>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-
                                 <tr style="height:15.75pt;">
-                                    <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#ff00ff;">
+                                    <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
                                         <p class="oi_ti_action_btn"><strong><span>OUTCOME: PREGNANCY (+VE UPT or BHCG)</span></strong></p>
                                     </td>
-                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#d7bcbc;">
+                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">
                                         <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>
                                     </td>
                                 </tr>
 
+                                <!--                                Exit Buttons-->
+
                                 <tr style="height:15.75pt;">
-                                    <td class="oi_ti_computed_values_td" style="background-color:#368fdf;">
+                                    <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                         <p class="oi_ti_action_btn"><strong><span>Trigger regimen</span></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><field name="trigger_regimen"/></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>Insemination</span></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><field name="insemination"/></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>IUI attempt</span></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>
-                                    </td>
-                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#368fdf;">
-                                        <p class="oi_ti_action_btn"><strong><span>2nd Trigger regimen</span></strong></p>
                                     </td>
                                 </tr>
                                 <tr style="height:26.25pt;">
-                                    <td class="oi_ti_computed_values_td" style="background-color:#368fdf;">
+                                    <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                         <p class="oi_ti_action_btn"><strong><span>Trigger date &amp; time</span></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:115%; widows:0; orphans:0; font-size:8pt;"><span><field name="trigger_date_time"/></span></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>Indication for IUI</span></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><field name="indication_of_iui"/></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>I 2 3</span></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                    <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>
                                     </td>
-                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#368fdf;">
+                                </tr>
+                                <!--                                2nd Trigger-->
+                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
+                                    <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
+                                        <p class="oi_ti_action_btn"><strong><span>2nd Trigger regimen</span></strong></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td">
+                                        <p class="oi_ti_action_btn"><strong><field name="trigger_regimen"/></strong></p>
+                                    </td>
+                                </tr>
+                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
+                                    <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                         <p class="oi_ti_action_btn"><strong><span>2nd Trigger date &amp; time</span></strong></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:115%; widows:0; orphans:0; font-size:8pt;"><span><field name="trigger_date_time"/></span></p>
+                                    </td>
+                                </tr>
+                                <!--                                End 2nd trigger-->
+                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase'])]}">
+                                    <td class="oi_ti_heading_td">
+                                        <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>
+                                    </td>
+                                </tr>
+                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase'])]}">
+                                    <td class="oi_ti_heading_td">
+                                        <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -220,125 +181,66 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
-                                <field name="oi_ti_platform_attempt_ids" mode="kanban" invisble="1"/>
+<!--                                <field name="oi_ti_platform_attempt_ids" mode="kanban" invisble="1"/>-->
                                 <!--                                <field name="html_table" widget="html"/>-->
-                                <h3>Cycle created on: <field name="create_date"/></h3>
+                                <h3 style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
+                                monospace; font-size: large; border: none; outline: none; border-radius: 5px;
+                                display: inline-block;">Create Date: <field name="create_date"/></h3>
                                 <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                                     <tbody>
-                                        <tr style="height:15.75pt;">
-                                            <td class="oi_ti_computed_values_td" style="background-color:#f6b26b;">
-                                                <p class="oi_ti_action_btn">Add OPK</p>
-                                            </td>
-                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                                <p class="oi_ti_action_btn">Schedule</p>
-                                            </td>
-                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                                <p class="oi_ti_action_btn"><span><field name="oi_ti_schedule"/></span></p>
-                                            </td>
-                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                                <p class="oi_ti_action_btn">Add intervention</p>
-                                            </td>
-                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f6b26b;">
-                                                <p class="oi_ti_action_btn"><span><field name="oi_ti_intervention"/></span></p>
-                                            </td>
-                                            <td style="border-left:0.75pt solid #cccccc; border-bottom:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#ff8282;">
-                                                <p class="oi_ti_action_btn">
-                                                    <strong>
-                                                        <button
-                                                                name="action_abandoned_attempt"
-                                                                class="oi_ti_transparent_btn"
-                                                                type="object"
-                                                                string="ABANDON ATTEMPT"/>
-                                                    </strong></p>
-                                            </td>
-                                        </tr>
-                                        <tr style="height:15.75pt;">
-                                            <td class="oi_ti_computed_values_td" style="background-color:#3c78d8;">
-                                                <p class="oi_ti_action_btn"><strong><span>Followup</span></strong></p>
-                                            </td>
-                                            <td class="oi_ti_heading_td" style="">
-                                                <p class="oi_ti_action_btn"></p>
-                                            </td>
-                                            <td class="oi_ti_heading_td" style="">
-                                                <p class="oi_ti_action_btn"></p>
-                                            </td>
-                                            <td colspan="2" class="oi_ti_heading_td" style=" background-color:#ff8282;">
-                                                <p class="oi_ti_action_btn"><strong><span>CONVERT TO CSO/OPU</span></strong></p>
-                                            </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#a6fda6;">
-                                                <p class="oi_ti_action_btn">
-                                                    <button
-                                                            name="action_create_oi_ti_platform_attempt"
-                                                            class="oi_ti_transparent_btn"
-                                                            type="object"
-                                                            string="START NEW OI/TI ATTEMPT"/>
-                                                </p>
-                                            </td>
-                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#deb1fb;">
-                                                <p class="oi_ti_action_btn">
-                                                    <strong>
-                                                        <button
-                                                                name="action_complete_attempt"
-                                                                class="oi_ti_transparent_btn"
-                                                                type="object"
-                                                                string="COMPLETE ATTEMPT"/>
-                                                    </strong>
-                                                </p>
-                                            </td>
-                                        </tr>
 
                                         <tr style="height:15.75pt;">
-                                            <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#ff00ff;">
+                                            <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
                                                 <p class="oi_ti_action_btn"><strong><span>OUTCOME: PREGNANCY (+VE UPT or BHCG)</span></strong></p>
                                             </td>
-                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#d7bcbc;">
+                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">
                                                 <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>
                                             </td>
                                         </tr>
 
                                         <tr style="height:15.75pt;">
-                                            <td class="oi_ti_computed_values_td" style="background-color:#368fdf;">
+                                            <td class="oi_ti_computed_values_td">
                                                 <p class="oi_ti_action_btn"><strong><span>Trigger regimen</span></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><field name="trigger_regimen"/></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><span>Insemination</span></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><field name="insemination"/></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><span>IUI attempt</span></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>
                                             </td>
-                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#368fdf;">
+                                            <td class="oi_ti_attempt_diagnosis_td">
                                                 <p class="oi_ti_action_btn"><strong><span>2nd Trigger regimen</span></strong></p>
                                             </td>
                                         </tr>
                                         <tr style="height:26.25pt;">
-                                            <td class="oi_ti_computed_values_td" style="background-color:#368fdf;">
+                                            <td class="oi_ti_computed_values_td">
                                                 <p class="oi_ti_action_btn"><strong><span>Trigger date &amp; time</span></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:115%; widows:0; orphans:0; font-size:8pt;"><span><field name="trigger_date_time"/></span></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><span>Indication for IUI</span></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><field name="indication_of_iui"/></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><span>I 2 3</span></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style=" background-color:#368fdf;">
+                                            <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>
                                             </td>
-                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#368fdf;">
+                                            <td class="oi_ti_attempt_diagnosis_td">
                                                 <p class="oi_ti_action_btn"><strong><span>2nd Trigger date &amp; time</span></strong></p>
                                             </td>
                                         </tr>

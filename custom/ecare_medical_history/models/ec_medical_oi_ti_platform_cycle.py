@@ -49,6 +49,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
         vals = {
             'cycle_timeline_id': timeline_id.id,
             'repeat_consultation_id': repeat_consultation_id.id,
+            'oi_ti_platform': 'ready_to_trigger',
         }
         oi_ti_platform_cycle = self.env['ec.medical.oi.ti.platform.cycle'].create(vals)
         oi_ti_platform_attempt_ref = self.env['ec.medical.oi.ti.platform.attempt']
@@ -95,6 +96,18 @@ class EcMedicalOITIPlatformCycle(models.Model):
 
             if attempt_completed is False:
                 raise UserError("There is no attempt in progress!")
+
+    def action_2nd_trigger_attempt(self):
+        if self.insemination is False:
+            raise UserError("‘Insemination’ is not entered yet!")
+        else:
+            self.oi_ti_platform = '2nd_trigger'
+
+    def action_start_luteal_phase_attempt(self):
+        if self.insemination is False:
+            raise UserError("‘Insemination’ is not entered yet!")
+        else:
+            self.oi_ti_platform = 'luteal_phase'
 
     def get_display_string(self, model_name, field_name, field_value):
         model = self.env[model_name]
@@ -194,3 +207,6 @@ class EcMedicalOITIPlatformCycle(models.Model):
             else:
                 rec.html_table = None
 
+    @api.model
+    def get_field_data_condition(self, field_name):
+        return True

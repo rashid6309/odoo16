@@ -625,6 +625,7 @@ div.repeat_kanban_section_content section{
     border:0.75pt solid #cccccc;
     padding:2pt 1.62pt;
     vertical-align:top;
+    background-color:#f3f9ff;
 }
 
 .oi_ti_text_paragraph_td
@@ -643,6 +644,7 @@ div.repeat_kanban_section_content section{
    border-bottom:0.75pt solid #cccccc;
    padding:2pt 1.62pt;
    vertical-align:top;
+   background-color:#f3f9ff;
 }
 
 .oi_ti_attempt_table_style
@@ -864,7 +866,7 @@ th[data-name="treatment_notes"] div {
 
 .oi_ti_navbar_btn
 {
-    background-color: #3e5bc5;
+    background-color: #71639e;
     margin-right: 1rem;
     color: white !important;
 }
