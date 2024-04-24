@@ -18,7 +18,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
     oi_ti_schedule = fields.Selection(selection=StaticMember.SCHEDULE,
                                       string='Schedule')
     oi_ti_intervention = fields.Selection(selection=StaticMember.INTERVENTION,
-                                      string='Intervention')
+                                          string='Intervention')
     trigger_regimen = fields.Selection(selection=StaticMember.TRIGGER_REGIMEN,
                                        string='Trigger regimen')
     trigger_date_time = fields.Datetime(
@@ -81,7 +81,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
 
             if attempt_completed is False:
                 raise UserError("There is no attempt in progress!")
-            
+
     def action_abandoned_attempt(self):
         if self.insemination is False:
             raise UserError("‘Insemination’ is not entered yet!")
@@ -130,11 +130,13 @@ class EcMedicalOITIPlatformCycle(models.Model):
                     if attempt.preparation_method:
                         attempt_model = 'ec.medical.oi.ti.platform.attempt'
                         preparation_method_field = 'preparation_method'
-                        preparation_method_value = self.get_display_string(attempt_model, preparation_method_field, attempt.preparation_method)
+                        preparation_method_value = self.get_display_string(attempt_model, preparation_method_field,
+                                                                           attempt.preparation_method)
                     if attempt.oi_ti_attempt_state:
                         attempt_model = 'ec.medical.oi.ti.platform.attempt'
                         oi_ti_attempt_state_field = 'oi_ti_attempt_state'
-                        oi_ti_attempt_state_value = self.get_display_string(attempt_model, oi_ti_attempt_state_field, attempt.oi_ti_attempt_state)
+                        oi_ti_attempt_state_value = self.get_display_string(attempt_model, oi_ti_attempt_state_field,
+                                                                            attempt.oi_ti_attempt_state)
 
                     table = (f"<table cellspacing='0' cellpadding='0' class='oi_ti_attempt_table_style'> <tbody> <tr "
                              f"style='height:15.75pt;'> <td colspan='7' class='oi_ti_computed_values_td' "
@@ -208,5 +210,18 @@ class EcMedicalOITIPlatformCycle(models.Model):
                 rec.html_table = None
 
     @api.model
-    def get_field_data_condition(self, field_name):
-        return True
+    def get_field_data_condition(self, field_name, timeline_id):
+        if field_name == 'tubal_patency_test':
+            timeline_rec = self.env['ec.patient.timeline'].browse(timeline_id)
+            repeat_consultation_rec = self.env['ec.repeat.consultation'].search(
+                [('repeat_timeline_id', '=', int(timeline_id)),
+                 ('repeat_consultation_state', '=', 'open')], limit=1)
+            checklist_rec = repeat_consultation_rec.female_ot_ti_checklist_id
+            # check_list_rec = self.env['female.ot.ti.checklist'].search(
+            #     [('repeat_consultation_id', '=', int(repeat_consultation_rec.id))])
+            if checklist_rec.tubal_patency_test == 'yes':
+                return True
+            else:
+                return False
+
+        return False

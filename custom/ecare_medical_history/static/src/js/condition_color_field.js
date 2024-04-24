@@ -12,25 +12,29 @@ class ConditionColorWidget extends Field {
         this.input = useRef('inputfloat');
         this.input_id = this.props.id;
         var labelName = this.props.name;
+        var timeline_id = this.props.record.data.timeline_patient_id;
             onMounted(() => {
-               $('label[for="' + labelName + '"]').css('color', 'red');
-               this.checkFunction(labelName);
+//               $('label[for="' + labelName + '"]').css('color', 'red');
+               this.checkFunction(labelName, timeline_id[0]);
             });
 
 
 
         console.log(this.props);
+        console.log(timeline_id);
         console.log(this);
     }
-   async checkFunction(labelName)
+   async checkFunction(labelName, timeline_id)
     {
              await rpc.query({
             model: 'ec.medical.oi.ti.platform.cycle',
             method: 'get_field_data_condition',
-            args: [labelName],
+            args: [labelName,timeline_id],
             })
             .then(function(result) {
-                self.data_values = result;
+                if (result){
+                 $('label[for="' + labelName + '"]').css('color', 'red');
+                }
             });
 
     }
