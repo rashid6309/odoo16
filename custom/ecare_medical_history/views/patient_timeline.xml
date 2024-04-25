@@ -782,7 +782,7 @@
 											</group>
 
 											<!-- TVS Section -->
-											<div class="d-flex flex-column" attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+											<div class="d-flex flex-column " attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
 												<group string="Uterus"/>
 												<div class="d-flex align-items-center bg-light bg-gradient" style=" margin-left: 1.5rem; ">
 													<div class="col-md-10">
@@ -814,13 +814,16 @@
 															 attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
 
 															<span class="col-md-2"  style="font-weight:bold;">Size</span>
-															<field name="tvs_uterus_size_x" attrs="{'required': [('show_repeat_section_state', '=', True),
+															<field name="tvs_uterus_size_x"
+																   style=" width:5.7rem;"
+																   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('scan_required', '=', 'yes'),
 													   ('question_one_choice', '=', 'no'),
 													   ('tvs_uterus_tvs_size', '=', True)]}"/>
 															<span class="m-2">x</span>
 
 															<field name="tvs_uterus_size_y"
+																   style=" width:5.7rem;"
 																   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('scan_required', '=', 'yes'),
 													   ('question_one_choice', '=', 'no'),
@@ -974,7 +977,7 @@
 
 <!--												<group string="Cyst"/>-->
 
-												<div class="d-flex align-items-center bg-light bg-gradient" style=" margin-left: 1.5rem; ">
+												<div class="d-flex align-items-center bg-light bg-gradient" style=" margin-left: 1.5rem; padding-top: 1rem; ">
 													<div style="text-align: end;margin-right: 2rem;">
 														Cyst
 													</div>
@@ -2644,10 +2647,10 @@
 															</div>
 															<div class="d-flex" attrs="{'invisible': [('gynaecological_uterus_size', '!=', True)]}">
 																<span class="col-md-2" style="font-weight:bold;">Size</span>
-																<field name="uterus_size_length" style=" width:10%;"/>
+																<field name="uterus_size_length" style=" width:11%;"/>
 																<span class="m-2">x</span>
 
-																<field name="uterus_size_width" style=" width:10%;"/>
+																<field name="uterus_size_width" style=" width:11%;"/>
 																<span>cm</span>
 															</div>
 															<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_position', '!=', True)]}">
@@ -2729,7 +2732,7 @@
 													<label for="gynae_rov"/>
 													<div>
 														<field  name="gynae_rov" class="oe_inline" nolabel="1"
-																style="pointer-events: none;margin-right: 1rem; width:34rem !important;"/>
+																style="pointer-events: none;margin-right: 1rem; width:25rem !important;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_rov', 'gynae_rov')">Begin Scan</a>
 
@@ -2743,7 +2746,7 @@
 
 													<label for="gynae_lov"/>
 													<div>
-														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;margin-right: 1rem;width:34rem !important;"/>
+														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;margin-right: 1rem;width:25rem !important;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_lov', 'gynae_lov')">Begin Scan</a>
 
