@@ -1274,7 +1274,7 @@
 															type="object"
 															onclick="scrollToElement('io_ti_platform_section')"
 															class="btn btn-primary"
-															attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"
+															attrs="{'invisible': [('repeat_consultation_state', '=', 'decision_pending')]}"
 															string="Proceed"/>
 												</div>
 											</span>

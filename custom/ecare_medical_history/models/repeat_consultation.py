@@ -447,6 +447,66 @@ class RepeatConsultation(models.Model):
             timeline_id.ec_repeat_consultation_id = new_repeat_consultation_id.id
         self.unlink()
 
+    @api.model
+    def get_field_data_condition(self, field_name, timeline_id):
+        if timeline_id:
+            yes_values = ['yes']
+            no_values = ['no']
+            iui_dropdown_red_values = ['not_tested', 'both_blocked', 'restricted_spill']
+            uterine_tubal_anomalies_red_values = ['no_testing']
+            female_ot_ti_bmi_value = 35
+            timeline_rec = self.env['ec.patient.timeline'].browse(timeline_id)
+            repeat_consultation_rec = self.env['ec.repeat.consultation'].search(
+                [('repeat_timeline_id', '=', int(timeline_id)),
+                 ('repeat_consultation_state', 'in', ['decision_pending', 'open'])], limit=1)
+            female_checklist_rec = repeat_consultation_rec.female_ot_ti_checklist_id
+            male_checklist_rec = repeat_consultation_rec.male_ot_ti_checklist_id
+            medical_consents_risk_assessment_rec = repeat_consultation_rec.medical_consents_risk_assessment_id
+            # Red Values
+            if field_name == 'tubal_patency_test':
+                if female_checklist_rec.tubal_patency_test in yes_values:
+                    return True
+            elif field_name == 'tubal_patency_test_dropdown':
+                if female_checklist_rec.tubal_patency_test_dropdown in iui_dropdown_red_values:
+                    return True
+            elif field_name == 'uterine_tubal_anomalies':
+                if female_checklist_rec.uterine_tubal_anomalies in uterine_tubal_anomalies_red_values:
+                    return True
+            # Blue Values
+            elif field_name == 'diagnosis_cervical_incompetence':
+                if female_checklist_rec.diagnosis_cervical_incompetence in yes_values:
+                    return True
+            elif field_name == 'menopause_sign_suspicion':
+                if female_checklist_rec.menopause_sign_suspicion in yes_values:
+                    return True
+            elif field_name == 'female_ot_ti_bmi':
+                if female_checklist_rec.female_ot_ti_bmi >= female_ot_ti_bmi_value:
+                    return True
+
+            # Male Value
+            elif field_name == 'male_semen_analysis':
+                if male_checklist_rec.male_semen_analysis in no_values:
+                    return True
+
+            # medical.consents.risk.assessment RED VALUES
+
+            elif field_name == 'counselling_multiple_birth':
+                if medical_consents_risk_assessment_rec.counselling_multiple_birth in no_values:
+                    return True
+            elif field_name == 'counselling_failure_treatment':
+                if medical_consents_risk_assessment_rec.counselling_failure_treatment in no_values:
+                    return True
+            elif field_name == 'counselling_lower_success_rate':
+                if medical_consents_risk_assessment_rec.counselling_lower_success_rate in no_values:
+                    return True
+            elif field_name == 'counselling_high_bmi':
+                if medical_consents_risk_assessment_rec.counselling_high_bmi in no_values:
+                    return True
+            else:
+                return False
+        else:
+            return False
+
 
 # Fibroid
 class RepeatFiobrid(models.Model):

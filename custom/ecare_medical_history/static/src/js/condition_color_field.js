@@ -27,18 +27,59 @@ class ConditionColorWidget extends Field {
         console.log(timeline_id);
         console.log(this);
     }
+
+
+
    async checkFunction(labelName, timeline_id)
     {
-             await rpc.query({
-            model: 'ec.medical.oi.ti.platform.cycle',
+        var redFieldNames = [
+            'tubal_patency_test',
+            'tubal_patency_test_dropdown',
+            'uterine_tubal_anomalies',
+            'male_semen_analysis',
+            'counselling_multiple_birth',
+            'counselling_failure_treatment',
+            'counselling_lower_success_rate',
+            'counselling_high_bmi'
+        ];
+        var blueFieldNames = [
+            'diagnosis_cervical_incompetence',
+            'menopause_sign_suspicion',
+            'female_ot_ti_bmi'
+        ];
+        for (var i = 0; i < redFieldNames.length; i++) {
+            await rpc.query({
+            model: 'ec.repeat.consultation',
             method: 'get_field_data_condition',
-            args: [labelName,timeline_id],
+            args: [redFieldNames[i],timeline_id],
             })
             .then(function(result) {
                 if (result){
-                 $('label[for="' + labelName + '"]').css('color', 'red');
+                 $('label[for="' + redFieldNames[i] + '"]').css('color', 'red');
+                }
+                else{
+                $('label[for="' + redFieldNames[i] + '"]').css('color', 'black');
                 }
             });
+
+        }
+
+        for (var i = 0; i < blueFieldNames.length; i++) {
+            await rpc.query({
+            model: 'ec.repeat.consultation',
+            method: 'get_field_data_condition',
+            args: [blueFieldNames[i],timeline_id],
+            })
+            .then(function(result) {
+                if (result){
+                 $('label[for="' + blueFieldNames[i] + '"]').css('color', 'blue');
+                }
+                else{
+                $('label[for="' + blueFieldNames[i] + '"]').css('color', 'black');
+                }
+            });
+
+        }
 
     }
     onFloatToInt(ev){

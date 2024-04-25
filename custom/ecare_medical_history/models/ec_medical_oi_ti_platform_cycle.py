@@ -171,7 +171,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
                              f"class='oi_ti_heading_td' style='background-color:#ffffff;'> <p class='oi_ti_action_btn'>Free "
                              f"fluid, loss of dominant follicle, corpus luteum</p> </td> <td class='oi_ti_attempt_diagnosis_td' "
                              f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'> "
-                             f"{attempt.oi_ti_diagnosis_ids.name or ''}"
+                             # f"{attempt.oi_ti_diagnosis_ids.name or ''}"
                              # f"<field name='oi_ti_diagnosis_ids'/> "
                              f"</p> </td> </tr> <tr "
                              f"style='height:15.75pt;'> <td class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> "
@@ -209,19 +209,3 @@ class EcMedicalOITIPlatformCycle(models.Model):
             else:
                 rec.html_table = None
 
-    @api.model
-    def get_field_data_condition(self, field_name, timeline_id):
-        if field_name == 'tubal_patency_test':
-            timeline_rec = self.env['ec.patient.timeline'].browse(timeline_id)
-            repeat_consultation_rec = self.env['ec.repeat.consultation'].search(
-                [('repeat_timeline_id', '=', int(timeline_id)),
-                 ('repeat_consultation_state', '=', 'open')], limit=1)
-            checklist_rec = repeat_consultation_rec.female_ot_ti_checklist_id
-            # check_list_rec = self.env['female.ot.ti.checklist'].search(
-            #     [('repeat_consultation_id', '=', int(repeat_consultation_rec.id))])
-            if checklist_rec.tubal_patency_test == 'yes':
-                return True
-            else:
-                return False
-
-        return False

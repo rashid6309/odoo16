@@ -37,10 +37,10 @@ class FemaleOtTiChecklist(models.Model):
     menopause_sign_suspicion = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                 string='Any signs or suspicion of menopause?')
 
-    female_ot_ti_weight = fields.Float('Weight (kg)')
-    female_ot_ti_height = fields.Float('Height (cm)')
+    female_ot_ti_weight = fields.Char('Weight (kg)')
+    female_ot_ti_height = fields.Char('Height (cm)')
 
-    female_ot_ti_bmi = fields.Float(string='BMI Calculation')
+    female_ot_ti_bmi = fields.Char(string='BMI Calculation')
 
     tubal_patency_test = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                           string='Tubal Patency Test Indicated?')
