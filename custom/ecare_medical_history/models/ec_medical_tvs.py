@@ -73,7 +73,7 @@ class EcMedicalTVS(models.Model):
 
     tvs_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                         inverse_name="tvs_fiobrid_id",
-                                        string="Fibroid")
+                                        string="Location")
 
     tvs_rov = fields.Char(string='ROV')
 
@@ -82,7 +82,7 @@ class EcMedicalTVS(models.Model):
     tvs_other_text = fields.Text(string='Other')
     tvs_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",
                                             inverse_name="tvs_cyst_size_id",
-                                            string="Sizes")
+                                            string="Location or features")
 
     # tvs_signs_of_ovulation_ids = fields.Many2many(string='Signs of Ovulation',
     #                                               selection=StaticMember.SIGN_OVULATION)

@@ -55,11 +55,12 @@ class SemenAnalysis(models.Model):
     total_count = fields.Char(string='Total Count')
     motility = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Motility')
 
-    progression_f_forward = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='F Forward')
-    progression_s_forward = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='S Forward')
-    progression_lateral = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Lateral')
-    progression_non_progressive = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Non Progressive')
-    progression_dead = fields.Char(string='Dead', compute='_compute_progression_dead')
+    progression_f_forward = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='F Forward (4/4)')
+    progression_s_forward = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='S Forward (3/4)')
+    progression_lateral = fields.Selection(selection=StaticMember.SEMEN_MOTILITY, string='Lateral (2/4)')
+    progression_non_progressive = fields.Selection(selection=StaticMember.SEMEN_MOTILITY,
+                                                   string='Non-Progressive/Twitching (1/4)')
+    progression_dead = fields.Char(string='Non-Motile (0/4)', compute='_compute_progression_dead')
 
     @api.onchange('progression_f_forward', 'progression_s_forward', 'progression_lateral', 'progression_non_progressive')
     def _compute_progression_dead(self):
@@ -238,7 +239,7 @@ class SemenAnalysis(models.Model):
 
     @api.onchange('sperm_cryopreservation_strawe')
     def _check_sperm_cryopreservation_strawe_input(self):
-        self._check_numeric_input('No. of Strawe', self.sperm_cryopreservation_strawe)
+        self._check_numeric_input('No. Of Straws', self.sperm_cryopreservation_strawe)
 
     @api.onchange('ph')
     def _check_ph_input(self):
@@ -279,6 +280,13 @@ class SemenAnalysis(models.Model):
                 return CustomNotification.notification_time_validation()
 
             self.analysis_time = time
+
+    @api.onchange("lab_number")
+    def _onchange_lab_number(self):
+        if self.lab_number:
+            if not re.match(Validation.REGEX_INTEGER_SIMPLE, self.lab_number):
+                raise UserError(f"Please enter a numeric value in Lab Number!")
+
 
 
 

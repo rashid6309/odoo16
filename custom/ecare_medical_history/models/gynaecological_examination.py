@@ -94,7 +94,7 @@ class MedicalGynaecologicalExamination(models.Model):
 
     gynae_cyst_size_ids = fields.One2many(comodel_name="ec.generic.size",
                                           inverse_name="gynaecological_fiobrid_id",
-                                          string="Fibroid")
+                                          string="Location")
     gynae_rov = fields.Char(string='ROV')
 
     gynae_lov = fields.Char(string='LOV')
@@ -135,7 +135,7 @@ class MedicalGynaecologicalExamination(models.Model):
 
     gynaecological_generic_sizes_ids = fields.One2many(comodel_name="ec.generic.size",
                                                        inverse_name="gynaecological_fiobrid_id",
-                                                       string="Sizes")
+                                                       string="Location or features")
 
     lining_ids = fields.Many2many(comodel_name='ec.medical.multi.selection',
                                   relation='gynaecological_examination_multi_selection_lining',

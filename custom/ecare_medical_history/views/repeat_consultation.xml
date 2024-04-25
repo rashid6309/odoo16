@@ -943,10 +943,10 @@
                                                                                 </div>
                                                                                 <field name="tvs_linining_ids"/>
                                                                             </div>
-                                                                            <div>
+                                                                            <div t-if="record.tvs_lining_size_decimal.raw_value">
                                                                                 <span class="o_form_label">CET</span>
                                                                             </div>
-                                                                            <div>
+                                                                            <div t-if="record.tvs_lining_size_decimal.raw_value">
                                                                                 <field name="tvs_lining_size_decimal"/>
                                                                                 <span style=" margin-left: 1%; ">(mm)</span>
                                                                             </div>
@@ -1014,7 +1014,7 @@
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.tvs_signs_of_ovulation_ids.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">
+                                                                            <span class="o_form_label"  style="font-weight:700;">
                                                                                 Signs of Ovulation
                                                                             </span>
                                                                         </div>
@@ -1025,7 +1025,7 @@
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.tv_diagnosis.raw_value">
                                                                         <div>
-                                                                            <span class="o_form_label">
+                                                                            <span class="o_form_label" style="font-weight:700;">
                                                                                 Diagnosis of Ultrasound
                                                                             </span>
                                                                         </div>

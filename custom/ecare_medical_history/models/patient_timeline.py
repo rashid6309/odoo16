@@ -1447,3 +1447,6 @@ class PatientTimeline(models.Model):
             self.biological_female_dob = None
         if self.biological_male_dob_check:
             self.biological_male_dob = None
+
+
+

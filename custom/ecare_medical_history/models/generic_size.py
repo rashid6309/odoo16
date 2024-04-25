@@ -8,12 +8,12 @@ class GenericSizes(models.Model):
     _description = "Generic Sizes "
     _rec_name = "type"
 
-    location_or_features = fields.Char(string='Location or features')
+    location_or_features = fields.Char(string='Location or features', required=True)
     distorting_endometrium = fields.Selection(selection=StaticMember.CHOICE_YES_NO, string="Distorting Endometrium")
-    type = fields.Selection(selection=StaticMember.OVARY_TYPE, string="Location")
+    type = fields.Selection(selection=StaticMember.OVARY_TYPE, string="Location", required=True)
 
     generic_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
-                                      string='Size (cm)', required=True)
+                                      string='Size (cm)')
 
     generic_size_y = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                       string='Size (cm)')
