@@ -126,6 +126,10 @@ class EcMedicalOITIPlatformCycle(models.Model):
             table_list = []
             if rec.oi_ti_platform_attempt_ids:
                 for attempt in rec.oi_ti_platform_attempt_ids:
+                    diagnosis_list = []
+                    for diagnosis in attempt.oi_ti_diagnosis_ids:
+                        diagnosis_list.append(diagnosis.name) if diagnosis.name else ''
+                    diagnosis_name = ', '.join(diagnosis_list)
                     preparation_method_value, oi_ti_attempt_state_value = '', ''
                     if attempt.preparation_method:
                         attempt_model = 'ec.medical.oi.ti.platform.attempt'
@@ -171,8 +175,8 @@ class EcMedicalOITIPlatformCycle(models.Model):
                              f"class='oi_ti_heading_td' style='background-color:#ffffff;'> <p class='oi_ti_action_btn'>Free "
                              f"fluid, loss of dominant follicle, corpus luteum</p> </td> <td class='oi_ti_attempt_diagnosis_td' "
                              f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'> "
-                             # f"{attempt.oi_ti_diagnosis_ids.name or ''}"
-                             # f"<field name='oi_ti_diagnosis_ids'/> "
+                             f"{diagnosis_name or ''}"
+                             f"<field name='oi_ti_diagnosis_ids'/> "
                              f"</p> </td> </tr> <tr "
                              f"style='height:15.75pt;'> <td class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> "
                              f"<p class='oi_ti_text_paragraph_td'><strong>Cycle day:  "
