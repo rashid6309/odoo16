@@ -1174,8 +1174,8 @@ class PatientTimeline(models.Model):
     def _compute_female_ot_ti_bmi(self):
         for record in self:
             if record.female_ot_ti_weight and record.female_ot_ti_height:
-                height_in_meters = record.female_ot_ti_height / 100
-                record.female_ot_ti_bmi = record.female_ot_ti_weight / (height_in_meters ** 2)
+                height_in_meters = float(record.female_ot_ti_height) / 100
+                record.female_ot_ti_bmi = round(float(record.female_ot_ti_weight) / (height_in_meters ** 2), 2)
             else:
                 record.female_ot_ti_bmi = None
 
@@ -1418,10 +1418,10 @@ class PatientTimeline(models.Model):
         if self.amh_level and not re.match(Validation.REGEX_FLOAT_2_DP, self.amh_level) or float(self.amh_level) < 0:
             raise UserError(f"Please enter a numeric value in AMH and should be greater than 0!")
 
-    female_ot_ti_weight = fields.Char('Weight (kg)')
-    female_ot_ti_height = fields.Char('Height (cm)')
-
-    female_ot_ti_bmi = fields.Char(string='BMI Calculation')
+    # female_ot_ti_weight = fields.Char('Weight (kg)')
+    # female_ot_ti_height = fields.Char('Height (cm)')
+    #
+    # female_ot_ti_bmi = fields.Char(string='BMI Calculation')
 
     @api.onchange('female_ot_ti_weight')
     def _check_input_female_ot_ti_weight(self):
@@ -1437,9 +1437,9 @@ class PatientTimeline(models.Model):
 
     @api.onchange('female_ot_ti_bmi')
     def _check_input_female_ot_ti_bmi(self):
-        if (self.female_ot_ti_bmi and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_ot_ti_bmi) or
-                float(self.female_ot_ti_bmi) < 0):
-            raise UserError(f"Please enter a numeric value in BMI and should be greater than 0!")
+        if self.female_ot_ti_bmi and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_ot_ti_bmi):
+            if float(self.female_ot_ti_bmi) < 0:
+                raise UserError(f"Please enter a numeric value in BMI and should be greater than 0!")
 
     @api.onchange('biological_female_dob_check', 'biological_male_dob_check')
     def _check_same_as_above_functionality(self):

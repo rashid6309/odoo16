@@ -2949,7 +2949,7 @@
 													<label for="gynae_rov"/>
 													<div>
 														<field  name="gynae_rov" class="oe_inline" nolabel="1"
-																style="pointer-events: none;margin-right: 1rem; width:25rem !important;"/>
+																style="pointer-events: none;margin-right: 1rem; width:41% !important;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_rov', 'gynae_rov')">Begin Scan</a>
 
@@ -2963,7 +2963,7 @@
 
 													<label for="gynae_lov"/>
 													<div>
-														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;margin-right: 1rem;width:25rem !important;"/>
+														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;margin-right: 1rem;width:41% !important"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_lov', 'gynae_lov')">Begin Scan</a>
 
