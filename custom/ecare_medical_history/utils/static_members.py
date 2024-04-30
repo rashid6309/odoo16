@@ -1256,3 +1256,8 @@ class StaticMember:
         ('other', 'Other'),
     ]
 
+    REPEAT_TREATMENT_ADVISED_LIST = [
+        ('pre_oi_ti_checklist', 'Pre-OI/TI Checklist'),
+        ('other', 'Other'),
+    ]
+

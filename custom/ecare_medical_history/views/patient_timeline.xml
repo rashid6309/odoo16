@@ -1152,12 +1152,11 @@
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_treatment_plan"/>
 
-												<field name="repeat_treatment_advised_ids" widget="many2many_tags"
-													   options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
-
 												<field name="repeat_new_treatment_pathway"
 													   widget="radio"
 													   options="{'horizontal': True}"/>
+
+												<field name="repeat_treatment_advised"/>
 
 
 <!--												<field name="repeat_treatment_advised_ids"-->
@@ -1170,7 +1169,7 @@
 <!--												/>-->
 											</group>
 
-											<span attrs="{'invisible': [('repeat_new_treatment_pathway', '!=', 'yes')]}">
+											<span attrs="{'invisible': ['|',('repeat_new_treatment_pathway', '!=', 'yes'),('repeat_treatment_advised', '!=', 'pre_oi_ti_checklist')]}">
 												<div class="d-flex flex-column">
 													<div/>
 
@@ -1182,6 +1181,10 @@
 													<field name="upt_result"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
+													<span class="o_form_label" attrs="{'invisible': [('upt_result', '!=', 'not_done')]}"/>
+													<span id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'not_done')]}">
+														Please return to this form once UPT has been performed, and fill in a new pregnancy assessment form.
+													</span>
 													<field name="iui_plan"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
@@ -1196,57 +1199,139 @@
 													<field name="fsh_level" widget="condition_color_widget"/>
 													<field name="lh_level"/>
 													<field name="amh_level"/>
-													<field name="tubal_patency_test" widget="condition_color_widget" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<span/>
+													<label for="tubal_patency_test"/>
+													<span/>
+													<field name="tubal_patency_test" nolabel="1" widget="condition_color_widget" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<field name="tubal_patency_test_decision"
+														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}" string="Decision"/>
+													<span/>
+													<label for="diagnosis_cervical_incompetence"/>
+													<span/>
 													<field name="diagnosis_cervical_incompetence"
+														   nolabel="1"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
-													<field name="uterine_tubal_anomalies"/>
+													<field name="diagnosis_cervical_incompetence_decision"
+														   attrs="{'invisible': [('diagnosis_cervical_incompetence', '!=', 'yes')]}"  string="Decision"/>
+													<span/>
+													<label for="uterine_tubal_anomalies"/>
+													<span/>
+													<field name="uterine_tubal_anomalies" nolabel="1"/>
+													<field name="uterine_tubal_anomalies_decision"
+														   attrs="{'invisible': [('uterine_tubal_anomalies', '!=', 'no_testing')]}"  string="Decision"/>
+													<span/>
+													<label for="fsh_lh_amh_acceptable"/>
+													<span/>
 													<field name="fsh_lh_amh_acceptable"
+														   nolabel="1"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
+													<span/>
+													<label for="menopause_sign_suspicion"/>
+													<span/>
 													<field name="menopause_sign_suspicion"
 														   widget="radio"
+														   nolabel="1"
 														   options="{'horizontal': True}"/>
+													<field name="menopause_sign_suspicion_decision"
+														   attrs="{'invisible': [('menopause_sign_suspicion', '!=', 'yes')]}"  string="Decision"/>
 													<field name="female_ot_ti_weight"/>
 													<field name="female_ot_ti_height"/>
 													<field name="female_ot_ti_bmi"/>
-													<field name="tubal_patency_test"
-														   widget="radio"
-														   options="{'horizontal': True}"/>
-													<field name="tubal_patency_test_dropdown" attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
+													<field name="female_ot_ti_bmi_decision"
+														   attrs="{'invisible': [('female_ot_ti_bmi', '&lt;', 35)]}"  string="Decision"/>
+<!--													<field name="tubal_patency_test"-->
+<!--														   widget="radio"-->
+<!--														   options="{'horizontal': True}"/>-->
+													<field name="tubal_patency_test_dropdown"
+														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
+													<field name="tubal_patency_test_dropdown_decision"
+														   attrs="{'invisible': [('tubal_patency_test_dropdown', 'not in', ['not_tested', 'both_blocked', 'restricted_spill'])]}"
+														   string="Decision"/>
+													<span/>
+													<label for="cervical_incompetence_diagnosis"/>
+													<span/>
 													<field name="cervical_incompetence_diagnosis"
 														   widget="radio"
+														   nolabel="1"
 														   options="{'horizontal': True}"/>
-													<field name="uterine_tubal_anomalies_test"/>
+													<span/>
+													<label for="uterine_tubal_anomalies_test"/>
+													<span/>
+													<field name="uterine_tubal_anomalies_test" nolabel="1"/>
 													<!--												<field name="results_await_label" string="Results-Awaits" attrs="{'invisible': [('fsh_lh_amh_acceptable', '!=', 'awaiting_results')]}"/>-->
 												</group>
 												<group string="Male Pre OI/TI Checklist">
+													<span/>
+													<label for="male_semen_analysis"/>
+													<span/>
 													<field name="male_semen_analysis"
 														   widget="radio"
+														   nolabel="1"
 														   options="{'horizontal': True}"/>
+													<field name="male_semen_analysis_decision"
+														   attrs="{'invisible': [('male_semen_analysis_decision', '!=', 'no')]}"
+														   string="Decision"/>
+													<span/>
+													<label for="husband_availability_male"/>
+													<span/>
 													<field name="husband_availability_male"
 														   widget="radio"
+														   nolabel="1"
 														   options="{'horizontal': True}"/>
-													<field name="frozen_sample_available_male" attrs="{'invisible': [('husband_availability_male', '!=', 'yes')]}"/>
+													<span/>
+													<label for="frozen_sample_available_male" attrs="{'invisible': [('husband_availability_male', '!=', 'yes')]}"/>
+													<span/>
+													<field name="frozen_sample_available_male"
+														   attrs="{'invisible': [('husband_availability_male', '!=', 'yes')]}"
+														   nolabel="1"/>
+													<span/>
+													<label for="risk_inability_to_give_samples_male"/>
+													<span/>
 													<field name="risk_inability_to_give_samples_male"
 														   widget="radio"
+														   nolabel="1"
 														   options="{'horizontal': True}"/>
 												</group>
-												<group string="Consents and risk assessment"
-													   widget="radio"
-													   options="{'horizontal': True}">
+												<group string="Consents and risk assessment">
+													<span/>
+													<label for="counselling_multiple_birth"/>
+													<span/>
 													<field name="counselling_multiple_birth"
 														   widget="radio"
+														   nolabel="1"
 														   options="{'horizontal': True}"/>
+													<field name="counselling_multiple_birth_decision"
+														   attrs="{'invisible': [('counselling_multiple_birth', '!=', 'no')]}"  string="Decision"/>
+
+													<span/>
+													<label for="counselling_failure_treatment"/>
+													<span/>
 													<field name="counselling_failure_treatment"
 														   widget="radio"
+														   nolabel="1"
 														   options="{'horizontal': True}"/>
+													<field name="counselling_failure_treatment_decision"
+														   attrs="{'invisible': [('counselling_failure_treatment', '!=', 'no')]}"  string="Decision"/>
+													<span/>
+													<label for="counselling_lower_success_rate"/>
+													<span/>
 													<field name="counselling_lower_success_rate"
 														   widget="radio"
+														   nolabel="1"
 														   options="{'horizontal': True}"/>
+													<field name="counselling_lower_success_rate_decision"
+														   attrs="{'invisible': [('counselling_lower_success_rate', '!=', 'no')]}"  string="Decision"/>
+													<span/>
+													<label for="counselling_high_bmi"/>
+													<span/>
 													<field name="counselling_high_bmi"
 														   widget="radio"
+														   nolabel="1"
 														   options="{'horizontal': True}"/>
+													<field name="counselling_high_bmi_decision"
+														   attrs="{'invisible': [('counselling_high_bmi', '!=', 'no')]}"  string="Decision"/>
 												</group>
 												<div class="d-flex flex-column" attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
 													<div/>
@@ -2949,7 +3034,7 @@
 													<label for="gynae_rov"/>
 													<div>
 														<field  name="gynae_rov" class="oe_inline" nolabel="1"
-																style="pointer-events: none;margin-right: 1rem; width:41% !important;"/>
+																style="pointer-events: none;margin-right: 1rem; width:45% !important;"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_rov', 'gynae_rov')">Begin Scan</a>
 
@@ -2963,7 +3048,7 @@
 
 													<label for="gynae_lov"/>
 													<div>
-														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;margin-right: 1rem;width:41% !important"/>
+														<field name="gynae_lov" class="oe_inline" nolabel="1"  style="pointer-events: none;margin-right: 1rem;width:45% !important"/>
 														<span class="oe_inline">
 															<a class="btn btn-primary" onclick="showBeginScan('gynae_lov', 'gynae_lov')">Begin Scan</a>
 

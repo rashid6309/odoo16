@@ -8,16 +8,21 @@ class ConsentsRiskAssessment(models.Model):
 
     counselling_multiple_birth = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                   string='Counselled regarding risk of multiple birth?')
+    counselling_multiple_birth_decision = fields.Char(string='Counselled regarding risk of multiple birth?')
 
     counselling_failure_treatment = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                      string='Counselling regarding failure of treatment?')
+    counselling_failure_treatment_decision = fields.Char(tring='Counselling regarding failure of treatment?')
 
     counselling_lower_success_rate = fields.Selection(selection=StaticMember.CHOICE_YES_NO_NA,
                                                       string='Counselling regarding lower success '
                                                              'rate with frozen samples?')
+    counselling_lower_success_rate_decision = fields.Char(string='Counselling regarding lower success '
+                                                                 'rate with frozen samples?')
 
     counselling_high_bmi = fields.Selection(selection=StaticMember.CHOICE_YES_NO_NA,
                                             string='Counselling for pregnancies with high BMI?')
+    counselling_high_bmi_decision = fields.Char(string='Counselling for pregnancies with high BMI?')
 
     def check_field_values_as_red(self):
         no_values = ['no']

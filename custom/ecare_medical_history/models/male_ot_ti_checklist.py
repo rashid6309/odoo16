@@ -9,6 +9,7 @@ class MaleOtTiChecklist(models.Model):
     # Male Pre-OI/TI Checklist Fields
     male_semen_analysis = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                            string='Semen Analysis within normal limits and up to date?')
+    male_semen_analysis_decision = fields.Char(string='Semen Analysis within normal limits and up to date?')
 
     husband_availability_male = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                  string='Husband Availability during cycle?')

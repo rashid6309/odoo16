@@ -24,26 +24,34 @@ class FemaleOtTiChecklist(models.Model):
 
     tubal_patency_test_dropdown = fields.Selection(selection=StaticMember.IUI_DROPDOWN,
                                     string='Tubal Patency Test')
+    tubal_patency_test_dropdown_decision = fields.Char(string='Tubal Patency Test')
 
     diagnosis_cervical_incompetence = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                        string='Diagnosis or Risk Factors for Cervical Incompetence?')
 
+    diagnosis_cervical_incompetence_decision = fields.Char(string='Diagnosis or Risk Factors for Cervical Incompetence?')
+
     uterine_tubal_anomalies = fields.Selection(selection=StaticMember.UTERINE_TUBAL_ANOMALIES,
                                                string='Uterine and Tubal Anomalies Ruled Out?')
+    uterine_tubal_anomalies_decision = fields.Char(string='Uterine and Tubal Anomalies Ruled Out?')
 
     fsh_lh_amh_acceptable = fields.Selection(selection=StaticMember.FSH_LH_AMH_CHOICES,
                                              string='FSH, LH, AMH within acceptable range?')
 
     menopause_sign_suspicion = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                 string='Any signs or suspicion of menopause?')
+    menopause_sign_suspicion_decision = fields.Char(string='Any signs or suspicion of menopause?')
 
     female_ot_ti_weight = fields.Char('Weight (kg)')
     female_ot_ti_height = fields.Char('Height (cm)')
 
     female_ot_ti_bmi = fields.Char(string='BMI Calculation')
+    female_ot_ti_bmi_decision = fields.Char(string='BMI Calculation')
 
     tubal_patency_test = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                           string='Tubal Patency Test Indicated?')
+
+    tubal_patency_test_decision = fields.Char(string='Tubal Patency Test Indicated?')
 
     cervical_incompetence_diagnosis = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                        string='Diagnosis or Risk Factors for Cervical Incompetence?')

@@ -72,7 +72,7 @@ class ConditionColorWidget extends Field {
             })
             .then(function(result) {
                 if (result){
-                 $('label[for="' + blueFieldNames[i] + '"]').css('color', 'blue');
+                 $('label[for="' + blueFieldNames[i] + '"]').css('color', 'red');
                 }
                 else{
                 $('label[for="' + blueFieldNames[i] + '"]').css('color', 'black');

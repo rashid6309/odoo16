@@ -944,3 +944,22 @@ th[data-name="treatment_notes"] div {
     margin-right: 1rem;
     color: white !important;
 }
+
+label[for="tubal_patency_test"],
+label[for="diagnosis_cervical_incompetence"],
+label[for="fsh_lh_amh_acceptable"],
+label[for="menopause_sign_suspicion"],
+label[for="cervical_incompetence_diagnosis"],
+label[for="uterine_tubal_anomalies_test"],
+label[for="male_semen_analysis"],
+label[for="husband_availability_male"],
+label[for="frozen_sample_available_male"],
+label[for="risk_inability_to_give_samples_male"],
+label[for="counselling_multiple_birth"],
+label[for="counselling_failure_treatment"],
+label[for="counselling_lower_success_rate"],
+label[for="counselling_high_bmi"],
+label[for="uterine_tubal_anomalies"]{
+    text-align: left !important;
+    width: -webkit-fill-available  !important;
+}

@@ -180,6 +180,9 @@ class RepeatConsultation(models.Model):
                                                     column2="treatment_list_id",
                                                     string='Treatment Pathway')
 
+    repeat_treatment_advised = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_ADVISED_LIST,
+                                                string='Treatment Pathway')
+
     repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                    default='no',
                                                    string="Examination Required")
