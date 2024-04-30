@@ -46,6 +46,7 @@ class FemaleOtTiChecklist(models.Model):
     female_ot_ti_height = fields.Char('Height (cm)')
 
     female_ot_ti_bmi = fields.Char(string='BMI Calculation')
+    # female_ot_ti_bmi = fields.Char(string='BMI Calculation', compute='_compute_female_ot_ti_bmi')
     female_ot_ti_bmi_decision = fields.Char(string='BMI Calculation')
 
     tubal_patency_test = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
@@ -60,6 +61,7 @@ class FemaleOtTiChecklist(models.Model):
                                                     string='Uterine and Tubal Anomalies Ruled Out?')
 
     oi_ti_decisions = fields.Text('Decisions')
+    oi_ti_additional_comments = fields.Text('Additional Comments')
     oi_ti_treatment_state = fields.Char('Treatment State')
 
     def check_field_values_as_red(self):
@@ -86,4 +88,11 @@ class FemaleOtTiChecklist(models.Model):
 
         return False
 
-
+    # @api.onchange('female_ot_ti_weight', 'female_ot_ti_height')
+    # def _compute_female_ot_ti_bmi(self):
+    #     for record in self:
+    #         if record.female_ot_ti_weight and record.female_ot_ti_height:
+    #             height_in_meters = float(record.female_ot_ti_height) / 100
+    #             record.female_ot_ti_bmi = round(float(record.female_ot_ti_weight) / (height_in_meters ** 2), 2)
+    #         else:
+    #             record.female_ot_ti_bmi = None

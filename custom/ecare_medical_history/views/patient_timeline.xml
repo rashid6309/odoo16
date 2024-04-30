@@ -1200,12 +1200,6 @@
 													<field name="lh_level"/>
 													<field name="amh_level"/>
 													<span/>
-													<label for="tubal_patency_test"/>
-													<span/>
-													<field name="tubal_patency_test" nolabel="1" widget="condition_color_widget" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
-													<field name="tubal_patency_test_decision"
-														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}" string="Decision"/>
-													<span/>
 													<label for="diagnosis_cervical_incompetence"/>
 													<span/>
 													<field name="diagnosis_cervical_incompetence"
@@ -1213,13 +1207,17 @@
 														   widget="radio"
 														   options="{'horizontal': True}"/>
 													<field name="diagnosis_cervical_incompetence_decision"
-														   attrs="{'invisible': [('diagnosis_cervical_incompetence', '!=', 'yes')]}"  string="Decision"/>
+														   attrs="{'invisible': [('diagnosis_cervical_incompetence', '!=', 'yes')],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('diagnosis_cervical_incompetence', '=', 'yes')]}"
+														   string="Decision"/>
 													<span/>
 													<label for="uterine_tubal_anomalies"/>
 													<span/>
 													<field name="uterine_tubal_anomalies" nolabel="1"/>
 													<field name="uterine_tubal_anomalies_decision"
-														   attrs="{'invisible': [('uterine_tubal_anomalies', '!=', 'no_testing')]}"  string="Decision"/>
+														   attrs="{'invisible': [('uterine_tubal_anomalies', '!=', 'no_testing')],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('uterine_tubal_anomalies', '=', 'no_testing')]}"
+														   string="Decision"/>
 													<span/>
 													<label for="fsh_lh_amh_acceptable"/>
 													<span/>
@@ -1235,19 +1233,31 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="menopause_sign_suspicion_decision"
-														   attrs="{'invisible': [('menopause_sign_suspicion', '!=', 'yes')]}"  string="Decision"/>
+														   attrs="{'invisible': [('menopause_sign_suspicion', '!=', 'yes')],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('menopause_sign_suspicion', '=', 'yes')]}"
+														   string="Decision"/>
 													<field name="female_ot_ti_weight"/>
 													<field name="female_ot_ti_height"/>
 													<field name="female_ot_ti_bmi"/>
 													<field name="female_ot_ti_bmi_decision"
-														   attrs="{'invisible': [('female_ot_ti_bmi', '&lt;', 35)]}"  string="Decision"/>
+														   attrs="{'invisible': [('female_ot_ti_bmi', '&lt;', 35)],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('female_ot_ti_bmi', '&gt;', 35)]}"  string="Decision"/>
 <!--													<field name="tubal_patency_test"-->
 <!--														   widget="radio"-->
 <!--														   options="{'horizontal': True}"/>-->
+													<span/>
+													<label for="tubal_patency_test" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<span/>
+													<field name="tubal_patency_test" nolabel="1" widget="condition_color_widget" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<field name="tubal_patency_test_decision"
+														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('tubal_patency_test', '=', 'yes')]}"
+														   string="Decision"/>
 													<field name="tubal_patency_test_dropdown"
 														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
 													<field name="tubal_patency_test_dropdown_decision"
-														   attrs="{'invisible': [('tubal_patency_test_dropdown', 'not in', ['not_tested', 'both_blocked', 'restricted_spill'])]}"
+														   attrs="{'invisible': ['|',('tubal_patency_test', '!=', 'yes'),('tubal_patency_test_dropdown', 'not in', ['not_tested', 'both_blocked', 'restricted_spill'])],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('tubal_patency_test_dropdown', 'in', ['not_tested', 'both_blocked', 'restricted_spill'])]}"
 														   string="Decision"/>
 													<span/>
 													<label for="cervical_incompetence_diagnosis"/>
@@ -1271,7 +1281,7 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="male_semen_analysis_decision"
-														   attrs="{'invisible': [('male_semen_analysis_decision', '!=', 'no')]}"
+														   attrs="{'required': [('repeat_new_treatment_pathway', '=', 'yes'),('male_semen_analysis', '=', 'no')]}"
 														   string="Decision"/>
 													<span/>
 													<label for="husband_availability_male"/>
@@ -1303,7 +1313,9 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="counselling_multiple_birth_decision"
-														   attrs="{'invisible': [('counselling_multiple_birth', '!=', 'no')]}"  string="Decision"/>
+														   attrs="{'invisible': [('counselling_multiple_birth', '!=', 'no')],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('counselling_multiple_birth', '=', 'no')]}"
+														   string="Decision"/>
 
 													<span/>
 													<label for="counselling_failure_treatment"/>
@@ -1313,7 +1325,9 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="counselling_failure_treatment_decision"
-														   attrs="{'invisible': [('counselling_failure_treatment', '!=', 'no')]}"  string="Decision"/>
+														   attrs="{'invisible': [('counselling_failure_treatment', '!=', 'no')],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('counselling_failure_treatment', '=', 'no')]}"
+														   string="Decision"/>
 													<span/>
 													<label for="counselling_lower_success_rate"/>
 													<span/>
@@ -1322,7 +1336,9 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="counselling_lower_success_rate_decision"
-														   attrs="{'invisible': [('counselling_lower_success_rate', '!=', 'no')]}"  string="Decision"/>
+														   attrs="{'invisible': [('counselling_lower_success_rate', '!=', 'no')],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('counselling_lower_success_rate', '=', 'no')]}"
+														   string="Decision"/>
 													<span/>
 													<label for="counselling_high_bmi"/>
 													<span/>
@@ -1331,7 +1347,9 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="counselling_high_bmi_decision"
-														   attrs="{'invisible': [('counselling_high_bmi', '!=', 'no')]}"  string="Decision"/>
+														   attrs="{'invisible': [('counselling_high_bmi', '!=', 'no')],
+														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('counselling_high_bmi', '=', 'no')]}"
+														   string="Decision"/>
 												</group>
 												<div class="d-flex flex-column" attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
 													<div/>
@@ -1342,8 +1360,8 @@
 												</div>
 												<group class="m-3" string="Decisions"
 													   attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
-													<field name="oi_ti_decisions" attrs="{'required':['|', ('repeat_consultation_state', '=', 'decision_pending'),
-													('repeat_consultation_state', '=', 'decision_pending')]}"/>
+													<field name="oi_ti_decisions" attrs="{'required':[('repeat_consultation_state', '=', 'decision_pending')]}"/>
+													<field name="oi_ti_additional_comments" attrs="{'required':[('repeat_consultation_state', '=', 'decision_pending')]}"/>
 													<field name="oi_ti_treatment_state"/>
 													<label for="action_proceed_to_ui_ti"/>
 													<div id="action_proceed_buttons">

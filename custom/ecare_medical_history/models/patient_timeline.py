@@ -1448,5 +1448,30 @@ class PatientTimeline(models.Model):
         if self.biological_male_dob_check:
             self.biological_male_dob = None
 
+    @api.onchange('tubal_patency_test_decision', 'tubal_patency_test_decision',
+                  'uterine_tubal_anomalies_decision', 'male_semen_analysis_decision',
+                  'counselling_multiple_birth_decision', 'counselling_failure_treatment_decision',
+                  'counselling_lower_success_rate_decision', 'counselling_high_bmi_decision',
+                  'diagnosis_cervical_incompetence_decision', 'menopause_sign_suspicion_decision',
+                  'female_ot_ti_bmi_decision')
+    def _compute_decisions_fields(self):
+        field_values = [
+            self.tubal_patency_test_decision,
+            self.tubal_patency_test_decision,
+            self.uterine_tubal_anomalies_decision,
+            self.male_semen_analysis_decision,
+            self.counselling_multiple_birth_decision,
+            self.counselling_failure_treatment_decision,
+            self.counselling_lower_success_rate_decision,
+            self.counselling_high_bmi_decision,
+            self.diagnosis_cervical_incompetence_decision,
+            self.menopause_sign_suspicion_decision,
+            self.female_ot_ti_bmi_decision
+        ]
+
+        concatenated_values = '\n'.join(str(value) for value in field_values if value)
+
+        self.oi_ti_decisions = concatenated_values
+
 
 
