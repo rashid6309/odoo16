@@ -252,6 +252,10 @@ class RepeatConsultation(models.Model):
 
     repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                     string="Start new treatment pathway")
+    treatment_state = fields.Selection(selection=StaticMember.TREATMENT_STATUS,
+                                       default='none',
+                                       string='Treatment State')
+    treatment_confirmation = fields.Boolean('Confirmation')
 
     repeat_treatment_pathway = fields.Many2one(comodel_name='ec.medical.treatment.list',
                                                string='Treatment Pathway')
@@ -266,7 +270,7 @@ class RepeatConsultation(models.Model):
     ''' Override methods '''
 
     def write(self, vals_list):
-        if (self.repeat_consultation_state == 'decision_pending' and not
+        if (self.treatment_state == 'approval' and not
         self.env.user.has_group('ecare_medical_history.group_ec_medical_senior_doctor')):
             raise UserError("Only senior doctor can edit this document now as this is in decision pending state.")
         record = super(RepeatConsultation, self).write(vals_list)
@@ -408,6 +412,17 @@ class RepeatConsultation(models.Model):
     def action_state_to_decision_pending(self):
         if self:
             self.repeat_consultation_state = 'decision_pending'
+            
+    def action_treatment_state_approval(self):
+        if self:
+            self.treatment_state = 'approval'
+
+    def action_treatment_state_instantiate(self):
+        if self:
+            if self.treatment_confirmation:
+                self.treatment_state = 'instantiate'
+            else:
+                raise UserError("Please show your consent with clicking the checkbox.")
 
     def check_field_values_as_red(self):
         check_red_values = (self.medical_consents_risk_assessment_id.check_field_values_as_red() or

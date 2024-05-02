@@ -417,6 +417,7 @@
 									</div>
 									<div class="col-2 text-right" style="text-align: right">
 										<field name="repeat_consultation_state" invisible="1"/>
+										<field name="treatment_state" invisible="1"/>
 										<button name="action_create_repeat_consultation"
 												type="object"
 												confirm="Do you really want to create a new repeat consultation?"
@@ -430,13 +431,13 @@
 											<span id="repeat_consultation_working_state" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
 
 										</h5>
-										<h5 class="mt-2 mb-0"
-											attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
-											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>
-										</h5>
+<!--										<h5 class="mt-2 mb-0"-->
+<!--											attrs="{'invisible':[('treatment_state', '!=', 'approval')]}">-->
+<!--											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>-->
+<!--										</h5>-->
 									</div>
 								</div>
-								<div class="card-block mb-5 pl-4 collapse asa" id="repeat_consultation_section" attrs="{'readonly': [('repeat_consultation_state', '=', 'decision_pending')]}">
+								<div class="card-block mb-5 pl-4 collapse asa" id="repeat_consultation_section">
 									<field name="show_repeat_consultation_history_section"
 										   invisible="1"
 										   force_save="1"
@@ -1150,13 +1151,14 @@
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
-												<field name="repeat_treatment_plan"/>
+												<field name="repeat_treatment_plan"  attrs="{'readonly':[('treatment_state', '!=', 'none')]}"/>
 
 												<field name="repeat_new_treatment_pathway"
 													   widget="radio"
+													   attrs="{'readonly':[('treatment_state', '!=', 'none')]}"
 													   options="{'horizontal': True}"/>
 
-												<field name="repeat_treatment_advised"/>
+												<field name="repeat_treatment_advised"  attrs="{'readonly':[('treatment_state', '!=', 'none')]}"/>
 
 
 <!--												<field name="repeat_treatment_advised_ids"-->
@@ -1166,10 +1168,30 @@
 <!--												<field name="repeat_new_treatment_pathway"-->
 <!--													   widget="radio"-->
 <!--													   options="{'horizontal': True}"-->
-<!--												/>-->
+												<!--												/>-->
 											</group>
+											<div class="d-flex flex-column alert alert-success" attrs="{'invisible': ['|',('repeat_new_treatment_pathway', '!=', 'yes'),('treatment_state', '!=', 'none')]}">
+												<p>
+													Important information: You can only carry out maximum THREE consecutive OI/TI attempts. If more attempts are considered, this needs to be documented in Repeat consultations before you can proceed.
+												</p>
+												<span style="display: -webkit-box;">
+													<field name="treatment_confirmation"/>
+													<p for="treatment_confirmation"> I understand and agree</p>
+												</span>
+											</div>
+											<div attrs="{'invisible': ['|',('repeat_new_treatment_pathway', '!=', 'yes'),('treatment_state', '!=', 'none')]}"
+												 style=" width: 12rem; "
+												 class="d-flex flex-column">
+												<button name="action_treatment_state_instantiate"
+														type="object"
+														confirm="This is irreversible action, you can not undo this once you proceed."
+														class="btn btn-success m-3"
+														string="Proceed to OI/TI"/>
+											</div>
 
-											<span attrs="{'invisible': ['|',('repeat_new_treatment_pathway', '!=', 'yes'),('repeat_treatment_advised', '!=', 'pre_oi_ti_checklist')]}">
+											<span attrs="{'invisible': ['|','|',('repeat_new_treatment_pathway', '!=', 'yes'),
+											('treatment_state', '=', 'none'),
+											('repeat_treatment_advised', '!=', 'pre_oi_ti_checklist')]}">
 												<div class="d-flex flex-column">
 													<div/>
 
@@ -1348,19 +1370,18 @@
 														   'required': [('repeat_new_treatment_pathway', '=', 'yes'),('counselling_high_bmi', '=', 'no')]}"
 														   string="Decision"/>
 												</group>
-												<div class="d-flex flex-column" attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
+												<div class="d-flex flex-column" attrs="{'invisible':[('treatment_state', '!=', 'approval')]}">
 													<div/>
 
 													<div style="background: #cddbf3; padding: 0.3%;">
 														<h5>Decisions</h5>
 													</div>
 												</div>
-												<group class="m-3" attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
+												<group class="m-3" attrs="{'invisible':[('treatment_state', '!=', 'approval')]}">
 													<span/>
 													<field style="width: 55rem;" class="alert alert-warning" name="oi_ti_treatment_prompt_message" nolabel="1"/>
-													<field name="oi_ti_decisions" attrs="{'required':[('repeat_consultation_state', '=', 'decision_pending')]}"/>
-													<field name="oi_ti_additional_comments" attrs="{'required':[('repeat_consultation_state', '=', 'decision_pending')]}"/>
-													<field name="oi_ti_treatment_state"/>
+													<field name="oi_ti_decisions" attrs="{'required':[('treatment_state', '=', 'approval')]}"/>
+													<field name="oi_ti_additional_comments" attrs="{'required':[('treatment_state', '=', 'approval')]}"/>
 													<label for="action_proceed_to_ui_ti"/>
 													<div id="action_proceed_buttons">
 														<button name="action_proceed_to_ui_ti"
@@ -1382,7 +1403,7 @@
 													<button name="action_proceed_to_ui_ti"
 															type="object"
 															class="btn btn-primary"
-															attrs="{'invisible': [('repeat_consultation_state', '=', 'decision_pending')]}"
+															attrs="{'invisible': [('treatment_state', '=', 'approval')]}"
 															string="Proceed"/>
 												</div>
 											</span>

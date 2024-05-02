@@ -765,6 +765,12 @@ class StaticMember:
         ('appointment', 'Appointment'),
     ]
 
+    TREATMENT_STATUS = [
+        ('none', 'None'),
+        ('instantiate', 'Instantiate'),
+        ('approval', 'Approval'),
+    ]
+
     REPEAT_CONSULTATION_TYPE = [
         ('in_person', 'In-person Consultation'),
         ('telephonic', 'Telephonic Consultation'),
@@ -1258,6 +1264,5 @@ class StaticMember:
 
     REPEAT_TREATMENT_ADVISED_LIST = [
         ('pre_oi_ti_checklist', 'Pre-OI/TI Checklist'),
-        ('other', 'Other'),
     ]
 

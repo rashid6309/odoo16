@@ -62,7 +62,6 @@ class FemaleOtTiChecklist(models.Model):
 
     oi_ti_decisions = fields.Text('Decisions')
     oi_ti_additional_comments = fields.Text('Additional Comments')
-    oi_ti_treatment_state = fields.Char('Treatment State')
     oi_ti_treatment_prompt_message = fields.Text(readonly="1", string='Message',
                                                  default="One or more contraindications to OI/TI have been "
                                                          "identified and highlighted and therefore, "

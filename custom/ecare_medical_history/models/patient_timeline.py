@@ -1194,6 +1194,10 @@ class PatientTimeline(models.Model):
         oi_ti_platform_attempt_ref = self.env['ec.medical.oi.ti.platform.attempt']
         oi_ti_platform_attempt_ref.create_oi_ti_platform_attempt(self, self.ec_repeat_consultation_id)
 
+    def action_treatment_state_instantiate(self):
+        if self:
+            self.ec_repeat_consultation_id.action_treatment_state_instantiate()
+
     def action_proceed_to_ui_ti(self):
         proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
         repeat_ui_ti_add = self.env.context.get('repeat_ui_ti_add')
@@ -1226,7 +1230,7 @@ class PatientTimeline(models.Model):
         check_red_values = self.ec_repeat_consultation_id.check_field_values_as_red()
         if check_red_values:
             self.ec_repeat_consultation_id.female_ot_ti_checklist_id.oi_ti_treatment_prompt_message = message
-            return self.ec_repeat_consultation_id.action_state_to_decision_pending()
+            return self.ec_repeat_consultation_id.action_treatment_state_approval()
             # values = {
             #     'default_message': "One or more contraindications to OI/TI have "
             #                        "been identified and highlighted and therefore, "
@@ -1248,7 +1252,7 @@ class PatientTimeline(models.Model):
         check_blue_values = self.ec_repeat_consultation_id.check_field_values_as_blue()
         if check_blue_values:
             self.ec_repeat_consultation_id.female_ot_ti_checklist_id.oi_ti_treatment_prompt_message = message
-            return self.ec_repeat_consultation_id.action_state_to_decision_pending()
+            return self.ec_repeat_consultation_id.action_treatment_state_approval()
             # values = {
             #     'default_message': "One or more contraindications to OI/TI have "
             #                        "been identified and highlighted and therefore, "
