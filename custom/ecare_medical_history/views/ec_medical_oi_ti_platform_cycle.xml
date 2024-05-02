@@ -75,19 +75,19 @@
 
 
                         <group>
-                            <field name="oi_ti_platform" readonly="1" force_save="1"/>
-                            <field name="cycle_timeline_id" readonly="1" force_save="1"/>
-                            <field name="repeat_consultation_id" readonly="1" force_save="1"/>
+                            <field name="oi_ti_platform" readonly="1" invisible="1" force_save="1"/>
+                            <field name="cycle_timeline_id" readonly="1" invisible="1" force_save="1"/>
+                            <field name="repeat_consultation_id" readonly="1" invisible="1" force_save="1"/>
                         </group>
                         <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                             <tbody>
                                 <tr style="height:15.75pt;">
-                                    <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                    <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
                                         <p class="oi_ti_action_btn"><strong><span>OUTCOME: PREGNANCY (+VE UPT or BHCG)</span></strong></p>
                                     </td>
-                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">
-                                        <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>
-                                    </td>
+<!--                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
+<!--                                        <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->
+<!--                                    </td>-->
                                 </tr>
 
                                 <!--                                Exit Buttons-->
@@ -190,12 +190,12 @@
                                     <tbody>
 
                                         <tr style="height:15.75pt;">
-                                            <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                            <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
                                                 <p class="oi_ti_action_btn"><strong><span>OUTCOME: PREGNANCY (+VE UPT or BHCG)</span></strong></p>
                                             </td>
-                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">
-                                                <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>
-                                            </td>
+<!--                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
+<!--                                                <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->
+<!--                                            </td>-->
                                         </tr>
 
                                         <tr style="height:15.75pt;">

@@ -308,9 +308,12 @@ class RepeatConsultation(models.Model):
                 if repeat.repeat_timeline_id.tvs_cyst_size_ids:
                     table_rows = []
                     for record in repeat.repeat_timeline_id.tvs_cyst_size_ids:
-                        type_value = record.type or '-'
-                        size_x_value = str(record.generic_size_x) if record.generic_size_x is not None else '-'
-                        size_y_value = str(record.generic_size_y) if record.generic_size_y is not None else '-'
+                        type_value = dict(
+                            self.env['ec.generic.size']._fields['type'].selection).get(
+                            record.type, '')
+
+                        size_x_value = str(record.generic_size_x) if record.generic_size_x is not False else '-'
+                        size_y_value = str(record.generic_size_y) if record.generic_size_y is not False else '-'
                         table_row = f"<tr><td>{type_value}</td><td>{size_x_value},</td><td>(cm)</td></tr>"
                         table_rows.append(table_row)
                     dynamic_table = f"<table>{''.join(table_rows)}</table>"
