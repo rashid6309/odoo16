@@ -63,6 +63,14 @@ class FemaleOtTiChecklist(models.Model):
     oi_ti_decisions = fields.Text('Decisions')
     oi_ti_additional_comments = fields.Text('Additional Comments')
     oi_ti_treatment_state = fields.Char('Treatment State')
+    oi_ti_treatment_prompt_message = fields.Text(readonly="1", string='Message',
+                                                 default="One or more contraindications to OI/TI have been "
+                                                         "identified and highlighted and therefore, "
+                                                         "you cannot authorise OI/TI treatment "
+                                                         "pathway for this couple. Proceeding to OI/TI "
+                                                         "will have either inappropriate or with poor "
+                                                         "prognosis and/or higher risk of complications. "
+                                                         "Please discuss it with your seniors.")
 
     def check_field_values_as_red(self):
         iui_dropdown_red_values = ['not_tested', 'both_blocked', 'restricted_spill']
@@ -83,7 +91,9 @@ class FemaleOtTiChecklist(models.Model):
             return True
         if self.menopause_sign_suspicion in yes_values:
             return True
-        if self.female_ot_ti_bmi >= female_ot_ti_bmi_value:
+
+        female_ot_ti_bmi_value = float(female_ot_ti_bmi_value)
+        if float(self.female_ot_ti_bmi) >= female_ot_ti_bmi_value:
             return True
 
         return False

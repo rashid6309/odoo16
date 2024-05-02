@@ -483,7 +483,7 @@ class RepeatConsultation(models.Model):
                 if female_checklist_rec.menopause_sign_suspicion in yes_values:
                     return True
             elif field_name == 'female_ot_ti_bmi':
-                if int(female_checklist_rec.female_ot_ti_bmi) >= female_ot_ti_bmi_value:
+                if float(female_checklist_rec.female_ot_ti_bmi) >= female_ot_ti_bmi_value:
                     return True
 
             # Male Value

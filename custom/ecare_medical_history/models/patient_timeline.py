@@ -1173,7 +1173,8 @@ class PatientTimeline(models.Model):
     @api.onchange('female_ot_ti_weight', 'female_ot_ti_height')
     def _compute_female_ot_ti_bmi(self):
         for record in self:
-            if record.female_ot_ti_weight and record.female_ot_ti_height:
+            if (record.female_ot_ti_weight and record.female_ot_ti_height and
+                    float(record.female_ot_ti_weight) > 0 and float(record.female_ot_ti_height)>0) :
                 height_in_meters = float(record.female_ot_ti_height) / 100
                 record.female_ot_ti_bmi = round(float(record.female_ot_ti_weight) / (height_in_meters ** 2), 2)
             else:
@@ -1216,46 +1217,56 @@ class PatientTimeline(models.Model):
             self.action_save_repeat_consultation_section()
             oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
             return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
+        message = ("One or more contraindications to OI/TI have been identified and highlighted and therefore, "
+                   "you cannot authorise OI/TI treatment "
+                   "pathway for this couple. Proceeding to OI/TI "
+                   "will have either inappropriate or with poor "
+                   "prognosis and/or higher risk of complications. "
+                   "Please discuss it with your seniors.")
         check_red_values = self.ec_repeat_consultation_id.check_field_values_as_red()
         if check_red_values:
-            values = {
-                'default_message': "One or more contraindications to OI/TI have "
-                                   "been identified and highlighted and therefore, "
-                                   "you cannot authorise OI/TI treatment pathway for this couple. "
-                                   "Proceeding to OI/TI will have either inappropriate or "
-                                   "with poor prognosis and/or higher risk of complications. "
-                                   "Please discuss it with your seniors.",
-                'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
-            }
-            return {
-                'name': 'Message',
-                'type': 'ir.actions.act_window',
-                'view_mode': 'form',
-                'views': [(False, 'form')],
-                'res_model': 'ec.medical.treatment.pathway.wizard',
-                'context': values,
-                'target': 'new',
-            }
+            self.ec_repeat_consultation_id.female_ot_ti_checklist_id.oi_ti_treatment_prompt_message = message
+            return self.ec_repeat_consultation_id.action_state_to_decision_pending()
+            # values = {
+            #     'default_message': "One or more contraindications to OI/TI have "
+            #                        "been identified and highlighted and therefore, "
+            #                        "you cannot authorise OI/TI treatment pathway for this couple. "
+            #                        "Proceeding to OI/TI will have either inappropriate or "
+            #                        "with poor prognosis and/or higher risk of complications. "
+            #                        "Please discuss it with your seniors.",
+            #     # 'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
+            # }
+            # return {
+            #     'name': 'Message',
+            #     'type': 'ir.actions.act_window',
+            #     'view_mode': 'form',
+            #     'views': [(False, 'form')],
+            #     'res_model': 'ec.medical.treatment.pathway.wizard',
+            #     'context': values,
+            #     'target': 'new',
+            # }
         check_blue_values = self.ec_repeat_consultation_id.check_field_values_as_blue()
         if check_blue_values:
-            values = {
-                'default_message': "One or more factors have been identified that place "
-                                   "this couple at a slightly increased risk of "
-                                   "complications and/or failure of treatment. "
-                                   "These have been highlighted. Please discuss these "
-                                   "with the couple and if you and the couple are still "
-                                   "in agreement, proceed to OI/TI",
-                'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
-            }
-            return {
-                'name': 'Message',
-                'type': 'ir.actions.act_window',
-                'view_mode': 'form',
-                'views': [(False, 'form')],
-                'res_model': 'ec.medical.treatment.pathway.wizard',
-                'context': values,
-                'target': 'new',
-            }
+            self.ec_repeat_consultation_id.female_ot_ti_checklist_id.oi_ti_treatment_prompt_message = message
+            return self.ec_repeat_consultation_id.action_state_to_decision_pending()
+            # values = {
+            #     'default_message': "One or more contraindications to OI/TI have "
+            #                        "been identified and highlighted and therefore, "
+            #                        "you cannot authorise OI/TI treatment pathway for this couple. "
+            #                        "Proceeding to OI/TI will have either inappropriate or "
+            #                        "with poor prognosis and/or higher risk of complications. "
+            #                        "Please discuss it with your seniors.",
+            #     # 'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
+            # }
+            # return {
+            #     'name': 'Message',
+            #     'type': 'ir.actions.act_window',
+            #     'view_mode': 'form',
+            #     'views': [(False, 'form')],
+            #     'res_model': 'ec.medical.treatment.pathway.wizard',
+            #     'context': values,
+            #     'target': 'new',
+            # }
         if (float(self.fsh_level) > 10 or float(self.lh_level) > 10 or
                 not (10 <= float(self.amh_level) <= 25)):
             values = {

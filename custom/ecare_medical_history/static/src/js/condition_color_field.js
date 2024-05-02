@@ -40,12 +40,12 @@ class ConditionColorWidget extends Field {
             'counselling_multiple_birth',
             'counselling_failure_treatment',
             'counselling_lower_success_rate',
-            'counselling_high_bmi'
-        ];
-        var blueFieldNames = [
+            'counselling_high_bmi',
             'diagnosis_cervical_incompetence',
             'menopause_sign_suspicion',
             'female_ot_ti_bmi'
+        ];
+        var blueFieldNames = [
         ];
         for (var i = 0; i < redFieldNames.length; i++) {
             await rpc.query({
@@ -64,22 +64,6 @@ class ConditionColorWidget extends Field {
 
         }
 
-        for (var i = 0; i < blueFieldNames.length; i++) {
-            await rpc.query({
-            model: 'ec.repeat.consultation',
-            method: 'get_field_data_condition',
-            args: [blueFieldNames[i],timeline_id],
-            })
-            .then(function(result) {
-                if (result){
-                 $('label[for="' + blueFieldNames[i] + '"]').css('color', 'red');
-                }
-                else{
-                $('label[for="' + blueFieldNames[i] + '"]').css('color', 'black');
-                }
-            });
-
-        }
 
     }
     onFloatToInt(ev){
