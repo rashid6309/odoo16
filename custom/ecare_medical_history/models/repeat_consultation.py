@@ -314,7 +314,7 @@ class RepeatConsultation(models.Model):
 
                         size_x_value = str(record.generic_size_x) if record.generic_size_x is not False else '-'
                         size_y_value = str(record.generic_size_y) if record.generic_size_y is not False else '-'
-                        table_row = f"<tr><td>{type_value}</td><td>{size_x_value},</td><td>(cm)</td></tr>"
+                        table_row = f"<tr><td>{type_value}</td><td>{size_x_value},</td><td></td></tr>"
                         table_rows.append(table_row)
                     dynamic_table = f"<table>{''.join(table_rows)}</table>"
                     repeat.repeat_cyst_computed = dynamic_table

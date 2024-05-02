@@ -1355,8 +1355,7 @@
 														<h5>Decisions</h5>
 													</div>
 												</div>
-												<group class="m-3" string="Decisions"
-													   attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
+												<group class="m-3" attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">
 													<span/>
 													<field style="width: 55rem;" class="alert alert-warning" name="oi_ti_treatment_prompt_message" nolabel="1"/>
 													<field name="oi_ti_decisions" attrs="{'required':[('repeat_consultation_state', '=', 'decision_pending')]}"/>
