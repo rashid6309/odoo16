@@ -1268,13 +1268,13 @@
 <!--														   widget="radio"-->
 <!--														   options="{'horizontal': True}"/>-->
 													<span/>
-													<label for="tubal_patency_test" attrs="{'required': [('treatment_state', '!=', 'none')],'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<label for="tubal_patency_test"/>
 													<span/>
-													<field name="tubal_patency_test" nolabel="1" widget="condition_color_widget" attrs="{'invisible': [('iui_plan', '!=', 'yes')]}"/>
-													<field name="tubal_patency_test_decision"
-														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')],
-														   'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')]}"
-														   string="Decision"/>
+													<field name="tubal_patency_test" nolabel="1" widget="condition_color_widget"/>
+<!--													<field name="tubal_patency_test_decision"-->
+<!--														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')],-->
+<!--														   'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')]}"-->
+<!--														   string="Decision"/>-->
 													<field name="tubal_patency_test_dropdown"
 														   attrs="{'required': [('treatment_state', '!=', 'none')],'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
 													<field name="tubal_patency_test_dropdown_decision"
