@@ -1169,7 +1169,7 @@ class StaticMember:
     FSH_LH_AMH_CHOICES = [
         ('yes', 'Yes'),
         ('no', 'No'),
-        ('awaiting_results', 'Updated results await'),
+        ('awaiting_results', 'Updated blood awaited'),
     ]
 
     TRIGGER_REGIMEN = [
