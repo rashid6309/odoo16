@@ -7,6 +7,11 @@ class EcMedicalOITIPlatform(models.Model):
     _name = "ec.medical.oi.ti.platform.attempt"
     _description = "OI/TI Platform"
     _order = 'create_date desc'
+    _inherits = {
+        'ec.medical.tvs': 'ot_ti_visit_tvs_id'
+    }
+
+    ot_ti_visit_tvs_id = fields.Many2one(comodel_name="ec.medical.tvs")
 
     oi_ti_cycle_day = fields.Integer(string='Cycle Day', related='attempt_cycle_id.cycle_day')
     preparation_method = fields.Selection(selection=StaticMember.PREPARATION_METHOD, string='Preparation Method')
@@ -20,12 +25,15 @@ class EcMedicalOITIPlatform(models.Model):
                                            column2="diagnosis_id",
                                            string="Diagnosis")
     oi_ti_other_diagnosis = fields.Char(string='Other Diagnosis')
-    oi_ti_follicle_left = fields.Char(string='Follicle(L)')
-    oi_ti_follicle_right = fields.Char(string='Follicle(R)')
+    oi_ti_follicle_left = fields.Char(string='Follicle(L)', compute='_compute_visit_ultrasound_values')
+    oi_ti_follicle_right = fields.Char(string='Follicle(R)', compute='_compute_visit_ultrasound_values')
     oi_ti_sign_of_ovulation = fields.Selection(selection=StaticMember.SIGN_OF_OVULATION,
                                                string='Sign of Ovulation')
 
-    oi_ti_cet = fields.Char(string='CET')
+    oi_ti_cyst_computed = fields.Html(string='Cyst', compute='_compute_visit_ultrasound_values')
+
+    oi_ti_cet = fields.Char(string='CET', compute='_compute_visit_ultrasound_values')
+    oi_ti_endometrial_character = fields.Char(string='Endometrial Character', compute='_compute_visit_ultrasound_values')
     oi_ti_comments = fields.Char(string='Comments')
 
     #     Inverse Fields
@@ -74,6 +82,52 @@ class EcMedicalOITIPlatform(models.Model):
             'oi_ti_follicle_left': cycle_id.repeat_consultation_id.tvs_lov,
             'oi_ti_follicle_right': cycle_id.repeat_consultation_id.tvs_rov,
             'oi_ti_attempt_state': 'in_progress',
+            'ot_ti_visit_tvs_id': cycle_id.repeat_consultation_id.repeat_tvs_id.id if not oi_ti_attempts else None,
         }
         oi_ti_platform_attempt = self.env['ec.medical.oi.ti.platform.attempt'].create(vals)
         return oi_ti_platform_attempt
+    
+    @api.onchange('tvs_lov', 'tvs_rov', 'tvs_other_text', 'tvs_smooth', 'tvs_distorted', 'tvs_triple_echo',
+                  'tvs_hyperechoic_solid', 'tvs_suspected_cavity_lesion', 'tvs_menstruating', 'tvs_cyst_size_ids')
+    def _compute_visit_ultrasound_values(self):
+        if self:
+            for record in self:
+                endometrial_character_list = []
+                tvs_record = record.ot_ti_visit_tvs_id
+                record.oi_ti_follicle_left = str(tvs_record.tvs_lov)
+                record.oi_ti_follicle_right = str(tvs_record.tvs_rov)
+                record.oi_ti_cet = str(tvs_record.tvs_lining_size_decimal)
+                if tvs_record.tvs_smooth:
+                    endometrial_character_list.append('Smooth')
+                if tvs_record.tvs_distorted:
+                    endometrial_character_list.append('Distorted')
+                if tvs_record.tvs_triple_echo:
+                    endometrial_character_list.append('Triple Echo')
+                if tvs_record.tvs_hyperechoic_solid:
+                    endometrial_character_list.append('Hyperechoic/Solid')
+                if tvs_record.tvs_suspected_cavity_lesion:
+                    endometrial_character_list.append('Suspected Cavity Lesion')
+                if tvs_record.tvs_menstruating:
+                    endometrial_character_list.append('Menstruating')
+                if endometrial_character_list:
+                    record.oi_ti_endometrial_character = ", ".join(endometrial_character_list)
+                if tvs_record.tvs_cyst_size_ids:
+                    table_rows = []
+                    for rec in tvs_record.tvs_cyst_size_ids:
+                        type_value = dict(
+                            self.env['ec.generic.size']._fields['type'].selection).get(
+                            rec.type, '')
+
+                        size_x_value = str(rec.generic_size_x) if rec.generic_size_x is not False else '-'
+                        size_y_value = str(rec.generic_size_y) if rec.generic_size_y is not False else '-'
+                        table_row = f"<tr><td>{type_value}</td><td>{size_x_value},</td><td></td></tr>"
+                        table_rows.append(table_row)
+                    dynamic_table = f"<table>{''.join(table_rows)}</table>"
+                    record.oi_ti_cyst_computed = dynamic_table
+                else:
+                    record.oi_ti_cyst_computed = ''
+
+
+
+
+
