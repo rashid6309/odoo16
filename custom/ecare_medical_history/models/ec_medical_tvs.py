@@ -16,6 +16,9 @@ class EcMedicalTVS(models.Model):
     tvs_repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation',
                                                  readonly=True,
                                                  string='Repeat Consultation')
+    tvs_ot_ti_visit_id = fields.Many2one(comodel_name='ec.medical.oi.ti.platform.attempt',
+                                         readonly=True,
+                                         string='OI/TI Visits')
 
     tvs_cycle_day = fields.Integer(readonly=1, string="Cycle day")
 
@@ -39,7 +42,7 @@ class EcMedicalTVS(models.Model):
     tvs_uterus_size_x = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                          string='Size X')
 
-    tvs_uterus_size_y= fields.Selection(selection=StaticMember.SIZE_INTEGER,
+    tvs_uterus_size_y = fields.Selection(selection=StaticMember.SIZE_INTEGER,
                                         string='Size Y')
 
 
