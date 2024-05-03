@@ -1310,10 +1310,10 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<span/>
-													<label for="frozen_sample_available_male" attrs="{'invisible': [('husband_availability_male', '!=', 'yes')]}"/>
+													<label for="frozen_sample_available_male" attrs="{'invisible': [('husband_availability_male', '!=', 'no')]}"/>
 													<span/>
 													<field name="frozen_sample_available_male"
-														   attrs="{'invisible': [('husband_availability_male', '!=', 'yes')]}"
+														   attrs="{'invisible': [('husband_availability_male', '!=', 'no')]}"
 														   nolabel="1"/>
 													<span/>
 													<label for="risk_inability_to_give_samples_male"/>

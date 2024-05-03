@@ -23,8 +23,8 @@ class FemaleOtTiChecklist(models.Model):
                                           string='Primary Indication')
 
     tubal_patency_test_dropdown = fields.Selection(selection=StaticMember.IUI_DROPDOWN,
-                                    string='Tubal Patency Test')
-    tubal_patency_test_dropdown_decision = fields.Char(string='Tubal Patency Test')
+                                    string='Are tubes patent?')
+    tubal_patency_test_dropdown_decision = fields.Char(string='Are tubes patent?')
 
     diagnosis_cervical_incompetence = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                        string='Diagnosis or Risk Factors for Cervical Incompetence?')
