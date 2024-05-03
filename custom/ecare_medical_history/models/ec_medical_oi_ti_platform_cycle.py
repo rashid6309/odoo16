@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from odoo import models, api, fields
 from odoo.exceptions import UserError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
@@ -142,9 +144,12 @@ class EcMedicalOITIPlatformCycle(models.Model):
                         oi_ti_attempt_state_value = self.get_display_string(attempt_model, oi_ti_attempt_state_field,
                                                                             attempt.oi_ti_attempt_state)
 
+                    create_date_formatted = attempt.create_date.strftime("%d-%m-%Y %H:%M")
+
                     table = (f"<table cellspacing='0' cellpadding='0' class='oi_ti_attempt_table_style'> <tbody> <tr "
                              f"style='height:15.75pt;'> <td colspan='7' class='oi_ti_computed_values_td' "
-                             f"style='background-color:#cccccc;'> <p class='oi_ti_text_paragraph_td'/> </td> </tr> <tr "
+                             f"style='background-color:#cccccc;'> "
+                             f"<p class='oi_ti_text_paragraph_td'>{create_date_formatted or ''}</p> </td> </tr> <tr "
                              f"style='height:15.75pt;'> <td colspan='5' class='oi_ti_attempt_preparation_td' "
                              f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'><strong><span "
                              f"style='color:#1f1f1f;'> "
@@ -167,11 +172,11 @@ class EcMedicalOITIPlatformCycle(models.Model):
                              f"class='oi_ti_heading_td' style='background-color:#fff2cc;'> <p "
                              f"class='oi_ti_text_paragraph_td'>Follicle(s)</p> </td> <td class='oi_ti_heading_td' "
                              f"style='background-color:#fff2cc;'> <p class='oi_ti_text_paragraph_td'>"
-                             f"( {attempt.oi_ti_follicle_left or ''})</p> </td> <td "
+                             f" {attempt.oi_ti_follicle_left or ''}</p> </td> <td "
                              f"class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
                              f"class='oi_ti_text_paragraph_td'>Follicle(s)</p> </td> <td class='oi_ti_heading_td' "
                              f"style='background-color:#d9ead3;'> <p class='oi_ti_text_paragraph_td'>"
-                             f"( {attempt.oi_ti_follicle_right or ''} )</p> </td> <td "
+                             f" {attempt.oi_ti_follicle_right or ''} </p> </td> <td "
                              f"class='oi_ti_heading_td' style='background-color:#ffffff;'> <p class='oi_ti_action_btn'>Free "
                              f"fluid, loss of dominant follicle, corpus luteum</p> </td> <td class='oi_ti_attempt_diagnosis_td' "
                              f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'> "
@@ -188,7 +193,8 @@ class EcMedicalOITIPlatformCycle(models.Model):
                              f"style='background-color:#d9ead3;'> <p class='oi_ti_text_paragraph_td'><strong>Dominant Follicle("
                              f"s)</strong></p> </td> <td class='oi_ti_heading_td' style='background-color:#d9ead3;'> <p "
                              f"class='oi_ti_text_paragraph_td'>None</p> </td> <td class='oi_ti_heading_td' "
-                             f"style='background-color:#ffffff;'> <p class='oi_ti_text_paragraph_td'>CET: 11</p> </td> <td "
+                             f"style='background-color:#ffffff;'> "
+                             f"<p class='oi_ti_text_paragraph_td'>CET: {attempt.oi_ti_cet or ''}</p> </td> <td "
                              f"rowspan='2' class='oi_ti_attempt_diagnosis_td' style='background-color:#f4cccc;'> <p "
                              f"class='oi_ti_text_paragraph_td'>Other diagnoses: "
                              f"{attempt.oi_ti_other_diagnosis or ''}"
