@@ -1210,7 +1210,7 @@
 													<field name="iui_plan"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
-													<field name="primary_indication" attrs="{'required': [('treatment_state', '!=', 'none')],'invisible': [('iui_plan', '!=', 'yes')]}"/>
+													<field name="primary_indication" attrs="{'required': [('treatment_state', '!=', 'none'),('iui_plan', '=', 'yes')],'invisible': [('iui_plan', '!=', 'yes')]}"/>
 													<span class="o_form_label" attrs="{'invisible': ['|',('iui_plan', '!=', 'yes'),('primary_indication', '!=', 'husband_not_present')]}"/>
 													<span id="husband_not_present" attrs="{'invisible': ['|',('iui_plan', '=', 'no'),('primary_indication', '!=', 'husband_not_present')]}">
 														The andrology department needs to confirm the presence of a suitable sample for Frozen-Thawed IUI.
@@ -1276,7 +1276,8 @@
 <!--														   'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')]}"-->
 <!--														   string="Decision"/>-->
 													<span/>
-													<label for="tubal_patency_test_dropdown"/>
+													<label for="tubal_patency_test_dropdown"
+														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
 													<span/>
 													<field name="tubal_patency_test_dropdown" nolabel="1"
 														   attrs="{'required': [('treatment_state', '!=', 'none')],'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
