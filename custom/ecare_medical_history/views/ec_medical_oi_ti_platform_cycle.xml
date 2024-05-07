@@ -105,12 +105,12 @@
                                     <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><field name="insemination"/></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td">
+                                    <td colspan="2" class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>IUI attempt</span></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td">
-                                        <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>
-                                    </td>
+<!--                                    <td class="oi_ti_heading_td">-->
+<!--                                        <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>-->
+<!--                                    </td>-->
                                 </tr>
                                 <tr style="height:26.25pt;">
                                     <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
@@ -125,12 +125,12 @@
                                     <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><field name="indication_of_iui"/></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td">
+                                    <td colspan="2" class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>I 2 3</span></strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td">
-                                        <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>
-                                    </td>
+<!--                                    <td class="oi_ti_heading_td">-->
+<!--                                        <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>-->
+<!--                                    </td>-->
                                 </tr>
                                 <!--                                2nd Trigger-->
                                 <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
