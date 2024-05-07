@@ -40,7 +40,7 @@ class EcMedicalOITIPlatform(models.Model):
     attempt_cycle_id = fields.Many2one(comodel_name='ec.medical.oi.ti.platform.cycle', ondelete="restrict")
     timeline_id = fields.Many2one(comodel_name='ec.patient.timeline')
     repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation')
-    
+
     def action_open_cycle_attempt_form_view(self):
         return {
             "name": "OI/TI Attempt",
@@ -86,7 +86,7 @@ class EcMedicalOITIPlatform(models.Model):
         }
         oi_ti_platform_attempt = self.env['ec.medical.oi.ti.platform.attempt'].create(vals)
         return oi_ti_platform_attempt
-    
+
     @api.onchange('tvs_lov', 'tvs_rov', 'tvs_other_text', 'tvs_smooth', 'tvs_distorted', 'tvs_triple_echo',
                   'tvs_hyperechoic_solid', 'tvs_suspected_cavity_lesion', 'tvs_menstruating', 'tvs_cyst_size_ids')
     def _compute_visit_ultrasound_values(self):
