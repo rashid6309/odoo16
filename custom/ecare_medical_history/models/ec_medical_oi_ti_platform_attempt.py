@@ -111,6 +111,8 @@ class EcMedicalOITIPlatform(models.Model):
                     endometrial_character_list.append('Menstruating')
                 if endometrial_character_list:
                     record.oi_ti_endometrial_character = ", ".join(endometrial_character_list)
+                else:
+                    record.oi_ti_endometrial_character = None
                 if tvs_record.tvs_cyst_size_ids:
                     table_rows = []
                     for rec in tvs_record.tvs_cyst_size_ids:
