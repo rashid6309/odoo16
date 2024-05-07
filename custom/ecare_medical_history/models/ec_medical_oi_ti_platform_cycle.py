@@ -30,6 +30,8 @@ class EcMedicalOITIPlatformCycle(models.Model):
                                          string='Indication for IUI')
     insemination = fields.Selection(selection=StaticMember.INSEMINATION,
                                     string='Insemination')
+    iui_attempt_count = fields.Selection(selection=StaticMember.IUI_ATTEMPT_COUNT,
+                                    string='IUI attempt')
     luteal_phase_support = fields.Selection(selection=StaticMember.LUTEAL_PHASE_SUPPORT,
                                             string='Luteal phase support')
 
@@ -150,14 +152,12 @@ class EcMedicalOITIPlatformCycle(models.Model):
                              f"style='height:15.75pt;'> <td colspan='7' class='oi_ti_computed_values_td' "
                              f"style='background-color:#cccccc;'> "
                              f"<p class='oi_ti_text_paragraph_td'>{create_date_formatted or ''}</p> </td> </tr> <tr "
-                             f"style='height:15.75pt;'> <td colspan='5' class='oi_ti_attempt_preparation_td' "
+                             f"style='height:15.75pt;'> <td colspan='7' class='oi_ti_attempt_preparation_td' "
                              f"style='background-color:#f4cccc;'> <p class='oi_ti_text_paragraph_td'><strong><span "
                              f"style='color:#1f1f1f;'> "
                              f"{preparation_method_value or ''}"
                              f"</span></strong></p> </td>"
-                             f"<td colspan='2' class='oi_ti_attempt_preparation_td' style='background-color:#f4cccc;'> "
-                             f"<p class='oi_ti_text_paragraph_td'> <span style='color:#1f1f1f;'> "
-                             f"{oi_ti_attempt_state_value or ''} </span> </p> </td>"
+                           
                              f"</tr> <tr style='height:15.75pt;'> <td "
                              f"class='oi_ti_computed_values_td' style='background-color:#f4cccc;'> <p "
                              f"class='oi_ti_text_paragraph_td'>OI day: 3</p> </td> <td colspan='2' class='oi_ti_heading_td' "

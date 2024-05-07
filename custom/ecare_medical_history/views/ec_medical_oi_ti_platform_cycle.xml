@@ -126,7 +126,7 @@
                                         <p class="oi_ti_action_btn"><strong><field name="indication_of_iui"/></strong></p>
                                     </td>
                                     <td colspan="2" class="oi_ti_heading_td">
-                                        <p class="oi_ti_action_btn"><strong><span>I 2 3</span></strong></p>
+                                        <p class="oi_ti_action_btn"><strong><span><field name="iui_attempt_count"/></span></strong></p>
                                     </td>
 <!--                                    <td class="oi_ti_heading_td">-->
 <!--                                        <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>-->
@@ -235,7 +235,7 @@
                                                 <p class="oi_ti_action_btn"><strong><field name="indication_of_iui"/></strong></p>
                                             </td>
                                             <td class="oi_ti_heading_td">
-                                                <p class="oi_ti_action_btn"><strong><span>I 2 3</span></strong></p>
+                                                <p class="oi_ti_action_btn"><strong><span><field name="iui_attempt_count"/></span></strong></p>
                                             </td>
                                             <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>

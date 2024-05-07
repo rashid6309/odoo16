@@ -1275,7 +1275,10 @@
 <!--														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')],-->
 <!--														   'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')]}"-->
 <!--														   string="Decision"/>-->
-													<field name="tubal_patency_test_dropdown"
+													<span/>
+													<label for="tubal_patency_test_dropdown"/>
+													<span/>
+													<field name="tubal_patency_test_dropdown" nolabel="1"
 														   attrs="{'required': [('treatment_state', '!=', 'none')],'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
 													<field name="tubal_patency_test_dropdown_decision"
 														   attrs="{'invisible': ['|',('tubal_patency_test', '!=', 'yes'),('tubal_patency_test_dropdown', 'not in', ['not_tested', 'both_blocked', 'restricted_spill'])],

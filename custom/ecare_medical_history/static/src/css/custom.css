@@ -959,6 +959,7 @@ label[for="counselling_multiple_birth"],
 label[for="counselling_failure_treatment"],
 label[for="counselling_lower_success_rate"],
 label[for="counselling_high_bmi"],
+label[for="tubal_patency_test_dropdown"],
 label[for="uterine_tubal_anomalies"]{
     text-align: left !important;
     width: -webkit-fill-available  !important;

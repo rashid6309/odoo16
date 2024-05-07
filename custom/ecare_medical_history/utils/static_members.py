@@ -1195,6 +1195,12 @@ class StaticMember:
         ('frozen_thawed_iui', 'Frozen-thawed IUI'),
     ]
 
+    IUI_ATTEMPT_COUNT = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+    ]
+
     INDICATION_OF_IUI = [
         ('erectile_dysfunction', 'Erectile dysfunction'),
         ('converted_natural', 'Converted from natural'),
