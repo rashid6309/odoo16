@@ -18,6 +18,7 @@ class MaleOtTiChecklist(models.Model):
 
     risk_inability_to_give_samples_male = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                            string='Risk of inability to give samples (trauma, mental health, medical disease e.g. diabetes)')
+    risk_inability_male_decision = fields.Char(string='Risk of inability to give samples (trauma, mental health, medical disease e.g. diabetes)')
 
     def check_field_values_as_red(self):
         no_values = ['no']

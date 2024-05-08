@@ -167,7 +167,7 @@
                     <footer>
                     <button string="Save" special="save" class="btn-primary"/>
                     <button string="Discard" class="btn-secondary" special="cancel"/>
-                    <button string="Delete" class="btn-secondary" special="delete"/>
+                    <button string="Delete" class="btn-secondary" name="unlink"/>
                         <button
                                 name="action_complete_attempt"
                                 class="oi_ti_navbar_btn"

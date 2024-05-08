@@ -10,7 +10,7 @@ class FemaleOtTiChecklist(models.Model):
                                              string='Repeat Consultation')
 
     upt_result = fields.Selection(selection=StaticMember.UPT_RESULT,
-                                  string='UPT Negative?')
+                                  string='UPT Negative')
 
     iui_plan = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                 string='IUI Currently in Plan?')
@@ -37,6 +37,7 @@ class FemaleOtTiChecklist(models.Model):
 
     fsh_lh_amh_acceptable = fields.Selection(selection=StaticMember.FSH_LH_AMH_CHOICES,
                                              string='FSH, LH, AMH within acceptable range?')
+    fsh_lh_amh_acceptable_decision = fields.Char(string='FSH, LH, AMH within acceptable range?')
 
     menopause_sign_suspicion = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                 string='Any signs or suspicion of menopause?')
@@ -56,6 +57,8 @@ class FemaleOtTiChecklist(models.Model):
 
     cervical_incompetence_diagnosis = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                        string='Diagnosis or Risk Factors for Cervical Incompetence?')
+    cervical_incompetence_diagnosis_decision = fields.Char(string='Diagnosis or Risk Factors for Cervical Incompetence?')
+
 
     uterine_tubal_anomalies_test = fields.Selection(selection=StaticMember.UTERINE_TUBAL_ANOMALIES,
                                                     string='Uterine and Tubal Anomalies Ruled Out?')

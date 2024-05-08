@@ -1132,9 +1132,9 @@ class StaticMember:
     ]
 
     UPT_RESULT = [
-        ('negative', 'Negative'),
+        ('negative', 'No'),
         ('not_done', 'Not Done'),
-        ('positive', 'Positive'),
+        ('positive', 'Yes'),
     ]
 
     PRIMARY_INDICATION = [

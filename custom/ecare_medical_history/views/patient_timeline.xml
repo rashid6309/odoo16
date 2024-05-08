@@ -331,25 +331,25 @@
 											<h4 class="mt-2 mb-0">OI/TI Platform</h4></a>
 									</div>
 									<div class="col-2 text-right" style="text-align: right">
-														<field name="repeat_consultation_state" invisible="1"/>
-														<button name="action_proceed_to_ui_ti"
-																type="object"
-																context="{'repeat_ui_ti_add': 'True'}"
-																class="btn btn-primary">
-<!--																attrs="{'invisible': [('show_repeat_section_state', '=', True)]}"-->
-<!--																onclick="showRepeatConsultationSection('repeat_consultation_section')">-->
-															<i title="Add new UI/TI Attempt"  class="fa fa-plus" aria-hidden="true"/>
-														</button>
-<!--														<h5 class="mt-2 mb-0"-->
-<!--															attrs="{'invisible':[('repeat_consultation_state', '!=', 'open')]}">-->
-<!--															<span id="repeat_consultation_working_state" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>-->
+										<field name="repeat_consultation_state" invisible="1"/>
+										<button name="action_proceed_to_ui_ti"
+												type="object"
+												context="{'repeat_ui_ti_add': 'True'}"
+												class="btn btn-primary">
+											<!--																attrs="{'invisible': [('show_repeat_section_state', '=', True)]}"-->
+											<!--																onclick="showRepeatConsultationSection('repeat_consultation_section')">-->
+											<i title="Add new UI/TI Attempt"  class="fa fa-plus" aria-hidden="true"/>
+										</button>
+										<!--														<h5 class="mt-2 mb-0"-->
+										<!--															attrs="{'invisible':[('repeat_consultation_state', '!=', 'open')]}">-->
+										<!--															<span id="repeat_consultation_working_state" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>-->
 
-<!--														</h5>-->
-<!--														<h5 class="mt-2 mb-0"-->
-<!--															attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">-->
-<!--															<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>-->
-<!--														</h5>-->
-													</div>
+										<!--														</h5>-->
+										<!--														<h5 class="mt-2 mb-0"-->
+										<!--															attrs="{'invisible':[('repeat_consultation_state', '!=', 'decision_pending')]}">-->
+										<!--															<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>-->
+										<!--														</h5>-->
+									</div>
 
 								</div>
 								<div class="card-block mb-5 pl-4 collapse asa"
@@ -431,10 +431,10 @@
 											<span id="repeat_consultation_working_state" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
 
 										</h5>
-<!--										<h5 class="mt-2 mb-0"-->
-<!--											attrs="{'invisible':[('treatment_state', '!=', 'approval')]}">-->
-<!--											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>-->
-<!--										</h5>-->
+										<!--										<h5 class="mt-2 mb-0"-->
+										<!--											attrs="{'invisible':[('treatment_state', '!=', 'approval')]}">-->
+										<!--											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>-->
+										<!--										</h5>-->
 									</div>
 								</div>
 								<div class="card-block mb-5 pl-4 collapse asa" id="repeat_consultation_section">
@@ -652,10 +652,10 @@
 												<group>
 													<field name="lmp_question_four"
 														   style="width: 40% !important;"/>
-<!--													<field name="lmp_question_four"-->
-<!--														   style="width: 55% !important;"-->
-<!--														   attrs="{'required': [('show_repeat_section_state', '=', True),-->
-<!--													   ('question_one_choice', '=', 'no')]}"/>-->
+													<!--													<field name="lmp_question_four"-->
+													<!--														   style="width: 55% !important;"-->
+													<!--														   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+													<!--													   ('question_one_choice', '=', 'no')]}"/>-->
 												</group>
 												<group>
 													<field name="repeat_cycle_day"
@@ -717,11 +717,11 @@
 													   ('question_one_choice', '=', 'no')]}"
 												/>
 												<field name="repeat_thyroid"/>
-<!--												<field name="repeat_thyroid"-->
-<!--													   attrs="{'required': [('show_repeat_section_state', '=', True),-->
-<!--													   ('repeat_examination_required', '=', 'yes'),-->
-<!--													   ('question_one_choice', '=', 'no')]}"-->
-<!--												/>-->
+												<!--												<field name="repeat_thyroid"-->
+												<!--													   attrs="{'required': [('show_repeat_section_state', '=', True),-->
+												<!--													   ('repeat_examination_required', '=', 'yes'),-->
+												<!--													   ('question_one_choice', '=', 'no')]}"-->
+												<!--												/>-->
 												<field name="repeat_abdominal"/>
 												<field name="repeat_breast"/>
 											</group>
@@ -924,7 +924,7 @@
 															<span>cm</span>
 														</div>
 
- 														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+														<div class="d-flex bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
 															<div class="col-md-2" style="font-weight:bold;">
 																Position
 															</div>
@@ -933,10 +933,10 @@
 																<span for="position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
 																<field name="position_to_right"/>
 																<span for="position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
-<!--																<field name="position_a_v"/>-->
-<!--																<span for="position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
-<!--																<field name="position_r_v"/>-->
-<!--																<span for="position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
+																<!--																<field name="position_a_v"/>-->
+																<!--																<span for="position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
+																<!--																<field name="position_r_v"/>-->
+																<!--																<span for="position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
 																<field name="position_mid_position"/>
 																<span for="position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
 																<!--																<field name="tvs_uterus_position_ids"-->
@@ -949,9 +949,9 @@
 														</div>
 														<group attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}" string="Fibroid"/>
 														<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
-<!--															<div class="col-md-2" style="font-weight:bold;">-->
-<!--																Fibroid-->
-<!--															</div>-->
+															<!--															<div class="col-md-2" style="font-weight:bold;">-->
+															<!--																Fibroid-->
+															<!--															</div>-->
 															<div class="col-md-10">
 																<field name="tvs_generic_sizes_ids" string="Location or features">
 																	<tree editable="top">
@@ -1068,7 +1068,7 @@
 													</div>
 												</span>
 
-<!--												<group string="Cyst"/>-->
+												<!--												<group string="Cyst"/>-->
 
 												<div class="d-flex align-items-center bg-light bg-gradient" style=" margin-left: 1.5rem; padding-top: 1rem; ">
 													<div style="text-align: end;margin-right: 2rem;">
@@ -1086,16 +1086,16 @@
 														</div>
 													</div>
 												</div>
-<!--												<div class="d-flex align-items-center bg-light bg-gradient">-->
-<!--													<div class="col-md-1" style="text-align: right;">-->
-<!--														Other Findings-->
-<!--													</div>-->
-<!--													<div class="col-md-7 d-flex flex-column">-->
-<!--														<div>-->
-<!--															<field name="tvs_other_text" widget="html"/>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</div>-->
+												<!--												<div class="d-flex align-items-center bg-light bg-gradient">-->
+												<!--													<div class="col-md-1" style="text-align: right;">-->
+												<!--														Other Findings-->
+												<!--													</div>-->
+												<!--													<div class="col-md-7 d-flex flex-column">-->
+												<!--														<div>-->
+												<!--															<field name="tvs_other_text" widget="html"/>-->
+												<!--														</div>-->
+												<!--													</div>-->
+												<!--												</div>-->
 
 												<!--												<div class="d-flex bg-light bg-gradient">-->
 												<!--													<div class="col-md-1 o_form_label">-->
@@ -1161,13 +1161,13 @@
 												<field name="repeat_treatment_advised"  attrs="{'readonly':[('treatment_state', '!=', 'none')]}"/>
 
 
-<!--												<field name="repeat_treatment_advised_ids"-->
-<!--													   widget="many2many_tags"-->
-<!--													   options="{'no_create_edit': True, 'no_create': True}"/>-->
+												<!--												<field name="repeat_treatment_advised_ids"-->
+												<!--													   widget="many2many_tags"-->
+												<!--													   options="{'no_create_edit': True, 'no_create': True}"/>-->
 
-<!--												<field name="repeat_new_treatment_pathway"-->
-<!--													   widget="radio"-->
-<!--													   options="{'horizontal': True}"-->
+												<!--												<field name="repeat_new_treatment_pathway"-->
+												<!--													   widget="radio"-->
+												<!--													   options="{'horizontal': True}"-->
 												<!--												/>-->
 											</group>
 											<div class="d-flex flex-column alert alert-success" attrs="{'invisible': ['|',('repeat_new_treatment_pathway', '!=', 'yes'),('treatment_state', '!=', 'none')]}">
@@ -1205,7 +1205,11 @@
 														   options="{'horizontal': True}"/>
 													<span class="o_form_label" attrs="{'invisible': [('upt_result', '!=', 'not_done')]}"/>
 													<span id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'not_done')]}">
-														Please return to this form once UPT has been performed, and fill in a new pregnancy assessment form.
+														Please return to this form once UPT has been performed.
+													</span>
+													<span class="o_form_label" attrs="{'invisible': [('upt_result', '!=', 'negative')]}"/>
+													<span id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'negative')]}">
+														Please fill in a new pregnancy assessment form.
 													</span>
 													<field name="iui_plan"
 														   widget="radio"
@@ -1218,81 +1222,55 @@
 													</span>
 												</group>
 												<group string="Hormonal Profile">
-													<field name="fsh_level" widget="condition_color_widget"/>
-													<field name="lh_level"/>
-													<field name="amh_level"/>
-													<span/>
-													<label for="diagnosis_cervical_incompetence"/>
-													<span/>
-													<field name="diagnosis_cervical_incompetence"
-														   nolabel="1"
-														   widget="radio"
-														   options="{'horizontal': True}"/>
-													<field name="diagnosis_cervical_incompetence_decision"
-														   attrs="{'invisible': [('diagnosis_cervical_incompetence', '!=', 'yes')],
-														   'required': [('treatment_state', '!=', 'none'),('diagnosis_cervical_incompetence', '=', 'yes')]}"
-														   string="Decision"/>
-													<span/>
-													<label for="uterine_tubal_anomalies"/>
-													<span/>
-													<field name="uterine_tubal_anomalies" attrs="{'required': [('treatment_state', '!=', 'none')]}" nolabel="1"/>
-													<field name="uterine_tubal_anomalies_decision"
-														   attrs="{'invisible': [('uterine_tubal_anomalies', '!=', 'no_testing')],
-														   'required': [('treatment_state', '!=', 'none'),('uterine_tubal_anomalies', '=', 'no_testing')]}"
-														   string="Decision"/>
 													<span/>
 													<label for="fsh_lh_amh_acceptable"/>
-													 <span/>
-													<field name="fsh_lh_amh_acceptable"
-														   nolabel="1"
-														   widget="radio"
-														   options="{'horizontal': True}"/>
+													<span/>
+													<field name="fsh_lh_amh_acceptable" nolabel="1" widget="radio" options="{'horizontal': True}"/>
+													<field name="fsh_lh_amh_acceptable_decision" attrs="{'invisible': [('fsh_lh_amh_acceptable', '!=', 'no')],
+													 'required': [('treatment_state', '!=', 'none'),('fsh_lh_amh_acceptable', '=', 'no')]}" string="Decision"/>
+
 													<span/>
 													<label for="menopause_sign_suspicion"/>
 													<span/>
-													<field name="menopause_sign_suspicion"
-														   widget="radio"
-														   nolabel="1"
-														   options="{'horizontal': True}"/>
-													<field name="menopause_sign_suspicion_decision"
-														   attrs="{'invisible': [('menopause_sign_suspicion', '!=', 'yes')],
-														   'required': [('treatment_state', '!=', 'none'),('menopause_sign_suspicion', '=', 'yes')]}"
-														   string="Decision"/>
-													<field name="female_ot_ti_weight"  attrs="{'required': [('treatment_state', '!=', 'none')]}"/>
-													<field name="female_ot_ti_height"  attrs="{'required': [('treatment_state', '!=', 'none')]}"/>
+													<field name="menopause_sign_suspicion" widget="radio" nolabel="1" options="{'horizontal': True}"/>
+													<field name="menopause_sign_suspicion_decision" attrs="{'invisible': [('menopause_sign_suspicion', '!=', 'yes')],
+													 'required': [('treatment_state', '!=', 'none'),('menopause_sign_suspicion', '=', 'yes')]}" string="Decision"/>
+													<field name="female_ot_ti_weight" attrs="{'required': [('treatment_state', '!=', 'none')]}"/>
+													<field name="female_ot_ti_height" attrs="{'required': [('treatment_state', '!=', 'none')]}"/>
 													<field name="female_ot_ti_bmi" style="pointer-events: none;"/>
-													<field name="female_ot_ti_bmi_decision" force_save="1"
-														   attrs="{'invisible': [('female_ot_ti_bmi', '&lt;', 35)],
-														   'required': [('treatment_state', '!=', 'none'),('female_ot_ti_bmi', '&gt;', 35)]}"  string="Decision"/>
-<!--													<field name="tubal_patency_test"-->
-<!--														   widget="radio"-->
-<!--														   options="{'horizontal': True}"/>-->
+													<field name="female_ot_ti_bmi_decision" force_save="1" attrs="{'invisible': [('female_ot_ti_bmi', '&lt;', 35)],
+													'required': [('treatment_state', '!=', 'none'),('female_ot_ti_bmi', '&gt;', 35)]}" string="Decision"/>
+													<!--													<field name="tubal_patency_test"-->
+													<!--														   widget="radio"-->
+													<!--														   options="{'horizontal': True}"/>-->
 													<span/>
 													<label for="tubal_patency_test"/>
 													<span/>
 													<field name="tubal_patency_test" nolabel="1" widget="condition_color_widget"/>
-<!--													<field name="tubal_patency_test_decision"-->
-<!--														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')],-->
-<!--														   'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')]}"-->
-<!--														   string="Decision"/>-->
+													<!--													<field name="tubal_patency_test_decision"-->
+													<!--														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')],-->
+													<!--														   'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')]}"-->
+													<!--														   string="Decision"/>-->
 													<span/>
-													<label for="tubal_patency_test_dropdown"
-														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
+													<label for="tubal_patency_test_dropdown" attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
 													<span/>
-													<field name="tubal_patency_test_dropdown" nolabel="1"
-														   attrs="{'required': [('treatment_state', '!=', 'none')],'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
-													<field name="tubal_patency_test_dropdown_decision"
-														   attrs="{'invisible': ['|',('tubal_patency_test', '!=', 'yes'),('tubal_patency_test_dropdown', 'not in', ['not_tested', 'both_blocked', 'restricted_spill'])],
-														   'required': [('treatment_state', '!=', 'none'),('tubal_patency_test_dropdown', 'in', ['not_tested', 'both_blocked', 'restricted_spill'])]}"
-														   string="Decision"/>
+													<field name="tubal_patency_test_dropdown" nolabel="1" attrs="{'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')],'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
+													<field name="tubal_patency_test_dropdown_decision" attrs="{'invisible': ['|',('tubal_patency_test', '!=', 'yes'),('tubal_patency_test_dropdown', 'not in', ['not_tested', 'both_blocked', 'restricted_spill'])],
+													 'required': [('treatment_state', '!=', 'none'),('tubal_patency_test_dropdown', 'in', ['not_tested', 'both_blocked', 'restricted_spill'])]}" string="Decision"/>
 													<span/>
 													<label for="cervical_incompetence_diagnosis"/>
 													<span/>
-													<field name="cervical_incompetence_diagnosis"
-														   widget="radio"
-														   nolabel="1"
-														   options="{'horizontal': True}"/>
+													<field name="cervical_incompetence_diagnosis" widget="radio" nolabel="1" options="{'horizontal': True}"/>
+													<field name="cervical_incompetence_diagnosis_decision" attrs="{'invisible': [('cervical_incompetence_diagnosis', '!=', 'yes')],
+													'required': [('treatment_state', '!=', 'none'),('cervical_incompetence_diagnosis', '=', 'yes')]}" string="Decision"/>
+
 													<!--												<field name="results_await_label" string="Results-Awaits" attrs="{'invisible': [('fsh_lh_amh_acceptable', '!=', 'awaiting_results')]}"/>-->
+													<span/>
+													<label for="uterine_tubal_anomalies"/>
+													<span/>
+													<field name="uterine_tubal_anomalies" attrs="{'required': [('treatment_state', '!=', 'none')]}" nolabel="1"/>
+													<field name="uterine_tubal_anomalies_decision" attrs="{'invisible': [('uterine_tubal_anomalies', '!=', 'no_testing')],                  'required': [('treatment_state', '!=', 'none'),('uterine_tubal_anomalies', '=', 'no_testing')]}" string="Decision"/>
+
 												</group>
 												<group string="Male Pre OI/TI Checklist">
 													<span/>
@@ -1326,6 +1304,10 @@
 														   widget="radio"
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
+													<field name="risk_inability_male_decision"
+														   attrs="{'invisible': [('risk_inability_to_give_samples_male', '!=', 'yes')],
+														   'required': [('treatment_state', '!=', 'none'),('risk_inability_to_give_samples_male', '=', 'yes')]}" string="Decision"/>
+
 												</group>
 												<group string="Consents and risk assessment">
 													<span/>
@@ -1384,7 +1366,7 @@
 												<group class="m-3" attrs="{'invisible':[('treatment_state', '!=', 'approval')]}">
 													<span/>
 													<field style="width: 55rem;" class="alert alert-warning" name="oi_ti_treatment_prompt_message" nolabel="1"/>
-<!--													<field name="oi_ti_decisions" attrs="{'required':[('treatment_state', '=', 'approval')]}"/>-->
+													<!--													<field name="oi_ti_decisions" attrs="{'required':[('treatment_state', '=', 'approval')]}"/>-->
 													<field name="oi_ti_additional_comments" attrs="{'required':[('treatment_state', '=', 'approval')]}"/>
 													<label for="action_proceed_to_ui_ti"/>
 													<div id="action_proceed_buttons">
@@ -1788,8 +1770,8 @@
 														<span style="margin-right: 2%;">None</span>
 														<field name="female_pain_intensity"
 															   nolabel="1"
-														   attrs="{'readonly': [('female_pain_intensity_check', '=', True)]}"
-														   widget="radio" options="{'horizontal': True}"/>
+															   attrs="{'readonly': [('female_pain_intensity_check', '=', True)]}"
+															   widget="radio" options="{'horizontal': True}"/>
 													</div>
 
 													<field name="female_lmp" style="width:18% !important;"/>
@@ -1799,8 +1781,8 @@
 														<span style="margin-right: 2%;">None</span>
 														<field name="female_complications_ids"
 															   nolabel="1"
-														   attrs="{'readonly': [('female_complications_check', '=', True)]}"
-														   widget="many2many_checkboxes"/>
+															   attrs="{'readonly': [('female_complications_check', '=', True)]}"
+															   widget="many2many_checkboxes"/>
 													</div>
 
 													<div/>
@@ -1816,8 +1798,8 @@
 														<span style="margin-right: 2%;">None</span>
 														<field name="female_complains_ids"
 															   nolabel="1"
-														   attrs="{'readonly': [('female_complains_check', '=', True)]}"
-														   widget="many2many_checkboxes"/>
+															   attrs="{'readonly': [('female_complains_check', '=', True)]}"
+															   widget="many2many_checkboxes"/>
 													</div>
 												</group>
 											</div>
@@ -1860,7 +1842,7 @@
 															   widget="many2many_checkboxes"
 															   attrs="{'readonly': [('cn_type_check', '=', True)]}"/>
 													</div>
-<!--													<field name="cn_type" widget="many2many_checkboxes"/>-->
+													<!--													<field name="cn_type" widget="many2many_checkboxes"/>-->
 													<field name="other_comments" string="Other"/>
 												</group>
 											</div>
@@ -2937,9 +2919,9 @@
 														 attrs="{'invisible': [('gynae_exam_pelvic_examination_state', '=', 'no')]}"
 														 style="width: 100%;">
 														<field name="gynae_exam_other_findings"
-														   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
+															   attrs="{'invisible': [('gynae_exam_p_v_only', '!=', True),
 														   ('gynae_exam_p_s_only', '!=', True)]}"
-													/>
+														/>
 													</div>
 
 													<h4 style="width:200%;">Ultrasound</h4>
@@ -2947,15 +2929,15 @@
 													<field name="gynaecological_ultrasound_type"
 														   widget="radio"
 														   options="{'horizontal': True}"/>
-<!--													<field name="gynaecological_examination_date"  style="width:30% !important;"/>-->
+													<!--													<field name="gynaecological_examination_date"  style="width:30% !important;"/>-->
 													<label for="gynaecological_examination_lmp" style="width:30% !important;"/>
 													<div class="d-flex">
 														<field name="gynaecological_examination_lmp" style="width:20% !important;"/>
 														<label for="gynaecological_examination_cycle_day" style="width:30% !important;"/>
 														<field name="gynaecological_examination_cycle_day" force_save="1" style="width:30% !important;margin-left: 2%;"/>
 													</div>
-<!--													<field name="gynaecological_examination_lmp" style="width:30% !important;"/>-->
-<!--													<field name="gynaecological_examination_cycle_day" force_save="1"/>-->
+													<!--													<field name="gynaecological_examination_lmp" style="width:30% !important;"/>-->
+													<!--													<field name="gynaecological_examination_cycle_day" force_save="1"/>-->
 
 												</group>
 												<group string="Uterus"/>
@@ -2963,9 +2945,9 @@
 												<group>
 													<div/>
 													<div class="d-flex align-items-center bg-light bg-gradient" style="width: 190%;">
-<!--														<div class="col-md-1">-->
-<!--															Uterus-->
-<!--														</div>-->
+														<!--														<div class="col-md-1">-->
+														<!--															Uterus-->
+														<!--														</div>-->
 														<div class="col-md-10">
 															<div class="d-flex">
 																<field name="gynaecological_uterus_size"/>
@@ -3006,10 +2988,10 @@
 																	<span for="gynae_position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
 																	<field name="gynae_position_to_right"/>
 																	<span for="gynae_position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
-<!--																	<field name="gynae_position_a_v"/>-->
-<!--																	<span for="gynae_position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
-<!--																	<field name="gynae_position_r_v"/>-->
-<!--																	<span for="gynae_position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
+																	<!--																	<field name="gynae_position_a_v"/>-->
+																	<!--																	<span for="gynae_position_a_v" style=" margin-right: 1%;    width:5rem; ">A/V</span>-->
+																	<!--																	<field name="gynae_position_r_v"/>-->
+																	<!--																	<span for="gynae_position_r_v" style=" margin-right: 1%;     width:5rem;">R/V</span>-->
 																	<field name="gynae_position_mid_position"/>
 																	<span for="gynae_position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
 
@@ -3019,9 +3001,9 @@
 															<div attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}" class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Fibroid</div>
 															<div/>
 															<div class="d-flex align-items-center bg-light bg-gradient" attrs="{'invisible': [('gynaecological_uterus_fiobrid', '!=', True)]}">
-<!--																<div class="col-md-2" style="font-weight:bold;">-->
-<!--																	Fibroid-->
-<!--																</div>-->
+																<!--																<div class="col-md-2" style="font-weight:bold;">-->
+																<!--																	Fibroid-->
+																<!--																</div>-->
 																<div class="col-md-10">
 																	<field name="gynaecological_generic_sizes_ids" string="Location or features">
 																		<tree editable="top">
@@ -3106,8 +3088,8 @@
 														<b>Cyst</b>
 													</div>
 													<div class="d-flex align-items-center" >
-<!--														<div class="col-md-3" style="text-align: center;">-->
-<!--														</div>-->
+														<!--														<div class="col-md-3" style="text-align: center;">-->
+														<!--														</div>-->
 														<div class="col-md-12">
 															<div class="col-md-12">
 																<field name="gynae_cyst_size_ids">
@@ -3628,8 +3610,8 @@
 														<field name="surgical_year_id" placeholder="Year.."/>
 													</tree>
 												</field>
-<!--												<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="tree" nolabel="1"-->
-<!--													   string="Patient Procedures" create="false"/>-->
+												<!--												<field class="custom-scrollbar opd-notes-height" name="male_procedures_ids"  mode="tree" nolabel="1"-->
+												<!--													   string="Patient Procedures" create="false"/>-->
 											</div>
 
 
