@@ -13,62 +13,62 @@
 
                         <nav class="navbar navbar-expand-lg navbar-dark"  id="navbarColor02">
                             <div class="collapse navbar-collapse">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item">
-                                        <p class="oi_ti_action_btn">
-                                            <strong>
-                                                <button
-                                                        name="action_complete_attempt"
-                                                        class="oi_ti_navbar_btn"
-                                                        type="object"
-                                                        string="COMPLETE ATTEMPT"/>
-                                            </strong>
-                                        </p>
-                                    </li>
-                                    <li class="nav-item" >
-                                        <p class="oi_ti_action_btn">
-                                            <button
-                                                    name="action_create_oi_ti_platform_attempt"
-                                                    class="oi_ti_navbar_btn"
-                                                    type="object"
-                                                    string="START NEW OI/TI ATTEMPT"/>
-                                        </p>
-                                    </li>
-                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}">
-                                        <p class="oi_ti_action_btn">
-                                            <strong>
-                                                <button
-                                                        name="action_abandoned_attempt"
-                                                        class="oi_ti_navbar_btn"
-                                                        type="object"
-                                                        string="ABANDON ATTEMPT"/>
-                                            </strong>
-                                        </p>
-                                    </li>
+                                <!--                                <ul class="navbar-nav mr-auto">-->
+                                <!--                                    <li class="nav-item">-->
+                                <!--                                        <p class="oi_ti_action_btn">-->
+                                <!--                                            <strong>-->
+                                <!--                                                <button-->
+                                <!--                                                        name="action_complete_attempt"-->
+                                <!--                                                        class="oi_ti_navbar_btn"-->
+                                <!--                                                        type="object"-->
+                                <!--                                                        string="COMPLETE ATTEMPT"/>-->
+                                <!--                                            </strong>-->
+                                <!--                                        </p>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li class="nav-item" >-->
+                                <!--                                        <p class="oi_ti_action_btn">-->
+                                <!--                                            <button-->
+                                <!--                                                    name="action_create_oi_ti_platform_attempt"-->
+                                <!--                                                    class="oi_ti_navbar_btn"-->
+                                <!--                                                    type="object"-->
+                                <!--                                                    string="START NEW OI/TI ATTEMPT"/>-->
+                                <!--                                        </p>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}">-->
+                                <!--                                        <p class="oi_ti_action_btn">-->
+                                <!--                                            <strong>-->
+                                <!--                                                <button-->
+                                <!--                                                        name="action_abandoned_attempt"-->
+                                <!--                                                        class="oi_ti_navbar_btn"-->
+                                <!--                                                        type="object"-->
+                                <!--                                                        string="ABANDON ATTEMPT"/>-->
+                                <!--                                            </strong>-->
+                                <!--                                        </p>-->
+                                <!--                                    </li>-->
 
-                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['2nd_trigger','luteal_phase'])]}">
-                                        <p class="oi_ti_action_btn">
-                                            <strong>
-                                                <button
-                                                        name="action_2nd_trigger_attempt"
-                                                        class="oi_ti_navbar_btn"
-                                                        type="object"
-                                                        string="SECOND TRIGGER"/>
-                                            </strong>
-                                        </p>
-                                    </li>
-                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}">
-                                        <p class="oi_ti_action_btn">
-                                            <strong>
-                                                <button
-                                                        name="action_start_luteal_phase_attempt"
-                                                        class="oi_ti_navbar_btn"
-                                                        type="object"
-                                                        string="START LUTEAL PHASE"/>
-                                            </strong>
-                                        </p>
-                                    </li>
-                                </ul>
+                                <!--                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['2nd_trigger','luteal_phase'])]}">-->
+                                <!--                                        <p class="oi_ti_action_btn">-->
+                                <!--                                            <strong>-->
+                                <!--                                                <button-->
+                                <!--                                                        name="action_2nd_trigger_attempt"-->
+                                <!--                                                        class="oi_ti_navbar_btn"-->
+                                <!--                                                        type="object"-->
+                                <!--                                                        string="SECOND TRIGGER"/>-->
+                                <!--                                            </strong>-->
+                                <!--                                        </p>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}">-->
+                                <!--                                        <p class="oi_ti_action_btn">-->
+                                <!--                                            <strong>-->
+                                <!--                                                <button-->
+                                <!--                                                        name="action_start_luteal_phase_attempt"-->
+                                <!--                                                        class="oi_ti_navbar_btn"-->
+                                <!--                                                        type="object"-->
+                                <!--                                                        string="START LUTEAL PHASE"/>-->
+                                <!--                                            </strong>-->
+                                <!--                                        </p>-->
+                                <!--                                    </li>-->
+                                <!--                                </ul>-->
                             </div>
                         </nav>
 
@@ -85,9 +85,9 @@
                                     <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
                                         <p class="oi_ti_action_btn"><strong><span>OUTCOME: PREGNANCY (+VE UPT or BHCG)</span></strong></p>
                                     </td>
-<!--                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
-<!--                                        <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->
-<!--                                    </td>-->
+                                    <!--                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
+                                    <!--                                        <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->
+                                    <!--                                    </td>-->
                                 </tr>
 
                                 <!--                                Exit Buttons-->
@@ -108,9 +108,9 @@
                                     <td colspan="2" class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>IUI attempt</span></strong></p>
                                     </td>
-<!--                                    <td class="oi_ti_heading_td">-->
-<!--                                        <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>-->
-<!--                                    </td>-->
+                                    <!--                                    <td class="oi_ti_heading_td">-->
+                                    <!--                                        <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>-->
+                                    <!--                                    </td>-->
                                 </tr>
                                 <tr style="height:26.25pt;">
                                     <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
@@ -128,9 +128,9 @@
                                     <td colspan="2" class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span><field name="iui_attempt_count"/></span></strong></p>
                                     </td>
-<!--                                    <td class="oi_ti_heading_td">-->
-<!--                                        <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>-->
-<!--                                    </td>-->
+                                    <!--                                    <td class="oi_ti_heading_td">-->
+                                    <!--                                        <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>-->
+                                    <!--                                    </td>-->
                                 </tr>
                                 <!--                                2nd Trigger-->
                                 <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
@@ -164,6 +164,38 @@
                         </table>
                         <field name="oi_ti_platform_attempt_ids" mode="kanban"/>
                     </sheet>
+                    <footer>
+                    <button string="Save" special="save" class="btn-primary"/>
+                    <button string="Discard" class="btn-secondary" special="cancel"/>
+                    <button string="Delete" class="btn-secondary" special="delete"/>
+                        <button
+                                name="action_complete_attempt"
+                                class="oi_ti_navbar_btn"
+                                type="object"
+                                string="COMPLETE ATTEMPT"/>
+                        <button
+                                name="action_create_oi_ti_platform_attempt"
+                                class="oi_ti_navbar_btn"
+                                type="object"
+                                string="START NEW OI/TI ATTEMPT"/>
+                        <button
+                                name="action_abandoned_attempt"
+                                class="oi_ti_navbar_btn"
+                                type="object"
+                                attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}"
+                                string="ABANDON ATTEMPT"/>
+                        <button
+                                name="action_2nd_trigger_attempt"
+                                class="oi_ti_navbar_btn"
+                                type="object"
+                                attrs="{'invisible': [('oi_ti_platform','in',['2nd_trigger','luteal_phase'])]}"
+                                string="SECOND TRIGGER"/>
+                        <button
+                                name="action_start_luteal_phase_attempt"
+                                class="oi_ti_navbar_btn"
+                                type="object"
+                                string="START LUTEAL PHASE"/>
+                    </footer>
                 </form>
 
             </field>
@@ -181,7 +213,7 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
-<!--                                <field name="oi_ti_platform_attempt_ids" mode="kanban" invisble="1"/>-->
+                                <!--                                <field name="oi_ti_platform_attempt_ids" mode="kanban" invisble="1"/>-->
                                 <!--                                <field name="html_table" widget="html"/>-->
                                 <h3 style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
                                 monospace; font-size: large; border: none; outline: none; border-radius: 5px;
@@ -193,9 +225,9 @@
                                             <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
                                                 <p class="oi_ti_action_btn"><strong><span>OUTCOME: PREGNANCY (+VE UPT or BHCG)</span></strong></p>
                                             </td>
-<!--                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
-<!--                                                <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->
-<!--                                            </td>-->
+                                            <!--                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
+                                            <!--                                                <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->
+                                            <!--                                            </td>-->
                                         </tr>
 
                                         <tr style="height:15.75pt;">
