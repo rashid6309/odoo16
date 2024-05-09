@@ -763,6 +763,7 @@ class StaticMember:
     REPEAT_STATUS = [
         ('walkin', 'Walk-in Visit'),
         ('appointment', 'Appointment'),
+        ('none', 'None'),
     ]
 
     REPEAT_CONSULTATION_TYPE = [
