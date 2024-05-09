@@ -2284,7 +2284,11 @@
 													<field name="female_medical_current_medication"
 														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
 														   force_save="1"
-														   string="Current Medications and Allergies"/>
+														   string="Current Medications"/>
+													<field name="female_medical_current_allergies"
+														   attrs="{'readonly': [('female_no_medical_history', '=', True)]}"
+														   force_save="1"
+														   string="Allergies"/>
 												</group>
 											</div>
 
@@ -3564,7 +3568,11 @@
 													<field name="male_medical_current_medication"
 														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
 														   force_save="1"
-														   string="Current Medications and Allergies"/>
+														   string="Current Medications"/>
+													<field name="male_medical_current_allergies"
+														   attrs="{'readonly': [('male_no_medical_history', '=', True)]}"
+														   force_save="1"
+														   string="Allergies"/>
 												</group>
 											</div>
 

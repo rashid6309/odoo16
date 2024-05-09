@@ -222,6 +222,7 @@ class PatientTimeline(models.Model):
                     'female_hirsuitism', 'male_hirsuitism',
                     'female_hirsuitism_treatment', 'male_hirsuitism_treatment',
                     'female_medical_current_medication', 'male_medical_current_medication',
+                    'female_medical_current_allergies', 'male_medical_current_allergies',
                     'female_weight_at_marriage', 'male_weight_at_marriage',
                     'female_weight_comments', 'male_weight_comments',
                     'female_diabetes_type', 'male_diabetes_type',
@@ -470,7 +471,8 @@ class PatientTimeline(models.Model):
             'male_smoking_date': ('Smoking', 'male_smoking'),
             'male_alcohol_date': ('Alcohol', 'male_alcohol'),
             'male_medical_history_others_date': ('Others', 'male_medical_history_others'),
-            'male_medical_current_medication': ('Current Medication and Allergies', 'male_medical_current_medication'),
+            'male_medical_current_medication': ('Current Medication ', 'male_medical_current_medication'),
+            'male_medical_current_allergies': ('Allergies', 'male_medical_current_allergies'),
         }
 
         # if self.male_no_medical_history is False:
@@ -530,7 +532,8 @@ class PatientTimeline(models.Model):
             'female_smoking_date': ('Smoking', 'female_smoking'),
             'female_alcohol_date': ('Alcohol', 'female_alcohol'),
             'female_medical_history_others_date': ('Others', 'female_medical_history_others'),
-            'female_medical_current_medication': ('Current Medication and Allergies', 'female_medical_current_medication'),
+            'female_medical_current_medication': ('Current Medication', 'female_medical_current_medication'),
+            'female_medical_current_allergies': ('Allergies', 'female_medical_current_allergies'),
         }
         # if self.female_no_medical_history is False:
         self.female_medical_history = PatientTimeline._compute_patient_medical_history(
