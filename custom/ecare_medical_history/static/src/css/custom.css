@@ -964,3 +964,19 @@ label[for="uterine_tubal_anomalies"]{
     text-align: left !important;
     width: -webkit-fill-available  !important;
 }
+
+label[for="fsh_lh_amh_acceptable_decision"],
+label[for="menopause_sign_suspicion_decision"],
+label[for="female_ot_ti_bmi_decision"],
+label[for="tubal_patency_test_dropdown_decision"],
+label[for="cervical_incompetence_diagnosis_decision"],
+label[for="uterine_tubal_anomalies_decision"],
+label[for="male_semen_analysis_decision"],
+label[for="risk_inability_male_decision"],
+label[for="counselling_multiple_birth_decision"],
+label[for="counselling_failure_treatment_decision"],
+label[for="counselling_lower_success_rate_decision"],
+label[for="counselling_high_bmi_decision"] {
+    color: red !important;
+}
+

@@ -28,6 +28,7 @@ class EcMedicalPatient(models.Model):
     def get_banner_data_values(self, patient_id):
         patient = self.search(domain=[('id', '=', patient_id)])
         values = {
-            'next_visit': patient._compute_next_visit()
+            'next_visit': patient._compute_next_visit(),
+            'current_treatment_pathways': patient._compute_next_visit()
         }
         return values

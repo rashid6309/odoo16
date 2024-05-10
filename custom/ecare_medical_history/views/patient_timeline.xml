@@ -328,7 +328,7 @@
 									 id="io_ti_platform_section_link">
 									<div class="col-10">
 										<a data-bs-toggle="collapse" data-bs-target="#io_ti_platform_section" href="#">
-											<h4 class="mt-2 mb-0">OI/TI Platform</h4></a>
+											<h4 class="mt-2 mb-0">OVA - Ovulation Virtual Assistant</h4></a>
 									</div>
 									<div class="col-2 text-right" style="text-align: right">
 										<field name="repeat_consultation_state" invisible="1"/>
@@ -1197,6 +1197,7 @@
 
 													<div style="background: #cddbf3; padding: 0.3%;">
 														<h5>Pre OI/TI Checklist</h5>
+														<field name="treatment_state"/>
 													</div>
 												</div>
 												<group string="Female Pre OI/TI Checklist">
@@ -1209,7 +1210,7 @@
 													</span>
 													<span class="o_form_label" attrs="{'invisible': [('upt_result', '!=', 'negative')]}"/>
 													<span style="display: flex;width: 40rem;margin: 1rem;" class="alert alert-warning" id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'negative')]}">
-														Please fill in a new pregnancy assessment form.
+														Please create and a new repeat consultation fill in a new pregnancy assessment form.
 													</span>
 													<field name="iui_plan"
 														   widget="radio"
@@ -1373,7 +1374,7 @@
 													<div id="action_proceed_buttons">
 														<button name="action_proceed_to_ui_ti"
 																type="object"
-																onclick="scrollToElement('io_ti_platform_section')"
+																onclick="scrollToElement('io_ti_platform_section_link')"
 																context="{'proceed_to_ui_ti': 'True'}"
 																class="btn btn-success m-3"
 																attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"

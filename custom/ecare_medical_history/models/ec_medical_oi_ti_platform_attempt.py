@@ -65,15 +65,15 @@ class EcMedicalOITIPlatform(models.Model):
 
     def create_oi_ti_platform_attempt_from_cycle(self, cycle_id):
         repeat_consultation_id = cycle_id.repeat_consultation_id.id
-        oi_ti_attempts = self.env['ec.medical.oi.ti.platform.attempt'].search([
+        oi_ti_attempts = self.env['ec.medical.oi.ti.platform.cycle'].search([
             ('repeat_consultation_id', '=', int(repeat_consultation_id))])
-        if oi_ti_attempts:
-            # if len(oi_ti_attempts) >= 3:
-            #     raise UserError("Three attempts against one OI/TI cycle have already been made, "
-            #                     "start a new repeat consultation first.")
-            for rec in oi_ti_attempts:
-                if rec.oi_ti_attempt_state == 'in_progress':
-                    raise UserError("There is a visit already in progress, please complete that first!")
+        # if oi_ti_attempts:
+        #     # if len(oi_ti_attempts) >= 3:
+        #     #     raise UserError("Three attempts against one OI/TI cycle have already been made, "
+        #     #                     "start a new repeat consultation first.")
+        #     for rec in oi_ti_attempts:
+        #         if rec.oi_ti_platform in ['ready_to_trigger', '2nd_trigger', 'luteal_phase']:
+        #             raise UserError("There is a cycle already in progress, please complete that first!")
 
         vals = {
             'timeline_id': cycle_id.cycle_timeline_id.id,
@@ -86,6 +86,16 @@ class EcMedicalOITIPlatform(models.Model):
         }
         oi_ti_platform_attempt = self.env['ec.medical.oi.ti.platform.attempt'].create(vals)
         return oi_ti_platform_attempt
+
+        # return {
+        #     'type': 'ir.actions.act_window',
+        #     'name': 'OI/TI Visit',
+        #     'res_model': 'ec.medical.oi.ti.platform.attempt',
+        #     'res_id': oi_ti_platform_attempt.id,
+        #     'view_mode': 'form',
+        #     'view_id': self.env.ref('ecare_medical_history.view_ec_medical_oi_ti_platform_attempt_form').id,
+        #     "target": "new",
+        # }
 
     @api.onchange('tvs_lov', 'tvs_rov', 'tvs_other_text', 'tvs_smooth', 'tvs_distorted', 'tvs_triple_echo',
                   'tvs_hyperechoic_solid', 'tvs_suspected_cavity_lesion', 'tvs_menstruating', 'tvs_cyst_size_ids')

@@ -528,6 +528,9 @@ class RepeatConsultation(models.Model):
         else:
             return False
 
+    def action_open_repeat_consultation_section(self):
+        return self.repeat_timeline_id.action_decision_open_patient_timeline_view()
+
 
 # Fibroid
 class RepeatFiobrid(models.Model):

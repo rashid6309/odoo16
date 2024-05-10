@@ -152,7 +152,7 @@ class PatientTimeline(models.Model):
     oi_ti_platform_enabled = fields.Boolean(string="OI/TI Platform", default=False)
     oi_ti_platform_cycle_ids = fields.One2many(comodel_name="ec.medical.oi.ti.platform.cycle",
                                                inverse_name="cycle_timeline_id",
-                                               string="OI/TI Platform Cycle")
+                                               string="OI/TI Cycle/Attempt")
 
     patient_attachment_ids = fields.One2many(string='Attachments Details',
                                              comodel_name='ec.medical.patient.attachment',
@@ -659,6 +659,23 @@ class PatientTimeline(models.Model):
 
     def action_open_patient_timeline_view(self):
         patient_id = self.env.context.get('0')
+        if patient_id:
+            timeline_exists = self.env['ec.patient.timeline'].search([('timeline_patient_id', '=', int(patient_id))])
+
+            return {
+                "name": _("Timeline"),
+                "type": 'ir.actions.act_window',
+                "res_model": 'ec.patient.timeline',
+                'view_id': self.env.ref('ecare_medical_history.patient_timeline_form_view').id,
+                'view_mode': 'form',
+                "target": 'main',
+                'res_id': timeline_exists.id,
+            }
+        else:
+            raise UserError("Patient does not have any record.")
+
+    def action_decision_open_patient_timeline_view(self):
+        patient_id = self.timeline_patient_id.id
         if patient_id:
             timeline_exists = self.env['ec.patient.timeline'].search([('timeline_patient_id', '=', int(patient_id))])
 
@@ -1234,6 +1251,16 @@ class PatientTimeline(models.Model):
                 raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
         proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
         repeat_ui_ti_add = self.env.context.get('repeat_ui_ti_add')
+        repeat_consultation_id = self.ec_repeat_consultation_id.id
+        oi_ti_attempts = self.env['ec.medical.oi.ti.platform.cycle'].search([
+            ('repeat_consultation_id', '=', int(repeat_consultation_id))])
+        if oi_ti_attempts:
+            # if len(oi_ti_attempts) >= 3:
+            #     raise UserError("Three attempts against one OI/TI cycle have already been made, "
+            #                     "start a new repeat consultation first.")
+            for rec in oi_ti_attempts:
+                if rec.oi_ti_platform in ['ready_to_trigger', '2nd_trigger', 'luteal_phase']:
+                    raise UserError("There is a cycle already in progress, please complete that first!")
         if repeat_ui_ti_add:
             self.oi_ti_platform_enabled = True
             recent_repeat_consultation = self.env['ec.repeat.consultation'].search([
@@ -1328,6 +1355,7 @@ class PatientTimeline(models.Model):
         self.action_save_repeat_consultation_section()
         oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
         oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
+        message = "Repeat consultation is closed and entry in OVA platform is added."
 
     def action_not_proceed_to_ui_ti(self):
         self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
@@ -1520,6 +1548,22 @@ class PatientTimeline(models.Model):
         concatenated_values = '\n'.join(str(value) for value in field_values if value)
 
         self.oi_ti_decisions = concatenated_values
+
+    @api.onchange('menopause_sign_suspicion_decision',
+                  'female_ot_ti_bmi_decision',
+                  'tubal_patency_test_dropdown_decision',
+                  'cervical_incompetence_diagnosis_decision',
+                  'uterine_tubal_anomalies_decision',
+                  'male_semen_analysis_decision',
+                  'risk_inability_male_decision',
+                  'counselling_multiple_birth_decision',
+                  'counselling_failure_treatment_decision',
+                  'counselling_lower_success_rate_decision',
+                  'counselling_high_bmi_decision')
+    def onchange_decision_fields(self):
+        # Check if the current user has the role of senior_doctor
+        if not self.env.user.has_group('ecare_medical_history.group_ec_medical_senior_doctor'):
+            raise UserError("Logged in user does not have the access to change decision fields.")
 
 
 

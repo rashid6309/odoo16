@@ -14,17 +14,25 @@
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban repeat_kanban_section_header">
                                 <t t-set="rec_id" t-value="record.id.raw_value"/>
-
-                                <div style="text-align: -webkit-right;" attrs="{'invisible': [('repeat_consultation_state','!=','open'),
-                                ('repeat_consultation_state','!=','open')]}">
-                                    <span class="bg-success" style="display: grid; width: 15%;
+                                <div style="text-align: right;">
+                                    <div style="text-align: -webkit-right;display: inline-block;" attrs="{'invisible': [('repeat_consultation_state','!=','open')]}">
+                                        <span class="bg-success" style="display: grid;
                                     height: 50%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); color: #fff;
                                     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); text-transform: uppercase;
                                     text-align: center; overflow: hidden; user-select: none;">
-                                        <field name="repeat_consultation_state"/>
-                                    </span>
+                                            <field name="treatment_state"/>
+                                        </span>
+                                    </div>
+                                    <div style="text-align: -webkit-right;display: inline-block;" attrs="{'invisible': [('repeat_consultation_state','!=','open'),
+                                ('repeat_consultation_state','!=','open')]}">
+                                        <span class="bg-success" style="display: grid;margin: 0.7rem;
+                                    height: 50%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); color: #fff;
+                                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); text-transform: uppercase;
+                                    text-align: center; overflow: hidden; user-select: none;">
+                                            <field name="repeat_consultation_state"/>
+                                        </span>
+                                    </div>
                                 </div>
-
                                 <div>
                                     <div class="d-flex" style="justify-content: space-between">
                                         <div>
@@ -1189,6 +1197,26 @@
             </field>
         </record>
 
+                <!-- Explicit Tree view -->
+        <record id="repeat_consultation_decision_pending_tree" model="ir.ui.view">
+            <field name="name">ec.repeat.consultation.tree.view</field>
+            <field name="model">ec.repeat.consultation</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" import="false" export_xlsx="false" delete="false">
+                    <field name="repeat_date"/>
+                    <field name="repeat_patient_id"/>
+                    <field name="repeat_location_id"/>
+                    <field name="repeat_seen_by"/>
+                    <field name="repeat_consultation_state"/>
+                    <button name="action_open_repeat_consultation_section"
+                            type="object"
+                            class="btn btn-primary m-2"
+                            groups="ecare_medical_history.group_ec_medical_administrator"
+                            string="Open Consultation"/>
+                </tree>
+            </field>
+        </record>
+
 
         <!-- Explicit Action -->
         <record id="repeat_consultation_action" model="ir.actions.act_window">
@@ -1199,6 +1227,15 @@
             <field name="target">current</field>
         </record>
 
+        <record id="repeat_consultation_action_decision_pending" model="ir.actions.act_window">
+            <field name="name">Decision Pending</field>
+            <field name="res_model">ec.repeat.consultation</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('treatment_state', '=', 'approval')]</field>
+            <field name="view_id" ref="repeat_consultation_decision_pending_tree"/>
+            <field name="target">current</field>
+        </record>
+
 
         <menuitem id="ec_medical_history_delete_repeat_consultation"
                   name="Repeat Consultation"
@@ -1206,6 +1243,13 @@
                   parent="ec_medical_root"
                   action="repeat_consultation_action"
                   sequence="120"/>
+
+        <menuitem id="ec_medical_history_decision_pending_ova"
+                  name="Decision Pending"
+                  groups="ecare_medical_history.group_ec_medical_administrator,ecare_medical_history.group_medical_history_delete_access_view"
+                  parent="ec_medical_root"
+                  action="repeat_consultation_action_decision_pending"
+                  sequence="130"/>
 
     </data>
 </odoo>

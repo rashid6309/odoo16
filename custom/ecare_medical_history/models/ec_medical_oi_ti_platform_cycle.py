@@ -7,12 +7,12 @@ from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
 class EcMedicalOITIPlatformCycle(models.Model):
     _name = "ec.medical.oi.ti.platform.cycle"
-    _description = "OI/TI Platform Cycle"
+    _description = "OI/TI Platform Cycle/Attempt"
     _order = 'create_date desc'
 
     oi_ti_platform_attempt_ids = fields.One2many(comodel_name="ec.medical.oi.ti.platform.attempt",
                                                  inverse_name="attempt_cycle_id",
-                                                 string="OI/TI Platform Attempt")
+                                                 string="OI/TI Visit")
     oi_ti_platform = fields.Selection(selection=StaticMember.OI_TI_PLATFORM_STATE, string='State',
                                       defult='ready_to_trigger')
 
@@ -34,6 +34,8 @@ class EcMedicalOITIPlatformCycle(models.Model):
                                     string='IUI attempt')
     luteal_phase_support = fields.Selection(selection=StaticMember.LUTEAL_PHASE_SUPPORT,
                                             string='Luteal phase support')
+    ova_outcome = fields.Selection(selection=StaticMember.OVA_OUTCOME,
+                                   string='Outcome')
 
     #     Inverse Fields
     cycle_timeline_id = fields.Many2one(comodel_name='ec.patient.timeline')
@@ -74,32 +76,36 @@ class EcMedicalOITIPlatformCycle(models.Model):
     def action_complete_attempt(self):
         if self.insemination is False:
             raise UserError("‘Insemination’ is not entered yet!")
-        oi_ti_attempts = self.env['ec.medical.oi.ti.platform.attempt'].search([
-            ('attempt_cycle_id', '=', int(self.id))])
-        attempt_completed = False
-        if oi_ti_attempts:
-            for rec in oi_ti_attempts:
-                if rec.oi_ti_attempt_state == 'in_progress':
-                    rec.oi_ti_attempt_state = 'completed'
-                    attempt_completed = True
-
-            if attempt_completed is False:
-                raise UserError("There is no attempt in progress!")
+        else:
+            self.oi_ti_platform = 'completed'
+        # oi_ti_attempts = self.env['ec.medical.oi.ti.platform.attempt'].search([
+        #     ('attempt_cycle_id', '=', int(self.id))])
+        # attempt_completed = False
+        # if oi_ti_attempts:
+        #     for rec in oi_ti_attempts:
+        #         if rec.oi_ti_attempt_state == 'in_progress':
+        #             rec.oi_ti_attempt_state = 'completed'
+        #             attempt_completed = True
+        #
+        #     if attempt_completed is False:
+        #         raise UserError("There is no attempt in progress!")
 
     def action_abandoned_attempt(self):
         if self.insemination is False:
             raise UserError("‘Insemination’ is not entered yet!")
-        oi_ti_attempts = self.env['ec.medical.oi.ti.platform.attempt'].search([
-            ('attempt_cycle_id', '=', int(self.id))])
-        attempt_completed = False
-        if oi_ti_attempts:
-            for rec in oi_ti_attempts:
-                if rec.oi_ti_attempt_state == 'in_progress':
-                    rec.oi_ti_attempt_state = 'abandoned'
-                    attempt_completed = True
-
-            if attempt_completed is False:
-                raise UserError("There is no attempt in progress!")
+        else:
+            self.oi_ti_platform = 'abandoned'
+        # oi_ti_attempts = self.env['ec.medical.oi.ti.platform.attempt'].search([
+        #     ('attempt_cycle_id', '=', int(self.id))])
+        # attempt_completed = False
+        # if oi_ti_attempts:
+        #     for rec in oi_ti_attempts:
+        #         if rec.oi_ti_attempt_state == 'in_progress':
+        #             rec.oi_ti_attempt_state = 'abandoned'
+        #             attempt_completed = True
+        #
+        #     if attempt_completed is False:
+        #         raise UserError("There is no attempt in progress!")
 
     def action_2nd_trigger_attempt(self):
         if self.insemination is False:
@@ -218,4 +224,10 @@ class EcMedicalOITIPlatformCycle(models.Model):
                 rec.html_table = ''.join(table_list)
             else:
                 rec.html_table = None
+                
+    def write(self, vals):
+        if self.oi_ti_platform == 'completed' or self.oi_ti_platform == 'abandoned':
+            raise UserError(f"You can't change Completed/Abandoned attempt, please create a new one!")
+        else:
+            return super(EcMedicalOITIPlatformCycle, self).write(vals)
 

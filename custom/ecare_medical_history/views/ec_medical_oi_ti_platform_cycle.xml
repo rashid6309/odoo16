@@ -83,7 +83,7 @@
                             <tbody>
                                 <tr style="height:15.75pt;">
                                     <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
-                                        <p class="oi_ti_action_btn"><strong><span>OUTCOME: PREGNANCY (+VE UPT or BHCG)</span></strong></p>
+                                        <p class="oi_ti_action_btn"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
                                     </td>
                                     <!--                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
                                     <!--                                        <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->
@@ -123,10 +123,10 @@
                                         <p class="oi_ti_action_btn"><strong><span>Indication for IUI</span></strong></p>
                                     </td>
                                     <td class="oi_ti_heading_td">
-                                        <p class="oi_ti_action_btn"><strong><field name="indication_of_iui"/></strong></p>
+                                        <p class="oi_ti_action_btn"><strong><field name="indication_of_iui" attrs="{'required': [('insemination', '=', 'frozen_thawed_iui')]}"/></strong></p>
                                     </td>
                                     <td colspan="2" class="oi_ti_heading_td">
-                                        <p class="oi_ti_action_btn"><strong><span><field name="iui_attempt_count"/></span></strong></p>
+                                        <p class="oi_ti_action_btn"><strong><span><field name="iui_attempt_count" attrs="{'required': [('insemination', '=', 'frozen_thawed_iui')]}"/></span></strong></p>
                                     </td>
                                     <!--                                    <td class="oi_ti_heading_td">-->
                                     <!--                                        <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>-->
@@ -164,7 +164,7 @@
                         </table>
                         <field name="oi_ti_platform_attempt_ids" mode="kanban"/>
                     </sheet>
-                    <div style=" position: fixed; bottom: 6rem; padding: 1rem; background: white; width: 80rem; ">
+                    <div style="padding: 1rem; background: white; display: flex;" attrs="{'invisible': [('oi_ti_platform','in',['abandoned', 'completed'])]}">
 <!--                    <button string="Save" special="save" class="btn-primary"/>-->
 <!--                    <button string="Discard" class="btn-secondary" special="cancel"/>-->
 <!--                    <button string="Delete" type="object" class="btn-secondary" name="unlink"/>-->
@@ -213,17 +213,25 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
+<!--                                <div class="ribbon ribbon-top-right"-->
+<!--                                     attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}">-->
+<!--                                        <field class="bg-danger" style="top: 2rem; width: 12rem; left: 3rem; height: 3rem; font-size: 1rem;" name="oi_ti_platform"/>-->
+<!--                                </div>-->
+
                                 <!--                                <field name="oi_ti_platform_attempt_ids" mode="kanban" invisble="1"/>-->
                                 <!--                                <field name="html_table" widget="html"/>-->
                                 <h3 style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
                                 monospace; font-size: large; border: none; outline: none; border-radius: 5px;
-                                display: inline-block;">Create Date: <field name="create_date"/></h3>
+                                display: inline-block;">Cycle Creation Date: <field name="create_date"/></h3>
+                                <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}" style="padding: 3px; font-family: 'Roboto Mono',
+                                monospace; font-size: large; border: none; outline: none; border-radius: 5px;
+                                display: inline-block;"><field class="bg-warning ribbon" style="top: 1rem; width: 12rem;height: 2rem;border-radius: 5px;" name="oi_ti_platform"/></h3>
                                 <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                                     <tbody>
 
                                         <tr style="height:15.75pt;">
                                             <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
-                                                <p class="oi_ti_action_btn"><strong><span>OUTCOME: PREGNANCY (+VE UPT or BHCG)</span></strong></p>
+                                                <p class="oi_ti_action_btn"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
                                             </td>
                                             <!--                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
                                             <!--                                                <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->

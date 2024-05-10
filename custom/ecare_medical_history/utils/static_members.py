@@ -736,6 +736,10 @@ class StaticMember:
         ('female', 'Female'),
         ('couple', 'Couple'),
     ]
+    OVA_OUTCOME = [
+        ('pregnancy', 'Pregnancy'),
+        ('no_pregnancy', 'No Pregnancy'),
+    ]
 
     PREVIOUS_TREATMENT_RESPONSE = [
         ('poor', 'Poor'),
@@ -1248,6 +1252,8 @@ class StaticMember:
         ('ready_to_trigger', 'Ready to trigger & inseminate'),
         ('2nd_trigger', '2nd trigger'),
         ('luteal_phase', 'Luteal phase support'),
+        ('completed', 'Completed'),
+        ('abandoned', 'Abandoned'),
     ]
 
     SURGERY_TYPES = [
