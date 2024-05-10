@@ -1202,6 +1202,36 @@ class PatientTimeline(models.Model):
             self.ec_repeat_consultation_id.action_treatment_state_instantiate()
 
     def action_proceed_to_ui_ti(self):
+        fields = [
+            'upt_result',
+            'iui_plan',
+            # 'primary_indication',
+            'fsh_lh_amh_acceptable',
+            'menopause_sign_suspicion',
+            'female_ot_ti_weight',
+            'female_ot_ti_height',
+            'female_ot_ti_bmi',
+            'tubal_patency_test',
+            'tubal_patency_test_dropdown',
+            'cervical_incompetence_diagnosis',
+            'uterine_tubal_anomalies',
+            'male_semen_analysis',
+            'husband_availability_male',
+            'frozen_sample_available_male',
+            'risk_inability_to_give_samples_male',
+            'counselling_multiple_birth',
+            'counselling_failure_treatment',
+            'counselling_lower_success_rate',
+            'counselling_high_bmi',
+            # 'oi_ti_treatment_prompt_message',
+            # 'oi_ti_additional_comments'
+        ]
+
+        for field in fields:
+            formatted_field_name = field.replace('_', ' ').title()
+            value = getattr(self.ec_repeat_consultation_id, field)
+            if value is None or value is False:
+                raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
         proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
         repeat_ui_ti_add = self.env.context.get('repeat_ui_ti_add')
         if repeat_ui_ti_add:
