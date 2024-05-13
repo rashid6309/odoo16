@@ -470,6 +470,9 @@ class RepeatConsultation(models.Model):
 
     @api.model
     def get_field_data_condition(self, field_name, timeline_id):
+        _logger.warning("This is function for custom field coloring process")
+        _logger.warning(str(field_name))
+        _logger.warning(str(timeline_id))
         if timeline_id:
             yes_values = ['yes']
             no_values = ['no']
@@ -522,10 +525,12 @@ class RepeatConsultation(models.Model):
                     return True
             elif field_name == 'counselling_high_bmi':
                 if medical_consents_risk_assessment_rec.counselling_high_bmi in no_values:
+                    _logger.warning('True inside BMI calculator')
                     return True
             else:
                 return False
         else:
+            _logger.warning('False')
             return False
 
     def action_open_repeat_consultation_section(self):

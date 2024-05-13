@@ -124,6 +124,16 @@ class EcMedicalOITIPlatformCycle(models.Model):
         else:
             self.oi_ti_platform = '2nd_trigger'
 
+    def action_open_attempt(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'ec.medical.oi.ti.platform.cycle',
+            'res_id': self.id,
+            'name': 'OI/TI Cycle/Attempt',
+            'view_mode': 'form',
+            "target": "new",
+        }
+
     def action_start_luteal_phase_attempt(self):
         if self.insemination is False:
             raise UserError("‘Insemination’ is not entered yet!")
@@ -140,6 +150,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
             return field_value
 
     @api.constrains('html_table')
+    @api.onchange('oi_ti_platform_attempt_ids')
     def computed_value(self):
         table = ''
 

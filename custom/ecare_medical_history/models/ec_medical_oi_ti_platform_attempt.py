@@ -14,6 +14,7 @@ class EcMedicalOITIPlatform(models.Model):
     ot_ti_visit_tvs_id = fields.Many2one(comodel_name="ec.medical.tvs")
 
     oi_ti_cycle_day = fields.Integer(string='Cycle Day', related='attempt_cycle_id.cycle_day')
+    lmp_date = fields.Date(string='LMP', compute='_compute_visit_values')
     preparation_method = fields.Selection(selection=StaticMember.PREPARATION_METHOD, string='Preparation Method')
     oi_ti_attempt_state = fields.Selection(selection=StaticMember.OI_TI_ATTEMPT_STATE, string='State',
                                            defult='in_progress')
@@ -145,6 +146,11 @@ class EcMedicalOITIPlatform(models.Model):
                     record.oi_ti_cyst_computed = dynamic_table
                 else:
                     record.oi_ti_cyst_computed = ''
+
+    def _compute_visit_values(self):
+        if self:
+            for visit in self:
+                visit.lmp_date = visit.attempt_cycle_id.repeat_consultation_id.lmp_question_four
 
 
 

@@ -10,7 +10,23 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet class="container_cycle">
-
+                                <div style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
+                                monospace; font-size: large; border: none; outline: none; border-radius: 5px;">
+                                    Cycle/Attempt
+                                    <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}"
+                                        style="padding: 3px; font-family: 'Roboto Mono',
+                                        monospace; font-size: large;
+                                        border: none; outline: none;
+                                         border-radius: 5px;width: 10rem;
+                                        display: inline-block;float: right;">
+                                        <h3 class="bg-warning ribbon"
+                                            attrs="{'invisible': [('oi_ti_platform','not in',['abandoned'])]}"
+                                               style="top: 2rem; width: auto;
+                                               height: 2rem;border-radius: 5px;">
+                                            Abandoned
+                                        </h3>
+                                    </h3>
+                                </div>
                         <nav class="navbar navbar-expand-lg navbar-dark"  id="navbarColor02">
                             <div class="collapse navbar-collapse">
                                 <!--                                <ul class="navbar-nav mr-auto">-->
@@ -82,7 +98,7 @@
                         <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                             <tbody>
                                 <tr style="height:15.75pt;">
-                                    <td colspan="3" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                    <td colspan="3" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
                                         <p class="oi_ti_action_btn"><strong>Cycle Creation Date: <field name="create_date"/></strong></p>
                                     </td>
                                     <td colspan="4" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
@@ -176,20 +192,10 @@
 <!--                    <button string="Discard" class="btn-secondary" special="cancel"/>-->
 <!--                    <button string="Delete" type="object" class="btn-secondary" name="unlink"/>-->
                         <button
-                                name="action_complete_attempt"
-                                class="oi_ti_navbar_btn"
-                                type="object"
-                                string="COMPLETE ATTEMPT"/>
-                        <button
-                                name="action_abandoned_attempt"
-                                class="oi_ti_navbar_btn"
-                                type="object"
-                                attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}"
-                                string="ABANDON ATTEMPT"/>
-                        <button
                                 name="action_create_oi_ti_platform_attempt"
                                 class="oi_ti_navbar_btn"
                                 type="object"
+                                confirm="Do you really want to create a new visit?"
                                 string="ADD NEW FOLLOW UP"/>
                         <button
                                 name="action_2nd_trigger_attempt"
@@ -202,6 +208,17 @@
                                 class="oi_ti_navbar_btn"
                                 type="object"
                                 string="START LUTEAL PHASE"/>
+                        <button
+                                name="action_abandoned_attempt"
+                                class="oi_ti_navbar_btn"
+                                type="object"
+                                attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}"
+                                string="ABANDON ATTEMPT"/>
+                        <button
+                                name="action_complete_attempt"
+                                class="oi_ti_navbar_btn"
+                                type="object"
+                                string="COMPLETE ATTEMPT"/>
                     </div>
                 </form>
 
@@ -219,7 +236,7 @@
                 <kanban class="max_width_kanban" create="0">
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click">
+                            <div t-attf-class="oe_kanban_card">
 <!--                                <div class="ribbon ribbon-top-right"-->
 <!--                                     attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}">-->
 <!--                                        <field class="bg-danger" style="top: 2rem; width: 12rem; left: 3rem; height: 3rem; font-size: 1rem;" name="oi_ti_platform"/>-->
@@ -227,17 +244,33 @@
 
                                 <!--                                <field name="oi_ti_platform_attempt_ids" mode="kanban" invisble="1"/>-->
                                 <!--                                <field name="html_table" widget="html"/>-->
-                                <h3 style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
-                                monospace; font-size: large; border: none; outline: none; border-radius: 5px;
-                                display: inline-block;">Cycle Creation Date: <field name="create_date"/></h3>
-                                <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}" style="padding: 3px; font-family: 'Roboto Mono',
-                                monospace; font-size: large; border: none; outline: none; border-radius: 5px;
-                                display: inline-block;"><field class="bg-warning ribbon" style="top: 1rem; width: 12rem;height: 2rem;border-radius: 5px;" name="oi_ti_platform"/></h3>
+                                <div style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
+                                monospace; font-size: large; border: none; outline: none; border-radius: 5px;">
+                                    Cycle/Attempt
+                                     <button
+                                            name="action_open_attempt"
+                                            class="oi_ti_attempt_edit_btn"
+                                            type="object"
+                                            string="">
+                                        <i class="fa fa-edit fa-2x" aria-hidden="true"/>
+                                     </button>
+                                    <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}"
+                                        style="padding: 3px; font-family: 'Roboto Mono',
+                                        monospace; font-size: large;
+                                        border: none; outline: none;
+                                         border-radius: 5px;width: 10rem;
+                                        display: inline-block;float: right;">
+                                        <field class="bg-warning ribbon"
+                                               style="top: 1rem; width: auto;
+                                               height: 2rem;border-radius: 5px;"
+                                               name="oi_ti_platform"/>
+                                    </h3>
+                                </div>
                                 <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                                     <tbody>
 
                                         <tr style="height:15.75pt;">
-                                            <td colspan="3" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                            <td colspan="3" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
                                                 <p class="oi_ti_action_btn"><strong>Cycle Creation Date: <field name="create_date"/></strong></p>
                                             </td>
                                             <td colspan="4" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
@@ -296,7 +329,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <field name="html_table" widget="html"/>
+<!--                                <field name="html_table" widget="html"/>-->
                                 <!--                                <t t-foreach="record.oi_ti_platform_attempt_ids.raw_value" t-as="line">-->
                                 <!--                                    <t t-out="line['oi_ti_other_diagnosis']"/>-->
                                 <!--                                    <t t-out="oi_ti_other_diagnosis"/>-->

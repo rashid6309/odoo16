@@ -937,6 +937,15 @@ th[data-name="treatment_notes"] div {
 {
     margin-top:-2rem;
 }
+.oi_ti_attempt_edit_btn
+{
+    float: right;
+    width: 4rem;
+    height: 2.5rem;
+    background-color: #71639e !important;
+    margin-right: 1rem;
+    color: white !important;
+}
 
 .oi_ti_navbar_btn
 {

@@ -1196,8 +1196,8 @@
 													<div/>
 
 													<div style="background: #cddbf3; padding: 0.3%;">
-														<h5>Pre OI/TI Checklist</h5>
-														<field name="treatment_state"/>
+														<h5 style="display: inline-block;">Pre OI/TI Checklist</h5>
+														<field style="float: right;pointer-events: none;" name="treatment_state"/>
 													</div>
 												</div>
 												<group string="Female Pre OI/TI Checklist">
@@ -1208,8 +1208,8 @@
 													<span style="display: flex;width: 40rem;margin: 1rem;" class="alert alert-warning" id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'not_done')]}">
 														Please return to this form once UPT has been performed.
 													</span>
-													<span class="o_form_label" attrs="{'invisible': [('upt_result', '!=', 'negative')]}"/>
-													<span style="display: flex;width: 40rem;margin: 1rem;" class="alert alert-warning" id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'negative')]}">
+													<span class="o_form_label" attrs="{'invisible': [('upt_result', '!=', 'positive')]}"/>
+													<span style="display: flex;width: 40rem;margin: 1rem;" class="alert alert-warning" id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'positive')]}">
 														Please create and a new repeat consultation fill in a new pregnancy assessment form.
 													</span>
 													<field name="iui_plan"
