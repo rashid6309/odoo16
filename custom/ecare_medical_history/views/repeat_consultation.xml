@@ -1207,7 +1207,7 @@
                     <field name="repeat_patient_id"/>
                     <field name="repeat_location_id"/>
                     <field name="repeat_seen_by"/>
-                    <field name="repeat_consultation_state"/>
+                    <field name="treatment_state" string="Treatment State"/>
                     <button name="action_open_repeat_consultation_section"
                             type="object"
                             class="btn btn-primary m-2"
@@ -1231,7 +1231,7 @@
             <field name="name">Decision Pending</field>
             <field name="res_model">ec.repeat.consultation</field>
             <field name="view_mode">tree</field>
-            <field name="domain">[('treatment_state', '=', 'approval')]</field>
+            <field name="domain">[('treatment_state', '=', 'approval'),('repeat_consultation_state', '!=', None)]</field>
             <field name="view_id" ref="repeat_consultation_decision_pending_tree"/>
             <field name="target">current</field>
         </record>

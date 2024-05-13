@@ -82,7 +82,10 @@
                         <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                             <tbody>
                                 <tr style="height:15.75pt;">
-                                    <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                    <td colspan="3" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                        <p class="oi_ti_action_btn"><strong>Cycle Creation Date: <field name="create_date"/></strong></p>
+                                    </td>
+                                    <td colspan="4" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
                                         <p class="oi_ti_action_btn"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
                                     </td>
                                     <!--                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
@@ -163,6 +166,10 @@
                             </tbody>
                         </table>
                         <field name="oi_ti_platform_attempt_ids" mode="kanban"/>
+                        <group>
+                            <field name="abandoned_comments" readonly="1"/>
+                        </group>
+
                     </sheet>
                     <div style="padding: 1rem; background: white; display: flex;" attrs="{'invisible': [('oi_ti_platform','in',['abandoned', 'completed'])]}">
 <!--                    <button string="Save" special="save" class="btn-primary"/>-->
@@ -183,7 +190,7 @@
                                 name="action_create_oi_ti_platform_attempt"
                                 class="oi_ti_navbar_btn"
                                 type="object"
-                                string="START NEW FOLLOW UP"/>
+                                string="ADD NEW FOLLOW UP"/>
                         <button
                                 name="action_2nd_trigger_attempt"
                                 class="oi_ti_navbar_btn"
@@ -230,7 +237,10 @@
                                     <tbody>
 
                                         <tr style="height:15.75pt;">
-                                            <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                            <td colspan="3" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                                <p class="oi_ti_action_btn"><strong>Cycle Creation Date: <field name="create_date"/></strong></p>
+                                            </td>
+                                            <td colspan="4" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
                                                 <p class="oi_ti_action_btn"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
                                             </td>
                                             <!--                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->

@@ -10,7 +10,7 @@ class FemaleOtTiChecklist(models.Model):
                                              string='Repeat Consultation')
 
     upt_result = fields.Selection(selection=StaticMember.UPT_RESULT,
-                                  string='UPT Negative')
+                                  string='UPT Result')
 
     iui_plan = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                 string='IUI Currently in Plan?')

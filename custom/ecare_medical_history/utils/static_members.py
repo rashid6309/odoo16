@@ -738,7 +738,10 @@ class StaticMember:
     ]
     OVA_OUTCOME = [
         ('pregnancy', 'Pregnancy'),
+        ('pregnancy_upt', 'Pregnancy (+ve UPT or BHCG)'),
         ('no_pregnancy', 'No Pregnancy'),
+        ('menstruation', 'Menstruation'),
+        ('luf_suspected', 'Menstruation & suspected LUF')
     ]
 
     PREVIOUS_TREATMENT_RESPONSE = [
@@ -767,13 +770,14 @@ class StaticMember:
     REPEAT_STATUS = [
         ('walkin', 'Walk-in Visit'),
         ('appointment', 'Appointment'),
-        ('none', 'None'),
+        ('none', 'N/A'),
     ]
 
     TREATMENT_STATUS = [
         ('none', 'None'),
         ('instantiate', 'Instantiate'),
         ('approval', 'Approval'),
+        ('treatment_started', 'Treatment Started'),
     ]
 
     REPEAT_CONSULTATION_TYPE = [
@@ -1137,9 +1141,9 @@ class StaticMember:
     ]
 
     UPT_RESULT = [
-        ('negative', 'No'),
+        ('negative', 'Negative'),
         ('not_done', 'Not Done'),
-        ('positive', 'Yes'),
+        ('positive', 'Positive'),
     ]
 
     PRIMARY_INDICATION = [

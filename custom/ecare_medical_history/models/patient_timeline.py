@@ -1229,12 +1229,12 @@ class PatientTimeline(models.Model):
             'female_ot_ti_height',
             'female_ot_ti_bmi',
             'tubal_patency_test',
-            'tubal_patency_test_dropdown',
+            # 'tubal_patency_test_dropdown',
             'cervical_incompetence_diagnosis',
             'uterine_tubal_anomalies',
             'male_semen_analysis',
             'husband_availability_male',
-            'frozen_sample_available_male',
+            # 'frozen_sample_available_male',
             'risk_inability_to_give_samples_male',
             'counselling_multiple_birth',
             'counselling_failure_treatment',
@@ -1274,12 +1274,14 @@ class PatientTimeline(models.Model):
                     raise UserError("Three attempts against one OI/TI cycle have already been made, "
                                     "start a new repeat consultation first.")
                 oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
+                self.ec_repeat_consultation_id.treatment_state = 'treatment_started'
                 return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
 
         if proceed_to_ui_ti:
             self.oi_ti_platform_enabled = True
             self.action_save_repeat_consultation_section()
             oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
+            self.ec_repeat_consultation_id.treatment_state = 'treatment_started'
             return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
         message = ("One or more contraindications to OI/TI have been identified and highlighted and therefore, "
                    "you cannot authorise OI/TI treatment "
@@ -1354,8 +1356,9 @@ class PatientTimeline(models.Model):
         self.oi_ti_platform_enabled = True
         self.action_save_repeat_consultation_section()
         oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
-        oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
-        message = "Repeat consultation is closed and entry in OVA platform is added."
+        self.ec_repeat_consultation_id.treatment_state = 'treatment_started'
+        return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
+        # message = "Repeat consultation is closed and entry in OVA platform is added."
 
     def action_not_proceed_to_ui_ti(self):
         self.ec_repeat_consultation_id.repeat_consultation_state = 'closed'
@@ -1551,6 +1554,7 @@ class PatientTimeline(models.Model):
 
     @api.onchange('menopause_sign_suspicion_decision',
                   'female_ot_ti_bmi_decision',
+                  'fsh_lh_amh_acceptable_decision',
                   'tubal_patency_test_dropdown_decision',
                   'cervical_incompetence_diagnosis_decision',
                   'uterine_tubal_anomalies_decision',

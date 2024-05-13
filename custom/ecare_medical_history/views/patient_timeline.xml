@@ -1184,7 +1184,7 @@
 												 class="d-flex flex-column">
 												<button name="action_treatment_state_instantiate"
 														type="object"
-														confirm="This is irreversible action, you can not undo this once you proceed."
+														confirm="This is irreversible action, you can't undo this once you proceed."
 														class="btn btn-success m-3"
 														string="Proceed to OI/TI"/>
 											</div>
@@ -1284,7 +1284,7 @@
 														   options="{'horizontal': True}"/>
 													<field name="male_semen_analysis_decision"
 														   attrs="{'required': [('treatment_state', '=', 'approval'),('male_semen_analysis', '=', 'no')],
-														   'invisible': [('treatment_state', '!=', 'approval'),('male_semen_analysis', '!=', 'no')],}"
+														   'invisible': ['|', ('treatment_state', '!=', 'approval'),('male_semen_analysis', '!=', 'no')],}"
 														   string="Decision"/>
 													<span/>
 													<label for="husband_availability_male"/>

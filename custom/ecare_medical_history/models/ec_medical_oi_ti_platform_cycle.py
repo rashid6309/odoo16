@@ -41,6 +41,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
     cycle_timeline_id = fields.Many2one(comodel_name='ec.patient.timeline')
     repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation')
     html_table = fields.Html(string='Table', compute='computed_value')
+    abandoned_comments = fields.Text(string='Abandoned Comments')
 
     def _compute_cycle_day(self):
         for record in self:
@@ -94,7 +95,17 @@ class EcMedicalOITIPlatformCycle(models.Model):
         if self.insemination is False:
             raise UserError("‘Insemination’ is not entered yet!")
         else:
-            self.oi_ti_platform = 'abandoned'
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'ec.medical.wizard.note',
+                'name': 'Abandon Notes',
+                'view_mode': 'form',
+                "target": "new",
+                "context": {
+                    'default_attempt_cycle_id': self.id,
+                }
+            }
+            # self.oi_ti_platform = 'abandoned'
         # oi_ti_attempts = self.env['ec.medical.oi.ti.platform.attempt'].search([
         #     ('attempt_cycle_id', '=', int(self.id))])
         # attempt_completed = False
@@ -231,3 +242,20 @@ class EcMedicalOITIPlatformCycle(models.Model):
         else:
             return super(EcMedicalOITIPlatformCycle, self).write(vals)
 
+
+class EcMedicalNotes(models.TransientModel):
+    _name = "ec.medical.wizard.note"
+    _description = "Wizard for adding new notes at the time of action"
+    
+    attempt_cycle_id = fields.Many2one(comodel_name='ec.medical.oi.ti.platform.cycle',
+                                       readonly=True,
+                                       ondelete="restrict")
+    note = fields.Text('Comments')
+    
+    @api.model
+    def create(self, vals):
+        res = super(EcMedicalNotes, self).create(vals)
+        if res:
+            res.attempt_cycle_id.abandoned_comments = res.note
+            res.attempt_cycle_id.oi_ti_platform = 'abandoned'
+        return res

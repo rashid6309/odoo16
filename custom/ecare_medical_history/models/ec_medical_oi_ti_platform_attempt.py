@@ -67,6 +67,12 @@ class EcMedicalOITIPlatform(models.Model):
         repeat_consultation_id = cycle_id.repeat_consultation_id.id
         oi_ti_attempts = self.env['ec.medical.oi.ti.platform.cycle'].search([
             ('repeat_consultation_id', '=', int(repeat_consultation_id))])
+        oi_ti_visits = self.env['ec.medical.oi.ti.platform.attempt'].search([
+            ('attempt_cycle_id', '=', int(cycle_id.id))], order='write_date desc', limit=1)
+        val_preparation_method = None
+        if oi_ti_visits:
+            val_preparation_method = oi_ti_visits.preparation_method
+
         # if oi_ti_attempts:
         #     # if len(oi_ti_attempts) >= 3:
         #     #     raise UserError("Three attempts against one OI/TI cycle have already been made, "
@@ -78,6 +84,7 @@ class EcMedicalOITIPlatform(models.Model):
         vals = {
             'timeline_id': cycle_id.cycle_timeline_id.id,
             'repeat_consultation_id': cycle_id.repeat_consultation_id.id,
+            'preparation_method': val_preparation_method or None,
             'attempt_cycle_id': cycle_id.id,
             'oi_ti_follicle_left': cycle_id.repeat_consultation_id.tvs_lov,
             'oi_ti_follicle_right': cycle_id.repeat_consultation_id.tvs_rov,
@@ -97,16 +104,16 @@ class EcMedicalOITIPlatform(models.Model):
         #     "target": "new",
         # }
 
-    @api.onchange('tvs_lov', 'tvs_rov', 'tvs_other_text', 'tvs_smooth', 'tvs_distorted', 'tvs_triple_echo',
+    @api.onchange('tvs_lov', 'tvs_rov', 'tvs_lining_size_decimal', 'tvs_other_text', 'tvs_smooth', 'tvs_distorted', 'tvs_triple_echo',
                   'tvs_hyperechoic_solid', 'tvs_suspected_cavity_lesion', 'tvs_menstruating', 'tvs_cyst_size_ids')
     def _compute_visit_ultrasound_values(self):
         if self:
             for record in self:
                 endometrial_character_list = []
                 tvs_record = record.ot_ti_visit_tvs_id
-                record.oi_ti_follicle_left = str(tvs_record.tvs_lov)
-                record.oi_ti_follicle_right = str(tvs_record.tvs_rov)
-                record.oi_ti_cet = str(tvs_record.tvs_lining_size_decimal)
+                record.oi_ti_follicle_left = str(tvs_record.tvs_lov) if tvs_record.tvs_lov else ''
+                record.oi_ti_follicle_right = str(tvs_record.tvs_rov) if tvs_record.tvs_rov else ''
+                record.oi_ti_cet = str(tvs_record.tvs_lining_size_decimal) if tvs_record.tvs_lining_size_decimal else ''
                 if tvs_record.tvs_smooth:
                     endometrial_character_list.append('Smooth')
                 if tvs_record.tvs_distorted:
