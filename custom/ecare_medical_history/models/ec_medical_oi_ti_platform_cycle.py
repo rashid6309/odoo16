@@ -70,7 +70,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
         if oi_ti_platform_attempt_rec:
             oi_ti_platform_cycle.write(
                 {
-                    'oi_ti_platform_attempt_ids': (0, 0, oi_ti_platform_attempt_rec.id)
+                    'oi_ti_platform_attempt_ids': (0, 0, oi_ti_platform_attempt_rec['res_id'])
                 }
             )
         return oi_ti_platform_cycle
