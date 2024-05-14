@@ -223,7 +223,7 @@
 						<div class="tvs_scan">
 							<div class="display">
 								<span type="text" class="output_results" name="display" id="display"
-									  style="width:30rem;"/>
+									  style="width:30rem;overflow-wrap: anywhere;"/>
 								<!--																<field name="tvs_id" readonly="1" invisible="1"/>-->
 								<!--																<field name="gynae_id" readonly="1" invisible="1"/>-->
 							</div>
@@ -324,7 +324,6 @@
 							<div class="col-md-8 timeline_content">
 								<field name="oi_ti_platform_enabled" invisible="1"/>
 								<div class="d-flex scroll-to card-header-custom first_consultation_container"
-									 attrs="{'invisible': [('oi_ti_platform_enabled', '=', False)]}"
 									 id="io_ti_platform_section_link">
 									<div class="col-10">
 										<a data-bs-toggle="collapse" data-bs-target="#io_ti_platform_section" href="#">
@@ -353,8 +352,7 @@
 
 								</div>
 								<div class="card-block mb-5 pl-4 collapse asa"
-									 id="io_ti_platform_section"
-									 attrs="{'invisible': [('oi_ti_platform_enabled', '=', False)]}">
+									 id="io_ti_platform_section">
 									<!--									<table cellspacing="0" cellpadding="0" style="width: 100%;; border:0.75pt solid #cccccc; border-collapse:collapse;">-->
 									<!--										<tbody>-->
 									<!--											<tr style="height:15.75pt;">-->

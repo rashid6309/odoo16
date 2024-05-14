@@ -33,16 +33,16 @@
                                     <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
                                         <p class="oi_ti_text_paragraph_td">OI day: 3</p>
                                     </td>
-                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;width: 15rem;">
                                         <p class="oi_ti_action_btn"><strong>LEFT OVARY</strong></p>
                                     </td>
-                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;width: 15rem;">
                                         <p class="oi_ti_action_btn"><strong>RIGHT OVARY</strong></p>
                                     </td>
-                                    <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                    <td class="oi_ti_heading_td" style="background-color:#ffffff;width: 20rem;">
                                         <p class="oi_ti_action_btn"><strong>Signs of ovulation</strong></p>
                                     </td>
-                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;width: 20rem;">
                                         <p class="oi_ti_action_btn"><strong>Diagnosis</strong></p>
                                     </td>
                                 </tr>
@@ -51,22 +51,23 @@
                                         <p class="oi_ti_text_paragraph_td">LMP</p>
                                         <field name="lmp_date"/>
                                     </td>
-                                    <td colspan="4" class="oi_ti_heading_td" style="background-color:#89e39c;text-align: center;">
+                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;text-align: center;">
                                         <p class="oi_ti_text_paragraph_td"><strong>Follicle(s)</strong></p>
                                     </td>
-<!--                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">-->
-<!--                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_left"/></p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-<!--                                        <p class="oi_ti_text_paragraph_td">Follicle(s)</p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-<!--                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_right"/></p>-->
-<!--                                    </td>-->
-                                    <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;text-align: center;overflow-wrap: anywhere;">
+                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_left"/></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;text-align: center;">
+                                        <p class="oi_ti_text_paragraph_td"><strong>Follicle(s)</strong></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;text-align: center;overflow-wrap: anywhere;">
+                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_right"/></p>
+                                    </td>
+
+                                    <td class="oi_ti_heading_td" style="background-color:#ffffff;overflow-wrap: anywhere;">
                                         <p class="oi_ti_action_btn"><field name="tvs_signs_of_ovulation_ids" widget="many2many_tags" readonly="1"/></p>
                                     </td>
-                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                    <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;overflow-wrap: anywhere;">
                                         <p class="oi_ti_text_paragraph_td"><field name="oi_ti_diagnosis_ids"
                                                                                   options="{'no_open': True, 'no_create': True}"
                                                                                   placeholder="Diagnosis..." widget="many2many_tags"/></p>
@@ -76,24 +77,18 @@
                                     <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
                                         <p class="oi_ti_text_paragraph_td"><strong>Cycle day:<field name="oi_ti_cycle_day"/></strong></p>
                                     </td>
-                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;">
-                                        <p class="oi_ti_text_paragraph_td"><strong><field name="oi_ti_follicle_left"/></strong></p>
+                                    <td class="oi_ti_heading_td" rowspan="2" style="background-color:#fff2cc;text-align: center;">
+                                        <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
                                     </td>
-                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;">
-                                        <p class="oi_ti_text_paragraph_td"><strong><field name="oi_ti_follicle_right"/></strong></p>
+                                    <td class="oi_ti_heading_td" rowspan="2" style="background-color:#fff2cc;text-align: center;overflow-wrap: anywhere;">
+                                        <p class="oi_ti_text_paragraph_td"><field name="dominant_follicle_left"/></p>
                                     </td>
-<!--                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">-->
-<!--                                        <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>-->
-<!--                                    </td>-->
-<!--&lt;!&ndash;                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <p class="oi_ti_text_paragraph_td">None</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
-<!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-<!--                                        <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-<!--                                        <p class="oi_ti_text_paragraph_td">None</p>-->
-<!--                                    </td>-->
+                                    <td class="oi_ti_heading_td" rowspan="2" style="background-color:#d9ead3;text-align: center;">
+                                        <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
+                                    </td>
+                                    <td class="oi_ti_heading_td" rowspan="2" style="background-color:#d9ead3;text-align: center;overflow-wrap: anywhere;">
+                                        <p class="oi_ti_text_paragraph_td"><field name="dominant_follicle_right"/></p>
+                                    </td>
                                     <td class="oi_ti_heading_td" style="background-color:#ffffff;">
                                         <p class="oi_ti_text_paragraph_td">CET: <field name="oi_ti_cet"/></p>
                                     </td>
@@ -103,41 +98,15 @@
                                 </tr>
                                 <tr style="height:26.25pt;">
                                     <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
-                                        <p class="oi_ti_text_paragraph_td"><strong>AFC (R+L):</strong></p>
-                                    </td>
-                                    <td colspan="4" class="oi_ti_heading_td" style="background-color:#89e39c;text-align: center;">
-                                        <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
+                                        <p class="oi_ti_text_paragraph_td"><strong>AFC (R+L): <field name="afc_computed"/></strong></p>
                                     </td>
 
-<!--                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;">-->
-<!--                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_cyst_computed"/></p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-<!--                                        <p class="oi_ti_text_paragraph_td">Cyst(s)</p>-->
-<!--                                    </td>-->
-<!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-<!--                                        <p class="oi_ti_text_paragraph_td">None</p>-->
-<!--                                    </td>-->
-                                    <td>
-                                        <p class="oi_ti_text_paragraph_td">Endometrial character: <field name="oi_ti_endometrial_character"/></p>
-                                    </td>
-                                </tr>
-                                <tr style="height:26.25pt;">
-                                    <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
-                                        <p class="oi_ti_text_paragraph_td"><strong></strong></p>
-                                    </td>
-                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;text-align: center;">
-                                        <p class="oi_ti_text_paragraph_td"><strong>None</strong></p>
-                                    </td>
-                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;text-align: center;">
-                                        <p class="oi_ti_text_paragraph_td"><strong>None</strong></p>
-                                    </td>
 
                                     <td>
-                                        <p class="oi_ti_text_paragraph_td">Cyst(s):<field name="oi_ti_cyst_computed"/></p>
-                                    </td>
-                                    <td  style="background-color:#f4cccc;"/>
+                                        <p class="oi_ti_text_paragraph_td"><strong>Endometrial character: </strong><field name="oi_ti_endometrial_character"/></p>
+                                        <p class="oi_ti_text_paragraph_td"><strong>Cyst(s):</strong><field name="oi_ti_cyst_computed"/></p>                                    </td>
                                 </tr>
+
                                 <tr style="height:15.75pt;">
                                     <td colspan="7" style="border-top:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f4cccc;">
                                         <p class="oi_ti_text_paragraph_td">Comments: <field name="oi_ti_comments" placeholder="comments..."/></p>
@@ -520,16 +489,16 @@
                                             <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
                                                 <p class="oi_ti_text_paragraph_td">OI day: 3</p>
                                             </td>
-                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;">
+                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;width: 15rem;">
                                                 <p class="oi_ti_action_btn"><strong>LEFT OVARY</strong></p>
                                             </td>
-                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;">
+                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;width: 15rem;">
                                                 <p class="oi_ti_action_btn"><strong>RIGHT OVARY</strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                            <td class="oi_ti_heading_td" style="background-color:#ffffff;width: 20rem;">
                                                 <p class="oi_ti_action_btn"><strong>Signs of ovulation</strong></p>
                                             </td>
-                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;width: 20rem;">
                                                 <p class="oi_ti_action_btn"><strong>Diagnosis</strong></p>
                                             </td>
                                         </tr>
@@ -538,22 +507,23 @@
                                                 <p class="oi_ti_text_paragraph_td">LMP</p>
                                                 <field name="lmp_date"/>
                                             </td>
-                                            <td colspan="4" class="oi_ti_heading_td" style="background-color:#89e39c;text-align: center;">
+                                            <td class="oi_ti_heading_td" style="background-color:#fff2cc;text-align: center;">
                                                 <p class="oi_ti_text_paragraph_td"><strong>Follicle(s)</strong></p>
                                             </td>
-                                            <!--                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">-->
-                                            <!--                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_left"/></p>-->
-                                            <!--                                    </td>-->
-                                            <!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-                                            <!--                                        <p class="oi_ti_text_paragraph_td">Follicle(s)</p>-->
-                                            <!--                                    </td>-->
-                                            <!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-                                            <!--                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_right"/></p>-->
-                                            <!--                                    </td>-->
-                                            <td class="oi_ti_heading_td" style="background-color:#ffffff;">
+                                            <td class="oi_ti_heading_td" style="background-color:#fff2cc;text-align: center;overflow-wrap: anywhere;">
+                                                <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_left"/></p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#d9ead3;text-align: center;">
+                                                <p class="oi_ti_text_paragraph_td"><strong>Follicle(s)</strong></p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" style="background-color:#d9ead3;text-align: center;overflow-wrap: anywhere;">
+                                                <p class="oi_ti_text_paragraph_td"><field name="oi_ti_follicle_right"/></p>
+                                            </td>
+
+                                            <td class="oi_ti_heading_td" style="background-color:#ffffff;overflow-wrap: anywhere;">
                                                 <p class="oi_ti_action_btn"><field name="tvs_signs_of_ovulation_ids" widget="many2many_tags" readonly="1"/></p>
                                             </td>
-                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
+                                            <td class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;overflow-wrap: anywhere;">
                                                 <p class="oi_ti_text_paragraph_td"><field name="oi_ti_diagnosis_ids"
                                                                                           options="{'no_open': True, 'no_create': True}"
                                                                                           placeholder="Diagnosis..." widget="many2many_tags"/></p>
@@ -563,24 +533,18 @@
                                             <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
                                                 <p class="oi_ti_text_paragraph_td"><strong>Cycle day:<field name="oi_ti_cycle_day"/></strong></p>
                                             </td>
-                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;">
-                                                <p class="oi_ti_text_paragraph_td"><strong><field name="oi_ti_follicle_left"/></strong></p>
+                                            <td class="oi_ti_heading_td" rowspan="2" style="background-color:#fff2cc;text-align: center;">
+                                                <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
                                             </td>
-                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;">
-                                                <p class="oi_ti_text_paragraph_td"><strong><field name="oi_ti_follicle_right"/></strong></p>
+                                            <td class="oi_ti_heading_td" rowspan="2" style="background-color:#fff2cc;text-align: center;overflow-wrap: anywhere;">
+                                                <p class="oi_ti_text_paragraph_td"><field name="dominant_follicle_left"/></p>
                                             </td>
-                                            <!--                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">-->
-                                            <!--                                        <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>-->
-                                            <!--                                    </td>-->
-                                            <!--&lt;!&ndash;                                    <td class="oi_ti_heading_td" style="background-color:#fff2cc;">&ndash;&gt;-->
-                                            <!--&lt;!&ndash;                                        <p class="oi_ti_text_paragraph_td">None</p>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
-                                            <!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-                                            <!--                                        <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>-->
-                                            <!--                                    </td>-->
-                                            <!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-                                            <!--                                        <p class="oi_ti_text_paragraph_td">None</p>-->
-                                            <!--                                    </td>-->
+                                            <td class="oi_ti_heading_td" rowspan="2" style="background-color:#d9ead3;text-align: center;">
+                                                <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
+                                            </td>
+                                            <td class="oi_ti_heading_td" rowspan="2" style="background-color:#d9ead3;text-align: center;overflow-wrap: anywhere;">
+                                                <p class="oi_ti_text_paragraph_td"><field name="dominant_follicle_right"/></p>
+                                            </td>
                                             <td class="oi_ti_heading_td" style="background-color:#ffffff;">
                                                 <p class="oi_ti_text_paragraph_td">CET: <field name="oi_ti_cet"/></p>
                                             </td>
@@ -590,41 +554,15 @@
                                         </tr>
                                         <tr style="height:26.25pt;">
                                             <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
-                                                <p class="oi_ti_text_paragraph_td"><strong>AFC (R+L):</strong></p>
-                                            </td>
-                                            <td colspan="4" class="oi_ti_heading_td" style="background-color:#89e39c;text-align: center;">
-                                                <p class="oi_ti_text_paragraph_td"><strong>Dominant Follicle(s)</strong></p>
+                                                <p class="oi_ti_text_paragraph_td"><strong>AFC (R+L): <field name="afc_computed"/></strong></p>
                                             </td>
 
-                                            <!--                                    <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;">-->
-                                            <!--                                        <p class="oi_ti_text_paragraph_td"><field name="oi_ti_cyst_computed"/></p>-->
-                                            <!--                                    </td>-->
-                                            <!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-                                            <!--                                        <p class="oi_ti_text_paragraph_td">Cyst(s)</p>-->
-                                            <!--                                    </td>-->
-                                            <!--                                    <td class="oi_ti_heading_td" style="background-color:#d9ead3;">-->
-                                            <!--                                        <p class="oi_ti_text_paragraph_td">None</p>-->
-                                            <!--                                    </td>-->
-                                            <td>
-                                                <p class="oi_ti_text_paragraph_td">Endometrial character: <field name="oi_ti_endometrial_character"/></p>
-                                            </td>
-                                        </tr>
-                                        <tr style="height:26.25pt;">
-                                            <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
-                                                <p class="oi_ti_text_paragraph_td"><strong></strong></p>
-                                            </td>
-                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;text-align: center;">
-                                                <p class="oi_ti_text_paragraph_td"><strong>None</strong></p>
-                                            </td>
-                                            <td colspan="2" class="oi_ti_heading_td" style="background-color:#d9ead3;text-align: center;">
-                                                <p class="oi_ti_text_paragraph_td"><strong>None</strong></p>
-                                            </td>
 
                                             <td>
-                                                <p class="oi_ti_text_paragraph_td">Cyst(s):<field name="oi_ti_cyst_computed"/></p>
-                                            </td>
-                                            <td  style="background-color:#f4cccc;"/>
+                                                <p class="oi_ti_text_paragraph_td"><strong>Endometrial character: </strong><field name="oi_ti_endometrial_character"/></p>
+                                                <p class="oi_ti_text_paragraph_td"><strong>Cyst(s):</strong><field name="oi_ti_cyst_computed"/></p>                                    </td>
                                         </tr>
+
                                         <tr style="height:15.75pt;">
                                             <td colspan="7" style="border-top:0.75pt solid #cccccc; padding:2pt 1.62pt; vertical-align:top; background-color:#f4cccc;">
                                                 <p class="oi_ti_text_paragraph_td">Comments: <field name="oi_ti_comments" placeholder="comments..."/></p>

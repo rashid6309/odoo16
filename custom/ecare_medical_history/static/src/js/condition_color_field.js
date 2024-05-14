@@ -12,13 +12,13 @@ class ConditionColorWidget extends Field {
         this.input = useRef('inputfloat');
         this.input_id = this.props.id;
         var labelName = this.props.name;
-        var timeline_id = this.props.record.data.timeline_patient_id;
+        var timeline_id = this.props.record.data.id;
             onMounted(() => {
 //               $('label[for="' + labelName + '"]').css('color', 'red');
-               this.checkFunction(labelName, timeline_id[0]);
+               this.checkFunction(labelName, timeline_id);
             });
             onWillUpdateProps(nextProps => {
-              this.checkFunction(labelName, timeline_id[0]);
+              this.checkFunction(labelName, timeline_id);
             });
 
 
@@ -47,11 +47,12 @@ class ConditionColorWidget extends Field {
         ];
         var blueFieldNames = [
         ];
+
         for (var i = 0; i < redFieldNames.length; i++) {
             await rpc.query({
             model: 'ec.repeat.consultation',
             method: 'get_field_data_condition',
-            args: [redFieldNames[i],timeline_id],
+            args: [redFieldNames[i], timeline_id],
             })
             .then(function(result) {
                 if (result){

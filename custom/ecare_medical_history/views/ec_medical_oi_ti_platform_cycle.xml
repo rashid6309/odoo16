@@ -10,86 +10,28 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet class="container_cycle">
-                                <div style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
-                                monospace; font-size: large; border: none; outline: none; border-radius: 5px;">
-                                    Cycle/Attempt
-                                    <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}"
-                                        style="padding: 3px; font-family: 'Roboto Mono',
-                                        monospace; font-size: large;
+                        <div style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
+                                monospace; border: none; outline: none; border-radius: 5px;">
+                            Cycle Creation Date: <field name="create_date"/>
+                            <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned'])]}"
+                                style="padding: 3px; font-family: 'Roboto Mono',
+                                        monospace;
+                                        background:#aaff87 !important;
                                         border: none; outline: none;
                                          border-radius: 5px;width: 10rem;
                                         display: inline-block;float: right;">
-                                        <h3 class="bg-warning ribbon"
-                                            attrs="{'invisible': [('oi_ti_platform','not in',['abandoned'])]}"
-                                               style="top: 2rem; width: auto;
-                                               height: 2rem;border-radius: 5px;">
-                                            Abandoned
-                                        </h3>
-                                    </h3>
-                                </div>
-                        <nav class="navbar navbar-expand-lg navbar-dark"  id="navbarColor02">
-                            <div class="collapse navbar-collapse">
-                                <!--                                <ul class="navbar-nav mr-auto">-->
-                                <!--                                    <li class="nav-item">-->
-                                <!--                                        <p class="oi_ti_action_btn">-->
-                                <!--                                            <strong>-->
-                                <!--                                                <button-->
-                                <!--                                                        name="action_complete_attempt"-->
-                                <!--                                                        class="oi_ti_navbar_btn"-->
-                                <!--                                                        type="object"-->
-                                <!--                                                        string="COMPLETE ATTEMPT"/>-->
-                                <!--                                            </strong>-->
-                                <!--                                        </p>-->
-                                <!--                                    </li>-->
-                                <!--                                    <li class="nav-item" >-->
-                                <!--                                        <p class="oi_ti_action_btn">-->
-                                <!--                                            <button-->
-                                <!--                                                    name="action_create_oi_ti_platform_attempt"-->
-                                <!--                                                    class="oi_ti_navbar_btn"-->
-                                <!--                                                    type="object"-->
-                                <!--                                                    string="START NEW OI/TI ATTEMPT"/>-->
-                                <!--                                        </p>-->
-                                <!--                                    </li>-->
-                                <!--                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}">-->
-                                <!--                                        <p class="oi_ti_action_btn">-->
-                                <!--                                            <strong>-->
-                                <!--                                                <button-->
-                                <!--                                                        name="action_abandoned_attempt"-->
-                                <!--                                                        class="oi_ti_navbar_btn"-->
-                                <!--                                                        type="object"-->
-                                <!--                                                        string="ABANDON ATTEMPT"/>-->
-                                <!--                                            </strong>-->
-                                <!--                                        </p>-->
-                                <!--                                    </li>-->
-
-                                <!--                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['2nd_trigger','luteal_phase'])]}">-->
-                                <!--                                        <p class="oi_ti_action_btn">-->
-                                <!--                                            <strong>-->
-                                <!--                                                <button-->
-                                <!--                                                        name="action_2nd_trigger_attempt"-->
-                                <!--                                                        class="oi_ti_navbar_btn"-->
-                                <!--                                                        type="object"-->
-                                <!--                                                        string="SECOND TRIGGER"/>-->
-                                <!--                                            </strong>-->
-                                <!--                                        </p>-->
-                                <!--                                    </li>-->
-                                <!--                                    <li class="nav-item" attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}">-->
-                                <!--                                        <p class="oi_ti_action_btn">-->
-                                <!--                                            <strong>-->
-                                <!--                                                <button-->
-                                <!--                                                        name="action_start_luteal_phase_attempt"-->
-                                <!--                                                        class="oi_ti_navbar_btn"-->
-                                <!--                                                        type="object"-->
-                                <!--                                                        string="START LUTEAL PHASE"/>-->
-                                <!--                                            </strong>-->
-                                <!--                                        </p>-->
-                                <!--                                    </li>-->
-                                <!--                                </ul>-->
-                            </div>
-                        </nav>
-
-
-
+                                Abandoned
+                            </h3>
+                            <h3 attrs="{'invisible': [('oi_ti_platform','not in',['completed'])]}"
+                                style="padding: 3px; font-family: 'Roboto Mono',
+                                        monospace;
+                                        background:#aaff87 !important;
+                                        border: none; outline: none;
+                                         border-radius: 5px;width: 10rem;
+                                        display: inline-block;float: right;">
+                                Completed
+                            </h3>
+                        </div>
                         <group>
                             <field name="oi_ti_platform" readonly="1" invisible="1" force_save="1"/>
                             <field name="cycle_timeline_id" readonly="1" invisible="1" force_save="1"/>
@@ -98,15 +40,17 @@
                         <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                             <tbody>
                                 <tr style="height:15.75pt;">
-                                    <td colspan="3" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
-                                        <p class="oi_ti_action_btn"><strong>Cycle Creation Date: <field name="create_date"/></strong></p>
+                                    <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                        <p class="oi_ti_action_btn" style="text-align: left;"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
                                     </td>
-                                    <td colspan="4" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
-                                        <p class="oi_ti_action_btn"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
+                                </tr>
+                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['abandoned'])]}">
+                                    <td colspan="1" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
+                                        <p class="oi_ti_action_btn" style="text-align: left;"><strong>Abandoned Comments</strong></p>
                                     </td>
-                                    <!--                                    <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
-                                    <!--                                        <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->
-                                    <!--                                    </td>-->
+                                    <td colspan="6" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
+                                        <p class="oi_ti_action_btn" style="text-align: left;"><strong><field name="abandoned_comments" readonly="1"/></strong></p>
+                                    </td>
                                 </tr>
 
                                 <!--                                Exit Buttons-->
@@ -157,7 +101,7 @@
                                         <p class="oi_ti_action_btn"><strong><span>2nd Trigger regimen</span></strong></p>
                                     </td>
                                     <td class="oi_ti_heading_td">
-                                        <p class="oi_ti_action_btn"><strong><field name="trigger_regimen"/></strong></p>
+                                        <p class="oi_ti_action_btn"><strong><field name="second_trigger_regimen"/></strong></p>
                                     </td>
                                 </tr>
                                 <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
@@ -165,7 +109,7 @@
                                         <p class="oi_ti_action_btn"><strong><span>2nd Trigger date &amp; time</span></strong></p>
                                     </td>
                                     <td class="oi_ti_heading_td">
-                                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:115%; widows:0; orphans:0; font-size:8pt;"><span><field name="trigger_date_time"/></span></p>
+                                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:115%; widows:0; orphans:0; font-size:8pt;"><span><field name="second_trigger_date_time"/></span></p>
                                     </td>
                                 </tr>
                                 <!--                                End 2nd trigger-->
@@ -182,9 +126,6 @@
                             </tbody>
                         </table>
                         <field name="oi_ti_platform_attempt_ids" mode="kanban"/>
-                        <group>
-                            <field name="abandoned_comments" readonly="1"/>
-                        </group>
 
                     </sheet>
                     <div style="padding: 1rem; background: white; display: flex;" attrs="{'invisible': [('oi_ti_platform','in',['abandoned', 'completed'])]}">
@@ -220,6 +161,13 @@
                                 type="object"
                                 string="COMPLETE ATTEMPT"/>
                     </div>
+                    <script>
+                        var elements = document.querySelectorAll('.o_form_editable');
+                        elements.forEach(function(element) {
+                        element.classList.remove('d-flex');
+                        });
+
+                    </script>
                 </form>
 
             </field>
@@ -236,51 +184,42 @@
                 <kanban class="max_width_kanban" create="0">
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_card">
+                            <div t-attf-class="oe_kanban_global_click">
 <!--                                <div class="ribbon ribbon-top-right"-->
 <!--                                     attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}">-->
 <!--                                        <field class="bg-danger" style="top: 2rem; width: 12rem; left: 3rem; height: 3rem; font-size: 1rem;" name="oi_ti_platform"/>-->
 <!--                                </div>-->
 
-                                <!--                                <field name="oi_ti_platform_attempt_ids" mode="kanban" invisble="1"/>-->
                                 <!--                                <field name="html_table" widget="html"/>-->
                                 <div style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
-                                monospace; font-size: large; border: none; outline: none; border-radius: 5px;">
-                                    Cycle/Attempt
-                                     <button
-                                            name="action_open_attempt"
-                                            class="oi_ti_attempt_edit_btn"
-                                            type="object"
-                                            string="">
-                                        <i class="fa fa-edit fa-2x" aria-hidden="true"/>
-                                     </button>
-                                    <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}"
+                                monospace; border: none; outline: none; border-radius: 5px;">
+                                    Cycle Creation Date: <field name="create_date"/>
+                                    <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned','completed'])]}"
                                         style="padding: 3px; font-family: 'Roboto Mono',
-                                        monospace; font-size: large;
+                                        monospace;
+                                        background:#aaff87 !important;
                                         border: none; outline: none;
+                                        height: 1.8rem;
                                          border-radius: 5px;width: 10rem;
                                         display: inline-block;float: right;">
-                                        <field class="bg-warning ribbon"
-                                               style="top: 1rem; width: auto;
-                                               height: 2rem;border-radius: 5px;"
-                                               name="oi_ti_platform"/>
+                                        <field name="oi_ti_platform"/>
                                     </h3>
                                 </div>
                                 <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
                                     <tbody>
-
                                         <tr style="height:15.75pt;">
-                                            <td colspan="3" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
-                                                <p class="oi_ti_action_btn"><strong>Cycle Creation Date: <field name="create_date"/></strong></p>
+                                            <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
+                                                <p class="oi_ti_action_btn" style="text-align: left;"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
                                             </td>
-                                            <td colspan="4" class="oi_ti_computed_values_td" style="background-color:#ffc5ff;">
-                                                <p class="oi_ti_action_btn"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
-                                            </td>
-                                            <!--                                            <td colspan="2" class="oi_ti_attempt_diagnosis_td" style="background-color:#fff0f0;">-->
-                                            <!--                                                <p class="oi_ti_action_btn"><strong><span>ATTEMPT COMPLETED</span></strong></p>-->
-                                            <!--                                            </td>-->
                                         </tr>
-
+                                        <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['abandoned'])]}">
+                                            <td colspan="2" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
+                                                <p class="oi_ti_action_btn" style="text-align: left;"><strong>Abandoned Comments</strong></p>
+                                            </td>
+                                            <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
+                                                <p class="oi_ti_action_btn" style="text-align: left;"><strong><field name="abandoned_comments" readonly="1"/></strong></p>
+                                            </td>
+                                        </tr>
                                         <tr style="height:15.75pt;">
                                             <td class="oi_ti_computed_values_td">
                                                 <p class="oi_ti_action_btn"><strong><span>Trigger regimen</span></strong></p>

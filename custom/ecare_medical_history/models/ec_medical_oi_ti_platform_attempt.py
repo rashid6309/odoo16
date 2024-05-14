@@ -32,6 +32,9 @@ class EcMedicalOITIPlatform(models.Model):
                                                string='Sign of Ovulation')
 
     oi_ti_cyst_computed = fields.Html(string='Cyst', compute='_compute_visit_ultrasound_values')
+    afc_computed = fields.Char(string='AFC (R+L)', compute='_compute_visit_values')
+    dominant_follicle_left = fields.Char(string='Dominant Follicle', compute='_compute_visit_values')
+    dominant_follicle_right = fields.Char(string='Dominant Follicle', compute='_compute_visit_values')
 
     oi_ti_cet = fields.Char(string='CET', compute='_compute_visit_ultrasound_values')
     oi_ti_endometrial_character = fields.Char(string='Endometrial Character', compute='_compute_visit_ultrasound_values')
@@ -90,20 +93,20 @@ class EcMedicalOITIPlatform(models.Model):
             'oi_ti_follicle_left': cycle_id.repeat_consultation_id.tvs_lov,
             'oi_ti_follicle_right': cycle_id.repeat_consultation_id.tvs_rov,
             'oi_ti_attempt_state': 'in_progress',
-            'ot_ti_visit_tvs_id': cycle_id.repeat_consultation_id.repeat_tvs_id.id if not oi_ti_attempts else None,
+            'ot_ti_visit_tvs_id': cycle_id.repeat_consultation_id.repeat_tvs_id.id if not oi_ti_visits else None,
         }
         oi_ti_platform_attempt = self.env['ec.medical.oi.ti.platform.attempt'].create(vals)
-        return oi_ti_platform_attempt
+        # return oi_ti_platform_attempt
 
-        # return {
-        #     'type': 'ir.actions.act_window',
-        #     'name': 'OI/TI Visit',
-        #     'res_model': 'ec.medical.oi.ti.platform.attempt',
-        #     'res_id': oi_ti_platform_attempt.id,
-        #     'view_mode': 'form',
-        #     'view_id': self.env.ref('ecare_medical_history.view_ec_medical_oi_ti_platform_attempt_form').id,
-        #     "target": "new",
-        # }
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'OI/TI Visit',
+            'res_model': 'ec.medical.oi.ti.platform.attempt',
+            'res_id': oi_ti_platform_attempt.id,
+            'view_mode': 'form',
+            'view_id': self.env.ref('ecare_medical_history.view_ec_medical_oi_ti_platform_attempt_form').id,
+            "target": "new",
+        }
 
     @api.onchange('tvs_lov', 'tvs_rov', 'tvs_lining_size_decimal', 'tvs_other_text', 'tvs_smooth', 'tvs_distorted', 'tvs_triple_echo',
                   'tvs_hyperechoic_solid', 'tvs_suspected_cavity_lesion', 'tvs_menstruating', 'tvs_cyst_size_ids')
@@ -151,8 +154,19 @@ class EcMedicalOITIPlatform(models.Model):
         if self:
             for visit in self:
                 visit.lmp_date = visit.attempt_cycle_id.repeat_consultation_id.lmp_question_four
+                visit.afc_computed = len(visit.oi_ti_follicle_left.split(',')) + len(visit.oi_ti_follicle_right.split(','))
+                follicle_left = visit.oi_ti_follicle_left.split(',')
+                follicle_right = visit.oi_ti_follicle_right.split(',')
+                dominant_follicle_left_raw = [num for num in follicle_left if
+                                                (num.isdigit() and (int(num) >= 12) or num == '>22')]
+                dominant_follicle_right_raw = [num for num in follicle_right if
+                                                 (num.isdigit() and (int(num) >= 12) or num == '>22')]
+                if dominant_follicle_right_raw:
+                    visit.dominant_follicle_right = [int(num) for num in dominant_follicle_right_raw if num.isdigit()]
+                else:
+                    visit.dominant_follicle_right = None
 
-
-
-
-
+                if dominant_follicle_left_raw:
+                    visit.dominant_follicle_left = [int(num) for num in dominant_follicle_left_raw if num.isdigit()]
+                else:
+                    visit.dominant_follicle_left = None

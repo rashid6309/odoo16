@@ -776,7 +776,7 @@ class StaticMember:
     TREATMENT_STATUS = [
         ('none', 'None'),
         ('instantiate', 'Instantiate'),
-        ('approval', 'Approval'),
+        ('approval', 'Decision Pending'),
         ('treatment_started', 'Treatment Started'),
     ]
 

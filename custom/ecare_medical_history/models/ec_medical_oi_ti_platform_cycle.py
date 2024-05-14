@@ -26,6 +26,11 @@ class EcMedicalOITIPlatformCycle(models.Model):
     trigger_date_time = fields.Datetime(
         default=fields.datetime.now(),
         string='Trigger date & time')
+    second_trigger_regimen = fields.Selection(selection=StaticMember.TRIGGER_REGIMEN,
+                                       string='Trigger regimen')
+    second_trigger_date_time = fields.Datetime(
+        default=fields.datetime.now(),
+        string='Trigger date & time')
     indication_of_iui = fields.Selection(selection=StaticMember.INDICATION_OF_IUI,
                                          string='Indication for IUI')
     insemination = fields.Selection(selection=StaticMember.INSEMINATION,
@@ -41,7 +46,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
     cycle_timeline_id = fields.Many2one(comodel_name='ec.patient.timeline')
     repeat_consultation_id = fields.Many2one(comodel_name='ec.repeat.consultation')
     html_table = fields.Html(string='Table', compute='computed_value')
-    abandoned_comments = fields.Text(string='Abandoned Comments')
+    abandoned_comments = fields.Char(string='Abandoned Comments')
 
     def _compute_cycle_day(self):
         for record in self:
