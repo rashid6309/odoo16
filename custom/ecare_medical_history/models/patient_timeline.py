@@ -263,7 +263,7 @@ class PatientTimeline(models.Model):
             for record in self:
                 if record.create_date_first_consultation:
                     if CustomDateTime.datetime_greater_than_today(record.create_date_first_consultation):
-                        record.create_date_first_consultation= None
+                        record.create_date_first_consultation = None
                         raise ValidationError(_(
                             "Date/Time can't be greater than current date time!"))
                     record.ec_create_date_first_consultation_computed = record.create_date_first_consultation
@@ -441,7 +441,7 @@ class PatientTimeline(models.Model):
             'male_hiv_date': ('HIV', 'male_hiv'),
             'male_mumps_date': ('Mumps', 'male_mumps'),
             'male_adrenal_date': ('Adrenal', 'male_adrenal'),
-            'male_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome', 
+            'male_anti_phospholipid_syndrome_date': ('Anti-phospholipid Syndrome',
                                                      'male_anti_phospholipid_syndrome_comments'),
             'male_autoimmune_disease_date': ('Autoimmune Diseases', 'male_autoimmune_disease'),
             'male_blood_transfusion_date': ('Blood Transfusion', 'male_blood_transfusion_comments'),
@@ -704,7 +704,7 @@ class PatientTimeline(models.Model):
         if self.show_repeat_consultation_history_section is False:
             self.show_repeat_consultation_history_section = True
             if self.ec_repeat_consultation_id:
-                self.ec_repeat_consultation_id.action_set_post_required_attributes() # Need to call this explicitly here.
+                self.ec_repeat_consultation_id.action_set_post_required_attributes()  # Need to call this explicitly here.
             return
 
         repeat_consultation_id = self.env['ec.repeat.consultation'].create(
@@ -1194,7 +1194,7 @@ class PatientTimeline(models.Model):
     def _compute_female_ot_ti_bmi(self):
         for record in self:
             if (record.female_ot_ti_weight and record.female_ot_ti_height and
-                    float(record.female_ot_ti_weight) > 0 and float(record.female_ot_ti_height)>0) :
+                    float(record.female_ot_ti_weight) > 0 and float(record.female_ot_ti_height) > 0):
                 height_in_meters = float(record.female_ot_ti_height) / 100
                 record.female_ot_ti_bmi = round(float(record.female_ot_ti_weight) / (height_in_meters ** 2), 2)
             else:
@@ -1249,6 +1249,27 @@ class PatientTimeline(models.Model):
             value = getattr(self.ec_repeat_consultation_id, field)
             if value is None or value is False:
                 raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
+
+        if self.ec_repeat_consultation_id.treatment_state == 'approval':
+            field_decision = ['menopause_sign_suspicion_decision',
+                              'female_ot_ti_bmi_decision',
+                              'fsh_lh_amh_acceptable_decision',
+                              'tubal_patency_test_dropdown_decision',
+                              'cervical_incompetence_diagnosis_decision',
+                              'uterine_tubal_anomalies_decision',
+                              'male_semen_analysis_decision',
+                              'risk_inability_male_decision',
+                              'counselling_multiple_birth_decision',
+                              'counselling_failure_treatment_decision',
+                              'counselling_lower_success_rate_decision',
+                              'oi_ti_additional_comments',
+                              'counselling_high_bmi_decision']
+            for field in field_decision:
+                formatted_field_name = field.replace('_', ' ').title()
+                value = getattr(self.ec_repeat_consultation_id, field)
+                if value is None or value is False:
+                    raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
+
         proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
         repeat_ui_ti_add = self.env.context.get('repeat_ui_ti_add')
         repeat_consultation_id = self.ec_repeat_consultation_id.id
@@ -1568,6 +1589,3 @@ class PatientTimeline(models.Model):
         # Check if the current user has the role of senior_doctor
         if not self.env.user.has_group('ecare_medical_history.group_ec_medical_senior_doctor'):
             raise UserError("Logged in user does not have the access to change decision fields.")
-
-
-

@@ -1225,20 +1225,17 @@
 													<label for="fsh_lh_amh_acceptable"/>
 													<span/>
 													<field name="fsh_lh_amh_acceptable" nolabel="1" widget="radio" options="{'horizontal': True}"/>
-													<field name="fsh_lh_amh_acceptable_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('fsh_lh_amh_acceptable', '!=', 'no')],
-													 'required': [('treatment_state', '=', 'approval'),('fsh_lh_amh_acceptable', '=', 'no')]}" string="Decision"/>
+													<field name="fsh_lh_amh_acceptable_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('fsh_lh_amh_acceptable', '!=', 'no')]}" string="Decision"/>
 
 													<span/>
 													<label for="menopause_sign_suspicion"/>
 													<span/>
 													<field name="menopause_sign_suspicion" widget="radio" nolabel="1" options="{'horizontal': True}"/>
-													<field name="menopause_sign_suspicion_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('menopause_sign_suspicion', '!=', 'yes')],
-													 'required': [('treatment_state', '=', 'approval'),('menopause_sign_suspicion', '=', 'yes')]}" string="Decision"/>
+													<field name="menopause_sign_suspicion_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('menopause_sign_suspicion', '!=', 'yes')]}" string="Decision"/>
 													<field name="female_ot_ti_weight"/>
 													<field name="female_ot_ti_height"/>
 													<field name="female_ot_ti_bmi" widget="condition_color_widget" style="pointer-events: none;"/>
-													<field name="female_ot_ti_bmi_decision" force_save="1" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('female_ot_ti_bmi', '&lt;', 35)],
-													'required': [('treatment_state', '=', 'approval'),('female_ot_ti_bmi', '&gt;', 35)]}" string="Decision"/>
+													<field name="female_ot_ti_bmi_decision" force_save="1" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('female_ot_ti_bmi', '&lt;', 35)]}" string="Decision"/>
 													<!--													<field name="tubal_patency_test"-->
 													<!--														   widget="radio"-->
 													<!--														   options="{'horizontal': True}"/>-->
@@ -1254,22 +1251,19 @@
 													<label for="tubal_patency_test_dropdown" attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
 													<span/>
 													<field name="tubal_patency_test_dropdown" nolabel="1" attrs="{'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')],'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
-													<field name="tubal_patency_test_dropdown_decision" attrs="{'invisible': ['|','|',('tubal_patency_test', '!=', 'yes'),('tubal_patency_test_dropdown', 'not in', ['not_tested', 'both_blocked', 'restricted_spill']),('treatment_state', '!=', 'approval')],
-													 'required': [('treatment_state', '=', 'approval'),('tubal_patency_test_dropdown', 'in', ['not_tested', 'both_blocked', 'restricted_spill'])]}" string="Decision"/>
+													<field name="tubal_patency_test_dropdown_decision" attrs="{'invisible': ['|','|',('tubal_patency_test', '!=', 'yes'),('tubal_patency_test_dropdown', 'not in', ['not_tested', 'both_blocked', 'restricted_spill']),('treatment_state', '!=', 'approval')]}" string="Decision"/>
 													<span/>
 													<label for="cervical_incompetence_diagnosis"/>
 													<span/>
 													<field name="cervical_incompetence_diagnosis" widget="radio" nolabel="1" options="{'horizontal': True}"/>
-													<field name="cervical_incompetence_diagnosis_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('cervical_incompetence_diagnosis', '!=', 'yes')],
-													'required': [('treatment_state', '=', 'approval'),('cervical_incompetence_diagnosis', '=', 'yes')]}" string="Decision"/>
+													<field name="cervical_incompetence_diagnosis_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('cervical_incompetence_diagnosis', '!=', 'yes')]}" string="Decision"/>
 
 													<!--												<field name="results_await_label" string="Results-Awaits" attrs="{'invisible': [('fsh_lh_amh_acceptable', '!=', 'awaiting_results')]}"/>-->
 													<span/>
 													<label for="uterine_tubal_anomalies"/>
 													<span/>
 													<field name="uterine_tubal_anomalies" nolabel="1"/>
-													<field name="uterine_tubal_anomalies_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('uterine_tubal_anomalies', '!=', 'no_testing')],
-													  'required': [('treatment_state', '=', 'approval'),('uterine_tubal_anomalies', '=', 'no_testing')]}" string="Decision"/>
+													<field name="uterine_tubal_anomalies_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('uterine_tubal_anomalies', '!=', 'no_testing')]}" string="Decision"/>
 
 												</group>
 												<group string="Male Pre OI/TI Checklist">
@@ -1281,8 +1275,7 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="male_semen_analysis_decision"
-														   attrs="{'required': [('treatment_state', '=', 'approval'),('male_semen_analysis', '=', 'no')],
-														   'invisible': ['|', ('treatment_state', '!=', 'approval'),('male_semen_analysis', '!=', 'no')],}"
+														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('male_semen_analysis', '!=', 'no')]}"
 														   string="Decision"/>
 													<span/>
 													<label for="husband_availability_male"/>
@@ -1305,8 +1298,7 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="risk_inability_male_decision"
-														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('risk_inability_to_give_samples_male', '!=', 'yes')],
-														   'required': [('treatment_state', '=', 'approval'),('risk_inability_to_give_samples_male', '=', 'yes')]}" string="Decision"/>
+														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('risk_inability_to_give_samples_male', '!=', 'yes')]}" string="Decision"/>
 
 												</group>
 												<group string="Consents and risk assessment">
@@ -1318,8 +1310,7 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="counselling_multiple_birth_decision"
-														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_multiple_birth', '!=', 'no')],
-														   'required': [('treatment_state', '=', 'approval'),('counselling_multiple_birth', '=', 'no')]}"
+														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_multiple_birth', '!=', 'no')]}"
 														   string="Decision"/>
 
 													<span/>
@@ -1330,8 +1321,7 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="counselling_failure_treatment_decision"
-														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_failure_treatment', '!=', 'no')],
-														   'required': [('treatment_state', '=', 'approval'),('counselling_failure_treatment', '=', 'no')]}"
+														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_failure_treatment', '!=', 'no')]}"
 														   string="Decision"/>
 													<span/>
 													<label for="counselling_lower_success_rate"/>
@@ -1341,8 +1331,7 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="counselling_lower_success_rate_decision"
-														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_lower_success_rate', '!=', 'no')],
-														   'required': [('treatment_state', '=', 'approval'),('counselling_lower_success_rate', '=', 'no')]}"
+														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_lower_success_rate', '!=', 'no')]}"
 														   string="Decision"/>
 													<span/>
 													<label for="counselling_high_bmi"/>
@@ -1352,8 +1341,7 @@
 														   nolabel="1"
 														   options="{'horizontal': True}"/>
 													<field name="counselling_high_bmi_decision"
-														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_high_bmi', '!=', 'no')],
-														   'required': [('treatment_state', '=', 'approval'),('counselling_high_bmi', '=', 'no')]}"
+														   attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_high_bmi', '!=', 'no')]}"
 														   string="Decision"/>
 												</group>
 												<div class="d-flex flex-column" attrs="{'invisible':[('treatment_state', '!=', 'approval')]}">
@@ -1367,7 +1355,7 @@
 													<span/>
 													<field style="width: 55rem;" class="alert alert-warning" name="oi_ti_treatment_prompt_message" nolabel="1"/>
 													<!--													<field name="oi_ti_decisions" attrs="{'required':[('treatment_state', '=', 'approval')]}"/>-->
-													<field name="oi_ti_additional_comments" attrs="{'required':[('treatment_state', '=', 'approval')]}"/>
+													<field name="oi_ti_additional_comments"/>
 													<label for="action_proceed_to_ui_ti"/>
 													<div id="action_proceed_buttons">
 														<button name="action_proceed_to_ui_ti"
