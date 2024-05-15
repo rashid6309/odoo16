@@ -14,7 +14,7 @@
 
 				</div>
 				<div class="col-md-6">
-					<div class="header2-text">Current TP: <t t-out="data_values.current_treatment_pathways"/></div>
+					<div class="header2-text">Current RX: <t t-out="data_values.current_treatment_pathways"/></div>
 					<div class="header2-text">Last visit: 2 days ago</div>
 					<div class="header2-text">Next visit: <t t-out="data_values.next_visit"/></div>
 
