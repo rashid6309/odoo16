@@ -893,6 +893,28 @@
                                                                 <!--                                                                        </div>-->
                                                                 <!--                                                                    </div>-->
                                                                 <!--                                                                </div>-->
+                                                                <div class="text-900">
+
+                                                                <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
+                                                                    <field name="tvs_uterus_tvs_size"/>
+                                                                </div>
+                                                                <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
+                                                                    <span>Size</span>
+                                                                </div>
+                                                                <div class="d-inline-block ms-2" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+                                                                    <field name="tvs_uterus_tvs_position"/>
+                                                                </div>
+                                                                <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+                                                                    <span>Position</span>
+                                                                </div>
+                                                                <div class="d-inline-block ms-2" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
+                                                                    <field name="tvs_uterus_tvs_fiobrid"/>
+                                                                </div>
+                                                                <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
+                                                                    <span>Fiobrid</span>
+                                                                </div>
+                                                            </div>
+
                                                                    <div class="o_group row align-items-start" t-if="record.tvs_uterus_flexion.raw_value">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
                                                                         <div class="d-flex d-sm-contents flex-column">
@@ -963,19 +985,19 @@
                                                                                 <span class="o_form_label">Endometrial Character</span>
                                                                             </div>
                                                                             <div style="width: 50rem;">
-                                                                                <field name="tvs_smooth"/>
-                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Smooth</span>
-                                                                                <field name="tvs_distorted"/>
-                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Distorted</span>
-                                                                                <field name="tvs_triple_echo"/>
-                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Triple Echo</span>
-                                                                                <field name="tvs_hyperechoic_solid"/>
-                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Hyperechoic/Solid</span>
-                                                                                <field name="tvs_suspected_cavity_lesion"/>
-                                                                                <span for="tvs_smooth" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
+                                                                                <field name="tvs_smooth" attrs="{'invisible': [('tvs_smooth', '!=', True)]}"/>
+                                                                                <span for="tvs_smooth" attrs="{'invisible': [('tvs_smooth', '!=', True)]}" style=" margin-right: 1%; ">Smooth</span>
+                                                                                <field name="tvs_distorted" attrs="{'invisible': [('tvs_distorted', '!=', True)]}"/>
+                                                                                <span for="tvs_distorted" attrs="{'invisible': [('tvs_distorted', '!=', True)]}" style=" margin-right: 1%; ">Distorted</span>
+                                                                                <field name="tvs_triple_echo" attrs="{'invisible': [('tvs_triple_echo', '!=', True)]}"/>
+                                                                                <span for="tvs_triple_echo" attrs="{'invisible': [('tvs_triple_echo', '!=', True)]}" style=" margin-right: 1%; ">Triple Echo</span>
+                                                                                <field name="tvs_hyperechoic_solid" attrs="{'invisible': [('tvs_hyperechoic_solid', '!=', True)]}"/>
+                                                                                <span for="tvs_hyperechoic_solid" attrs="{'invisible': [('tvs_hyperechoic_solid', '!=', True)]}" style=" margin-right: 1%; ">Hyperechoic/Solid</span>
+                                                                                <field name="tvs_suspected_cavity_lesion" attrs="{'invisible': [('tvs_suspected_cavity_lesion', '!=', True)]}"/>
+                                                                                <span for="tvs_suspected_cavity_lesion" attrs="{'invisible': [('tvs_suspected_cavity_lesion', '!=', True)]}" style=" margin-right: 1%; ">Suspected Cavity Lesion</span>
                                                                                 <div class="d-flex">
-                                                                                    <field name="tvs_menstruating"/>
-                                                                                    <span for="tvs_menstruating" style=" margin-right: 1%; ">Menstruating</span>
+                                                                                    <field name="tvs_menstruating" attrs="{'invisible': [('tvs_menstruating', '!=', True)]}"/>
+                                                                                    <span for="tvs_menstruating" style=" margin-right: 1%; " attrs="{'invisible': [('tvs_menstruating', '!=', True)]}">Menstruating</span>
                                                                                 </div>
                                                                                 <field name="tvs_linining_ids"/>
                                                                             </div>
