@@ -409,11 +409,11 @@
 
 
 								<div class="d-flex scroll-to card-header-custom first_consultation_container" id="repeat_consultation_section_link">
-									<div class="col-10">
+									<div class="col-6">
 										<a data-bs-toggle="collapse" data-bs-target="#repeat_consultation_section" href="#">
 											<h4 class="mt-2 mb-0">Repeat Consultation</h4></a>
 									</div>
-									<div class="col-2 text-right" style="text-align: right">
+									<div class="col-6 text-right" style="text-align: right">
 										<field name="repeat_consultation_state" invisible="1"/>
 										<field name="treatment_state" invisible="1"/>
 										<button name="action_create_repeat_consultation"
@@ -424,11 +424,22 @@
 												onclick="showRepeatConsultationSection('repeat_consultation_section')">
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
-										<h5 class="mt-2 mb-0"
-											attrs="{'invisible':[('repeat_consultation_state', '!=', 'open')]}">
-											<span id="repeat_consultation_working_state" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
+										<div>
+											<div style="display: inline-block; ">
+												<h5 class="mt-2 mb-0" style="width:10rem;pointer-events: none;"
+													attrs="{'invisible':[('treatment_state', 'not in', ['instantiate', 'treatment_started', 'approval'])]}">
+													<span id="repeat_consultation_working_state" class="bg-warning" style="display: inline; border-radius: 12px; text-align: center;"><field class="o_readonly_modifier" name="repeat_treatment_advised_current"/></span>
 
-										</h5>
+												</h5>
+											</div>
+											<div style="display: inline-block; ">
+												<h5 class="mt-2 mb-0" style="width:11rem;"
+													attrs="{'invisible':[('repeat_consultation_state', '!=', 'open')]}">
+													<span id="repeat_consultation_working_state" class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">In progress</span>
+
+												</h5>
+											</div>
+										</div>
 										<!--										<h5 class="mt-2 mb-0"-->
 										<!--											attrs="{'invisible':[('treatment_state', '!=', 'approval')]}">-->
 										<!--											<span class="bg-warning" style="display: grid; border-radius: 12px; text-align: center;">Decision Pending</span>-->
@@ -1157,6 +1168,7 @@
 													   options="{'horizontal': True}"/>
 
 												<field name="repeat_treatment_advised"  attrs="{'readonly':[('treatment_state', '!=', 'none')]}"/>
+												<field name="repeat_treatment_advised_current"  invisible="1" attrs="{'readonly':[('treatment_state', '!=', 'none')]}"/>
 
 
 												<!--												<field name="repeat_treatment_advised_ids"-->

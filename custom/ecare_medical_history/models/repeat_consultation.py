@@ -182,6 +182,8 @@ class RepeatConsultation(models.Model):
 
     repeat_treatment_advised = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_ADVISED_LIST,
                                                 string='Treatment Pathway')
+    repeat_treatment_advised_current = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_ADVISED_LIST,
+                                                        string='Treatment Pathway')
 
     repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                    default='no',
@@ -421,6 +423,8 @@ class RepeatConsultation(models.Model):
         if self:
             if self.treatment_confirmation:
                 self.treatment_state = 'instantiate'
+                self.repeat_treatment_advised_current = self.repeat_treatment_advised
+                self.repeat_timeline_id.timeline_patient_id.patient_treatment_pathways_current = self.repeat_treatment_advised
             else:
                 raise UserError("Please show your consent with clicking the checkbox.")
 

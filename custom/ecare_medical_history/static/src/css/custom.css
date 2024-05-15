@@ -989,3 +989,11 @@ label[for="counselling_high_bmi_decision"] {
     color: red !important;
 }
 
+#repeat_treatment_advised_current{
+   appearance: none !important;
+}
+
+#treatment_state_1{
+   appearance: none !important;
+}
+
