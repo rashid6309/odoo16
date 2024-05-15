@@ -186,7 +186,6 @@ class RepeatConsultation(models.Model):
                                                         string='Treatment Pathway')
 
     repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                                   default='no',
                                                    string="Examination Required")
 
     repeat_gpe = fields.Text(string='GPE')
@@ -249,7 +248,6 @@ class RepeatConsultation(models.Model):
     repeat_other_findings = fields.Html(string="Other findings")
 
     scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                     default='no',
                                      string="Scan required?")
 
     repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO,

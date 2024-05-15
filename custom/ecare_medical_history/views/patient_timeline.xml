@@ -573,6 +573,8 @@
 												</group>
 												<group string="Investigations">
 													<field name="repeat_pregnancy_investigation_ids"
+														   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'yes')]}"
 														   options="{'no_create': True, 'no_open': True, 'no_quick_create': True}"
 														   widget="many2many_tags"/>
 													<field name="repeat_pregnancy_investigation_id_text"/>
@@ -1162,6 +1164,8 @@
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_investigations_ids"
 													   widget="many2many_tags"
+													   attrs="{'required': [('show_repeat_section_state', '=', True),
+													   ('question_one_choice', '=', 'no')]}"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
 												<field name="repeat_investigation_notes"/>
 
