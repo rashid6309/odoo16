@@ -881,6 +881,18 @@
 													   ('question_one_choice', '=', 'no')]}"
 													   options="{'horizontal': True}"/>
 												<field name="duplicated_lmp_question_four" force_save="1" style="width: 20% !important; pointer-events: none;"/>
+												<field name="repeat_cycle_day" force_save="1" style="width: 20% !important; pointer-events: none;"/>
+											</group>
+											<group attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+												<group>
+													<field name="duplicated_lmp_question_four"
+														   style="width: 40% !important;"/>
+												</group>
+												<group>
+													<field name="repeat_cycle_day"
+														   style="width: 55% !important;"
+														   force_save="1"/>
+												</group>
 											</group>
 
 											<!-- TVS Section -->
