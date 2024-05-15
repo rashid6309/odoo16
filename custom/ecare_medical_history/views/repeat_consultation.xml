@@ -633,6 +633,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
+                                                                         attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}"
                                                                          t-if="record.repeat_gpe.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">GPE</span>
@@ -642,6 +643,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
+                                                                         attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}"
                                                                          t-if="record.repeat_thyroid.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Thyroid</span>
@@ -651,6 +653,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
+                                                                         attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}"
                                                                          t-if="record.repeat_abdominal.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Abdominal</span>
@@ -660,6 +663,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
+                                                                         attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}"
                                                                          t-if="record.repeat_breast.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Breast</span>
@@ -669,6 +673,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
+                                                                         attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}"
                                                                          t-if="record.repeat_pelvic_examination_state.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Pelvic
@@ -682,7 +687,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class=" text-900">
+                                                            <div class=" text-900" attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
                                                                 <div class="d-inline-block">
                                                                     <field name="inspection_only"/>
                                                                 </div>
@@ -705,7 +710,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="o_group row align-items-start">
+                                                            <div class="o_group row align-items-start" attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
                                                                 <div class="o_inner_group grid col-lg-12 text-900 mt-1">
                                                                     <div class="d-flex d-sm-contents flex-column"
                                                                          t-if="record.repeat_findings_on_inspection.raw_value">
@@ -752,7 +757,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="d-flex flex-column text-900">
+                                                            <div class="d-flex flex-column text-900" attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
                                                                 <div class="d-inline-block">
                                                                     <h5>Swab Taken</h5>
                                                                 </div>
@@ -779,7 +784,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="o_group row align-items-start">
+                                                            <div class="o_group row align-items-start" attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
                                                                 <div class="o_inner_group grid col-lg-12 text-900 mt-1">
 
                                                                     <div class="d-flex d-sm-contents flex-column"
@@ -796,7 +801,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="text-900">
+                                                            <div class="text-900" attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}">
 
                                                                 <div class="d-inline-block">
                                                                     <field name="repeat_pap_smear_done"/>
@@ -817,6 +822,7 @@
                                                                 <div class="o_inner_group grid col-lg-12 text-900 mt-1">
 
                                                                     <div class="d-flex d-sm-contents flex-column"
+                                                                         attrs="{'invisible': [('repeat_examination_required', '!=', 'yes')]}"
                                                                          t-if="record.repeat_other_findings.raw_value">
                                                                         <div>
                                                                             <span class="o_form_label">Other Findings
@@ -845,6 +851,28 @@
                                                                         </div>
                                                                         <div>
                                                                             <field name="repeat_ultrasound_type"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         attrs="{'invisible': [('scan_required', '!=', 'yes')]}"
+                                                                         t-if="record.lmp_question_four.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">LMP
+                                                                            </span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="lmp_question_four"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex d-sm-contents flex-column"
+                                                                         attrs="{'invisible': [('scan_required', '!=', 'yes')]}"
+                                                                         t-if="record.repeat_cycle_day.raw_value">
+                                                                        <div>
+                                                                            <span class="o_form_label">Cycle Day
+                                                                            </span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <field name="repeat_cycle_day"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1020,7 +1048,7 @@
                                                             <div class="o_group row align-items-start">
                                                                 <div class="o_inner_group grid col-lg-12 text-900">
                                                                     <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.tvs_signs_of_ovulation_ids.raw_value">
+                                                                          attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
                                                                         <div>
                                                                             <span class="o_form_label"  style="font-weight:700;">
                                                                                 Signs of Ovulation
@@ -1031,7 +1059,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
-                                                                         t-if="record.tv_diagnosis.raw_value">
+                                                                          attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
                                                                         <div>
                                                                             <span class="o_form_label" style="font-weight:700;">
                                                                                 Diagnosis of Ultrasound

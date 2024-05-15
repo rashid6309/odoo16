@@ -44,7 +44,7 @@ class PregnancyForm(models.Model):
                                                           column1="medical_pregnancy_id",
                                                           column2="investigation_id",
                                                           string="Investigation")
-    repeat_pregnancy_investigation_id_text = fields.Char(string="Investigation Notes")
+    repeat_pregnancy_investigation_id_text = fields.Html(string="Investigation Notes")
 
     repeat_pregnancy_type_sample_obtained = fields.Char(string="Type of Sample Obtained")
 
