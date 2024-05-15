@@ -171,7 +171,6 @@ class RepeatConsultation(models.Model):
                                                     string='Treatment Pathway')
 
     repeat_examination_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                                   default='no',
                                                    string="Examination Required")
 
     repeat_gpe = fields.Text(string='GPE')
@@ -234,7 +233,6 @@ class RepeatConsultation(models.Model):
     repeat_other_findings = fields.Html(string="Other findings")
 
     scan_required = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
-                                     default='no',
                                      string="Scan required?")
 
     repeat_new_treatment_pathway = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
@@ -378,6 +376,17 @@ class RepeatConsultation(models.Model):
 
     def action_open_tvs_form(self):
         return self.env['ec.medical.tvs'].action_open_form_view(self, target='new')
+
+    def action_open_repeat_consultation_section(self):
+        return {
+            'name': 'Patient Timeline',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'views': [(False, 'form')],
+            'res_model': 'ec.patient.timeline',
+            'res_id': self.repeat_timeline_id.id,
+            'target': 'main',
+        }
 
     def action_direct_delete_repeat_consultation_section(self):
         timeline_id = self.repeat_timeline_id
