@@ -1193,6 +1193,11 @@
                             class="btn btn-primary m-2"
                             groups="ecare_medical_history.group_ec_medical_administrator"
                             string="Delete Consultation"/>
+                    <button name="action_open_repeat_consultation_section"
+                            type="object"
+                            class="btn btn-primary m-2"
+                            groups="ecare_medical_history.group_ec_medical_administrator"
+                            string="Open Consultation"/>
                 </tree>
             </field>
         </record>
