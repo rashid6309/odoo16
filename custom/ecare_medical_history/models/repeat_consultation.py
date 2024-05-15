@@ -444,6 +444,17 @@ class RepeatConsultation(models.Model):
         else:
             return False
 
+    def action_open_repeat_consultation_section(self):
+        return {
+            'name': 'Patient Timeline',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'views': [(False, 'form')],
+            'res_model': 'ec.patient.timeline',
+            'res_id': self.repeat_timeline_id.id,
+            'target': 'main',
+        }
+
     def action_direct_delete_repeat_consultation_section(self):
         timeline_id = self.repeat_timeline_id
         existing_repeat = self.env['ec.repeat.consultation'].search([
