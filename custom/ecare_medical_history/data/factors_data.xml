@@ -11,5 +11,16 @@
             <field name="type">female</field>
             <field name="color">1</field>
         </record>
+
+        <record model="ec.medical.factors" id="high_risk_male">
+            <field name="name">High Risk OI/TI</field>
+            <field name="type">male</field>
+            <field name="color">1</field>
+        </record>
+        <record model="ec.medical.factors" id="high_risk_female">
+            <field name="name">High Risk OI/TI</field>
+            <field name="type">female</field>
+            <field name="color">1</field>
+        </record>
     </data>
 </odoo>

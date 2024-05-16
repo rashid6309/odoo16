@@ -1303,6 +1303,16 @@ class PatientTimeline(models.Model):
             self.action_save_repeat_consultation_section()
             oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
             self.ec_repeat_consultation_id.treatment_state = 'treatment_started'
+            record_male = self.env.ref('ecare_medical_history.high_risk_male', raise_if_not_found=False)
+            record_female = self.env.ref('ecare_medical_history.high_risk_female', raise_if_not_found=False)
+            if record_female:
+                if record_female not in self.female_factor_ids:
+                    self.female_factor_ids |= record_female
+            if record_male:
+                if record_male not in self.male_factor_ids:
+                    self.male_factor_ids |= record_male
+            else:
+                print("Record not found")
             return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
         message = ("One or more contraindications to OI/TI have been identified and highlighted and therefore, "
                    "you cannot authorise OI/TI treatment "
