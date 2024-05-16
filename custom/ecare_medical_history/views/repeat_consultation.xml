@@ -965,7 +965,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="o_group row align-items-start">
+                                                                <div class="o_group row align-items-start" t-if="record.repeat_uterus_fibroid_computed.raw_value">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
                                                                         <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
@@ -1039,7 +1039,7 @@
                                                                                 <field attrs="{'invisible': [('tvs_left_ovary_not_visualised', '!=', True)]}" name="tvs_left_ovary_not_visualised"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_uterus_size_x.raw_value.raw_value">
                                                                             <div>
                                                                                 <span class="o_form_label">Cyst (cm)</span>
                                                                             </div>
