@@ -980,7 +980,7 @@
 
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
-                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_smooth.raw_value or record.tvs_distorted.raw_value or record.tvs_triple_echo.raw_value or record.tvs_hyperechoic_solid.raw_value or record.tvs_suspected_cavity_lesion.raw_value or record.tvs_menstruating.raw_value">
                                                                             <div>
                                                                                 <span class="o_form_label">Endometrial Character</span>
                                                                             </div>
