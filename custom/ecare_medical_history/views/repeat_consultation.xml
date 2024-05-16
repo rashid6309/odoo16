@@ -930,17 +930,17 @@
 
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
-                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.position_to_left.raw_value or record.position_to_right.raw_value or record.position_mid_position.raw_value">
                                                                             <div>
                                                                                 <span class="o_form_label">Position</span>
                                                                             </div>
                                                                             <div class="d-flex">
-                                                                                <field name="position_to_left"/>
-                                                                                <span for="position_to_left" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
-                                                                                <field name="position_to_right"/>
-                                                                                <span for="position_to_right" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
-                                                                                <field name="position_mid_position"/>
-                                                                                <span for="position_mid_position" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
+                                                                                <field name="position_to_left" attrs="{'invisible': [('position_to_left', '!=', True)]}"/>
+                                                                                <span for="position_to_left" attrs="{'invisible': [('position_to_left', '!=', True)]}" style=" margin-right: 1%;width:9rem;">Deviated to Left</span>
+                                                                                <field name="position_to_right" attrs="{'invisible': [('position_to_right', '!=', True)]}"/>
+                                                                                <span for="position_to_right" attrs="{'invisible': [('position_to_right', '!=', True)]}" style=" margin-right: 1%;     width:9rem;">Deviated to Right</span>
+                                                                                <field name="position_mid_position" attrs="{'invisible': [('position_mid_position', '!=', True)]}"/>
+                                                                                <span for="position_mid_position" attrs="{'invisible': [('position_mid_position', '!=', True)]}" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
                                                                             </div>
 <!--                                                                            <div>-->
 <!--                                                                                -->
@@ -1015,7 +1015,7 @@
 
                                                                 <div class="o_group row align-items-start">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
-                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_rov.raw_value or record.tvs_right_ovary_not_visualised.raw_value">
                                                                             <div>
                                                                                 <span class="o_form_label">ROV</span>
                                                                             </div>
@@ -1023,11 +1023,11 @@
                                                                                 <span t-if="record.tvs_rov.raw_value">
                                                                                     <field name="tvs_rov" style=" margin-right: 3%; "/>
                                                                                 </span>
-                                                                                <label for="tvs_right_ovary_not_visualised">Not Visualised</label>
-                                                                                <field name="tvs_right_ovary_not_visualised"/>
+                                                                                <label attrs="{'invisible': [('tvs_right_ovary_not_visualised', '!=', True)]}" for="tvs_right_ovary_not_visualised">Not Visualised</label>
+                                                                                <field attrs="{'invisible': [('tvs_right_ovary_not_visualised', '!=', True)]}" name="tvs_right_ovary_not_visualised"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column">
+                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_lov.raw_value or record.tvs_left_ovary_not_visualised.raw_value">
                                                                             <div>
                                                                                 <span class="o_form_label">LOV</span>
                                                                             </div>
@@ -1035,8 +1035,8 @@
                                                                                 <span t-if="record.tvs_lov.raw_value">
                                                                                     <field name="tvs_lov" style=" margin-right: 3%; "/>
                                                                                 </span>
-                                                                                <label for="tvs_left_ovary_not_visualised">Not Visualised</label>
-                                                                                <field name="tvs_left_ovary_not_visualised"/>
+                                                                                <label attrs="{'invisible': [('tvs_left_ovary_not_visualised', '!=', True)]}" for="tvs_left_ovary_not_visualised">Not Visualised</label>
+                                                                                <field attrs="{'invisible': [('tvs_left_ovary_not_visualised', '!=', True)]}" name="tvs_left_ovary_not_visualised"/>
                                                                             </div>
                                                                         </div>
                                                                         <div class="d-flex d-sm-contents flex-column">

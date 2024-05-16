@@ -822,7 +822,7 @@ select:hover{
     border: 1px solid #000000;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 9999;
-    height: 41rem;
+    height: auto;
   }
 
 #female_bp_upper
