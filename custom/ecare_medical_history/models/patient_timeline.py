@@ -1250,25 +1250,30 @@ class PatientTimeline(models.Model):
             if value is None or value is False:
                 raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
 
-        # if self.ec_repeat_consultation_id.treatment_state == 'approval':
-        #     field_decision = ['menopause_sign_suspicion_decision',
-        #                       'female_ot_ti_bmi_decision',
-        #                       'fsh_lh_amh_acceptable_decision',
-        #                       'tubal_patency_test_dropdown_decision',
-        #                       'cervical_incompetence_diagnosis_decision',
-        #                       'uterine_tubal_anomalies_decision',
-        #                       'male_semen_analysis_decision',
-        #                       'risk_inability_male_decision',
-        #                       'counselling_multiple_birth_decision',
-        #                       'counselling_failure_treatment_decision',
-        #                       'counselling_lower_success_rate_decision',
-        #                       'oi_ti_additional_comments',
-        #                       'counselling_high_bmi_decision']
-        #     for field in field_decision:
-        #         formatted_field_name = field.replace('_', ' ').title()
-        #         value = getattr(self.ec_repeat_consultation_id, field)
-        #         if value is None or value is False:
-        #             raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
+        if self.ec_repeat_consultation_id.treatment_state == 'approval':
+            field_decision = ['menopause_sign_suspicion_decision',
+                              'female_ot_ti_bmi_decision',
+                              'fsh_lh_amh_acceptable_decision',
+                              'tubal_patency_test_dropdown_decision',
+                              'cervical_incompetence_diagnosis_decision',
+                              'uterine_tubal_anomalies_decision',
+                              'male_semen_analysis_decision',
+                              'risk_inability_male_decision',
+                              'counselling_multiple_birth_decision',
+                              'counselling_failure_treatment_decision',
+                              'counselling_lower_success_rate_decision',
+                              'oi_ti_additional_comments',
+                              'counselling_high_bmi_decision']
+            for field in field_decision:
+                updated_field = field.replace("_decision", "")
+
+                check_required_status = self.ec_repeat_consultation_id.get_field_data_condition(field_name=updated_field,
+                                                                                                timeline_id=self.id)
+                if check_required_status:
+                    formatted_field_name = field.replace('_', ' ').title()
+                    value = getattr(self.ec_repeat_consultation_id, field)
+                    if value is None or value is False:
+                        raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
 
         proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
         repeat_ui_ti_add = self.env.context.get('repeat_ui_ti_add')
