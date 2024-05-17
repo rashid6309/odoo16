@@ -1,3 +1,5 @@
+from datetime import date
+
 from odoo import models, api, fields
 from odoo.exceptions import UserError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
@@ -14,6 +16,7 @@ class EcMedicalOITIPlatform(models.Model):
     ot_ti_visit_tvs_id = fields.Many2one(comodel_name="ec.medical.tvs")
 
     oi_ti_cycle_day = fields.Integer(string='Cycle Day', related='attempt_cycle_id.cycle_day')
+    oi_ti_oi_day = fields.Char(string='OI day', compute='_compute_visit_values')
     lmp_date = fields.Date(string='LMP', compute='_compute_visit_values')
     preparation_method = fields.Selection(selection=StaticMember.PREPARATION_METHOD, string='Preparation Method')
     oi_ti_attempt_state = fields.Selection(selection=StaticMember.OI_TI_ATTEMPT_STATE, string='State',
@@ -154,6 +157,8 @@ class EcMedicalOITIPlatform(models.Model):
         if self:
             for visit in self:
                 visit.lmp_date = visit.attempt_cycle_id.repeat_consultation_id.lmp_question_four
+                current_date = date.today()
+                visit.oi_ti_oi_day = (current_date - visit.attempt_cycle_id.create_date.date()).days + 1
                 visit.afc_computed = len(visit.oi_ti_follicle_left.split(',')) + len(visit.oi_ti_follicle_right.split(','))
                 follicle_left = visit.oi_ti_follicle_left.split(',')
                 follicle_right = visit.oi_ti_follicle_right.split(',')

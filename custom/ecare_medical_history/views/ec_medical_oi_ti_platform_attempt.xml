@@ -31,7 +31,7 @@
                                 </tr>
                                 <tr style="height:15.75pt;">
                                     <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
-                                        <p class="oi_ti_text_paragraph_td">OI day: 3</p>
+                                        <p class="oi_ti_text_paragraph_td">OI day: <field name="oi_ti_oi_day"/></p>
                                     </td>
                                     <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;width: 15rem;">
                                         <p class="oi_ti_action_btn"><strong>LEFT OVARY</strong></p>
@@ -487,7 +487,7 @@
                                         </tr>
                                         <tr style="height:15.75pt;">
                                             <td class="oi_ti_computed_values_td" style="background-color:#f4cccc;">
-                                                <p class="oi_ti_text_paragraph_td">OI day: 3</p>
+                                                <p class="oi_ti_text_paragraph_td">OI day:  <field name="oi_ti_oi_day"/></p>
                                             </td>
                                             <td colspan="2" class="oi_ti_heading_td" style="background-color:#fff2cc;width: 15rem;">
                                                 <p class="oi_ti_action_btn"><strong>LEFT OVARY</strong></p>

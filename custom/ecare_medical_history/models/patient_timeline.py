@@ -1214,9 +1214,9 @@ class PatientTimeline(models.Model):
         oi_ti_platform_attempt_ref = self.env['ec.medical.oi.ti.platform.attempt']
         oi_ti_platform_attempt_ref.create_oi_ti_platform_attempt(self, self.ec_repeat_consultation_id)
 
-    def action_treatment_state_instantiate(self):
+    def action_treatment_state_initiated(self):
         if self:
-            self.ec_repeat_consultation_id.action_treatment_state_instantiate()
+            self.ec_repeat_consultation_id.action_treatment_state_initiated()
 
     def action_proceed_to_ui_ti(self):
         fields = [

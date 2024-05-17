@@ -425,7 +425,7 @@
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
 										<div>
-											<div style="display: inline-block; " attrs="{'invisible':['|', ('repeat_consultation_state', '!=', 'open'),('treatment_state', 'not in', ['instantiate', 'treatment_started', 'approval'])]}">
+											<div style="display: inline-block; " attrs="{'invisible':['|', ('repeat_consultation_state', '!=', 'open'),('treatment_state', 'not in', ['initiated', 'treatment_started', 'approval'])]}">
 												<h5 class="mt-2 mb-0" style="width:auto;pointer-events: none;">
 													<span id="repeat_consultation_working_state" class="bg-warning" style="display: inline; border-radius: 12px; text-align: center;"><field class="o_readonly_modifier" name="repeat_treatment_advised_current"/></span>
 
@@ -1205,7 +1205,7 @@
 											<div attrs="{'invisible': ['|',('repeat_new_treatment_pathway', '!=', 'yes'),('treatment_state', '!=', 'none')]}"
 												 style=" width: 12rem; "
 												 class="d-flex flex-column">
-												<button name="action_treatment_state_instantiate"
+												<button name="action_treatment_state_initiated"
 														type="object"
 														confirm="This is irreversible action, you can't undo this once you proceed."
 														class="btn btn-success m-3"

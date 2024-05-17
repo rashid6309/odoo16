@@ -417,10 +417,10 @@ class RepeatConsultation(models.Model):
         if self:
             self.treatment_state = 'approval'
 
-    def action_treatment_state_instantiate(self):
+    def action_treatment_state_initiated(self):
         if self:
             if self.treatment_confirmation:
-                self.treatment_state = 'instantiate'
+                self.treatment_state = 'initiated'
                 self.repeat_treatment_advised_current = self.repeat_treatment_advised
                 self.repeat_timeline_id.timeline_patient_id.patient_treatment_pathways_current = self.repeat_treatment_advised
             else:
