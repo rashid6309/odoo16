@@ -138,20 +138,34 @@ class EcMedicalOITIPlatform(models.Model):
                 else:
                     record.oi_ti_endometrial_character = None
                 if tvs_record.tvs_cyst_size_ids:
-                    table_rows = []
+                    grouped_data = {}
+
                     for rec in tvs_record.tvs_cyst_size_ids:
                         type_value = dict(
-                            self.env['ec.generic.size']._fields['type'].selection).get(
-                            rec.type, '')
-
+                            self.env['ec.generic.size']._fields['type'].selection).get(rec.type, '')
                         size_x_value = str(rec.generic_size_x) if rec.generic_size_x is not False else '-'
                         size_y_value = str(rec.generic_size_y) if rec.generic_size_y is not False else '-'
-                        table_row = f"<tr><td>{type_value}</td><td>{size_x_value},</td><td></td></tr>"
+
+                        size_value = size_x_value
+
+                        if type_value in grouped_data:
+                            grouped_data[type_value].append(size_value)
+                        else:
+                            grouped_data[type_value] = [size_value]
+
+                    # Create the table rows
+                    table_rows = []
+                    for type_value, sizes in grouped_data.items():
+                        combined_sizes = ','.join(sizes)
+                        table_row = f"<tr><td>{type_value}</td><td>{combined_sizes}</td></tr>"
                         table_rows.append(table_row)
+
                     dynamic_table = f"<table>{''.join(table_rows)}</table>"
                     record.oi_ti_cyst_computed = dynamic_table
                 else:
                     record.oi_ti_cyst_computed = ''
+
+            self._compute_visit_values()
 
     def _compute_visit_values(self):
         if self:
@@ -167,11 +181,14 @@ class EcMedicalOITIPlatform(models.Model):
                 dominant_follicle_right_raw = [num for num in follicle_right if
                                                  (num.isdigit() and (int(num) >= 12) or num == '>22')]
                 if dominant_follicle_right_raw:
-                    visit.dominant_follicle_right = [int(num) for num in dominant_follicle_right_raw if num.isdigit()]
+                    dominant_follicle_right_list = [int(num) for num in dominant_follicle_right_raw if num.isdigit()]
+                    visit.dominant_follicle_right = ','.join(map(str, dominant_follicle_right_list))
                 else:
                     visit.dominant_follicle_right = None
 
                 if dominant_follicle_left_raw:
-                    visit.dominant_follicle_left = [int(num) for num in dominant_follicle_left_raw if num.isdigit()]
+                    dominant_follicle_left_list = [int(num) for num in dominant_follicle_left_raw if num.isdigit()]
+                    visit.dominant_follicle_left = ','.join(map(str, dominant_follicle_left_list))
+
                 else:
                     visit.dominant_follicle_left = None
