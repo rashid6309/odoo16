@@ -765,6 +765,7 @@ class PatientTimeline(models.Model):
         return {
             'repeat_timeline_id': self.id,
             'repeat_patient_id': patient_id,
+            'repeat_treatment_advised_current': self.timeline_patient_id.patient_treatment_pathways_current,
             'tvs_patient_id': patient_id,
             'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id,
             'repeat_obs_history_lines': int(repeat_obs_history_lines),
@@ -1241,7 +1242,7 @@ class PatientTimeline(models.Model):
             'counselling_lower_success_rate',
             'counselling_high_bmi',
             # 'oi_ti_treatment_prompt_message',
-            # 'oi_ti_additional_comments'
+            'oi_ti_additional_comments'
         ]
 
         for field in fields:

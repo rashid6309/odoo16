@@ -154,7 +154,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
         else:
             return field_value
 
-    @api.constrains('html_table')
+    @api.depends('oi_ti_platform_attempt_ids')
     @api.onchange('oi_ti_platform_attempt_ids')
     def computed_value(self):
         table = ''

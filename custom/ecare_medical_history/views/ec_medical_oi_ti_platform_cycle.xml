@@ -96,7 +96,7 @@
                                     <!--                                    </td>-->
                                 </tr>
                                 <!--                                2nd Trigger-->
-                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
+                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase','abandoned', 'completed'])]}">
                                     <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                         <p class="oi_ti_action_btn"><strong><span>2nd Trigger regimen</span></strong></p>
                                     </td>
@@ -104,7 +104,7 @@
                                         <p class="oi_ti_action_btn"><strong><field name="second_trigger_regimen"/></strong></p>
                                     </td>
                                 </tr>
-                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
+                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase','abandoned', 'completed'])]}">
                                     <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                         <p class="oi_ti_action_btn"><strong><span>2nd Trigger date &amp; time</span></strong></p>
                                     </td>
@@ -113,12 +113,12 @@
                                     </td>
                                 </tr>
                                 <!--                                End 2nd trigger-->
-                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase'])]}">
+                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase','abandoned', 'completed'])]}">
                                     <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>
                                     </td>
                                 </tr>
-                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase'])]}">
+                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase','abandoned', 'completed'])]}">
                                     <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>
                                     </td>
@@ -129,9 +129,9 @@
 
                     </sheet>
                     <div style="padding: 1rem; background: white; display: flex;" attrs="{'invisible': [('oi_ti_platform','in',['abandoned', 'completed'])]}">
-<!--                    <button string="Save" special="save" class="btn-primary"/>-->
-<!--                    <button string="Discard" class="btn-secondary" special="cancel"/>-->
-<!--                    <button string="Delete" type="object" class="btn-secondary" name="unlink"/>-->
+                        <!--                    <button string="Save" special="save" class="btn-primary"/>-->
+                        <!--                    <button string="Discard" class="btn-secondary" special="cancel"/>-->
+                        <!--                    <button string="Delete" type="object" class="btn-secondary" name="unlink"/>-->
                         <button
                                 name="action_create_oi_ti_platform_attempt"
                                 class="oi_ti_navbar_btn"
@@ -147,6 +147,7 @@
                         <button
                                 name="action_start_luteal_phase_attempt"
                                 class="oi_ti_navbar_btn"
+                                attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}"
                                 type="object"
                                 string="START LUTEAL PHASE"/>
                         <button
@@ -161,6 +162,7 @@
                                 type="object"
                                 string="COMPLETE ATTEMPT"/>
                     </div>
+                    <!--                    <field name="html_table" invisible="1"/>-->
                     <script>
                         var elements = document.querySelectorAll('.o_form_editable');
                         elements.forEach(function(element) {
@@ -185,10 +187,10 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
-<!--                                <div class="ribbon ribbon-top-right"-->
-<!--                                     attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}">-->
-<!--                                        <field class="bg-danger" style="top: 2rem; width: 12rem; left: 3rem; height: 3rem; font-size: 1rem;" name="oi_ti_platform"/>-->
-<!--                                </div>-->
+                                <!--                                <div class="ribbon ribbon-top-right"-->
+                                <!--                                     attrs="{'invisible': [('oi_ti_platform','not in',['abandoned', 'completed'])]}">-->
+                                <!--                                        <field class="bg-danger" style="top: 2rem; width: 12rem; left: 3rem; height: 3rem; font-size: 1rem;" name="oi_ti_platform"/>-->
+                                <!--                                </div>-->
 
                                 <!--                                <field name="html_table" widget="html"/>-->
                                 <div style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
@@ -221,7 +223,7 @@
                                             </td>
                                         </tr>
                                         <tr style="height:15.75pt;">
-                                            <td class="oi_ti_computed_values_td">
+                                            <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                                 <p class="oi_ti_action_btn"><strong><span>Trigger regimen</span></strong></p>
                                             </td>
                                             <td class="oi_ti_heading_td">
@@ -233,18 +235,15 @@
                                             <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><field name="insemination"/></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td">
+                                            <td colspan="2" class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><span>IUI attempt</span></strong></p>
                                             </td>
-                                            <td class="oi_ti_heading_td">
-                                                <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>
-                                            </td>
-                                            <td class="oi_ti_attempt_diagnosis_td">
-                                                <p class="oi_ti_action_btn"><strong><span>2nd Trigger regimen</span></strong></p>
-                                            </td>
+                                            <!--                                    <td class="oi_ti_heading_td">-->
+                                            <!--                                        <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>-->
+                                            <!--                                    </td>-->
                                         </tr>
                                         <tr style="height:26.25pt;">
-                                            <td class="oi_ti_computed_values_td">
+                                            <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                                 <p class="oi_ti_action_btn"><strong><span>Trigger date &amp; time</span></strong></p>
                                             </td>
                                             <td class="oi_ti_heading_td">
@@ -254,21 +253,46 @@
                                                 <p class="oi_ti_action_btn"><strong><span>Indication for IUI</span></strong></p>
                                             </td>
                                             <td class="oi_ti_heading_td">
-                                                <p class="oi_ti_action_btn"><strong><field name="indication_of_iui"/></strong></p>
+                                                <p class="oi_ti_action_btn"><strong><field name="indication_of_iui" attrs="{'required': [('insemination', '=', 'frozen_thawed_iui')]}"/></strong></p>
+                                            </td>
+                                            <td colspan="2" class="oi_ti_heading_td">
+                                                <p class="oi_ti_action_btn"><strong><span><field name="iui_attempt_count" attrs="{'required': [('insemination', '=', 'frozen_thawed_iui')]}"/></span></strong></p>
+                                            </td>
+                                            <!--                                    <td class="oi_ti_heading_td">-->
+                                            <!--                                        <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>-->
+                                            <!--                                    </td>-->
+                                        </tr>
+                                        <!--                                2nd Trigger-->
+                                        <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase','abandoned', 'completed'])]}">
+                                            <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
+                                                <p class="oi_ti_action_btn"><strong><span>2nd Trigger regimen</span></strong></p>
                                             </td>
                                             <td class="oi_ti_heading_td">
-                                                <p class="oi_ti_action_btn"><strong><span><field name="iui_attempt_count"/></span></strong></p>
+                                                <p class="oi_ti_action_btn"><strong><field name="second_trigger_regimen"/></strong></p>
                                             </td>
+                                        </tr>
+                                        <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase','abandoned', 'completed'])]}">
+                                            <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
+                                                <p class="oi_ti_action_btn"><strong><span>2nd Trigger date &amp; time</span></strong></p>
+                                            </td>
+                                            <td class="oi_ti_heading_td">
+                                                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:115%; widows:0; orphans:0; font-size:8pt;"><span><field name="second_trigger_date_time"/></span></p>
+                                            </td>
+                                        </tr>
+                                        <!--                                End 2nd trigger-->
+                                        <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase','abandoned', 'completed'])]}">
+                                            <td class="oi_ti_heading_td">
+                                                <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>
+                                            </td>
+                                        </tr>
+                                        <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase','abandoned', 'completed'])]}">
                                             <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>
-                                            </td>
-                                            <td class="oi_ti_attempt_diagnosis_td">
-                                                <p class="oi_ti_action_btn"><strong><span>2nd Trigger date &amp; time</span></strong></p>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-<!--                                <field name="html_table" widget="html"/>-->
+                                <!--                                <field name="html_table" widget="html"/>-->
                                 <!--                                <t t-foreach="record.oi_ti_platform_attempt_ids.raw_value" t-as="line">-->
                                 <!--                                    <t t-out="line['oi_ti_other_diagnosis']"/>-->
                                 <!--                                    <t t-out="oi_ti_other_diagnosis"/>-->
