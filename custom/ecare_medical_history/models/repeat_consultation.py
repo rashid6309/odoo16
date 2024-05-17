@@ -519,10 +519,19 @@ class RepeatConsultation(models.Model):
             elif field_name == 'female_ot_ti_bmi':
                 if float(female_checklist_rec.female_ot_ti_bmi) >= female_ot_ti_bmi_value:
                     return True
+            elif field_name == 'fsh_lh_amh_acceptable':
+                if female_checklist_rec.fsh_lh_amh_acceptable in no_values:
+                    return True
+            elif field_name == 'cervical_incompetence_diagnosis':
+                if female_checklist_rec.cervical_incompetence_diagnosis in yes_values:
+                    return True
 
             # Male Value
             elif field_name == 'male_semen_analysis':
                 if male_checklist_rec.male_semen_analysis in no_values:
+                    return True
+            elif field_name == 'risk_inability_to_give_samples_male':
+                if male_checklist_rec.risk_inability_to_give_samples_male in yes_values:
                     return True
 
             # medical.consents.risk.assessment RED VALUES

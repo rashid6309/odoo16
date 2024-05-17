@@ -15,10 +15,11 @@
                             <div t-attf-class="oe_kanban_card  w-100 repeat_kanban repeat_kanban_section_header">
                                 <t t-set="rec_id" t-value="record.id.raw_value"/>
                                 <div style="text-align: right;">
-                                    <div style="text-align: -webkit-right;display: inline-block;" attrs="{'invisible': [('repeat_consultation_state','!=','open')]}">
+                                    <div style="text-align: -webkit-right;display: inline-block;" attrs="{'invisible': ['|',('repeat_consultation_state','!=','open'),('treatment_state','=','none')]}">
                                         <span class="bg-success" style="display: grid;
                                     height: 50%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); color: #fff;
                                     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); text-transform: uppercase;
+                                    padding: 4px; border-radius: 1rem; font-size: 1rem;
                                     text-align: center; overflow: hidden; user-select: none;">
                                             <field name="treatment_state"/>
                                         </span>
@@ -28,6 +29,7 @@
                                         <span class="bg-success" style="display: grid;margin: 0.7rem;
                                     height: 50%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); color: #fff;
                                     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); text-transform: uppercase;
+                                    padding: 4px; border-radius: 1rem; font-size: 1rem;
                                     text-align: center; overflow: hidden; user-select: none;">
                                             <field name="repeat_consultation_state"/>
                                         </span>
