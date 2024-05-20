@@ -13,7 +13,7 @@
                         <div style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
                                 monospace; border: none; outline: none; border-radius: 5px;">
                             Cycle Creation Date: <field name="create_date"/>
-                            <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned'])]}"
+                            <h3 attrs="{'invisible': [('oi_ti_platform_status','not in',['abandoned'])]}"
                                 style="padding: 3px; font-family: 'Roboto Mono',
                                         monospace;
                                         background:#aaff87 !important;
@@ -22,7 +22,7 @@
                                         display: inline-block;float: right;">
                                 Abandoned
                             </h3>
-                            <h3 attrs="{'invisible': [('oi_ti_platform','not in',['completed'])]}"
+                            <h3 attrs="{'invisible': [('oi_ti_platform_status','not in',['completed'])]}"
                                 style="padding: 3px; font-family: 'Roboto Mono',
                                         monospace;
                                         background:#aaff87 !important;
@@ -34,6 +34,7 @@
                         </div>
                         <group>
                             <field name="oi_ti_platform" readonly="1" invisible="1" force_save="1"/>
+                            <field name="oi_ti_platform_status" readonly="1" invisible="1" force_save="1"/>
                             <field name="cycle_timeline_id" readonly="1" invisible="1" force_save="1"/>
                             <field name="repeat_consultation_id" readonly="1" invisible="1" force_save="1"/>
                         </group>
@@ -44,7 +45,7 @@
                                         <p class="oi_ti_action_btn" style="text-align: left;"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
                                     </td>
                                 </tr>
-                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['abandoned'])]}">
+                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform_status','not in',['abandoned'])]}">
                                     <td colspan="1" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
                                         <p class="oi_ti_action_btn" style="text-align: left;"><strong>Abandoned Comments</strong></p>
                                     </td>
@@ -96,7 +97,7 @@
                                     <!--                                    </td>-->
                                 </tr>
                                 <!--                                2nd Trigger-->
-                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase','abandoned', 'completed'])]}">
+                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
                                     <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                         <p class="oi_ti_action_btn"><strong><span>2nd Trigger regimen</span></strong></p>
                                     </td>
@@ -104,7 +105,7 @@
                                         <p class="oi_ti_action_btn"><strong><field name="second_trigger_regimen"/></strong></p>
                                     </td>
                                 </tr>
-                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase','abandoned', 'completed'])]}">
+                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
                                     <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                         <p class="oi_ti_action_btn"><strong><span>2nd Trigger date &amp; time</span></strong></p>
                                     </td>
@@ -113,12 +114,12 @@
                                     </td>
                                 </tr>
                                 <!--                                End 2nd trigger-->
-                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase','abandoned', 'completed'])]}">
+                                <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase'])]}">
                                     <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>
                                     </td>
                                 </tr>
-                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase','abandoned', 'completed'])]}">
+                                <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase'])]}">
                                     <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>
                                     </td>
@@ -128,7 +129,7 @@
                         <field name="oi_ti_platform_attempt_ids" mode="kanban"/>
 
                     </sheet>
-                    <div style="padding: 1rem; background: white; display: flex;" attrs="{'invisible': [('oi_ti_platform','in',['abandoned', 'completed'])]}">
+                    <div style="padding: 1rem; background: white; display: flex;" attrs="{'invisible': [('oi_ti_platform_status','in',['abandoned', 'completed'])]}">
                         <!--                    <button string="Save" special="save" class="btn-primary"/>-->
                         <!--                    <button string="Discard" class="btn-secondary" special="cancel"/>-->
                         <!--                    <button string="Delete" type="object" class="btn-secondary" name="unlink"/>-->
@@ -193,10 +194,13 @@
                                 <!--                                </div>-->
 
                                 <!--                                <field name="html_table" widget="html"/>-->
+                            <field name="oi_ti_platform_status" readonly="1" invisible="1" force_save="1"/>
+                            <field name="oi_ti_platform" readonly="1" invisible="1" force_save="1"/>
+
                                 <div style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
                                 monospace; border: none; outline: none; border-radius: 5px;">
                                     Cycle Creation Date: <field name="create_date"/>
-                                    <h3 attrs="{'invisible': [('oi_ti_platform','not in',['abandoned','completed'])]}"
+                                    <h3 attrs="{'invisible': [('oi_ti_platform_status','not in',['abandoned','completed'])]}"
                                         style="padding: 3px; font-family: 'Roboto Mono',
                                         monospace;
                                         background:#aaff87 !important;
@@ -204,7 +208,7 @@
                                         height: 1.8rem;
                                          border-radius: 5px;width: 10rem;
                                         display: inline-block;float: right;">
-                                        <field name="oi_ti_platform"/>
+                                        <field name="oi_ti_platform_status"/>
                                     </h3>
                                 </div>
                                 <table cellspacing="0" cellpadding="0" class="oi_ti_attempt_table_style">
@@ -214,7 +218,7 @@
                                                 <p class="oi_ti_action_btn" style="text-align: left;"><strong><span>OUTCOME: <field name="ova_outcome"/></span></strong></p>
                                             </td>
                                         </tr>
-                                        <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['abandoned'])]}">
+                                        <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform_status','not in',['abandoned'])]}">
                                             <td colspan="2" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
                                                 <p class="oi_ti_action_btn" style="text-align: left;"><strong>Abandoned Comments</strong></p>
                                             </td>
@@ -263,7 +267,7 @@
                                             <!--                                    </td>-->
                                         </tr>
                                         <!--                                2nd Trigger-->
-                                        <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase','abandoned', 'completed'])]}">
+                                        <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
                                             <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                                 <p class="oi_ti_action_btn"><strong><span>2nd Trigger regimen</span></strong></p>
                                             </td>
@@ -271,7 +275,7 @@
                                                 <p class="oi_ti_action_btn"><strong><field name="second_trigger_regimen"/></strong></p>
                                             </td>
                                         </tr>
-                                        <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase','abandoned', 'completed'])]}">
+                                        <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['2nd_trigger','luteal_phase'])]}">
                                             <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
                                                 <p class="oi_ti_action_btn"><strong><span>2nd Trigger date &amp; time</span></strong></p>
                                             </td>
@@ -280,12 +284,12 @@
                                             </td>
                                         </tr>
                                         <!--                                End 2nd trigger-->
-                                        <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase','abandoned', 'completed'])]}">
+                                        <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase'])]}">
                                             <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><span>Luteal phase support</span></strong></p>
                                             </td>
                                         </tr>
-                                        <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase','abandoned', 'completed'])]}">
+                                        <tr style="height:26.25pt;" attrs="{'invisible': [('oi_ti_platform','not in',['luteal_phase'])]}">
                                             <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><field name="luteal_phase_support"/></strong></p>
                                             </td>

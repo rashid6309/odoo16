@@ -15,6 +15,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
                                                  string="OI/TI Visit")
     oi_ti_platform = fields.Selection(selection=StaticMember.OI_TI_PLATFORM_STATE, string='State',
                                       defult='ready_to_trigger')
+    oi_ti_platform_status = fields.Selection(selection=StaticMember.OI_TI_PLATFORM_STATUS, string='Status')
 
     cycle_day = fields.Integer(string='Cycle Day', compute='_compute_cycle_day', store=True)
     oi_ti_schedule = fields.Selection(selection=StaticMember.SCHEDULE,
@@ -83,7 +84,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
         if self.insemination is False:
             raise UserError("‘Insemination’ is not entered yet!")
         else:
-            self.oi_ti_platform = 'completed'
+            self.oi_ti_platform_status = 'completed'
         # oi_ti_attempts = self.env['ec.medical.oi.ti.platform.attempt'].search([
         #     ('attempt_cycle_id', '=', int(self.id))])
         # attempt_completed = False
@@ -253,7 +254,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
                 rec.html_table = None
                 
     def write(self, vals):
-        if self.oi_ti_platform == 'completed' or self.oi_ti_platform == 'abandoned':
+        if self.oi_ti_platform_status == 'completed' or self.oi_ti_platform_status == 'abandoned':
             raise UserError(f"You can't change Completed/Abandoned attempt, please create a new one!")
         else:
             return super(EcMedicalOITIPlatformCycle, self).write(vals)
@@ -273,5 +274,5 @@ class EcMedicalNotes(models.TransientModel):
         res = super(EcMedicalNotes, self).create(vals)
         if res:
             res.attempt_cycle_id.abandoned_comments = res.note
-            res.attempt_cycle_id.oi_ti_platform = 'abandoned'
+            res.attempt_cycle_id.oi_ti_platform_status = 'abandoned'
         return res

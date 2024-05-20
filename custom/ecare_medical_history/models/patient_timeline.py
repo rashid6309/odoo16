@@ -1242,7 +1242,7 @@ class PatientTimeline(models.Model):
             'counselling_lower_success_rate',
             'counselling_high_bmi',
             # 'oi_ti_treatment_prompt_message',
-            'oi_ti_additional_comments'
+            # 'oi_ti_additional_comments'
         ]
 
         for field in fields:
@@ -1266,15 +1266,21 @@ class PatientTimeline(models.Model):
                               'oi_ti_additional_comments',
                               'counselling_high_bmi_decision']
             for field in field_decision:
-                updated_field = field.replace("_decision", "")
-
-                check_required_status = self.ec_repeat_consultation_id.get_field_data_condition(field_name=updated_field,
-                                                                                                timeline_id=self.id)
-                if check_required_status:
-                    formatted_field_name = field.replace('_', ' ').title()
+                if field in ['oi_ti_additional_comments']:
                     value = getattr(self.ec_repeat_consultation_id, field)
+                    formatted_field_name = field.replace('_', ' ').title()
                     if value is None or value is False:
                         raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
+                else:
+                    updated_field = field.replace("_decision", "")
+
+                    check_required_status = self.ec_repeat_consultation_id.get_field_data_condition(field_name=updated_field,
+                                                                                                    timeline_id=self.id)
+                    if check_required_status:
+                        formatted_field_name = field.replace('_', ' ').title()
+                        value = getattr(self.ec_repeat_consultation_id, field)
+                        if value is None or value is False:
+                            raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
 
         proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
         repeat_ui_ti_add = self.env.context.get('repeat_ui_ti_add')
@@ -1286,7 +1292,7 @@ class PatientTimeline(models.Model):
             #     raise UserError("Three attempts against one OI/TI cycle have already been made, "
             #                     "start a new repeat consultation first.")
             for rec in oi_ti_attempts:
-                if rec.oi_ti_platform in ['ready_to_trigger', '2nd_trigger', 'luteal_phase']:
+                if rec.oi_ti_platform_status not in ['abandoned', 'completed']:
                     raise UserError("There is a cycle already in progress, please complete that first!")
         if repeat_ui_ti_add:
             self.oi_ti_platform_enabled = True

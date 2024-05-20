@@ -425,7 +425,7 @@
 											<i title="Add new repeat consultation"  class="fa fa-plus" aria-hidden="true"/>
 										</button>
 										<div>
-											<div style="display: inline-block; " attrs="{'invisible':['|', ('repeat_consultation_state', '!=', 'open'),('treatment_state', 'not in', ['initiated', 'treatment_started', 'approval'])]}">
+											<div style="display: inline-block; " attrs="{'invisible':['|', ('repeat_consultation_state', '!=', 'open'),('repeat_treatment_advised_current', '=',False)]}">
 												<h5 class="mt-2 mb-0" style="width:auto;pointer-events: none;">
 													<span id="repeat_consultation_working_state" class="bg-warning" style="display: inline; border-radius: 12px; text-align: center;"><field class="o_readonly_modifier" name="repeat_treatment_advised_current"/></span>
 
@@ -1173,14 +1173,15 @@
 													   attrs="{'required': [('show_repeat_section_state', '=', True),
 													   ('question_one_choice', '=', 'no')]}"
 													   options="{'no_create_edit': True, 'no_create': True}"/>
-												<field name="repeat_treatment_plan"  attrs="{'readonly':[('treatment_state', '!=', 'none')]}"/>
+												<field name="repeat_treatment_plan"/>
 
 												<field name="repeat_new_treatment_pathway"
 													   widget="radio"
 													   attrs="{'readonly':[('treatment_state', '!=', 'none')]}"
 													   options="{'horizontal': True}"/>
 
-												<field name="repeat_treatment_advised"  attrs="{'readonly':[('treatment_state', '!=', 'none')]}"/>
+												<field name="repeat_treatment_advised"  attrs="{'readonly':[('treatment_state', '!=', 'none')],'required': [('show_repeat_section_state', '=', True),
+													   ('repeat_new_treatment_pathway', '=', 'yes')]}"/>
 												<field name="repeat_treatment_advised_current"  force_save="1" invisible="1" attrs="{'readonly':[('treatment_state', '!=', 'none')]}"/>
 
 
@@ -1198,7 +1199,7 @@
 													Important information: You can only carry out maximum THREE consecutive OI/TI attempts. If more attempts are considered, this needs to be documented in Repeat consultations before you can proceed.
 												</p>
 												<span style="display: -webkit-box;">
-													<field name="treatment_confirmation"/>
+													<field name="treatment_confirmation" attrs="{'readonly':[('treatment_state', '!=', 'none')]}"/>
 													<p for="treatment_confirmation"> I understand and agree</p>
 												</span>
 											</div>
@@ -1233,7 +1234,7 @@
 													</span>
 													<span class="o_form_label" attrs="{'invisible': [('upt_result', '!=', 'positive')]}"/>
 													<span style="display: flex;width: 40rem;margin: 1rem;" class="alert alert-warning" id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'positive')]}">
-														Please create and a new repeat consultation fill in a new pregnancy assessment form.
+														Please create a new repeat consultation and fill in a new pregnancy assessment form.
 													</span>
 													<field name="iui_plan"
 														   widget="radio"

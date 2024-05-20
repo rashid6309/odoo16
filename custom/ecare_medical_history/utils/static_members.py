@@ -1256,6 +1256,9 @@ class StaticMember:
         ('ready_to_trigger', 'Ready to trigger & inseminate'),
         ('2nd_trigger', '2nd trigger'),
         ('luteal_phase', 'Luteal phase support'),
+    ]
+
+    OI_TI_PLATFORM_STATUS = [
         ('completed', 'Completed'),
         ('abandoned', 'Abandoned'),
     ]
