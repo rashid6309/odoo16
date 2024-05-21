@@ -2,6 +2,221 @@
 <odoo>
     <data>
 
+        <!-- Explicit Form View -->
+        <record id="repeat_consultation_oi_ti_form_view" model="ir.ui.view">
+            <field name="name">ec.repeat.consultation.form</field>
+            <field name="model">ec.repeat.consultation</field>
+            <field name="arch" type="xml">
+                <form edit="false">
+                    <sheet class="container">
+                        <field name="repeat_new_treatment_pathway"
+                               widget="radio"
+                               options="{'horizontal': True}"/>
+
+                        <field name="repeat_treatment_advised"/>
+                        <field name="repeat_treatment_advised_current"/>
+                        <span attrs="{'invisible': ['|','|',('repeat_new_treatment_pathway', '!=', 'yes'),
+											('treatment_state', '=', 'none'),
+											('repeat_treatment_advised', '!=', 'pre_oi_ti_checklist')]}">
+                            <div class="d-flex flex-column">
+                                <div/>
+
+                                <div style="background: #cddbf3; padding: 0.3%;">
+                                    <h5 style="display: inline-block;">Pre OI/TI Checklist</h5>
+                                    <field style="float: right;pointer-events: none;" name="treatment_state"/>
+                                </div>
+                            </div>
+                            <group string="Female Pre OI/TI Checklist">
+                                <field name="upt_result"
+                                       widget="radio"
+                                       options="{'horizontal': True}"/>
+                                <span class="o_form_label" attrs="{'invisible': [('upt_result', '!=', 'not_done')]}"/>
+                                <span style="display: flex;width: 40rem;margin: 1rem;" class="alert alert-warning" id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'not_done')]}">
+                                    Please return to this form once UPT has been performed.
+                                </span>
+                                <span class="o_form_label" attrs="{'invisible': [('upt_result', '!=', 'positive')]}"/>
+                                <span style="display: flex;width: 40rem;margin: 1rem;" class="alert alert-warning" id="husband_not_present" attrs="{'invisible': [('upt_result', '!=', 'positive')]}">
+                                    Please create a new repeat consultation and fill in a new pregnancy assessment form.
+                                </span>
+                                <field name="iui_plan"
+                                       widget="radio"
+                                       options="{'horizontal': True}"/>
+                                <field name="primary_indication" attrs="{'required': [('treatment_state', '!=', 'none'),('iui_plan', '=', 'yes')],'invisible': [('iui_plan', '!=', 'yes')]}"/>
+                                <span class="o_form_label" attrs="{'invisible': ['|',('iui_plan', '!=', 'yes'),('primary_indication', '!=', 'husband_not_present')]}"/>
+                                <span style="display: flex;width: 40rem;margin: 1rem;" class="alert alert-warning" id="husband_not_present" attrs="{'invisible': ['|',('iui_plan', '=', 'no'),('primary_indication', '!=', 'husband_not_present')]}">
+                                    The andrology department needs to confirm the presence of a suitable sample for Frozen-Thawed IUI.
+                                    The request for approval will be sent upon saving this form.
+                                </span>
+                            </group>
+                            <group string="Hormonal Profile">
+                                <span/>
+                                <label for="fsh_lh_amh_acceptable"/>
+                                <span/>
+                                <field name="fsh_lh_amh_acceptable" nolabel="1" widget="radio" options="{'horizontal': True}"/>
+                                <field name="fsh_lh_amh_acceptable_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('fsh_lh_amh_acceptable', '!=', 'no')]}" string="Decision"/>
+
+                                <span/>
+                                <label for="menopause_sign_suspicion"/>
+                                <span/>
+                                <field name="menopause_sign_suspicion" widget="radio" nolabel="1" options="{'horizontal': True}"/>
+                                <field name="menopause_sign_suspicion_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('menopause_sign_suspicion', '!=', 'yes')]}" string="Decision"/>
+                                <field name="female_ot_ti_weight"/>
+                                <field name="female_ot_ti_height"/>
+                                <field name="female_ot_ti_bmi" widget="condition_color_widget" style="pointer-events: none;"/>
+                                <field name="female_ot_ti_bmi_decision" force_save="1" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('female_ot_ti_bmi', '&lt;', 35)]}" string="Decision"/>
+                                <!--													<field name="tubal_patency_test"-->
+                                <!--														   widget="radio"-->
+                                <!--														   options="{'horizontal': True}"/>-->
+                                <span/>
+                                <label for="tubal_patency_test"/>
+                                <span/>
+                                <field name="tubal_patency_test" nolabel="1" widget="radio" options="{'horizontal': True}"/>
+                                <!--													<field name="tubal_patency_test_decision"-->
+                                <!--														   attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')],-->
+                                <!--														   'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')]}"-->
+                                <!--														   string="Decision"/>-->
+                                <span/>
+                                <label for="tubal_patency_test_dropdown" attrs="{'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
+                                <span/>
+                                <field name="tubal_patency_test_dropdown" nolabel="1" attrs="{'required': [('treatment_state', '!=', 'none'),('tubal_patency_test', '=', 'yes')],'invisible': [('tubal_patency_test', '!=', 'yes')]}"/>
+                                <field name="tubal_patency_test_dropdown_decision" attrs="{'invisible': ['|','|',('tubal_patency_test', '!=', 'yes'),('tubal_patency_test_dropdown', 'not in', ['not_tested', 'both_blocked', 'restricted_spill']),('treatment_state', '!=', 'approval')]}" string="Decision"/>
+                                <span/>
+                                <label for="cervical_incompetence_diagnosis"/>
+                                <span/>
+                                <field name="cervical_incompetence_diagnosis" widget="radio" nolabel="1" options="{'horizontal': True}"/>
+                                <field name="cervical_incompetence_diagnosis_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('cervical_incompetence_diagnosis', '!=', 'yes')]}" string="Decision"/>
+
+                                <!--												<field name="results_await_label" string="Results-Awaits" attrs="{'invisible': [('fsh_lh_amh_acceptable', '!=', 'awaiting_results')]}"/>-->
+                                <span/>
+                                <label for="uterine_tubal_anomalies"/>
+                                <span/>
+                                <field name="uterine_tubal_anomalies" nolabel="1"/>
+                                <field name="uterine_tubal_anomalies_decision" attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('uterine_tubal_anomalies', '!=', 'no_testing')]}" string="Decision"/>
+
+                            </group>
+                            <group string="Male Pre OI/TI Checklist">
+                                <span/>
+                                <label for="male_semen_analysis"/>
+                                <span/>
+                                <field name="male_semen_analysis"
+                                       widget="radio"
+                                       nolabel="1"
+                                       options="{'horizontal': True}"/>
+                                <field name="male_semen_analysis_decision"
+                                       attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('male_semen_analysis', '!=', 'no')]}"
+                                       string="Decision"/>
+                                <span/>
+                                <label for="husband_availability_male"/>
+                                <span/>
+                                <field name="husband_availability_male"
+                                       widget="radio"
+                                       nolabel="1"
+                                       options="{'horizontal': True}"/>
+                                <span/>
+                                <label for="frozen_sample_available_male" attrs="{'invisible': [('husband_availability_male', '!=', 'no')]}"/>
+                                <span/>
+                                <field name="frozen_sample_available_male"
+                                       attrs="{'invisible': [('husband_availability_male', '!=', 'no')]}"
+                                       nolabel="1"/>
+                                <span/>
+                                <label for="risk_inability_to_give_samples_male"/>
+                                <span/>
+                                <field name="risk_inability_to_give_samples_male"
+                                       widget="radio"
+                                       nolabel="1"
+                                       options="{'horizontal': True}"/>
+                                <field name="risk_inability_male_decision"
+                                       attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('risk_inability_to_give_samples_male', '!=', 'yes')]}" string="Decision"/>
+
+                            </group>
+                            <group string="Consents and risk assessment">
+                                <span/>
+                                <label for="counselling_multiple_birth"/>
+                                <span/>
+                                <field name="counselling_multiple_birth"
+                                       widget="radio"
+                                       nolabel="1"
+                                       options="{'horizontal': True}"/>
+                                <field name="counselling_multiple_birth_decision"
+                                       attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_multiple_birth', '!=', 'no')]}"
+                                       string="Decision"/>
+
+                                <span/>
+                                <label for="counselling_failure_treatment"/>
+                                <span/>
+                                <field name="counselling_failure_treatment"
+                                       widget="radio"
+                                       nolabel="1"
+                                       options="{'horizontal': True}"/>
+                                <field name="counselling_failure_treatment_decision"
+                                       attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_failure_treatment', '!=', 'no')]}"
+                                       string="Decision"/>
+                                <span/>
+                                <label for="counselling_lower_success_rate"/>
+                                <span/>
+                                <field name="counselling_lower_success_rate"
+                                       widget="radio"
+                                       nolabel="1"
+                                       options="{'horizontal': True}"/>
+                                <field name="counselling_lower_success_rate_decision"
+                                       attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_lower_success_rate', '!=', 'no')]}"
+                                       string="Decision"/>
+                                <span/>
+                                <label for="counselling_high_bmi"/>
+                                <span/>
+                                <field name="counselling_high_bmi"
+                                       widget="radio"
+                                       nolabel="1"
+                                       options="{'horizontal': True}"/>
+                                <field name="counselling_high_bmi_decision"
+                                       attrs="{'invisible': ['|', ('treatment_state', '!=', 'approval'),('counselling_high_bmi', '!=', 'no')]}"
+                                       string="Decision"/>
+                            </group>
+                            <div class="d-flex flex-column" attrs="{'invisible':[('treatment_state', '!=', 'approval')]}">
+                                <div/>
+
+                                <div style="background: #cddbf3; padding: 0.3%;">
+                                    <h5>Decisions</h5>
+                                </div>
+                            </div>
+                            <group class="m-3" attrs="{'invisible':[('treatment_state', 'not in', ['approval','treatment_started'])]}">
+                                <span/>
+                                <field style="width: 55rem;" class="alert alert-warning" name="oi_ti_treatment_prompt_message" nolabel="1"/>
+                                <!--													<field name="oi_ti_decisions" attrs="{'required':[('treatment_state', '=', 'approval')]}"/>-->
+                                <field name="oi_ti_additional_comments"/>
+                                <field name="oi_ti_approved_signed_by"/>
+<!--                                <label for="action_proceed_to_ui_ti"/>-->
+<!--                                <div id="action_proceed_buttons">-->
+<!--                                    <button name="action_proceed_to_ui_ti"-->
+<!--                                            type="object"-->
+<!--                                            onclick="scrollToElement('io_ti_platform_section_link')"-->
+<!--                                            context="{'proceed_to_ui_ti': 'True'}"-->
+<!--                                            class="btn btn-success m-3"-->
+<!--                                            attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"-->
+<!--                                            string="Proceed to OI/TI"/>-->
+<!--                                    <button name="action_not_proceed_to_ui_ti"-->
+<!--                                            type="object"-->
+<!--                                            class="btn btn-danger m-3"-->
+<!--                                            attrs="{'invisible': [('show_repeat_section_state', '=', False)]}"-->
+<!--                                            string="Do Not Proceed"/>-->
+<!--                                </div>-->
+                            </group>
+
+<!--                            <div class="m-3">-->
+<!--                                <button name="action_proceed_to_ui_ti"-->
+<!--                                        type="object"-->
+<!--                                        class="btn btn-primary"-->
+<!--                                        attrs="{'invisible': [('treatment_state', 'in', ['approval', 'treatment_started'])]}"-->
+<!--                                        string="Proceed"/>-->
+<!--                            </div>-->
+                        </span>
+
+                    </sheet>
+                    <footer/>
+                </form>
+            </field>
+        </record>
+
         <!-- Explicit Kanban View -->
 
         <record id="view_ec_repeat_consultation_kanban" model="ir.ui.view">
@@ -908,27 +1123,27 @@
                                                                 <!--                                                                </div>-->
                                                                 <div class="text-900">
 
-                                                                <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
-                                                                    <field name="tvs_uterus_tvs_size"/>
+                                                                    <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
+                                                                        <field name="tvs_uterus_tvs_size"/>
+                                                                    </div>
+                                                                    <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
+                                                                        <span>Size</span>
+                                                                    </div>
+                                                                    <div class="d-inline-block ms-2" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+                                                                        <field name="tvs_uterus_tvs_position"/>
+                                                                    </div>
+                                                                    <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
+                                                                        <span>Position</span>
+                                                                    </div>
+                                                                    <div class="d-inline-block ms-2" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
+                                                                        <field name="tvs_uterus_tvs_fiobrid"/>
+                                                                    </div>
+                                                                    <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
+                                                                        <span>Fiobrid</span>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_size', '!=', True)]}">
-                                                                    <span>Size</span>
-                                                                </div>
-                                                                <div class="d-inline-block ms-2" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
-                                                                    <field name="tvs_uterus_tvs_position"/>
-                                                                </div>
-                                                                <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_position', '!=', True)]}">
-                                                                    <span>Position</span>
-                                                                </div>
-                                                                <div class="d-inline-block ms-2" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
-                                                                    <field name="tvs_uterus_tvs_fiobrid"/>
-                                                                </div>
-                                                                <div class="d-inline-block" attrs="{'invisible': [('tvs_uterus_tvs_fiobrid', '!=', True)]}">
-                                                                    <span>Fiobrid</span>
-                                                                </div>
-                                                            </div>
 
-                                                                   <div class="o_group row align-items-start" t-if="record.tvs_uterus_flexion.raw_value">
+                                                                <div class="o_group row align-items-start" t-if="record.tvs_uterus_flexion.raw_value">
                                                                     <div class="o_inner_group grid col-lg-12 text-900">
                                                                         <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
@@ -955,10 +1170,10 @@
                                                                                 <field name="position_mid_position" attrs="{'invisible': [('position_mid_position', '!=', True)]}"/>
                                                                                 <span for="position_mid_position" attrs="{'invisible': [('position_mid_position', '!=', True)]}" style=" margin-right: 1%;    width:9rem; ">Mid-Position</span>
                                                                             </div>
-<!--                                                                            <div>-->
-<!--                                                                                -->
-<!--&lt;!&ndash;                                                                                <field name="tvs_uterus_position_ids"/>&ndash;&gt;-->
-<!--                                                                            </div>-->
+                                                                            <!--                                                                            <div>-->
+                                                                            <!--                                                                                -->
+                                                                            <!--&lt;!&ndash;                                                                                <field name="tvs_uterus_position_ids"/>&ndash;&gt;-->
+                                                                            <!--                                                                            </div>-->
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1083,7 +1298,7 @@
                                                             <div class="o_group row align-items-start">
                                                                 <div class="o_inner_group grid col-lg-12 text-900">
                                                                     <div class="d-flex d-sm-contents flex-column"
-                                                                          attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+                                                                         attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
                                                                         <div>
                                                                             <span class="o_form_label"  style="font-weight:700;">
                                                                                 Signs of Ovulation
@@ -1094,7 +1309,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="d-flex d-sm-contents flex-column"
-                                                                          attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
+                                                                         attrs="{'invisible': [('scan_required', '!=', 'yes')]}">
                                                                         <div>
                                                                             <span class="o_form_label" style="font-weight:700;">
                                                                                 Diagnosis of Ultrasound
@@ -1169,28 +1384,38 @@
                                                                             <field name="repeat_treatment_plan"/>
                                                                         </div>
                                                                     </div>
-<!--                                                                    <div class="d-flex d-sm-contents flex-column"-->
-<!--                                                                         t-if="record.repeat_treatment_advised_ids.raw_value">-->
-<!--                                                                        <div>-->
-<!--                                                                            <span class="o_form_label">Treatment-->
-<!--                                                                                Pathway-->
-<!--                                                                            </span>-->
-<!--                                                                        </div>-->
-<!--                                                                        <div>-->
-<!--                                                                            <field name="repeat_treatment_advised_ids"/>-->
-<!--                                                                        </div>-->
-<!--                                                                    </div>-->
-<!--                                                                    <div class="d-flex d-sm-contents flex-column"-->
-<!--                                                                         t-if="record.repeat_new_treatment_pathway.raw_value">-->
-<!--                                                                        <div>-->
-<!--                                                                            <span class="o_form_label">Start new-->
-<!--                                                                                treatment pathway-->
-<!--                                                                            </span>-->
-<!--                                                                        </div>-->
-<!--                                                                        <div>-->
-<!--                                                                            <field name="repeat_new_treatment_pathway"/>-->
-<!--                                                                        </div>-->
-<!--                                                                    </div>-->
+                                                                    <div>
+
+                                                                        <button name="view_oi_ti_checklist"
+                                                                                type="object"
+                                                                                string="Edit"
+                                                                                class="btn-primary repeat_kanban_button">
+                                                                            OI/TI Treatment
+                                                                        </button>
+
+                                                                    </div>
+                                                                    <!--                                                                    <div class="d-flex d-sm-contents flex-column"-->
+                                                                    <!--                                                                         t-if="record.repeat_treatment_advised_ids.raw_value">-->
+                                                                    <!--                                                                        <div>-->
+                                                                    <!--                                                                            <span class="o_form_label">Treatment-->
+                                                                    <!--                                                                                Pathway-->
+                                                                    <!--                                                                            </span>-->
+                                                                    <!--                                                                        </div>-->
+                                                                    <!--                                                                        <div>-->
+                                                                    <!--                                                                            <field name="repeat_treatment_advised_ids"/>-->
+                                                                    <!--                                                                        </div>-->
+                                                                    <!--                                                                    </div>-->
+                                                                    <!--                                                                    <div class="d-flex d-sm-contents flex-column"-->
+                                                                    <!--                                                                         t-if="record.repeat_new_treatment_pathway.raw_value">-->
+                                                                    <!--                                                                        <div>-->
+                                                                    <!--                                                                            <span class="o_form_label">Start new-->
+                                                                    <!--                                                                                treatment pathway-->
+                                                                    <!--                                                                            </span>-->
+                                                                    <!--                                                                        </div>-->
+                                                                    <!--                                                                        <div>-->
+                                                                    <!--                                                                            <field name="repeat_new_treatment_pathway"/>-->
+                                                                    <!--                                                                        </div>-->
+                                                                    <!--                                                                    </div>-->
                                                                 </div>
                                                             </div>
 
@@ -1265,7 +1490,7 @@
             </field>
         </record>
 
-                <!-- Explicit Tree view -->
+        <!-- Explicit Tree view -->
         <record id="repeat_consultation_decision_pending_tree" model="ir.ui.view">
             <field name="name">ec.repeat.consultation.tree.view</field>
             <field name="model">ec.repeat.consultation</field>

@@ -1,9 +1,10 @@
 from datetime import date
 
 from odoo import models, api, fields
-from odoo.exceptions import UserError
 from odoo.addons.ecare_medical_history.utils.static_members import StaticMember
 
+
+from collections import defaultdict
 
 class EcMedicalOITIPlatform(models.Model):
     _name = "ec.medical.oi.ti.platform.attempt"
@@ -138,25 +139,25 @@ class EcMedicalOITIPlatform(models.Model):
                 else:
                     record.oi_ti_endometrial_character = None
                 if tvs_record.tvs_cyst_size_ids:
-                    grouped_data = {}
+                    grouped_data = defaultdict(list)
 
                     for rec in tvs_record.tvs_cyst_size_ids:
                         type_value = dict(
                             self.env['ec.generic.size']._fields['type'].selection).get(rec.type, '')
                         size_x_value = str(rec.generic_size_x) if rec.generic_size_x is not False else '-'
-                        size_y_value = str(rec.generic_size_y) if rec.generic_size_y is not False else '-'
+                        # size_y_value = str(rec.generic_size_y) if rec.generic_size_y is not False else '-'
 
-                        size_value = size_x_value
-
-                        if type_value in grouped_data:
-                            grouped_data[type_value].append(size_value)
-                        else:
-                            grouped_data[type_value] = [size_value]
+                        size_value = int(size_x_value)
+                        grouped_data[type_value].append(size_value)
 
                     # Create the table rows
                     table_rows = []
                     for type_value, sizes in grouped_data.items():
-                        combined_sizes = ','.join(sizes)
+                        sorted_sizes = sorted(sizes)
+
+                        # Join sorted sizes with comma
+                        combined_sizes = ','.join([str(x) for x in sorted_sizes])
+
                         table_row = f"<tr><td>{type_value}</td><td>{combined_sizes}</td></tr>"
                         table_rows.append(table_row)
 

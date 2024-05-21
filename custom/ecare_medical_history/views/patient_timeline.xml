@@ -325,12 +325,17 @@
 								<field name="oi_ti_platform_enabled" invisible="1"/>
 								<div class="d-flex scroll-to card-header-custom first_consultation_container"
 									 id="io_ti_platform_section_link">
-									<div class="col-10">
+									<div class="col-8">
 										<a data-bs-toggle="collapse" data-bs-target="#io_ti_platform_section" href="#">
 											<h4 class="mt-2 mb-0">OVA - Ovulation Virtual Assistant</h4></a>
 									</div>
-									<div class="col-2 text-right" style="text-align: right">
+									<div class="col-4 text-right" style="text-align: right">
 										<field name="repeat_consultation_state" invisible="1"/>
+										<button name="action_end_patient_treatment"
+												type="object"
+												confirm="Do you really want to end the Patient Current Treatment?"
+												string="End Treatment"
+												class="btn btn-primary m-2"/>
 										<button name="action_proceed_to_ui_ti"
 												type="object"
 												context="{'repeat_ui_ti_add': 'True'}"
@@ -1382,6 +1387,7 @@
 													<field style="width: 55rem;" class="alert alert-warning" name="oi_ti_treatment_prompt_message" nolabel="1"/>
 													<!--													<field name="oi_ti_decisions" attrs="{'required':[('treatment_state', '=', 'approval')]}"/>-->
 													<field name="oi_ti_additional_comments"/>
+													<field name="oi_ti_approved_signed_by"/>
 													<label for="action_proceed_to_ui_ti"/>
 													<div id="action_proceed_buttons">
 														<button name="action_proceed_to_ui_ti"

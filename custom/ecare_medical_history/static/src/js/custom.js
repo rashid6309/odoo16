@@ -54,6 +54,7 @@ odoo.define('ecare_medical_history.patient_banner', function (require) {
     const { useService } = require("@web/core/utils/hooks");
     // var time = require('web.time');
     var rpc = require('web.rpc');
+    const Dialog = require('web.Dialog');
     const { onWillStart } = owl;
 
     // var translation = require('web.translation');
@@ -120,6 +121,35 @@ odoo.define('ecare_medical_history.patient_banner', function (require) {
             }
             });
         }
+
+//        async _onEndPatientTreatment() {
+//        var self = this;
+//        await this.props.record.save().then(function(result) {
+//            console.log(result);
+//           const errorSpan = document.querySelector('span.text-danger.small.ms-2');
+//            if (!result) {
+//
+//                // Handle the scenario where the error span exists
+//                // For example, display an error message to the user
+//                console.error("Error: Unable to save. Please correct the errors.");
+//                return;
+//            }
+//            else{
+//            self.action.doActionButton({
+//                type: "object",
+//                resId: self.props.value[0],
+//                name: "action_end_patient_treatment",
+//                context: self.props.value,
+//                resModel: "ec.patient.timeline",
+//                doActionButton: async () => {
+//                    await self.props.record.model.root.load();
+//                    self.props.record.model.notify();
+//                },
+//            });
+//
+//            }
+//            });
+//        }
 
         async _onEditPatientSemen() {
         await this.props.record.save();

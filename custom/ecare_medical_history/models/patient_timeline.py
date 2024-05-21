@@ -635,6 +635,13 @@ class PatientTimeline(models.Model):
             'target': 'new',
         }
 
+    def action_end_patient_treatment(self):
+        # if not self.env.user.has_group('ecare_medical_history.group_medical_history_timeline_edit'):
+        #     raise UserError("Logged in user does not have the access to perform this action.")
+        patient_id = self.timeline_patient_id
+        patient_id.patient_treatment_pathways_current = ''
+        return {'type': 'ir.actions.client', 'tag': 'soft_reload'}
+
     def action_open_patient_semen_view(self):
         patient_id = self.env.context.get('0')
         if patient_id:

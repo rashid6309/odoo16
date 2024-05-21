@@ -6,10 +6,10 @@
 				<div class="col-md-6">
 					<h1 style="width: -webkit-fill-available;">
 						<t t-esc="props.value[1]" />
-<!--						<a href="#" t-on-click="_onEditPatientProfile" class="editPatientProfile">-->
-<!--							<i class="fa fa-pencil-square-o" title="Edit Patient"-->
-<!--							   style="font-size:24px; color: white;margin-left:1%;"/>-->
-<!--						</a>-->
+						<a href="#" t-on-click="_onEditPatientProfile" class="editPatientProfile">
+							<i class="fa fa-pencil-square-o" title="Edit Patient"
+							   style="font-size:24px; color: white;margin-left:1%;"/>
+						</a>
 					</h1>
 
 				</div>
@@ -35,12 +35,23 @@
 						</span>
 					</a>
 					<a href="#" t-on-click="_onEditPatientTimeline"
-					   style="display: inline-block; padding: 3px 18px; background-color: #3e5bc5; color: #fff; text-decoration: none; border-radius: 5px;"
+					   style="display: inline-block; padding: 3px 18px;
+					    background-color: #3e5bc5; color: #fff;
+					    margin-right: 1%;
+					     text-decoration: none; border-radius: 5px;"
 					   class="editPatientSemen">
 						<span>
 							Timeline
 						</span>
 					</a>
+<!--					<a href="#" t-on-click="_onEndPatientTreatment"-->
+<!--					   confirm="0he0llo"-->
+<!--					   style="display: inline-block; padding: 3px 18px; background-color: #3e5bc5; color: #fff; text-decoration: none; border-radius: 5px;"-->
+<!--					   class="editPatientSemen">-->
+<!--						<span>-->
+<!--							End Treatment-->
+<!--						</span>-->
+<!--					</a>-->
 <!--					<a href="#" t-on-click="_onEditPatientSemen"-->
 <!--					   style="display: inline-block; padding: 3px 18px; background-color: #3e5bc5; color: #fff; text-decoration: none; border-radius: 5px; margin-left: 1%;"-->
 <!--					   class="editPatientSemen">-->

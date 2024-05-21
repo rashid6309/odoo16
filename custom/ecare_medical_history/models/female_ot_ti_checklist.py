@@ -65,6 +65,10 @@ class FemaleOtTiChecklist(models.Model):
 
     oi_ti_decisions = fields.Text('Decisions')
     oi_ti_additional_comments = fields.Text('Additional Comments')
+    oi_ti_approved_signed_by = fields.Many2one(
+        comodel_name='res.users', string='Signed By',
+        default=lambda self: self.env.uid, readonly=True
+    )
     oi_ti_treatment_prompt_message = fields.Text(readonly="1", string='Message',
                                                  default="One or more contraindications to OI/TI have been "
                                                          "identified and highlighted and therefore, "

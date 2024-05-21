@@ -17,7 +17,7 @@ class EcMedicalOITIPlatformCycle(models.Model):
                                       defult='ready_to_trigger')
     oi_ti_platform_status = fields.Selection(selection=StaticMember.OI_TI_PLATFORM_STATUS, string='Status')
 
-    cycle_day = fields.Integer(string='Cycle Day', compute='_compute_cycle_day', store=True)
+    cycle_day = fields.Integer(string='Cycle Day', compute='_compute_cycle_day')
     oi_ti_schedule = fields.Selection(selection=StaticMember.SCHEDULE,
                                       string='Schedule')
     oi_ti_intervention = fields.Selection(selection=StaticMember.INTERVENTION,

@@ -381,6 +381,20 @@ class RepeatConsultation(models.Model):
             'context': context,
         }
 
+    def view_oi_ti_checklist(self):
+        if self.treatment_state != 'none':
+            return {
+                "name": _("Repeat Consultation"),
+                "type": 'ir.actions.act_window',
+                "res_model": 'ec.repeat.consultation',
+                'view_id': self.env.ref('ecare_medical_history.repeat_consultation_oi_ti_form_view').id,
+                'view_mode': 'form',
+                'res_id': self.id,
+                "target": 'new',
+            }
+        else:
+            raise UserError("OI/TI checklist has not be started yet.")
+
     def action_set_working_consultation(self):
         """
         It will make the consultation-editable on the patient.timeline
