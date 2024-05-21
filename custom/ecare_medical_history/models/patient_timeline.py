@@ -52,6 +52,8 @@ class PatientTimeline(models.Model):
 
     # Related Fields which are used for kanban view
     # Related Fields Used for data representation purposes
+    patient_treatment_pathways_current = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_ADVISED_LIST,
+                                                          string='Treatment Pathway')
     timeline_patient_mr_num = fields.Char('MR No.', related="timeline_patient_id.mr_num")
     timeline_patient_name = fields.Char('Patient Name', related="timeline_patient_id.name")
     timeline_patient_wife_name = fields.Char('Wife Name', related="timeline_patient_id.wife_name")
@@ -638,8 +640,8 @@ class PatientTimeline(models.Model):
     def action_end_patient_treatment(self):
         # if not self.env.user.has_group('ecare_medical_history.group_medical_history_timeline_edit'):
         #     raise UserError("Logged in user does not have the access to perform this action.")
-        patient_id = self.timeline_patient_id
-        patient_id.patient_treatment_pathways_current = ''
+        # patient_id = self.timeline_patient_id
+        self.patient_treatment_pathways_current = ''
         return {'type': 'ir.actions.client', 'tag': 'soft_reload'}
 
     def action_open_patient_semen_view(self):
@@ -772,7 +774,7 @@ class PatientTimeline(models.Model):
         return {
             'repeat_timeline_id': self.id,
             'repeat_patient_id': patient_id,
-            'repeat_treatment_advised_current': self.timeline_patient_id.patient_treatment_pathways_current,
+            'repeat_treatment_advised_current': self.patient_treatment_pathways_current,
             'tvs_patient_id': patient_id,
             'tvs_repeat_consultation_id': self.ec_repeat_consultation_id.id,
             'repeat_obs_history_lines': int(repeat_obs_history_lines),

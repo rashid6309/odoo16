@@ -331,8 +331,10 @@
 									</div>
 									<div class="col-4 text-right" style="text-align: right">
 										<field name="repeat_consultation_state" invisible="1"/>
+										<field name="patient_treatment_pathways_current" invisible="1"/>
 										<button name="action_end_patient_treatment"
 												type="object"
+												attrs="{'invisible': [('patient_treatment_pathways_current', '!=', 'pre_oi_ti_checklist')]}"
 												confirm="Do you really want to end the Patient Current Treatment?"
 												string="End Treatment"
 												class="btn btn-primary m-2"/>

@@ -6,8 +6,8 @@ from odoo.tools.misc import get_lang
 class EcMedicalPatient(models.Model):
     _inherit = "ec.medical.patient"
 
-    patient_treatment_pathways_current = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_ADVISED_LIST,
-                                                          string='Treatment Pathway')
+    # patient_treatment_pathways_current = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_ADVISED_LIST,
+    #                                                       string='Treatment Pathway')
 
     def _compute_next_visit(self):
         date = fields.Datetime.now()
@@ -31,7 +31,7 @@ class EcMedicalPatient(models.Model):
     @api.model
     def get_selection_label(self, field_name, field_value):
         """ Returns the display name of a selection field value. """
-        field = self._fields[field_name]
+        field = self.env['ec.patient.timeline']._fields[field_name]
         if field and field_value:
             return dict(field.selection).get(field_value)
         return None
@@ -39,8 +39,11 @@ class EcMedicalPatient(models.Model):
     @api.model
     def get_banner_data_values(self, patient_id):
         patient = self.search(domain=[('id', '=', patient_id)])
+        patient_timeline = self.env['ec.patient.timeline'].search(domain=[
+            ('timeline_patient_id', '=', int(patient.id))
+        ], limit=1)
         values = {
             'next_visit': patient._compute_next_visit(),
-            'current_treatment_pathways': self.get_selection_label('patient_treatment_pathways_current', patient.patient_treatment_pathways_current) or None
+            'current_treatment_pathways': self.get_selection_label('patient_treatment_pathways_current', patient_timeline.patient_treatment_pathways_current) or None
         }
         return values

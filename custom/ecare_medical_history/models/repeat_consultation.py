@@ -433,10 +433,16 @@ class RepeatConsultation(models.Model):
 
     def action_treatment_state_initiated(self):
         if self:
+            oi_ti_attempts = self.env['ec.medical.oi.ti.platform.cycle'].search([
+                ('repeat_consultation_id', '=', int(self.id))])
+            if oi_ti_attempts:
+                for rec in oi_ti_attempts:
+                    if rec.oi_ti_platform_status not in ['abandoned', 'completed']:
+                        raise UserError("There is a cycle already in progress, please complete that first!")
             if self.treatment_confirmation:
                 self.treatment_state = 'initiated'
                 self.repeat_treatment_advised_current = self.repeat_treatment_advised
-                self.repeat_timeline_id.timeline_patient_id.patient_treatment_pathways_current = self.repeat_treatment_advised
+                self.repeat_timeline_id.patient_treatment_pathways_current = self.repeat_treatment_advised
             else:
                 raise UserError("Please show your consent with clicking the checkbox.")
 
