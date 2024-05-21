@@ -1376,22 +1376,22 @@ class PatientTimeline(models.Model):
             #     'context': values,
             #     'target': 'new',
             # }
-        if (float(self.fsh_level) > 10 or float(self.lh_level) > 10 or
-                not (10 <= float(self.amh_level) <= 25)):
-            values = {
-                'default_message': "Hormonal Profile values are not in range. "
-                                   "Please seek senior doctor's approval.",
-                'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
-            }
-            return {
-                'name': 'Message',
-                'type': 'ir.actions.act_window',
-                'view_mode': 'form',
-                'views': [(False, 'form')],
-                'res_model': 'ec.medical.treatment.pathway.wizard',
-                'context': values,
-                'target': 'new',
-            }
+        # if (float(self.fsh_level) > 10 or float(self.lh_level) > 10 or
+        #         not (10 <= float(self.amh_level) <= 25)):
+        #     values = {
+        #         'default_message': "Hormonal Profile values are not in range. "
+        #                            "Please seek senior doctor's approval.",
+        #         'default_ec_repeat_consultation_id': self.ec_repeat_consultation_id.id,
+        #     }
+        #     return {
+        #         'name': 'Message',
+        #         'type': 'ir.actions.act_window',
+        #         'view_mode': 'form',
+        #         'views': [(False, 'form')],
+        #         'res_model': 'ec.medical.treatment.pathway.wizard',
+        #         'context': values,
+        #         'target': 'new',
+        #     }
             # self.ec_repeat_consultation_id.repeat_consultation_state = 'decision_pending'
             # raise ValidationError(_("Hormonal Profile values are not in range. "
             #                         "Please seek senior doctor's approval."))
