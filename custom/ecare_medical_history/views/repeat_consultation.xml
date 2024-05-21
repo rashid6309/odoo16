@@ -24,7 +24,7 @@
                                             <field name="treatment_state"/>
                                         </span>
                                     </div>
-                                    <div style="text-align: -webkit-right;display: inline-block;" attrs="{'invisible': ['|',('repeat_consultation_state','!=','open'),('treatment_state','=','none')]}">
+                                    <div style="text-align: -webkit-right;display: inline-block;" attrs="{'invisible': [('treatment_state','=','none')]}">
                                         <span class="bg-success" style="display: grid;
                                     height: 50%; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); color: #fff;
                                     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); text-transform: uppercase;

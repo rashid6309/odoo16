@@ -259,7 +259,7 @@
                         <!-- TVS Section -->
                         <div class="d-flex flex-column ">
                             <group string="Uterus"/>
-                            <div class="d-flex align-items-center bg-light bg-gradient" style=" margin-left: 1.5rem; ">
+                            <div class="d-flex align-items-center bg-light bg-gradient follow_up_visits" style=" margin-left: 1.5rem; ">
                                 <div class="col-md-10">
                                     <div class="d-flex custom-checkbox-alignment-boolean">
                                         <field name="tvs_uterus_tvs_size"
