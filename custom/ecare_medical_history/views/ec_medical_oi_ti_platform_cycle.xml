@@ -64,13 +64,13 @@
                                         <p class="oi_ti_action_btn"><strong><span>Trigger regimen</span></strong></p>
                                     </td>
                                     <td class="oi_ti_heading_td">
-                                        <p class="oi_ti_action_btn"><strong><field name="trigger_regimen"/></strong></p>
+                                        <p class="oi_ti_action_btn"><field name="trigger_regimen"/></p>
                                     </td>
                                     <td class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>Insemination</span></strong></p>
                                     </td>
                                     <td class="oi_ti_heading_td">
-                                        <p class="oi_ti_action_btn"><strong><field name="insemination"/></strong></p>
+                                        <p class="oi_ti_action_btn"><field name="insemination"/></p>
                                     </td>
                                     <td colspan="2" class="oi_ti_heading_td">
                                         <p class="oi_ti_action_btn"><strong><span>IUI attempt</span></strong></p>
@@ -234,13 +234,13 @@
                                                 <p class="oi_ti_action_btn"><strong><span>Trigger regimen</span></strong></p>
                                             </td>
                                             <td class="oi_ti_heading_td">
-                                                <p class="oi_ti_action_btn"><strong><field name="trigger_regimen"/></strong></p>
+                                                <p class="oi_ti_action_btn"><field name="trigger_regimen"/></p>
                                             </td>
                                             <td class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><span>Insemination</span></strong></p>
                                             </td>
                                             <td class="oi_ti_heading_td">
-                                                <p class="oi_ti_action_btn"><strong><field name="insemination"/></strong></p>
+                                                <p class="oi_ti_action_btn"><field name="insemination"/></p>
                                             </td>
                                             <td colspan="2" class="oi_ti_heading_td">
                                                 <p class="oi_ti_action_btn"><strong><span>IUI attempt</span></strong></p>

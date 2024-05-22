@@ -1317,6 +1317,8 @@ class PatientTimeline(models.Model):
                                     "start a new repeat consultation first.")
                 oi_ti_platform_cycle_ref = self.env['ec.medical.oi.ti.platform.cycle']
                 self.ec_repeat_consultation_id.treatment_state = 'treatment_started'
+                self.oi_ti_platform_enabled = True
+                self.action_save_repeat_consultation_section()
                 return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
 
         if proceed_to_ui_ti:
