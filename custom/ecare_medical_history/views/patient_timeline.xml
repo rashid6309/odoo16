@@ -205,12 +205,12 @@
 						}
 					</script>
 					<div id="treatment_history_popup" class="tvs_scan_popup">
-						<tree editable="top">
+						<tree editable="bottom">
 							<field name="timeline_previous_treatment_ids"
 								   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
 													   }"
-								   nolabel="1" editable="top">
+								   nolabel="1" editable="bottom">
 							</field>
 						</tree>
 						<a class="btn btn-primary m-3" onclick="saveTreatmentHistory()">Save</a>
@@ -633,12 +633,12 @@
 											</group>
 											<div>
 												<p attrs="{'invisible': [('question_two_choice', '!=', 'yes')]}" style="text-decoration: underline; color: red;">Please add details of pregnancy in table below</p>
-												<tree editable="top" attrs="{'invisible': [('question_two_choice', '!=', 'yes')]}">
+												<tree editable="bottom" attrs="{'invisible': [('question_two_choice', '!=', 'yes')]}">
 													<field name="repeat_obs_history_ids"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
 													   }"
-														   nolabel="1" editable="top">
+														   nolabel="1" editable="bottom">
 													</field>
 												</tree>
 
@@ -981,7 +981,7 @@
 															<!--															</div>-->
 															<div class="col-md-10">
 																<field name="tvs_generic_sizes_ids" string="Location or features">
-																	<tree editable="top">
+																	<tree editable="bottom">
 																		<field name="generic_size_x"/>
 																		<field name="location_or_features"/>
 																		<field name="distorting_endometrium"/>
@@ -1104,7 +1104,7 @@
 													<div class="col-md-6 d-flex flex-column">
 														<div>
 															<field name="tvs_cyst_size_ids">
-																<tree editable="top">
+																<tree editable="bottom">
 																	<field name="type"/>
 																	<field name="generic_size_x"/>
 																	<!--																	<field name="generic_size_y"/>-->
@@ -1676,13 +1676,13 @@
 											<div class="card-block mb-5 pl-4 collapse" id="obstetrics_history_section">
 												<field name="first_consultation_state" invisible="1" force_save="1"/>
 												<!--											<field name="patient_id"/>-->
-												<tree editable="top">
+												<tree editable="bottom">
 													<field name="first_obs_history_ids"
 														   attrs="{'readonly': [('first_consultation_state', '=', 'closed')]}"
 														   id="obstetrics_history_table"
 														   context="{'default_patient_id': timeline_patient_id,
 													   				'default_timeline_id' : id,}"
-														   nolabel="1" editable="top">
+														   nolabel="1" editable="bottom">
 													</field>
 												</tree>
 											</div>
@@ -3032,7 +3032,7 @@
 																<!--																</div>-->
 																<div class="col-md-10">
 																	<field name="gynaecological_generic_sizes_ids" string="Location or features">
-																		<tree editable="top">
+																		<tree editable="bottom">
 																			<field name="generic_size_x"/>
 																			<field name="location_or_features"/>
 																			<field name="distorting_endometrium"/>
@@ -3119,7 +3119,7 @@
 														<div class="col-md-12">
 															<div class="col-md-12">
 																<field name="gynae_cyst_size_ids">
-																	<tree editable="top">
+																	<tree editable="bottom">
 																		<field name="type"/>
 																		<field name="generic_size_x"/>
 																	</tree>
@@ -4077,13 +4077,13 @@
 
 										<page string="Previous Treatment" name="previous_treatment" id="arrangeList">
 											<div class="card-block mb-5 pl-4" id="previous_treatment_tree_section">
-												<tree editable="top">
+												<tree editable="bottom">
 													<field name="first_previous_treatment_ids"
 														   attrs="{'readonly': [('first_consultation_state', '=', 'closed')]}"
 														   context="{'default_patient_id': timeline_patient_id,
 													   'default_timeline_id' : id,
 													   }"
-														   nolabel="1" editable="top">
+														   nolabel="1" editable="bottom">
 													</field>
 												</tree>
 											</div>

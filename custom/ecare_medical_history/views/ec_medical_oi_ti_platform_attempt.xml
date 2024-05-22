@@ -320,7 +320,7 @@
 
                                         <div class="col-md-10">
                                             <field name="tvs_generic_sizes_ids" string="Location or features">
-                                                <tree editable="top">
+                                                <tree editable="bottom">
                                                     <field name="generic_size_x"/>
                                                     <field name="location_or_features"/>
                                                     <field name="distorting_endometrium"/>
@@ -418,7 +418,7 @@
                                 <div class="col-md-6 d-flex flex-column">
                                     <div>
                                         <field name="tvs_cyst_size_ids">
-                                            <tree editable="top">
+                                            <tree editable="bottom">
                                                 <field name="type"/>
                                                 <field name="generic_size_x"/>
                                                 <!--																	<field name="generic_size_y"/>-->

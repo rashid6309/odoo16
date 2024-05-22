@@ -6,7 +6,7 @@
             <field name="name">ec.medical.seminologist.tree</field>
             <field name="model">ec.medical.seminologist</field>
             <field name="arch" type="xml">
-                <tree editable="top">
+                <tree editable="bottom">
                     <field name="name"/>
                     <field name="user_id"/>
                 </tree>

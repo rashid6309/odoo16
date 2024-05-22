@@ -6,7 +6,7 @@
             <field name="name">ec.medical.factors.tree.view</field>
             <field name="model">ec.medical.factors</field>
             <field name="arch" type="xml">
-                <tree editable="top">
+                <tree editable="bottom">
                     <field name="type" required="1"/>
                     <field name="name"/>
                     <field name="color" widget="color_picker"/>

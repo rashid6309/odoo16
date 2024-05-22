@@ -13,7 +13,7 @@
             <field name="name">ec.medical.patient.attachment.tree.view</field>
             <field name="model">ec.medical.patient.attachment</field>
             <field name="arch" type="xml">
-                <tree editable="top">
+                <tree editable="bottom">
                     <field name="patient_attachment_timeline_id" invisible="1" readonly="1" force_save="1"/>
                     <field name="name" class="truncate_text"/>
                     <field name="attachment_id" widget="many2many_binary" filename="filename"/>

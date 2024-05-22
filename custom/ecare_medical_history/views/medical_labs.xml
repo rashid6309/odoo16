@@ -6,7 +6,7 @@
             <field name="name">ec.medical.labs.tree.view</field>
             <field name="model">ec.medical.labs</field>
             <field name="arch" type="xml">
-                <tree editable="top">
+                <tree editable="bottom">
                     <field name="name"/>
                 </tree>
             </field>
