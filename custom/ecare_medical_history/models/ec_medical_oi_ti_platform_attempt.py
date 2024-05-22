@@ -147,13 +147,13 @@ class EcMedicalOITIPlatform(models.Model):
                         size_x_value = str(rec.generic_size_x) if rec.generic_size_x is not False else '-'
                         # size_y_value = str(rec.generic_size_y) if rec.generic_size_y is not False else '-'
 
-                        size_value = int(size_x_value) if size_x_value != '-' else False
+                        size_value = int(size_x_value) if size_x_value != '-' else ''
                         grouped_data[type_value].append(size_value)
 
                     # Create the table rows
                     table_rows = []
                     for type_value, sizes in grouped_data.items():
-                        sorted_sizes = sorted(sizes)
+                        sorted_sizes = sorted([int(s) for s in sizes if s != ''])
 
                         # Join sorted sizes with comma
                         combined_sizes = ','.join([str(x) for x in sorted_sizes])
