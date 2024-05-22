@@ -147,7 +147,7 @@ class EcMedicalOITIPlatform(models.Model):
                         size_x_value = str(rec.generic_size_x) if rec.generic_size_x is not False else '-'
                         # size_y_value = str(rec.generic_size_y) if rec.generic_size_y is not False else '-'
 
-                        size_value = int(size_x_value)
+                        size_value = int(size_x_value) if size_x_value != '-' else False
                         grouped_data[type_value].append(size_value)
 
                     # Create the table rows
