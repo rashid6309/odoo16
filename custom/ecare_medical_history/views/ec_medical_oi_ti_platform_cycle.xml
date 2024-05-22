@@ -47,12 +47,12 @@
                                     </td>
                                 </tr>
                                 <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform_status','not in',['abandoned'])]}">
-                                    <td colspan="1" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
-                                        <p class="oi_ti_action_btn" style="text-align: left;"><strong>Abandoned Comments</strong></p>
+                                    <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
+                                        <p class="oi_ti_action_btn" style="text-align: left;"><strong>Abandoned Comments: </strong><field name="abandoned_comments" readonly="1"/></p>
                                     </td>
-                                    <td colspan="6" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
-                                        <p class="oi_ti_action_btn" style="text-align: left;"><strong><field name="abandoned_comments" readonly="1"/></strong></p>
-                                    </td>
+<!--                                    <td colspan="6" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">-->
+<!--                                        <p class="oi_ti_action_btn" style="text-align: left;"><strong><field name="abandoned_comments" readonly="1"/></strong></p>-->
+<!--                                    </td>-->
                                 </tr>
 
                                 <!--                                Exit Buttons-->
@@ -220,12 +220,12 @@
                                             </td>
                                         </tr>
                                         <tr style="height:15.75pt;" attrs="{'invisible': [('oi_ti_platform_status','not in',['abandoned'])]}">
-                                            <td colspan="2" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
-                                                <p class="oi_ti_action_btn" style="text-align: left;"><strong>Abandoned Comments</strong></p>
+                                            <td colspan="7" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
+                                                <p class="oi_ti_action_btn" style="text-align: left;"><strong>Abandoned Comments: </strong><field name="abandoned_comments" readonly="1"/></p>
                                             </td>
-                                            <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">
-                                                <p class="oi_ti_action_btn" style="text-align: left;"><strong><field name="abandoned_comments" readonly="1"/></strong></p>
-                                            </td>
+<!--                                            <td colspan="5" class="oi_ti_computed_values_td" style="background-color:#c0e0ff;">-->
+<!--                                                <p class="oi_ti_action_btn" style="text-align: left;"><strong></strong></p>-->
+<!--                                            </td>-->
                                         </tr>
                                         <tr style="height:15.75pt;">
                                             <td class="oi_ti_computed_values_td" style="background-color:#dceeff;">
@@ -297,7 +297,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <!--                                <field name="html_table" widget="html"/>-->
+<!--                                                                <field name="html_table" widget="html"/>-->
                                 <!--                                <t t-foreach="record.oi_ti_platform_attempt_ids.raw_value" t-as="line">-->
                                 <!--                                    <t t-out="line['oi_ti_other_diagnosis']"/>-->
                                 <!--                                    <t t-out="oi_ti_other_diagnosis"/>-->
