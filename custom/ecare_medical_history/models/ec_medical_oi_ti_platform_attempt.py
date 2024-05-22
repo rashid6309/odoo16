@@ -182,14 +182,14 @@ class EcMedicalOITIPlatform(models.Model):
                 dominant_follicle_right_raw = [num for num in follicle_right if
                                                  (num.isdigit() and (int(num) >= 12) or num == '>22')]
                 if dominant_follicle_right_raw:
-                    dominant_follicle_right_list = [int(num) for num in dominant_follicle_right_raw if num.isdigit()]
-                    visit.dominant_follicle_right = ','.join(map(str, dominant_follicle_right_list))
+                    # dominant_follicle_right_list = [int(num) for num in dominant_follicle_right_raw if num.isdigit()]
+                    visit.dominant_follicle_right = ', '.join(dominant_follicle_right_raw)
                 else:
                     visit.dominant_follicle_right = None
 
                 if dominant_follicle_left_raw:
-                    dominant_follicle_left_list = [int(num) for num in dominant_follicle_left_raw if num.isdigit()]
-                    visit.dominant_follicle_left = ','.join(map(str, dominant_follicle_left_list))
+                    # dominant_follicle_left_list = [int(num) for num in dominant_follicle_left_raw if num.isdigit()]
+                    visit.dominant_follicle_left = ', '.join(dominant_follicle_left_raw)
 
                 else:
                     visit.dominant_follicle_left = None

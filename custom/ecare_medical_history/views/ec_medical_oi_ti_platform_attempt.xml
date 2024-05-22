@@ -90,10 +90,10 @@
                                         <p class="oi_ti_text_paragraph_td"><field name="dominant_follicle_right"/></p>
                                     </td>
                                     <td class="oi_ti_heading_td" style="background-color:#ffffff;">
-                                        <p class="oi_ti_text_paragraph_td">CET: <field name="oi_ti_cet"/></p>
+                                        <p class="oi_ti_text_paragraph_td"><strong>CET: </strong><field name="oi_ti_cet"/></p>
                                     </td>
                                     <td rowspan="4" class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
-                                        <p class="oi_ti_text_paragraph_td">Other diagnoses:<field name="oi_ti_other_diagnosis" placeholder="other diagnosis..."/></p>
+                                        <p class="oi_ti_text_paragraph_td"><strong>Other diagnoses:</strong><field name="oi_ti_other_diagnosis" placeholder="other diagnosis..."/></p>
                                     </td>
                                 </tr>
                                 <tr style="height:26.25pt;">
@@ -546,10 +546,10 @@
                                                 <p class="oi_ti_text_paragraph_td"><field name="dominant_follicle_right"/></p>
                                             </td>
                                             <td class="oi_ti_heading_td" style="background-color:#ffffff;">
-                                                <p class="oi_ti_text_paragraph_td">CET: <field name="oi_ti_cet"/></p>
+                                                <p class="oi_ti_text_paragraph_td"><strong>CET: </strong> <field name="oi_ti_cet"/></p>
                                             </td>
                                             <td rowspan="4" class="oi_ti_attempt_diagnosis_td" style="background-color:#f4cccc;">
-                                                <p class="oi_ti_text_paragraph_td">Other diagnoses:<field name="oi_ti_other_diagnosis" placeholder="other diagnosis..."/></p>
+                                                <p class="oi_ti_text_paragraph_td"><strong>Other diagnoses:</strong><field name="oi_ti_other_diagnosis" placeholder="other diagnosis..."/></p>
                                             </td>
                                         </tr>
                                         <tr style="height:26.25pt;">

@@ -11,10 +11,11 @@
                     <sheet class="container">
                         <field name="repeat_new_treatment_pathway"
                                widget="radio"
+                                invisible="1"
                                options="{'horizontal': True}"/>
 
-                        <field name="repeat_treatment_advised"/>
-                        <field name="repeat_treatment_advised_current"/>
+                        <field name="repeat_treatment_advised" invisible="1"/>
+                        <field name="repeat_treatment_advised_current"  invisible="1"/>
                         <span attrs="{'invisible': ['|','|',('repeat_new_treatment_pathway', '!=', 'yes'),
 											('treatment_state', '=', 'none'),
 											('repeat_treatment_advised', '!=', 'pre_oi_ti_checklist')]}">
@@ -1267,7 +1268,7 @@
                                                                                 <field attrs="{'invisible': [('tvs_left_ovary_not_visualised', '!=', True)]}" name="tvs_left_ovary_not_visualised"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="d-flex d-sm-contents flex-column" t-if="record.tvs_uterus_size_x.raw_value.raw_value">
+                                                                        <div class="d-flex d-sm-contents flex-column">
                                                                             <div>
                                                                                 <span class="o_form_label">Cyst (cm)</span>
                                                                             </div>
@@ -1389,6 +1390,7 @@
                                                                         <button name="view_oi_ti_checklist"
                                                                                 type="object"
                                                                                 string="Edit"
+                                                                                attrs="{'invisible': [('treatment_state', '=', 'none')]}"
                                                                                 class="btn-primary repeat_kanban_button">
                                                                             OI/TI Treatment
                                                                         </button>
