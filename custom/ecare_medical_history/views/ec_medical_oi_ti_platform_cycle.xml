@@ -158,7 +158,6 @@
                                 name="action_abandoned_attempt"
                                 class="oi_ti_navbar_btn"
                                 type="object"
-                                attrs="{'invisible': [('oi_ti_platform','in',['luteal_phase'])]}"
                                 string="ABANDON ATTEMPT"/>
                         <button
                                 name="action_complete_attempt"
