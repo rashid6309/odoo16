@@ -6,9 +6,6 @@ from odoo.tools.misc import get_lang
 class EcMedicalPatient(models.Model):
     _inherit = "ec.medical.patient"
 
-    # patient_treatment_pathways_current = fields.Selection(selection=StaticMember.REPEAT_TREATMENT_ADVISED_LIST,
-    #                                                       string='Treatment Pathway')
-
     def _compute_next_visit(self):
         date = fields.Datetime.now()
         for rec in self:
