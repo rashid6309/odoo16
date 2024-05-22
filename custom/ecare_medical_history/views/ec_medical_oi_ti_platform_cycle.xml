@@ -11,11 +11,12 @@
                 <form>
                     <sheet class="container_cycle">
                         <div style="background-color: #95caff; padding: 3px; font-family: 'Roboto Mono',
-                                monospace; border: none; outline: none; border-radius: 5px;">
+                        monospace; border: none; outline: none; border-radius: 5px;">
                             Cycle Creation Date: <field name="create_date"/>
                             <h3 attrs="{'invisible': [('oi_ti_platform_status','not in',['abandoned'])]}"
                                 style="padding: 3px; font-family: 'Roboto Mono',
                                         monospace;
+                                        text-align-last: center;
                                         background:#aaff87 !important;
                                         border: none; outline: none;
                                          border-radius: 5px;width: 10rem;
@@ -25,6 +26,7 @@
                             <h3 attrs="{'invisible': [('oi_ti_platform_status','not in',['completed'])]}"
                                 style="padding: 3px; font-family: 'Roboto Mono',
                                         monospace;
+                                        text-align-last: center;
                                         background:#aaff87 !important;
                                         border: none; outline: none;
                                          border-radius: 5px;width: 10rem;
@@ -203,7 +205,7 @@
                                     Cycle Creation Date: <field name="create_date"/>
                                     <h3 attrs="{'invisible': [('oi_ti_platform_status','not in',['abandoned','completed'])]}"
                                         style="padding: 3px; font-family: 'Roboto Mono',
-                                        monospace;
+                                        monospace;text-align-last: center;
                                         background:#aaff87 !important;
                                         border: none; outline: none;
                                         height: 1.8rem;
