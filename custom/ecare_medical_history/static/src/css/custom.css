@@ -1000,3 +1000,7 @@ label[for="counselling_high_bmi_decision"] {
 .follow_up_visits label[for="tvs_uterus_tvs_size"],label[for="tvs_uterus_tvs_position"] ,label[for="tvs_uterus_tvs_fiobrid"]  {
     width: auto !important;
 }
+div[name='oi_ti_comments'] {
+    width: 48rem !important;
+}
+

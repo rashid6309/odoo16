@@ -132,7 +132,7 @@
                         <field name="oi_ti_platform_attempt_ids" mode="kanban"/>
 
                     </sheet>
-                    <div style="padding: 1rem; background: white; display: flex;" attrs="{'invisible': [('oi_ti_platform_status','in',['abandoned', 'completed'])]}">
+                    <div style="padding: 1rem; background: white; display: flex;position: fixed; bottom: 6rem; z-index: 1; width: 80rem;" attrs="{'invisible': [('oi_ti_platform_status','in',['abandoned', 'completed'])]}">
                         <!--                    <button string="Save" special="save" class="btn-primary"/>-->
                         <!--                    <button string="Discard" class="btn-secondary" special="cancel"/>-->
                         <!--                    <button string="Delete" type="object" class="btn-secondary" name="unlink"/>-->
