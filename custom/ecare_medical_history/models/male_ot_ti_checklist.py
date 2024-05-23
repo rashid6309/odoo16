@@ -9,7 +9,7 @@ class MaleOtTiChecklist(models.Model):
     # Male Pre-OI/TI Checklist Fields
     male_semen_analysis = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                            string='Semen Analysis within normal limits and up to date?')
-    male_semen_analysis_decision = fields.Char(string='Semen Analysis within normal limits and up to date?')
+    male_semen_analysis_decision = fields.Char(string='Semen Analysis within normal limits and up to date decision')
 
     husband_availability_male = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                  string='Husband Availability during cycle?')
@@ -18,7 +18,7 @@ class MaleOtTiChecklist(models.Model):
 
     risk_inability_to_give_samples_male = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                            string='Risk of inability to give samples (trauma, mental health, medical disease e.g. diabetes)')
-    risk_inability_male_decision = fields.Char(string='Risk of inability to give samples (trauma, mental health, medical disease e.g. diabetes)')
+    risk_inability_male_decision = fields.Char(string='Risk of inability to give samples (trauma, mental health, medical disease e.g. diabetes) decision')
 
     def check_field_values_as_red(self):
         no_values = ['no']

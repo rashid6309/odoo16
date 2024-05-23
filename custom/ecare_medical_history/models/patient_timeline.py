@@ -1255,10 +1255,11 @@ class PatientTimeline(models.Model):
         ]
 
         for field in fields:
-            formatted_field_name = field.replace('_', ' ').title()
+            # formatted_field_name = field.replace('_', ' ').upper()
             value = getattr(self.ec_repeat_consultation_id, field)
+            filed_string = str(self.ec_repeat_consultation_id._fields[field].string) or None
             if value is None or value is False:
-                raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
+                raise UserError(f"Field '{filed_string}' is not set. Please fill it before proceeding.")
 
         if self.ec_repeat_consultation_id.treatment_state == 'approval':
             field_decision = ['menopause_sign_suspicion_decision',
@@ -1277,19 +1278,21 @@ class PatientTimeline(models.Model):
             for field in field_decision:
                 if field in ['oi_ti_additional_comments']:
                     value = getattr(self.ec_repeat_consultation_id, field)
-                    formatted_field_name = field.replace('_', ' ').title()
+                    filed_string = str(self.ec_repeat_consultation_id._fields[field].string) or None
+                    # formatted_field_name = field.replace('_', ' ').upper()
                     if value is None or value is False:
-                        raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
+                        raise UserError(f"Field '{filed_string}' is not set. Please fill it before proceeding.")
                 else:
                     updated_field = field.replace("_decision", "")
 
                     check_required_status = self.ec_repeat_consultation_id.get_field_data_condition(field_name=updated_field,
                                                                                                     timeline_id=self.id)
                     if check_required_status:
-                        formatted_field_name = field.replace('_', ' ').title()
+                        # formatted_field_name = field.replace('_', ' ').upper()
                         value = getattr(self.ec_repeat_consultation_id, field)
+                        filed_string = str(self.ec_repeat_consultation_id._fields[field].string) or None
                         if value is None or value is False:
-                            raise UserError(f"Field '{formatted_field_name}' is not set. Please fill it before proceeding.")
+                            raise UserError(f"Field '{filed_string}' is not set. Please fill it before proceeding.")
 
         proceed_to_ui_ti = self.env.context.get('proceed_to_ui_ti')
         repeat_ui_ti_add = self.env.context.get('repeat_ui_ti_add')
@@ -1336,6 +1339,7 @@ class PatientTimeline(models.Model):
                     self.male_factor_ids |= record_male
             else:
                 print("Record not found")
+            self.ec_repeat_consultation_id.female_ot_ti_checklist_id.oi_ti_approved_signed_by = self.env.uid or None
             return oi_ti_platform_cycle_ref.create_oi_ti_platform_cycle(self, self.ec_repeat_consultation_id)
         message = ("One or more contraindications to OI/TI have been identified and highlighted and therefore, "
                    "you cannot authorise OI/TI treatment "
@@ -1558,15 +1562,17 @@ class PatientTimeline(models.Model):
 
     @api.onchange('female_ot_ti_weight')
     def _check_input_female_ot_ti_weight(self):
-        if (self.female_ot_ti_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_ot_ti_weight) or
-                float(self.female_ot_ti_weight) < 0):
-            raise UserError(f"Please enter a numeric value in Weight and should be greater than 0!")
+        if self.female_ot_ti_weight:
+            if (self.female_ot_ti_weight and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_ot_ti_weight) or
+                    float(self.female_ot_ti_weight) < 0):
+                raise UserError(f"Please enter a numeric value in Weight and should be greater than 0!")
 
     @api.onchange('female_ot_ti_height')
     def _check_input_female_ot_ti_height(self):
-        if (self.female_ot_ti_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_ot_ti_height) or
-                float(self.female_ot_ti_height) < 0):
-            raise UserError(f"Please enter a numeric value in Height and should be greater than 0!")
+        if self.female_ot_ti_height:
+            if (self.female_ot_ti_height and not re.match(Validation.REGEX_FLOAT_2_DP, self.female_ot_ti_height) or
+                    float(self.female_ot_ti_height) < 0):
+                raise UserError(f"Please enter a numeric value in Height and should be greater than 0!")
 
     @api.onchange('female_ot_ti_bmi')
     def _check_input_female_ot_ti_bmi(self):

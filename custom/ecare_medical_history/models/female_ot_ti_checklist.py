@@ -24,40 +24,40 @@ class FemaleOtTiChecklist(models.Model):
 
     tubal_patency_test_dropdown = fields.Selection(selection=StaticMember.IUI_DROPDOWN,
                                     string='Are tubes patent?')
-    tubal_patency_test_dropdown_decision = fields.Char(string='Are tubes patent?')
+    tubal_patency_test_dropdown_decision = fields.Char(string='Are tubes patent decision')
 
     diagnosis_cervical_incompetence = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                        string='Diagnosis or Risk Factors for Cervical Incompetence?')
 
-    diagnosis_cervical_incompetence_decision = fields.Char(string='Diagnosis or Risk Factors for Cervical Incompetence?')
+    diagnosis_cervical_incompetence_decision = fields.Char(string='Diagnosis or Risk Factors for Cervical Incompetence Decision')
 
     uterine_tubal_anomalies = fields.Selection(selection=StaticMember.UTERINE_TUBAL_ANOMALIES,
                                                string='Uterine and Tubal Anomalies Ruled Out?')
-    uterine_tubal_anomalies_decision = fields.Char(string='Uterine and Tubal Anomalies Ruled Out?')
+    uterine_tubal_anomalies_decision = fields.Char(string='Uterine and Tubal Anomalies Ruled Out Decision')
 
     fsh_lh_amh_acceptable = fields.Selection(selection=StaticMember.FSH_LH_AMH_CHOICES,
                                              string='FSH, LH, AMH within acceptable range?')
-    fsh_lh_amh_acceptable_decision = fields.Char(string='FSH, LH, AMH within acceptable range?')
+    fsh_lh_amh_acceptable_decision = fields.Char(string='FSH, LH, AMH within acceptable range decision')
 
     menopause_sign_suspicion = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                 string='Any signs or suspicion of menopause?')
-    menopause_sign_suspicion_decision = fields.Char(string='Any signs or suspicion of menopause?')
+    menopause_sign_suspicion_decision = fields.Char(string='Any signs or suspicion of menopause decision')
 
     female_ot_ti_weight = fields.Char('Weight (kg)')
     female_ot_ti_height = fields.Char('Height (cm)')
 
     female_ot_ti_bmi = fields.Char(string='BMI Calculation')
     # female_ot_ti_bmi = fields.Char(string='BMI Calculation', compute='_compute_female_ot_ti_bmi')
-    female_ot_ti_bmi_decision = fields.Char(string='BMI Calculation')
+    female_ot_ti_bmi_decision = fields.Char(string='BMI Calculation Decision')
 
     tubal_patency_test = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                           string='Tubal Patency Test Indicated?')
 
-    tubal_patency_test_decision = fields.Char(string='Tubal Patency Test Indicated?')
+    tubal_patency_test_decision = fields.Char(string='Tubal Patency Test Indicated Decision')
 
     cervical_incompetence_diagnosis = fields.Selection(selection=StaticMember.CHOICE_YES_NO,
                                                        string='Diagnosis or Risk Factors for Cervical Incompetence?')
-    cervical_incompetence_diagnosis_decision = fields.Char(string='Diagnosis or Risk Factors for Cervical Incompetence?')
+    cervical_incompetence_diagnosis_decision = fields.Char(string='Diagnosis or Risk Factors for Cervical Incompetence Decision')
 
 
     uterine_tubal_anomalies_test = fields.Selection(selection=StaticMember.UTERINE_TUBAL_ANOMALIES,
