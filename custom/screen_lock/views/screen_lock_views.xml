@@ -1,38 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-   <odoo>
-       <record id="action_screen_lock_wizard" model="ir.actions.act_window">
-           <field name="name">Change My Preferences</field>
-           <field name="res_model">screen.lock.wizard</field>
-           <field name="view_mode">form</field>
-           <field name="target">new</field>
-       </record>
+<odoo>
+    <!-- Action for the PIN setup wizard -->
+    <record id="action_screen_lock_wizard" model="ir.actions.act_window">
+        <field name="name">Set Screen Lock PIN</field>
+        <field name="res_model">screen.lock.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
-       <record id="view_screen_lock_wizard_form" model="ir.ui.view">
-           <field name="name">Screen Lock Wizard</field>
-           <field name="model">screen.lock.wizard</field>
-           <field name="arch" type="xml">
-               <form string="Change My Preferences">
-                   <group>
-                       <field name="pin" placeholder="Enter New PIN"/>
-                   </group>
-                   <footer>
-                       <button name="set_pin" string="Save" type="object" class="btn-primary"/>
-                       <button string="Cancel" class="btn-secondary" special="cancel"/>
-                   </footer>
-               </form>
-           </field>
-       </record>
+    <!-- Wizard form view -->
+    <record id="view_screen_lock_wizard_form" model="ir.ui.view">
+        <field name="name">Screen Lock PIN Setup</field>
+        <field name="model">screen.lock.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Set Screen Lock PIN">
+                <div class="alert alert-info" role="alert">
+                    <strong>Screen Lock PIN Setup</strong><br/>
+                    Set a 4-digit PIN to lock your screen. You can use this PIN to unlock your screen later.
+                </div>
+                <group>
+                    <field name="pin" widget="password" placeholder="Enter 4-digit PIN"/>
+                    <field name="confirm_pin" widget="password" placeholder="Confirm 4-digit PIN"/>
+                </group>
+                <footer>
+                    <button name="set_pin" string="Set PIN" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
 
-       <record id="view_res_users_form_inherit_screen_lock" model="ir.ui.view">
-           <field name="name">Res Users Form Inherit Screen Lock</field>
-           <field name="model">res.users</field>
-           <field name="inherit_id" ref="base.view_users_form"/>
-           <field name="arch" type="xml">
-               <xpath expr="//page[@name='preferences']" position="inside">
-                   <group string="Screen Lock">
-                       <field name="screen_lock_pin" widget="password" placeholder="Set Screen Lock PIN"/>
-                   </group>
-               </xpath>
-           </field>
-       </record>
-   </odoo>
+    <!-- Add menu item to user preferences -->
+    <record id="menu_screen_lock_config" model="ir.ui.menu">
+        <field name="name">Screen Lock</field>
+        <field name="parent_id" ref="base.menu_administration"/>
+        <field name="action" ref="action_screen_lock_wizard"/>
+        <field name="sequence">100</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]"/>
+    </record>
+
+    <!-- Inherit user form to add PIN field -->
+    <record id="view_res_users_form_inherit_screen_lock" model="ir.ui.view">
+        <field name="name">Res Users Form Inherit Screen Lock</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences']" position="inside">
+                <group string="Screen Lock Settings">
+                    <field name="screen_lock_pin" widget="password" placeholder="Screen Lock PIN (4 digits)"/>
+                    <button name="%(action_screen_lock_wizard)d" 
+                            string="Set/Change PIN" 
+                            type="action" 
+                            class="btn-link"
+                            icon="fa-lock"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

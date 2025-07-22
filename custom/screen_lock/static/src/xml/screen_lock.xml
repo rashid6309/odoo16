@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="ScreenLockOverlay">
-        <div class="o_screen_lock_overlay" t-if="widget.isLocked">
-            <t t-call="ScreenLockTemplate"/>
+    
+    <t t-name="screen_lock.ScreenLockOverlay" owl="1">
+        <div class="o_screen_lock_overlay" t-if="state.isLocked">
+            <div class="screen-lock-overlay">
+                <div class="lock-screen">
+                    <div class="text-center">
+                        <img t-att-src="'/web/image/res.users/' + user.userId + '/image_128'" 
+                             class="user-image mb-3" alt="User Avatar"/>
+                        <h4 class="user-name mb-3" t-esc="user.name"/>
+                        <div class="pin-container">
+                            <input type="password" 
+                                   t-model="state.pin"
+                                   t-on-input="onPinInput"
+                                   t-on-keypress="onKeyPress"
+                                   class="pin-input form-control mb-2" 
+                                   placeholder="Enter PIN"
+                                   maxlength="4"
+                                   t-att-class="{ 'is-invalid': state.error }"/>
+                            <div t-if="state.error" class="invalid-feedback d-block">
+                                Invalid PIN. Please try again.
+                            </div>
+                            <button class="unlock-btn btn btn-primary w-100" 
+                                    t-on-click="unlockScreen">
+                                <i class="fa fa-unlock"/> Unlock
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </t>
+
 </templates>
