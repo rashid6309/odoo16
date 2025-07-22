@@ -13,7 +13,6 @@
         'web.assets_backend': [
             'screen_lock/static/src/js/screen_lock.js',
             'screen_lock/static/src/css/screen_lock.css',
-            'screen_lock/static/src/xml/screen_lock.xml',
         ],
     },
     'installable': True,
