@@ -48,7 +48,6 @@ class ScreenLockController(http.Controller):
             if user.screen_lock_pin == str(pin):
                 # Unlock the session
                 request.session['screen_locked'] = False
-                request.session.save()
                 _logger.info("Successful screen unlock for user: %s", user.login)
                 return {'success': True}
             else:
@@ -71,7 +70,6 @@ class ScreenLockController(http.Controller):
             
             # Lock the session
             request.session['screen_locked'] = True
-            request.session.save()
             _logger.info("Screen locked for user: %s", user.login)
             return {'success': True}
             
@@ -84,7 +82,6 @@ class ScreenLockController(http.Controller):
         """Unlock the current session (for emergency use)"""
         try:
             request.session['screen_locked'] = False
-            request.session.save()
             return {'success': True}
         except Exception as e:
             _logger.error("Error unlocking session: %s", str(e))
