@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="moodle_category_form_view" model="ir.ui.view">
+        <field name="name">moodle.category.form</field>
+        <field name="model">moodle.category</field>
+        <field name="arch" type="xml">
+            <form string="Moodle Category">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="parent_id"/>
+                        <field name="idnumber" readonly="1"/>
+                        <field name="description"/>
+                        <field name="config_id"/>
+                    </group>
+                    <button string="Create in Moodle"
+                            type="object"
+                            name="create_moodle_category"
+                            class="btn-primary"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="moodle_category_tree_view" model="ir.ui.view">
+        <field name="name">moodle.category.tree</field>
+        <field name="model">moodle.category</field>
+        <field name="arch" type="xml">
+            <tree string="Moodle Categories">
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="idnumber"/>
+                <field name="description"/>
+                <field name="config_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="moodle_category_action" model="ir.actions.act_window">
+        <field name="name">Moodle Categories</field>
+        <field name="res_model">moodle.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Moodle category.
+            </p>
+        </field>
+    </record>
+
+    <record id="moodle_config_form_view" model="ir.ui.view">
+        <field name="name">moodle.config.form</field>
+        <field name="model">moodle.config</field>
+        <field name="arch" type="xml">
+            <form string="Moodle Configuration">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="url"/>
+                        <field name="token"/>
+                        <field name="function"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="moodle_config_tree_view" model="ir.ui.view">
+        <field name="name">moodle.config.tree</field>
+        <field name="model">moodle.config</field>
+        <field name="arch" type="xml">
+            <tree string="Moodle Configuration">
+                <field name="name"/>
+                <field name="url"/>
+                <field name="token"/>
+                <field name="function"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="moodle_config_action" model="ir.actions.act_window">
+        <field name="name">Moodle Configuration</field>
+        <field name="res_model">moodle.config</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Moodle configuration.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="moodle_menu"
+              name="Moodle"
+              sequence="10"/>
+    <menuitem id="moodle_category_menu"
+              name="Categories"
+              parent="moodle_menu"
+              action="moodle_category_action"
+              sequence="10"/>
+    <menuitem id="moodle_config_menu"
+              name="Configuration"
+              parent="moodle_menu"
+              action="moodle_config_action"
+              sequence="20"/>
+</odoo>

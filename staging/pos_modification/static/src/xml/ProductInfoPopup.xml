@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t owl="1" t-inherit="point_of_sale.ProductInfoPopup" t-inherit-mode="extension" t-name="ProductInfoPopup">
+        <xpath expr="//div[hasclass('extra')]" position="before">
+            <div class="section-optional-product">
+                <div class="section-title">
+                    <span> <t t-esc="this.env._t('Stock Location')" /> </span>
+                    <div class="section-title-line"/>
+                </div>
+                <div class="sectiaon-optional-product-body">
+                    <table style="width:100%">
+                        <t t-esc="autoSelectDefaultLocation()"/>
+         
+                        <t t-as="location" t-foreach="productInfo.quants" t-key="location.id">
+                            <tr>
+                                <td scope="row">
+                                    <span t-esc="location.name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="location.quantity"/>
+                                </td>
+                                <td class="table-value">
+                                    <input class="location_id" name="stock_location_id" t-att-value="location.id" t-on-click="onChangeOrderLinePickingLocationID" type="radio" style="box-shadow: 0px 0px;"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </t>
+    <t owl="1" t-name="FixedDiscountButton">
+        <span class="control-button js_discount">
+            <i class="fa fa-minus-circle" title="Fixed Button"/>
+            <span/>
+            <span>Discount</span>
+        </span>
+    </t>
+</templates>

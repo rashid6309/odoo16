@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="moodle_course_form_view" model="ir.ui.view">
+        <field name="name">moodle.course.form</field>
+        <field name="model">moodle.course</field>
+        <field name="arch" type="xml">
+            <form string="Moodle Course">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="shortname"/>
+                        <field name="category_id"/>
+                        <field name="idnumber" readonly="1"/>
+                        <field name="courseformatoptions_name"/>
+                        <field name="courseformatoptions_value"/>
+                        <field name="format"/>
+                        <field name="startdate"/>
+                        <field name="enddate"/>
+                        <field name="config_id"/>
+                    </group>
+                    <button string="Create in Moodle"
+                            type="object"
+                            name="create_moodle_course"
+                            class="btn-primary"
+                            states="draft"/>
+                    <button string="Fetch Attendance Data"
+                            type="object"
+                            name="fetch_attendance_data"
+                            id="fetch_attendance_data"
+                            class="btn-primary"/>
+                    <group>
+                        <field name="attendance_json"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="moodle_course_tree_view" model="ir.ui.view">
+        <field name="name">moodle.course.tree</field>
+        <field name="model">moodle.course</field>
+        <field name="arch" type="xml">
+            <tree string="Moodle Courses">
+                <field name="name"/>
+                <field name="shortname"/>
+                <field name="category_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="moodle_course_action" model="ir.actions.act_window">
+        <field name="name">Moodle Courses</field>
+        <field name="res_model">moodle.course</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Moodle course.
+            </p>
+        </field>
+    </record>
+    <menuitem id="moodle_course_menu"
+              name="Courses"
+              parent="moodle_menu"
+              action="moodle_course_action"
+              sequence="20"/>
+
+</odoo>

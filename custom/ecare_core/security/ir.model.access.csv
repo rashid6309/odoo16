@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ec_medical_patient_all,access_ec_medical_patient_all,model_ec_medical_patient,,1,1,1,1
-access_third_party_api_log_view,access_third_party_api_log_view,model_third_party_api_log,,1,0,0,0

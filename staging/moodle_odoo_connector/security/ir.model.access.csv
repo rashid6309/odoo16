@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+all_moodle_config,all_moodle_config,model_moodle_config,,1,1,1,1
+access_moodle_category,moodle.category,model_moodle_category,base.group_user,1,1,1,1
+access_moodle_course,moodle.course,model_moodle_course,base.group_user,1,1,1,1
+access_moodle_student,moodle.student,model_moodle_student,base.group_user,1,1,1,1
+access_moodle_student_enroll_wizard,moodle.student.enroll.wizard,model_moodle_student_enroll_wizard,base.group_user,1,1,1,1

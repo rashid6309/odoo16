@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ec_slot_reporting,ec.slot.reporting,model_ec_slot_reporting,,1,1,1,1
-
-access_report_account_move_line_all,access_report_account_move_line_all,model_report_account_move_line,,1,0,1,0

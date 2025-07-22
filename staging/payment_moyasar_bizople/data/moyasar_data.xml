@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <data noupdate="1">
+        <record id="payment_acquirer_ipay" model="payment.provider">
+            <field name="name">Moyasar</field>
+            <field name="image_128" type="base64" file="payment_moyasar_bizople/static/description/moyasar.png"/>
+            <field name="code">moyasar</field>
+            <field name="redirect_form_view_id" ref="payment_moyasar_bizople.moyasar_redirect"/>
+            <field name="support_refund"></field>
+            <field name="support_tokenization">False</field>
+            <field name="moyasar_public_key">pk_test_hBLzecYqMY34Xz9o4PySx3ha1yWo7GRa9oFBbQbW</field>
+            <field name="moyasar_secret_key">sk_test_ifwqv9ueWezFwrt8BHB4XqcNNFRCT3HqqHC3AEgj</field>
+            <field name="payment_icon_ids" eval='[(6, 0, [
+                ref("payment.payment_icon_cc_mastercard"),
+                ref("payment.payment_icon_cc_american_express"),
+                ref("payment.payment_icon_cc_visa")])]'/>
+        </record>
+
+        <record id="payment_method_moyasar" model="account.payment.method">
+            <field name="name">Moyasar</field>
+            <field name="code">moyasar</field>
+            <field name="payment_type">inbound</field>
+        </record>
+    </data>
+</odoo>

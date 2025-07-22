@@ -1,0 +1,43 @@
+.screen-lock-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lock-screen {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.user-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.user-name {
+    margin: 10px 0;
+}
+
+.pin-input {
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.unlock-btn {
+    padding: 5px 10px;
+    background: #5DCD3B;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}

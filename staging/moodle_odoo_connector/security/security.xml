@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Rule to allow full access when state is not posted -->
+<!--    <record id="moodle_category_rule_edit_draft" model="ir.rule">-->
+<!--        <field name="name">Moodle Category - Full Access in Draft</field>-->
+<!--        <field name="model_id" ref="model_moodle_category"/>-->
+<!--        <field name="domain_force">[('state', '!=', 'posted')]</field>-->
+<!--        <field name="groups" eval="[(4, ref('base.group_user'))]"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="True"/>-->
+<!--        <field name="perm_create" eval="True"/>-->
+<!--        <field name="perm_unlink" eval="True"/>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Rule to allow read-only access when state is posted &ndash;&gt;-->
+<!--    <record id="moodle_category_rule_read_posted" model="ir.rule">-->
+<!--        <field name="name">Moodle Category - Read Only in Posted</field>-->
+<!--        <field name="model_id" ref="model_moodle_category"/>-->
+<!--        <field name="domain_force">[('state', '=', 'posted')]</field>-->
+<!--        <field name="groups" eval="[(4, ref('base.group_user'))]"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--    </record>-->
+</odoo>

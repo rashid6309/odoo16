@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ScreenLockTemplate">
+        <div class="screen-lock-overlay">
+            <div class="lock-screen">
+                <img t-att-src="kanban_image('res.users', 'image_1920', record.user_id.id)" class="user-image"/>
+                <div class="user-name"><t t-esc="record.user_id.name"/></div>
+                <input type="password" name="pin" class="pin-input" placeholder="Pin"/>
+                <button class="unlock-btn">Unlock</button>
+            </div>
+        </div>
+    </t>
+</templates>

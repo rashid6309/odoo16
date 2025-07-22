@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="moodle_student_form_view" model="ir.ui.view">
+        <field name="name">moodle.student.form</field>
+        <field name="model">moodle.student</field>
+        <field name="arch" type="xml">
+            <form string="Moodle Student">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted,inactive"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" invisible="1"/>
+                        <field name="username" invisible="1"/>
+                        <field name="firstname" invisible="1"/>
+                        <field name="lastname" invisible="1"/>
+                        <field name="password" invisible="1"/>
+                        <field name="email" invisible="1"/>
+                        <field name="idnumber" readonly="1" invisible="1"/>
+                        <field name="auth" invisible="1"/>
+                        <field name="config_id" invisible="1"/>
+                        <field name="attendance_increment"/>
+                    </group>
+                        <button string="Create in Moodle"
+                                type="object"
+                                name="create_moodle_student"
+                                class="btn-primary"
+                                states="draft"/>
+                        <button string="Inactive Student"
+                                type="object"
+                                 invisible="1"
+                                states="posted"
+                                context="{'state': 'inactive'}"
+                                name="activate_inactivate_moodle_student"
+                                class="btn-primary"/>
+                        <button string="Active Student"
+                                type="object"
+                                states="inactive"
+                                context="{'state': 'active'}"
+                                name="activate_inactivate_moodle_student"
+                                class="btn-primary"/>
+
+                        <button string="Increment Number"
+                                type="object"
+                                style="display: none;"
+                                name="increment_function"
+                                id="attendance_increment"
+                                class="btn-primary d-none"/>
+
+<!--                    <script>-->
+<!--                        function triggerButtonClick() {-->
+<!--                        var button = document.getElementById('attendance_increment');-->
+<!--                        if (button) {-->
+<!--                        button.click();-->
+<!--                        console.log('Button was clicked!');-->
+<!--                        }-->
+<!--                        }-->
+<!--                        setInterval(triggerButtonClick, 5000);-->
+<!--                        document.getElementById('attendance_increment').addEventListener('click', function() {-->
+<!--                        console.log('Button was clicked!');-->
+<!--                        });-->
+<!--                    </script>-->
+<!--<script>-->
+<!--function initialize() {-->
+<!--    let buttonClicked = false;-->
+
+<!--    function attachEventListener() {-->
+<!--        var button = document.getElementById('attendance_increment');-->
+<!--        if (button) {-->
+<!--            button.addEventListener('click', function() {-->
+<!--                console.log('Button was clicked!');-->
+<!--                buttonClicked = true;-->
+<!--            });-->
+<!--            console.log('Event listener attached');-->
+<!--        } else {-->
+<!--            console.log('Button not found, retrying...');-->
+<!--            setTimeout(attachEventListener, 1000);-->
+<!--        }-->
+<!--    }-->
+
+<!--    function triggerButtonClick() {-->
+<!--        var button = document.getElementById('attendance_increment');-->
+<!--        if (button) {-->
+<!--            if (!buttonClicked) {-->
+<!--                button.click();-->
+<!--                console.log('Button was clicked by script!');-->
+<!--            } else {-->
+<!--                console.log('Skipping click, button was already clicked in this interval');-->
+<!--                buttonClicked = false;-->
+<!--            }-->
+<!--        } else {-->
+<!--            console.log('Button not found when attempting to click');-->
+<!--        }-->
+<!--    }-->
+
+<!--    setTimeout(attachEventListener, 1000);-->
+<!--    setInterval(triggerButtonClick, 5000);-->
+<!--}-->
+
+<!--initialize();-->
+<!--</script>-->
+
+<script>
+function initialize() {
+    let buttonClicked = false;
+    let intervalId;
+
+    function attachEventListener() {
+        var button = document.getElementById('attendance_increment');
+        if (button) {
+            button.addEventListener('click', function() {
+                console.log('Button was clicked!');
+                buttonClicked = true;
+            });
+            console.log('Event listener attached');
+        } else {
+            console.log('Button not found, retrying...');
+            setTimeout(attachEventListener, 1000);
+        }
+    }
+
+    function triggerButtonClick() {
+        var button = document.getElementById('attendance_increment');
+        if (button) {
+            if (!buttonClicked) {
+                button.click();
+                console.log('Button was clicked by script!');
+            } else {
+                console.log('Skipping click, button was already clicked in this interval');
+                buttonClicked = false;
+            }
+        } else {
+            console.log('Button not found when attempting to click');
+        }
+    }
+
+    attachEventListener();
+
+    intervalId = setInterval(triggerButtonClick, 5000);
+    setTimeout(() => clearInterval(intervalId), 5000);
+}
+
+initialize();
+</script>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="moodle_student_tree_view" model="ir.ui.view">
+        <field name="name">moodle.student.tree</field>
+        <field name="model">moodle.student</field>
+        <field name="arch" type="xml">
+            <tree string="Moodle Students">
+                <field name="name"/>
+                <field name="username"/>
+                <field name="email"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="moodle_student_action" model="ir.actions.act_window">
+        <field name="name">Moodle Students</field>
+        <field name="res_model">moodle.student</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Moodle student.
+            </p>
+        </field>
+    </record>
+    <menuitem id="moodle_student_menu"
+              name="Students"
+              parent="moodle_menu"
+              action="moodle_student_action"
+              sequence="30"/>
+
+
+    <record id="view_moodle_student_enroll_wizard" model="ir.ui.view">
+        <field name="name">moodle.student.enroll.wizard.form</field>
+        <field name="model">moodle.student.enroll.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Enroll Student in Course">
+                <group>
+                    <field name="course_id"/>
+                    <field name="student_id"/>
+                </group>
+                <footer>
+                    <button string="Enroll" type="object" name="enroll_student" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_moodle_student_enroll_wizard" model="ir.actions.act_window">
+        <field name="name">Enroll Student in Course</field>
+        <field name="res_model">moodle.student.enroll.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="moodle_enroll_student_menu" name="Enroll Students" parent="moodle_menu" action="action_moodle_student_enroll_wizard" sequence="30"/>
+
+</odoo>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <template id="wk_web_login" inherit_id="web.login" name="OTP Login" priority="20">
+        <xpath expr="//div[contains(@t-attf-class, 'oe_login_buttons')]" position="replace">
+           <t t-set="enable_signin_auth" t-value="request.env['ir.default'].sudo().get('website.otp.settings', 'signin_auth')"/>
+
+            <t t-if="not enable_signin_auth">
+              <div t-attf-class="clearfix oe_login_buttons text-center gap-1 d-grid mb-1 {{'pt-2' if form_small else 'pt-3'}}">
+                    <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+                    <div class="justify-content-between mt-2 d-flex small">
+                    <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}">لا تملك حسابًا؟</a>
+                    <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}">إعادة تعيين كلمة المرور</a>
+                </div>
+                    <t t-if="debug">
+                        <button type="submit" name="redirect" value="/web/become" class="btn btn-link btn-sm">Log in as superuser</button>
+                    </t>
+                    <div class="o_login_auth"/>
+                </div>
+            </t>
+        </xpath>
+         <xpath expr="//div[hasclass('mb-3')][3]" position="replace">
+                     <t t-set="enable_signin_auth" t-value="request.env['ir.default'].sudo().get('website.otp.settings', 'signin_auth')"/>
+
+           <t t-if="not enable_signin_auth">
+             <div class="mb-3">
+                    <label for="password" class="form-label">كلمة المرور</label>
+                    <input type="password" placeholder="كلمة المرور" name="password" id="password" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>
+                </div>
+           </t>
+        </xpath>
+        <xpath expr="//div[hasclass('field-login')]" position="replace">
+            <t t-set="enable_signin_auth" t-value="request.env['ir.default'].sudo().get('website.otp.settings', 'signin_auth')"/>
+            <t t-if="enable_signin_auth">
+                <div class="form oe_login_form" role="form">
+                    <i class="fa fa-arrow-left text-primary wk_back_btn" style="display:none;"/>
+                    <div class="mobile_login_container">
+                        <div class="form-group field-login-option">
+                        </div>
+                        <div class="form-group field-login">
+                            <label for="login" class="wk_multi_label">البريد الإلكتروني</label>
+                            <input type="text" placeholder="البريد الإلكتروني" name="login" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autofocus="autofocus" autocapitalize="off"/>
+                        </div>
+                        <div class="wk_guest_login_error" style="display: none;"/>
+                        <button type="button" class="btn btn-primary btn-block login_container_next_btn">
+                            Next</button>
+                        <div class="justify-content-between mt-2 d-flex small">
+                            <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}">لا تملك حسابًا؟</a>
+                            <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}">إعادة تعيين كلمة المرور</a>
+                        </div>
+                        <t t-if="debug">
+                            <button type="submit" name="redirect" value="/web/become" class="btn btn-link btn-sm">Log in as superuser</button>
+                        </t>
+                        <div class="o_login_auth"/>
+                    </div>
+                    <div class="form-group pwd_otp_container" style="display: none;">
+                        <div id="wk_otp_label">
+                            حدد طريقة التحقق
+                        </div>
+                        <div>
+                            <label class="radio-container">أرسل الكود <input type="radio" value="radiotp" name="radio-otp"/>
+                            <span class="otpcheck"/>
+                                </label>
+                                <label class="radio-container">كلمة المرور <input type="radio" value="radiopwd" name="radio-otp" checked="checked"/>
+                                <span class="otpcheck"/>
+                            </label>
+                        </div>
+                        <div class="wk_guest_login_error" style="display: none;"/>
+                        <button type="button" class="btn btn-primary btn-block otp_option_next_btn">التالي</button>
+                    </div>
+                    <div class="main_login_container" style="display: none;">
+                        <div class="password_container">
+                            <div class="form-group field-pass">
+                                <label for="password" class="wk_multi_label">
+                                        كلمة المرور</label>
+                                <input type="password" placeholder="كلمة المرور" name="password" id="password" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required"/>
+                            </div>
+                        </div>
+                        <div class="main_login_otp_container" style="display: none;">
+                            <label class="wk_multi_label">أدخل الكود</label>
+                            <div class="form-group-input otp-form-group mb-3">
+                                <t t-set="otp_limit" t-value="request.env['ir.default'].get('website.otp.settings','otp_limit') or 6"/>
+                                <t t-foreach="range(otp_limit)" t-as="item">
+                                    <input type="text" minlength="1" maxlength="1" class="form-control otp-inputbar"/>
+                                </t>
+                            </div>
+                            <div id="errmsg" class="text-center"/>
+                            <div class="wk_guest_login_error"/>
+                            <t t-if="enable_signin_auth">
+                                    <span id="otplogincounter"/>
+                                </t>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block wk_multi_login" disabled="disabled">تسجيل دخول</button>
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="mb-3 field-login">
+                    <label for="login" class="form-label">البريد الإلكتروني</label>
+                    <input type="text" placeholder="البريد الإلكتروني" name="login" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autofocus="autofocus" autocapitalize="off"/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+
+    <template id="wk_auth_signup_fields" inherit_id="auth_signup.fields" name="OTP Fields" priority="20">
+        <xpath expr="//div[hasclass('field-confirm_password')]" position="after">
+            <t t-set='enable_signup_auth' t-value="request.env['ir.default'].sudo().get('website.otp.settings', 'signup_auth')"/>
+            <t t-if="enable_signup_auth == 1">
+                <t t-set='otp_type' t-value="request.env['ir.default'].sudo().get('website.otp.settings', 'otp_type')"/>
+                <div class="form-group" id="wkotp" style="display: none;">
+                    <input id="otp" name="otp" class="form-control form-control-sm" placeholder="أدخل الكود"
+                        required="required" t-att-type="'password' if otp_type=='3' else 'text'" maxlength="6"/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="wk_auth_reset_pswd" inherit_id="auth_signup.reset_password" name="OTP Reset password" priority="20">
+        <xpath expr="//button[@type='submit']" position="before">
+            <t t-if="token">
+                <t t-set='enable_signup_auth' t-value="request.env['ir.default'].sudo().get('website.otp.settings', 'signup_auth')"/>
+                <t t-if="enable_signup_auth == 1">
+                    <p id="otpcounter"/>
+                </t>
+                <div id="wk_loader"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="wk_auth_signup" inherit_id="auth_signup.signup" name="OTP Signup" priority="20">
+        <xpath expr="//button[@type='submit']" position="before">
+            <t t-set='enable_signup_auth' t-value="request.env['ir.default'].sudo().get('website.otp.settings', 'signup_auth')"/>
+            <t t-if="enable_signup_auth == 1">
+                <span id="otpcounter">
+                    <a class='btn btn-link wk_send' href='#'>أرسل الكود</a>
+                </span>
+            </t>
+            <div id="wk_loader"/>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <odoo>
+       <record id="action_screen_lock_wizard" model="ir.actions.act_window">
+           <field name="name">Change My Preferences</field>
+           <field name="res_model">screen.lock.wizard</field>
+           <field name="view_mode">form</field>
+           <field name="target">new</field>
+       </record>
+
+       <record id="view_screen_lock_wizard_form" model="ir.ui.view">
+           <field name="name">Screen Lock Wizard</field>
+           <field name="model">screen.lock.wizard</field>
+           <field name="arch" type="xml">
+               <form string="Change My Preferences">
+                   <group>
+                       <field name="pin" placeholder="Enter New PIN"/>
+                   </group>
+                   <footer>
+                       <button name="set_pin" string="Save" type="object" class="btn-primary"/>
+                       <button string="Cancel" class="btn-secondary" special="cancel"/>
+                   </footer>
+               </form>
+           </field>
+       </record>
+
+       <record id="view_res_users_form_inherit_screen_lock" model="ir.ui.view">
+           <field name="name">Res Users Form Inherit Screen Lock</field>
+           <field name="model">res.users</field>
+           <field name="inherit_id" ref="base.view_users_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//page[@name='preferences']" position="inside">
+                   <group string="Screen Lock">
+                       <field name="screen_lock_pin" widget="password" placeholder="Set Screen Lock PIN"/>
+                   </group>
+               </xpath>
+           </field>
+       </record>
+   </odoo>

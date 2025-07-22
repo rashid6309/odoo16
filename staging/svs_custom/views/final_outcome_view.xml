@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Final Outcome -->
+        <record id="final_outcome_form_view" model="ir.ui.view">
+            <field name="name">final.outcome.form</field>
+            <field name="model">final.outcome</field>
+            <field name="arch" type="xml">
+                <form string="Final Outcome">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Window Action for Final Outcome -->
+        <record model="ir.actions.act_window" id="action_final_outcome_list">
+            <field name="name">Final Outcome</field>
+            <field name="res_model">final.outcome</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add Final Outcome Option
+                </p>
+            </field>
+        </record>
+
+        <!-- Add Final Outcome to Configuration Menu with sequence 20 to add at the end-->
+        <menuitem id="menu_policy_type"
+            name="Final Outcome Options"
+            parent="project.menu_project_config"
+            sequence="20"
+            action="action_final_outcome_list"/>
+
+    </data>
+</odoo>

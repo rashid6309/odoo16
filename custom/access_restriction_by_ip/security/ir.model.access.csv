@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_allowed_ips,allowed.ips,model_allowed_ips,,1,1,1,1

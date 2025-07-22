@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="ir_cron_calculate_date_difference" model="ir.cron">
+            <field name="name">Calculate Project Date Difference</field>
+            <field name="model_id" ref="svs_custom.model_svs_custom_calculate_sla_hours"/>
+            <field name="state">code</field>
+            <field name="code">model.calculate_hours_remaining()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="nextcall" eval="datetime.utcnow().strftime('%Y-%m-%d 12:01:00')"/>
+        </record>
+    </data>
+</odoo>

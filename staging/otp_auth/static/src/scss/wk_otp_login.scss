@@ -1,0 +1,106 @@
+/* Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+
+i:hover {
+    cursor: pointer;
+}
+
+.oe_login_buttons {
+    display: none;
+}
+
+#wk_otp_label {
+    font-size: 120%;
+    font-weight: bold;
+    color: #444444;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.radio-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    font-weight: 100;
+}
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.otpcheck {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+.radio-container:hover input ~ .otpcheck {
+    background-color: #ccc;
+}
+.radio-container input:checked ~ .otpcheck {
+    background-color: #2196F3;
+}
+.otpcheck:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.radio-container input:checked ~ .otpcheck:after {
+    display: block;
+}
+.radio-container .otpcheck:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+#otp_label {
+    font-size: 120%;
+    font-weight: bold;
+    color: #444444;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.otp-form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.otp-inputbar {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+#errmsg {
+    color: red;
+}
+
+.oe_login_form{
+    margin: 10px auto;
+}
+
+.oe_login_form{
+    margin: 20px auto;
+}
+
+.wk_multi_label, .field-login,.wk_multi_login{
+    margin : 10px 0px;
+}
+
+.wk_multi_login,.otp_option_next_btn ,.login_container_next_btn{
+    width : 100%;
+}

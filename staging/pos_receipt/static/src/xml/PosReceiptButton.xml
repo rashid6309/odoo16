@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PosReceiptButton" owl="1">
+        <div class="control-button">
+            <i class="fa fa-print" role="img" aria-label="Pos Receipt"
+               title="Pos Receipt" /> Receipt
+        </div>
+    </t>
+
+</templates>

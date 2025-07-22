@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    
+    <template id="CustomTimerField" name="Custom Timer Field">
+        <div t-esc="state.time"/>
+    </template>
+
+    <record id="edit_project_inherit" model="ir.ui.view">
+        <field name="name">project.project.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="x_studio_vehicle_owner" string="Vehicle Owner"/>
+                <field name="x_studio_many2one_field_EKw0v" domain="[('driver_id','=',x_studio_vehicle_owner)]"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="x_studio_surveyor" string="Surveyor"/>
+                <field name="reviewer" string="Reviewer"/>
+                <field name="requestor_id"/>
+            </xpath>
+            <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
+                <group name="studio_group_tIagh">
+                <group name="studio_group_tIagh_left" string="SLA">
+                    <field name="x_sla_hours_left" force_save="True" attrs="{}" readonly="1" string="SLA Hours"/>
+                    <field name="x_sla_hours_started" force_save="True" attrs="{}" readonly="1" widget="boolean" string="SLA Started"/>
+                    <field name="x_sla_datetime" string="SLA Start" force_save="True" attrs="{}" readonly="1"/>
+                    <field name="x_sla_hours_remaining" force_save="True" attrs="{}" readonly="1" string="SLA Remaining Hours"/>
+                    <field name="timer_duration"/>
+                    <button string="Auto Click"
+                            type="object"
+                            name="compute_timer_duration"
+                            id="button_timer_duration"
+                            class="btn-primary d-none"/>
+                    <script>
+                function initialize() {
+                    let buttonClicked = false;
+                    let intervalId;
+
+                    function attachEventListener() {
+                        var button = document.getElementById('button_timer_duration');
+                        if (button) {
+                            button.addEventListener('click', function() {
+                                console.log('Button was clicked!');
+                                buttonClicked = true;
+                            });
+                            console.log('Event listener attached');
+                        } else {
+                            console.log('Button not found, retrying...');
+                            setTimeout(attachEventListener, 1000);
+                        }
+                    }
+
+                    function triggerButtonClick() {
+                        var button = document.getElementById('button_timer_duration');
+                        if (button) {
+                            if (!buttonClicked) {
+                                button.click();
+                                console.log('Button was clicked by script!');
+                            } else {
+                                console.log('Skipping click, button was already clicked in this interval');
+                                buttonClicked = false;
+                            }
+                        } else {
+                            console.log('Button not found when attempting to click');
+                        }
+                    }
+
+                    attachEventListener();
+
+                    intervalId = setInterval(triggerButtonClick, 5000);
+                    setTimeout(() => clearInterval(intervalId), 5000);
+                }
+
+                initialize();
+                </script>
+                    <field name="timer_pause" invisible="1"/>
+                    <field name="timer_start" invisible="1"/>
+                </group>
+                <group name="studio_group_tIagh_right" string="Reserve Details">
+                    <field name="x_studio_inital_reserve"/>
+                    <field name="x_studio_revised_reserve"/>
+                    <field name="x_studio_final"/>
+                    <field name="final_outcome_id"/>
+                </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+  </data>
+</odoo>

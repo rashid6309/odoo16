@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t owl="1" t-inherit="point_of_sale.ProductInfoPopup" t-inherit-mode="extension" t-name="ProductInfoPopupPosReceipt">
+        <xpath expr="//input[hasclass('location_id')]" position="replace">
+            <input class="location_id" name="stock_location_id" t-att-value="location.id" t-att-data-name="location.name" t-on-click="onChangeOrderLinePickingLocationIDAndName" type="radio" style="box-shadow: 0px 0px;"/>
+        </xpath>
+        <xpath expr="//div[hasclass('sectiaon-optional-product-body')]/table/t[1]" position="replace">
+            <t t-esc="autoSelectDefaultLocationPosReceipt()"/>
+        </xpath>
+    </t>
+</templates>

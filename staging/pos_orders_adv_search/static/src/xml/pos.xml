@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='header-row']/div[@class='col wide'][1]" position="after">
+            <div t-if="env.pos.config.allow_invoice_number_search" class="col wide">Invoice Number</div>  
+            <div t-if="env.pos.config.allow_order_ref_search" class="col wide">Order Ref</div>  
+        </xpath>
+        <xpath expr="//div[@class='order-row']/div[@class='col wide'][1]" position="after">
+            <div t-if="env.pos.config.allow_invoice_number_search" class="col wide">
+                <div t-if="env.isMobile">Invoice Number</div>
+                <div><t t-esc="getInvoice(order)"></t></div>
+            </div>
+            <div t-if="env.pos.config.allow_order_ref_search" class="col wide">
+                <div t-if="env.isMobile">Order Ref</div>
+                <div><t t-esc="getInvoiceOrigin(order)"></t></div>
+            </div>
+        </xpath>
+    </t>
+</templates>

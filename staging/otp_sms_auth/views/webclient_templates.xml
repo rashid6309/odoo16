@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <template id="wk_web_mobile_login" inherit_id="otp_auth.wk_web_login" name="OTP SMS Login" priority="20">
+        <xpath expr="//div[@class='mobile_login_container']" position="replace">
+            <t t-set='enable_signin_auth'
+                t-value="request.env['ir.default'].sudo().get('website.otp.settings', 'signin_auth')" />
+            <t t-if="enable_signin_auth == 1">
+                <div class="mobile_login_container">
+                    <div class="form-group field-login-option">
+                        <div id="otp_label">
+                            تسجيل الدخول
+                        </div>
+                        <hr />
+                        <div>
+                            <label class="radio-container wk_login" style="display:inline;">البريد الإلكتروني <input type="radio"
+                                    value="radiemail" name="radio-login" checked="checked" />
+                               <span
+                                    class="otpcheck"></span>
+                            </label>
+                            <label class="radio-container wk_login" style="display:inline;">رقم الجوال <input type="radio"
+                                    value="radiomobile" name="radio-login" />
+                               <span class="otpcheck"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group field-mobile" style="display: none; margin:10px 0px;">
+                        <label for="mobile" class="control-label wk_multi_label">
+                            رقم الجوال</label>
+                        <input type="text" name="mobile" t-att-value="mobile" id="mobile"
+                            class="form-control" autocapitalize="off"
+                            placeholder="501234567" maxlength="9" />
+                    </div>
+                    <div class="form-group field-login">
+                        <label for="login" class="wk_multi_label">البريد الإلكتروني</label>
+                        <input type="text" placeholder="البريد الإلكتروني" name="login" t-att-value="login"
+                            id="login"
+                            t-attf-class="form-control #{'form-control-sm' if form_small else ''}"
+                            required="required" autofocus="autofocus" autocapitalize="off" />
+                    </div>
+                    <div class="wk_guest_login_error" style="display: none;" />
+                    <button type="button" class="btn btn-primary btn-block" id="login_next" style="width:100%;">
+                        التالي</button>
+                    <div class="justify-content-between mt-2 d-flex small">
+                        <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}">لا تملك حسابًا؟</a>
+                        <a t-if="reset_password_enabled"
+                            t-attf-href="/web/reset_password?{{ keep_query() }}">إعادة تعيين كلمة المرور</a>
+
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
