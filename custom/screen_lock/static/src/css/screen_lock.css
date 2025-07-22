@@ -97,6 +97,55 @@
     transform: translateY(0);
 }
 
+/* Floating Lock Button */
+.floating-lock-btn {
+    position: fixed !important;
+    top: 80px !important;
+    right: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+    background: #007bff !important;
+    color: white !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 1001 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+    font-size: 18px !important;
+}
+
+.floating-lock-btn:hover {
+    transform: scale(1.1) !important;
+    background: #0056b3 !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+.floating-lock-btn:active {
+    transform: scale(0.95) !important;
+}
+
+/* User menu styling improvements */
+.lock-screen-menu-item {
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 8px 16px !important;
+}
+
+.lock-screen-menu-item:hover {
+    background-color: #f8f9fa !important;
+    text-decoration: none !important;
+}
+
+.lock-screen-menu-item small {
+    margin-left: auto;
+    font-size: 0.7em;
+    opacity: 0.7;
+}
+
 /* Animation for lock screen appearance */
 .o_screen_lock_overlay {
     animation: fadeIn 0.3s ease-in-out;
@@ -126,6 +175,35 @@
     }
 }
 
+/* Pulse animation for floating button */
+.floating-lock-btn::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    opacity: 0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
 /* User menu item styling */
 .dropdown-item {
     cursor: pointer;
@@ -133,4 +211,19 @@
 
 .dropdown-item:hover {
     background-color: #f8f9fa;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .lock-screen {
+        min-width: 300px;
+        margin: 20px;
+        padding: 30px 20px;
+    }
+    
+    .floating-lock-btn {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 16px !important;
+    }
 }

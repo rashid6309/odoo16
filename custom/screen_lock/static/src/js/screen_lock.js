@@ -1,4 +1,4 @@
-/* Screen Lock Module - Browser Compatible Implementation */
+/* Screen Lock Module - Enhanced with Keyboard Shortcut */
 
 (function() {
     'use strict';
@@ -12,6 +12,7 @@
         this.createLockOverlay();
         this.addToUserMenu();
         this.setupGlobalFunction();
+        this.setupKeyboardShortcut();
     };
 
     ScreenLockManager.prototype.createLockOverlay = function() {
@@ -29,6 +30,7 @@
                                 '<input type="password" id="lock_pin_input" class="pin-input form-control mb-2" placeholder="Enter PIN" maxlength="4"/>' +
                                 '<div id="lock_error_msg" class="invalid-feedback d-block" style="display: none;">Invalid PIN. Please try again.</div>' +
                                 '<button id="lock_unlock_btn" class="unlock-btn btn btn-primary w-100"><i class="fa fa-unlock"></i> Unlock</button>' +
+                                '<div class="mt-2 text-muted small">Press Ctrl+Alt+L to lock screen</div>' +
                             '</div>' +
                         '</div>' +
                     '</div>' +
@@ -59,6 +61,27 @@
         window.lockScreen = function() {
             self.lockScreen();
         };
+    };
+
+    ScreenLockManager.prototype.setupKeyboardShortcut = function() {
+        var self = this;
+        
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+Alt+L to lock screen
+            if (e.ctrlKey && e.altKey && (e.key === 'l' || e.key === 'L' || e.keyCode === 76)) {
+                e.preventDefault();
+                e.stopPropagation();
+                self.lockScreen();
+            }
+        });
+        
+        // Show notification about shortcut on first load
+        setTimeout(function() {
+            if (!localStorage.getItem('screen_lock_shortcut_shown')) {
+                self.showNotification('Tip: Press Ctrl+Alt+L to quickly lock your screen!', 'info');
+                localStorage.setItem('screen_lock_shortcut_shown', 'true');
+            }
+        }, 2000);
     };
 
     ScreenLockManager.prototype.lockScreen = function() {
@@ -219,50 +242,124 @@
 
     ScreenLockManager.prototype.addToUserMenu = function() {
         var self = this;
+        var attempts = 0;
+        var maxAttempts = 50; // Try for 5 seconds
         
         var checkUserMenu = setInterval(function() {
-            var userMenu = document.querySelector('.o_user_menu');
-            if (userMenu) {
+            attempts++;
+            
+            // Try multiple selectors for user menu
+            var userMenu = document.querySelector('.o_user_menu') || 
+                          document.querySelector('.oe_topbar_name') ||
+                          document.querySelector('.o_main_navbar .dropdown') ||
+                          document.querySelector('nav .navbar-nav .dropdown');
+            
+            if (userMenu || attempts >= maxAttempts) {
                 clearInterval(checkUserMenu);
+                
+                if (!userMenu) {
+                    console.log('User menu not found, trying alternative approach...');
+                    self.addFloatingLockButton();
+                    return;
+                }
                 
                 // Check if already added
                 if (document.querySelector('.lock-screen-menu-item')) {
                     return;
                 }
                 
+                console.log('Found user menu, adding lock screen option...');
+                
                 var lockScreenItem = document.createElement('a');
                 lockScreenItem.className = 'dropdown-item lock-screen-menu-item';
                 lockScreenItem.href = '#';
-                lockScreenItem.innerHTML = '<i class="fa fa-lock me-2"></i>Lock Screen';
+                lockScreenItem.innerHTML = '<i class="fa fa-lock me-2"></i>Lock Screen <small class="text-muted">(Ctrl+Alt+L)</small>';
                 
                 lockScreenItem.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     
                     // Close dropdown
-                    var dropdown = document.querySelector('.o_user_menu .dropdown-menu');
+                    var dropdown = userMenu.querySelector('.dropdown-menu') || 
+                                  userMenu.querySelector('.dropdown-content');
                     if (dropdown) {
-                        dropdown.classList.remove('show');
+                        dropdown.classList.remove('show', 'open');
                     }
                     
                     self.lockScreen();
                 });
                 
-                var dropdownMenu = userMenu.querySelector('.dropdown-menu');
+                // Try to find dropdown menu
+                var dropdownMenu = userMenu.querySelector('.dropdown-menu') ||
+                                  userMenu.querySelector('.dropdown-content') ||
+                                  userMenu.querySelector('ul');
+                
                 if (dropdownMenu) {
-                    var separator = dropdownMenu.querySelector('.dropdown-divider');
+                    // Find a good place to insert
+                    var separator = dropdownMenu.querySelector('.dropdown-divider') ||
+                                   dropdownMenu.querySelector('.divider') ||
+                                   dropdownMenu.querySelector('li.divider');
+                    
                     if (separator) {
                         dropdownMenu.insertBefore(lockScreenItem, separator);
                     } else {
                         dropdownMenu.appendChild(lockScreenItem);
                     }
+                    
+                    console.log('Lock screen menu item added successfully');
+                } else {
+                    console.log('Dropdown menu not found, adding floating button...');
+                    self.addFloatingLockButton();
                 }
             }
         }, 100);
+    };
+
+    ScreenLockManager.prototype.addFloatingLockButton = function() {
+        var self = this;
         
-        setTimeout(function() {
-            clearInterval(checkUserMenu);
-        }, 10000);
+        // Create floating lock button if user menu integration fails
+        var floatingButton = document.createElement('div');
+        floatingButton.id = 'floating_lock_button';
+        floatingButton.className = 'floating-lock-btn';
+        floatingButton.innerHTML = '<i class="fa fa-lock"></i>';
+        floatingButton.title = 'Lock Screen (Ctrl+Alt+L)';
+        
+        // Style the floating button
+        floatingButton.style.cssText = 
+            'position: fixed;' +
+            'top: 20px;' +
+            'right: 20px;' +
+            'width: 50px;' +
+            'height: 50px;' +
+            'background: #007bff;' +
+            'color: white;' +
+            'border-radius: 50%;' +
+            'display: flex;' +
+            'align-items: center;' +
+            'justify-content: center;' +
+            'cursor: pointer;' +
+            'z-index: 1000;' +
+            'box-shadow: 0 2px 10px rgba(0,0,0,0.3);' +
+            'transition: all 0.3s ease;';
+        
+        floatingButton.addEventListener('click', function() {
+            self.lockScreen();
+        });
+        
+        floatingButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.background = '#0056b3';
+        });
+        
+        floatingButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.background = '#007bff';
+        });
+        
+        document.body.appendChild(floatingButton);
+        
+        console.log('Floating lock button added');
     };
 
     // Initialize when DOM is ready

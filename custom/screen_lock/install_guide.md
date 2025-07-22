@@ -1,8 +1,12 @@
 # Screen Lock Module - Installation Guide
 
-## Quick Fix for OWL Errors
+## 🔒 Features
+- **PIN-based screen lock** with user menu integration
+- **Keyboard shortcut**: `Ctrl+Alt+L` to instantly lock screen  
+- **Fallback floating button** if user menu integration fails
+- **Modern UI** with smooth animations
 
-The OWL error you're seeing is likely due to cached assets. Follow these steps:
+## Quick Fix for Issues
 
 ### 1. Clear Browser Cache
 - Press `Ctrl + Shift + R` (or `Cmd + Shift + R` on Mac) to hard refresh
@@ -34,21 +38,94 @@ If you can't restart Odoo:
 3. If installed, click "Upgrade"
 4. If not installed, click "Install"
 
-### 5. Verify Installation
-1. After installation/upgrade, refresh the page
-2. Click your username in the top-right corner
-3. You should see "Lock Screen" option in the dropdown
+## 🎯 User Menu Troubleshooting
 
-## Setting Up PIN
+### If Lock Screen Button Missing:
+1. **Check for floating button**: Look for a blue lock icon in top-right corner
+2. **Debug user menu**: Open browser console (F12) and run the debug script:
+   ```javascript
+   // Copy and paste content from debug_menu.js file
+   ```
+3. **Manual menu detection**: The module tries multiple selectors for different Odoo versions
+
+### Expected Behavior:
+- ✅ **Best case**: "Lock Screen" appears in user dropdown menu
+- ✅ **Fallback**: Blue floating lock button appears in top-right
+- ✅ **Always works**: `Ctrl+Alt+L` keyboard shortcut
+
+## 🚀 Usage
+
+### Setting Up PIN
 1. Go to Settings → Users & Companies → Users
 2. Edit your user
-3. Go to Preferences tab
+3. Go to Preferences tab  
 4. Find "Screen Lock Settings"
 5. Click "Set/Change PIN"
-6. Enter a 4-digit PIN
+6. Enter a 4-digit PIN and confirm
 
-## Testing
-1. Click your username → "Lock Screen"
-2. Enter your PIN to unlock
+### Locking the Screen
+**Method 1: Keyboard Shortcut (Recommended)**
+- Press `Ctrl+Alt+L` anywhere in Odoo
 
-The new implementation uses vanilla JavaScript and should not cause any OWL conflicts.
+**Method 2: User Menu**
+- Click your username → "Lock Screen"
+
+**Method 3: Floating Button**
+- Click the blue lock icon (if visible)
+
+### Unlocking the Screen
+1. Enter your 4-digit PIN
+2. Press Enter or click "Unlock"
+3. Success notification will appear
+
+## 🐛 Debugging
+
+### If user menu integration fails:
+1. Open browser console (F12)
+2. Look for messages starting with "Screen Lock:"
+3. Check if you see:
+   - "Found user menu, adding lock screen option..."
+   - "User menu not found, trying alternative approach..."
+   - "Floating lock button added"
+
+### Common Issues:
+- **No menu item**: Use floating button or keyboard shortcut
+- **Keyboard shortcut not working**: Check browser console for errors
+- **PIN not working**: Verify PIN is set in user preferences
+
+### Debug Menu Structure:
+1. Open browser console (F12)
+2. Run the debug script from `debug_menu.js`
+3. Copy the output to help diagnose menu issues
+
+## 📱 Mobile Support
+- Responsive design works on mobile devices
+- Floating button adapts to smaller screens
+- Touch-friendly PIN input
+
+## 🎨 Customization
+
+### Change Keyboard Shortcut:
+Edit the JavaScript file and modify this line:
+```javascript
+if (e.ctrlKey && e.altKey && (e.key === 'l' || e.key === 'L' || e.keyCode === 76)) {
+```
+
+### Change Floating Button Position:
+Edit the CSS file and modify:
+```css
+.floating-lock-btn {
+    top: 80px !important;
+    right: 20px !important;
+}
+```
+
+## ✅ Verification Checklist
+- [ ] Module installed/upgraded successfully
+- [ ] PIN set in user preferences
+- [ ] Keyboard shortcut `Ctrl+Alt+L` works
+- [ ] Lock screen appears with user info
+- [ ] PIN unlocks successfully
+- [ ] Menu item OR floating button visible
+
+The new implementation provides multiple ways to access screen lock functionality, ensuring it works even if the user menu structure varies between Odoo installations.
