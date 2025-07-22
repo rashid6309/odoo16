@@ -2,9 +2,19 @@
 
 ## 🔒 Features
 - **PIN-based screen lock** with user menu integration
+- **Session-based locking**: Persists across page refreshes and new tabs
 - **Keyboard shortcut**: `Ctrl+Alt+L` to instantly lock screen  
 - **Fallback floating button** if user menu integration fails
 - **Modern UI** with smooth animations
+- **Automatic session checking** every 5 seconds
+
+## 🛡️ Security Features
+
+### Session-Based Locking
+- **Cross-tab locking**: When locked, ALL browser tabs for that user are locked
+- **Refresh protection**: Page refresh doesn't unlock the screen
+- **New tab protection**: Opening new Odoo tabs shows lock screen
+- **Server-side session**: Lock state stored securely on server
 
 ## Quick Fix for Issues
 
@@ -52,6 +62,7 @@ If you can't restart Odoo:
 - ✅ **Best case**: "Lock Screen" appears in user dropdown menu
 - ✅ **Fallback**: Blue floating lock button appears in top-right
 - ✅ **Always works**: `Ctrl+Alt+L` keyboard shortcut
+- ✅ **Session persistence**: Lock survives page refresh and new tabs
 
 ## 🚀 Usage
 
@@ -77,47 +88,73 @@ If you can't restart Odoo:
 1. Enter your 4-digit PIN
 2. Press Enter or click "Unlock"
 3. Success notification will appear
+4. **All browser tabs/windows are unlocked simultaneously**
+
+## 🔄 Session Behavior
+
+### What Happens When You Lock:
+1. **Current tab**: Shows lock screen immediately
+2. **Other open tabs**: Will show lock screen when accessed
+3. **New tabs**: Automatically show lock screen
+4. **Page refresh**: Lock screen persists
+5. **Session check**: Every 5 seconds, checks if still locked
+
+### What Happens When You Unlock:
+1. **All tabs**: Unlock simultaneously
+2. **Session cleared**: Server-side lock state removed
+3. **Normal operation**: Full access restored across all tabs
 
 ## 🐛 Debugging
 
-### If user menu integration fails:
+### Console Messages to Look For:
+```
+"Found user menu, adding lock screen option..."
+"Screen locked for user: username"
+"Checking session lock status..."
+"Session locked, showing lock screen"
+```
+
+### If session locking not working:
 1. Open browser console (F12)
-2. Look for messages starting with "Screen Lock:"
-3. Check if you see:
-   - "Found user menu, adding lock screen option..."
-   - "User menu not found, trying alternative approach..."
-   - "Floating lock button added"
+2. Check for session-related errors
+3. Verify user has PIN set
+4. Test with `Ctrl+Alt+L` shortcut
+
+### Emergency Unlock (Development Only):
+```javascript
+// Run in browser console ONLY for development/testing
+fetch('/screen_lock/unlock_session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({jsonrpc: "2.0", method: "call", params: {}, id: 1})
+});
+```
 
 ### Common Issues:
 - **No menu item**: Use floating button or keyboard shortcut
-- **Keyboard shortcut not working**: Check browser console for errors
-- **PIN not working**: Verify PIN is set in user preferences
-
-### Debug Menu Structure:
-1. Open browser console (F12)
-2. Run the debug script from `debug_menu.js`
-3. Copy the output to help diagnose menu issues
+- **Lock doesn't persist**: Check browser console for session errors
+- **Multiple tabs not syncing**: Verify session storage is working
 
 ## 📱 Mobile Support
 - Responsive design works on mobile devices
-- Floating button adapts to smaller screens
+- Session locking works across mobile tabs
 - Touch-friendly PIN input
 
 ## 🎨 Customization
 
-### Change Keyboard Shortcut:
-Edit the JavaScript file and modify this line:
+### Change Session Check Interval:
+Edit the JavaScript file and modify:
 ```javascript
-if (e.ctrlKey && e.altKey && (e.key === 'l' || e.key === 'L' || e.keyCode === 76)) {
+// Check session lock status every 5 seconds
+this.checkInterval = setInterval(function() {
+    self.checkSessionLockStatus();
+}, 5000); // Change 5000 to desired milliseconds
 ```
 
-### Change Floating Button Position:
-Edit the CSS file and modify:
-```css
-.floating-lock-btn {
-    top: 80px !important;
-    right: 20px !important;
-}
+### Change Keyboard Shortcut:
+Edit the JavaScript file and modify:
+```javascript
+if (e.ctrlKey && e.altKey && (e.key === 'l' || e.key === 'L' || e.keyCode === 76)) {
 ```
 
 ## ✅ Verification Checklist
@@ -126,6 +163,17 @@ Edit the CSS file and modify:
 - [ ] Keyboard shortcut `Ctrl+Alt+L` works
 - [ ] Lock screen appears with user info
 - [ ] PIN unlocks successfully
+- [ ] **Lock persists after page refresh**
+- [ ] **New tabs show lock screen when locked**
+- [ ] **All tabs unlock together**
 - [ ] Menu item OR floating button visible
 
-The new implementation provides multiple ways to access screen lock functionality, ensuring it works even if the user menu structure varies between Odoo installations.
+## 🔐 Security Benefits
+
+1. **True session locking**: Can't bypass by refreshing or opening new tabs
+2. **Server-side validation**: PIN verification happens on server
+3. **Automatic sync**: All browser instances sync lock state
+4. **Persistent state**: Lock survives browser navigation
+5. **Audit logging**: All lock/unlock events are logged
+
+The enhanced implementation now provides enterprise-grade session-based locking that ensures true security across all browser tabs and windows!

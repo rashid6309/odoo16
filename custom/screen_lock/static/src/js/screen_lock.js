@@ -1,18 +1,27 @@
-/* Screen Lock Module - Enhanced with Keyboard Shortcut */
+/* Screen Lock Module - Session-Based Locking */
 
 (function() {
     'use strict';
 
     function ScreenLockManager() {
         this.isLocked = false;
+        this.sessionLocked = false;
+        this.checkInterval = null;
         this.init();
     }
 
     ScreenLockManager.prototype.init = function() {
+        var self = this;
         this.createLockOverlay();
         this.addToUserMenu();
         this.setupGlobalFunction();
         this.setupKeyboardShortcut();
+        
+        // Check session lock status on page load
+        this.checkSessionLockStatus().then(function() {
+            // Start periodic session check
+            self.startSessionCheck();
+        });
     };
 
     ScreenLockManager.prototype.createLockOverlay = function() {
@@ -67,6 +76,11 @@
         var self = this;
         
         document.addEventListener('keydown', function(e) {
+            // Don't trigger shortcut if screen is already locked
+            if (self.sessionLocked) {
+                return;
+            }
+            
             // Ctrl+Alt+L to lock screen
             if (e.ctrlKey && e.altKey && (e.key === 'l' || e.key === 'L' || e.keyCode === 76)) {
                 e.preventDefault();
@@ -75,16 +89,43 @@
             }
         });
         
-        // Show notification about shortcut on first load
+        // Show notification about shortcut on first load (only if not locked)
         setTimeout(function() {
-            if (!localStorage.getItem('screen_lock_shortcut_shown')) {
+            if (!self.sessionLocked && !localStorage.getItem('screen_lock_shortcut_shown')) {
                 self.showNotification('Tip: Press Ctrl+Alt+L to quickly lock your screen!', 'info');
                 localStorage.setItem('screen_lock_shortcut_shown', 'true');
             }
         }, 2000);
     };
 
-    ScreenLockManager.prototype.lockScreen = function() {
+    ScreenLockManager.prototype.checkSessionLockStatus = function() {
+        var self = this;
+        return this.makeRPCCall('/screen_lock/check', {})
+            .then(function(result) {
+                if (result && result.session_locked) {
+                    self.sessionLocked = true;
+                    self.showLockScreenImmediately();
+                } else {
+                    self.sessionLocked = false;
+                }
+                return result;
+            })
+            .catch(function(error) {
+                console.error('Error checking session lock status:', error);
+                return { session_locked: false };
+            });
+    };
+
+    ScreenLockManager.prototype.startSessionCheck = function() {
+        var self = this;
+        
+        // Check session lock status every 5 seconds
+        this.checkInterval = setInterval(function() {
+            self.checkSessionLockStatus();
+        }, 5000);
+    };
+
+    ScreenLockManager.prototype.showLockScreenImmediately = function() {
         var self = this;
         this.isLocked = true;
         
@@ -97,7 +138,7 @@
                 console.error('Error getting user info:', error);
             });
 
-        // Show overlay
+        // Show overlay immediately
         var overlay = document.getElementById('screen_lock_overlay');
         overlay.style.display = 'flex';
         
@@ -114,6 +155,25 @@
         }, 100);
     };
 
+    ScreenLockManager.prototype.lockScreen = function() {
+        var self = this;
+        
+        // First lock the session on server
+        this.makeRPCCall('/screen_lock/lock_session', {})
+            .then(function(result) {
+                if (result && result.success) {
+                    self.sessionLocked = true;
+                    self.showLockScreenImmediately();
+                } else {
+                    self.showNotification('Error: ' + (result.error || 'Cannot lock screen'), 'danger');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error locking session:', error);
+                self.showNotification('Error locking screen. Please try again.', 'danger');
+            });
+    };
+
     ScreenLockManager.prototype.unlockScreen = function() {
         var self = this;
         var pinInput = document.getElementById('lock_pin_input');
@@ -128,6 +188,7 @@
             .then(function(result) {
                 if (result && result.success) {
                     self.isLocked = false;
+                    self.sessionLocked = false;
                     document.getElementById('screen_lock_overlay').style.display = 'none';
                     document.body.style.overflow = '';
                     pinInput.value = '';
@@ -279,6 +340,11 @@
                     e.preventDefault();
                     e.stopPropagation();
                     
+                    // Don't allow locking if already locked
+                    if (self.sessionLocked) {
+                        return;
+                    }
+                    
                     // Close dropdown
                     var dropdown = userMenu.querySelector('.dropdown-menu') || 
                                   userMenu.querySelector('.dropdown-content');
@@ -328,7 +394,7 @@
         // Style the floating button
         floatingButton.style.cssText = 
             'position: fixed;' +
-            'top: 20px;' +
+            'top: 80px;' +
             'right: 20px;' +
             'width: 50px;' +
             'height: 50px;' +
@@ -344,12 +410,16 @@
             'transition: all 0.3s ease;';
         
         floatingButton.addEventListener('click', function() {
-            self.lockScreen();
+            if (!self.sessionLocked) {
+                self.lockScreen();
+            }
         });
         
         floatingButton.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.1)';
-            this.style.background = '#0056b3';
+            if (!self.sessionLocked) {
+                this.style.transform = 'scale(1.1)';
+                this.style.background = '#0056b3';
+            }
         });
         
         floatingButton.addEventListener('mouseleave', function() {
@@ -362,10 +432,18 @@
         console.log('Floating lock button added');
     };
 
+    // Clean up on page unload
+    window.addEventListener('beforeunload', function() {
+        var screenLockManager = window.screenLockManagerInstance;
+        if (screenLockManager && screenLockManager.checkInterval) {
+            clearInterval(screenLockManager.checkInterval);
+        }
+    });
+
     // Initialize when DOM is ready
     function initScreenLock() {
         if (!document.getElementById('screen_lock_overlay')) {
-            new ScreenLockManager();
+            window.screenLockManagerInstance = new ScreenLockManager();
         }
     }
 
@@ -383,7 +461,7 @@
             lastUrl = url;
             setTimeout(function() {
                 if (!document.getElementById('screen_lock_overlay')) {
-                    new ScreenLockManager();
+                    window.screenLockManagerInstance = new ScreenLockManager();
                 }
             }, 500);
         }

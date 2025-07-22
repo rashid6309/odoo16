@@ -127,6 +127,18 @@
     transform: scale(0.95) !important;
 }
 
+/* Disabled state for when session is locked */
+.floating-lock-btn.session-locked {
+    background: #6c757d !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}
+
+.floating-lock-btn.session-locked:hover {
+    transform: none !important;
+    background: #6c757d !important;
+}
+
 /* User menu styling improvements */
 .lock-screen-menu-item {
     cursor: pointer !important;
@@ -140,10 +152,51 @@
     text-decoration: none !important;
 }
 
+.lock-screen-menu-item.session-locked {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    color: #6c757d !important;
+}
+
+.lock-screen-menu-item.session-locked:hover {
+    background-color: transparent !important;
+}
+
 .lock-screen-menu-item small {
     margin-left: auto;
     font-size: 0.7em;
     opacity: 0.7;
+}
+
+/* Session locked indicator */
+.session-locked-indicator {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    z-index: 1002;
+    display: none;
+}
+
+.session-locked-indicator.show {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateX(-50%) translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Animation for lock screen appearance */
@@ -189,6 +242,10 @@
     animation: pulse 2s infinite;
 }
 
+.floating-lock-btn.session-locked::after {
+    display: none;
+}
+
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -225,5 +282,10 @@
         width: 45px !important;
         height: 45px !important;
         font-size: 16px !important;
+    }
+    
+    .session-locked-indicator {
+        font-size: 11px;
+        padding: 4px 12px;
     }
 }
